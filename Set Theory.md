@@ -60,3 +60,46 @@ $\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist \sigma(\mathcal{A}) 
 
 3.  $\sigma(\mathcal{A})$ is unique.
 
+
+
+We have 
+$$
+\sigma ( \mathcal { S } ) = \sigma ( \overline { \mathcal { S } } )
+$$
+Which can be proved by show that
+$$
+\mathcal{S} \sub \sigma(\bar{\mathcal{S}}) \implies \sigma(\mathcal{\bar{S}}) \sub \sigma({\mathcal{S}})\\
+\mathcal{\bar{S}} \sub \sigma({\mathcal{S}})\implies \sigma(\mathcal{{S}}) \sub \sigma({\bar{\mathcal{S}}})
+$$
+
+## $m-,\pi-,\lambda-$class 
+
+**m-class:**
+
+If $A_n\in\mathcal{A}$ and $A_n\uparrow or \downarrow$
+$$
+\lim_{n\to\infty}A_n\in \mathcal{A}
+$$
+**$\pi-$class** 
+$$
+A,B\in \mathcal{A} \implies A\cap B\in \mathcal{A}
+$$
+**$\lambda-$ class**
+
+1. $$
+   \Omega \in \mathcal{A}
+   $$
+
+2.  closed under proper difference:
+   $$
+   A-B \in \mathcal{A} \impliedby B\sub A\in \mathcal{A}
+   $$
+
+3.  is an m-class (cause $\Omega-A_i \downarrow$ whenever $A_i \uparrow$ )
+
+
+
+m-class is equivalent to $\sigma-$ algebra when it is already an algebra.
+$$
+\mathcal{A} \text{ is a $\sigma-$ algebra} \iff \mathcal{A} \text{ is a $\pi-$ class} \and \mathcal{A} \text{ is a $\lambda-$ class}
+$$
