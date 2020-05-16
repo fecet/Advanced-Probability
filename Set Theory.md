@@ -1,5 +1,17 @@
 # Set Theory
 
+$$
+if:A_i \uparrow \quad 
+A_n\to A=\cup _ { k = 1 } ^ { \infty } A _ { k } 
+\\
+if:A_i \downarrow \quad 
+A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }
+$$
+
+
+$$
+\begin{array} { l } \left\{ A _ { n } , i . o . \right\} = \limsup _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cup _ { n = k } ^ { \infty } A _ { n } \\ \left\{ A _ { n } , u l t . \right\} = \liminf _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cap _ { n = k } ^ { \infty } A _ { n } \end{array}
+$$
 Semi-algebra:
 
 1. $$
@@ -20,7 +32,7 @@ algebra:
    \cup_i A_i \in \mathcal{A} \impliedby \forall i,  A_i\in\mathcal{A}
    $$
 
-   Note that algebra is closed by finite union and we can prove that is Equivalent   to it is closed by finite intersection
+   Note that algebra is closed by finite union and we can prove that is Equivalent to it is closed by finite intersection
 
 $\sigma$ algebra:
 
@@ -99,7 +111,92 @@ $$
 
 
 
-m-class is equivalent to $\sigma-$ algebra when it is already an algebra.
+m-class is equivalent to $\sigma-$ algebra when it is already an algebra:
+$$
+\mathcal{A} \text{ is a $\sigma-$ algebra} \implies \mathcal{A} \text{ is a $m$-class}\\
+\mathcal{A} \text{ is a $\sigma-$ algebra} \impliedby \mathcal{A} \text{ is a $m$-class} \and \mathcal{A} \text{ is an algebra}\\
+$$
+
 $$
 \mathcal{A} \text{ is a $\sigma-$ algebra} \iff \mathcal{A} \text{ is a $\pi-$ class} \and \mathcal{A} \text{ is a $\lambda-$ class}
+$$
+
+Which can be proved as follows:
+
+- $\implies:$
+  1. $\Omega \in \mathcal{A}$
+  2. $A-B=A\cap B^c\in \mathcal{A}$
+  3. is an m-class
+- $\impliedby:$
+  1. $A^c=\Omega-A\in \mathcal{A}$
+  2. $A \cup B =(A^c \cap B^c)^c \in \mathcal{A}$
+  3. hence $\mathcal{A}$ is an algebra and $\mathcal{A}$ is a m-class
+
+
+
+Similarly, for $m,\pi,\lambda$ -class, those properties also hold:
+
+Let $\left\{ \mathcal { A } _ { \gamma } : \gamma \in \Gamma \right\}$ is a collection of  $m,\pi,\lambda$ -class then we have 
+$$
+\mathcal { A } = \cap _ { \gamma \in \Gamma } \mathcal { A } _ { \gamma }
+$$
+is also  a $m,\pi,\lambda$ -class
+
+
+
+$\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist m(\mathcal{A}) \quad s.t. $ 
+
+1. $$
+   \quad \mathcal{A} \sub \sigma(\mathcal{A})
+   $$
+
+2. $$
+   \forall \mathcal{A} \sub\mathcal{B} \in \text{m-classes} \quad m(\mathcal{A}) \sub \mathcal{B}
+   $$
+
+3. $m(\mathcal{A})$ is unique.
+
+similarly with $\lambda(\mathcal{A})$ and $\pi(\mathcal{A})$
+
+![image-20200515192532698](Set Theory.assets/image-20200515192532698.png)
+
+
+
+1. $m(\mathcal{A})=\sigma(\mathcal{A})\impliedby \mathcal{A} \text{ is already an algebra}$
+2. $\lambda(\mathcal{A})=\sigma(\mathcal{A})\impliedby \mathcal{A} \text{ is already a $\pi-class$}$
+
+Then we have **Monotone class theorem**:
+
+$\forall \mathcal{A} \sub  \mathcal{B} \sub  \mathcal{P}(\Omega),s.t.$:
+
+1. If $\mathcal{A}$ is a $\pi$-class, $\mathcal{B}$ is a $\lambda-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
+2. If $\mathcal{A}$ is an algebra, $\mathcal{B}$ is a $m-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
+
+
+
+## Product Spaces
+
+$n$-dim **rectangles** of the product space of $\prod _ { i = 1 } ^ { n } \Omega _ { i }$
+$$
+\prod _ { i = 1 } ^ { n } A _ { i } : = A _ { 1 } \times \ldots \times A _ { n } = \left\{ \left( \omega _ { 1 } , \ldots , \omega _ { n } \right) : \omega _ { i } \in A _ { i } \subset \Omega _ { i } , 1 \leq i \leq n \right\}
+$$
+if $A_i \in \mathcal{A_i}$, they are **measurable rectangles**
+
+the class of measurable rectangles is a $\pi$-class.
+
+$n$-dim **product $\sigma$-algebra**:
+$$
+\prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } = \sigma \left( \left\{ \prod _ { i = 1 } ^ { n } A _ { i } : A _ { i } \in \mathcal { A } _ { i } , 1 \leq i \leq n \right\} \right)
+$$
+$n$-dim product **measurable space**:
+$$
+\prod _ { i = 1 } ^ { n } \left( \Omega _ { i } , \mathcal { A } _ { i } \right) = \left( \prod _ { i = 1 } ^ { n } \Omega _ { i } , \prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } \right)
+$$
+Let $\mathcal{G}$ denote the class of all measurable rectangles of $\prod _ { i = 1 } ^ { n } \Omega _ { i }$, then
+$$
+\mathcal{A}=\mathcal{A}(\mathcal{G})
+$$
+moreover,
+$$
+\prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } =\sigma(\mathcal{A}(\mathcal{G}))
 $$
