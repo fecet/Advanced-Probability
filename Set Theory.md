@@ -42,7 +42,7 @@ $\sigma$ algebra:
    \cup_i^\infty A_i\in \mathcal{A} \impliedby \forall i,\ A_i\in \mathcal{A}
    $$
 
-
+The pair $(\Omega, \mathcal{A})$ is called a **measurable space**. The sets of $\mathcal{A}$ are called **measurable sets**. 
 
 a semi-algebra $\mathcal{S}$ can generate algebras by take all finite  disjoint unions of sets, i.e
 $$
