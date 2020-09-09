@@ -1,7 +1,27 @@
 # Set Theory
 
 $$
-if:A_i \uparrow \quad 
+\begin{array} { l } \left\{ A _ { n } , i . o . \right\} = \limsup _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cup _ { n = k } ^ { \infty } A _ { n } \\ \left\{ A _ { n } , u l t . \right\} = \liminf _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cap _ { n = k } ^ { \infty } A _ { n } \end{array}
+$$
+
+<!-- #region -->
+i.o. means elements in $\{A_n,i.o.\}$ is occurs in $A_n$ infinitely often and ult. means it will always occures utimately. Hence we have
+
+$$
+\liminf A_n \sub \limsup A_n
+$$
+
+
+
+One sequence is converges to $A$ iff 
+$$
+\liminf_n A_n=\limsup_n A_n=A
+$$
+<!-- #endregion -->
+
+
+$$
+A_i \uparrow \quad \implies
 A_n\to A=\cup _ { k = 1 } ^ { \infty } A _ { k } =\lim A_n
 \\
 if:A_i \downarrow \quad 
@@ -9,9 +29,10 @@ A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }=\lim A_n
 $$
 
 
-$$
-\begin{array} { l } \left\{ A _ { n } , i . o . \right\} = \limsup _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cup _ { n = k } ^ { \infty } A _ { n } \\ \left\{ A _ { n } , u l t . \right\} = \liminf _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cap _ { n = k } ^ { \infty } A _ { n } \end{array}
-$$
+## Algebras
+Let $\Omega$ be as space
+
+
 ### Semi-algebra
 
 1. $$
@@ -21,6 +42,7 @@ $$
 2. $$
    A\in S \Rightarrow \exist A _ { i } \in \mathcal { S } , \quad A _ { i } \cap A _ { j } = \emptyset , i \neq j,\quad s.t.  \quad A^c=\sum_{i=1}^{n}A_i
    $$
+
 
 ### algebra
 
@@ -34,7 +56,8 @@ $$
 
    Note that algebra is closed by finite union and we can prove that is Equivalent to it is closed by finite intersection
 
-## $\sigma$ algebra
+
+### $\sigma$ algebra
 
 1.  is an algebra
 
@@ -50,7 +73,6 @@ $$
 \overline { \mathcal { S } } = \{ \text {finite disjoint unions of sets in } \mathcal { S } \} = \mathcal{A} (\mathcal{S})
 $$
 is an algebra
-
 
 
 Let $\left\{ \mathcal { A } _ { \gamma } : \gamma \in \Gamma \right\}$ is a collection of  $\sigma$ algebra, then we have 
