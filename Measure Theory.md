@@ -30,7 +30,7 @@ Assume that $A_{1:n}\in\mathcal{A}$ and $A\in \mathcal{A}$ and $\mu$ is a measur
 
 $\forall$ Measure $\mu$ is continues from below and may not continues from above. It will be continues from above if $\exist m<\infty,\mu(A_m)<\infty$.
 
-Finte measure $\mu$ are always continues.
+Finite measure $\mu$ are always continues.
 
 ## Properties of measure
 
@@ -73,7 +73,7 @@ $$ \mu \left( \cup _{ i = 1 } ^ { \infty } A_ { i } \right) \leq \sum _{ i = 1 }
 
 ## Probability measure
 
-If $\mu(\Omega)=1$, then $\mu$ is a probability measure, ususally written as $P$, the probability space is $(\Omega,\mathcal{A},P)$
+If $\mu(\Omega)=1$, then $\mu$ is a probability measure, usually written as $P$, the probability space is $(\Omega,\mathcal{A},P)$
 For probability measure, which has following properties:
 
 1. $\forall A\in \mathcal{A},\quad 0\le P(A) \le 1$
@@ -84,7 +84,17 @@ For probability measure, which has following properties:
 6. $P \left( \cup _{ k = 1 } ^ { n } A_ { k } \right) = \sum _ { k } P \left( A _ { k } \right) - \sum _ { i < j } P \left( A _ { i } \cap A _ { j } \right) + \ldots \ldots$
 7. $P$ is continuous, as well as continuous from above and below.
 
-## Extension of set functions from semialgebra to algerba.
+**Boole's inequality**
+$$
+P \left( \bigcup _ { i = 1 } ^ { \infty } A _ { i } \right) \leq \sum _ { i = 1 } ^ { \infty } P \left( A _ { i } \right)
+$$
+**Bonferroni's inequality**
+$$
+P \left( \bigcap _ { i = 1 } ^ { n } A _ { i } \right) \geq \sum _ { i = 1 } ^ { n } P \left( A _ { i } \right) - ( n - 1 )
+$$
+
+
+## Extension of set functions from semialgebra to algebra.
 
 For $\mathcal{A}\sub\mathcal{B} \sub \mathcal{P}(\Omega)$, and $\mu:\mathcal{A}\to \reals,\nu:\mathcal{B}\to \reals$, if
 $$
@@ -115,7 +125,7 @@ to be the **outer measure** of $A$, $\mu^*$ is called the outer measure.
 
 1. $\mu^*$ is defined on $\mathcal{P(\Omega)}$
 2. $\mu^*$ may not be a measure
-3. $\cup_1^\infty A_n$ is a coutable covering of A
+3. $\cup_1^\infty A_n$ is a countable covering of A
 
 There is some properties as follows:
 
@@ -206,8 +216,8 @@ $$ \mu((a,b])=F(b)-F(a) $$
 
 **Remarks:**
 
-1. The completed measure $\mu$ is called the **L-S measure**. The (incompleted) measure is called the **B-L-S measure**
-2. If $F(x)=x$, then $\mu$ is called the **L measure**, if $\mu$ is incompleted is called **B measure**. L measure is not finite but $\sigma$ finite.
+1. The completed measure $\mu$ is called the **L-S measure**. The (uncompleted) measure is called the **B-L-S measure**
+2. If $F(x)=x$, then $\mu$ is called the **L measure**, if $\mu$ is uncompleted is called **B measure**. L measure is not finite but $\sigma$ finite.
 3. $F$ uniquely determines $\mu$, but not visa versa.
 4. If restrict $\mu$ to $([0,1],\mathcal{B}\cap[0,1])$, then $\mu$ is a probability measure.
 
@@ -226,8 +236,73 @@ there is a 1-1 correspondence between all d.f. and probability measure on $(\mat
 
 For a d.f. $F$, the set
 $$ S ( F ) = \{ x : F ( x + \epsilon ) - F ( x - \epsilon ) > 0 , \text { for all } \epsilon > 0 \} $$
-is called the **support** of $F$. Further more, any point of which is called a **point of increase**.
+is called the **support** of $F$. Further more, any point of which is called a **point of increase**. Then we have:
 
+1. Each jump point of $F$ belongs to the support.
+2. $S(F)$ is a closed set
+3. a d.f. can have support $(-\infty,\infty)$
+
+### Different types of distributions
+
+1. A d.f. $\delta_t$ is called **degenerate** at $t$ if
+
+$$ \begin{array} { r l r l } \delta _ { t } ( x ) & =  0 & x < t \\ & = 1 & x \geq t \end{array} $$
+
+2. A d.f. $F$ is called **discrete** if it can be represented in the form 
+
+$$ F ( x ) = \sum _{ 1 } ^ { \infty } p_ { n } \delta _ { a _ { n } } ( x ) $$
+
+where $\sum p_j=1$ and $\{a_n\}$ is countable.
+
+3. A d.f. $F$ is continuous if it's continuous everywhere.
+
+### Decomposition of d.f.
+
+1. > The set of discontinuities of a non-decreasing function is countable.
+2. Let $\{a_n\}$ be the countable set of jump of a d.f. $F$ and $p_j=F(a_j)-F(a_j-)>0$ the size at jump $a_j$, consider: $$ F _ { d } ( x ) = \sum _ { j = 1 } ^ { \infty } p _ { j } \delta _ { a _ { j } } ( x ) $$ clearly it's nondecreasing and right continuous with
+$$ F_d(-\infty)=0 \quad F_d(\infty)=\sum_j p_j $$
+Let $F_c(x)=F(x)-F_d(x)$, Then $F_c$ is nonnegative, nondecreasing, and continuous.
+
+3. The decomposition of $F(x)$, i.e. 
+$$ F(x)=F_c(x)+F_d(x) $$ 
+where $F_c$ is continuous and $F_d$ is discrete, is unique.
+
+4. Every d.f. $F$ can be written as the convex combination of $a$ discrete and a continuous one:
+$$ F ( x ) = F _ { d } ( x ) + F _ { c } ( x ) = \alpha \frac { F _ { d } ( x ) } { F _ { d } ( \infty ) } + ( 1 - \alpha ) \frac { F _ { c } ( x ) } { F _ { c } ( \infty ) } =a F_1(x)+(1-a)F_2(x)$$ 
+where $a=F_d(\infty)$
+
+### Further decomposition of a continuous d.f
+
+#### Absolutely continuous
+
+A function is called **absolutely continuous** iff there exists a function $f$ in $L^1$, s.t.
+$$\forall x<y<\infty, F(y)-F(x)=\int_x^y f(t)dt $$
+$f(t)$ is called the **density** of $F$. It can be shown that $ F'(t)=f(t) $ a.e.
+
+Another defintion is 
+$$ \text{$F$ is absolutely continuous} \iff \exist f \quad s.t. \quad F ( x ) = \int _ { - \infty } ^ { x } f ( t ) d t $$
+here $f(t)$ is called p.d.f
+
+#### Singular
+A funtion $F$ is **singular** iff it's continuoues, not identically zero, $F'$ exsits a.e., and $F'(t)=0$ a.e.
+<br><br>
+We can further decompose a continuous d.f. as:
+
+$$\text {A continuous d.f.
+} = \text { an absolutely continuous d.f. } + \text { a  singular d.f.} $$
+
+## Randon-Nickodym theorem
+
+Let $\mu$ and $\nu$ be two measures on the measurable space $(\Omega,\mathcal{F})$, we say that $v$ is absolutely continuous w.r.t. $\mu$, written as $\nu << \mu$ if
+
+$$ \mu(A)=0 \implies \nu(A)=0 $$
+
+**(Randon-Nikodym theorem)**
+Given a measurable space $(X,\Sigma)$. if $\nu << \mu$, where $\nu$ is a measure and $\mu$ is a $\sigma$ finite measure $\mu$ on $(X,\Sigma)$, then there is a measurable function $f$ on $X$, and taking values in $[0,\infty]$,s.t.
+
+$$ \nu(A)=\int_A fd\mu $$
+
+for any measurable set $A$.
 
 
 
