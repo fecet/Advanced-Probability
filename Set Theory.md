@@ -4,7 +4,6 @@ $$
 \begin{array} { l } \left\{ A _ { n } , i . o . \right\} = \limsup _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cup _ { n = k } ^ { \infty } A _ { n } \\ \left\{ A _ { n } , u l t . \right\} = \liminf _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cap _ { n = k } ^ { \infty } A _ { n } \end{array}
 $$
 
-<!-- #region -->
 i.o. means elements in $\{A_n,i.o.\}$ is occurs in $A_n$ infinitely often and ult. means it will always occures utimately. Hence we have
 
 $$
@@ -21,11 +20,13 @@ $$
 
 
 $$
-A_i \uparrow \quad \implies
+\begin{aligned}
+  A_i \uparrow \quad \implies
 A_n\to A=\cup _ { k = 1 } ^ { \infty } A _ { k } =\lim A_n
 \\
-if:A_i \downarrow \quad 
-A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }=\lim A_n
+A_i \downarrow \quad \implies
+A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }=\lim A_n 
+\end{aligned}
 $$
 
 
@@ -33,126 +34,133 @@ $$
 Let $\Omega$ be as space
 
 
-### Semi-algebra
+### Definition
 
-1. $$
+**Definition:** A nonempty class of subset of $\Omega$ is an semi algebra if 
+
+1. Closed under inter: $
    A , B \in \mathcal { S } \Rightarrow A\cap B \in S
-   $$
+   $
 
-2. $$
-   A\in S \Rightarrow \exist A _ { i } \in \mathcal { S } , \quad A _ { i } \cap A _ { j } = \emptyset , i \neq j,\quad s.t.  \quad A^c=\sum_{i=1}^{n}A_i
-   $$
+2. Complement can be written as finite disjoint union: $
+   A\in S \Rightarrow \exist A _{ i } \in \mathcal { S } , \quad A_ { i } \cap A _{ j } = \emptyset , i \neq j,\quad s.t.  \quad A^c=\sum_{i=1}^{n}A_i
+   $
 
+**Definition:** A nonempty class of subset of $\Omega$ is an algebra on $\Omega$ if
 
-### algebra
-
-1. $$
-   A^c \in \mathcal{A} \iff A\in \mathcal{A}
-   $$
-
-2. $$
+1. Closed under complement: $
+   A^c \in \mathcal{A} \iff A\in \mathcal{A}$
+2. Closed under finite union: $
    \cup_i A_i \in \mathcal{A} \impliedby \forall i,  A_i\in\mathcal{A}
-   $$
+   $
 
-   Note that algebra is closed by finite union and we can prove that is Equivalent to it is closed by finite intersection
+Note that algebra is closed by finite union and we can prove that is Equivalent to it is closed by finite intersection
 
+**Definition:** A nonempty class of subset of $\Omega$ is an $\sigma$ algebra on $\Omega$ if
 
-### $\sigma$ algebra
+1. is an algebra
 
-1.  is an algebra
+2. Closed under countable union.
 
-2. $$
-   \cup_i^\infty A_i\in \mathcal{A} \impliedby \forall i,\ A_i\in \mathcal{A}\\
-   \sum_i^\infty A_i\in \mathcal{A} \impliedby \forall i,\ A_i\in \mathcal{A}
-   $$
+**Remark:**  $\mathcal{A}$ is an algebra auto implies $\empty\in \mathcal{A}$ and $\Omega \in \mathcal{A}$. So $\{\empty,\Omega\}$ is the minimun algebra on $\Omega$ and thus minimun $\sigma$ algebra.
 
-The pair $(\Omega, \mathcal{A})$ is called a **measurable space**. The sets of $\mathcal{A}$ are called **measurable sets**. 
+### Generate algebras
+
+The pair $(\Omega, \mathcal{A})$ is called a **measurable space**. The sets of $\mathcal{A}$ are called **measurable sets**.
 
 a semi-algebra $\mathcal{S}$ can generate algebras by take all finite  disjoint unions of sets, i.e
+
 $$
 \overline { \mathcal { S } } = \{ \text {finite disjoint unions of sets in } \mathcal { S } \} = \mathcal{A} (\mathcal{S})
 $$
+
 is an algebra
 
+## Generated classes
 
-Let $\left\{ \mathcal { A } _ { \gamma } : \gamma \in \Gamma \right\}$ is a collection of  $\sigma$ algebra, then we have 
+Let $\left\{ \mathcal { A } _{ \gamma } : \gamma \in \Gamma \right\}$ is a collection of  $\sigma$ algebra, then we have
+
 $$
-\mathcal { A } = \cap _ { \gamma \in \Gamma } \mathcal { A } _ { \gamma }
+\mathcal { A } = \cap_ { \gamma \in \Gamma } \mathcal { A } _ { \gamma }
 $$
-is also  a $\sigma$ algebra.
 
+is also  a $\sigma$ algebra. Hence we can define the smallest $\sigma$ algebra as intersection of all $\sigma$ algebras contains $\mathcal{A}$. That is
 
+$\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist \sigma(\mathcal{A}) \quad s.t. $
 
-$\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist \sigma(\mathcal{A}) \quad s.t. $ 
-
-1. $$
+1. $
    \quad \mathcal{A} \sub \sigma(\mathcal{A})
-   $$
+   $
 
-2. $$
-   \forall \mathcal{A} \sub\mathcal{B} \in \sigma \text{-algebras} \quad \sigma(\mathcal{A}) \sub \mathcal{B}
-   $$
+2. $
+   \forall \mathcal{A} \sub\mathcal{B} \in \sigma \text{-algebras} \implies \sigma(\mathcal{A}) \sub \mathcal{B}
+   $
 
-3.  $\sigma(\mathcal{A})$ is unique.
+3. $\sigma(\mathcal{A})$ is unique.
 
 
 
 We have 
+
 $$
 \sigma ( \mathcal { S } ) = \sigma ( \overline { \mathcal { S } } )
 $$
+
 Which can be proved by show that
+
 $$
-\mathcal{S} \sub \sigma(\bar{\mathcal{S}}) \implies \sigma(\mathcal{\bar{S}}) \sub \sigma({\mathcal{S}})
+\begin{aligned}
+\mathcal{S} \sub \sigma(\bar{\mathcal{S}}) \implies \sigma(\mathcal{{S}}) \sub \sigma({\bar{\mathcal{S}}})
 \\
-\mathcal{\bar{S}} \sub \sigma({\mathcal{S}})\implies \sigma(\mathcal{{S}}) \sub \sigma({\bar{\mathcal{S}}})
+\mathcal{\bar{S}} \sub \sigma({\mathcal{S}})\implies \sigma(\mathcal{\bar{S}}) \sub \sigma({\mathcal{S}})
+\end{aligned}
 $$
 
 The smallest $\sigma-$algebra generated by the class of all open intervals on the real line $\mathcal{R}=(-\infty,\infty)$ is **Borel $\sigma$ algebra**, denoted by $\mathcal{B}$ i.e. 
 $$
-\mathcal { A } = \{ ( a , b ) : - \infty < a < b < \infty \}\\
-\mathcal{B}=\sigma(\mathcal{A})
+\begin{aligned}
+ \mathcal { A }& = \{ ( a , b ) : - \infty < a < b < \infty \}\\
+\mathcal{B}&=\sigma(\mathcal{A})
+\end{aligned}
 $$
 , whose elements are called **Borel sets​**, $(\mathcal{R},\mathcal{B})$ is called **Borel measurable space**
 
-![image-20200523161329154](Set Theory.assets/image-20200523161329154.png)
+## Monotone class
 
+**m-class** is closed under monotone op.
 
-## $m-,\pi-,\lambda-$class 
-
-**m-class:**
-
-If $A_n\in\mathcal{A}$ and $A_n\uparrow or \downarrow$
+If $A_{1:n}\in\mathcal{A}$ and $A_n\uparrow or \downarrow$
 $$
 \lim_{n\to\infty}A_n\in \mathcal{A}
 $$
-**$\pi-$class** 
+
+**$\pi-$class** is closed under finite intersection
+
 $$
 A,B\in \mathcal{A} \implies A\cap B\in \mathcal{A}
 $$
+
 **$\lambda-$ class**
 
-1. $$
+1. $
    \Omega \in \mathcal{A}
+   $
+
+2. closed under proper difference:
+
+   $$
+   A-B \in \mathcal{A} \impliedby B\sub A \text{ and } B,A\in \mathcal{A}
    $$
 
-2.  closed under proper difference:
-   $$
-   A-B \in \mathcal{A} \impliedby B\sub A\in \mathcal{A}
-   $$
+3. is an m-class (cause $\Omega-A_i \downarrow$ whenever $A_i \uparrow$ )
 
-3.  is an m-class (cause $\Omega-A_i \downarrow$ whenever $A_i \uparrow$ )
-
-
-
-m-class is equivalent to $\sigma-$ algebra when it is already an algebra:
-$$
-\mathcal{A} \text{ is a $\sigma-$ algebra} \implies \mathcal{A} \text{ is a $m$-class}\\
-\mathcal{A} \text{ is a $\sigma-$ algebra} \impliedby \mathcal{A} \text{ is a $m$-class} \And \mathcal{A} \text{ is an algebra}\\
-$$
+### Relationships with $\sigma$ algebra
 
 $$
-\mathcal{A} \text{ is a $\sigma-$ algebra} \iff \mathcal{A} \text{ is a $\pi-$ class} \And \mathcal{A} \text{ is a $\lambda-$ class}
+\begin{aligned}
+\mathcal{A} \text{ is a $\sigma-$ algebra} \iff \mathcal{A} \text{ is a $m$-class} \text{ and } \mathcal{A} \text{ is an algebra}\\
+\mathcal{A} \text{ is a $\sigma-$ algebra} \iff \mathcal{A} \text{ is a $\pi-$ class} \And \mathcal{A} \text{ is a $\lambda-$ class}  
+\end{aligned}
 $$
 
 Which can be proved as follows:
@@ -174,30 +182,33 @@ Let $\left\{ \mathcal { A } _ { \gamma } : \gamma \in \Gamma \right\}$ is a coll
 $$
 \mathcal { A } = \cap _ { \gamma \in \Gamma } \mathcal { A } _ { \gamma }
 $$
+
 is also  a $m,\pi,\lambda$ -class
-
-
 
 $\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist m(\mathcal{A}) \quad s.t. $ 
 
-1. $$
-   \quad \mathcal{A} \sub \sigma(\mathcal{A})
-   $$
+1. $\quad \mathcal{A} \sub \sigma(\mathcal{A})$
 
-2. $$
+2. $
    \forall \mathcal{A} \sub\mathcal{B} \in \text{m-classes} \quad m(\mathcal{A}) \sub \mathcal{B}
-   $$
+   $
 
 3. $m(\mathcal{A})$ is unique.
 
 similarly with $\lambda(\mathcal{A})$ and $\pi(\mathcal{A})$
 
-![image-20200515192532698](Set Theory.assets/image-20200515192532698.png)
+$$ \begin{aligned}
+   \sigma \iff 
+\end{aligned} $$
 
+## The Monotone Class Theorem(MCT)
 
+Let $\mathcal{A}$ be an algebra, then
 
-1. $m(\mathcal{A})=\sigma(\mathcal{A})\impliedby \mathcal{A} \text{ is already an algebra}$
-2. $\lambda(\mathcal{A})=\sigma(\mathcal{A})\impliedby \mathcal{A} \text{ is already a $\pi-class$}$
+1. $m(\mathcal{A})=\sigma(\mathcal{A})$
+2. if $\mathcal{B}$ is an $m$ class and $\mathcal{A}\sub \mathcal{B}$, then $\sigma(\mathcal{A})=m(\mathcal{A})\sub \mathcal{B}$
+
+Similarly, let $\mathcal{A}$ be a $\pi$ class, then $\lambda(\mathcal{A})=\sigma(\mathcal{A})$
 
 Then we have **Monotone class theorem**:
 
@@ -206,36 +217,53 @@ $\forall \mathcal{A} \sub  \mathcal{B} \sub  \mathcal{P}(\Omega),s.t.$:
 1. If $\mathcal{A}$ is a $\pi$-class, $\mathcal{B}$ is a $\lambda-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
 2. If $\mathcal{A}$ is an algebra, $\mathcal{B}$ is a $m-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
 
-
-
 ## Product Spaces
+
+Let $(\Omega_i,\mathcal{A_i})$ be a measurable space.
 
 $n$-dim **rectangles** of the product space of $\prod _ { i = 1 } ^ { n } \Omega _ { i }$
 $$
 \prod _ { i = 1 } ^ { n } A _ { i } : = A _ { 1 } \times \ldots \times A _ { n } = \left\{ \left( \omega _{ 1 } , \ldots , \omega_ { n } \right) : \omega _ { i } \in A _ { i } \subset \Omega _ { i } , 1 \leq i \leq n \right\}
 $$
-if $A_i \in \mathcal{A_i}$, they are **measurable rectangles**
 
-the class of measurable rectangles is a $\pi$-class.
+if $A_i \in \mathcal{A_i}$, they are **measurable rectangles**, let $\mathcal{G}$ denote the class of all measurable rectangles of $\prod _{ i = 1 } ^ { n } \Omega_ { i }$, it's easy to check that $\mathcal{G}$ is a $\pi$ class.
 
 $n$-dim **product $\sigma$-algebra**:
+
 $$
-\prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } = \sigma \left( \left\{ \prod _ { i = 1 } ^ { n } A _ { i } : A _ { i } \in \mathcal { A } _ { i } , 1 \leq i \leq n \right\} \right)
+\prod _{ i = 1 } ^ { n } \mathcal { A }_ { i } = \sigma \left( \left\{ \prod _{ i = 1 } ^ { n } A_ { i } : A _{ i } \in \mathcal { A }_ { i } , 1 \leq i \leq n \right\} \right)=\sigma(\mathcal{G})
 $$
+
 $n$-dim product **measurable space**:
+
 $$
-\prod _ { i = 1 } ^ { n } \left( \Omega _ { i } , \mathcal { A } _ { i } \right) = \left( \prod _ { i = 1 } ^ { n } \Omega _ { i } , \prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } \right)
-$$
-Let $\mathcal{G}$ denote the class of all measurable rectangles of $\prod _ { i = 1 } ^ { n } \Omega _ { i }$, then
-$$
-\mathcal{A}=\mathcal{A}(\mathcal{G})
-$$
-moreover,
-$$
-\prod _ { i = 1 } ^ { n } \mathcal { A } _ { i } =\sigma(\mathcal{A}(\mathcal{G}))
+\prod _{ i = 1 } ^ { n } \left( \Omega_ { i } , \mathcal { A } _{ i } \right) = \left( \prod_ { i = 1 } ^ { n } \Omega _{ i } , \prod_ { i = 1 } ^ { n } \mathcal { A } _ { i } \right)
 $$
 
-## Borel
+**Theorem** Let $\mathcal{A}$ be the set of all finite disjoint union of $\mathcal{G}$, then it's the smallest algebra contains $\mathcal{G}$.
 
-Consider all open intervel $\mathcal { C } = \left\{ [ a , b ) | a , b \in \mathbb { R } ^ { n } , a < b \right\}$, then $\sigma(\mathcal{C})$ is Borel algebra on $\Reals^n$, also denoted by $\mathcal{B(\Reals^n)}$
+**Proof** First show that $\mathcal{A}$ is $\pi$ class, since for element $A_i$ in $\mathcal{A}$, it can be written as disjoint unions of subset $E_{ij}$ of $\mathcal{G}$, i.e. $ A_i=\bigcup_{j=1}^{n_i} E_{ij} \in \mathcal{A} $. Then
 
+$$ A_1 \cap A_2 =(\bigcup_{j=1}^{n_1} E_{1j})\cap(\bigcup_{k=1}^{n_2} E_{2k})=\bigcup\bigcup(E_{ij}\cap E_{2k})\in \mathcal{A}$$
+
+since $\mathcal{G}$ is already a $\pi$ class.
+
+Then we show that $\mathcal{A}$ is an algebra, which is suffices to show that it's also closed under complements. Consider element of $\mathcal{G}$:
+
+$$ E=E_1\times E_2 \times \cdots\times E_n $$
+
+we can showt that $E^c$ can be writtena as disjoint union $\cup D_{i:n}$  Then any $A\in \mathcal{A}$
+
+$$
+A^c=\bigcap E_j^c=\bigcap\bigcup D_{ij} \xlongequal{disjoint}\bigcup\bigcap D_{ij}\in \mathcal{A}
+$$
+
+Clearly $\mathcal{A(G)}\sub \mathcal{A}$ and $\mathcal{A}\sub \mathcal{A(G)}$ and hence $\mathcal{A=A(G)}$. $\blacksquare$
+
+**Corollary** 
+
+$$
+\prod _{ i = 1 } ^ { n } \mathcal { A }_ { i } =\sigma(\mathcal{A})=\sigma(\mathcal{G})
+$$
+
+**Proof** $\mathcal{G\sub A\sub \sigma(A)}\implies \mathcal{\sigma(G)\sub\sigma(A)}$ and $\mathcal{A=A(G)\sub \sigma(G)}\implies \mathcal{\sigma(A)\sub \sigma(G)}$ and hence $\mathcal{\sigma(A)=\sigma(G)}$. $\blacksquare$
