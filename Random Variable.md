@@ -2,19 +2,20 @@
 
 ## Mappings
 
-Let $X : \Omega _{ 1 } \rightarrow \Omega_ { 2 }$ be a mapping
+Let $X : \Omega _{ 1 } \rightarrow \Omega_ { 2 }$ be a mapping, $\forall B\subset \Omega_2$ and $\mathcal{G} \subset \mathcal{P(\Omega_2)}$, the **inverse image** of 
 
-- $\forall B \in \Omega_2$, the **inverse image** of $B$ is
+- $B$ is $X ^ { - 1 } ( B ) = \left\{ \omega :\omega \in \Omega _ { 1 } , X ( \omega ) \in B\right\} : = \{ X \in B \}$
 
-$$ X ^ { - 1 } ( B ) = \left\{ \omega : \omega \in \Omega _ { 1 } , X ( \omega ) \in B \right\} : = \{ X \in B \} $$
-
-- $\forall\mathcal{G}\in\Omega_2,X ^ { - 1 } ( \mathcal { G } ) = \left\{ X ^ { - 1 } ( B ) : B \in \mathcal { G } \right\}$
+- $\mathcal{G}$ is $X ^ { - 1 } ( \mathcal { G } ) = \left\{ X ^ { - 1 } ( B ) : B \in \mathcal { G } \right\}$
 
 There is some properties:
 
 1. $X ^ { - 1 } \left( \Omega _ { 2 } \right) = \Omega _ { 1 } , X ^ { - 1 } ( \emptyset ) = \emptyset$
 2. $X ^ { - 1 } \left( B ^ { c } \right) = \left[ X ^ { - 1 } ( B ) \right] ^ { c }$
-3. $$ \begin{array} { l } X ^ { - 1 } \left( \cup _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cup _ { \gamma \in \Gamma } X ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \\ X ^ { - 1 } \left( \cap _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cap _ { \gamma \in \Gamma } X ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \end{array} $$
+3.
+     $$ \begin{array} { l } X ^ { - 1 } \left( \cup _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cup _ { \gamma \in \Gamma } X ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \\ X ^ { - 1 } \left( \cap _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cap _ { \gamma \in \Gamma } X ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \end{array} $$
+     
+     where $\Gamma$ may not countable.
 4. $X ^ { - 1 } \left( B _ { 1 } - B _ { 2 } \right) = X ^ { - 1 } \left( B _ { 1 } \right) - X ^ { - 1 } \left( B _ { 2 } \right) \forall B _ { 1 } , B _ { 2 } \subset \Omega _ { 2 }$
 5. $B_1\sub B_2 \sub \Omega_2 \implies X^{-1}(B_1) \sub X^{-1}(B_2)$
 6. If $\mathcal{B}$ is a $\sigma-$algebra, $X^{-1}(\mathcal{B})$ is also a $\sigma-$algebra.
@@ -22,26 +23,27 @@ It's easy to check $X^{-1}(\mathcal{B})$ is closed under complement and coutable
 
 7. If $\mathcal{C}$ is nonempty, $X ^ { - 1 } ( \sigma ( \mathcal { C } ) ) = \sigma \left( X ^ { - 1 } ( \mathcal { C } ) \right)$
 
+**Remarks** $X^{-1}$ preserves all the set operations on $\Omega$.
+
 ## Measurable mappings
 
-For two measurable spaces $(\Omega_1,\mathcal{A})$, $(\Omega_1,\mathcal{B})$, $X : \Omega _ { 1 } \rightarrow \Omega _ { 2 }$ is a **measurable mapping** if 
-$$ X ^ { - 1 } ( B ) \equiv \{ X \in B \} \in \mathcal { A } , \quad \forall B \in \mathcal { B } $$
+For two measurable spaces $(\Omega_1,\mathcal{A})$, $(\Omega_1,\mathcal{B})$, $X : \Omega _ { 1 } \rightarrow \Omega _ { 2 }$ is a **measurable mapping** if $X ^ { - 1 } ( \mathcal{B} ) \subset \mathcal { A }$
 
 which is a **measurable function** if $\left( \Omega _ { 2 } , \mathcal { B } \right) = \left( \mathcal { R } ^ { n } , \mathcal { B } \left( \mathcal { R } ^ { n } \right) \right)$
 
 Moreover, it's a **Borel function** if $\left( \Omega _ { 1 } , \mathcal { A } \right) = \left( \mathcal { R } ^ { m } , \mathcal { B } \left( \mathcal { R } ^ { m } \right) \right)$
 
-> $\forall X : (\Omega _ { 1 },\mathcal{A}) \to (\Omega _ { 2 },\mathcal{B})$ is a measurable mapping if
-> $$ \forall C\in \mathcal{C} \quad s.t. \quad \mathcal{B}=\sigma(\mathcal{C}) \And X^{-1}(C)\in\mathcal{A}$$
-
-**Proof:**
+If $\mathcal{B=\sigma(C)}$, the definition can be reduced to $X^{-1}(\mathcal{C})\subset \mathcal{A}$
+since
 $$ X ^ { - 1 } ( \mathcal { B } ) = X ^ { - 1 } ( \sigma ( \mathcal { C } ) ) = \sigma \left( X ^ { - 1 } ( \mathcal { C } ) \right) \subset \sigma ( \mathcal { A } ) = \mathcal { A } $$
 
-> if $X : (\Omega _ { 1 },\mathcal{A}) \to (\Omega _ { 2 },\mathcal{B})$ and $f : (\Omega _ { 2 },\mathcal{B}) \to (\Omega _ { 3 },\mathcal{C})$ are measurable mappings. then $f ( X ) = f \cdot X : \left( \Omega _ { 1 } , \mathcal { A } _ { 1 } \right) \rightarrow \left( \Omega _ { 3 } , \mathcal { A } _ { 3 } \right)$ is also measurable mappings.
+> if $X : (\Omega _ { 1 },\mathcal{A_1}) \to (\Omega _ { 2 },\mathcal{A_2})$ and $f : (\Omega _ { 2 },\mathcal{A_2}) \to (\Omega _ { 3 },\mathcal{A_3})$ are measurable mappings. then $f ( X ) = f \cdot X : \left( \Omega _ { 1 } , \mathcal { A } _ { 1 } \right) \rightarrow \left( \Omega _ { 3 } , \mathcal { A } _ { 3 } \right)$ is also measurable mappings.
+
+**Proof** $\forall A_3 \in \mathcal{A_3}$, $\{fX\in A_3\}=\{X \in f^{-1}(A_3)\}\in \mathcal{A_1}$ since $f^{-1}(A_3)\in \mathcal{A_2}$
 
 ## r.v
 
-A r.v. $X$ is a measurable function from $(\Omega_1,\mathcal{A})$ to $(\mathcal{R},\mathcal{B})$. It denoted by $ X $ is $\mathcal{A}$-measurable or $ X \in \mathcal{A} $
+A r.v. $X$ is a measurable function from $(\Omega_1,\mathcal{A})$ to $(\mathcal{R},\mathcal{B})$. It denoted by $X$ is $\mathcal{A}$-measurable or $X \in \mathcal{A}$
 
 **(Another definition)**: A r.v. $X$ is a measurable mapping from $(\Omega,\mathcal{A},P)$ to $(\mathcal{R},\mathcal{B})$ such that
 $$ P ( | X | = \infty ) = P ( \{ \omega : | X ( \omega ) | = \infty \} ) = 0 $$
@@ -55,27 +57,60 @@ $$ \{ X \leq x \} , \quad \{ X \geq x \} , \quad \{ X < x \} , \quad \{ X > x \}
 
 ### Random vectors
 
-$X=(X_1,\cdots,X_n)$ is a random vectors if $X_k$ is a r.v. $\forall k$
+$\mathbf{X}=(X_1,\cdots,X_n)$ is a random vectors if $X_k$ is a r.v. $\forall k$ iff $X$ is a measurable function from $(\Omega,\mathcal{A})$ to $(\mathcal{R^n},\mathcal{B(R^n)})$.
 
-$X$ is a measurable function from $(\Omega,\mathcal{A})$ to $(\mathcal{R^n},\mathcal{B(R^n)})$
+**Proof**
+
+$$ \{\mathbf{X}\in \prod I_n\}=\bigcap\{X_n \in I_n\}\in \mathcal{A} $$
+
+where $I_k=(a_k,b_k],-\infty\le a_k\le b_k\le \infty$ and follows from $\sigma(\{\prod I_n\})=\mathcal{B(R^n)}$. For the other direction, note
+
+$$ \{X_k\le t\}=\{\mathbf{X}\in \prod_{i< k} \Reals  \times \{-\infty,t\}\times \prod_{i > k} \Reals\} \in \mathcal{A. \blacksquare}$$
 
 ## Construction of random variables
 
-$\forall X, Y$ are r.v., so are $aX+bY,X \vee Y = \max \{ X , Y \} , X \wedge Y = \min \{ X , Y \},X^2,XY,X/Y,X^+,X^-,|X|$
+### Algebraic ops
+
+$\forall X, Y\in \mathcal{A}$, so are $aX+bY,X \vee Y = \max \{ X , Y \} , X \wedge Y = \min \{ X , Y \},X^2,XY,X/Y,X^+=\max(x,0),X^-=-\min(x,0),|X|=X^++X^-$
 
 where $X^+=\max\{X,0\}$, $X^-=\min\{X,0\}$ and $|X|=X^++X^-$
 
-> **Definition**: Let $X_1:n$ be a sequence of r.v.'s on $( \Omega , \mathcal { A } , P )$. Define $\Omega_0$ is the set of all $\omega$, such that $\lim_n X_n(\omega)$ exists. If $P(\Omega_0)=1$, we say that $X_n$ converges a.s. and write:
-$$ X_n \to X \quad a.s. $$
+### Limiting opts
 
-Suppose random vectors $X_{1:n}$ on $(\Omega^n,\mathcal{A}^n)$, then we have
-1. $\sup_n X_n, \inf_n X_n$ and $\liminf_n X_n$ and $\limsup_n X_n$ are r.v.
-2. If $\forall \omega \in \Omega \quad X(\omega)=\lim_n X_n(\omega)$, then $X$ is a r.v.
-3. If $S(\omega)=\sum_{n=1}^{\infty} X_n(\omega)$ exists for all $\omega$, then $S$ is a r.v.
+Let $X_{1:}$ are r.v. on $(\Omega,\mathcal{A})$.
+
+1.  
+     $\sup_{n\to \infty} X_n,\inf_{n\to \infty} X_n,\limsup_{n\to \infty} X_n,\liminf_{n\to \infty} X_n$ are r.v.'s.
+
+     **Proof** First two follows from, $\forall t\in \Reals$:
+
+     $$ \begin{aligned}
+          \{\sup_{n\to \infty} X_n \le t\}&=\bigcap_{n=1}^\infty \{X_n \le t\} \in \mathcal{A}
+          \\ \{\inf_{n\to \infty} X_n \ge t \}&=\bigcap_{n=1}^\infty \{X_n \ge t\} \in \mathcal{A}
+     \end{aligned}$$
+
+     and the last two follws from $\limsup_{n\to \inf}=\inf_{k\to \infty} \sup_{m\ge k} X_m$ and $\liminf_{n\to \inf}=\sup_{k\to \infty} \inf_{m\ge k} X_m$. $\blacksquare$
+
+2.
+     If $X=\lim_{n\to \infty} X_n$ everywhere, then $X$ is a r.v.
+
+     **Proof** $X = \lim_{n\to \infty} X_n = \limsup_{n\to \infty} X_n=\liminf_{n\to \infty} X_n$ is a r.v. $\blacksquare$
+
+3. 
+     If $S=\sum_1^\infty X_n$ exists everywhere, then $S$ is a r.v.
+
+     **Proof** Note $\sum_1^\infty X=\lim_{n\to \infty}\sum_n X_n$ is a r.v.
+
+
+If $X=\lim_{n\to \infty} X_n$ holds **almost** everywhere, i.e., define $\Omega_0$ is the set of all $\omega$, such that $\lim_n X_n(\omega)$ exists, then $P(\Omega_0)=1$, we say that $X_n$ converges a.s. and write:
+
+$$ X_n \to X \quad a.s. $$
 
 ### Transformers
 
 $\forall$ random $n$ vectors $X=(X_{1:n})$ and Borel function $f$ from $\mathcal{R^n\to R^m}$, then $f(X)$ is a random $m$ vectors.
+
+**Remarks** Note that continuous function are borel measurable since continuity leads to inverse image of an open set is still open. So if $X_{1:n}$ are r.v.'s, so are $\sum X_n$, $\sin(x)$, $e^X$, $\text{Poly}(X),\cdots$
 
 ## Approximations of r.v. by simple r.v.s
 
