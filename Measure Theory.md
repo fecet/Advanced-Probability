@@ -1,3 +1,19 @@
+---
+title: "Set theory"
+author: Xie Zejian
+# date: Sep 27, 2020
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    # number_sections: true  
+    highlight: tango
+    latex_engine: pdflatex
+
+export_on_save:
+  pandoc: true
+---
+
 # Measure Theory
 
 Let $\Omega$ be a space and $\mathcal{A}$ a class, then function $\mu : \mathcal { A } \rightarrow R = [ - \infty , \infty ]$ is a **set function**.
@@ -72,31 +88,57 @@ Let $\mu$ be a measure on an $\sigma$ algebra $\mathcal{A}$
 2. Boole's inequality(Countable Sub-Additivity) 
    $$ \mu \left( \cup _{ i = 1 } ^ { \infty } A_ { i } \right) \leq \sum _{ i = 1 } ^ { \infty } \mu \left( A_ { i } \right) $$
 3. Continuity from below
-4. Continuity from above(must meet some conditions metioned above)
-5. Continuity at A $\impliedby$ $\mu$ is a finite measure.
+4. Continuity from above if $\mu$ is finite in $A_i$.
 
-## Probability measure
+The sense of **4** follows from suppose $A_i \searrow A$, then $A_1-A_i \nearrow A_1-A$, then
 
-If $\mu(\Omega)=1$, then $\mu$ is a probability measure, usually written as $P$, the probability space is $(\Omega,\mathcal{A},P)$
-For probability measure, which has following properties:
+$$ \mu(A_1)-\mu(A)=\mu(A_1-A)=\lim \mu(A_1-A_i)=\mu(A_1)-\lim(A_i) $$
 
-1. $\forall A\in \mathcal{A},\quad 0\le P(A) \le 1$
-2. $P(\Omega)=1$
-3. $P \left( \sum _ { 1 } ^ { \infty } A _ { n } \right) = \sum _ { 1 } ^ { \infty } P \left( A _ { n } \right)$
-4. $A \sub B \implies P(B-A)=P(B)-P(A)$
-5. $P(A) \le P(B) \impliedby A\sub B$
-6. $P \left( \cup _{ k = 1 } ^ { n } A_ { k } \right) = \sum _ { k } P \left( A _ { k } \right) - \sum _ { i < j } P \left( A _ { i } \cap A _ { j } \right) + \ldots \ldots$
-7. $P$ is continuous, as well as continuous from above and below.
+where $\mu(A_1)$ cannot be cancelled if $\mu(A_i)=\infty$.
 
-**Boole's inequality**
-$$
-P \left( \bigcup _ { i = 1 } ^ { \infty } A _ { i } \right) \leq \sum _ { i = 1 } ^ { \infty } P \left( A _ { i } \right)
-$$
-**Bonferroni's inequality**
-$$
-P \left( \bigcap _ { i = 1 } ^ { n } A _ { i } \right) \geq \sum _ { i = 1 } ^ { n } P \left( A _ { i } \right) - ( n - 1 )
-$$
+Let $(\Omega,\mathcal{A},\mathcal{\mu})$ be a measure space, and $N\sub\Omega$
 
+1. $N$ is a **$\mu$ null set** iff $\exist B\in \mathcal{A} \quad s.t. \quad \mu(B)=0, \quad N\sub B$
+2. This measure space is a **complete measure** space if $\forall$ $\mu$ null space $N$, $N\in \mathcal{A}$
+
+> Given any measure space $(\Omega,\mathcal{A},\mathcal{\mu})$ , there exist a complete measure space $(\Omega,\mathcal{\bar{A}},\mathcal{\bar{\mu}})$, such that $\mathcal{A}\sub \bar{\mathcal{A}}$ and $\bar{\mu}$ is an extension of $\mu$. This space is called completion of $(\Omega,\mathcal{A},\mathcal{\mu})$.
+
+**Proof** Take 
+
+$$ \begin{aligned}
+  \bar{\mathcal{A}}&=\{A\cup N:A\in \mathcal{A}\}\\
+  \bar{\mathcal{B}}&=\{A\Delta N:A\in \mathcal{A}\}
+\end{aligned} $$
+
+$\bar{\mathcal{A}}=\bar{\mathcal{B}}$ since $A\cup N=(A-B) \Delta (B\cap (A\cup N))$ and $A\Delta N=(A-B)\cup(B\cap(A\Delta N))$.
+
+Then we can show that $\bar{\mathcal{A}}$ is a $\sigma$ algebra. Let $E_i=A_i \cup N_i\in \bar{\mathcal{A}}$, then
+
+$$ \bigcup_1^\infty E_i=\bigcup_1^\infty A_i \cup \bigcup_1^\infty N_i $$ 
+
+and note $\bigcup_1^\infty A_i\in \mathcal{A}$ and $\mu(\bigcup_1^\infty N_i)\le \mu(\cup_1^\infty B_i)\le \cup_1^\infty \mu(B_i)=0$. Thus $\bar{\mathcal{A}}$ is closed by countable union. As for complements, note $E^c=A^c \cap N^c=(A^c\cap N^c \cap B^c)\cup (A^c\cap N^c \cap B)=(A^c\cap B^c)\cup (A^c\cap N^c\cap B)\in \bar{\mathcal{A}}$.
+
+Finally we define a measure $\bar{\mu}$ on $\bar{\mathcal{A}}$ by
+
+$$ \bar{\mu}(A\cup N)=\mu(A) $$
+
+We should prove it's well defined. Suppose $A_1\cup N_1=A_2 \cup N_2 \in \bar{\mathcal{A}}$, note $A\Delta B \Delta C=A\Delta (B\Delta C)$ and $A\Delta B=B\Delta A$.
+
+$$\begin{aligned}
+  (A_1\Delta A_2)\Delta(N_1\Delta N_2)&=(A_1\Delta A_2 \Delta N_1)\Delta N_2
+  \\&=(A_1\Delta N_1)\Delta(A_2\Delta N_2)
+  \\&=\emptyset
+\end{aligned}$$
+
+Hence $A_1 \Delta A_2=N_1\Delta N_2$, note $N_1\Delta N_2 \subset N_1\cup N_2 \subset B_1 \cup B_2$, hence $\mu(A_1\Delta A_2)=0$ and thus $\mu(A_1 - A_2)=\mu(A_2-A_1)=0$. Therefore
+
+$$ \begin{aligned}
+  \mu(A_1)&=\mu(A_1-A_2)+\mu(A_1\cap A_2)=\mu(A_1\cap A_2)
+  \\
+  \mu(A_2)&=\mu(A_2-A_1)+\mu(A_1\cap A_2)=\mu(A_1\cap A_2)
+\end{aligned} $$
+
+$\bar{\mu}$ is do well defined. $\mu^*$ is auto $\sigma$ additive since so is $\mu$ and is easy to check that all $\mu^*$ null set is $\mu$ null set. $\blacksquare$
 
 ## Extension of set functions from semialgebra to algebra.
 
@@ -134,6 +176,11 @@ There is some properties as follows:
 3. $\sigma$ subadditivity 
    $$ \mu ^ { *} \left( \cup _ { 1 } ^ { \infty } A _ { n } \right) \leq \sum _ { 1 } ^ { \infty } \mu ^ {* } \left( A _ { n } \right) $$
 
+**Proof** 
+
+1. 
+    By definition, $\mu^*(A)\le \mu(A)$. Then we prove $\mu^*(A)\ge \mu(A)$. For any $\cup_1^\infty A_n\supset A$, ${\mu}(A)\le \sum_1^\infty {\mu}(A_n)$, then taking inf both side.
+
 A set $A\sub \Omega$ is said to be measurable w.r.t. an outer measure $\mu^*$ if for any $D\sub\Omega$:
 $$ \mu ^ {* } ( D ) = \mu ^ { *} ( A \cap D ) + \mu ^ {* } \left( A ^ { c } \cap D \right) $$
 
@@ -151,6 +198,7 @@ To make $\mu^*$ be a measure, we should restric $\mathcal{P}(\Omega)$ to some $\
 $A^*$ is clearly closed under complement. Then it remains to show $A^*$ is closed under countable union.
 
 > **Lemma 1** Let $A_{1:n}\in \mathcal{A}$ be disjoint, then $\mu^*(D)=\sum \mu^*(A_i \cap D)+\mu^*((\sum A_i)^c\cap D)$
+> 
 > **Proof** Note $\mu^*(D)=\mu^*(A_1\cap D)+ \mu^*(A_1^c\cap D)$ and $A_1=A_2\cap A_1+A_2^c \cap A_1$, hence we have
 > 
 > $$ \mu^*(D)=\mu^*(A_1\cap D)+\mu^*(A_1^c\cap A_2\cap D)+\mu^*(A_1^c\cap A_2^c \cap D) $$ 
@@ -170,6 +218,7 @@ $A^*$ is clearly closed under complement. Then it remains to show $A^*$ is close
 > 
 > **Lemma 2**
 > Let $\mathcal{F}$ be an algerba, then it's a $\sigma$ algebra iff it's closed under countable disjoint union.
+> 
 > **Proof** Sufficency is trival. For the necessity, suppose $B_{1:n} \in \mathcal{F}$ and note 
 > 
 > $$ C_n=B_n-\cup_1^{n-1} B_i $$ 
@@ -217,9 +266,16 @@ note $\mu^*(\emptyset)=0$, we are done. $\blacksquare$
 
 $\mu^*$ is a measure since it's nonegative and $\sigma$ additive from above.
 
+Where we didn't use any property of semialgebra hence above results is general for any class set which $\cup \mathcal{S}=\Omega$
+
 ## Extension of measures from semialgebra to $\sigma$ algerba
 
+**Theorem** $\mathcal{S}\subset \mathcal{A^*}$ and hence $\sigma(\mathcal{S})\subset \mathcal{A}^*$
+
+<!-- **Proof** We have  -->
+
 $$ \begin{array} { l l l l l l l l l } \mathcal { S } & \subset & \overline { \mathcal { S } } & \subset & \sigma ( \mathcal { S } ) & \subset & \mathcal { A } ^ { * } & \subset & \mathcal { P } ( \Omega ) \end{array} $$
+
 **(Caratheodory Extension Theorem)**
 Let $\mu$ be a measure on a semialgebra $\mathcal{S}$, then
 
@@ -234,49 +290,7 @@ $$ \left. \mu \right| _{ \sigma ( \mathcal { S } ) } = \left. \mu ^ { * } \right
 
 ## Completion of a measure
 
-Let $(\Omega,\mathcal{A},\mathcal{\mu})$ be a measure space, and $N\sub\Omega$
 
-1. $N$ is a **$\mu$ null set** iff $\exist B\in \mathcal{A} \quad s.t. \quad \mu(B)=0, \quad N\sub B$
-2. This measure space is a **complete measure** space if $\forall$ $\mu$ null space $N$, $N\in \mathcal{A}$
-
-> Given any measure space $(\Omega,\mathcal{A},\mathcal{\mu})$ , there exist a complete measure space $(\Omega,\mathcal{\bar{A}},\mathcal{\bar{\mu}})$, such that $\mathcal{A}\sub \bar{\mathcal{A}}$ and $\bar{\mu}$ is an extension of $\mu$. This space is called completion of $(\Omega,\mathcal{A},\mathcal{\mu})$.
-
-**Proof** Take 
-
-$$ \begin{aligned}
-  \bar{\mathcal{A}}&=\{A\cup N:A\in \mathcal{A}\}\\
-  \bar{\mathcal{B}}&=\{A\Delta N:A\in \mathcal{A}\}
-\end{aligned} $$
-
-$\bar{\mathcal{A}}=\bar{\mathcal{B}}$ since $A\cup N=(A-B) \Delta (B\cap (A\cup N))$ and $A\Delta N=(A-B)\cup(B\cap(A\Delta N))$.
-
-Then we can show that $\bar{\mathcal{A}}$ is a $\sigma$ algebra. Let $E_i=A_i \cup N_i\in \bar{\mathcal{A}}$, then
-
-$$ \bigcup_1^\infty E_i=\bigcup_1^\infty A_i \cup \bigcup_1^\infty N_i $$ 
-
-and note $\bigcup_1^\infty A_i\in \mathcal{A}$ and $\mu(\bigcup_1^\infty N_i)\le \mu(\cup_1^\infty B_i)\le \cup_1^\infty \mu(B_i)=0$. Thus $\bar{\mathcal{A}}$ is closed by countable union. As for complements, note $E^c=A^c \cap N^c=(A^c\cap N^c \cap B^c)\cup (A^c\cap N^c \cap B)=(A^c\cap B^c)\cup (A^c\cap N^c\cap B)\in \bar{\mathcal{A}}$.
-
-Finally we define a measure $\bar{\mu}$ on $\bar{\mathcal{A}}$ by
-
-$$ \bar{\mu}(A\cup N)=\mu(A) $$
-
-We should prove it's well defined. Suppose $A_1\cup N_1=A_2 \cup N_2 \in \bar{\mathcal{A}}$, note $A\Delta B \Delta C=A\Delta (B\Delta C)$ and $A\Delta B=B\Delta A$.
-
-$$\begin{aligned}
-  (A_1\Delta A_2)\Delta(N_1\Delta N_2)&=(A_1\Delta A_2 \Delta N_1)\Delta N_2
-  \\&=(A_1\Delta N_1)\Delta(A_2\Delta N_2)
-  \\&=\emptyset
-\end{aligned}$$
-
-Hence $A_1 \Delta A_2=N_1\Delta N_2$, note $N_1\Delta N_2 \subset N_1\cup N_2 \subset B_1 \cup B_2$, hence $\mu(A_1\Delta A_2)=0$ and thus $\mu(A_1 - A_2)=\mu(A_2-A_1)=0$. Therefore
-
-$$ \begin{aligned}
-  \mu(A_1)&=\mu(A_1-A_2)+\mu(A_1\cap A_2)=\mu(A_1\cap A_2)
-  \\
-  \mu(A_2)&=\mu(A_2-A_1)+\mu(A_1\cap A_2)=\mu(A_1\cap A_2)
-\end{aligned} $$
-
-$\bar{\mu}$ is do well defined. $\mu^*$ is auto $\sigma$ additive since so is $\mu$ and is easy to check that all $\mu^*$ null set is $\mu$ null set. $\blacksquare$
 
 Following lemma is useful.
 
@@ -358,167 +372,3 @@ $$ \begin{aligned}
 \end{aligned} $$
 
 Check it's well defined, $\sigma$ finite, additive and $\sigma$ subadditive and apply Caratheodory's extension theorem we can get the desired result.
-
-### Probability measures and d.f.
-
-A real-valued function $F$ to $\mathcal{R}$ is d.f. if
-
-1. $F(-\infty)=0,F(\infty)=1$
-2. $F$ is nondecreasing and right continues.
-
-
-**(Correspondence theorem)**
-
-$$ F(x)=P((-\infty,x]) $$
-
-establish a 1-1 correspondence between all d.f. and probability measure on $(\mathcal{R},\mathcal{B})$.
-
-**Proof** Measure $\implies$ d.f:
-
-Suppose $x_{1:n} \searrow -\infty$, then $(-\infty,x_n]\searrow \empty$, thus
-
-$$ F(x_n)=P((-\infty,x_n])\searrow P(\emptyset)=0 $$
-
-hence $F(-\infty)=0$, we can show that $F(\infty)=1$ and $F$ is right continuous in similar way. The monotoncity of $F$ follows from monotonicity of $P$.
-
-d.f. $\implies$ measure:
-
-A d.f. is a L-S measure function, hence there exist a measure $P$ satisfying
-
-$$ P((y,x])=F(x)-F(y) $$
-
-Let $y \searrow -\infty$, we have
-
-$$ P((-\infty,x])=F(x)-F(-\infty)=F(x).\quad \blacksquare $$
-
-**Remark** For a d.f. $F$, the set
-$$ S ( F ) = \{ x : F ( x + \epsilon ) - F ( x - \epsilon ) > 0 , \text { for all } \epsilon > 0 \} $$
-is called the **support** of $F$. Further more, any point of which is called a **point of increase**. Then we have:
-
-1. Each jump point of $F$ belongs to the support.
-2. $S(F)$ is a closed set
-3. a d.f. can have support $(-\infty,\infty)$
-
-**Proof** 
-
-1. 
-   $x$ is F jump point suggests $F(x)-F(x-)>0$, clearly $\forall \epsilon$
-
-   $$ F(x+\epsilon)-F(x-\epsilon)\ge F(x)-F(x-)>0 $$
-   
-   Thus $x\in S(F)$.
-
-2. 
-   Let $x_{1:}\in S(F)$ and $x_n \to x$, take $n_0$ s.t. $|x_{n_0}-x|<\epsilon/2$.  We have
-
-   $$ F(x+\epsilon)-F(x-\epsilon)\ge F(x_{n_0}-\epsilon/2+\epsilon)-F(x_0+\epsilon/2-\epsilon)\ge 0$$
-3. Suppose jump only at rational number case. $\blacksquare$
-
-
-
-
-
-
-### Different types of distributions
-
-1. 
-   A d.f. $\delta_t$ is called **degenerate** at $t$ if
-    $$ \begin{array} { r l r l } \delta _ { t } ( x ) & =  0 & x < t \\ & = 1 & x \geq t \end{array} $$
-
-2.
-   A d.f. $F$ is called **discrete** if it can be represented in the form 
-
-   $$ F(x)=\sum_1^\infty p_n \delta_{a_n}(x) $$
-
-
-
-    where $\sum p_j=1$ and $\{a_n\}$ is countable.
-
-3. A d.f. $F$ is continuous if it's continuous everywhere.
-
-**Remarks** The measure of discrete d.f. 
-
-$$ P((a,b])=\sum_{\{n:a<a_n\le b\}} p_n $$
-
-
-
-### Decomposition of d.f.
-
-> The set of discontinuities of a non-decreasing function is countable.
-> 
-> **Proof** Every discontinuous point contains a rational number and thus the cardinal of such set is no greater than $\mathcal{Q}$.
-
-Let $\{a_n\}$ be the countable set of jump of a d.f. $F$ and $p_j=F(a_j)-F(a_j-)>0$ the size at jump $a_j$, consider: 
-
-   $$ F _ { d } ( x ) = \sum _ { j = 1 } ^ { \infty } p _ { j } \delta _ { a _ { j } } ( x )=\sum_{\{a_j\le x\}} p_j
-   $$ 
-   
-   clearly it's nondecreasing and right continuous with
-  
-   $$ F_d(-\infty)=0 \quad F_d(\infty)=\sum_j p_j $$
-  
-   Let $F_c(x)=F(x)-F_d(x)$, Then $F_c$ is nonnegative, nondecreasing, and continuous.
-
-   **Proof** 
-
-   Note 
-
-   $$ F_d(y)-F_d(x)=\sum_{x<a_j<y} p_j= \sum_{x<a_j<y} F(a_j)-F(a_j-)\le F(y)-F(x)$$
-
-   hence $F_c$ is nodecreasing. Take $x\searrow -\infty$, we can see $F_c$ is nonegative. It's remains to show that it's continous. Note
-
-   $$ F_c(x)-F_c(x-)=[F(x)-F(x-)]+[F_d(x)-F_d(x-)]=0 $$
-
-   thus it's left continous and it's right continous since $F$ and $F_d$ do. $\blacksquare$
-
-1. 
-    The decomposition of $F(x)$, i.e. 
-
-    $$ F(x)=F_c(x)+F_d(x) $$ 
-  
-    where $F_c$ is continuous and $F_d$ is discrete, is unique.
-
-2. 
-   Every d.f. $F$ can be written as the convex combination of $a$ discrete and a continuous one:
-
-    $$ F ( x ) = F _{ d } ( x ) + F_ { c } ( x ) = \alpha \frac { F _ { d } ( x ) } { F _ { d } ( \infty ) } + ( 1 - \alpha ) \frac { F _ { c } ( x ) } { F _ { c } ( \infty ) } =a F_1(x)+(1-a)F_2(x)$$ 
-  
-    where $a=F_d(\infty)$
-
-### Further decomposition of a continuous d.f
-
-#### Absolutely continuous
-
-A function is called **absolutely continuous** iff there exists a function $f$ in $L^1$, s.t.
-$$\forall x<y<\infty, F(y)-F(x)=\int_x^y f(t)dt $$
-$f(t)$ is called the **density** of $F$. It can be shown that $ F'(t)=f(t) $ a.e.
-
-Another defintion is 
-$$ \text{$F$ is absolutely continuous} \iff \exist f \quad s.t. \quad F ( x ) = \int _ { - \infty } ^ { x } f ( t ) d t $$
-here $f(t)$ is called p.d.f
-
-#### Singular
-A funtion $F$ is **singular** iff it's continuoues, not identically zero, $F'$ exsits a.e., and $F'(t)=0$ a.e.
-<br><br>
-We can further decompose a continuous d.f. as:
-
-$$\text {A continuous d.f.
-} = \text { an absolutely continuous d.f. } + \text { a  singular d.f.} $$
-
-## Randon-Nickodym theorem
-
-Let $\mu$ and $\nu$ be two measures on the measurable space $(\Omega,\mathcal{F})$, we say that $v$ is absolutely continuous w.r.t. $\mu$, written as $\nu << \mu$ if
-
-$$ \mu(A)=0 \implies \nu(A)=0 $$
-
-**(Randon-Nikodym theorem)**
-Given a measurable space $(X,\Sigma)$. if $\nu << \mu$, where $\nu$ is a measure and $\mu$ is a $\sigma$ finite measure $\mu$ on $(X,\Sigma)$, then there is a measurable function $f$ on $X$, and taking values in $[0,\infty]$,s.t.
-
-$$ \nu(A)=\int_A fd\mu $$
-
-for any measurable set $A$.
-
-
-
-
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

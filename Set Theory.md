@@ -1,4 +1,20 @@
-# Set Theory
+---
+title: "Set theory"
+author: Xie Zejian
+# date: Sep 27, 2020
+output:
+  pdf_document:
+    toc: true
+    toc_depth: 2
+    # number_sections: true  
+    highlight: tango
+    latex_engine: pdflatex
+
+export_on_save:
+  pandoc: true
+---
+
+## Set limitations
 
 $$
 \begin{array} { l } \left\{ A _ { n } , i . o . \right\} = \limsup _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cup _ { n = k } ^ { \infty } A _ { n } \\ \left\{ A _ { n } , u l t . \right\} = \liminf _ { n } A _ { n } = \lim _ { k \rightarrow \infty } \cap _ { n = k } ^ { \infty } A _ { n } \end{array}
@@ -7,10 +23,8 @@ $$
 i.o. means elements in $\{A_n,i.o.\}$ is occurs in $A_n$ infinitely often and ult. means it will always occures utimately. Hence we have
 
 $$
-\liminf A_n \sub \limsup A_n
+\liminf A_n \subset \limsup A_n
 $$
-
-
 
 One sequence is converges to $A$ iff 
 $$
@@ -29,6 +43,46 @@ A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }=\lim A_n
 \end{aligned}
 $$
 
+## Topology
+
+Let $\Omega$ be as space
+
+**Definition**: A class of subset of $\Omega$ is an **topology** if
+
+1. $E$ and $\Omega$ belongs to $T$.
+2. closed under arbitary union.
+3. closed under finite intersection.
+
+$(X,\rho)$ is a **metric space**, when $\rho$ defined on $X\times X$ s.t. $\forall x,y,z \in X$:
+1. $\rho(x,y)\ge 0$, the equality hold iff $x=y$.
+2. $\rho(x,y)=\rho(y,x)$
+3. $\rho(x,y)\le\rho(x,z)+\rho(z,y)$
+
+$\rho$ is called a **metric**.
+
+Let $E=\Reals^n$, $l^2=\sqrt{\sum_1^n(x_i-y_i)^2}$ is called **Euclidean metric**. $l^1=\sum_1^n|x_i-y_i|$ is called **texi-cab metric** and $l^\infty=\sup\{|x_i-y_i|\}$ is called **sup norm metric**.
+
+Let $(E,d)$ be an metric space. $V(a,r)=\{x\in E,d(x,a)\lt r\}$ is **$r$-ball** with center $a$. 
+
+$U$ is **open** relative to $d$ iff $\forall x\in U, \exists r_x\gt 0 \ni V_d(x,r_x)\subseteq U$. Let $T_d$ be the set of all open subsets of $E$, we call $T_d$ the **topology induced by $d$**.
+
+Suppose $d$ is discrete, that is, $d(x,y)=0$ iff $x=y$, otherwise, $d(x,y)=1$. Then every subset is open and $T_d=\mathcal{P}(\Omega)$. Such $T_d$ is called **discrete topology**.
+
+Note $d_{l^2}(x,y)\le d_{l^1}(x,y)\le \sqrt{n}d_{l^2}(x,y)$ and $d_{l^2}(x,y)\le \sqrt{n}d_{l^\infty}(x,y)\le \sqrt{n}d_{l^2}(x,y)$, then $d_{l^\infty}$ open $\iff d_{l^2}$ open $\iff$ $d_{l^1}$ open. Hence $T_{d_{l^2}}=T_{d_{l^1}}=T_{d_{l^\infty}}$.
+
+One can change **1** in definition of metric from "iff" to "if" to get a **pseudometric**. A **quasimetric** is measure without **2**. And a **ultrametric** is a metric plus
+
+$$ u(x,z)\le \max(u(x,y),u(y,z)) $$
+
+One can check that a triangle in an ultrametric must be a  isosceles. The pseudometric, quasimetric, ultrametric can induce topology in a familar way.
+
+We can forget metric in some way. $(E,T)$ is a topological space if $T$ is a topology on $E$. Where $E$ is called as **uderlying set**. The sets in $T$ are called **open**. If $T$ can be form by taking countable union of some $B\subset T$, we call $B$ the **base** for the topology $T$.
+
+**Theorem 1** $B$ is a base in $(E,T)$ iff $\forall U\in T,\forall x\in U, \exists W\in B\ni x\in W\in U$.
+
+**Theorem 2** If $\cup B=E$ and $\forall W_1,W_2\in B,\forall x \in W_1\cap W_2,\exists W\in B \ni x\in W\subset W_1\cap W_2$. Then $\{\text{countable union of } B\}$ is a topology and it's the unique topology with $B$ as base.
+
+
 
 ## Algebras
 Let $\Omega$ be as space
@@ -38,21 +92,18 @@ Let $\Omega$ be as space
 
 **Definition:** A nonempty class of subset of $\Omega$ is an semi algebra if 
 
-1. Closed under inter: $
-   A , B \in \mathcal { S } \Rightarrow A\cap B \in S
-   $
+1. 
+   Closed under inter: $A , B \in \mathcal { S } \Rightarrow A\cap B \in S$
 
-2. Complement can be written as finite disjoint union: $
-   A\in S \Rightarrow \exist A _{ i } \in \mathcal { S } , \quad A_ { i } \cap A _{ j } = \emptyset , i \neq j,\quad s.t.  \quad A^c=\sum_{i=1}^{n}A_i
-   $
+2. 
+   Complement can be written as finite disjoint union: $A\in S \implies \exists A _{ i } \in \mathcal { S } , \quad A_ { i } \cap A _{ j } = \emptyset , i \neq j,\quad s.t.  \quad A^c=\sum_{i=1}^{n}A_i$
 
 **Definition:** A nonempty class of subset of $\Omega$ is an algebra on $\Omega$ if
 
-1. Closed under complement: $
-   A^c \in \mathcal{A} \iff A\in \mathcal{A}$
-2. Closed under finite union: $
-   \cup_i A_i \in \mathcal{A} \impliedby \forall i,  A_i\in\mathcal{A}
-   $
+1. 
+   Closed under complement: $A^c \in \mathcal{A} \iff A\in \mathcal{A}$
+2. 
+   Closed under finite union: $\cup_i A_i \in \mathcal{A} \impliedby \forall i,  A_i\in\mathcal{A}$
 
 Note that algebra is closed by finite union and we can prove that is Equivalent to it is closed by finite intersection
 
@@ -74,7 +125,18 @@ $$
 \overline { \mathcal { S } } = \{ \text {finite disjoint unions of sets in } \mathcal { S } \} = \mathcal{A} (\mathcal{S})
 $$
 
-is an algebra
+is an algebra. 
+
+<!-- **Lemma** Any union of $\mathcal{S}$, say, $\cup B_i$ can be expressed as disjoint union by taking
+
+$$ C_n=B_n-\cup_1^{n-1} B_i $$
+
+If 
+
+$$ A_1\cup A_2 = A_1+(A_2-A_1)=A_1+A_2\cap \big(\sum F_i\big)=A_1+\sum (F_i\cap A_2) $$
+
+where $F_i$ is the finite disjoint union of $A_1^c$.  -->
+
 
 ## Generated classes
 
@@ -86,15 +148,13 @@ $$
 
 is also  a $\sigma$ algebra. Hence we can define the smallest $\sigma$ algebra as intersection of all $\sigma$ algebras contains $\mathcal{A}$. That is
 
-$\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist \sigma(\mathcal{A}) \quad s.t. $
+$\forall \mathcal{A} \subset \mathcal{P}(\Omega), \quad \exists \sigma(\mathcal{A}) \quad s.t.$
 
-1. $
-   \quad \mathcal{A} \sub \sigma(\mathcal{A})
-   $
+1. 
+   $\quad \mathcal{A} \subset \sigma(\mathcal{A})$
 
-2. $
-   \forall \mathcal{A} \sub\mathcal{B} \in \sigma \text{-algebras} \implies \sigma(\mathcal{A}) \sub \mathcal{B}
-   $
+2. 
+   $\forall \mathcal{A} \subset\mathcal{B} \in \sigma \text{-algebras} \implies \sigma(\mathcal{A}) \subset \mathcal{B}$
 
 3. $\sigma(\mathcal{A})$ is unique.
 
@@ -110,9 +170,9 @@ Which can be proved by show that
 
 $$
 \begin{aligned}
-\mathcal{S} \sub \sigma(\bar{\mathcal{S}}) \implies \sigma(\mathcal{{S}}) \sub \sigma({\bar{\mathcal{S}}})
+\mathcal{S} \subset \sigma(\bar{\mathcal{S}}) \implies \sigma(\mathcal{{S}}) \subset \sigma({\bar{\mathcal{S}}})
 \\
-\mathcal{\bar{S}} \sub \sigma({\mathcal{S}})\implies \sigma(\mathcal{\bar{S}}) \sub \sigma({\mathcal{S}})
+\mathcal{\bar{S}} \subset \sigma({\mathcal{S}})\implies \sigma(\mathcal{\bar{S}}) \subset \sigma({\mathcal{S}})
 \end{aligned}
 $$
 
@@ -142,14 +202,13 @@ $$
 
 **$\lambda-$ class**
 
-1. $
-   \Omega \in \mathcal{A}
-   $
+1. 
+   $\Omega \in \mathcal{A}$
 
 2. closed under proper difference:
 
    $$
-   A-B \in \mathcal{A} \impliedby B\sub A \text{ and } B,A\in \mathcal{A}
+   A-B \in \mathcal{A} \impliedby B\subset A \text{ and } B,A\in \mathcal{A}
    $$
 
 3. is an m-class (cause $\Omega-A_i \downarrow$ whenever $A_i \uparrow$ )
@@ -185,13 +244,12 @@ $$
 
 is also  a $m,\pi,\lambda$ -class
 
-$\forall \mathcal{A} \sub \mathcal{P}(\Omega), \quad \exist m(\mathcal{A}) \quad s.t. $ 
+$\forall \mathcal{A} \subset \mathcal{P}(\Omega), \quad \exists m(\mathcal{A}) \quad s.t.$ 
 
-1. $\quad \mathcal{A} \sub \sigma(\mathcal{A})$
+1. $\quad \mathcal{A} \subset \sigma(\mathcal{A})$
 
-2. $
-   \forall \mathcal{A} \sub\mathcal{B} \in \text{m-classes} \quad m(\mathcal{A}) \sub \mathcal{B}
-   $
+2. 
+   $\forall \mathcal{A} \subset\mathcal{B} \in \text{m-classes} \quad m(\mathcal{A}) \subset \mathcal{B}$
 
 3. $m(\mathcal{A})$ is unique.
 
@@ -206,16 +264,16 @@ $$ \begin{aligned}
 Let $\mathcal{A}$ be an algebra, then
 
 1. $m(\mathcal{A})=\sigma(\mathcal{A})$
-2. if $\mathcal{B}$ is an $m$ class and $\mathcal{A}\sub \mathcal{B}$, then $\sigma(\mathcal{A})=m(\mathcal{A})\sub \mathcal{B}$
+2. if $\mathcal{B}$ is an $m$ class and $\mathcal{A}\subset \mathcal{B}$, then $\sigma(\mathcal{A})=m(\mathcal{A})\subset \mathcal{B}$
 
 Similarly, let $\mathcal{A}$ be a $\pi$ class, then $\lambda(\mathcal{A})=\sigma(\mathcal{A})$
 
 Then we have **Monotone class theorem**:
 
-$\forall \mathcal{A} \sub  \mathcal{B} \sub  \mathcal{P}(\Omega),s.t.$:
+$\forall \mathcal{A} \subset  \mathcal{B} \subset  \mathcal{P}(\Omega),s.t.$:
 
-1. If $\mathcal{A}$ is a $\pi$-class, $\mathcal{B}$ is a $\lambda-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
-2. If $\mathcal{A}$ is an algebra, $\mathcal{B}$ is a $m-$class, then $\sigma(\mathcal{A})\sub \mathcal{B}$
+1. If $\mathcal{A}$ is a $\pi$-class, $\mathcal{B}$ is a $\lambda-$class, then $\sigma(\mathcal{A})\subset \mathcal{B}$
+2. If $\mathcal{A}$ is an algebra, $\mathcal{B}$ is a $m-$class, then $\sigma(\mathcal{A})\subset \mathcal{B}$
 
 ## Product Spaces
 
@@ -242,7 +300,7 @@ $$
 
 **Theorem** Let $\mathcal{A}$ be the set of all finite disjoint union of $\mathcal{G}$, then it's the smallest algebra contains $\mathcal{G}$.
 
-**Proof** First show that $\mathcal{A}$ is $\pi$ class, since for element $A_i$ in $\mathcal{A}$, it can be written as disjoint unions of subset $E_{ij}$ of $\mathcal{G}$, i.e. $ A_i=\bigcup_{j=1}^{n_i} E_{ij} \in \mathcal{A} $. Then
+**Proof** First show that $\mathcal{A}$ is $\pi$ class, since for element $A_i$ in $\mathcal{A}$, it can be written as disjoint unions of subset $E_{ij}$ of $\mathcal{G}$, i.e. $A_i=\bigcup_{j=1}^{n_i} E_{ij} \in \mathcal{A}$. Then
 
 $$ A_1 \cap A_2 =(\bigcup_{j=1}^{n_1} E_{1j})\cap(\bigcup_{k=1}^{n_2} E_{2k})=\bigcup\bigcup(E_{ij}\cap E_{2k})\in \mathcal{A}$$
 
@@ -255,10 +313,12 @@ $$ E=E_1\times E_2 \times \cdots\times E_n $$
 we can showt that $E^c$ can be writtena as disjoint union $\cup D_{i:n}$  Then any $A\in \mathcal{A}$
 
 $$
-A^c=\bigcap E_j^c=\bigcap\bigcup D_{ij} \xlongequal{disjoint}\bigcup\bigcap D_{ij}\in \mathcal{A}
+A^c=\bigcap E_j^c=\bigcap\bigcup D_{ij}
+ \overset{disjoint}{=\mathrel{\mkern-3mu}=\mathrel{\mkern-3mu}=\mathrel{\mkern-3mu}=\mathrel{\mkern-3mu}=}
+\bigcup\bigcap D_{ij}\in \mathcal{A}
 $$
 
-Clearly $\mathcal{A(G)}\sub \mathcal{A}$ and $\mathcal{A}\sub \mathcal{A(G)}$ and hence $\mathcal{A=A(G)}$. $\blacksquare$
+Clearly $\mathcal{A(G)}\subset \mathcal{A}$ and $\mathcal{A}\subset \mathcal{A(G)}$ and hence $\mathcal{A=A(G)}$. $\blacksquare$
 
 **Corollary** 
 
@@ -266,4 +326,4 @@ $$
 \prod _{ i = 1 } ^ { n } \mathcal { A }_ { i } =\sigma(\mathcal{A})=\sigma(\mathcal{G})
 $$
 
-**Proof** $\mathcal{G\sub A\sub \sigma(A)}\implies \mathcal{\sigma(G)\sub\sigma(A)}$ and $\mathcal{A=A(G)\sub \sigma(G)}\implies \mathcal{\sigma(A)\sub \sigma(G)}$ and hence $\mathcal{\sigma(A)=\sigma(G)}$. $\blacksquare$
+**Proof** $\mathcal{G\subset A\subset \sigma(A)}\implies \mathcal{\sigma(G)\subset\sigma(A)}$ and $\mathcal{A=A(G)\subset \sigma(G)}\implies \mathcal{\sigma(A)\subset \sigma(G)}$ and hence $\mathcal{\sigma(A)=\sigma(G)}$. $\blacksquare$

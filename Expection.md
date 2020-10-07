@@ -1,18 +1,86 @@
-# Expectation and integration
+### L-S integral and Lebesgue integral
+
+Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$.
+
+- **(L-S integral)** In the case of $(\Omega,\mathcal{A},\mu)=(\Reals,\mathcal{B},\mu)$, we can write $x=\omega\in \Reals$ for easy understanding, then $$ \int f ( \omega ) \mu ( d \omega ) = \int f ( x ) \mu ( d x ) $$
+- **(Lebesgue measure)** Moreover, if $\mu=\lambda$, where $\lambda$ is the Lebesgue measure, then $$ \int f(x)\lambda(dx)=\int f(x)dx $$
+
+Recall that L-S measure is 
+
+> **(L-S measure)** Suppose that $F$   is finite on $\Reals$ and 
+>
+> 1. $F$ is nondecreasing
+> 2. $F$ is right continuous
+Then there exist a unique measure $\mu$ on $(\Reals, \mathcal{B})$ with
+
+$$ \mu((a,b])=F(b)-F(a) $$
+
+Then we can define
+
+$$ \int f d F : = \int f ( x ) d F ( x ) : = \int f ( x ) \mu ( d x ) = \int f d \mu $$
+
+to be the **L-S integral of $f$ w.r.t. $F$**
+
+Moreover if $\mu=\lambda$, which implies $F(x)=x$, hence
+
+$$ \int f(x)dx=\int fd\lambda $$
+
+which is the **Lebesgue integral of $f$**.
+
+1. 
+    Expectations are special case of integrals: 
+    $$ EX=\int X(\omega)P(d\omega)=\int X(t)dF_X(t) $$
+
+    where $F_X(t)=P(X\le t)$
+
+#### Some special cases
+
+Consider the $L-S$ integral of the form
+
+$$ \int_B f dG $$
+
+where $B$ is a borel set in $\Reals$.
+
+When:
+
+1. **$G$ is a discrete function** 
+G will have jumps $\{x_1,x_2,\cdots\}$, where $\Delta G(x_n)=G(x_n)-G(x_n-)>0$, so $$ \int _ { B } f d G = \sum _ { n : x _ { n } \in B } f \left( x _ { n } \right) \Delta G \left( x _ { n } \right) $$
+
+2. **$G$ is an absolutely continuous function**
+When $G$ has derivative $g$, then
+$$ \mu((s,t])=\int_{(s,t]}g(x)dx $$
+Thus,
+
+$$ \int_B fdG=\int_B f d\mu=\int_B f(x)g(x)dx $$
+
+3. **$G$ is a mixture of discrete and absolute continuous functions**
+In this case $G$ can be written as 
+$$ G ( t ) = G ( a ) + \int _ { a } ^ { t } g ( x ) d x + \sum _ { n : x _ { n } \leq t } \Delta G \left( x _ { n } \right) $$
+, then
+ $$ \int _ { ( a , t ] } f ( x ) d G ( x ) = \int _ { ( a , t ] } f ( x ) g ( x ) d x + \sum _ { n : a < x _ { n } \leq t } f \left( x _ { n } \right) \Delta G \left( x _ { n } \right) $$
+
+where $G$ is $G:[a,\infty)\to\Reals$
+
+4. **$G$ is a right-continuous functions of bounded variation**
+When $G$ is a right continuous function of bounded variation, then we have $G=G_1-G_2$, where both $G_1$ and $G_2$ are nondescreasing and right continuous.
+then 
+$$ \int _ { B } f d G = \int _ { B } f d G _ { 1 } - \int _ { B } f d G _ { 2 } $$
+
+
 
 ## Expectation
 
-Let x be a r.v. on $(\Omega,\mathcal{A},P)$
+Let $X$ be a r.v. on $(\Omega,\mathcal{A},P)$
 
 ### Exceptation for simple r.v.
 
-For simple r.v. $X=\sum_{1}^{n}a_iI_{A_i}$ with $\sum_1^n A_i=\Omega$, its expectation is 
+For simple r.v. $X=\sum_{1}^{n}a_iI_{A_i}$ with $\sum_1^n A_i=\Omega$ where $A_i$ are $\mathcal{A}$ measurable. Its expectation is 
 $$ EX=\sum_1^n a_i P(A_i)$$
 
 Some properties are list below:
 
 1. $EC=C$
-2. $E_{I_A}=P(A)$
+2. $E{I_A}=P(A)$
 3. $E(aX+bY)=aEX+bEY$
 4. $X\ge0 \implies EX \ge 0$
 5. $X\ge Y \implies EX \ge EY$
@@ -24,21 +92,26 @@ Probability is continuous while expectation is not (but we still have expectatio
 
 ### Expection for nonnegative r.v.
 
-Recall that any nonnegative r.v. can be approximated by a series of simple r.v.'s.
-
-$$ \exist 0\le X_1\le X_2 \le \cdots X_n \quad s.t. \quad X_n(\omega) \nearrow X ( \omega )\forall \omega \in \Omega $$
-
-Then we have:
-for r.v. $X\ge 0\in \mathcal{A}$
+Recall that any nonnegative r.v. can be approximated by a series of nonegative simple r.v.'s $X_n \nearrow X$
 
 1. $E X=\lim_{n\to \infty} EX_n \le \infty$
 2. $E_AX=E[X|A]=E(XI_A)$
-3. $\forall Y\le0$, $EY=-E(-Y)$
+3. If $Y\le0$, $-EY=E(-Y)$
 
-If $X\ge 0$ Then $EX=0 \iff X =_{a.s.} 0$ 
-which implies
+$EX$ is well fefined, that is if $X_n \nearrow X$ and $Y_n \nearrow X$, then
 
-$$ X=_{a.s.}Y\iff EX=EY $$
+$$ \lim EX_n = \lim E Y_n $$
+
+
+#### Algebraic ops
+
+Liinearity, nonegativity, monotonicity also holds.
+
+If $X\ge 0$ Then $EX=0 \iff X =_{a.s.} 0$ which implies
+
+1. $X>_{a.s.}0\implies EX>0$
+2. $EX\ge 0\implies P(X\ge 0)\gt 0$
+
 
 #### Fatou's lamaa
 
@@ -135,118 +208,6 @@ $$ \sum_{i=1}^\infty |X_n|<\infty,\ a.s. $$
 and 
 $$ E \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } E X_ { n } $$
 
-
-## Integration
-
-Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
-$$ \int f ( \omega ) \mu ( d \omega ) = \int f d \mu = \int f $$
-
-1. If $f=\sum_1^n a_iI_{A_i}$ with $a_i\ge 0$,
-$$ \int f d \mu = \sum _ { 1 } ^ { n } a _ { i } \mu \left( A _ { i } \right) $$
-
-2. If $f\ge 0$,define
-$$ \int fd\mu=\lim_n \int f_nd\mu $$ where $f_n$ are simple functions and $f_n \nearrow f$.
-
-3. For any $f$, we have $f=f^{+}-f^{-}$, define $$ \int f d \mu : = \int f ^ { + } d \mu - \int f ^ { - } d \mu $$ 
-
-4. $f$ is said to be integrable w.r.t. $\mu$ if $\int|f|d\mu<\infty$. We denote all integrable functions by $L^1$.
-
-5. The integral of $f$ w.r.t $\mu$ over $A$ is defined by $$ \int _ { A } f d \mu = \int f I _ { A } d \mu = \int f ( \omega ) I _ { A } ( \omega ) \mu ( d \omega ) $$
-
-The properties of integrals are similar to expectation.
-
-(**Absolute integrability**). $\int f$ is finite iff $\int|f|$ is finite.
-
-**(Linearity)** $$ \int(af+bg)=a\int f+b\int g $$
-
-**($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
-$$ \int _ { A } f = \sum _ { i = 1 } ^ { \infty } \int _ { A _ { i } } f $$
-
-**(Positivity)** If $f\ge 0$ a.s., then $\int f\ge 0$
-
-**(Monotonicity)** If $f_1\le f\le f_2$ a.s., then $\int f_1\le \int f 
-\le \int f_2$
-
-**(Mean value theorem)** If $a\le f \le b$ a.s., then 
-
-$$ a\mu(A)\le \int _Af\le b\mu(A) $$
-
-**(Modulus inequality)**: $|\int f|\le \int |f|$
-
-**(Fatou's) inequality** If  $f_n\ge 0$ a.s., then
-$$ \int  \left( \liminf_ { n } f _{ n } \right) \leq \liminf_ { n } \int  f _ { n } $$
-
-**(Dominated Convergence Theorem)** If $f_n \to f$ a.s., $|f_n|\le g$ a.s. for all n and $\int g <\infty$, then
-
-$$ \lim_n \int f_n=\int f=\int \lim_n f_n $$
-
-**(Monotone Convergence Theorem)** If $0\le f_n\nearrow f$, then
-$$ \lim_n \int f_n=\int f=\int \lim_n f_n $$
-
-**(Integration term by term)** If $\sum_{i=1}^\infty \int |f_n|<\infty$, then
-$$ \sum_{i=1}^\infty |f_n|<\infty,\ a.s. $$
-
-and
-$$ \int  \left( \sum _{ i = 1 } ^ { \infty } f_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \int  f_ { n } $$
-
-### L-S integral and Lebesgue integral
-
-Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$.
-
-- **(L-S integral)** In the case of $(\Omega,\mathcal{A},\mu)=(\Reals,\mathcal{B},\mu)$, we can write $x=\omega\in \Reals$ for easy understanding, then $$ \int f ( \omega ) \mu ( d \omega ) = \int f ( x ) \mu ( d x ) $$
-- **(Lebesgue measure)** Moreover, if $\mu=\lambda$, where $\lambda$ is the Lebesgue measure, then $$ \int f(x)\lambda(dx)=\int f(x)dx $$
-
-Recall that L-S measure is 
-
-> **(L-S measure)** Suppose that $F$   is finite on $\Reals$ and 
->
-> 1. $F$ is nondecreasing
-> 2. $F$ is right continuous
-Then there exist a unique measure $\mu$ on $(\Reals, \mathcal{B})$ with
-
-$$ \mu((a,b])=F(b)-F(a) $$
-
-Then we can define
-
-$$ \int f d F : = \int f ( x ) d F ( x ) : = \int f ( x ) \mu ( d x ) = \int f d \mu $$
-
-to be the **L-S integral of $f$ w.r.t. $F$**
-
-Moreover if $\mu=\lambda$, which implies $F(x)=x$, hence
-
-$$ \int f(x)dx=\int fd\lambda $$
-
-which is the **Lebesgue integral of $f$**.
-
-1. Expectations are special case of integrals: $$ EX=\int X(\omega)P(d\omega)=\int X(t)dF_X(t) $$where $F_X(t)=P(X\le t)$
-
-#### Some special cases
-
-Consider the $L-S$ integral of the form
-
-$$ \int_B f dG $$
-
-where $B$ is a borel set in $\Reals$.
-
-When:
-
-1. **$G$ is a discrete function** 
-G will have jumps $\{x_1,x_2,\cdots\}$, where $\Delta G(x_n)=G(x_n)-G(x_n-)>0$, so $$ \int _ { B } f d G = \sum _ { n : x _ { n } \in B } f \left( x _ { n } \right) \Delta G \left( x _ { n } \right) $$
-
-2. **$G$ is an absolutely continuous function**
-When $G$ has derivative $g$, then
-$$ \mu((s,t])=\int_{(s,t]}g(x)dx $$
-Thus,
-
-$$ \int_B fdG=\int_B f d\mu=\int_B f(x)g(x)dx $$
-
-3. **$G$ is a mixture of discrete and absolute continuous functions**
-In this case $G$ can be written as $$ G ( t ) = G ( a ) + \int _ { a } ^ { t } g ( x ) d x + \sum _ { n : x _ { n } \leq t } \Delta G \left( x _ { n } \right) $$, then $$ \int _ { ( a , t ] } f ( x ) d G ( x ) = \int _ { ( a , t ] } f ( x ) g ( x ) d x + \sum _ { n : a < x _ { n } \leq t } f \left( x _ { n } \right) \Delta G \left( x _ { n } \right) $$
-where $G$ is $G:[a,\infty)\to\Reals$
-
-4. **$G$ is a right-continuous functions of bounded variation**
-When $G$ is a right continuous function of bounded variation, then we have $G=G_1-G_2$, where both $G_1$ and $G_2$ are nondescreasing and right continuous.
-then $$ \int _ { B } f d G = \int _ { B } f d G _ { 1 } - \int _ { B } f d G _ { 2 } $$
 
 ## Measur-theoretic and probabilistic languages
 
