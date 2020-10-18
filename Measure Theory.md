@@ -372,3 +372,33 @@ $$ \begin{aligned}
 \end{aligned} $$
 
 Check it's well defined, $\sigma$ finite, additive and $\sigma$ subadditive and apply Caratheodory's extension theorem we can get the desired result.
+
+## Product measure
+
+Suppose measure space $(X,\mathcal{A},\mu)$ and $(Y,\mathcal{B},\nu)$. A measurable rectangle is of the form $A\times B$, where $A\in \mathcal{A}$ and $B\in \mathcal{B}$. Let $\mathcal{S}$ be the sets of all measurable rectangles. Then we define the **product $\sigma$ algebra**
+
+$$ \mathcal{A\times B}=\sigma(\mathcal{S}) $$
+
+If $E\subset X\times Y$, we define the **x-section** of $E$ by
+
+$$ S_x(E)=\{y\in Y:(x,y)\in E\} $$
+
+similarly, **y-section** is
+
+$$ t_y(E)=\{x\in X:(x,y)\in E\} $$
+
+If $E\in \mathcal{A\times B}$, then $S_x{E}\in \mathcal{B}$ for all $x\in Y$ and $t_y(E)\in \mathcal{A}$ for all $y\in Y$.
+
+**Proof**
+
+Suppose $\mathcal{C}$ is the collection of sets in $\mathcal{A\times B}$ satisfy such condition. Clearly $\mathcal{C}\subset \mathcal{A\times B}=\sigma(\mathcal{S})$, it's sufficient to show that $\mathcal{C}$ is an $\sigma$ algebra and $\mathcal{S}\subset \mathcal{C}$.
+
+$\mathcal{S}\subset\mathcal{C}$: every measurable rectangle is in $\mathcal{C}$ since $S_x(E)=\begin{cases}
+  B&x\in A\\
+  \emptyset & x\notin A
+\end{cases}$.
+
+$\mathcal{C}$ is an $\sigma$ algebra: Supoose $E\in \mathcal{C}$. Then $S_x(E^c)=(S_x(E))^c\in \mathcal{B}\implies E^c\in \mathcal{C}$ and $S_x(\cup_1^\infty E_i)=\cup_1^\infty(S_x(E_i))\in \mathcal{B}\implies \cup_1^\infty E_i\in \mathcal{C}$. $\blacksquare$
+
+
+
