@@ -1,0 +1,78 @@
+---
+title: "Mappings"
+author: "Xie Zejian"
+date: '`r format(Sys.Date(), "%B %d,%Y")`'
+output: 
+  pdf_document:
+    toc: true
+    toc_depth: 3
+---
+
+Let $(\Omega,\mathcal{T})$ and $(\Omega',\mathcal{T'})$ be two spaces. $f$ is a mapping from $\Omega$ to $\Omega'$. 
+
+
+> 1. $ff^{-1}(A)\subset A$
+> 2. $f^{-1}f(A)\supset A$
+> 3. $f^{-1}(U\cap V)=f^{-1}(U)\cap f^{-1}(V)$
+> 4. $f^{-1}(U\cup V)=f^{-1}(U)\cup f^{-1}(V)$
+> 5. $f^{-1}(A^c)=(f^{-1}(A))^c$
+> 6. $f^{-1}f(A)=A$ always holds if $f$ is injection while $ff^{-1}(A)=A$ always holds if $g$ is surjection.
+> 7. If $f$ is bijection, $(f^{-1})^{-1}(A)=f(A)$ always hold.
+
+**Proof** see Terence tao *Analysis 1*. $\blacksquare$
+
+$f$ is **continous** if for every neighborhood $V'$ of $f(x)$, there is a neighborhood $V$ of $x$ s.t. $f(V)\subset V'$.
+
+
+> $f$ is continous iff $f^{-1}(G')$ is open for every open subset $G'$ of $\Omega'$.
+
+**Proof** $\implies$: For any $x\in f^{-1}(G')$, it's sufficient to show that $f^{-1}(G')$ is its neighborhood. By definition, there is a neighborhood $V$ s.t. $f(V)\subset G'$, and
+
+
+$$ x\in V\subset f^{-1}f(V)\subset f^{-1}(G') $$
+
+$\impliedby$: For every neighborhood $V'$, there is some open $G'$ contain $f(x)$, and $f^{-1}(G')$ is neighborhood of $x$ and $ff^{-1}(G')\subset G'$. $\blacksquare$
+
+
+> $f$ is continous iff
+> $$ f^{-1}({A^\circ})\subset (f^{-1}(A))^\circ $$
+> for all $A\subset \Omega'$.
+
+**Proof** $\implies$: $f^{-1}(A^\circ)$ is open and th claim follows from $f^{-1}(A\circ)\subset f^{-1}(A)$.
+
+$\impliedby$: Suppose $A$ is open, then $A^\circ=A$ and hence $f^{-1}(A)\subset (f^{-1}(A))^\circ$. Which suggets $f^{-1}(A)$ is open. $\blacksquare$
+
+
+> Suppose $f:\Omega_1 \to \Omega_2$ and $g:\Omega_2\to \Omega_1$, $f\circ g$ is continous if $f$ and $g$ are continous.
+
+**Proof** Suppose $G_3$ is open and the claims follows from $(f\circ g)^{-1}(G_3)=f^{-1}(g^{-1}(G_3))$. $\blacksquare$
+
+$(\Omega,\mathcal{T})$ and $(\Omega',\mathcal{T'})$ are said to be **homeomorphic** if there exist continous bijection $f$, s.t $f^{-1}$ is continous such $f$ is called **homeomorphism**.
+
+$f$ is open if $f(G)$ is open for all open set $G\in \mathcal{T}$ and is closed if $f(F)$ is closed for all closed set $f(F)^c\in \mathcal{T}$.
+
+> Suppose $f$ is bijection, then it's homeomorphism iff it's continous and either open or closed.
+
+**Proof** By the continuity of $f^{-1}$, since $(f^{-1})^{-1}(G)=f(G)$ for all open set $G$.
+
+$$
+f^{-1} \text{ is continous} \iff f(G) \text{ is open} \iff f \text{ is open .}\blacksquare
+$$
+
+> Suppose $f$ is bijection, it's a homeomorphism iff $\mathcal{T'}$ is the finest topology where $f$ continous.
+
+**Proof** Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continous. For any $G\in \mathcal{T_0}$, $f^{-1}(G)\in \mathcal{T}$ by the continuity of $f^{-1}$,
+
+$$G= (f^{-1})^{-1}(f^{-1}(G))\in \mathcal{T'} $$ 
+
+That is $\mathcal{T'}$ is finer than any $\mathcal{T_0}$.
+
+**Remark** $\mathcal{P(T)}$ let all $f$ continous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continous.
+
+Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $(f_i)_{i\in I}$ w.r.t $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$. Let $A$ be the topologies s.t. $f_i$ is continous for all $i$. We call $\cap A$ the **topology induced** on $\Omega$ by $(f_i)_{i\in I}$.
+
+In the $S=\{X\in P\}$
+
+
+
+

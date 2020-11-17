@@ -1,4 +1,4 @@
-# Random Variable
+# Measurable function
 
 ## Mappings
 
@@ -37,9 +37,9 @@ If $\mathcal{B=\sigma(C)}$, the definition can be reduced to $X^{-1}(\mathcal{C}
 since
 $$ X ^ { - 1 } ( \mathcal { B } ) = X ^ { - 1 } ( \sigma ( \mathcal { C } ) ) = \sigma \left( X ^ { - 1 } ( \mathcal { C } ) \right) \subset \sigma ( \mathcal { A } ) = \mathcal { A } $$
 
-> if $X : (\Omega _ { 1 },\mathcal{A_1}) \to (\Omega _ { 2 },\mathcal{A_2})$ and $f : (\Omega _ { 2 },\mathcal{A_2}) \to (\Omega _ { 3 },\mathcal{A_3})$ are measurable mappings. then $f ( X ) = f \cdot X : \left( \Omega _ { 1 } , \mathcal { A } _ { 1 } \right) \rightarrow \left( \Omega _ { 3 } , \mathcal { A } _ { 3 } \right)$ is also measurable mappings.
 
-**Proof** $\forall A_3 \in \mathcal{A_3}$, $\{fX\in A_3\}=\{X \in f^{-1}(A_3)\}\in \mathcal{A_1}$ since $f^{-1}(A_3)\in \mathcal{A_2}$
+
+
 
 ## r.v
 
@@ -55,9 +55,15 @@ $$ \iff {X\le x}=X^{-1}([-\infty],x)\in \mathcal{A} \quad \forall x\in \Reals \\
 where $D$ is a dense subset of $\Reals$, e.g. $\mathbb{Q}$. $\{X \le x\}$ above can be replaced by
 $$ \{ X \leq x \} , \quad \{ X \geq x \} , \quad \{ X < x \} , \quad \{ X > x \} , \quad \{ x < X < y \} $$
 
-### Random vectors
 
-$\mathbf{X}=(X_1,\cdots,X_n)$ is a random vectors if $X_k$ is a r.v. $\forall k$ iff $X$ is a measurable function from $(\Omega,\mathcal{A})$ to $(\mathcal{R^n},\mathcal{B(R^n)})$.
+## Construction of random variables
+
+> If $X : (\Omega _ { 1 },\mathcal{A_1}) \to (\Omega _ { 2 },\mathcal{A_2})$ and $f : (\Omega _ { 2 },\mathcal{A_2}) \to (\Omega _ { 3 },\mathcal{A_3})$ are measurable mappings. then $f ( X ) = f \cdot X : \left( \Omega _ { 1 } , \mathcal { A } _ { 1 } \right) \rightarrow \left( \Omega _ { 3 } , \mathcal { A } _ { 3 } \right)$ is also measurable mappings.
+
+
+**Proof** $\forall A_3 \in \mathcal{A_3}$, $\{fX\in A_3\}=\{X \in f^{-1}(A_3)\}\in \mathcal{A_1}$ since $f^{-1}(A_3)\in \mathcal{A_2}$
+
+> $\mathbf{X}=(X_1,\cdots,X_n)$ is a random vectors if $X_k$ is a r.v. $\forall k$ iff $\mathbf{X}$ is a measurable function from $(\Omega,\mathcal{A})$ to $(\mathcal{R^n},\mathcal{B(R^n)})$.
 
 **Proof**
 
@@ -67,9 +73,12 @@ where $I_k=(a_k,b_k],-\infty\le a_k\le b_k\le \infty$ and follows from $\sigma(\
 
 $$ \{X_k\le t\}=\{\mathbf{X}\in \prod_{i< k} \Reals  \times \{-\infty,t\}\times \prod_{i > k} \Reals\} \in \mathcal{A. \blacksquare}$$
 
-## Construction of random variables
+By above results, we have
 
-### Algebraic ops
+
+$\forall$ random $n$ vectors $X=(X_{1:n})$ and Borel function $f$ from $\mathcal{R^n\to R^m}$, then $f(X)$ is a random $m$ vectors.
+
+**Remarks** Note that continuous function are borel measurable since continuity leads to inverse image of an open set is still open. So if $X_{1:n}$ are r.v.'s, so are $\sum X_n$, $\sin(x)$, $e^X$, $\text{Poly}(X),\cdots$. That implies:
 
 $\forall X, Y\in \mathcal{A}$, so are $aX+bY,X \vee Y = \max \{ X , Y \} , X \wedge Y = \min \{ X , Y \},X^2,XY,X/Y,X^+=\max(x,0),X^-=-\min(x,0),|X|=X^++X^-$
 
@@ -106,11 +115,9 @@ If $X=\lim_{n\to \infty} X_n$ holds **almost** everywhere, i.e., define $\Omega_
 
 $$ X_n \to X \quad a.s. $$
 
-### Transformers
+For a measurable function $f$, we may modify it at a null set into $f'$ and it remain mesurable since for any open set $G$, $f'^{-1}(G)$ differ $f^{-1}(G)$ a at most null set, by the completion of lebesgue measure space, $f'{-1}(G)$ is measurable and thus $f^{-1}$ measurable. Hence, for $f_n \to f$ a.s., we may ignore a null set and then $f_n\to f$ everywhere and thus $f$ measurable.
 
-$\forall$ random $n$ vectors $X=(X_{1:n})$ and Borel function $f$ from $\mathcal{R^n\to R^m}$, then $f(X)$ is a random $m$ vectors.
 
-**Remarks** Note that continuous function are borel measurable since continuity leads to inverse image of an open set is still open. So if $X_{1:n}$ are r.v.'s, so are $\sum X_n$, $\sin(x)$, $e^X$, $\text{Poly}(X),\cdots$
 
 ## Approximations of r.v. by simple r.v.s
 
@@ -251,6 +258,8 @@ $$ X : = F ^ { - 1 } ( U ) \sim F $$
 $$ P(X\le x)=P(F^{-1}(U)\le x)=P(U\le F(x))=F(x).\blacksquare$$
 
 > If a r.v. $X$ has a continuous d.f. $F$, then $F(X)\sim U(0,1)$. 
+
+
 
 
 <br><br><br><br><br><br><br><br><br><br>

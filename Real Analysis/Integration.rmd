@@ -9,9 +9,6 @@ output:
     # number_sections: true  
     highlight: tango
     latex_engine: pdflatex
-
-export_on_save:
-  pandoc: true
 ---
 # Expectation and integration
 
@@ -40,25 +37,34 @@ $$ \int f d \mu = \sum _ { 1 } ^ { n } a _ { i } \mu \left( A _ { i } \right) $$
 
 **Proposition** 
 
-1. 
-    If $f$ is positive and $a\le f(x)\le b$ and $\mu(\Omega) > \infty$, then 
+(**Intergral over sets**)  
+$$ \int _ { A } f d \mu = \int f \chi _ { A } d \mu = \int f ( \omega ) \chi _ { A } ( \omega ) \mu ( d \omega ) $$
 
-    $$ a\mu(\Omega)\le \int fd\mu \le b\mu(\Omega) $$
+(**Absolute integrability**). $\int f$ is finite iff $\int|f|$ is finite.
 
-2.
-    The integral of $f$ w.r.t $\mu$ over $A$ is defined by 
-    
-    $$ \int _ { A } f d \mu = \int f I _ { A } d \mu = \int f ( \omega ) I _ { A } ( \omega ) \mu ( d \omega ) $$
+**(Linearity)** If $f,g,a,b\ge 0$ or $f,g\in L^1$
+$$ \int(af+bg)=a\int f+b\int g $$
 
-    If $\mu(A)=0$ and $f>0$, then
+**($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
+$$ \int _ { A } f = \sum _ { i = 1 } ^ { \infty } \int _ { A _ { i } } f $$
 
-    $$ \int_A fd\mu=0 $$
+**(Positivity)** If $f\ge 0$ a.s., then $\int f\ge 0$
+
+**(Monotonicity)** If $f_1\le f\le f_2$ a.s., then $\int f_1\le \int f 
+\le \int f_2$
+
+**(Mean value theorem)** If $a\le f \le b$ a.s., then 
+
+$$ a\mu(A)\le \int _Af\le b\mu(A) $$
+
+**(Modulus inequality)**: $|\int f|\le \int |f|$
+
 
 ### MCT
 
-Suppose nonnegative $f_n\nearrow f$, then $\int f_n d\mu \nearrow \int f d\mu$.
+Suppose nonnegative $f_n\nearrow f$ a.e, then $\int f_n d\mu \nearrow \int f d\mu$.
 
-**Proof** Note $\int f_n d\mu \le \int fd\mu$, $\int f_n d\mu$ must converges to some $L\le \int f$. Then we show $L\ge \int f$. 
+**Proof** We may ignore a null set then $f_n \nearrow f$ and their integration still equal. Note $\int f_n d\mu \le \int fd\mu$, $\int f_n d\mu$ must converges to some $L\le \int f$. Then we show $L\ge \int f$. 
 
 Let $s=\sum a_i \chi_{E_i}$ be simple function and $s\le f$. Let $A_n=\{x:f_n(x)\ge cs(x)\}$ where $c\in(0,1)$, then $A_n \nearrow X$. For each $n$
 
@@ -71,19 +77,9 @@ $$ \begin{aligned}
 
 hence $L\ge c\int s\implies L\ge \int s\implies L= \lim L\ge \lim \int s_n=\int f$. $\blacksquare$
 
-If $f$ and $g$ are intergrable or $f,g\ge 0$, then
-
-note where $f_n$ is integrable not enough since MCT not hold.
-
-$$ \int f+g =\int f+\int g $$
-
-Moreover, if $f_n>0$ then
-
-$$ \int \sum_1^\infty f_n=\sum_1^\infty \int f $$
-
 ### Fatou's lemma
 
-If  $f_n\ge 0$ then
+If  $f_n\ge 0$ a.e. then
 $$ \int  \left( \liminf_ { n } f _{ n } \right) \leq \liminf_ { n } \int  f _ { n } $$
 
 **Proof** Suppose $g_n=\inf_{i\ge n}f_i$ and recall that $\lim g_n=\liminf f_n$. Clearly $g_n\le f_i \forall i\ge n$  hence 
@@ -106,11 +102,38 @@ $$ \int f+\int g=\int f+g\le \liminf \int f_n+g=\liminf \int f_n+\int g $$
 
 thus $\int f\le \liminf_{n\to \infty}\int f_n$. Similarly, we can get $\int f\le \liminf_{n\to \infty}\int f_n$ from $g-f_n\ge 0$. $\blacksquare$
 
+By DCT, we have **Tonelli's Throrem**: If $\sum_{1}^\infty \int |f_n|<\infty$, then
+
+$$ \int  \left( \sum _{ i = 1 } ^ { \infty } f_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \int  f_ { n } $$
+
+**Proof** Let $g_k=\sum_1^k |f_n|,g=\sum_1^\infty|f_n|,h_k=\sum_1^k f_n,h=\sum_1^\infty f_n$. Then $g_k \nearrow g$, by MCT, we have
+
+$$ \int g=\lim \int g_k=\lim \sum_1^k \int |f_n|= \sum_1^\infty \int |f_n|<\infty$$
+
+Hence we may let $g$ dominate $h_k$ and get
+
+$$ \int h=\lim \int h_k= \sum_1^\infty \int f_n$$
+
 ## Properties of Lebesgue integrals
 
 ### Criteria for zero a.e.
 
 Suppose $f$ is measurable and non-negative and $\int fd\mu=0$. Then $f=0$ a.e.
+
+**Proof** We firstly introduce **Markov's inequality**:
+
+> Let $A=\{x\in \Omega: f(x)\ge M\}$, then
+> $$ \mu(A)\le \frac{\int f}{M} $$
+
+which follows from
+
+$$ \mu(A)=\int \chi_A=\int_A \chi_A \le \int_A \frac{f}{M}\le  \int_X \frac{f}{M}=\frac{\int f}{M}$$
+
+Consequently, $\mu(A_M)=0$ for all $M > 0$, note $A_{\frac{1}{n}}\nearrow A_0$:
+
+$$ A_0=\bigcup_1^\infty A_{\frac{1}{n}}\implies \mu(A_0)=\sum 0=0 $$
+
+Hence $f=0$ a.e. $\blacksquare$
 
 Suppose $f$ is integrable and $\int_A f=0$ for all measurable $A$. Then $f=0$ a.e.
 
@@ -136,67 +159,6 @@ $$ \int_E f=\int f\chi_E=\int f\chi_{G_\delta}=\int_{G_\delta} f=0 $$
 
 Recall proposition **2**, we are done. $\blacksquare$
 
-(**Absolute integrability**). $\int f$ is finite iff $\int|f|$ is finite.
-
-**(Linearity)** If $f,g,a,b\ge 0$ or $f,g\in L^1$
-$$ \int(af+bg)=a\int f+b\int g $$
-
-**($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
-$$ \int _ { A } f = \sum _ { i = 1 } ^ { \infty } \int _ { A _ { i } } f $$
-
-**(Positivity)** If $f\ge 0$ a.s., then $\int f\ge 0$
-
-**(Monotonicity)** If $f_1\le f\le f_2$ a.s., then $\int f_1\le \int f 
-\le \int f_2$
-
-**(Mean value theorem)** If $a\le f \le b$ a.s., then 
-
-$$ a\mu(A)\le \int _Af\le b\mu(A) $$
-
-**(Modulus inequality)**: $|\int f|\le \int |f|$
-
-**(Fatou's) inequality** If  $f_n\ge 0$ a.s., then
-$$ \int  \left( \liminf_ { n } f _{ n } \right) \leq \liminf_ { n } \int  f _ { n } $$
-
-**(Dominated Convergence Theorem)** If $f_n \to f$ a.s., $|f_n|\le g$ a.s. for all n and $\int g <\infty$, then
-
-$$ \lim_n \int f_n=\int f=\int \lim_n f_n $$
-
-**(Monotone Convergence Theorem)** If $0\le f_n\nearrow f$, then
-$$ \lim_n \int f_n=\int f=\int \lim_n f_n $$
-
-**(Integration term by term)** If $\sum_{i=1}^\infty \int |f_n|<\infty$, then
-$$ \sum_{i=1}^\infty |f_n|<\infty,\ a.s. $$
-
-and
-$$ \int  \left( \sum _{ i = 1 } ^ { \infty } f_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \int  f_ { n } $$
-
-
-### An approximation result
-
-Suppose $f:\mathbb{R}\to \mathbb{R}$ is integrable, then $\forall \epsilon> 0$, there exists a continuous $g$ with compact support and
-
-$$ \int|f-g|< \epsilon $$
-
-**Proof** Note $\int f\chi_{[-n,n]}\nearrow \int f$, hence we may assume $f$ is bounded.
-
-If $f=\chi_A$, there exist $F\subset A\subset G$ and $m(G-F)< \epsilon$, take $\delta=d(K,G^c)$, let
-
-$$ g(x)=(1-\frac{d(x,F)}{\delta}) $$
-
-Then $g$ has compact support $\overline{G}$ and $\int|g-\chi_A|\le \int \chi_{G}-\chi_F=m(G-F)< \epsilon$.
-
-If $f=\sum a_i\chi_{A_i}$ is simple with bounded $A_i$. Then we may take $g=\sum a_i g_i$ with compact support is $\overline{\cup G_i}$.
-
-If $f$ is non-negaive, there exist $\int s_n\nearrow \int f$, then we can pick $s$ s.t.
-
-$$ \int |f-s|< \epsilon/2 $$
-
-and we can pick
-
-$$ \int |s-g|< \epsilon/2 $$
-
-hence we find $\int |f-g|< \epsilon$. $\blacksquare$
 
 ## Riemann Integration
 
@@ -286,41 +248,4 @@ Then we are ready to the main theorem this chapter.
 **Proof** Suppose $P_n$ we taking before. We have:
 $f$ continous a.e. in $I$ iff $f$ continous a.e. in $I-\cup P_n$ iff $g=h$ holds a.e. iff $\int_I g=\int_I h$ iff $f$ is integrable.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 

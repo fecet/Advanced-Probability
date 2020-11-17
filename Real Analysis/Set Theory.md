@@ -43,46 +43,6 @@ A_n\to A=\cap _ { k = 1 } ^ { \infty } A _ { k }=\lim A_n
 \end{aligned}
 $$
 
-## Topology
-
-Let $\Omega$ be as space
-
-**Definition**: A class of subset of $\Omega$ is an **topology** if
-
-1. $E$ and $\Omega$ belongs to $T$.
-2. closed under arbitary union.
-3. closed under finite intersection.
-
-$(X,\rho)$ is a **metric space**, when $\rho$ defined on $X\times X$ s.t. $\forall x,y,z \in X$:
-1. $\rho(x,y)\ge 0$, the equality hold iff $x=y$.
-2. $\rho(x,y)=\rho(y,x)$
-3. $\rho(x,y)\le\rho(x,z)+\rho(z,y)$
-
-$\rho$ is called a **metric**.
-
-Let $E=\Reals^n$, $l^2=\sqrt{\sum_1^n(x_i-y_i)^2}$ is called **Euclidean metric**. $l^1=\sum_1^n|x_i-y_i|$ is called **texi-cab metric** and $l^\infty=\sup\{|x_i-y_i|\}$ is called **sup norm metric**.
-
-Let $(E,d)$ be an metric space. $V(a,r)=\{x\in E,d(x,a)\lt r\}$ is **$r$-ball** with center $a$. 
-
-$U$ is **open** relative to $d$ iff $\forall x\in U, \exists r_x\gt 0 \ni V_d(x,r_x)\subseteq U$. Let $T_d$ be the set of all open subsets of $E$, we call $T_d$ the **topology induced by $d$**.
-
-Suppose $d$ is discrete, that is, $d(x,y)=0$ iff $x=y$, otherwise, $d(x,y)=1$. Then every subset is open and $T_d=\mathcal{P}(\Omega)$. Such $T_d$ is called **discrete topology**.
-
-Note $d_{l^2}(x,y)\le d_{l^1}(x,y)\le \sqrt{n}d_{l^2}(x,y)$ and $d_{l^2}(x,y)\le \sqrt{n}d_{l^\infty}(x,y)\le \sqrt{n}d_{l^2}(x,y)$, then $d_{l^\infty}$ open $\iff d_{l^2}$ open $\iff$ $d_{l^1}$ open. Hence $T_{d_{l^2}}=T_{d_{l^1}}=T_{d_{l^\infty}}$.
-
-One can change **1** in definition of metric from "iff" to "if" to get a **pseudometric**. A **quasimetric** is measure without **2**. And a **ultrametric** is a metric plus
-
-$$ u(x,z)\le \max(u(x,y),u(y,z)) $$
-
-One can check that a triangle in an ultrametric must be a  isosceles. The pseudometric, quasimetric, ultrametric can induce topology in a familar way.
-
-We can forget metric in some way. $(E,T)$ is a topological space if $T$ is a topology on $E$. Where $E$ is called as **uderlying set**. The sets in $T$ are called **open**. If $T$ can be form by taking countable union of some $B\subset T$, we call $B$ the **base** for the topology $T$.
-
-**Theorem 1** $B$ is a base in $(E,T)$ iff $\forall U\in T,\forall x\in U, \exists W\in B\ni x\in W\in U$.
-
-**Theorem 2** If $\cup B=E$ and $\forall W_1,W_2\in B,\forall x \in W_1\cap W_2,\exists W\in B \ni x\in W\subset W_1\cap W_2$. Then $\{\text{countable union of } B\}$ is a topology and it's the unique topology with $B$ as base.
-
-
 
 ## Algebras
 Let $\Omega$ be as space

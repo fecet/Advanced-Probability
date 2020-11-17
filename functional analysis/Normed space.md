@@ -130,7 +130,9 @@ A metric space is called **separable** if it has a countable dense subset.
 
 A metric space $(X,d)$ is **complete** if every Cauchy sequence converges.
 
-> Every
+> Every metric space has a completion
+
+
 
 
 
