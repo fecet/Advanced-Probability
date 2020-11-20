@@ -1,1 +1,1 @@
-Self Study notes for financial mathmatics.
+Self Study notes for financial mathematics.

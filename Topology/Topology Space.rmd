@@ -1,11 +1,10 @@
 ---
-title: "Topology space"
-author: "Xie Zejian"
-date: '`r format(Sys.Date(), "%B %d,%Y")`'
-output: 
-  pdf_document:
-    toc: true
-    toc_depth: 3
+title: Topology Space
+authors:
+  - name: Xie zejian
+    email: xiezej@gmail.com
+bibliography: references.bib
+output: rticles::arxiv_article
 ---
 
 ## Topology
