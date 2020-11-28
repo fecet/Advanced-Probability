@@ -186,7 +186,7 @@ Space $(\Omega,\mathcal{T})$ is **first countable** if every point of $\Omega$ h
 
 > Second countable space is first countable
 
-Suppose $\mathcal{B}=(B_i)_{i\in I}$ is a countable base, for each point $x\in \Omega$, one may take all the sets in $\mathcal{B}$ which contains $x$ as a neighborhood base. To verify it's neighborhood base, if there is a neighborhood $N$ of $x$, then there is a open $G$ contains $x$. By the definition of base, $G$ is the union of sets of $\mathcal{B}$ and those sets must at least one contains $x$ and these sets is subset to $G$. $\blacksquare$
+Suppose $\mathcal{B}=(B_i)_{i\in I}$ is a countable base, for each point $x\in \Omega$, one may take all the sets in $\mathcal{B}$ which contains $x$ as a neighborhood base. To verify it's neighborhood base, if there is a neighborhood $N$ of $x$, then there is a open $G$ contains $x$. By the definition of base, $G$ is the union of sets of $\mathcal{B}$ and those sets must at least one contains $x$ and these sets is subset to $G$. $\blacksquare$ $$
 
 
 

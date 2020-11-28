@@ -5,7 +5,10 @@ authors:
     email: xiezej@gmail.com
 bibliography: references.bib
 output: rticles::arxiv_article
+
 ---
+
+# Continuous
 
  $(\Omega,\tau)$ and $(\Omega',\tau')$ are two spaces and $f$ is a mapping from $\Omega$ to $\Omega'$ in the following.
 
@@ -18,13 +21,15 @@ output: rticles::arxiv_article
 > 6. $f^{-1}f(A)=A$ always holds if $f$ is injection while $ff^{-1}(A)=A$ always holds if $g$ is surjection.
 > 7. If $f$ is bijection, $(f^{-1})^{-1}(A)=f(A)$ always hold.
 > 8. $(f\circ g)^{-1}(A)=g^{-1}f^{-1}(A)$
+> 9. $f^{-1}(A)\subset f^{-1}(B)\iff A\subset B$
+> 10. $f(A)\subset f(B) \iff A\subset B$
 > 
 > **Proof** see Terence tao *Analysis 1*. $\blacksquare$
 
-$f$ is **continous** if for every neighborhood $V'$ of $f(x)$, there is a neighborhood $V$ of $x$ s.t. $f(V)\subset V'$.
+$f$ is **continuous** at $x$ if for every neighborhood $V'$ of $f(x)$, there is a neighborhood $V$ of $x$ s.t. $f(V)\subset V'$. It's continuous if it's continuous at every points $x\in \Omega$.
 
 
-> $f$ is continous iff $f^{-1}(G')$ is open for every open subset $G'$ of $\Omega'$.
+> $f$ is continuous iff $f^{-1}(G')$ is open for every open subset $G'$ of $\Omega'$.
 > 
 > **Proof** $\implies$: For any $x\in f^{-1}(G')$, it's sufficient to show that $f^{-1}(G')$ is its neighborhood. By definition, there is a neighborhood $V$ s.t. $f(V)\subset G'$, and
 > 
@@ -33,7 +38,7 @@ $f$ is **continous** if for every neighborhood $V'$ of $f(x)$, there is a neighb
 > $\impliedby$: For every neighborhood $V'$, there is some open $G'$ contain $f(x)$, and $f^{-1}(G')$ is neighborhood of $x$ and $ff^{-1}(G')\subset G'$. $\blacksquare$
 
 
-> $f$ is continous iff
+> $f$ is continuous iff
 > $$ f^{-1}({A^\circ})\subset (f^{-1}(A))^\circ $$
 > for all $A\subset \Omega'$.
 > 
@@ -41,41 +46,41 @@ $f$ is **continous** if for every neighborhood $V'$ of $f(x)$, there is a neighb
 > $\impliedby$: Suppose $A$ is open, then $A^\circ=A$ and hence $f^{-1}(A)\subset (f^{-1}(A))^\circ$. Which suggets $f^{-1}(A)$ is open. $\blacksquare$
 
 
-> Suppose $f:\Omega_1 \to \Omega_2$ and $g:\Omega_2\to \Omega_1$, $f\circ g$ is continous if $f$ and $g$ are continous.
+> Suppose $f:\Omega_1 \to \Omega_2$ and $g:\Omega_2\to \Omega_1$, $f\circ g$ is continuous if $f$ and $g$ are continuous.
 > 
 > **Proof** Suppose $G_3$ is open and the claims follows from $(f\circ g)^{-1}(G_3)=f^{-1}(g^{-1}(G_3))$. $\blacksquare$
 
 
-$(\Omega,\tau)$ and $(\Omega',\tau')$ are said to be **homeomorphic** if there exist continous bijection $f$, s.t $f^{-1}$ is continous and such $f$ is called **homeomorphism**.
+$(\Omega,\tau)$ and $(\Omega',\tau')$ are said to be **homeomorphic** if there exist continuous bijection $f$, s.t $f^{-1}$ is continuous and such $f$ is called **homeomorphism**.
 
 $f$ is open if $f(G)$ is open for all open set $G\in \tau$ and is closed if $f(F)$ is closed for all closed set $f(F)^c\in \tau$.
 
-> Suppose $f$ is bijection, then it's homeomorphism iff it's continous and either open or closed.
+> Suppose $f$ is bijection, then it's homeomorphism iff it's continuous and either open or closed.
 > 
 > **Proof** By the continuity of $f^{-1}$, since $(f^{-1})^{-1}(G)=f(G)$ for all open set $G$.
-> $$f^{-1} \text{ is continous} \iff f(G) \text{ is open} \iff f \text{ is open .}\blacksquare$$
+> $$f^{-1} \text{ is continuous} \iff f(G) \text{ is open} \iff f \text{ is open .}\blacksquare$$
 
-> Suppose $f$ is bijection, it's a homeomorphism iff $\tau'$ is the finest topology where $f$ continous.
+> Suppose $f$ is bijection, it's a homeomorphism iff $\tau'$ is the finest topology where $f$ continuous.
 > 
-> **Proof** Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continous. For any $G\in \tau_0$, $f^{-1}(G)\in \tau$ by the continuity of $f^{-1}$,
+> **Proof** Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continuous. For any $G\in \tau_0$, $f^{-1}(G)\in \tau$ by the continuity of $f^{-1}$,
 > $$G= (f^{-1})^{-1}(f^{-1}(G))\in \tau' $$
 > That is $\tau'$ is finer than any $\tau_0$. $\blacksquare$
 
-**Remark** $\mathcal{P(\Omega)}$ let all $f$ continous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continous.
+**Remark** $\mathcal{P(\Omega)}$ let all $f$ continuous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continuous.
 
-## Induced topology
+# Induced topology
 
-Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $(f_i)_{i\in I}$ w.r.t $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$. Let $A$ be the set of all the topologies s.t. $f_i$ is continous for all $i$. We call $\cap A$, i.e., the corest topology in $A$ the **topology induced** on $\Omega$ by $(f_i)_{i\in I}$.
+Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $(f_i)_{i\in I}$ w.r.t $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$. Let $A$ be the set of all the topologies s.t. $f_i$ is continuous for all $i$. We call $\cap A$, i.e., the corest topology in $A$ the **topology induced** on $\Omega$ by $(f_i)_{i\in I}$.
 
 > **Theorem** The topology generated by $(f_i)_{i\in I}$ is the topology $\tau(\mathcal{S})$ generated by 
 > $$ \mathcal{S}=\{X\in \mathcal{P}(\Omega): \exists G_i\in \mathcal{T_i} \ni X= f_i^{-1}(G_i)\} $$
 > **Proof** Clearly $\mathcal{S}\subset\cap A$ and thus $\tau(\mathcal{S})\subset \cap A$. On the other hand, $\tau(\mathcal{S})\in A$ and thus $\tau(\mathcal{S})\supset \cap A$. $\blacksquare$.
 
-> **Theorem** $g$ is $(\tau',\tau)$ continous iff $f_i\circ g$ continous for each $f_i$. Where $\tau$ is $\tau(S)$ in above theorem.
+> **Theorem** $g$ is $(\tau',\tau)$ continuous iff $f_i\circ g$ continuous for each $f_i$. Where $\tau$ is $\tau(S)$ in above theorem.
 > 
 > **Proof** $\implies$ is immediately. $\impliedby$, suppose $G\in \tau$,by above theorem, this implies
 > $$ G=\cup_I \cap_F X = \cup_I  \cap_F  f_i^{-1}(G_i)       $$
-> thus $g^{-1}(G)$ is open since $f\circ g^{-1}$ is continous and thus $g^{-1}(G)= \cup_I  \cap_F g^{-1}f^{-1}(G)= \cup_I  \cap_F (f\circ g)^{-1}(G)$. $\blacksquare$
+> thus $g^{-1}(G)$ is open since $f\circ g^{-1}$ is continuous and thus $g^{-1}(G)= \cup_I  \cap_F g^{-1}f^{-1}(G)= \cup_I  \cap_F (f\circ g)^{-1}(G)$. $\blacksquare$
 
 The **subspace topology(relative topology)** $\tau_A$ in $(\Omega,\tau)$ induced by subset $A\subset \Omega$ is just topology induced by identical mapping w.r.t $(A,\tau)$, that is
 
@@ -116,10 +121,11 @@ It's clear that a subset $B\in \tau_A$ is closed iff $B=A\cap F$ for some $F$ cl
 > $$ G_A\cap G_B=(G_A\cap G_B)\cap (A\cup B)= (G_A\cap G_B\cap A)\cup (G_A\cap G_B\cap B)=M\cup M=M$$
 
 > Suppose $(\Omega,\tau)$ is separable, then $(A,\tau_A)$ is also separable.
+> 
 > **Proof** Suppose $\overline{D}=\Omega$ and $D$ is countable, we claim that $\mathop{\text{Cl}}_{\tau_A}(D\cap A)=A$. Which follows from any neighborhood of $N$ in $\tau_A$ for any $x\in A$,
 > $$ N\cap D\cap A=(N\cap A)\cap D\neq \empty.\blacksquare $$
 
-### Product topology
+## Product topology
 
 Let $((\Omega_i,\tau_i))_{i\in I}$ be family of topological spaces, let $\Omega=\prod_{i\in I} \Omega_i$ and $\pi_i$ be projection mappings from $\Omega$ to $\Omega_i$. The topology $\tau$ induced by $(\pi_i)_{i\in I}$ is called **product topology** on $\Omega$ and denoted by $\prod_{i\in I} \tau_i$. $(\Omega,\tau)$ is called **topological product**. A base of this topology is 
 
@@ -128,6 +134,7 @@ $$ \{\bigcup \bigcap(\prod_{i\in I} X_i)\} $$
 where $X_i=\Omega_i$ for all $i$ but one.
 
 > Suppose $G\in \prod \tau_i$, then $\pi_i(G)=\Omega_i$ except a finite set in $I$.
+> 
 > **Proof** By definition, 
 > $$ G=\bigcup_I \bigcap_F(\prod_{i\in I} X_i) $$
 > where $X_i=\Omega_i$ for all $i$ but one. Note there is a finitely intersection, that is
@@ -138,5 +145,5 @@ where $X_i=\Omega_i$ for all $i$ but one.
 > Suppose $A_i$ is subset of each $i$, then
 > $$ \mathop{\text{Cl}}_{\tau}(\prod A_i)=\prod(\mathop{\text{Cl}}_{\tau_i}(A_i)) $$
 
-## Coinduced topology
+# Coinduced topology
 
