@@ -1,0 +1,3 @@
+## Compatness
+
+A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover.  A topology $(\Omega,\tau)$ is **locally compact** if every point $x\in \Omega$ has a compact neighborhood. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact. A subset $A\in \Omega$ is called **relatively compact** if it's closure is comapct.
