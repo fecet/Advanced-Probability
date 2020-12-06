@@ -1,3 +1,52 @@
 ## Compatness
 
-A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover.  A topology $(\Omega,\tau)$ is **locally compact** if every point $x\in \Omega$ has a compact neighborhood. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact. A subset $A\in \Omega$ is called **relatively compact** if it's closure is comapct.
+A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is comapct.
+
+A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact and **locally compact** if every point has a compact neighborhood. A subset $A\in \Omega$.
+
+
+
+```{theorem, cptset, name=""}
+
+Let $(\Omega,\tau)$ be a space, $A\subset \Omega$ is compact iff any collection $\mathcal{F}_A$ of closed sets in subspace $\tau_A$ with the finite intersection property have $\ker \mathcal{F}\neq \emptyset$.
+
+```
+
+```{proof}
+Suppose $\mathcal{F}_A=\{F \cap A:F\in \mathcal{F}\}$, then
+
+$$ \ker \mathcal{F}_A = \bigcap_{F\in \mathcal{F}}^{}F\cap A=\emptyset \iff \bigcup_{F\in \mathcal{F}}^{}(F^c\cup A^c)=\Omega \iff \bigcup_{F\in \mathcal{F}}^{} F^c\supset A  $$
+
+As finite intersection property, $\mathcal{I}$ any finite subfaimily.
+
+$$ \bigcap_{F\in \mathcal{I}} F\cap A \supset \emptyset \iff \bigcup_{F\in \mathcal{I}}^{}(F^c\cup A^c)\subset \Omega \iff \bigcup_{F\in \mathcal{I}}^{} F^c \subset A  $$
+
+where the inclusion is proper. That is, open cover $\bigcup_{F\in \mathcal{F}}^{} F^c\supset A$ can not have a finite subcover and thus $A$ isn't compact.
+
+```
+
+```{theorem, , name=""}
+Let $(\Omega,\tau)$ be a space, following are equivalent.
+
+1. $(\Omega,\tau)$ is compact.
+2. Every filter(net) has at least one adherent point.
+3. Every ultrafilter(ultranet) converges.
+
+```
+
+```{proof}
+$1\implies 2$ Suppose filter $\mathcal{F}$, then
+
+$$ \{\overline{F}:F\in \mathcal{F}\} $$
+
+enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by theorem \@ref(thm:cptset).
+
+$2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
+
+$3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from theorem \@ref(thm:cptset).
+```
+
+```{theorem, , name=""}
+Let $(\Omega , \tau )$ be Hausdorff, then every compact subset is closed.
+```
+

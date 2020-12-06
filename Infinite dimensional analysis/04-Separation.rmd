@@ -36,7 +36,7 @@ Following statements are equivalent:
 ```{proof}
 $1\implies 2$ If there exist a singeton $\{x\}$ not closed, there is $y\in \overline{\{x\}}$, hence every neighborhood of $y$ contains $x$, contradiction.
 
-$2\implies 3$ Suppose $\ker \mathcal{N}(x)$ contains $y$ diifer $x$, that implies any neighborhood contains $x$ and contradict $2$.
+$2\implies 3$ Suppose $\ker \mathcal{N}(x)$ contains $y$ diifer $x$, that implies any neighborhood of $x$ contains $y$ and contradict $2$.
 
 $3\implies 1$ is straightforward.
 ```
@@ -87,7 +87,7 @@ Two nonempty sets are caled **separated by open sets** if they are included in d
 Space $(\Omega,\tau)$ are said to be **regular** if every singeton and any closed $A$ disjoint from it can be separated by open sets.
 
 ```{definition, , name=""}
-Space $(\Omega,\tau)$ is said to be $T_3$ if it's $T_0$ and regular.
+Space $(\Omega,\tau)$ is said to be $T_3$ if it's $T_1$ and regular.
 ```
 
 Space $(\Omega,\tau)$ are said to **Completely regular** if every singeton and any closed $A$ disjoint from it can be separated by continous function.
@@ -145,6 +145,8 @@ $3 \implies 1$ By taking any disjoint open set $A$ contains $0$ and $B$ contains
 ```{theorem, tietze, name="Tietze's Extension Theorem"}
 Let $(\Omega,\tau)$ be normal, $F$ any closed subset and $I$ any bounded closed interval of $\R$. Then any continous $f:F\to I$ can be extended to $f':\Omega\to I$ and remain continous.
 ```
+
+```{proof}
 Suppose $I=[-1,1]$, then $A=f^{-1}[-1,-\frac{1}{3}]$ and $f^{-1}[\frac{1}{3},1]$ are disjoint and closed. By Urysohn's Lemma, there is $g:\Omega \to [-\frac{1}{3},\frac{1}{3}]$ s.t. $g(A)=\{-\frac{1}{3}\}$ and $g(B)=\frac{1}{3}$. Set $f_0=f,g_0=g,f_1=f-g|_F$. Then we can show that $|f_1|$ is bounded by $\frac{2}{3}$.
 
 Repeat such process, we have series of 
@@ -155,4 +157,13 @@ $$ \begin{aligned}
     f_{n+1}&=(f_n-g_n)|_F
 \end{aligned} $$
 
-Then we show that $\sum g_n$ is the extension of $f$.
+Then we show that $g=\sum_{i=0}^\infty g_i$ is the extension of $f$. That is $g$ is continous and $f=g$ in $F$. Note for any $x$
+
+$$ \begin{aligned}
+   | \sum_{i=m}^n g_i(x)|\le  \sum_{i=m}^n |g_i(x)|\le \sum_{i=m}^n \frac{1}{3}(\frac{2}{3})^i \le (\frac{2}{3})^m \to 0
+\end{aligned} $$
+
+Thus $\{\sum_{i=0}^n g_i\}_{n=0}^\infty$ converges uniformly by Cauchy's criterion, and followed by $g$ is continous. And $f=g$ on $F$ follows from
+
+$$ |f(x)-\sum_{i=0}^n g_i(x)|=|f_0(x)-\sum_{i=0}^n g_i(x)|=|f_1(x)-\sum_{i=1}^n g_i(x)|=|f_{n+1}(x)|\le (\frac{2}{3})^{n+1} \to 0 $$
+```

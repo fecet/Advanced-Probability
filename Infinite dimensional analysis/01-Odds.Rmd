@@ -34,11 +34,11 @@ $$ \|f\|_\infty=\operatorname{ess}\sup f=\sup \{t:\mu(\{x:|f(x)|\ge t\})0\}  $$
 
 ## Ordinals
 
-Suppose $R$ is an order relation on $\Omega$, then $\Omega$ is said to be **inductivelt ordered** by $R$ if every totally ordered subset has an **supremum**.
+Suppose $R$ is an order relation on $\Omega$, then $\Omega$ is said to be **inductively ordered** by $R$ if every totally ordered subset has an **supremum**.
 
 **Zorn's Lemma** states that every inductively ordered set has a maximal element.
 
-```{definition, weelord, name=""}
+```{definition, wellord, name=""}
 A set $X$ is **well ordered** by linear $\preceq$ if every nonempty subset has a least element. 
 ```
 
@@ -67,7 +67,7 @@ Kind of remarkable and useful well ordered set is exist:
 ```{theorem, usefulorder, name=""}
 There exist poset $(\Omega,\preceq )$ satisfy
 
-1. $(\Omega,\preceq)$ is weel ordered.
+1. $(\Omega,\preceq)$ is well ordered.
 2. $\Omega$ has a greast element $\omega_1$
 3. $I(x)$ is countable for $x<\omega_1$
 4. $\{y\in \Omega:x\le y\le \omega_1\}$ is uncountable.
