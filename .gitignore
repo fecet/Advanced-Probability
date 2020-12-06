@@ -7,8 +7,8 @@
 
 .Rproj.user
 
-.yml
-.html
-.css
-.js
+*.yml
+*.html
+*.css
+*.js
 Infinite dimensional analysis/_book/libs/jquery-2.2.3/jquery.min.js
