@@ -52,7 +52,7 @@ Suppose $(\Omega,\tau)$ with a finite base is $T_1$, then $\Omega$ is finite and
 A topology $(\Omega,\tau)$ is $T_2$, or **Hausdorff** or **separated** if every pair $(x,y)\in \Omega^2$, there exist $U\in \mathcal{N(x)}$ and $V\in \mathcal{N(y)}$ s.t. $U\cap V=\emptyset$.
 ```
 
-```{theorem, t2net, name=""}
+```{theorem, t2equiv, name=""}
 Following statements are equivalent:
 
 1. $\tau$ is $T_2$.
@@ -163,7 +163,8 @@ $$ \begin{aligned}
    | \sum_{i=m}^n g_i(x)|\le  \sum_{i=m}^n |g_i(x)|\le \sum_{i=m}^n \frac{1}{3}(\frac{2}{3})^i \le (\frac{2}{3})^m \to 0
 \end{aligned} $$
 
-Thus $\{\sum_{i=0}^n g_i\}_{n=0}^\infty$ converges uniformly by Cauchy's criterion, and followed by $g$ is continous. And $f=g$ on $F$ follows from
+Thus $\{\sum_{i=0}^n g_i\}_{n=0}^\infty$ converges uniformly by Cauchy's criterion, followed by $g$ is continous. And $f=g$ on $F$ follows from
 
 $$ |f(x)-\sum_{i=0}^n g_i(x)|=|f_0(x)-\sum_{i=0}^n g_i(x)|=|f_1(x)-\sum_{i=1}^n g_i(x)|=|f_{n+1}(x)|\le (\frac{2}{3})^{n+1} \to 0 $$
 ```
+

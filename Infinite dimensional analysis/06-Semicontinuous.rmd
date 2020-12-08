@@ -1,0 +1,36 @@
+## Semicontinuous
+
+$f:\Omega \to \R^*$ is
+
+- **lower semicontinuous** if for any $c\in \R$, the set $\{x\in \Omega:f(x)\le c\}$ is closed.
+- **upper semicontinuous** if for any $c\in \R$, the set $\{x\in \Omega:f(x)\ge c\}$ is closed.
+
+Clearly $f$ is lower semicontinuous iff $-f$ is upper and vice versa.
+
+```{lemma, , name=""}
+Suppose $\{f_i\}_{i\in I}$ is family of lower(upper) semicontinuous function then $\sup f_i(\inf f_i)$ is lower(upper) semicontinuous.
+```
+
+```{proof}
+Note
+
+$$ \{x\in \Omega:\sup f_i(x)\le c\} =\bigcap_{i\in I} \{x\in \Omega:f_i(x)\le c\}$$
+
+is closed.
+```
+
+```{lemma, , name=""}
+$f:\Omega \to \R^*$ is
+
+- **lower semicontinuous** iff for any net
+  $$ x.\to x \implies \liminf f(x.) \ge f(x) $$
+- **upper semicontinuous** iff for any net
+  $$ x.\to x \implies \limsup f(x.) \le f(x) $$
+  
+```
+
+```{proof}
+Suppos $f$ is lower semicontinuous and $x.\to x$. For any $c<f(x)$, then $G=\{\omega\in \Omega:f(\omega)>c\}$ is open and thus $x.$ eventually in, that is $x.>c$ ecventually and thus $\liminf f(x.) \ge c$. This implies that $\liminf f(x.)\ge f(x)$.
+
+Conversely, for any $c\in \R$, consider $F=\{\omega\in\Omega:f(\omega)\le c\}$. Then we show that $F$ is closed. Suppos $x.$ is nets in $F$ and converges to some $x\in \Omega$. Then $c\ge \lim\inf f(x.) \ge f(x)$ thus $x$ in $F$ and thus $F$ is closed.
+```

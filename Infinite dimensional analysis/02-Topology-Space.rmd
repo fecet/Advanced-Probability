@@ -190,8 +190,8 @@ Follwing is some useful truth for mappings.
 6. $f^{-1}f(A)=A$ always holds if $f$ is injection while $ff^{-1}(A)=A$ always holds if $g$ is surjection.
 7. If $f$ is bijection, $(f^{-1})^{-1}(A)=f(A)$ always hold.
 8. $(f\circ g)^{-1}(A)=g^{-1}f^{-1}(A)$
-9. $f^{-1}(A)\subset f^{-1}(B)\iff A\subset B$
-10. $f(A)\subset f(B) \iff A\subset B$
+9. $f^{-1}(A)\subset f^{-1}(B)\impliedby A\subset B$
+10. $f(A)\subset f(B) \impliedby A\subset B$
 
 ```
 
@@ -242,9 +242,9 @@ Suppose $f:(\Omega,\tau),(\Omega',\tau(\mathcal{S}))$, $f$ is continous iff $f^{
 
 $(\Omega,\tau)$ and $(\Omega',\tau')$ are said to be **homeomorphic** if there exist continuous bijection $f$, s.t $f^{-1}$ is continuous and such $f$ is called **homeomorphism**. In particular, $f$ is an **embedding** if $f:(\Omega,\tau) \to (f(\Omega),\tau|f(\Omega))$ ia a homeomorphism.
 
-$f$ is **open** if $f(G)$ is open for all open set $G\in \tau$ and is **closed** if $f(F)$ is closed for all closed set $f(F)^c\in \tau$.
+$f$ is **open** if $f(G)$ is open for all open set $G\in \tau$ and is **closed** if $f(F)$ is closed for all closed set $F^c\in \tau$.
 
-```{lemma, , name=""}
+```{lemma, homoclopen, name=""}
 Suppose $f$ is bijection, then it's homeomorphism iff it's continuous and either open or closed.
 ```
  
@@ -265,3 +265,4 @@ Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continuous.
 ```
 
 Note that $\mathcal{P(\Omega)}$ let all $f$ continuous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continuous.
+
