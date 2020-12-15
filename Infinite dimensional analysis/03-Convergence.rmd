@@ -335,7 +335,7 @@ Both side is equivalent to $\mathcal{N}(x)\subset \mathcal{F}(x.)$
 ```
 
 ```{theorem, , name=""}
-Suppose $f:(\Omega,\tau)\to (\Omega,\tau)$, then $f$ is continous at $x$ iff $\forall x.\to x$, $f(x.)\to f(x)$.
+Suppose $f:(\Omega,\tau)\to (\Omega',\tau')$, then $f$ is continous at $x$ iff $\forall x.\to x$, $f(x.)\to f(x)$.
 ```
 
 ```{proof}
@@ -357,4 +357,5 @@ If $x.$ is ultra then the associated filter $\mathcal{F}(x.)$ is also ultra and 
 ```{proof}
 Directly from theorm \@ref(thm:ufq).
 ```
+
 

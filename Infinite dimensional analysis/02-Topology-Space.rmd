@@ -266,3 +266,4 @@ Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continuous.
 
 Note that $\mathcal{P(\Omega)}$ let all $f$ continuous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continuous.
 
+b

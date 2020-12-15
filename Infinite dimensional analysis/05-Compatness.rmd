@@ -62,7 +62,7 @@ and contradict the compactness as theorem \@ref(thm:cptequiv).2. Thus $A=\overli
 ``` -->
 
 ```{theorem, clcpt, name=""}
-Closed subset is closed in compact topological space.
+Closed subset is compact in compact topological space.
 ```
 
 ```{proof}
@@ -73,6 +73,22 @@ Note any open cover of $F$ plus $F^c$ become a open cover of $\Omega$.
 Suppose $F$ is closed and $\mathcal{U}$ is any ultrafilter in $F$, then it's base of an ulrafilter containing $F$ in $(\Omega,\tau)$, as compactness, this ultrafilter converges to some $x$. Then we claim that $x\in F$ and thus $\mathcal{U}$ also converges to $x$. By theorem \@ref(thm:cptequiv), $F$ is compact.
 ``` -->
 
+```{theorem, cptfip, name=""}
+Let $(\Omega,\tau )$ be a topological space. Then $\Omega$ is compact iff for every collection $\mathcal{F}$ of closed sets having FIP, then $\ker \mathcal{F}\neq \emptyset$.
+```
+
+```{proof}
+Taking contrapositive:
+
+$$ \neg {\ker \mathcal{F}\neq\emptyset}\equiv\ker \mathcal{F}=\emptyset\equiv\bigcup_{F\in \mathcal{F}} F^c=\Omega $$
+
+and
+
+$$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
+
+note that's pricesly the definition of compactness.
+```
+
 ```{theorem, , name=""}
 Every compact Hausdorff space is normal.
 ```
@@ -82,7 +98,7 @@ Suppose $A$ and $B$ are closed and thus comapct by theorem \@ref(thm:clcpt). For
 ```
 
 ```{theorem, contcpt, name=""}
-Suppose $f:(\Omega,\tau )$ is continous, then $f(A)$ is comapct if $A$ is compact.
+Suppose $f:(\Omega,\tau ) \to (\Omega',\tau ')$ is continous, then $f(A)$ is comapct if $A$ is compact.
 ```
 
 ```{proof}
@@ -108,7 +124,7 @@ A continous real valued function defined on a compact space achieves its maximum
 
 
 ```{theorem, , name=""}
-Let $(\Omega,\tau)$ be compact and $(\Omega,\tau)$ be housdorff and $f:(\Omega,\tau )$ is continous bijection. Then $f$ is homeomorphism.
+Let $(\Omega,\tau)$ be compact and $(\Omega',\tau')$ be housdorff and $f:(\Omega,\tau )\to (\Omega',\tau')$ is continous bijection. Then $f$ is homeomorphism.
 ```
 
 ```{proof}
