@@ -31,6 +31,7 @@ Let $(\Omega,\tau)$ be a space, following are equivalent.
 1. $(\Omega,\tau)$ is compact.
 2. Every filter(net) has at least one adherent point.
 3. Every ultrafilter(ultranet) converges.
+4. $\ker \mathcal{F}\neq \emptyset$ For every collection $\mathcal{F}$ of closed sets having FIP.
 
 ```
 
@@ -44,6 +45,17 @@ enjoy finite intersection property by definition, then $\overline{F}$ has at lea
 $2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
 
 $3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from theorem \@ref(thm:cptset).
+
+
+$4\iff 1$ Taking contrapositive:
+
+$$ \neg {\ker \mathcal{F}\neq\emptyset}\equiv\ker \mathcal{F}=\emptyset\equiv\bigcup_{F\in \mathcal{F}} F^c=\Omega $$
+
+and
+
+$$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
+
+note that's pricesly the definition of compactness.
 ```
 
 ```{theorem, cptcl, name=""}
@@ -73,21 +85,6 @@ Note any open cover of $F$ plus $F^c$ become a open cover of $\Omega$.
 Suppose $F$ is closed and $\mathcal{U}$ is any ultrafilter in $F$, then it's base of an ulrafilter containing $F$ in $(\Omega,\tau)$, as compactness, this ultrafilter converges to some $x$. Then we claim that $x\in F$ and thus $\mathcal{U}$ also converges to $x$. By theorem \@ref(thm:cptequiv), $F$ is compact.
 ``` -->
 
-```{theorem, cptfip, name=""}
-Let $(\Omega,\tau )$ be a topological space. Then $\Omega$ is compact iff for every collection $\mathcal{F}$ of closed sets having FIP, then $\ker \mathcal{F}\neq \emptyset$.
-```
-
-```{proof}
-Taking contrapositive:
-
-$$ \neg {\ker \mathcal{F}\neq\emptyset}\equiv\ker \mathcal{F}=\emptyset\equiv\bigcup_{F\in \mathcal{F}} F^c=\Omega $$
-
-and
-
-$$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
-
-note that's pricesly the definition of compactness.
-```
 
 ```{theorem, , name=""}
 Every compact Hausdorff space is normal.
