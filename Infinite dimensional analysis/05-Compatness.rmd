@@ -4,26 +4,8 @@ A **cover** of a set $K$ is collection of sets whose union includes $K$. A **sub
 
 A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact and **locally compact** if every point has a compact neighborhood. A subset $A\in \Omega$.
 
+Compatness is a "topological" property. That is, subset compactness in a subspace iff it's also compact in full space.
 
-
-```{theorem, cptset, name=""}
-
-Let $(\Omega,\tau)$ be a space, $A\subset \Omega$ is compact iff any collection $\mathcal{F}_A$ of closed sets in subspace $\tau_A$ with the finite intersection property have $\ker \mathcal{F}\neq \emptyset$.
-
-```
-
-```{proof}
-Suppose $\mathcal{F}_A=\{F \cap A:F\in \mathcal{F}\}$, then
-
-$$ \ker \mathcal{F}_A = \bigcap_{F\in \mathcal{F}}^{}F\cap A=\emptyset \iff \bigcup_{F\in \mathcal{F}}^{}(F^c\cup A^c)=\Omega \iff \bigcup_{F\in \mathcal{F}}^{} F^c\supset A  $$
-
-As finite intersection property, $\mathcal{I}$ any finite subfaimily.
-
-$$ \bigcap_{F\in \mathcal{I}} F\cap A \supset \emptyset \iff \bigcup_{F\in \mathcal{I}}^{}(F^c\cup A^c)\subset \Omega \iff \bigcup_{F\in \mathcal{I}}^{} F^c \subset A  $$
-
-where the inclusion is proper. That is, open cover $\bigcup_{F\in \mathcal{F}}^{} F^c\supset A$ can not have a finite subcover and thus $A$ isn't compact.
-
-```
 
 ```{theorem, cptequiv, name=""}
 Let $(\Omega,\tau)$ be a space, following are equivalent.
@@ -57,6 +39,8 @@ $$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\O
 
 note that's pricesly the definition of compactness.
 ```
+
+
 
 ```{theorem, cptcl, name=""}
 Let $(\Omega , \tau )$ be Hausdorff, then every compact subset and disjoint singelton can be separated by open sets. In particular, compact subset is closed.
@@ -115,9 +99,6 @@ As consequence:
 ```{corollary, exvalue, name="Extreme value theorem"}
 A continous real valued function defined on a compact space achieves its maximum and minimum values.
 ```
-
-
-
 
 
 ```{theorem, , name=""}
