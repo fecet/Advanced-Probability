@@ -1,0 +1,59 @@
+## Convergence
+
+The product topology on $\R^X$ is also called **topology of pointwise convergence** on $X$ because a net $f.\to f$ iff $f.(x)\to f(x)$ for each $x \in X$.
+
+If $\mathcal{F}$ is collection of functions on $X$, $X$ can be seen as functions on $\mathcal{F}$ by $e_x(f)=f(x)$ for each $x \in  X$, such functions are called  **evaluation functional**. There also exist induced topology $\sigma\left( \mathcal{F},X \right)$ on $\mathcal{F}$, which is identical to the subspace  $\R^X |_{\mathcal{F}}$ endowed the product topology. Formally 
+
+$$ \sigma(\mathcal{F},X)=\sigma(\R^X,X)|_{\mathcal{F}} $$
+
+
+```{lemma,, name=""}
+
+If $\mathcal{F}$ is total, the function 
+
+$$ x\mapsto e_x:(X,\sigma(X,\mathcal{F}))\to (\R^{\mathcal{F}},\sigma(\R^{\mathcal{F}},\mathcal{F})) $$
+
+is injective and thus an embedding.
+
+```
+
+
+
+```{proof}
+
+
+$$ \begin{aligned}
+	 x. \to x &\iff \forall  f \in \mathcal{F}, f(x.) \to f(x) 
+	 \\&\iff \forall f \in \mathcal{F}, e_{f}(e_{x.})\to e_f(e_{x})
+	 \\&\iff e_{x.}\to e_{x} 
+\end{aligned} $$
+
+
+```
+
+By Tychonoff theorem \@ref(thm:tychonoff), $\mathcal{F}$ is compact iff it's closed and pointwise bounded by borel theorem. 
+
+
+```{definition, , name=""}
+A net $f.$ converges uniformly to $f\in \R^X$ iff $|f.(x)-f(x)|< \epsilon$ eventually for each $x \in X$ at the same time.
+```
+
+
+```{theorem, , name=""}
+
+The uniform limit of a net is continous.
+
+```
+
+
+::: {.theorem #dini name="Dini's Theorem"}
+
+If $f.$ converges monotonically to $f \in \R^X$ pointwise, then the net converges uniformly.
+
+:::
+
+If $f. \to f$, $f.(x)\to f(x)$ for each $x$ and thus $f.(x)$ eventually in $B(f(x),\epsilon)$ after, say, $f_{\alpha_x}$. Note
+
+$$ X=\bigcup_{x \in X} f^{-1}(B(f(x),\epsilon))=\bigcup_{x \in J} f^{-1}(B(f(x),\epsilon)) $$
+
+

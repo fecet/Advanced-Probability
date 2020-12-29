@@ -1,0 +1,22 @@
+# 5
+
+For any $x\in [1,2]$, 
+$$ \sum_{i=n}^{m} \frac{x}{(1+x)^i}= \frac{x}{\left( 1+x \right) ^n} \left( \frac{1-\frac{1}{1+x}}{1-\frac{1}{\left( 1+x \right) ^m}} \right) \le  \frac{x}{\left( 1+x \right) ^n} \left( \frac{1-\frac{1}{1+x}}{1-\frac{1}{\left( 1+x \right) ^\infty}} \right)=\frac{x^2}{\left( 1+x \right) ^{n+1}}\le \frac{1}{2^{n+1}}$$
+Note the last inequality holds for sufficient large $n$ and we may find $N$ s.t. $\sum_{i=n}^{m} \frac{x}{(1+x)^i}\le \epsilon$ for any 
+$\epsilon>0$ and $n\ge N$. By Cauchy's criterion, $f(x)$ is uniformly converges.
+
+# 6
+
+Note continuous function bring compact set to compact set and $\R$ is not compact.
+
+# 7
+
+Suppose subspace of $\left( \R,\rho \right)$ in $(0,1)$ then the closed ball $\overline{B(\frac{1}{2},\frac{1}{2})}=(0,1)$ is not compact since it's cover by 
+$$ \bigcup_{i=1}^\infty (\frac{1}{n},1)  $$
+
+but those sets cannot have a finite subfamily that cover $(0,1)$ clearly.
+
+
+
+
+
