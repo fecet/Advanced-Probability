@@ -1,13 +1,14 @@
 ## Convergence
 
-The product topology on $\R^X$ is also called **topology of pointwise convergence** on $X$ because a net $f.\to f$ iff $f.(x)\to f(x)$ for each $x \in X$.
+If $\mathcal{F}$ is collection of functions on $X$, $X$ can be seen as functions on $\mathcal{F}$ by $e_x(f)=f(x)$ for each $x \in  X$, such functions are called  **evaluation functional**. 
 
-If $\mathcal{F}$ is collection of functions on $X$, $X$ can be seen as functions on $\mathcal{F}$ by $e_x(f)=f(x)$ for each $x \in  X$, such functions are called  **evaluation functional**. There also exist induced topology $\sigma\left( \mathcal{F},X \right)$ on $\mathcal{F}$, which is identical to the subspace  $\R^X |_{\mathcal{F}}$ endowed the product topology. Formally 
+The product topology on $\R^X$ is also called **topology of pointwise convergence** on $X$ because a net $f.\to f$ iff $e_x(f.)\to e_x(f)\iff f.(x)\to f(x)$ for each $x \in X$.
+
+ There also exist induced topology $\sigma\left( \mathcal{F},X \right)$ on $\mathcal{F}$, which is identical to the subspace  $\R^X |_{\mathcal{F}}$ endowed the product topology. Formally 
 
 $$ \sigma(\mathcal{F},X)=\sigma(\R^X,X)|_{\mathcal{F}} $$
 
-
-```{lemma,, name=""}
+::: {.lemma  name=""}
 
 If $\mathcal{F}$ is total, the function 
 
@@ -15,12 +16,11 @@ $$ x\mapsto e_x:(X,\sigma(X,\mathcal{F}))\to (\R^{\mathcal{F}},\sigma(\R^{\mathc
 
 is injective and thus an embedding.
 
-```
+:::
 
+::: {.proof}
 
-
-```{proof}
-
+It's remain to show the continuity.
 
 $$ \begin{aligned}
 	 x. \to x &\iff \forall  f \in \mathcal{F}, f(x.) \to f(x) 
@@ -28,32 +28,60 @@ $$ \begin{aligned}
 	 \\&\iff e_{x.}\to e_{x} 
 \end{aligned} $$
 
+:::
 
-```
+By Tychonoff theorem \@ref(thm:tychonoff), $\mathcal{F}$ is compact iff $\forall x \in X$, $\{f(x)\}_{f\in \mathcal{F}}$ it's closed and pointwise bounded by borel theorem. 
 
-By Tychonoff theorem \@ref(thm:tychonoff), $\mathcal{F}$ is compact iff it's closed and pointwise bounded by borel theorem. 
+::: {.definition name=""}
+
+A net $f.$ converges uniformly to $f\in \R^X$ iff $|f.(x)-f(x)|< \epsilon$ eventually for each $x \in X$ after some $f_{\alpha}$ for any $\epsilon$.
+
+:::
 
 
-```{definition, , name=""}
-A net $f.$ converges uniformly to $f\in \R^X$ iff $|f.(x)-f(x)|< \epsilon$ eventually for each $x \in X$ at the same time.
-```
+::: {.theorem  name=""}
+
+The uniform limit of a continuous net is continuous.
+
+:::
 
 
-```{theorem, , name=""}
+::: {.proof}
 
-The uniform limit of a net is continous.
+Suppose $f.\to f$ uniformly, then for any $x\in X$, for any $\alpha>\alpha_0$
+$$ 
+|f_\alpha(x)-f(x)|<\epsilon
+$$
+as $f_\alpha$ is continuous, for any $x. \to x$, for any $\lambda>\lambda_0$
+$$ 
+|f_\alpha(x_\lambda)-f_\alpha(x)|<\epsilon
+$$
+also, there is 
+$$ 
+|f_\alpha(x_\lambda)-f(x_\lambda)|<\epsilon
+$$
+Hence, we have 
+$$ 
+|f(x_\lambda)-f(x)|<3\epsilon
+$$
 
-```
+Thus, $f(x.)\to f$ and continuity follows.
+
+:::
 
 
 ::: {.theorem #dini name="Dini's Theorem"}
 
-If $f.$ converges monotonically to $f \in \R^X$ pointwise, then the net converges uniformly.
+If continuous real function net $f.$ on a compact set converges monotonically to $f$ pointwise, then the net converges to $f$ uniformly.
 
 :::
 
 If $f. \to f$, $f.(x)\to f(x)$ for each $x$ and thus $f.(x)$ eventually in $B(f(x),\epsilon)$ after, say, $f_{\alpha_x}$. Note
 
-$$ X=\bigcup_{x \in X} f^{-1}(B(f(x),\epsilon))=\bigcup_{x \in J} f^{-1}(B(f(x),\epsilon)) $$
+$$ X=\bigcup_{x \in X} f_{\alpha_x}^{-1}(B(f(x),\epsilon))=\bigcup_{x \in J} f_{\alpha_x}^{-1}(B(f(x),\epsilon)) $$
 
+by compactness, so we may pick $\alpha_0 \ge \alpha_x$ for all $x\in J$, and now for any $x\in X$, suppose $x\in f_{\alpha_{x_j}}^{-1}\left( B(f(x_j),\epsilon) \right)$
+$$ 
+|f_\alpha (x)-f(x)|\le  |f_{\alpha}(x)-f(x_j)|+|f(x_j)-f(x)|
+$$
 
