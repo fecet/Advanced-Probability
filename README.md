@@ -4,7 +4,7 @@ Self study notes for financial mathematics.
 
 - Real analysis
 
-- []Functional analysis
+- [ ]Functional analysis
 
 	Guide, A. H. S. (2006). Infinite dimensional analysis. New York: Springer.
 
