@@ -1,11 +1,8 @@
-## Compatness
+## Compactness
 
-A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is comapct.
+A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is compact. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact
 
-A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact and **locally compact** if every point has a compact neighborhood. A subset $A\in \Omega$.
-
-Compatness is a "topological" property. That is, subset compactness in a subspace iff it's also compact in full space.
-
+Compactness is a "topological" property. That is, subset compactness in a subspace iff it's also compact in full space.
 
 ```{theorem, cptequiv, name=""}
 Let $(\Omega,\tau)$ be a space, following are equivalent.
@@ -18,16 +15,6 @@ Let $(\Omega,\tau)$ be a space, following are equivalent.
 ```
 
 ```{proof}
-$1\implies 2$ Suppose filter $\mathcal{F}$, then
-
-$$ \{\overline{F}:F\in \mathcal{F}\} $$
-
-enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by theorem \@ref(thm:cptset).
-
-$2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
-
-$3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from theorem \@ref(thm:cptset).
-
 
 $4\iff 1$ Taking contrapositive:
 
@@ -38,11 +25,22 @@ and
 $$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
 
 note that's pricesly the definition of compactness.
+
+$1\implies 2$ Suppose filter $\mathcal{F}$, then
+
+$$ \{\overline{F}:F\in \mathcal{F}\} $$
+
+enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by 4
+
+$2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
+
+$3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from 4.
+
 ```
 
 
 
-```{theorem, cptcl, name=""}
+```{theorem, cptiscl, name=""}
 Let $(\Omega , \tau )$ be Hausdorff, then every compact subset and disjoint singelton can be separated by open sets. In particular, compact subset is closed.
 ```
 
@@ -75,7 +73,7 @@ Every compact Hausdorff space is normal.
 ```
 
 ```{proof}
-Suppose $A$ and $B$ are closed and thus comapct by theorem \@ref(thm:clcpt). For any point $x\in A$, there exist disjoint $V_x \supset B$ and $x\in U_x$ by theorem \@ref(thm:cptcl). Note $\bigcup_{x\in A} U_x$ cover $A$, there exist subcover $U=\bigcup_i^n U_{x_i}\supset A$ and $V=\bigcap_i^n V_{x_i}\supset B$ separated $A$ and $B$.
+Suppose $A$ and $B$ are closed and thus comapct by theorem \@ref(thm:clcpt). For any point $x\in A$, there exist disjoint $V_x \supset B$ and $x\in U_x$ by theorem \@ref(thm:cptiscl). Note $\bigcup_{x\in A} U_x$ cover $A$, there exist subcover $U=\bigcup_i^n U_{x_i}\supset A$ and $V=\bigcap_i^n V_{x_i}\supset B$ separated $A$ and $B$.
 ```
 
 ```{theorem, contcpt, name=""}
@@ -100,13 +98,12 @@ As consequence:
 A continous real valued function defined on a compact space achieves its maximum and minimum values.
 ```
 
-
 ```{theorem, , name=""}
 Let $(\Omega,\tau)$ be compact and $(\Omega',\tau')$ be housdorff and $f:(\Omega,\tau )\to (\Omega',\tau')$ is continous bijection. Then $f$ is homeomorphism.
 ```
 
 ```{proof}
-It's sufficient to show that $f(F)$ is closed as lemma \@ref(lem:homoclopen). Note $F$ is closed and thus compact as theorem \@ref(thm:clcpt) then $f(F)$ is compact as theorem \@ref(thm:contcpt) and thus closed by theorem \@ref(thm:cptcl).
+It's sufficient to show that $f(F)$ is closed as lemma \@ref(lem:homoclopen). Note $F$ is closed and thus compact as theorem \@ref(thm:clcpt) then $f(F)$ is compact as theorem \@ref(thm:contcpt) and thus closed by theorem \@ref(thm:cptiscl).
 ```
 
 A subset $A$ of a topological space is **sequentially compact** if every sequence in $A$ has a subsequence converging to an element of $A$. A topological space is sequentially compact if itself is a sequentially compact set.

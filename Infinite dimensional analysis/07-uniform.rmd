@@ -76,12 +76,150 @@ If continuous real function net $f.$ on a compact set converges monotonically to
 
 :::
 
-If $f. \to f$, $f.(x)\to f(x)$ for each $x$ and thus $f.(x)$ eventually in $B(f(x),\epsilon)$ after, say, $f_{\alpha_x}$. Note
 
-$$ X=\bigcup_{x \in X} f_{\alpha_x}^{-1}(B(f(x),\epsilon))=\bigcup_{x \in J} f_{\alpha_x}^{-1}(B(f(x),\epsilon)) $$
+::: {.proof}
 
-by compactness, so we may pick $\alpha_0 \ge \alpha_x$ for all $x\in J$, and now for any $x\in X$, suppose $x\in f_{\alpha_{x_j}}^{-1}\left( B(f(x_j),\epsilon) \right)$
+Let $g.=f.-f$, we have $g.\to 0$, $|g.|$ is decreasing as monotone. Then it's sufficient to show that $g.\to g$ uniformly. Note $|g.(x)|<\epsilon$ eventually for any $x \in X$ after, say, $\alpha_x$. By continuity and compactness:
+
+$$ X=\bigcup_{x \in X} |g_{\alpha_x}|^{-1}(B(0,\epsilon))=\bigcup_{x \in J} |g_{\alpha_x}|^{-1}(B(0,\epsilon)) $$
+
+Then we may pick $\alpha_0 \ge \alpha_x$ for all $x\in J$, and for any $\alpha \ge \alpha_0$ and any $x\in X$, suppose $x\in |g_{\alpha_{x_j}}|^{-1}\left( B(0,\epsilon) \right)$
 $$ 
-|f_\alpha (x)-f(x)|\le  |f_{\alpha}(x)-f(x_j)|+|f(x_j)-f(x)|
+\epsilon>|g_{\alpha_{x_j}}(x)|>|g_{\alpha}(x)|
+$$
+by monotone and thus $g. \to 0$ uniformly.
+
+:::
+
+## Locally compact spaces
+
+::: {.definition #loccpt name=""}
+
+A topological space is **locally compact** if every point has a compact neighborhood.
+
+:::
+
+
+::: {.theorem #loccptnb name="Compact neighborhood base"}
+
+Suppose $(\Omega,\tau)$ is locally compact and Hausdorff, then every neighborhood of $x$ includes a compact neighborhood. Consequently, that imply the existence of a compact neighborhood base.
+
+:::
+
+
+
+::: {.proof}
+
+Begin by open neighborhood $G$ and compact $K$ for $x$ s.t.  $A=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
+
+$$ 
+U=\bigcup_{i=1}^k U_{y_i} \supset A
 $$
 
+Respectively, consider $W=\bigcap_{i=1}^{k} W_{y_i}$, and we claim that $\overline{W}$ is compact and included in $G$. Compactness is clear as $\overline{V}\subset K$. By theorem \@ref(thm:cptiscl), $\overline{W}\cap U=\emptyset$. Consequently,
+$$ 
+\overline{V}\cap G^{c}=\overline{V}\cap W\cap G^c=\overline{V}\cap A\subset \overline{V}\cap U=\emptyset
+$$
+hence $\overline{V}\subset G$.	
+
+::: 
+
+::: {.corollary #cloptisloccpt name=""}
+
+Suppose $G$ is open and $F$ is closed in a locally compact Hausdorff space, then $G \cap A$ is locally compact. That implies every closed and open set is locally compact. 
+
+:::
+
+
+::: {.proof}
+
+Note 
+$$ 
+G=(G \cap F^c)+(G \cap F)
+$$
+and $G$ and $G \cap F^c$ is open, by theorem \@ref(thm:loccptnb), they are locally compact. Thus their difference is also locally compact.
+
+:::
+
+
+::: {.corollary name=""}
+
+If $K$ is compact in a locally compact Hausdorff space and $G$ is an open set including $K$, then there is an open $V$ with compact closure s.t.
+
+$$ 
+K\subset V\subset \overline{V}\subset G
+$$
+
+:::
+
+::: {.proof}
+
+For any $x \in K$, by theorem \@ref(thm:loccptnb), we have 
+$$ 
+x \in V_x \subset \overline{V_{x}}\subset G
+$$
+then note 
+$$ 
+K\subset \bigcup_{i=1}^{k} V_{x_i}=V
+$$
+we claim that $V$ is desired. Since 
+$$ 
+\overline{V}=\overline{\bigcup_{i=1}^{k}V_{x_i}}=\bigcup_{i=1}^{k}\overline{V_{x_i}}
+$$
+is compact and included in $G$.
+
+:::
+
+
+::: {.definition name=""}
+
+A **Compactification** of a Hausdorff space $X$ is a compact Hausdorff space $\hat{X}$ s.t. $X$ is a homeomorphic to a dense subset of $\hat{X}$
+
+:::
+
+For short, we treat $X$ as an actual dense subset of $\hat{X}$ and $\tau$ a subspace of $\hat{\tau}$.
+
+
+::: {.theorem #compactification name=""}
+
+$X$ is locally compact iff $X$ is open of $\hat{X}$.
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$ comes from corollary \@ref(cor:cloptisloccpt).
+
+$\implies$ Suppose $(\hat{X},\hat{\tau})$ is compactification of Hausdorff $(X,\tau)$. For any $x \in X$, we may pick $x \in  G \subset K$, where $G$ is open and $K$ is compact in $\tau$. Consider $W \in \hat{\tau}$ where $W \cap X=G$, we have 
+$$ 
+W=W \cap \hat{X}=W \cap \overline{X} \subset \overline{W \cap X}=\overline{G}\subset K\subset X
+$$
+that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
+
+:::
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
