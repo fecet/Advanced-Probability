@@ -110,12 +110,10 @@ Suppose $(\Omega,\tau)$ is locally compact and Hausdorff, then every neighborhoo
 
 ::: {.proof}
 
-Begin by open neighborhood $G$ and compact $K$ for $x$ s.t.  $A=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
-
+Begin by open $G$ and compact $K$ neighborhood for $x$ s.t.  $A:=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
 $$ 
 U=\bigcup_{i=1}^k U_{y_i} \supset A
 $$
-
 Respectively, consider $W=\bigcap_{i=1}^{k} W_{y_i}$, and we claim that $\overline{W}$ is compact and included in $G$. Compactness is clear as $\overline{V}\subset K$. By theorem \@ref(thm:cptiscl), $\overline{W}\cap U=\emptyset$. Consequently,
 $$ 
 \overline{V}\cap G^{c}=\overline{V}\cap W\cap G^c=\overline{V}\cap A\subset \overline{V}\cap U=\emptyset
@@ -126,23 +124,27 @@ hence $\overline{V}\subset G$.
 
 ::: {.corollary #cloptisloccpt name=""}
 
-Suppose $G$ is open and $F$ is closed in a locally compact Hausdorff space, then $G \cap A$ is locally compact. That implies every closed and open set is locally compact. 
+Suppose $G$ is open and $F$ is closed in a locally compact Hausdorff space, then $G \cap F$ is locally compact. That implies every closed and open set is locally compact. 
 
 :::
 
 
 ::: {.proof}
 
-Note 
+Let $x \in G \cap F$, by theorem \@ref(thm:loccptnb), there exist $K_1$ s.t.
 $$ 
-G=(G \cap F^c)+(G \cap F)
+x \in K_1^\circ \subset K_1 \subset U
 $$
-and $G$ and $G \cap F^c$ is open, by theorem \@ref(thm:loccptnb), they are locally compact. Thus their difference is also locally compact.
+Let $N$ be open neighborhood of $x$, then there exist $K_2$:
+$$ 
+x \in K_2^\circ \subset K_2\subset N \cap K_1^\circ
+$$
+Then we claim that $F \cap K_2$ is compact as Hausdorff.
 
 :::
 
 
-::: {.corollary name=""}
+::: {.corollary #loccptasnorm name=""}
 
 If $K$ is compact in a locally compact Hausdorff space and $G$ is an open set including $K$, then there is an open $V$ with compact closure s.t.
 
@@ -198,7 +200,6 @@ $$
 that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
 
 :::
-
 
 
 
