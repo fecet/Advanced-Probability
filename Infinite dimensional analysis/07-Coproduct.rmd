@@ -1,0 +1,11 @@
+## Coinduced topology
+
+In the same notations, let $K_{i}$ be compact for each $i$, $G$ is open in  $\tau$ and including $\prod_{i \in I} K_{i}$, then there exist basic open set sandwich by them.
+
+Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $\{f_i:(\Omega_i,\mathcal{T_i})\to (\Omega,\tau)\}_{i\in I}$. Let $A$ be the set of all the topologies s.t. $f_i$ is continuous for all $i$. We call the finest of $A$ **topology coinduced** on $\Omega$ by $\{(f_i)\}_{i\in I}$.
+
+
+Let $R$ an equivalence relation on $\Omega$, $\eta:\Omega\to \Omega/R$ the canonical surjection. The coinduced topology on $\Omega/R$ by $\eta$ is denoted by $\tau/R$ and $(\Omega/R,\tau/R)$ is the quotient space w.r.t. $R$.
+
+
+

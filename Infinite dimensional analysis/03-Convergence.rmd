@@ -348,8 +348,6 @@ $$ \mathop{\text{Adh}}_{}(\mathcal{F(x.)})=\mathop{\text{Adh}}_{}(x.), \mathop{\
 
 and similarly results holds for any filter and one of associated nets.
 
-
-
 ```{lemma, , name=""}
 If $x.$ is ultra then the associated filter $\mathcal{F}(x.)$ is also ultra and if $\mathcal{F}$ is ultra, every associated net is ultra.
 ```
@@ -357,5 +355,99 @@ If $x.$ is ultra then the associated filter $\mathcal{F}(x.)$ is also ultra and 
 ```{proof}
 Directly from theorm \@ref(thm:ufq).
 ```
+
+
+## Convergence
+
+If $\mathcal{F}$ is collection of functions on $X$, $X$ can be seen as functions on $\mathcal{F}$ by $e_x(f)=f(x)$ for each $x \in  X$, such functions are called  **evaluation functional**. 
+
+The product topology on $\R^X$ is also called **topology of pointwise convergence** on $X$ because a net $f.\to f$ iff $e_x(f.)\to e_x(f)\iff f.(x)\to f(x)$ for each $x \in X$.
+
+ There also exist induced topology $\sigma\left( \mathcal{F},X \right)$ on $\mathcal{F}$, which is identical to the subspace  $\R^X |_{\mathcal{F}}$ endowed the product topology. Formally 
+
+$$ \sigma(\mathcal{F},X)=\sigma(\R^X,X)|_{\mathcal{F}} $$
+
+::: {.lemma  name=""}
+
+If $\mathcal{F}$ is total, the function 
+
+$$ x\mapsto e_x:(X,\sigma(X,\mathcal{F}))\to (\R^{\mathcal{F}},\sigma(\R^{\mathcal{F}},\mathcal{F})) $$
+
+is injective and thus an embedding.
+
+:::
+
+::: {.proof}
+
+It's remain to show the continuity.
+
+$$ \begin{aligned}
+	 x. \to x &\iff \forall  f \in \mathcal{F}, f(x.) \to f(x) 
+	 \\&\iff \forall f \in \mathcal{F}, e_{f}(e_{x.})\to e_f(e_{x})
+	 \\&\iff e_{x.}\to e_{x} 
+\end{aligned} $$
+
+:::
+
+By Tychonoff theorem \@ref(thm:tychonoff), $\mathcal{F}$ is compact iff $\forall x \in X$, $\{f(x)\}_{f\in \mathcal{F}}$ it's closed and pointwise bounded by borel theorem. 
+
+::: {.definition name=""}
+
+A net $f.$ converges uniformly to $f\in \R^X$ iff $|f.(x)-f(x)|< \epsilon$ eventually for each $x \in X$ after some $f_{\alpha}$ for any $\epsilon$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+The uniform limit of a continuous net is continuous.
+
+:::
+
+
+::: {.proof}
+
+Suppose $f.\to f$ uniformly, then for any $x\in X$, for any $\alpha>\alpha_0$
+$$ 
+|f_\alpha(x)-f(x)|<\epsilon
+$$
+as $f_\alpha$ is continuous, for any $x. \to x$, for any $\lambda>\lambda_0$
+$$ 
+|f_\alpha(x_\lambda)-f_\alpha(x)|<\epsilon
+$$
+also, there is 
+$$ 
+|f_\alpha(x_\lambda)-f(x_\lambda)|<\epsilon
+$$
+Hence, we have 
+$$ 
+|f(x_\lambda)-f(x)|<3\epsilon
+$$
+
+Thus, $f(x.)\to f$ and continuity follows.
+
+:::
+
+
+::: {.theorem #dini name="Dini's Theorem"}
+
+If continuous real function net $f.$ on a compact set converges monotonically to $f$ pointwise, then the net converges to $f$ uniformly.
+
+:::
+
+
+::: {.proof}
+
+Let $g.=f.-f$, we have $g.\to 0$, $|g.|$ is decreasing as monotone. Then it's sufficient to show that $g.\to g$ uniformly. Note $|g.(x)|<\epsilon$ eventually for any $x \in X$ after, say, $\alpha_x$. By continuity and compactness:
+
+$$ X=\bigcup_{x \in X} |g_{\alpha_x}|^{-1}(B(0,\epsilon))=\bigcup_{x \in J} |g_{\alpha_x}|^{-1}(B(0,\epsilon)) $$
+
+Then we may pick $\alpha_0 \ge \alpha_x$ for all $x\in J$, and for any $\alpha \ge \alpha_0$ and any $x\in X$, suppose $x\in |g_{\alpha_{x_j}}|^{-1}\left( B(0,\epsilon) \right)$
+$$ 
+\epsilon>|g_{\alpha_{x_j}}(x)|>|g_{\alpha}(x)|
+$$
+by monotone and thus $g. \to 0$ uniformly.
+
+:::
 
 

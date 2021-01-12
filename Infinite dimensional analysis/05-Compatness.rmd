@@ -1,86 +1,98 @@
 ## Compactness
 
-A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. $K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is compact. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact
+::: {.definition  name=""}
+
+A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. 
+
+:::
+
+::: {.definition  name=""}
+
+$K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is compact. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact.
+
+:::
 
 Compactness is a "topological" property. That is, subset compactness in a subspace iff it's also compact in full space.
 
-```{theorem, cptequiv, name=""}
-Let $(\Omega,\tau)$ be a space, following are equivalent.
+::: {.theorem #cptequiv name=""}
+
+Let $(\Omega,\tau)$ be a space, TFAE:
 
 1. $(\Omega,\tau)$ is compact.
 2. Every filter(net) has at least one adherent point.
 3. Every ultrafilter(ultranet) converges.
 4. $\ker \mathcal{F}\neq \emptyset$ For every collection $\mathcal{F}$ of closed sets having FIP.
 
-```
+:::
 
-```{proof}
+::: {.proof}
 
 $4\iff 1$ Taking contrapositive:
 
 $$ \neg {\ker \mathcal{F}\neq\emptyset}\equiv\ker \mathcal{F}=\emptyset\equiv\bigcup_{F\in \mathcal{F}} F^c=\Omega $$
 
-and
+And
 
 $$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
 
-note that's pricesly the definition of compactness.
+note that's precisely the definition of compactness.
 
 $1\implies 2$ Suppose filter $\mathcal{F}$, then
 
 $$ \{\overline{F}:F\in \mathcal{F}\} $$
 
-enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by 4
+Enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by 4
 
 $2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
 
 $3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from 4.
 
-```
+:::
 
+:::{.theorem #cptiscl name=""}
 
+Let $(\Omega , \tau )$ be Hausdorff, then every compact subset and disjoint singleton can be separated by open sets. In particular, compact subset is closed.
 
-```{theorem, cptiscl, name=""}
-Let $(\Omega , \tau )$ be Hausdorff, then every compact subset and disjoint singelton can be separated by open sets. In particular, compact subset is closed.
-```
+:::
 
-```{proof}
+:::{.proof}
+
 Suppose $F\subset \Omega$ is compact, for any $x\in \Omega$ not in $F$, by Hausdorff, there is $x\notin U_y$ and $y\notin V_y$. Then $\bigcup_{y\in F} U_y$ cover $F$, there is subcover $U=\bigcup_{i}^n U_{y_i}$ and $V=\bigcup_{i}^n V_{y_i}$ selected from the same family separated $F$ and $\{x\}$.
-```
 
+:::
 
-<!-- ```{proof}
-Suppose there is $x\notin A$ and $x\in \overline{A}$, then there is a filter $\mathcal{F}$ converges to $x$, by theorem \@ref(thm:t2equiv), $\mathop{\text{Adh}}_{\tau}(\mathcal{F})=\{x\}$, that implies $\mathop{\text{Adh}}_{\tau_A}(\mathcal{F})=\emptyset$ by noting
-$$ \mathop{\text{Adh}}_{\tau_A}(\mathcal{F})=\bigcap_{F\in \mathcal{F}} \mathop{\text{Cl}}_{\tau_A}(F)=\bigcap_{F\in \mathcal{F}} \mathop{\text{Cl}}_{\tau}(F)\cap A=\mathop{\text{Adh}}_{\tau}(\mathcal{F})\cap A$$
-and contradict the compactness as theorem \@ref(thm:cptequiv).2. Thus $A=\overline{A}$ and thus closed.
-``` -->
+:::{.theorem #clcpt name=""}
 
-```{theorem, clcpt, name=""}
 Closed subset is compact in compact topological space.
-```
 
-```{proof}
+:::
+
+:::{.proof}
+
 Note any open cover of $F$ plus $F^c$ become a open cover of $\Omega$.
-```
 
-<!-- ```{proof}
-Suppose $F$ is closed and $\mathcal{U}$ is any ultrafilter in $F$, then it's base of an ulrafilter containing $F$ in $(\Omega,\tau)$, as compactness, this ultrafilter converges to some $x$. Then we claim that $x\in F$ and thus $\mathcal{U}$ also converges to $x$. By theorem \@ref(thm:cptequiv), $F$ is compact.
-``` -->
+:::
 
+:::{.theorem name=""}
 
-```{theorem, , name=""}
 Every compact Hausdorff space is normal.
-```
 
-```{proof}
-Suppose $A$ and $B$ are closed and thus comapct by theorem \@ref(thm:clcpt). For any point $x\in A$, there exist disjoint $V_x \supset B$ and $x\in U_x$ by theorem \@ref(thm:cptiscl). Note $\bigcup_{x\in A} U_x$ cover $A$, there exist subcover $U=\bigcup_i^n U_{x_i}\supset A$ and $V=\bigcap_i^n V_{x_i}\supset B$ separated $A$ and $B$.
-```
+:::
 
-```{theorem, contcpt, name=""}
-Suppose $f:(\Omega,\tau ) \to (\Omega',\tau ')$ is continous, then $f(A)$ is comapct if $A$ is compact.
-```
+:::{.proof}
 
-```{proof}
+Suppose $A$ and $B$ are closed and thus compact by theorem \@ref(thm:clcpt). For any point $x\in A$, there exist disjoint $V_x \supset B$ and $x\in U_x$ by theorem \@ref(thm:cptiscl). Note $\bigcup_{x\in A} U_x$ cover $A$, there exist subcover $U=\bigcup_i^n U_{x_i}\supset A$ and $V=\bigcap_i^n V_{x_i}\supset B$ separated $A$ and $B$.
+
+:::
+
+:::{.theorem #contcpt name=""}
+
+Suppose $f:(\Omega,\tau ) \to (\Omega',\tau ')$ is continuous, then $f(A)$ is compact if $A$ is compact.
+
+:::
+
+:::{.proof}
+
 For any open cover of $f(A)$:
 
 $$ \cup G_i \supset f(A)\implies f^{-1}(\cup G_i)=\cup f^{-1}(G_i) \supset f^{-1}f(A)\supset A$$
@@ -89,23 +101,179 @@ Thus there exist subcover s.t.
 
 $$ \cup_1^n f^{-1}(G_i)=f^{-1}(\cup_1^n G_i)\supset A \implies\cup_1^n G_i\supset ff^{-1}(\cup_1^n G_i)\supset f(A)$$
 
-which shows that $f(A)$ is compact.
-```
+Which shows that $f(A)$ is compact.
+
+:::
+
+::: {.corollary #contcpthcl name=""}
+
+Let $X$ be compact and $Y$ be Hausdorff and $f:X\to Y$ is continuous bijection, then $f$ is closed.
+
+:::
+
+::: {.proof}
+
+Note $F$ is closed and thus compact as theorem \@ref(thm:clcpt) then $f(F)$ is compact as theorem \@ref(thm:contcpt) and thus closed by theorem \@ref(thm:cptiscl).
+
+:::
+
 
 As consequence:
 
-```{corollary, exvalue, name="Extreme value theorem"}
-A continous real valued function defined on a compact space achieves its maximum and minimum values.
-```
+:::{.corollary #exvalue name="Extreme value theorem"}
 
-```{theorem, , name=""}
-Let $(\Omega,\tau)$ be compact and $(\Omega',\tau')$ be housdorff and $f:(\Omega,\tau )\to (\Omega',\tau')$ is continous bijection. Then $f$ is homeomorphism.
-```
+A continuous real valued function defined on a compact space achieves its maximum and minimum values.
 
-```{proof}
-It's sufficient to show that $f(F)$ is closed as lemma \@ref(lem:homoclopen). Note $F$ is closed and thus compact as theorem \@ref(thm:clcpt) then $f(F)$ is compact as theorem \@ref(thm:contcpt) and thus closed by theorem \@ref(thm:cptiscl).
-```
+:::
+
+:::{.theorem name=""}
+
+Let $X$ be compact and $Y$ be Hausdorff and $f:X\to Y$ is continuous bijection. Then $f$ is homeomorphism.
+
+:::
+
+:::{.proof}
+
+By lemma \@ref(lem:homoclopen) and corollary \@ref(cor:contcpthcl).
+
+:::
 
 A subset $A$ of a topological space is **sequentially compact** if every sequence in $A$ has a subsequence converging to an element of $A$. A topological space is sequentially compact if itself is a sequentially compact set.
 
 
+## Locally compact spaces
+
+::: {.definition #loccpt name=""}
+
+A topological space is **locally compact** if every point has a compact neighborhood.
+
+:::
+
+
+::: {.theorem #loccptnb name="Compact neighborhood base"}
+
+Suppose $(\Omega,\tau)$ is locally compact and Hausdorff, then every neighborhood of $x$ includes a compact neighborhood. That is, there exist compact $K$ for element $x$ in open $G$ s.t.:
+$$ 
+x \in K^\circ \subset K \subset G
+$$
+:::
+
+
+::: {.proof}
+
+Begin by open $G$ and compact $K$ neighborhood for $x$ s.t.  $A:=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
+$$ 
+U=\bigcup_{i=1}^k U_{y_i} \supset A
+$$
+Respectively, consider $W=\bigcap_{i=1}^{k} W_{y_i}$, and we claim that $\overline{W}$ is compact and included in $G$. Compactness is clear as $\overline{V}\subset K$. By theorem \@ref(thm:cptiscl), $\overline{W}\cap U=\emptyset$. Consequently,
+$$ 
+\overline{W}\cap G^{c}=\overline{W}\cap K\cap G^c=\overline{W}\cap A\subset \overline{W}\cap U=\emptyset
+$$
+hence $\overline{W}\subset G$.	
+
+::: 
+
+Consequently, that imply the existence of a compact neighborhood base.
+
+::: {.corollary #cloptisloccpt name=""}
+
+Suppose $G$ is open and $F$ is closed in a locally compact Hausdorff space, then $G \cap F$ is locally compact. That implies every closed and open set is locally compact. 
+
+:::
+
+
+::: {.proof}
+
+Let $x \in G \cap F$, and $N\cap G \cap F$ be neighborhood of $x$ in the subspace, by theorem \@ref(thm:loccptnb), there exist $K$ s.t.
+$$ 
+x \in K^\circ \subset K\subset N \cap G
+$$
+Then $F \cap K$ is compact as it's closed in compact Hausdorff subspace $K$. 
+
+:::
+
+
+::: {.corollary #loccptasnorm name=""}
+
+If $K$ is compact in a locally compact Hausdorff space and $G$ is an open set including $K$, then there is an open $V$ with compact closure s.t.
+
+$$ 
+K\subset V\subset \overline{V}\subset G
+$$
+
+:::
+
+::: {.proof}
+
+For any $x \in K$, by theorem \@ref(thm:loccptnb), we have 
+$$ 
+x \in V_x \subset \overline{V_{x}}\subset G
+$$
+then note 
+$$ 
+K\subset \bigcup_{i=1}^{k} V_{x_i}=V
+$$
+we claim that $V$ is desired. Since 
+$$ 
+\overline{V}=\overline{\bigcup_{i=1}^{k}V_{x_i}}=\bigcup_{i=1}^{k}\overline{V_{x_i}}
+$$
+is compact and included in $G$.
+
+:::
+
+Locally compact Hausdorff space is very close to a compact Hausdorff space
+
+
+::: {.definition name=""}
+
+A **Compactification** of a space $X$ is an embedding $i:X\to Y$, where $Y$ is compact and $i(X)$ is dense.
+
+:::
+
+
+
+For short, we treat $X$ as an actual dense subset of $\hat{X}$ and $\tau$ a subspace of $\hat{\tau}$.
+
+
+::: {.theorem #compactification name=""}
+
+$X$ is locally compact iff $X$ is open of $\hat{X}$.
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$ comes from corollary \@ref(cor:cloptisloccpt).
+
+$\implies$ Suppose $(\hat{X},\hat{\tau})$ is compactification of Hausdorff $(X,\tau)$. For any $x \in X$, we may pick $x \in  G \subset K$, where $G$ is open and $K$ is compact in $\tau$. Consider $W \in \hat{\tau}$ where $W \cap X=G$, we have 
+$$ 
+W=W \cap \hat{X}=W \cap \overline{X} \subset \overline{W \cap X}=\overline{G}\subset K\subset X
+$$
+that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
+
+:::
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

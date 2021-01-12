@@ -1,0 +1,164 @@
+## Connection
+
+::: {.definition  name=""}
+
+Two subset $A$ and $B$ are said to be **separated** if
+
+$$ 
+A \cap \overline{B}=B\cap \overline{A}=\emptyset
+$$
+
+:::
+
+Clearly, if disjoint $A$ and $B$ are both open or closed, they are separated.
+
+
+
+::: {.definition  name=""}
+
+Two nonempty separated subset $A$ and $B$ are called a **separation** if $A \cup B=X$. 
+
+:::
+
+
+::: {.lemma  name=""}
+
+Separation are both clopen.
+
+:::
+
+
+::: {.proof}
+
+Suppose $A$ and $B$ is a separation, then
+$$ 
+\overline{A}=\overline{A}\cap X=\overline{A}\cap (A \cup B)=(\overline{A}\cap A) \cup (\overline{A}\cap B)=\overline{A}\cap A=A
+$$
+
+thus $A$ and $B$ are closed, that implies $A$ and $B$ are open.
+
+:::
+
+::: {.definition  name=""}
+
+Space $X$ is said to be **connected** if the only clopen set is $X$ and $\emptyset$. Not connected space is said to be disconnection. Subset $A$ is said to be $connected$ or $disconnected$ according to the connectedness of their subspace $(A,\tau_A)$
+
+:::
+
+Note separation are clopen, thus $X$ is disconnected iff there exist a separation in $X$.
+
+
+::: {.theorem  name=""}
+
+Suppose $A$ is connected in $X$, then every set $B$ s.t. $A \subset B \subset \overline{A}$ is connected.
+
+:::
+
+
+::: {.proof}
+
+Suppose $B$ is disconnected and separated by $X$ and $Y$, then
+
+$$ 
+A=(A\cap X)\cup (A\cap Y)
+$$
+also construct a separation, as $A$ is connected, we have, say $A\cap X=\emptyset$ and thus $A \subset Y$. It follows that
+
+$$ 
+X \subset B \subset \overline{A} \subset \overline{Y}
+$$
+
+whence contradict to $X \cap  \overline{Y}=\emptyset$.
+
+:::
+
+
+::: {.theorem #connect-union name=""}
+
+Suppose $\{A_i\}_{i\in I}$ is a family of connected subsets, then $A=\bigcup_{i \in  I} A_i$ is connected if $\ker \{A_i\}_{i\in I} \neq \emptyset$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $A$ is disconnected and separated by $X$ and $Y$, then
+
+$$ 
+A_i=A_i\cap A=(A_i\cap X)\cup (A_i \cap Y) 
+$$
+
+also construct a separation, as $A_i$ is connected, we have $A_i\cap X=\emptyset$ or $A_i\cap Y=\emptyset$, suppose $I_X + I_Y=I$ and $A_i\cap X=\emptyset$ for $i\in I_X$ and $A_{i}\cap Y=\emptyset$ for $i\in I_Y$. Note $A_i\cap X=\emptyset \xRightarrow{} A_i\cap Y=A_i$ and thus
+$$ 
+\begin{aligned}
+\emptyset&=X \cap Y\supset (X \cap \bigcap_{i \in  I_Y} A_i)\cap (Y\cap \bigcap_{i \in I_X}A_i)\\
+&=
+\left( \bigcap_{i \in  I_Y} A_i \right) \cap 
+\left( \bigcap_{i \in  I_X} A_i \right)\\
+&=\ker \{A_i\}_{i \in I}
+\end{aligned}
+$$
+
+A contradiction.
+
+:::
+
+
+::: {.theorem #cont-connect name=""}
+
+Suppose $f:X \xrightarrow{} Y$ is continuous, then $f$ bring connected set subset $A \subset X$ to connected subset of $Y$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $f(A)$ is disconnected and separated by two open set, say, $f(A)\cap U$ and $f(A) \cap V$, where $U,V$ are open in $Y$. That implies $f(A) \subset U\cup V$, note
+$$ 
+A \subset f^{-1}f(A) \subset f^{-1}(U\cup V)=f^{-1}(U)\cup f^{-1}(V)
+$$
+
+thus $A$ is separated by $A\cap f^{-1}(U)$ and $A\cap f^{-1}(V)$, say, $A\cap f^{-1}(U)=\emptyset$, then
+$$ 
+A \subset f^{-1}(V) \xRightarrow{} f(A)\subset V \xRightarrow{}f(A)\cap U=\emptyset
+$$
+A contradiction.
+
+:::
+
+::: {.theorem  name=""}
+
+Suppose each set of finite family $\{X_i\}_{i}^n$ is nonempty, then their product topology $\prod_{i=1}^{n}X_i$ is connected iff each $X_i$ is closed.
+
+:::
+
+
+::: {.proof}
+
+$\xRightarrow{}$ follows from $\pi_i$ is continuous and theorem \@ref(thm:cont-connect)(uses each $X_i$ is nonempty).
+
+$\xLeftarrow{}$ By induction, it suffices to show that $X_1\times X_2$ is connected. Pick fixed $z\in X_2$ we have the embedding $f(x):X_1\xrightarrow{}X_1\times X_2=(x,z)$ and thus $D=f(X_1)$ is connected as theorem \@ref(thm:cont-connect). Then for each $x\in X$, define embedding $g_{x}(y)=(x,y)$, let $D_{x}=g_x(X_2)\cup C$, it's connected as theorem \@ref(thm:connect-union), then $X_1\times X_2=\bigcup_{x \in X_1} D_x$ is connected for the same reason.
+
+:::
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
