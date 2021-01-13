@@ -48,7 +48,7 @@ Space $X$ is said to be **connected** if the only clopen set is $X$ and $\emptys
 Note separation are clopen, thus $X$ is disconnected iff there exist a separation in $X$.
 
 
-::: {.theorem  name=""}
+::: {.theorem #connect-cl name=""}
 
 Suppose $A$ is connected in $X$, then every set $B$ s.t. $A \subset B \subset \overline{A}$ is connected.
 
@@ -128,7 +128,7 @@ A contradiction.
 
 ::: {.theorem  name=""}
 
-Suppose each set of finite family $\{X_i\}_{i}^n$ is nonempty, then their product topology $\prod_{i=1}^{n}X_i$ is connected iff each $X_i$ is closed.
+Suppose each of family $\{X_i\}_{i\in I}$ is nonempty, then their product topology $\prod_{i \in I}X_i$ is connected iff each $X_i$ is closed.
 
 :::
 
@@ -137,9 +137,92 @@ Suppose each set of finite family $\{X_i\}_{i}^n$ is nonempty, then their produc
 
 $\xRightarrow{}$ follows from $\pi_i$ is continuous and theorem \@ref(thm:cont-connect)(uses each $X_i$ is nonempty).
 
-$\xLeftarrow{}$ By induction, it suffices to show that $X_1\times X_2$ is connected. Pick fixed $z\in X_2$ we have the embedding $f(x):X_1\xrightarrow{}X_1\times X_2=(x,z)$ and thus $D=f(X_1)$ is connected as theorem \@ref(thm:cont-connect). Then for each $x\in X$, define embedding $g_{x}(y)=(x,y)$, let $D_{x}=g_x(X_2)\cup C$, it's connected as theorem \@ref(thm:connect-union), then $X_1\times X_2=\bigcup_{x \in X_1} D_x$ is connected for the same reason.
+$\xLeftarrow{}$ Firstly, we should prove that in finite case, i.e., when $I$ is finite. By induction, it suffices to show that $X_1\times X_2$ is connected. Pick fixed $z\in X_2$ we have the embedding $f(x):X_1\xrightarrow{}X_1\times X_2=(x,z)$ and thus $D=f(X_1)$ is connected as theorem \@ref(thm:cont-connect). Then for each $x\in X$, define embedding $g_{x}(y)=(x,y)$, let $D_{x}=g_x(X_2)\cup C$, it's connected as theorem \@ref(thm:connect-union), then $X_1\times X_2=\bigcup_{x \in X_1} D_x$ is connected for the same reason.
+
+Now we are ready for the general case. Pick some $(z_i)_{i\in I}\in \prod_{i \in I} X_i$, for each finite collection $S_j \subset I$, let
+
+$$ 
+F_{S_j}=\bigcap_{i \notin S_j} \pi_i^{-1}(z_i) \subset \prod_{i \in I}X_i 
+$$
+
+Clearly $F_{S_j} \cong \prod_{i \in S_j} X_i$, so it follows that $F_{S_j}$ is connected and $(z_i)\in F_{S_j}$ for each $S_j$, so it follows that
+
+$$ 
+F=\bigcup_{j\in J} F_{S_j}
+$$
+is connected. Then it remains to show that $F$ is dense in $\prod_{i \in I} X_i$ as lemma \@ref(lem:connect-cl). Recall any nonempty basis element of the form $\bigcap_{i \in S_j} \pi_i^{-1}(U_i)$ for some $S_j$ and thus meet $F_{S_j}$($X \times \dots \times X\times U \times \dots \times U \times X\times  \dots \times  X$ and $z \times \dots \times z\times X \times \dots \times X \times z \times  \dots \times  z$), that implies $F$ must be dense.
 
 :::
+
+
+::: {.definition  name=""}
+
+$A\subset X$ is said **path-connected** if every distinction singleton $a$ and $b$ has a **path** $f:[0,1]\xrightarrow{}A$ s.t. $f(a)=0$ and $f(b)=1$.
+
+:::
+
+::: {.lemma #path-connect name=""}
+
+Path-connected implies connected.
+
+:::
+
+
+::: {.proof}
+
+Pick any $a_0\in A$, for each other $b\in A$, there exit a path $f_b$, then $f_b(I)$ is connected. Then
+
+$$ 
+A=\bigcup_{b\in A} f_b(I)
+$$
+
+is connected as theorem \@ref(thm:connect-union).
+
+:::
+
+Path-connected is quite similar to connected.
+
+::: {.theorem  name=""}
+
+1. Image of path-connected spaces are path-connected.
+2. Overlapping unions of path-connected spaces are path-connected.
+3. Product is path-connected iff every factor is path-connected.
+
+:::
+
+
+::: {.proof}
+
+We only prove part 3. $\xRightarrow{}$ is trivial. To achieve $\xLeftarrow{}$, for any pair $(x_i)$ and $(y_i)$, there exist path $f_i$ for each $i \in I$, and then we get a continuous path $f=(f_i)$ by the universal property.
+
+:::
+
+The overlapping union property for (path-)connectedness allows us to make the following definition.
+
+
+::: {.definition  name=""}
+
+Let $x\in X$, **connected component** of $x$ is defined as:
+$$ 
+C_x=\{C|C \text{ is connected and } x\in C\}
+$$
+
+Similarly, the **path-component** is
+$$ 
+
+PC_x=\{C|C \text{ is path-connected and } x\in C\}
+$$
+
+
+
+
+:::
+
+
+
+
+
+
 
 
 
