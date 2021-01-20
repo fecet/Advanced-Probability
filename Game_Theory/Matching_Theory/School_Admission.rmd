@@ -1,0 +1,51 @@
+
+::: {.definition  name="School Admission"}
+
+- A finite set of students $I$ 
+- A finite set of schools $S$ 
+- A quota vector $(q_s)_{s \in S}$ which is the quota of school $s \in S$
+- A prefernce profile of students $\succsim_i$ for each student $i\in I$ over schools
+- A preference profile for schools over students $\succsim_s$ for every $s \in S$ which can compare some $i\in I$ with $\varnothing$ which has restrictions:
+	+ whenever $i,j\in I$ and $J\subset I-\{i,j\}$, then $\{i\}\cup J\succsim_s \{j\}\cup J$ iff $i\succsim_s j$.
+	+ whenever $i\in I$ and $J\subset I-\{i\}$, then $\{i\}\cup J\succsim_s J$ iff $i\succsim_s \varnothing$ where $\varnothing$ denotes the unmatched option for a school.
+
+- A matching which is a function $\mu:I\cup S\to 2^{S}\cup 2^{I}$ s.t. for each student $i\in I,\ \mu(I)\in 2^{S}$ with $\lvert \mu(i) \rvert\le 1$, for each school $s$, $\mu(s)\in 2^{I}$ with $\lvert \mu(s) \rvert\le q_s$ and $\mu(I)=s$ iff $i\in \mu(s)$.
+
+:::
+
+ 
+::: {.definition  name="Stable matching"}
+
+A matching $\mu$ is stable if:
+- Each match is individually rational, i.e., there is no blocking agent $x$ and a partner $y\in \mu(x)$ s.t. $\mu(x)-\{y\}\succsim_x \mu(x)$.
+- There is no blocking pair $(i,s)\in I\times S$ s.t. 
+	+ $s\succsim_i \mu(i)$ 
+	+ $\{i\}\cup (\mu(s)-\{x\})\succsim_s \mu(s)$ for some $x\in \mu(s)$ or $\lvert \mu(s) \rvert\lt q_s$ and $\mu(s)\cup \{i\}\succsim_s \mu(s)$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
