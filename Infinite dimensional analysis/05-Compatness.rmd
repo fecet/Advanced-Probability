@@ -138,8 +138,16 @@ By lemma \@ref(lem:homoclopen) and corollary \@ref(cor:contcpthcl).
 
 :::
 
+### Sequentially compact
+
 A subset $A$ of a topological space is **sequentially compact** if every sequence in $A$ has a subsequence converging to an element of $A$. A topological space is sequentially compact if itself is a sequentially compact set.
 
+
+::: {.example  name=""}
+
+The open interval $(0,1)$ is not sequentially compact because $\{\frac{1}{n}\}$ has no convergent subsequence.
+
+:::
 
 ## Locally compact spaces
 
@@ -150,16 +158,29 @@ A topological space is **locally compact** if every point has a compact neighbor
 :::
 
 
+::: {.definition  name=""}
+
+Subset $A\subset X$ is said **precompact** if $\overline{A}$ is compact.
+
+:::
+
+
+
+
 ::: {.theorem #loccptnb name="Compact neighborhood base"}
 
-Suppose $(\Omega,\tau)$ is locally compact and Hausdorff, then every neighborhood of $x$ includes a compact neighborhood. That is, there exist compact $K$ for element $x$ in open $G$ s.t.:
-$$ 
-x \in K^\circ \subset K \subset G
-$$
+Let $X$ be Hausdorff, TFAE
+
+1. $X$ is locally compact.
+2. Every $x\in X$ has a precompact neighborhood.
+3. $X$ has a basis of precompact open sets, i.e., there exist $x\in K^\circ \subset K\subset N$.
+
 :::
 
 
 ::: {.proof}
+
+It's clear that $3\xRightarrow{}2\xRightarrow{}1$ even without Hausdorff, so we show that $1\xRightarrow{}3$.
 
 Begin by open $G$ and compact $K$ neighborhood for $x$ s.t.  $A:=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
 $$ 
@@ -226,14 +247,88 @@ Locally compact Hausdorff space is very close to a compact Hausdorff space
 
 ::: {.definition name=""}
 
-A **Compactification** of a space $X$ is an embedding $i:X\to Y$, where $Y$ is compact and $i(X)$ is dense.
+A **Compactification** of a space $X$ is an embedding $i:X \hookrightarrow Y$, where $Y$ is compact and $i(X)$ is dense.
 
 :::
 
 
+::: {.definition  name=""}
 
-For short, we treat $X$ as an actual dense subset of $\hat{X}$ and $\tau$ a subspace of $\hat{\tau}$.
+Let $(X,\tau)$ be a space and define $\hat{X}=X\cup \{\infty\}$, with topology $\hat{\tau}$ consisting of sets that:
 
+1. $G\in \tau$.
+2. $\infty\in G$ and $\hat{X} - G =X-G \subset X$ is compact.
+
+:::
+
+
+::: {.theorem  name=""}
+
+If $X$ is Hausdorff and noncompact, then $\hat{X}$ is a compactification.
+
+:::
+
+
+::: {.proof}
+
+Firstly we show that $\hat{X}$ is a space. By definition, $\emptyset$ and $\hat{X}$ are open clearly. To show it's closed under countable intersection, it suffices to show that $U_1\cap U_2$ is open when $U_1$ and $U_2$ are so. We classify cases by whether $\infty$ occurs.
+
+1. If $\infty\notin U_1\cup U_2$, $U_1\cap U_2\in \hat{\tau}$ as $U_1\cap U_2\in \tau$.
+2. If $\infty\in U_1$ and $\infty\notin U_2$, then $X-U_1$ is compact, as $X$ is Hausdorff, $X-U_1$ is closed in $X$ and thus $X-(X-U_1)=U_1-\{\infty\}$ is open in $X$, it follows that $U_1\cap U_2=(U_1-\{\infty\})\cap U_2$ and the same as 1.
+3. 
+	If $\infty\in U_1\cap U_2$, then
+	$$ 
+	X-(U_1\cap U_2)=(X-U_1)\cup (X-U_2)
+	$$
+
+	is compact as it's union of compact sets and thus $U_1\cap U_2$ is open.
+
+Now we turn to show closed under union. Suppose $\bigcup_{i \in  I}U_i$ is a collection of open sets. If none contain $\infty$, $\bigcup_{i \in  I}U_i$ is open clearly as it's open in $X$. If $\infty\in U_j, \forall j\in J$ for some $J\subset I$. Then
+
+$$ 
+X-\bigcup_{i \in  I}U_i=\bigcap_{i\in I}\left( X-U_i \right)
+$$
+
+is closed subset of any compact Hausdorff space $X-U_j$ and thus compact. It follows that $\bigcap_{i \in  I}U_i$ is open.
+
+Next, we show that $\iota:X \xrightarrow{} \hat{X}$ is an embedding. It's injective and open clearly and it suffices to show it continuity by lemma \@ref(lem:homoclopen). For open sets  $G$ in $\hat{X}$:
+
+$$ 
+\iota^{-1}(G)=\begin{cases}
+	G&\infty\notin G\\
+	G-\{\infty\}&\infty \in G
+\end{cases}
+$$
+
+is also open as $G-\{\infty\}=X-(X-G)$ is open have shown above.
+
+To see $\iota(X)$ is dense, it suffices to see $\{\infty\}$ is not open and that follows from definition of $\hat{X}$.
+
+Finally, we show that $\hat{X}$ is compact. Let $\mathcal{G}$ be open cover, then there is some $G\in \mathcal{G}$ contains $\infty$. Note remaining of $\mathcal{G}$ still cover $X-G$ and thus have a finite cover then claim follows easily,
+
+
+:::
+
+
+::: {.lemma #loccpt-compactification name=""}
+
+If noncompact $X$ is Hausdorff and locally compact, $\hat{X}$ is also Hausdorff.
+
+:::
+
+
+::: {.proof}
+
+Let $x_1$ and $x_2$ in $\hat{X}$. If neither is $\infty$, we have desired disjoint neighborhood immediately. If $x_2=\infty$, let $x_1\in U\subset K$ then $U$ and $V=\hat{X}-K$ are what we desired.
+
+:::
+
+
+::: {.example  name=""}
+
+$\{\infty\}$ is dense in $\hat{\mathbb{Q}}$ as
+
+:::
 
 ::: {.theorem #compactification name=""}
 
@@ -250,9 +345,11 @@ $\implies$ Suppose $(\hat{X},\hat{\tau})$ is compactification of Hausdorff $(X,\
 $$ 
 W=W \cap \hat{X}=W \cap \overline{X} \subset \overline{W \cap X}=\overline{G}\subset K\subset X
 $$
+
 that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
 
 :::
+
 
 
 

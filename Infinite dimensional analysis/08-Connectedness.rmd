@@ -204,24 +204,76 @@ The overlapping union property for (path-)connectedness allows us to make the fo
 
 Let $x\in X$, **connected component** of $x$ is defined as:
 $$ 
-C_x=\{C|C \text{ is connected and } x\in C\}
+C_x=\bigcup_{}\{C|C \text{ is connected and } x\in C\}
 $$
 
 Similarly, the **path-component** is
+
 $$ 
-
-PC_x=\{C|C \text{ is path-connected and } x\in C\}
+PC_x=\bigcup_{} \{C|C \text{ is path-connected and } x\in C\}
 $$
-
-
-
 
 :::
 
 
+::: {.example #Q-is-totally-discont name=""}
+
+Suppose $\mathbb{Q}$ equipped with the subspace topology from $\mathbb{R}$. Then the only connected subsets are singletons, so $C_x=\{x\}$. Such a space is said **totally disconnected**
+
+:::
+
+In the light of connected component is maximum, each component $C_x$ is closed as $\overline{C_x}$ is connected.
 
 
+::: {.definition  name=""}
 
+Let $X$ be a space, it's **locally connected** if any neighborhood $U$ of any $x$ contains a connected neighborhood. And we define **locally path connected** in a similar way.
+
+:::
+
+::: {.theorem #loc-connected name=""}
+
+Let $X$ be a space. TFAE:
+
+1. $X$ is locally connected.
+2. $X$ has a basis consisting of connected open sets.
+3. For every open set $G \subset X$, any component $C\subset U$ is open in $X$.
+
+:::
+
+
+::: {.proof}
+
+$1\xRightarrow{}3$. For any open $G\subset X$ and any $C\subset G$, for any $x\in C$, there exist connected neighborhood $x\in U \subset G$, as $C$ is component, we have $U\subset C$ and thus $C$ is open.
+
+$3\xRightarrow{}1$. Let $G$ be a open neighborhood of $x$, then the component $C_x$ is the desired neighborhood.
+
+$3\xLeftrightarrow{}2$. $3\xRightarrow{}2$ is clear, for the converse, note $2\xRightarrow{}1$ and thus implies $3$.
+:::
+
+The property of path-connected is even better.
+
+
+::: {.theorem #loc-path-connected name=""}
+
+Let $X$ be a space, TFAE:
+
+1. $X$ is locally path-connected.
+2. $X$ has a basis consisting of path-connected open sets.
+3. For every open $G\subset X$, the path-component of $G$ are open in $X$.
+4. For every open set $G\subset X$, every component of $G$ is path-connected and thus a path-component.
+
+:::
+
+
+::: {.proof}
+
+We only show that $1\xLeftrightarrow{}4$. Suppose $X$ is locally path-connected, and let $P\subset C\subset G\subset X$, where $P,C,G$ are path-component, component and open set respectly. Then $P$ is open.
+$$ 
+$$
+
+
+:::
 
 
 
