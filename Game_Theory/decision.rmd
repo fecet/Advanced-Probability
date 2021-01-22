@@ -1,0 +1,40 @@
+---
+title: Introduction to decision theory
+author:
+  - Xie zejian
+bibliography: references.bib
+output:
+  bookdown::pdf_document2:
+    includes:
+      in_header: preamble.tex
+---
+
+
+::: {.definition  name=""}
+
+A complete and transitive binary relation is
+
+$$ 
+\succsim
+$$
+
+:::
+
+## Linear Utility
+
+
+::: {.definition  name=""}
+
+A **convex decision problem** is a decision problem $(X,\succsim)$ where $X$ is convex in $\mathbb{R}^{n}$. 
+
+Let $(X,\succsim)$ be a convex decision problem. A utility function $\overline{u}$ representing $\succsim$ is **linear** if
+$$ 
+\forall t\in [0,1], \overline{u}(tx+(1-t)y)=t\overline{u}(x)+(1-t)\overline{u}(y)
+$$
+
+
+:::
+
+
+
+
