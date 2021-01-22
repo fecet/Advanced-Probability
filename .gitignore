@@ -6,6 +6,10 @@
 *.css
 *.js
 *.log
+*.aux
+*.out
+*.toc
+*.bib
 
 .history/
 .vscode/
@@ -13,5 +17,3 @@
 .RData
 .Rhistory
 .DS_Store
-
-*.log
