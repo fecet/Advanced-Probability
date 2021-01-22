@@ -25,6 +25,64 @@ A matching $\mu$ is stable if:
 :::
 
 
+::: {.definition  name="Students Placement Problem"}
+
+- A finite set of students $I$ 
+- A finite set of schools $S$ 
+- A quota vector $(q_s)_{s \in S}$
+- A preference profile for students $(\succsim_i)_{i\in I}$ 
+- A finite set of categories for schools $\mathcal{C}$ 
+- An exam score profile for students $e=(e^{i})_{i\in I}$ s.t. for any $i\in I$, $e^{i}=(e^{i}_c)_{c\in \mathcal{C}}$ where for each $c\in \mathcal{C}$, $e^{i}_c\in \R_{+}$ and for $j\in I-\{i\}$, there is no $e^{j}_c=e^{i}_c$.
+- A type function mapping each school to a category type $t:S\to C$ 
+
+A matching is a function $\mu:I\to S\cup \{\varnothing\}$  
+A tentative student placement is a correspondence $\mu:I\Rarr S\cup \{\varnothing\}$  
+A matching $\mu$ eliminates justified envy if, when $\mu(j)\succsim_i \mu(i)$, let $t(\mu(j))=c_1$, then it implies that $e^{i}_{c_1}\le e^{j}_{c_1}$. A matching which eliminates justified envy is called fair.  
+A matching $\mu$ is non-wasteful if $s\succsim_i \mu(i)\implies q^{slot}_s=0$  
+A matching $\nu$ is Pareto dominates a mathcing $\mu$ if no student prefers $\mu$ to $\nu$ and there is at least one student prefers $\nu$ to $\nu$. It means that for every $i\in I$, $\nu(i)\succsim_i\mu(i)$ and for at least a $j\in I$, $\nu(j)\succ_j\mu(j)$. If a matching $\mu$, there isn't any matching $\nu$ Pareto dominates it, then it is called a Pereto effficient matching.
+
+
+:::
+
+It is obvious that if a mathcing is a Pareto efficient matching, then it is indivitially rational and non-wasteful.
+
+
+::: {.lemma  name=""}
+
+A matching $\mu$ is fair iff there exists a list of base scores $(e_s)=(e_{s_1},e_{s_2},\ldots)$ s.t. for all $i\in I$ and $s \in S$ satisfy:
+- $\mu(i)=s\implies e^{i}_{t(s)}\ge e_s$
+- $e^{i}_{t(s)}\ge e_s\implies  \mu(i)\succsim_i s$
+
+:::
+
+::: {.proof}
+
+Let $\mu$ be a fair matching. For each $s \in S$, let $e_s=\min_{i \in \mu^{-1}(s)}e^{i}_{t(s)}$, then let $(e_s)=(e_{s_1},e_{s_2},\ldots)$. The first condition is hold by the definition. Assume that the second condistion is not hold, that means there is a $s \in S$ and $i\in I$ with $e^{i}_{t(s)}\ge e_s$ and $s\succ_i\mu(i)$. By the construction of $e_s$, $s\succ_i\mu(i)$ implies that there is at least a $j\in I$ with $e^{j}_{t(s)}\lt e^{i}_{t(s)}$ which leads to a contradiction of the fairness.  
+For the converse, let $\mu$ be a matching and $(e_s)=(e_{s_1},e_{s_2},\ldots)$ is a base score vector which satisfies those two conditions. Give $i,j\in I$ and $\mu(j)=s \in S$ and $s\succ_i \mu(i)$, then $e^{i}_{t(s)}\lt e_s$ by the second condition, and $e^{j}_{t(s)}\ge e_s$, so $e^{i}_{t(s)}\le e^{j}_{t(s)}$ which means the fairness.
+
+:::
+
+The above lemma shows that if we can find a base score s.t. satisfies above conditions, then the matching in the conditions is a fair matching.
+
+::: {.theorem  name=""}
+
+A school placement matching eliminates justified envy and is non-wasteful and individually rational iff the matching is stable in the associated colledge admissions problem. That means, there is an isomorphism with stable college admissions.
+
+:::
+
+
+
+::: {.definition  name="School Choice"}
+
+- A finite set of students $I$ 
+- A finite set of schools $S$ 
+- A quota vector $(q_s)_{s \in S}$ 
+- A preference profile for students $(\succ_i)_{i\in I}$ 
+- A priority profile for schools $(\succsim_s)_{s \in S}$ s.t. for each $s \in S$, $\succsim$ is a complete, reflexive and transitive relations. If $i,j\in I$ has the same priority of some school $s$, then note as $i\sim_s j$.
+
+:::
+
+
 
 
 
