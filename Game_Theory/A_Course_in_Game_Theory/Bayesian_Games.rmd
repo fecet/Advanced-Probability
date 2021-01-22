@@ -1,0 +1,15 @@
+
+::: {.definition  name="Beysian Games"}
+
+- A finite set $N$ which is the set of players
+- A finite set $\Omega$ which is the set of states
+
+For each player $i\in N$ :
+- A set $A_i$ which is the set of actions
+- A finite set $T_i$ which is the set of signals observed by $i$, and a function $\tau_i:\Omega\to T_i$ which is called the signal function of $i$ 
+- A probability measure $p_i$ on $\Omega$ s.t. $p_i(\tau_i^{-1}(t_i))>0$ for all $t_i\in T_i$
+- A preference relation $\succsim_i$ on the set of probability measures over $A\times \Omega$, where $A=\times_{j\in N}A_j$
+
+:::
+
+

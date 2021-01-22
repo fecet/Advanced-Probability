@@ -1,0 +1,123 @@
+
+::: {.definition  name="Strategic Games"}
+
+A strategic game consists of:
+- A finite set $N$ which is the set of players
+- For each player $i\in N$ a non-empty set $A_i$ which is the actions available to player $i$ 
+- For each player $i\in N$ a preference relation $\succsim_i$ on $A=\times_{j\in N}A_j$ which is the preference relation of player $i$.
+
+:::
+
+The preference relation describe a order of the joint action space of a player.
+
+
+::: {.definition  name="Payoff Functions"}
+
+A payoff function of player $i$ is defined as $u_i:A\to \R$ where $A=\times_{j\in N}A_j$. Payoff functions usually hold the relations that $u_i(a)\ge u_i(b)\implies a\succsim_i b$.
+
+:::
+
+
+::: {.definition nash name="Nash Equilibrium"}
+
+A Nash equilibrium of a strategic game $(N,(A_i),(\succsim_i))$ is a profile $a^{*}\in A$ with the property that for every $i\in N$, we have:
+
+$$ (a_{-i}^{*},a_i^{*})\succsim_i(a_{-i}^{*},a_i) $$
+for every $a_i\in A_i$.  
+Depend on the defination of nash equilibrium, we give the def of the best actions with giving $a_{-i}$ :
+
+$$ B_i(a_{-i})=\{a_i\in A_i:(a_{-i},a_i)\succsim_i(a_{-i},a_i')\text{, for every }a_i'\in A_i\} $$
+Now the nash equilibrium can be rewritten as:
+
+$$ (a_i^{*})\in A:a_i^{*}\in B_i(a_{-i}^{*}) $$
+for every $i\in N$.
+
+
+:::
+
+
+::: {.definition  name="Strictly Competitive Game"}
+
+A strategic game $(\{1,2\},(A_i),(\succsim_i))$ is a strictly competitive game if for any $a\in A$ and $b\in A$, we have $a\succsim_1 b$ iff $b\succsim_2a$.  
+
+:::
+
+Notice that $a,b\in A$ means both $a,b$ is a tuple that contains some action of player 1 and some action of player 2.
+
+Usually we use payoff functions $u:A\to \R$ to represent this game and we called it *zero sum game*.For every $a\in A$, there are $u_1(a)+u_2(a)=0$ 
+
+
+::: {.definition  name="Maxminimize"}
+
+Let $(\{1,2\},(A_i),(u_i))$ be a strictly competitive strategy game. The action $x^{*}\in A_1$ is a maxminimizer for player 1 if:
+$$ \min_{y\in A_2}u_1(x^{*},y)\ge \min_{y\in A_2}u_1(x,y) $$
+for all $x\in A_1$.  
+That means  
+$$ x^{*}\in A_1=\max_{x\in A_1} \min_{y\in A_2}u_1(x,y) $$
+In word, we first found for each $x\in A_1$, the minimum of $u_1(x,y)$ for $y\in A_2$. Then we found the maximum of $u_1(x,y_x)$ in $x\in A_1$.
+
+
+
+:::
+
+
+::: {.lemma  name=""}
+
+Let $(\{1,2\},(A_i),(u_i))$ be a strictly competitive strategic game. Then 
+$$ \max_{y\in A_2}\min_{x\in A_1}u_2(x,y)=-\min_{y\in A_2}\max_{x\in A_1}u_1(x,y) $$
+
+
+:::
+
+::: {.proof}
+
+For any $f$, we have $\argmax_{z}f(z)=\argmin_z(-f(z))$ and $\min_z(-f(z))=-\max_zf(z)$.  
+So 
+$$ \max_{y\in A_2}\min_{x\in A_1}u_2(x,y)=-\min_{y\in A_2}[-\min_{x\in A_1}u_2(x,y)] $$
+and 
+$$ -\min_{x\in A_1}u_2(x,y)=\max_{x\in A_1}(-u_2(x,y))=\max_{x\in A_1}u_1(x,y) $$
+So this lemma has been proved.
+
+
+:::
+
+::: {.theorem  name=""}
+
+Let $G=(\{1,2\},(A_i),(u_i))$ be a strictly competitive strategic game.
+- If $(x^{*},y^{*})$ is a Nash Equilibrium of $G$ then $x^{*}$ is a maxminimizer for player 1 and $y^{*}$ is a maxminimizer for player 2.
+- If $(x^{*},y^{*})$ is a Nash Equilibrium of $G$, then $\max_{x}\min_{y}u_1(x,y)=\min_{y}\max_{x}u_1(x,y)=u_1(x^{*},y^{*})$.
+- If $\max_{x}\min_{y}u_1(x,y)=\min_{y}\max_{x}u_1(x,y)$,  $G$ has a Nash equilibrium, $x^{*},y^{*}$ are both maxminimizers for player 1 and player 2, then $(x^{*},y^{*})$ is a Nash equilibrium for $G$.
+
+:::
+
+::: {.proof}
+
+let $(x^{*},y^{*})$ be a Nash equilibrium of $G$. Then $u_2(x^{*},y^{*})\ge u_2(x^{*},y)$, then $u_1(x^{*},y^{*})\le u_1(x^{*},y)$. That means $y^{*}=\arg\min_{y}u_1(x^{*},y)$.  
+So $u_1(x^{*},y^{*})=\min_{y}u_1(x^{*},y)\le \max_{x}\min_{y}u_1(x,y)$. And similarly, $u_1(x^{*},y^{*})\ge u_1(x,y^{*})\ge \min_{y}u_1(x,y)$ for all $x\in A_1$, so $u_1(x^{*},y^{*})\ge \max_{x}\min_{y}u_1(x,y)$, so $u_1(x^{*},y^{*})=\max_{x}\min_{y}u_1(x,y)$.  
+
+$u_1(x^{*},y^{*})=\max_{x}\min_{y}u_1(x,y)$ and $u_2(x^{*},y^{*})=\max_{y}\min_{x}u_2(x,y)$, so  
+$$ -\max_{x}\min_{y}u_1(x,y)=\max_{y}\min_{x}u_2(x,y)=\max_{y}[-\max_{x}u_1(x,y)]=\\-\min_{y}\max_{x}u_1(x,y) $$
+so $\max_{x}\min_{y}u_1(x,y)=\min_{y}\max_{x}u_1(x,y)$.  
+
+Let $\max_{x}\min_{y}u_1(x,y)=\min_{y}\max_{x}u_1(x,y)=v^{*}$, then using the lemma, $\min_{y}\max_{x}u_1(x,y)=-\max_{y}\min_{x}u_2(x,y)$, so $\max_{y}\min_{x}u_2(x,y)=-v^{*}$.  
+Now let $x^{*}$ be the maxminimizer of player 1 and $y^{*}$ be the maxminimizer of player 2. Then $\min_{y}u_1(x^{*},y)\ge \min_{y}u_1(x,y)$ for all $x\in A_1$. So $\min_{y}u_1(x^{*},y)\ge v^{*}$ which means $u_1(x^{*},y)\ge v^{*}$ for all $y\in A_2$. Similarly, $u_2(x,y^{*})\ge -v^{*}$ for all $x\in A_1$. Let $x=x^{*},y=y^{*}$, then  $u_1(x^{*},y^{*})\ge v^{*}$ and $u_2(x^{*},y^{*})\ge -v^{*}$, so $u_1(x^{*},y^{*})=v^{*}$.
+
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

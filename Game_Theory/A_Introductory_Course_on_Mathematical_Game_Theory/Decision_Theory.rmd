@@ -1,0 +1,82 @@
+
+::: {.definition  name="Decision Problem"}
+
+A decision problem is a pair $(A,\succsim)$ where $A$ is a set and $\succsim$ is a weak preference over $A$.
+
+A strict preference is $\succ$ which is asymmetric and transitive. A indifference $\sim$ is an equivalence ralation which is reflexive, symmetric and transitive.
+
+:::
+
+::: {.definition  name="Utility Function"}
+
+A utility function function reprecenting $\succsim$ is a function: $u:A\to \R$ s.t. for each $a,b\in A$, $a\succsim b \iff u(a)\ge u(b)$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $A$ be a countable set and $(A,\succsim)$ is a decision problem. Then, there is a utility function $u$ representing $\succsim$.
+
+:::
+
+::: {.proof}
+
+Let $A=\{a_1,a_2,\ldots\}$, then for each $i,j\in \N$ :
+
+$$ h_{ij}=\begin{cases}
+	1 \qquad a_i,a_j\in A\text{ and }a_i \succ a_j \\
+	0 \qquad otherwise
+\end{cases} $$
+then $u(a_i)=\sum_{i=1}^{\infty} \frac{1}{2^{j}}h_{ij}$ and $u$ represents $\succsim$.
+
+:::
+
+
+::: {.definition  name="order dense"}
+
+A set $B\subset A$ is order dense in $A$ if for each $a_1,a_2\in A$, there is $b\in B$ s.t. $a_2\succsim b \succsim a_1$.
+
+:::
+
+
+::: {.definition  name="gap"}
+
+Let $(A,\succsim)$ be a decision problem. Let $a_1,a_2\in A$ with $a_2\succ a_1$. Then $(a_1,a_2)$ is a gap if for each $b\in A$, either $b\succsim a_2$ or $a_1\succsim b$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $(A,\succsim)$ be a decision problem and Assume that $\succsim$ is antisymmetric. Then, $\succsim$ can be represented by a utility function iff there is a countable set $B\subset A$ s.t. $B$ is order dense in $A$.
+
+:::
+
+::: {.proof}
+
+Let $B\subset A$ is a order dense subset in $A$. We say $a$ is the first element in $A$ if there is not $\overline{a}\in A,\ \overline{a}\neq a$ s.t. $\overline{a}\succsim a$. Last element is defined similarly. 
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
