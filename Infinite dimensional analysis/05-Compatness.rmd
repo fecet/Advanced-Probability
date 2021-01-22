@@ -324,9 +324,33 @@ Let $x_1$ and $x_2$ in $\hat{X}$. If neither is $\infty$, we have desired disjoi
 :::
 
 
+::: {.lemma name=""}
+ 
+$\hat{X}$ is not Hausdorff if there is no subset $G$ and $K$ of $X$ s.t. $G\subset K$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $\hat{X}$ is Hausdorff, then there is $\infty\in U$ s.t. $K=X-U$ is compact and disjoint to some $V$ open in $X$, note
+
+$$ 
+\begin{aligned}
+	U\cap V=\emptyset&\xRightarrow{}(U-\{\infty\})\cap V=\emptyset
+	\\&\xRightarrow{}(X-K)\cap V=\emptyset
+	\\&\xRightarrow{}V\subset K
+\end{aligned}
+$$
+
+:::
+
+
+
+
 ::: {.example  name=""}
 
-$\{\infty\}$ is dense in $\hat{\mathbb{Q}}$ as
+$\hat{\mathbb{Q}}$ is non Hausdorff as any open sets $G$ of the form $(a,b)\cap \mathbb{Q}$, if it's contained in a compact subset $K$, then $\overline{G}$ would be compact, which contradict to $[a,b]\cap \mathbb{Q}$ is not compact.
 
 :::
 
