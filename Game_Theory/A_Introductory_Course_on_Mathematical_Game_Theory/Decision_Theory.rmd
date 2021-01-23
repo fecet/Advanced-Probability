@@ -1,15 +1,58 @@
+---
+title: decision
+author:
+  - Zhang Songxin
+  - Xie Zejian
+bibliography: references.bib
+output:
+  bookdown::pdf_document2:
+    includes:
+      in_header: preamble.tex
+---
+
+# Introduction to Decision Theory
+
+
+
+
+::: {.definition  name=""}
+
+A **weak preference** over $A$ is a complete and transitive binary relation
+
+:::
 
 ::: {.definition  name="Decision Problem"}
 
 A decision problem is a pair $(A,\succsim)$ where $A$ is a set and $\succsim$ is a weak preference over $A$.
 
-A strict preference is $\succ$ which is asymmetric and transitive. A indifference $\sim$ is an equivalence ralation which is reflexive, symmetric and transitive.
 
 :::
 
+Let $(X,\succsim)$ be a decision problem, for each pair $a,b\in A$:
+
+- Strict preference $\succ$ is defined as $a \succ b$ iff $b \not \succsim a$. 
+- Indifference $\sim$ is defined as $a\sim b$ iff $a\succsim b$ and $b\succsim a$.
+
+
+::: {.lemma  name=""}
+
+Let $(X,\succsim)$ be a decision problem, then
+
+1. The strict preference is asymmetric and transitive.
+2. The indifference is an equivalence relation which is reflexive, symmetric and transitive.
+
+:::
+
+That implies for each $a,b\in A$, either $a \succ b$, $b\succ a$ or $a\sim b$.
+
+For each decision problem $(A,\succsim)$ it's equivalent to another one with antisymmetric weak preference by taking $(A/\sim ,\succsim _a)$.
+
+## Ordinal Utility
+
 ::: {.definition  name="Utility Function"}
 
-A utility function function reprecenting $\succsim$ is a function: $u:A\to \R$ s.t. for each $a,b\in A$, $a\succsim b \iff u(a)\ge u(b)$.
+
+Let $(X,\succsim)$ be a decision problem, a utility function function representing $\succsim$ is a function: $u:A\to \R$ s.t. for each $a,b\in A$, $a\succsim b \iff u(a)\ge u(b)$.
 
 :::
 
@@ -32,22 +75,19 @@ then $u(a_i)=\sum_{i=1}^{\infty} \frac{1}{2^{j}}h_{ij}$ and $u$ represents $\suc
 :::
 
 
-::: {.definition  name="order dense"}
-
-A set $B\subset A$ is order dense in $A$ if for each $a_1,a_2\in A$, there is $b\in B$ s.t. $a_2\succsim b \succsim a_1$.
-
-:::
+::: {.definition  name="Order dense and gap"}
 
 
-::: {.definition  name="gap"}
+Let $(X,\succsim)$ be a decision problem. A set $B\subset A$ is order **dense** in $A$ if for each $a_1,a_2\in A$ with $a_2\succ a_1$, there is $b\in B$ s.t. $a_2\succsim b \succsim a_1$.
 
-Let $(A,\succsim)$ be a decision problem. Let $a_1,a_2\in A$ with $a_2\succ a_1$. Then $(a_1,a_2)$ is a gap if for each $b\in A$, either $b\succsim a_2$ or $a_1\succsim b$.
+And $(a_1,a_2)$ is a **gap** if for each $b\in A$, either $b\succsim a_2$ or $a_1\succsim b$, such $a_1,a_2$ are **gap extremes**. Let $A^*$ be the set of gap extremes.
+
 
 :::
 
 ::: {.theorem  name=""}
 
-Let $(A,\succsim)$ be a decision problem and Assume that $\succsim$ is antisymmetric. Then, $\succsim$ can be represented by a utility function iff there is a countable set $B\subset A$ s.t. $B$ is order dense in $A$.
+Let $(A,\succsim)$ be a decision problem where $\succsim$ is antisymmetric. Then, $\succsim$ can be represented by a utility function iff there is a countable set $B\subset A$ is order dense in $A$.
 
 :::
 
@@ -58,6 +98,18 @@ Let $B\subset A$ is a order dense subset in $A$. We say $a$ is the first element
 :::
 
 
+::: {.remark}
+
+The equivalence also hold when $\succsim$ is not antisymmetric as there exist a utility function $u'$ for $(A/\sim ,\succsim _a)$ and we may define $u=u'\circ I$.
+
+:::
+
+
+::: {.remark}
+
+We may replace $u$ by $f\circ u$ where $f:\mathbb{R}\to \mathbb{R}$ is strictly increasing.
+
+:::
 
 
 
@@ -65,17 +117,74 @@ Let $B\subset A$ is a order dense subset in $A$. We say $a$ is the first element
 
 
 
+## Linear Utility
+
+::: {.definition  name=""}
+
+A **convex decision problem** is a decision problem $(X,\succsim)$ where $X$ is convex in $\mathbb{R}^{n}$. 
+
+Let $(X,\succsim)$ be a convex decision problem. A utility function $\overline{u}$ representing $\succsim$ is **linear** if
+
+$$ 
+\forall t\in [0,1], \overline{u}(tx+(1-t)y)=t\overline{u}(x)+(1-t)\overline{u}(y)
+$$
+
+:::
+
+::: {.remark}
+
+Ordinal utility only reveals the relative order of each pair, but linear utility also reveals how different they are.
+
+:::
 
 
+::: {.definition  name=""}
+
+Let $(X,\succsim)$ be a convex decision problem. We say that $\succsim$ is 
+
+- **independent** if for each triple $x,y,z\in X$ and $t\in (0,1],x\succsim y$ iff $tx+(1-t)z\succsim ty+(1-t)z$.
+- **continuous** if for each triple $x \succ y\succ z$, there exist $t\in (0,1)$ with $y\sim tx+(1-t)z$.
+
+:::
+
+Suppose $\succsim$ is linear, then it's continuous and independent clearly, for the converse:
 
 
+::: {.lemma  name=""}
+
+Let $(X,\succsim)$ be a convex decision problem and $\succsim$ is independent. For $y\succ x$ and $s,t \in [0,1]$ where $s>t$, then
+$$ 
+sy+(1-s)x \succ ty+(1-t)x
+$$
 
 
+:::
 
 
+::: {.proof}
+
+By the independence of $\succsim$, we have
+
+$$ 
+\frac{s-t}{1-t}y+\frac{1-s}{1-t}x\succ \frac{s-t}{1-t}x+\frac{1-s}{1-t}x=x
+$$
+
+and note
+
+$$ 
+sy+(1-s)x=ty+(1-t)(\frac{s-t}{1-t}x+\frac{1-s}{1-t}x)\succ ty+(1-t)x
+$$
+
+:::
+
+That implies if $\succsim$ is continuous and independent, the "$t$" in the definition is unique. Then we are ready for the main results:
 
 
+::: {.theorem  name=""}
 
+Let $(X,\succsim)$ be a convex decision problem then $\succsim$ is independent and continuous iff there is a linear utility function $\overline{u}$ representing $\succsim$.
+
+:::
 
 
 
