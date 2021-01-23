@@ -114,36 +114,77 @@ We may replace $u$ by $f\circ u$ where $f:\mathbb{R}\to \mathbb{R}$ is strictly 
 
 
 
-## Linear Utility
 
+
+
+## Linear Utility
 
 ::: {.definition  name=""}
 
 A **convex decision problem** is a decision problem $(X,\succsim)$ where $X$ is convex in $\mathbb{R}^{n}$. 
 
 Let $(X,\succsim)$ be a convex decision problem. A utility function $\overline{u}$ representing $\succsim$ is **linear** if
+
 $$ 
 \forall t\in [0,1], \overline{u}(tx+(1-t)y)=t\overline{u}(x)+(1-t)\overline{u}(y)
+$$
+
+:::
+
+::: {.remark}
+
+Ordinal utility only reveals the relative order of each pair, but linear utility also reveals how different they are.
+
+:::
+
+
+::: {.definition  name=""}
+
+Let $(X,\succsim)$ be a convex decision problem. We say that $\succsim$ is 
+
+- **independent** if for each triple $x,y,z\in X$ and $t\in (0,1],x\succsim y$ iff $tx+(1-t)z\succsim ty+(1-t)z$.
+- **continuous** if for each triple $x \succ y\succ z$, there exist $t\in (0,1)$ with $y\sim tx+(1-t)z$.
+
+:::
+
+Suppose $\succsim$ is linear, then it's continuous and independent clearly, for the converse:
+
+
+::: {.lemma  name=""}
+
+Let $(X,\succsim)$ be a convex decision problem and $\succsim$ is independent. For $y\succ x$ and $s,t \in [0,1]$ where $s>t$, then
+$$ 
+sy+(1-s)x \succ ty+(1-t)x
 $$
 
 
 :::
 
 
+::: {.proof}
+
+By the independence of $\succsim$, we have
+
+$$ 
+\frac{s-t}{1-t}y+\frac{1-s}{1-t}x\succ \frac{s-t}{1-t}x+\frac{1-s}{1-t}x=x
+$$
+
+and note
+
+$$ 
+sy+(1-s)x=ty+(1-t)(\frac{s-t}{1-t}x+\frac{1-s}{1-t}x)\succ ty+(1-t)x
+$$
+
+:::
+
+That implies if $\succsim$ is continuous and independent, the "$t$" in the definition is unique. Then we are ready for the main results:
 
 
+::: {.theorem  name=""}
 
+Let $(X,\succsim)$ be a convex decision problem then $\succsim$ is independent and continuous iff there is a linear utility function $\overline{u}$ representing $\succsim$.
 
-
-
-
-
-
-
-
-
-
-
+:::
 
 
 
