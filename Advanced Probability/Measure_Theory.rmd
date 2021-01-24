@@ -1,0 +1,167 @@
+
+::: {.theorem  name="Simple Approximation Theorem"}
+
+Give a function: 
+$$ d_n(r)=\sum_{k=1}^{n2^{n}} \frac{k-1}{2^{n}} 1_{[\frac{k-1}{2^{n}},\frac{k}{2^{n}})}(r)+n 1_{[n,\infty]}(r), \qquad r\in \overline{\R}_+ $$
+Notice that $d_n(r)$ is an increasing right-continuous simple function and  $d_n(r)\nearrow r$ as $n\to \infty$.  
+
+A positive function $f$ on  $E$ is $\mathcal{E}$-measurable iff it is the limit of an increasing sequence of positive simple functions.
+
+:::
+
+
+::: {.proof}
+
+When a $\limsup$ and a $\liminf$ exists for a simple function sequence, then $\lim f_n$ exists and as for  $n\in \N_+$, $f_n$ is $\mathcal{E}$-measurable, $\lim f_n$ is $\mathcal{E}$-measurable.  
+For the converse, let $f_n=d_n\circ f$ is. Then  $f_n \nearrow f$ and $f_n$ is a simple function.
+
+:::
+
+
+::: {.definition  name="Integrations"}
+
+- $\int fd\mu$ is called the integrations of $f$ according to measure $\mu$, usually noted as $\mu f$.
+- $\int_A fd\mu$ is called the integrations of $f$ according to $\mu$ on $\mathcal{E}$-measurable set $A$, noted as $\mu(f 1_A)$.
+
+:::
+
+::: {.theorem  name="Monotone Convergence Theorem"}
+
+Let $(f_n)$ be an increasing sequence in $\mathcal{E}_+$, then: 
+$$ \mu(\lim f_n)=\lim \mu f_n $$
+
+
+:::
+
+::: {.proof}
+
+Let $f_n \nearrow f$, then $\mu f\ge \mu f_n$ for each $n$, so $\mu f \ge \lim \mu f_n$.  
+Now need to prove that $\lim \mu f_n\ge \mu f$.  
+Fix $b\in \R_+$ and $B\in \mathcal{E}$, where $f$ is $\mathcal{E}$-measurable. Then $\{f_n>b\}\nearrow \{f>b\}$, where let $B_n=B\cap \{f_n>b\}$, then $B_n \nearrow B$, so 
+$$ \lim  \mu(B_n)=\mu(B)  $$
+and: 
+$$ f_n 1_B\ge f_n 1_{B_n}\ge b 1_{B_n} $$
+then 
+$$ \mu(f_n 1_B)\ge \mu(b 1_{B_n})=b\mu(1_{B_n}) $$
+Take limits for each side: 
+$$ \lim  \mu(f_n 1_B)\ge b\mu(B) $$
+Let $g$ be a positive simple function s.t. $f\ge g$ holds on $E$. Let $g=\sum_{i=1}^{m} b_i 1_{B_i}$ where on each $B_i$, $f\ge b_i$ holds. Then: 
+$$ \lim  \mu(f_n 1_{B_i})\ge b_i\mu(B_i)\qquad i=1,2,\ldots,m $$
+Let $g$ has the canonical representation, then 
+$$ \lim_n \mu f_n=\lim_n \sum_{i=1}^{m} \mu(f_n 1_{B_i})=\sum_{i=1}^{m} \lim_n \mu(f_n 1_{B_i})\ge \mu g $$
+Let $g=d_k\circ f$ and change $g$ to its canonical representation, then  
+$$ \lim_n \mu f_n \ge \mu(d_k\circ f) $$
+holds for every $k$, then let $k\to \infty$, we get $\lim  \mu f_n\ge \mu f$.
+Now we prove the theorem.
+
+:::
+
+
+::: {.theorem  name="Fatou's Lamma"}
+
+Let $(f_n)\in \mathcal{E_+}$, then 
+$$ \mu(\liminf f_n)\le \liminf \mu f_n $$
+
+:::
+
+::: {.proof}
+
+Let $g_m=\inf_{n\ge m}f_n$, notice that $g_m$ is increasing and $g_m \nearrow \liminf f_n$ as $m\to \infty$. By the monotone converge theorem: 
+$$ \mu(\liminf f_n)=\lim  \mu g_m $$
+Notice that $g_m\le f_n$ for all $n\ge m$, and $\mu g_m\le \mu f_n$ for all $n\ge m$, so $\mu g_m \le \inf_{n\ge m}\mu f_n$, take limit of $m$, 
+$$ \lim \mu g_m \le \liminf \mu f_n$$
+
+
+:::
+
+::: {.theorem  name="Almost Everywhere Theorem"}
+
+Let $(f_n)$ be a sequence of numerical functions on $E$. Suppose that for each $n$, there is $g_n\in \mathcal{E}$ s.t. $f_n=g_n$ a.e. Further suppose for each $n$ that $f_n\ge 0$ a.e. and $f_n\le f_{n+1}$ a.e. Then, $\lim f_n$ exists a.e. is positive a.e. and $\mu(\lim f_n)=\lim \mu f_n$.
+
+:::
+
+::: {.proof}
+
+Let  
+$$ N=\bigcup_{n=1} ^{\infty}(L_n\cup M_n\cup N_n) $$
+where $L$ denotes the $f_n\le f_{n+1}$ 's zero-measure set, and $N$ denote the $f_n=g_n$ 's and $M$ denotes $f_n\ge 0$ 's.  
+For every $x\in E-N$, we have 
+$$ 0\le f_1(x)=g_1(x)\le f_2(x)=g_2(x)\ldots $$
+so $\lim f_n=\lim g_n$ exists on $E-N$. Then define: 
+$$ f(x)=\begin{cases}
+	\lim f_n(x) & x\notin N \\
+	0 & x\in N
+\end{cases} $$
+Then $(g_n 1_{E-N})\nearrow f$ on $E$. So 
+$$ \mu f=\lim \mu(g_n 1_{E-N})=\lim \mu g_n $$
+
+
+:::
+
+::: {.theorem  name="Integral characterization theorem"}
+
+Let $(E,\mathcal{E})$ be a measurable space. Let $L$ be a mapping from $\mathcal{E_+}$ into $\overline{\R}_+$ then there is a unique measure $\mu$ on $(E,\mathcal{E})$ s.t. $L(f)=\mu f$ for every $f\in \mathcal{E_+}$ iff:
+-  $f=0\implies L(f)=0$ 
+- $f,g\in \mathcal{E_+}$ and $a,b\in \R_+\implies L(af+bg)=aL(f)+bL(g)$
+- $(f_n)\subset \mathcal{E_+}$ and $f_n \nearrow f\implies L(f_n)\nearrow L(f)$
+
+:::
+
+::: {.proof}
+
+Let there is a function $L$ satisfies above conditions and give a $\mu$ and let $\mu (A)=L(1_A)$, then use those conditions we can prove that $\mu$ is a measure a $(E,\mathcal{E})$.
+
+:::
+
+::: {.definition  name="Image measure"}
+
+let $(F,\mathcal{F})$ and $(E,\mathcal{E})$ be measurable spaces. Let $\nu$ be a measure on $(F,\mathcal{F})$ and let $h:F\to E$ be measurable relative to $\mathcal{F}$ and $\mathcal{E}$, then define a mapping $\nu\circ h^{-1}(B)=\nu(h^{-1}B),\ B\in \mathcal{E}$.  
+Then $\nu\circ h^{-1}$ is a measure on $(E,\mathcal{E})$, which is called the image of $\nu$ under $h$.
+
+:::
+
+::: {.theorem  name=""}
+
+For every $f\in \mathcal{E_+}$, we have $(\nu\circ h^{-1})f=\nu(f\circ h)$.
+
+:::
+
+::: {.proof}
+
+Let $L:\mathcal{E}_+\to \overline{\R}_+$ by letting $L(f)=\nu(f\circ h)$. Then as the property of $\nu(f\circ h)$, $f$ satisfies the properties of integral characterization theorem. Then, $L(f)=\mu f$ for some unique measure $\mu$ on $(E,\mathcal{E})$. And 
+$$ \mu (B)=L(1_B)=\nu(1_B \circ h)=\nu(h^{-1}B), \qquad B\in \mathcal{E} $$
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
