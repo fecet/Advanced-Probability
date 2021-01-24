@@ -1,4 +1,126 @@
-## Coinduced topology
+## coinduced topology
+
+If we turn all of the arrows around in the diagram of product, that is, 
+
+
+::: {.theorem  name=""}
+
+Given space $Z$ and $f_X$ and $f_Y$, there is a unique map from $X \coprod Y$ to $Z$:
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {|(pb)| X \coprod Y & Z\\ };
+		\obj [above left=of pb] {X};
+		\obj [below left=of pb] {Y};
+		\mor[swap] X "\iota_X":-> pb;
+		\mor[swap] Y "\iota_Y":-> pb;
+		\mor [swap]:[dashed] pb "\exists ! f":-> Z;
+		\mor :[bend left=15] X "f_X":-> *;
+		\mor[swap]:[bend right=15] Y "f_Y":-> *;
+	\end{codi}
+\end{center}
+```
+
+The coproduct of $\{X_i\}_{i\in I}$ is given by
+$$ 
+\coprod_{i\in I}X_i =\bigcup_{i \in  I}\left( X_i\times \{i\} \right)
+$$
+
+Clearly, there are nature inclusions $\iota_{X_i}:X_i \hookrightarrow \coprod_{i\in I} X_i=x_i \mapsto (x_i,i)$. We topologize the coproduct by giving it the finest topology s.t. all $\iota_{X_i}$ are continuous. 
+
+:::
+
+
+::: {.proof}
+
+Suppose $V\subset Z$ is open, then is open in $\coprod_{i\in I} X_i$ if each $\iota_{i}^{-1}f^{-1}(V)$ is open. Note
+
+$$ 
+\left( f\circ \iota_i \right)^{-1}(V)=f_i^{-1}(V)
+$$
+
+is open as each $f_i$ is continuous.
+
+:::
+
+
+
+::: {.lemma  name=""}
+
+Let $X_i$ be a space for $i\in I$, then $\coprod_{i\in I} X_i$ is Hausdorff iff all $X_i$ are Hausdorff.
+
+:::
+
+
+::: {.proof}
+
+$\xRightarrow{}$ is trivial as $X_i$ embeds as a subset. For $\xRightarrow{}$, suppose $x\neq y$ in $\coprod_{i\in I} X_i$, if $x$ and $y$ come from different $X_i$, we simple select $X_i$ and $X_j$ they live, otherwise, $X_i$ is Hausdorff and guarantee a disjoint neighborhood.
+
+:::
+
+### Quotient
+
+Suppose $q:X\to Y$ is any subjective function, we define $\sim$ by $x\sim y$ if $q(x)=q(y)$, then $X/ \sim \to Y$ is bijection and we can treat $q$ as function that $X/\sim \to Y$. And that gives the universal property of the quotient.
+
+
+::: {.definition  name=""}
+
+A surjection $q:X\to Y$ is a **quotient map** if $V\subset Y$ is open iff $q^{-1}(V)$ is open in $X$.
+
+:::
+
+
+::: {.theorem  name="Universal property of quotient"}
+
+Let $q:X\to Y$ be a quotient map and $f:X\to Z$ is continuous and constant on the fiber of $q$, then there exist a unique continuous $g:Y\to Z$.
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {Y & Z\\};
+		\obj [above left=of Y] {X};
+		\mor[swap] X "q":-> Y;
+		\mor[swap] * ["f",above]:-> Z;
+		\mor [swap]:[dashed] Y ["\exists ! g"]:-> *;
+	\end{codi}
+\end{center}
+```
+
+:::
+
+
+::: {.proof}
+
+Clearly $g$ must be defined by $g=f\circ q^{-1}$ and it remains to show that $g$ is continuous. Let $G\subset Z$ is open then $g^{-1}(G)\subset Y$ is open iff $q^{-1}(g^{-1}(G))=(g\circ q)^{-1}(G)=f^{-1}(G)$ is open, and that follows from $f$ is continuous.
+
+:::
+
+
+::: {.lemma  name=""}
+
+Let $q:X\to Y$ be a continuous open surjection, then it's quotient map. The same is true if $q$ is closed instead of open.
+
+:::
+
+
+::: {.proof}
+
+Open case follows easily. For the other, for $V\subset Y$ s.t. $q^{-1}(V)\subset X$ is open, then $q^{-1}(V^c)$ is closed and thus $q(q^{-1}(V^c))=V^c$ is close as surjection.
+
+:::
+
+
+However, the converse is not true.
+
+
+::: {.definition  name=""}
+
+Let $q:X\to Y$ be a continuous surjection. We say $A\subset X$ is **saturated** w.r.t.
+
+:::
+
+
 
 In the same notations, let $K_{i}$ be compact for each $i$, $G$ is open in  $\tau$ and including $\prod_{i \in I} K_{i}$, then there exist basic open set sandwich by them.
 

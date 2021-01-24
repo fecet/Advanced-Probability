@@ -347,12 +347,13 @@ $$
 
 
 
-
 ::: {.example  name=""}
 
 $\hat{\mathbb{Q}}$ is non Hausdorff as any open sets $G$ of the form $(a,b)\cap \mathbb{Q}$, if it's contained in a compact subset $K$, then $\overline{G}$ would be compact, which contradict to $[a,b]\cap \mathbb{Q}$ is not compact.
 
 :::
+
+Let $X$ be locally compact and Hausdorff and let $f:X \hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q$: $Y\to \hat{X}$ s.t. $q\circ f=\iota$. 
 
 ::: {.theorem #compactification name=""}
 

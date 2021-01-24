@@ -286,20 +286,6 @@ is open in subspace $f_\ell(\Omega_\ell)$.
 
 :::
 
-```{=latex}
-\begin{center}
-	\begin{codi}[tetragonal]
-		\obj { Z & |(pb)| X \times Y \\ };
-		\obj [above right=of pb] {X};
-		\obj [below right=of pb] {Y};
-		\mor[swap] pb "\pi_X":-> X;
-		\mor[swap] pb "\pi_Y":-> Y;
-		\mor [swap]:[dashed] Z "\exists ! f":-> pb;
-		\mor :[bend left=15] * "f_X":-> X;
-		\mor[swap]:[bend right=15] * "f_Y":-> Y;
-	\end{codi}
-\end{center}
-```
 
 Thus,$\{\left( x_{i}^\alpha \right)\}_{\{i \in I\}}$ in $X$ converges to some $\left( x_{i} \right)_{i\in I}$ iff its every components converges to the components respectably. A function is called **jointly continuous** if it's continuous w.r.t. the product topology. 
 

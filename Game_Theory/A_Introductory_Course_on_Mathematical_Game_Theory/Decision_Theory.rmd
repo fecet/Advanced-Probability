@@ -182,10 +182,23 @@ That implies if $\succsim$ is continuous and independent, the "$t$" in the defin
 
 ::: {.theorem  name=""}
 
-Let $(X,\succsim)$ be a convex decision problem then $\succsim$ is independent and continuous iff there is a linear utility function $\overline{u}$ representing $\succsim$.
+Let $(X,\succsim)$ be a convex decision problem then $\succsim$ is independent and continuous iff there is a linear utility function $\overline{u}$ representing $\succsim$. And it's unique up to positive affine transformations.
 
 :::
 
+
+::: {.proof}
+
+For $x_2\succ x_1$, let $[x_1,x_2]:=\{x\in X:x_2\succ x\succ x_1\}$ and define $u:[x_1,x_2]\to \mathbb{R}$ by:
+$$ 
+u(x):=\begin{cases}
+	0&x\sim x_1\\
+	1&x\sim x_2\\
+\end{cases}
+$$
+
+
+:::
 
 
 
