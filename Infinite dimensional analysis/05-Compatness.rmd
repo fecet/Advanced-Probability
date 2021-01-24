@@ -242,6 +242,8 @@ is compact and included in $G$.
 
 :::
 
+### Compactification
+
 Locally compact Hausdorff space is very close to a compact Hausdorff space
 
 
@@ -353,9 +355,7 @@ $\hat{\mathbb{Q}}$ is non Hausdorff as any open sets $G$ of the form $(a,b)\cap 
 
 :::
 
-Let $X$ be locally compact and Hausdorff and let $f:X \hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q$: $Y\to \hat{X}$ s.t. $q\circ f=\iota$. 
-
-::: {.theorem #compactification name=""}
+::: {.theorem #loccpt-open name=""}
 
 $X$ is locally compact iff $X$ is open of $\hat{X}$.
 
@@ -375,27 +375,47 @@ that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
 
 :::
 
+::: {.lemma  name=""}
+
+Let $X$ be a locally compact Hausdorff space and $f:X\to Y$ a compactification, then $f$ is open.
+
+:::
+
+
+::: {.proof}
+
+As $f$ is an embedding, we can pretend $X\subset Y$ and $f$ is just inclusion. Then it suffices to show that $X$ is open and that follows from theorem \@ref(thm:loccpt-open).
+
+:::
+
+
+::: {.theorem  name="Universal property of compactification"}
+
+Let $X$ be a locally compact Hausdorff space and $f:X\hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q:Y\to \hat{X}$ s.t. $q\circ f=\iota$.
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {X};
+		\obj [above left=of X] {Y};
+		\obj [above right=of X] { |(hx)| \hat{X}\\};
+		\mor[swap] X "\iota":-> hx;
+		\mor[swap] * ["f",below]:-> Y;
+		\mor [swap]:[dashed] Y ["\exists ! q" ,above]:-> hx;
+	\end{codi}
+\end{center}
+```
+
+:::
 
 
 
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+Let $X$ be locally compact and Hausdorff and let $f:X \hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q$: $Y\to \hat{X}$ s.t. $q\circ f=\iota$. 
+
+
+
+
+
+
