@@ -1,19 +1,3 @@
----
-title: "Set theory"
-author: Xie Zejian
-# date: Sep 27, 2020
-output:
-  pdf_document:
-    toc: true
-    toc_depth: 2
-    # number_sections: true  
-    highlight: tango
-    latex_engine: pdflatex
-
-export_on_save:
-  pandoc: true
----
-
 # Measure Theory
 
 Let $\Omega$ be a space and $\mathcal{A}$ a class, then function $\mu : \mathcal { A } \rightarrow R = [ - \infty , \infty ]$ is a **set function**.
