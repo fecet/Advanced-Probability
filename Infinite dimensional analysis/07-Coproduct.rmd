@@ -116,13 +116,26 @@ However, the converse is not true.
 
 ::: {.definition  name=""}
 
-Let $q:X\to Y$ be a continuous surjection. We say $A\subset X$ is **saturated** w.r.t.
+Let $q:X\to Y$ be a continuous surjection. We say $U\subset X$ is **saturated** w.r.t. $q$ if $U=q^{-1}(V)$ for some $V\subset Y$, i.e., $q^{-1}(q(U))=U$.
+
+:::
+
+
+::: {.lemma  name=""}
+
+Let $q:X\to Y$ be a continuous surjection, then it's a quotient map iff it takes saturated open sets to open sets.
+
+:::
+
+
+::: {.proof}
+
+Suppose $q^{-1}(V)\subset X$ is open, then it's a saturated open sets, thus $q(q^{-1}(V))=V$ is open. And the other implication follows from definition of continuity and quotient map.
 
 :::
 
 
 
-In the same notations, let $K_{i}$ be compact for each $i$, $G$ is open in  $\tau$ and including $\prod_{i \in I} K_{i}$, then there exist basic open set sandwich by them.
 
 Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $\{f_i:(\Omega_i,\mathcal{T_i})\to (\Omega,\tau)\}_{i\in I}$. Let $A$ be the set of all the topologies s.t. $f_i$ is continuous for all $i$. We call the finest of $A$ **topology coinduced** on $\Omega$ by $\{(f_i)\}_{i\in I}$.
 
