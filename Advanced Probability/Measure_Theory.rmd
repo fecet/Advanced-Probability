@@ -134,15 +134,169 @@ $$ \mu (B)=L(1_B)=\nu(1_B \circ h)=\nu(h^{-1}B), \qquad B\in \mathcal{E} $$
 
 :::
 
+::: {.definition  name="Standard measurable space"}
+
+Let $(E,\mathcal{E})$ and $(F,\mathcal{F})$ be measurable spaces let $f$ be a bijection from $E$ onto $F$, then  $f$ is called an isomorphism of $(E,\mathcal{E})$ and $(F,\mathcal{F})$ iff $f$ is $\mathcal{E}$-measurable and $f^{-1}$ is $\mathcal{F}$-measurable.  
+A measurable space $(E,\mathcal{E})$ is said to be a standard measurable space if it is isomorphic to $(F,\mathcal{B}_F)$ for some Borel set $F$ of $\R$.
+
+:::
+
+::: {.definition  name=""}
+
+Let $\mu$ be a measure on $(E,\mathcal{E})$. It is said to be finite if $\mu (E)\lt \infty$, then $\mu (A)\lt\infty$ for every $A\subset E$.  
+It is called a probability measure if $\mu (E)=1$.  
+It is said to be $\sigma$-finite if there exists a measurable partition $(E_n)$ of $E$ s.t. for each $n$, $\mu (E_n)\lt \infty$.  
+It is said to be $\Sigma$-finite if there exists a sequence of finite measures $(\mu_n)$ s.t. $\mu =\sum_{n}^{} \mu_n$.
+
+:::
+
+::: {.theorem  name=""}
+
+If a measure is $\sigma$-finite then it must be  $\Sigma$-finite.
+
+:::
+
+::: {.proof}
+
+Assume that there is a measure $\mu$ on $(E,\mathcal{E})$ is $\sigma$-finite, where there is a $(E_n)\subset \mathcal{E}$ s.t. $\bigcup_{n} E_n=E$. Then give $(\mu_n)$ s.t. for each $n$, 
+$$ \begin{cases}
+	\mu_n(E_n)=\mu(E_n) \\
+	\mu_n(E-E_n)=0
+\end{cases} $$
+then $\mu_n(E)=\mu_n(E_n)=\mu (E_n)$, so a $\sigma$-finite measure $\mu$ is a $\Sigma$-fnite measure.
+
+:::
+
+Let $(E,\mathcal{E},\mu)$ be a measure space. Let $p$ be a positive $\mathcal{E}$-measurable function. Define: 
+$$ \nu(A)=\mu (p 1_A)=\int_A \mu (dx)p(x),\qquad A\in \mathcal{E}$$
+
+
+::: {.theorem  name=""}
+
+$\nu$ is a measure on $(E,\mathcal{E})$.
+
+:::
+
+::: {.proof}
+
+- Let  $A,B$ be disjoint sets in $E$, then $\mu (p 1_A)+\mu (p 1_B)=\mu (p 1_{A\cup B})$  
+- $\mu (p 1_\varnothing)=0$
+
+:::
+
+::: {.theorem  name=""}
+
+Fix a $p \in \mathcal{E_+}$, and give a measure $\mu$ on $(E,\mathcal{E})$, then there must be a measure $\nu$ satisfying $\nu f=\mu (pf)$ for every $f\in \mathcal{E_+}$.
+
+:::
+
+::: {.proof}
+
+Let $L(f)=\mu (pf)$. Check $L$ :
+- $f=0\implies L(f)=0$ 
+- Give $f,g\in \mathcal{E_+}$ and $a,b\in \mathbb{R}_+\implies L(af+bg)=\mu (p(af+bg))$ and based on the arithmetic rules on $\mathbb{R}$ and the linearity of $\mu$, $L(af+bg)=aL(f)+bL(g)$ 
+- Give $(f_n)\subset \mathcal{E_+}$ and $f_n \nearrow f$, $L(f_n)=\mu (pf_n)$ and as $f_n \nearrow f$, $pf_n \nearrow pf$ so $\lim L(f_n)=\lim \mu (pf_n)$. According to the monotone converging theorem, $\lim \mu (pf_n)=\mu (pf)=L(f)$ 
+
+So there exists a $\nu$ satisfying $\nu f=L(f)=\mu (pf)$.
+
+:::
+
+Written above result in an explicit notation: 
+$$ 
+\int_E \nu(dx)f(x)=\int_E \mu (dx)p(x)f(x)
+$$
+then we can change the $\nu(dx)$ with $\mu (dx)p(x)$ where $x\in E$, $p\in \mathcal{E_+}$.
+
+
+::: {.definition  name="absolutely continuous"}
+
+Let $\nu$ and $\mu$ be measures on a measurable space  $(E,\mathcal{E})$. Then $\nu$ is said to be absolutely continuous respect to $\mu$ if for any set $A\in \mathcal{E}$, $\mu (A)=0\implies\nu(A)=0$.
+
+:::
+
+::: {.theorem  name=""}
+
+If $\nu$ satisfies the conditions $\nu f=\mu(pf)$ for every $f\in \mathcal{E_+}$, then $\nu$ is absolutely continuous with respect to $\mu$.
+
+:::
+ 
+
+::: {.proof}
+
+
+Let $\mu (A)=0$, then we need to prove that  $\mu (p \bm{\mathbf{1}}_{A})=0$: 
+- Let $p$ is a simple function with a cononical form on $E$ with $p=\sum_{i=1}^{n} a_i \bm{\mathbf{1}}_{B_i}$ and as $(B_i)$ is a partition, $(B_i\cap A)$ is a partition of $A$, noted as $(A_i)$. Then 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\int_A pd\mu =\sum_{i=1}^{n} a_i \mu (A_i)
+$$ 
+As $\mu (A)=0$ and $A=\bigcup_{i=1} ^{n}A_i$, $\mu (A)=\sum_{i=1}^{n} \mu (A_i)$, so $\mu (A_i)=0$ for every $i$. So $\mu (p \bm{\mathbf{1}}_{A})=0$.
+- Let $p\in \mathcal{E_+}$, give $(p_n)$ s.t. $p_n \nearrow p$ where $p_n=d_n\circ p$. Then  $p_n \bm{\mathbf{1}}_{A}\nearrow p \bm{\mathbf{1}}_{A}$ and for every $n$, $\mu (p_n \bm{\mathbf{1}}_{A})$ holds. So: 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\mu (\lim p_n \bm{\mathbf{1}}_{A})=\lim \mu (p_n \bm{\mathbf{1}}_{A})=0
+$$
+according to the monotone converging theorem, so $\nu$ is absolutely continuous respect to $\mu$
+
+
+:::
+
+::: {.theorem  name="Radon Nikodym Theorm"}
+
+Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous with repect to $\mu$. Then there exists a positive $\mathcal{E}$-measurable function $p$ s.t. $\nu f=\mu (pf)$ on $E$ for every $f\in \mathcal{E_+}$.  
+Moreover, $p$ is unique above, if there is a $q\in \mathcal{E_+}$, then $q=p$ a.e. 
+
+:::
+
+Notice that Randon Nikodym theorem is the converse of the theorem before it.  
+The proof of the Randon Nikodym theorem is not able to show here now.
+
+
+::: {.definition  name="transition kernal"}
+
+Let  $(E,\mathcal{E})$ and $(F,\mathcal{F})$ be measurable spaces. Let $K$ be a mapping from $E\mathcal{\times F}$ into $\overline{\mathbb{R}}_+$. Then, $K$ is called a transition kernal from $(E,\mathcal{E})$ into $(F,\mathcal{F})$ if:
+- the mapping $x\mapsto K(x,B)$ is $\mathcal{E}$-measurable for every set $B\in \mathcal{F}$ 
+- the mapping $B\mapsto K(x,B)$ is a measure on $(F,\mathcal{F})$ for every $x\in E$
+
+:::
+
+For example, if $\nu$ is a finite measure on $(F,\mathcal{F})$, and $k$ is a positive function on $E\times F$ that is $\mathcal{E\times F}$-measurable, then 
+$$ 
+K(x,B)=\int_B \nu(dy)k(x,y), \qquad x\in E, B\in \mathcal{F}
+$$
+when fix $x\in E$, $K(x,B)=\nu(k(x,y)\bm{\mathbf{1}}_{B})=\mu (B)$ for some $\mu$ which is the measure on $(F,\mathcal{F})$.  
+when fix $B\in \mathcal{F}$, $K(x,B)=f(x)=$
 
 
 
+::: {.theorem  name=""}
+
+Let $K$ be a transition kernal from  $(E,\mathcal{E})$ into $(F,\mathcal{F})$. Then 
+$$ 
+Kf(x)=\int_F K(x,dy)f(y), \qquad x\in E,
+$$
+defines a function  $Kf\in \mathcal{E_+}$ for every $f\in \mathcal{F_+}$. 
+$$ 
+\mu K(B)=\int_E \mu (dx)K(x,B), \qquad B\in \mathcal{F},
+$$
+defines a measure $\mu K$ on $(F,\mathcal{F})$ for each measure  $\mu$ on $(E,\mathcal{E})$.
+and  
+$$ 
+(\mu K)f=\mu (Kf)=\int_E \mu (dx)\int_F K(x,dy)f(y)
+$$
+for every measure $\mu$ on $(E,\mathcal{E})$ and function $f$ in $\mathcal{F_+}$.
+
+:::
+
+::: {.proof}
 
 
 
+:::
 
+::: {.theorem  name=""}
 
+Let $f\in \mathcal{E\times F}$, then $x\mapsto f(x,y)\in \mathcal{E}$ for each  $y\in F$ and $y\mapsto f(x,y)\in \mathcal{F}$ for each $x\in E$.
 
+:::
 
 
 
