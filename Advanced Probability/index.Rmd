@@ -1,0 +1,20 @@
+--- 
+title: "Notes of Probability and Stochastics"
+author: 
+    - Xie Zejian
+    - Zhang Songxin
+Institute: SUSTech
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Notes"
+---
+
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}

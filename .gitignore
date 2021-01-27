@@ -17,3 +17,7 @@
 .RData
 .Rhistory
 .DS_Store
+*.json
+*.ttf
+*.epub
+*.Rproj
