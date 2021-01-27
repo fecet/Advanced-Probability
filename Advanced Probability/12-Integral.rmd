@@ -1,0 +1,680 @@
+## Integration
+
+Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
+$$ \int f ( \omega ) \mu ( d \omega ) = \int f d \mu = \int f $$
+
+1. If $f=\sum_1^n a_i \bm{\mathbf{1}}_{A_i}$ with $a_i\ge 0$,
+$$ \int f d \mu = \sum _ { 1 } ^ { n } a _ { i } \mu \left( A _ { i } \right) $$
+
+2. 
+    If $f\ge 0$,define
+
+    $$ \int fd\mu=\lim_n \int f_nd\mu $$ 
+
+    where $f_n$ are simple functions and $f_n \nearrow f$.
+
+1. 
+    For any $f$, we have $f=f^{+}-f^{-}$, define 
+    
+    $$ \int f d \mu : = \int f ^ { + } d \mu - \int f ^ { - } d \mu $$ 
+
+2. 
+    $f$ is said to be integrable w.r.t. $\mu$ if $\int|f|d\mu<\infty$. We denote all integrable functions by $L^1$.
+
+
+
+
+::: {.proposition  name=""}
+
+(**Integral over sets**)  
+$$ \int _ { A } f d \mu = \int f \bm{\mathbf{1}} _ { A } d \mu = \int f ( \omega ) \bm{\mathbf{1}} _ { A } ( \omega ) \mu ( d \omega ) $$
+
+(**Absolute integrability**). $\int f$ is finite iff $\int|f|$ is finite.
+
+**(Linearity)** If $f,g,a,b\ge 0$ or $f,g\in L^1$
+$$ \int(af+bg)=a\int f+b\int g $$
+
+**($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
+$$ \int _ { A } f = \sum _ { i = 1 } ^ { \infty } \int _ { A _ { i } } f $$
+
+**(Positivity)** If $f\ge 0$ a.s., then $\int f\ge 0$
+
+**(Monotonicity)** If $f_1\le f\le f_2$ a.s., then $\int f_1\le \int f 
+\le \int f_2$
+
+**(Mean value theorem)** If $a\le f \le b$ a.s., then 
+
+$$ a\mu(A)\le \int _Af\le b\mu(A) $$
+
+**(Modulus inequality)**: $|\int f|\le \int |f|$
+
+:::
+
+### Monotone Convergence Theorem
+
+
+::: {.theorem #MCT name="Monotone Convergence Theorem"}
+
+Suppose nonnegative $f_n\nearrow f$ a.e., then $\int f_n d\mu \nearrow \int f d\mu$.
+
+:::
+
+
+
+::: {.theorem name=""}
+
+We may ignore a null set then $f_n \nearrow f$ and their integration still equal. Note $\int f_n d\mu \le \int fd\mu$, $\int f_n d\mu$ must converges to some $L\le \int f$. Then we show $L\ge \int f$. 
+
+Let $s=\sum a_i \chi_{E_i}$ be simple function and $s\le f$. Let $A_n=\{x:f_n(x)\ge cs(x)\}$ where $c\in(0,1)$, then $A_n \nearrow X$. For each $n$
+
+$$ \begin{aligned}
+    \int f_n\ge \int_{A_n} f_n &\ge c\int_{A_n} s
+    \\&= c\int_{A_n} \sum a_i\chi_{E_i}
+    \\&=c \sum a_i\mu(E_i\cap A_n)
+    \\&\nearrow c\int s
+\end{aligned} $$
+
+hence $L\ge c\int s\implies L\ge \int s\implies L= \lim L\ge \lim \int s_n=\int f$. 
+
+:::
+
+
+
+
+::: {.lemma #fatou name="Fatou's Lemma"}
+
+If  $f_n\ge 0$ a.e. then
+$$ \int  \left( \liminf_ { n } f _{ n } \right) \leq \liminf_ { n } \int  f _ { n } $$
+
+:::
+
+
+
+::: {.proof}
+
+Suppose $g_n=\inf_{i\ge n}f_i$ and recall that $\lim g_n=\liminf f_n$. Clearly $g_n\le f_i \forall i\ge n$  hence 
+
+$$ \int g_n \le \inf_{i\ge n}\int f_i $$
+
+Take limit both side and note $g_n$ is increasing:
+
+$$ \lim \int g_n=\int \lim g_n=\int \liminf f_n\le \liminf \int f_n $$
+
+:::
+
+
+
+
+::: {.theorem #DCT name="Dominated Convergence Theorem"}
+
+Suppose $f_n(x)\to f(x) \forall x$, and there exists a nonnegative integrable $g$ s.t. $|f_n(x)|\le g(x)$(then we get $f_n\in L^1$ immediately), then
+
+$$ \lim \int f_n d\mu=\int f d\mu $$
+
+:::
+
+
+
+::: {.proof}
+
+
+Since $f_n+g\ge 0$
+
+$$ \int f+\int g=\int f+g\le \liminf \int f_n+g=\liminf \int f_n+\int g $$
+
+thus $\int f\le \liminf_{n\to \infty}\int f_n$. Similarly, we can get $\int f\le \liminf_{n\to \infty}\int f_n$ from $g-f_n\ge 0$. 
+
+
+:::
+
+
+::: {.theorem  name="Tonelli's Throrem"}
+
+If $\sum_{1}^\infty \int |f_n|<\infty$, then
+
+$$ \int  \left( \sum _{ i = 1 } ^ { \infty } f_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \int  f_ { n } $$
+
+
+:::
+
+::: {.proof}
+
+Let $g_k=\sum_1^k |f_n|,g=\sum_1^\infty|f_n|,h_k=\sum_1^k f_n,h=\sum_1^\infty f_n$. Then $g_k \nearrow g$, by MCT, we have
+
+$$ \int g=\lim \int g_k=\lim \sum_1^k \int |f_n|= \sum_1^\infty \int |f_n|<\infty$$
+
+Hence we may let $g$ dominate $h_k$ and get
+
+$$ \int h=\lim \int h_k= \sum_1^\infty \int f_n$$
+
+:::
+
+
+
+### Criteria for zero a.e.
+
+
+::: {.lemma #markov name="Markov inequality"}
+
+Let $A=\{x\in \Omega: f(x)\ge M\}$, then 
+$$
+\mu(A)\le \frac{\int f}{M} 
+$$
+
+
+:::
+
+
+::: {.proof}
+
+$$ \mu(A)=\int \chi_A=\int_A \chi_A \le \int_A \frac{f}{M}\le  \int_X \frac{f}{M}=\frac{\int f}{M}$$
+
+:::
+
+Suppose $f$ is measurable and non-negative and $\int fd\mu=0$. Then $f=0$ a.e.
+
+
+::: {.proof}
+
+By lemma \@ref(lem:markov) and define $A_M=\{x\in \Omega:f(x)\ge M\}$. Consequently, $\mu(A_M)=0$ for all $M > 0$, note $A_{\frac{1}{n}}\nearrow A_0$:
+
+$$ A_0=\bigcup_1^\infty A_{\frac{1}{n}}\implies \mu(A_0)=\sum 0=0 $$
+
+Hence $f=0$ a.e. 
+
+:::
+
+
+::: {.lemma  name=""}
+
+Suppose $f$ is integrable and $\int_A f=0$ for all measurable $A$. Then $f=0$ a.e.
+
+:::
+
+
+::: {.proof}
+
+Suppose $A_n=\{x\in \Omega:f(x)\ge \frac{1}{n}\}$, then
+$$ 
+0=\int_{A_n} f \ge \frac{\mu(A_n)}{n}\xRightarrow{}\mu(A_n)=0
+$$
+
+thus $\mu\{x\in \Omega:f(x)>0\}=0$. Similarly, $\mu\{x\in \Omega:f(x)<0\}=0$ and the claim follows.
+
+:::
+
+
+
+::: {.theorem  name=""}
+
+Suppose $f:\mathbb{R} \to \mathbb{R}$ is integrable and $\int_a^x f=0$ for all $x$, then $f=0$ a.e.
+
+:::
+
+
+
+::: {.proof}
+
+For any interval $I=[c,d]$,
+
+$$ \int_i f=\int_a^d f-\int_a^c f=0 $$
+
+Then the integral is $0$ for finite disjoint union of intervals from additivity. Note open sets $G$ can be written as countable union of disjoint open intervals $G=\sum_1^\infty I_i=\lim \sum I_n\implies$
+
+$$\int_G f=\int f\chi_G=\int f\sum_1^\infty \chi_{I_i}=\int \lim f\sum \chi_{I_i}=\lim \int f\sum \chi_{I_i}=0 $$
+
+If $G_n\searrow H$, then
+
+$$ \int_H f = \int f\chi_H=\int \lim f\chi_{G_n}=\lim\int f\chi_{G_n}=\lim \int_{G_n} f=0 $$
+
+where we apply DMT twice and take dominated function $g=|f|$.
+
+Finally, for any borel measurable set $E$, there is $G_\delta\supset E$ and $m(G_\delta-E)=0$, then
+
+$$ \int_E f=\int f\chi_E=\int f\chi_{G_\delta}=\int_{G_\delta} f=0 $$
+
+
+:::
+
+### Characterization of the integral
+
+::: {.theorem  name=""}
+
+Let $(\Omega,\mathcal{A})$ be a measurable space and $L:\mathcal{A}\to \overline{\mathbb{R}}_{+}$, then there is a unique measure $\mu$ on $(\Omega,\mathcal{A})$ s.t. $L(f)=\int f$ for every $f\in \mathcal{A}_+$ iff:
+
+-  $f=0\implies L(f)=0$ 
+- $f,g\in \mathcal{A}_+$ and $a,b\in \R_+\implies L(af+bg)=aL(f)+bL(g)$
+- $(f_n)\subset \mathcal{A}_+$ and $f_n \nearrow f\implies L(f_n)\nearrow L(f)$
+
+:::
+
+::: {.proof}
+
+$\xRightarrow{}$ follows from the definition and properties of integral. For $\xLeftarrow{}$, let there is a function $L$ satisfies above conditions and give a $\mu$ and let $\mu (A)=L(1_A)$, then use those conditions we can prove that $\mu$ is a measure a $(\Omega,\mathcal{A})$.
+
+:::
+
+## Transforms and Indefinite integral
+
+::: {.definition  name="Image measure"}
+
+Let $(F,\mathcal{F})$ and $(E,\mathcal{E})$ be measurable spaces. Let $\nu$ be a measure on $(F,\mathcal{F})$ and let $h:F\to E$ be measurable relative to $\mathcal{F}$ and $\mathcal{E}$, then define a mapping $\nu\circ h^{-1}(B)=\nu(h^{-1}B),\ B\in \mathcal{E}$. Then $\nu\circ h^{-1}$ is a measure on $(E,\mathcal{E})$, which is called the **image** of $\nu$ under $h$.
+
+:::
+
+
+::: {.remark}
+
+Image inherit finite and s-finite, but not $\sigma$-finite.
+
+:::
+
+::: {.theorem #image-measure  name=""}
+
+For every $f\in \mathcal{E}$, we have $(\nu\circ h^{-1})f=\nu(f\circ h)$.
+
+:::
+
+::: {.proof}
+
+We only need to show that $\mathcal{E}_+$ case and then the general case follows easily.
+
+Let $L:\mathcal{E}_+\to \overline{\R}_+$ by letting $L(f)=\nu(f\circ h)$. Then as the property of $\nu(f\circ h)$, $f$ satisfies the properties of integral characterization theorem. Then, $L(f)=\mu f$ for some unique measure $\mu$ on $(E,\mathcal{E})$. And note $\mu=\nu\circ h$
+$$
+\mu (B)=L(\bm{\mathbf{1}}_B)=\nu(\bm{\mathbf{1}}_B \circ h)=\nu(h^{-1}B)
+$$
+:::
+
+### Images of the Lebesgue measure
+
+By theorem \@ref(thm:image-measure), we have a convenient tool for creating new measure from old and, we may integral a measure using Lebesgue measure:
+
+
+::: {.theorem  name=""}
+
+Let $(\Omega,\mathcal{A},\mu)$ be a standard measure space where $\mu$ is s-finite and $b=\mu(\Omega)$. Then there exists a measurable mapping $h:([0,b),\mathcal{B}_{[0,b]})\to (\Omega,\mathcal{A})$ s.t. $\mu=\lambda \circ h^{-1}$, where $\lambda$ is the Lebesgue measure on $[0,b)$.
+
+:::
+
+
+::: {.proof}
+
+See 5.15 and 5.16 on page 34 in *Probability and Stochastic*.
+
+:::
+
+### Indefinite integrals
+
+
+::: {.definition  name=""}
+
+Let $(\Omega,\mathcal{A},\mu)$ be a measure space and $p \in \mathcal{A}_{+}$. Define: 
+$$
+\nu(A)=\mu (p \bm{\mathbf{1}}_A)=\int_A p d\mu
+$$
+then $\nu$ is a measure on $(\Omega,\mathcal{A})$ and called **indefinite integral** of $p$ w.r.t. $\mu$.
+
+:::
+
+
+::: {.remark}
+
+$\nu$ is a measure follows from MCT.
+
+:::
+
+
+::: {.theorem  name=""}
+
+For any $f\in \mathcal{A}_+$,  $\nu f=\mu(p f)$.
+
+:::
+
+::: {.proof}
+
+Let $L(f)=\mu (pf)$. Check $L$ :
+
+- $f=0\implies L(f)=0$ 
+- Give $f,g\in \mathcal{E_+}$ and $a,b\in \mathbb{R}_+\implies L(af+bg)=\mu (p(af+bg))$ and based on the arithmetic rules on $\mathbb{R}$ and the linearity of $\mu$, $L(af+bg)=aL(f)+bL(g)$ 
+- Give $(f_n)\subset \mathcal{E_+}$ and $f_n \nearrow f$, $L(f_n)=\mu (pf_n)$ and as $f_n \nearrow f$, $pf_n \nearrow pf$ so $\lim L(f_n)=\lim \mu (pf_n)$. According to the monotone converging theorem, $\lim \mu (pf_n)=\mu (pf)=L(f)$ 
+
+So there exists $\hat{\mu}$ s.t. $\mu(pf)=\hat{\mu}f$ and that force $\hat{\mu}=\nu$ as
+$$ 
+\hat{\mu}(A)=L(\bm{\mathbf{1}}_A)=\mu(p \bm{\mathbf{1}}_A)=\nu(A)
+$$
+
+:::
+
+
+::: {.remark}
+
+Writing above result in an explicit notation: 
+$$ 
+\int_E f d\nu=\int_E pf d\mu
+$$
+that is:
+$$ 
+d\nu=pd\mu
+$$
+and it's precisely Fundamental theorem of calculus. Thus we can say:
+
+- $\nu$ is the indefinite integral of $p$ w.r.t. $\mu$ or
+- $p$ is the density of $\nu$ w.r.t. $\mu$.
+
+:::
+
+### Radon-Nikodym theorem
+
+
+::: {.definition  name="absolutely continuous"}
+
+Let $\nu$ and $\mu$ be measures on a measurable space  $(\Omega,\mathcal{A})$. Then $\nu$ is said to be **absolutely continuous** w.r.t. $\mu$ if for any set $A\in \mathcal{E}$, $\mu (A)=0\implies\nu(A)=0$ and denoted by $\nu \ll \mu$.
+
+:::
+
+::: {.theorem  name=""}
+
+If $\nu$ satisfies the conditions $\nu f=\mu(pf)$ for every $f\in \mathcal{E_+}$, then $\nu$ is absolutely continuous with respect to $\mu$.
+
+:::
+ 
+
+::: {.proof}
+
+
+Let $\mu (A)=0$, then we need to prove that  $\mu (p \bm{\mathbf{1}}_{A})=0$: 
+- Let $p$ is a simple function with a cononical form on $E$ with $p=\sum_{i=1}^{n} a_i \bm{\mathbf{1}}_{B_i}$ and as $(B_i)$ is a partition, $(B_i\cap A)$ is a partition of $A$, noted as $(A_i)$. Then 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\int_A pd\mu =\sum_{i=1}^{n} a_i \mu (A_i)
+$$ 
+As $\mu (A)=0$ and $A=\bigcup_{i=1} ^{n}A_i$, $\mu (A)=\sum_{i=1}^{n} \mu (A_i)$, so $\mu (A_i)=0$ for every $i$. So $\mu (p \bm{\mathbf{1}}_{A})=0$.
+- Let $p\in \mathcal{E_+}$, give $(p_n)$ s.t. $p_n \nearrow p$ where $p_n=d_n\circ p$. Then  $p_n \bm{\mathbf{1}}_{A}\nearrow p \bm{\mathbf{1}}_{A}$ and for every $n$, $\mu (p_n \bm{\mathbf{1}}_{A})$ holds. So: 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\mu (\lim p_n \bm{\mathbf{1}}_{A})=\lim \mu (p_n \bm{\mathbf{1}}_{A})=0
+$$
+according to the monotone converging theorem, so $\nu$ is absolutely continuous respect to $\mu$
+
+
+:::
+
+::: {.theorem  name="Radon Nikodym Theorm"}
+
+Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous with repect to $\mu$. Then there exists a positive $\mathcal{E}$-measurable function $p$ s.t. $\nu f=\mu (pf)$ on $E$ for every $f\in \mathcal{E_+}$.  
+Moreover, $p$ is unique above, if there is a $q\in \mathcal{E_+}$, then $q=p$ a.e. 
+
+:::
+
+Notice that Randon Nikodym theorem is the converse of the theorem before it.  
+The proof of the Randon Nikodym theorem is not able to show here now.
+
+
+::: {.definition  name="transition kernal"}
+
+Let  $(E,\mathcal{E})$ and $(F,\mathcal{F})$ be measurable spaces. Let $K$ be a mapping from $E\mathcal{\times F}$ into $\overline{\mathbb{R}}_+$. Then, $K$ is called a transition kernal from $(E,\mathcal{E})$ into $(F,\mathcal{F})$ if:
+- the mapping $x\mapsto K(x,B)$ is $\mathcal{E}$-measurable for every set $B\in \mathcal{F}$ 
+- the mapping $B\mapsto K(x,B)$ is a measure on $(F,\mathcal{F})$ for every $x\in E$
+
+:::
+
+For example, if $\nu$ is a finite measure on $(F,\mathcal{F})$, and $k$ is a positive function on $E\times F$ that is $\mathcal{E\times F}$-measurable, then 
+$$ 
+K(x,B)=\int_B \nu(dy)k(x,y), \qquad x\in E, B\in \mathcal{F}
+$$
+when fix $x\in E$, $K(x,B)=\nu(k(x,y)\bm{\mathbf{1}}_{B})=\mu (B)$ for some $\mu$ which is the measure on $(F,\mathcal{F})$.  
+when fix $B\in \mathcal{F}$, $K(x,B)=f(x)=$
+
+
+
+::: {.theorem  name=""}
+
+Let $K$ be a transition kernal from  $(E,\mathcal{E})$ into $(F,\mathcal{F})$. Then 
+$$ 
+Kf(x)=\int_F K(x,dy)f(y), \qquad x\in E,
+$$
+defines a function  $Kf\in \mathcal{E_+}$ for every $f\in \mathcal{F_+}$. 
+$$ 
+\mu K(B)=\int_E \mu (dx)K(x,B), \qquad B\in \mathcal{F},
+$$
+defines a measure $\mu K$ on $(F,\mathcal{F})$ for each measure  $\mu$ on $(E,\mathcal{E})$.
+and  
+$$ 
+(\mu K)f=\mu (Kf)=\int_E \mu (dx)\int_F K(x,dy)f(y)
+$$
+for every measure $\mu$ on $(E,\mathcal{E})$ and function $f$ in $\mathcal{F_+}$.
+
+:::
+
+::: {.proof}
+
+
+
+:::
+
+::: {.theorem  name=""}
+
+Let $f\in \mathcal{E\times F}$, then $x\mapsto f(x,y)\in \mathcal{E}$ for each  $y\in F$ and $y\mapsto f(x,y)\in \mathcal{F}$ for each $x\in E$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.theorem  name=""}
+
+For every $f\in \mathcal{E_+}$, we have $(\nu\circ h^{-1})f=\nu(f\circ h)$.
+
+:::
+
+::: {.proof}
+
+Let $L:\mathcal{E}_+\to \overline{\R}_+$ by letting $L(f)=\nu(f\circ h)$. Then as the property of $\nu(f\circ h)$, $f$ satisfies the properties of integral characterization theorem. Then, $L(f)=\mu f$ for some unique measure $\mu$ on $(E,\mathcal{E})$. And 
+$$ \mu (B)=L(1_B)=\nu(1_B \circ h)=\nu(h^{-1}B), \qquad B\in \mathcal{E} $$
+
+
+:::
+
+::: {.definition  name="Standard measurable space"}
+
+Let $(E,\mathcal{E})$ and $(F,\mathcal{F})$ be measurable spaces let $f$ be a bijection from $E$ onto $F$, then  $f$ is called an isomorphism of $(E,\mathcal{E})$ and $(F,\mathcal{F})$ iff $f$ is $\mathcal{E}$-measurable and $f^{-1}$ is $\mathcal{F}$-measurable.  
+A measurable space $(E,\mathcal{E})$ is said to be a standard measurable space if it is isomorphic to $(F,\mathcal{B}_F)$ for some Borel set $F$ of $\R$.
+
+:::
+
+::: {.definition  name=""}
+
+Let $\mu$ be a measure on $(E,\mathcal{E})$. It is said to be finite if $\mu (E)\lt \infty$, then $\mu (A)\lt\infty$ for every $A\subset E$.  
+It is called a probability measure if $\mu (E)=1$.  
+It is said to be $\sigma$-finite if there exists a measurable partition $(E_n)$ of $E$ s.t. for each $n$, $\mu (E_n)\lt \infty$.  
+It is said to be $\Sigma$-finite if there exists a sequence of finite measures $(\mu_n)$ s.t. $\mu =\sum_{n}^{} \mu_n$.
+
+:::
+
+::: {.theorem  name=""}
+
+If a measure is $\sigma$-finite then it must be  $\Sigma$-finite.
+
+:::
+
+::: {.proof}
+
+Assume that there is a measure $\mu$ on $(E,\mathcal{E})$ is $\sigma$-finite, where there is a $(E_n)\subset \mathcal{E}$ s.t. $\bigcup_{n} E_n=E$. Then give $(\mu_n)$ s.t. for each $n$, 
+$$ \begin{cases}
+	\mu_n(E_n)=\mu(E_n) \\
+	\mu_n(E-E_n)=0
+\end{cases} $$
+then $\mu_n(E)=\mu_n(E_n)=\mu (E_n)$, so a $\sigma$-finite measure $\mu$ is a $\Sigma$-fnite measure.
+
+:::
+
+Let $(E,\mathcal{E},\mu)$ be a measure space. Let $p$ be a positive $\mathcal{E}$-measurable function. Define: 
+$$ \nu(A)=\mu (p 1_A)=\int_A \mu (dx)p(x),\qquad A\in \mathcal{E}$$
+
+
+::: {.theorem  name=""}
+
+$\nu$ is a measure on $(E,\mathcal{E})$.
+
+:::
+
+::: {.proof}
+
+- Let  $A,B$ be disjoint sets in $E$, then $\mu (p 1_A)+\mu (p 1_B)=\mu (p 1_{A\cup B})$  
+- $\mu (p 1_\varnothing)=0$
+
+:::
+
+::: {.theorem  name=""}
+
+Fix a $p \in \mathcal{E_+}$, and give a measure $\mu$ on $(E,\mathcal{E})$, then there must be a measure $\nu$ satisfying $\nu f=\mu (pf)$ for every $f\in \mathcal{E_+}$.
+
+:::
+
+::: {.proof}
+
+Let $L(f)=\mu (pf)$. Check $L$ :
+- $f=0\implies L(f)=0$ 
+- Give $f,g\in \mathcal{E_+}$ and $a,b\in \mathbb{R}_+\implies L(af+bg)=\mu (p(af+bg))$ and based on the arithmetic rules on $\mathbb{R}$ and the linearity of $\mu$, $L(af+bg)=aL(f)+bL(g)$ 
+- Give $(f_n)\subset \mathcal{E_+}$ and $f_n \nearrow f$, $L(f_n)=\mu (pf_n)$ and as $f_n \nearrow f$, $pf_n \nearrow pf$ so $\lim L(f_n)=\lim \mu (pf_n)$. According to the monotone converging theorem, $\lim \mu (pf_n)=\mu (pf)=L(f)$ 
+
+So there exists a $\nu$ satisfying $\nu f=L(f)=\mu (pf)$.
+
+:::
+
+Written above result in an explicit notation: 
+$$ 
+\int_E \nu(dx)f(x)=\int_E \mu (dx)p(x)f(x)
+$$
+then we can change the $\nu(dx)$ with $\mu (dx)p(x)$ where $x\in E$, $p\in \mathcal{E_+}$.
+
+
+::: {.definition  name="absolutely continuous"}
+
+Let $\nu$ and $\mu$ be measures on a measurable space  $(E,\mathcal{E})$. Then $\nu$ is said to be absolutely continuous respect to $\mu$ if for any set $A\in \mathcal{E}$, $\mu (A)=0\implies\nu(A)=0$.
+
+:::
+
+::: {.theorem  name=""}
+
+If $\nu$ satisfies the conditions $\nu f=\mu(pf)$ for every $f\in \mathcal{E_+}$, then $\nu$ is absolutely continuous with respect to $\mu$.
+
+:::
+ 
+
+::: {.proof}
+
+
+Let $\mu (A)=0$, then we need to prove that  $\mu (p \bm{\mathbf{1}}_{A})=0$: 
+- Let $p$ is a simple function with a cononical form on $E$ with $p=\sum_{i=1}^{n} a_i \bm{\mathbf{1}}_{B_i}$ and as $(B_i)$ is a partition, $(B_i\cap A)$ is a partition of $A$, noted as $(A_i)$. Then 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\int_A pd\mu =\sum_{i=1}^{n} a_i \mu (A_i)
+$$ 
+As $\mu (A)=0$ and $A=\bigcup_{i=1} ^{n}A_i$, $\mu (A)=\sum_{i=1}^{n} \mu (A_i)$, so $\mu (A_i)=0$ for every $i$. So $\mu (p \bm{\mathbf{1}}_{A})=0$.
+- Let $p\in \mathcal{E_+}$, give $(p_n)$ s.t. $p_n \nearrow p$ where $p_n=d_n\circ p$. Then  $p_n \bm{\mathbf{1}}_{A}\nearrow p \bm{\mathbf{1}}_{A}$ and for every $n$, $\mu (p_n \bm{\mathbf{1}}_{A})$ holds. So: 
+$$ 
+\mu (p \bm{\mathbf{1}}_{A})=\mu (\lim p_n \bm{\mathbf{1}}_{A})=\lim \mu (p_n \bm{\mathbf{1}}_{A})=0
+$$
+according to the monotone converging theorem, so $\nu$ is absolutely continuous respect to $\mu$
+
+
+:::
+
+::: {.theorem  name="Radon Nikodym Theorm"}
+
+Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous with repect to $\mu$. Then there exists a positive $\mathcal{E}$-measurable function $p$ s.t. $\nu f=\mu (pf)$ on $E$ for every $f\in \mathcal{E_+}$.  
+Moreover, $p$ is unique above, if there is a $q\in \mathcal{E_+}$, then $q=p$ a.e. 
+
+:::
+
+
+Notice that Randon Nikodym theorem is the converse of the theorem before it.  
+The proof of the Randon Nikodym theorem is not able to show here now.
+
+
+::: {.definition  name="transition kernal"}
+
+Let  $(E,\mathcal{E})$ and $(F,\mathcal{F})$ be measurable spaces. Let $K$ be a mapping from $E\mathcal{\times F}$ into $\overline{\mathbb{R}}_+$. Then, $K$ is called a transition kernal from $(E,\mathcal{E})$ into $(F,\mathcal{F})$ if:
+- the mapping $x\mapsto K(x,B)$ is $\mathcal{E}$-measurable for every set $B\in \mathcal{F}$ 
+- the mapping $B\mapsto K(x,B)$ is a measure on $(F,\mathcal{F})$ for every $x\in E$
+
+:::
+
+For example, if $\nu$ is a finite measure on $(F,\mathcal{F})$, and $k$ is a positive function on $E\times F$ that is $\mathcal{E\times F}$-measurable, then 
+$$ 
+K(x,B)=\int_B \nu(dy)k(x,y), \qquad x\in E, B\in \mathcal{F}
+$$
+when fix $x\in E$, $K(x,B)=\nu(k(x,y)\bm{\mathbf{1}}_{B})=\mu (B)$ for some $\mu$ which is the measure on $(F,\mathcal{F})$.  
+when fix $B\in \mathcal{F}$, $K(x,B)=f(x)=$
+
+
+
+::: {.theorem  name=""}
+
+Let $K$ be a transition kernal from  $(E,\mathcal{E})$ into $(F,\mathcal{F})$. Then 
+$$ 
+Kf(x)=\int_F K(x,dy)f(y), \qquad x\in E,
+$$
+defines a function  $Kf\in \mathcal{E_+}$ for every $f\in \mathcal{F_+}$. 
+$$ 
+\mu K(B)=\int_E \mu (dx)K(x,B), \qquad B\in \mathcal{F},
+$$
+defines a measure $\mu K$ on $(F,\mathcal{F})$ for each measure  $\mu$ on $(E,\mathcal{E})$.
+and  
+$$ 
+(\mu K)f=\mu (Kf)=\int_E \mu (dx)\int_F K(x,dy)f(y)
+$$
+for every measure $\mu$ on $(E,\mathcal{E})$ and function $f$ in $\mathcal{F_+}$.
+
+:::
+
+::: {.proof}
+
+
+
+:::
+
+::: {.theorem  name=""}
+
+Let $f\in \mathcal{E\times F}$, then $x\mapsto f(x,y)\in \mathcal{E}$ for each  $y\in F$ and $y\mapsto f(x,y)\in \mathcal{F}$ for each $x\in E$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
