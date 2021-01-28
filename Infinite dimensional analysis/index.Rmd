@@ -16,3 +16,4 @@ description: "Notes of Infinite dimensional analysis"
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Tau}{T}
