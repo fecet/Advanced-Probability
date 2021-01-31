@@ -13,7 +13,7 @@ A nonempty system of subset of $\Omega$ is an algebra on $\Omega$ if it's
 1. Closed under complement: $A^c \in \mathcal{A} \iff A\in \mathcal{A}$
 2. Closed under finite union: $\cup_i A_i \in \mathcal{A} \impliedby \forall i,  A_i\in\mathcal{A}$
 
-it's an $\sigma$ algebra on $\Omega$ if it's also closed under countable union.
+It's an $\sigma$ algebra on $\Omega$ if it's also closed under countable union.
 
 :::
 
@@ -343,7 +343,7 @@ If $A\in \mathcal{A}$, the indicator function $\bm{\mathbf{1}}_A$ is a r.v. If $
 Any r.v. can be approximated by simple ones:
 
 
-::: {.theorem  name=""}
+::: {.theorem #simple-approx name=""}
 
 $\forall X \in \mathcal{A}$, $\exists 0\le X_1\le X_2 \cdots X_n$ s.t. $X _ { n } ( \omega ) \nearrow X ( \omega )$ everywhere.
 
