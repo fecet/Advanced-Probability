@@ -1,0 +1,201 @@
+
+::: {.definition  name=""}
+
+- A set $X$ is a **vector space** over $\mathbb{K}$ if there exists two mappings: 
+$$ 
+(x,y)\in X\times X\to x+y\in X \\
+(\alpha,x)\in \mathbb{K}\times X\to \alpha x\in X
+$$
+there exists an element of $X$ denoted as $0$ s.t. $x+0=x$ for all $x\in X$, define $(-x)$ is a vector s.t. $x+(-x)=0$.
+- A **subspace** of a vector space $X$ over $\mathbb{K}$ is any subset of $X$ which is also a vector space over $\mathbb{K}$.
+- Let $Y$ and $Z$ be two subspace of $X$ then $X$ is said to be the **direct sum** of $Y,Z$ if any vector $x\in X$ can be written as 
+$$ 
+x=y+z \qquad y\in Y,z\in Z
+$$
+and such a decomposition is unique.
+- A subspace $B$ is called **subspace spanned by a subset $A$** of $X$ consisting of all finite linear combinations of vectors of $A$, i.e., $x\in B$ of the form $x=\sum_{i\in I}^{} \alpha_{i}a_{i}$ where the set $I$ is finite and $\alpha_{i}\in \mathbb{K}$, $a_{i}\in A$, we said that 
+$$ 
+B=\text{span}A
+$$
+- The **Hamel basis** in $X$ is any family $\{e_i\}_{i\in I}$ of vectors $e_{i}\in X$ satisfying:  
+  + First, the family is linearly independent. It means that give any finite subfamily of $\{e_j\}_{j\in J}$ and any scalars $\alpha_j\in \mathbb{K},j\in J$ s.t. $\sum_{j\in J}^{} \alpha_j e_j=0$ then $\alpha_j=0,j\in J$.
+  + Second, $\text{span}\{e_{i}\}_{i\in I}=X$.
+
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $X\neq \{0\}$ be a vector space.  
+- There exists a Hamel base of $X$ 
+- Let $E,F$ be two Hamel bases of $X$. Then $\text{card}E=\text{card}F$.
+
+:::
+
+::: {.definition  name=""}
+
+A vector space $X$ is finite-dimensional if there exists a finite Hamel basis of $X$, and its  **dimension** denoted as $\text{dim}X$.  
+If $E$ is a Hamel base of $X$, then $\text{dim}X=\text{card}E$
+
+:::
+
+::: {.definition  name="norm"}
+
+Let $X$ be a vector space over $\mathbb{K}$. A norm on $X$ is a mapping $\|\cdot \|:X\to \mathbb{R}$ with:
+- $\|x\|\ge 0$ for all $x\in X$ and $\|x\|=0$ iff $x=0$
+- $\|\alpha x\|=\|\alpha\|\|x\|$ for all $\alpha\in \mathbb{K},x\in X$ 
+- $\|x+y\|\le \|x\|+\|y\|$ for all  $x,y\in X$
+
+:::
+
+::: {.definition  name="distance in normed vector space"}
+
+Let $(X,\|\cdot\|)$ be a normed vector space, then the mapping $d:X\times X\to \mathbb{R}$ defined by $d(x,y)=\|x-y\|$ for all $x,y\in X$ is a **distance** on $X$.
+
+:::
+
+::: {.proof}
+
+First we need to show that $\big\lvert\|x\|-\|y\|\big\rvert\le \|x-y\|$.  
+Assume that $\|x\|\ge \|y\|$, then consider $\|x\|=\|x-y+y\|\le \|x-y\|+\|y\|$, so $\|x\|-\|y\|\le \|x-y\|$, as they all non-negative, $\big\lvert\|x\|-\|y\|\big\rvert\le \|x-y\|$ holds.  
+- $d(x,y)=\|x-y\|\ge 0$ 
+- $d(x,y)=0\implies \|x-y\|=0\implies x=y$ 
+- $d(x,y)=\|x-y\|=\|y-x\|=d(y,x)$ 
+- $d(x,y)\le d(x,z)+d(y,z)$, notice that  $\|x-z\|+\|z-y\|\ge \|(x-z)+(z-y)\|=\|x+y\|$, so for any $x,y,z\in X$, $d(x,y)\le d(x,z)+d(y,z)$  
+
+So we find that  $d(x,y)=\|x-y\|$ is truly a metric on $X$, so $(X,d)$ is a metric topological space. It is also called the **norm topology** of $X$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ be a finite-dimensional vector space over $\mathbb{K}$, and let $(e_i)_{i=1}^{n}$ denote a basis of $X$ :
+- For each $p \in [1,\infty]$, the mapping $\|\cdot \|_p$ defined by: 
+$$ 
+x=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_p=\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p} \qquad \text{if } p \in [1,\infty) 
+$$
+
+$$ 
+x=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_{\infty}= \max_{1\le i\le n}\lvert x_{i} \rvert \qquad \text{if }p=\infty
+$$
+is a norm on $X$. 
+- For each $p \in [1,\infty]$, the space $(X,\|\cdot\|_{p})$ is separable.
+
+
+:::
+
+::: {.theorem  name="Holder's and Minkowski's inequalities"}
+
+- Given a $p \in \mathbb{R}$ s.t. $p>1$, let the real number $q$ be defined by: 
+$$ 
+\frac{1}{p}+\frac{1}{q}=1 \qquad \text{hense }q>1
+$$
+and let $(x_{i})_{i=1}^{\infty}$ and $(y_{i})_{i=1}^{\infty}$ be two sequences of scalers satisfying 
+$$ 
+\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\lt \infty \text{  and  } \sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{q}\lt \infty
+$$
+Then the series $\sum_{i=1}^{\infty} \lvert x_{i}y_{i} \rvert$ converges and Holder's inequality holds:
+$$ 
+\sum_{i=1}^{\infty} \lvert x_{i}y_{i} \rvert\le \bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg) ^{1 /p} \bigg(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{q}\bigg) ^{1/q}
+$$
+- Give a real number $p\ge 1$ s.t. 
+$$ 
+\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\lt \infty \text{ and } \sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p}\lt \infty
+$$
+Then $\sum_{i=1}^{\infty} \lvert x_{i}+y_{i} \rvert ^{p}$ converges and Minkowski's inequality holds: 
+$$ 
+\bigg(\sum_{i=1}^{\infty} \lvert x_{i}+y_{i} \rvert ^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p}\bigg) ^{1/p}
+$$
+
+
+:::
+
+::: {.proof}
+
+1. If $p>1$ and $\frac{1}{p}+\frac{1}{q}=1$, then 
+$$ 
+\alpha \beta\le \frac{\alpha ^{p}}{p}+\frac{\beta^{q}}{q}\qquad \text{for all $\alpha>0$, $\beta>0$}
+$$
+To see this, note that the convexity of exponential function implies that 
+$$ 
+e^{\theta r+(1-\theta)s}\le \theta e^{r}+(1-\theta)e^{s}
+$$
+for all $\theta\in (0,1)$ and $r,s \in \mathbb{R}$. Now let $\theta=\frac{1}{p},r=p\text{Log}\alpha,s=q\text{Log}\beta$, the first inequality is proved.  
+
+2. Let $\|x\|_{p}=(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p})^{1 /p}$ and $\|y\|_p=(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p})^{1 /p}$. Let $\alpha=\frac{\lvert x_{i} \rvert}{\|x\|_{p}}$ and $\beta=\frac{\lvert y_{i} \rvert}{\|y\|_p}$. Then as shown above: 
+$$ 
+\frac{\lvert x_{i}y_{i} \rvert}{\|x\|_p \|y\|_q}\le \frac{\lvert x_{i} \rvert ^{p}}{p(\|x\|_p)^{p}}+\frac{\lvert y_{i} \rvert ^{q}}{q(\|y\|_q)^{q}}
+$$
+for each $i\in \mathbb{N},i\ge 1$. Then take sum of above inequality: 
+$$ 
+\sum_{i=1}^{n} \bigg(\frac{\lvert x_{i}y_{i} \rvert}{\|x\|_{p} \|y\|_{q}}\bigg)\le \sum_{i=1}^{n} \bigg(\frac{\lvert x_{i} \rvert ^{p}}{p(\|x\|_{p})^{p}}+\frac{\lvert y_{i} \rvert ^{q}}{q(\|y\|_q)^{q}}\bigg)
+$$
+Notice that the right side of above:
+$$ 
+\|x\|_p=\bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p}\implies \|x\|_p ^{p}=\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}
+$$
+similar of $\|y\|_{q}$, so
+$$ 
+\frac{\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}}{p(\|x\|_p)^{p}}=\frac{\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}}{p(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p})}\le \frac{1}{p}
+$$
+and the same as $\|y\|_q$, so the right side is less than $\frac{1}{p}+\frac{1}{q}=1$, so 
+$$ 
+\sum_{i=1}^{n} \lvert x_{i}y_{i} \rvert\le \|x\|_p \|y\|_q
+$$
+holds for every $n\in \mathbb{N}$ and take the limit $n\to \infty$, the holder's inequality holds.  
+
+3. Notice that $\frac{1}{p}+\frac{1}{q}=1\implies p+q=pq\implies p-1=\frac{p}{q}$.
+$$ 
+\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}=\sum_{i=1}^{n} \lvert x_{i} \rvert(\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p-1}+\sum_{i=1}^{n} \lvert y_{i} \rvert(\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p-1} \\ \le \bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p} \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /q}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1 /p} \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1/q} \\ =\bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /q} \bigg(\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1/p}\bigg)
+$$
+Notice that 
+$$ 
+\bigg(\sum_{i=1}^{n} \lvert x_{i}+y_{i} \rvert^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /p}
+$$
+so the Minkowski's inequality holds.
+
+:::
+
+::: {.proof}
+
+Now we prove that $\|x\|_p$ satisfies the triangle inequality.  
+$$ 
+\|x+y\|_p \le \|x\|_p+\|y\|_p
+$$
+As shown above, when we prove Minkowski's inequality, before letting $n\to \infty$, we find that
+$$ 
+\bigg(\sum_{i=1}^{n} \lvert x_{i}+y_{i} \rvert^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1 /p}
+$$
+which means $\|x+y\|_p \le \|x\|_p +\|y\|_p$ holds.
+
+Then we prove that $\|x\|_\infty$ is a norm.  
+- $\|x\|_\infty=\max_{1\le i\le n}\lvert x_{i} \rvert \ge 0$
+- $\|\alpha x\|_\infty=\max_{1\le i\le n}\lvert \alpha x_{i} \rvert=\lvert \alpha \rvert\|x\|_\infty$ 
+- $\|x+y\|_\infty=\max_{1\le i\le n}\lvert x_{i}+y_{i} \rvert\le \max_{1\le i\le n}\lvert x_{i} \rvert+\max_{1\le i\le n}\lvert y_{i} \rvert \\ =\|x\|_\infty+\|y\|_\infty$
+
+:::
+
+Notice that when $p=2$, $\|x\|_2$ is the Euclidean distance between point $x\in \mathbb{R}^{n}$ and $0$, and the distance generated by $\|x\|_2$, $d(x,y)=\|x-y\|_2$ is the Euclidean distance between $x$ and $y$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
