@@ -393,7 +393,7 @@ Define $L:\mathcal{F}_+ \to \overline{\mathbb{R}}_+=f \mapsto  \mu(Kf)$. Check
     $$
     \begin{aligned}
     L(af+bg)&=\mu(K(af+bg))
-    \\ & \xlongequal{Linearity}\mu(aKf+bKg)
+    \\ & \xlongequal{Linearity}\mu(aKf + bKg)
     \\ &\xlongequal{linearity} a\mu(Kf)+b\mu(Kg)
     \\ &= aL(f)+bL(g)
     \end{aligned}
@@ -457,13 +457,57 @@ $$
     \mu I(A)&=\int_{\Omega} \mu(dx) I(x,A)=\int_A \mu(dx)=\mu(A)
 \end{aligned}
 $$
-and thus $IK=KI=K$. It follows that if $K$ is Markov, so is $K^n$.
+and thus $IK=KI=K$. It follows that if $K$ is Markov, so is $K^n$:
+$$
+\begin{aligned}
+    KK(x,\Omega)&=\int_\Omega K(x,dy) K(y,\Omega)
+    \\ &= \int_\Omega K(x,dy)
+    \\ &= K(x,\Omega)=1
+\end{aligned}
+$$
 
-### Kernels finite and bounded
+### finite and bounded kernels
+
+::: {.definition  name=""}
+
+Let $K$ be a transition kernel from $(E,\mathcal{E})$ into $(F,\mathcal{F})$. In analogy with measures, it's called $\sigma$ finite and finite if $B \mapsto K(x,B)$ is so for each $x \in E$ 
+
+It's called bounded if $x \mapsto K(x,F)$ is bounded and $\sigma$ bounded if there exists  a partition $(F_{n})\subset \mathcal{F}$ s.t. $x \mapsto K(x,F_n)$ is bounded for each $n$. 
+
+It's said to be s-finite if there exists countable finite $(K_{n})$ s.t. $K=\sum_{}^{} K_i$ and s-bounded if those $(K_{n})$ can be bounded.
+
+If $K(x,\mathcal{F})=1$ for all $x$, the kernel is said to be a **transition probability kernel**.
+
+:::
+
+
+::: {.remark}
+
+
+$$
+\begin{matrix} 
+\text{bounded} & \implies & \sigma \text{-bounded} & \implies & s \text{-bounded}\\
+\Downarrow &&\Downarrow&&\Downarrow\\
+\text{finite} & \implies & \sigma \text{-finite} & \implies & s \text{-finite}\\
+\end{matrix}
+$$
+
+
+:::
+
+
 
 ::: {.theorem name=""}
 
 Let $f\in \mathcal{E\times F}$, then $x\mapsto f(x,y)\in \mathcal{E}$ for each $y\in F$ and $y\mapsto f(x,y)\in \mathcal{F}$ for each $x\in E$.
 
 :::
+
+### Functions on product spaces
+
+
+$$
+$$
+
+
 
