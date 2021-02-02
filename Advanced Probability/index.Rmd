@@ -18,3 +18,6 @@ description: "Notes"
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sub}{\subset}
+\newcommand{\subsets}{\subset}
+\newcommand{\exist}{\exists}

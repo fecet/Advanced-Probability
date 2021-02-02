@@ -1,0 +1,130 @@
+# Probability Spaces
+
+## Probability Spaces and Random Variables
+
+::: {.definition  name=""}
+
+Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. The set $\Omega$ is called the **sample space** and whose elements are called **outcomes**. $\mathcal{F}$ is called **history** and whose elements are called **events**.
+
+:::
+
+Note here $\mathbb{P}$ is finite measure, so it's continuous. We collect it's properties below :
+
+
+::: {.proposition  name=""}
+
+For probability measure, which has following properties:
+
+1. $\forall A\in \mathcal{A},\quad 0\le \mathbb{P}(A) \le 1$
+2. $\mathbb{P}(\Omega)=1$
+3. $\mathbb{P} \left( \sum _ { 1 } ^ { \infty } A _ { n } \right) = \sum _ { 1 } ^ { \infty } \mathbb{P} \left( A _ { n } \right)$
+4. $\mathbb{P}(A) \le \mathbb{P}(B) \impliedby A\sub B$
+5. $\mathbb{P}$ is continuous, as well as continuous from above and below.
+
+6.  **Boole's inequality**
+    $$
+    \mathbb{P} \left( \bigcup _ { i = 1 } ^ { \infty } A _ { i } \right) \leq \sum _ { i = 1 } ^ { \infty } \mathbb{P} \left( A _ { i } \right)
+    $$
+
+:::
+
+### Measure-theoretic and probabilistic languages
+
+|    Measure     |   Probability   |
+| :------------: | :-------------: |
+|    Integral    |   Expectation   |
+| Measurable set |      Event      |
+| Measurable function | Random Variable |
+|      a.e.      |      a.s.       |
+
+### Distribution of a r.v.
+
+Let $X$ be a r.v. taking values in some measurable space $(Y,\mathcal{Y})$, then let $\mu$ be the image of $\mathbb{P}$ under $X$, i.e.:
+$$
+\mu(A)=\mathbb{P}(X^{-1}A)=\mathbb{P}\{X \in A\}
+$$
+then $\mu$ is a probability measure on $(Y,\mathcal{Y})$, it's called the **distribution** of $X$. In view of theorem \@ref(thm:measure-agree), it suffices to specify $\mu(A)$ forall $A$ belongs to a $\pi$-system which generates $\mathcal{Y}$. In particular, if $(Y,\mathcal{Y})=(\overline{\mathbb{R}},\mathcal{B})$, it's enough to specify
+$$
+c(x)=\mu[-\infty,x]=\mathbb{P}\{X \le x\}
+$$
+and such $c:\mathbb{R} \to [0,1]$ is called **distribution function(d.f.)** 
+
+
+::: {.remark}
+
+Distribution function is nondecreasing and right continuous.
+
+:::
+
+
+### Joint distributions
+
+Let $X$ and $Y$ taking values in $(E,\mathcal{E})$ and $(F, \mathcal{F})$ respectively then pair $Z=(X,Y)$ is measurable from $\mathcal{F}$ to $\mathcal{E \times F}$.
+
+Recall the product spaces, to specifies distribution $\pi$ of $Z$ is suffices to: 
+$$
+\pi(A\times B)=\mathbb{P}\{X \in A, Y\in B\}
+$$
+thus we have
+$$
+\mu(A)=\mathbb{P}\{x\in A\}=\pi(A\times F)
+$$
+$\mu$ and $\nu$ are called **marginal distributions**
+
+### Independence
+
+Let $X$ and $Y$ taking values in $(E,\mathcal{E})$ and $(F, \mathcal{F})$ with marginal $\mu$ and $\nu$, then they are said **independent** if their joint distribution is the product formed by their marginals:
+$$
+\mathbb{P}\{X\in A,Y\in B\}=\mathbb{P}\{X\in A\}\mathbb{P}\{Y\in B\}
+$$
+A finite collection $\{X_i\}_i^n$ is said to be **independency** if their product distribution has form $\prod_{i=1}^n \mu_i$. An arbitrary collection of r.v. is an independency if every finite subcollection is so.
+
+### Stochastic process and probability laws
+
+::: {.definition  name=""}
+
+Suppose $\{X_t:t\in T\}$ is a collection of r.v. taking values in $(E, \mathcal{E})$. If $T$ can be seen as time, then $(X_{t})_{t\in T}$ is called a **stochastic process** with **state space** $(E,\mathcal{E})$ and **parameter set** $T$.
+
+:::
+
+Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $P \circ X^{-1}$ is called **probability law** of stochastic process $\{X_t:t\in T\}$.
+
+Recall the product $\sigma$ algebra construction, the probability law is determined by:
+$$
+\mathbb{P}\{\bigcap_{i \in I} X_i\in A_i\}
+$$
+where $I\subset T$ is finite.
+
+## Expectation
+
+Suppose $X$ taking values in $\overline{\mathbb{R}}$, then we can talk about it's expectation:
+$$
+\mathbb{E} X=\int_{\Omega} X d\mathbb{P}=\mathbb{P}X 
+$$
+the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathbb{E}X \bm{\mathbf{1}}_H$
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+
+
+
+
+**Bonferroni's inequality**
+$$
+\mathbb{P} \left( \bigcap _ { i = 1 } ^ { n } A _ { i } \right) \geq \sum _ { i = 1 } ^ { n } \mathbb{P} \left( A _ { i } \right) - ( n - 1 )
+$$

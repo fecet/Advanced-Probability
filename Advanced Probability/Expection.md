@@ -209,14 +209,7 @@ and
 $$ E \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } E X_ { n } $$
 
 
-## Measur-theoretic and probabilistic languages
 
-|    Measure     |   Probability   |
-| :------------: | :-------------: |
-|    Integral    |   Expectation   |
-| Measurable set |      Event      |
-| Measurable set | Random Variable |
-|      a.e.      |      a.s.       |
 
 ## Compute expectation
 

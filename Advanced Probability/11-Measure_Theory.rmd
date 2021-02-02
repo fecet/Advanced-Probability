@@ -215,7 +215,7 @@ The same as how we proved composition of continuous function is continuous.
 
 :::
 
-## Random Variable
+### Random Variable
 
 A r.v. $X$ is a measurable function from $(\Omega_1,\mathcal{A})$ to $(\mathbb{R},\mathcal{B})$. It denoted by $X$ is $\mathcal{A}$-measurable or $X \in \mathcal{A}$
 
