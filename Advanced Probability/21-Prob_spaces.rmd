@@ -93,15 +93,193 @@ Recall the product $\sigma$ algebra construction, the probability law is determi
 $$
 \mathbb{P}\{\bigcap_{i \in I} X_i\in A_i\}
 $$
-where $I\subset T$ is finite.
+where $I\subset T$ is finite and $A_i\subset E$
 
 ## Expectation
 
 Suppose $X$ taking values in $\overline{\mathbb{R}}$, then we can talk about it's expectation:
 $$
-\mathbb{E} X=\int_{\Omega} X d\mathbb{P}=\mathbb{P}X 
+\mathbb{E} X=\int_{\Omega} X d\mathbb{P}=\mathbb{P}X
 $$
 the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathbb{E}X \bm{\mathbf{1}}_H$
+
+### Properties of expectation
+
+Suppose $X,Y$ taking values in $\overline{\mathbb{R}}$ and $a,b>0$. The following holds:
+
+(**Absolute integrability**). $\mathbb{E}X$ is finite iff $\mathbb{E}|X|$ is finite.
+
+**(Positivity)** If $X\ge 0$ a.s., then $\mathbb{E}X\ge 0$
+
+**(Monotonicity)** If $X\ge Y$ or either $\mathbb{E}X$ and $\mathbb{E} Y$ is finite then both $\mathbb{E}X$ and $\mathbb{E}Y$ exist and $\mathbb{E}X\ge \mathbb{E}Y$.
+
+**(Linearity)** 
+$$ \mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y $$
+
+**($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
+$$ \mathbb{E} _ { A } X = \sum _ { i = 1 } ^ { \infty } \mathbb{E} _ { A _ { i } } X $$
+
+**(Mean value theorem)** If $a\le X \le b$ a.s., then 
+
+$$ a\mathbb{P}(A)\le \mathbb{E}_AX\le b\mathbb{P}(A) $$
+
+**(Modulus inequality)**: $|\mathbb{E}X|\le \mathbb{E}|X|$
+
+**(Fatou's) inequality** If  $X_n\ge 0$ a.s., then
+$$ \mathbb{E} \left( \liminf _ { n } X _ { n } \right) \leq \liminf _ { n } \mathbb{E} X _ { n } $$
+
+**(Dominated Convergence Theorem)** If $X_n \to X$ a.s., $|X_n|\le Y$ a.s. for all n and $\mathbb{E}Y<\infty$, then
+
+$$ \lim_n \mathbb{E}X_n=\mathbb{E}X=\mathbb{E}\lim_n X_n $$
+
+**(Monotone Convergence Theorem)** If $0\le X_n\nearrow X$, then
+$$ \lim_n \mathbb{E}X_n=\mathbb{E}X=\mathbb{E}\lim_n X_n $$
+
+**(Integration term by term)** If $\sum_{i=1}^\infty \mathbb{E}|X_n|<\infty$, then
+$$ \sum_{i=1}^\infty |X_n|<\infty,\ a.s. $$ 
+
+and
+
+$$ \mathbb{E} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \mathbb{E} X_ { n } $$ 
+
+
+
+::: {.remark  name=""}
+
+1. If $\mathbb{P}(A)=1$, then $\mathbb{E}X=\mathbb{E}_AX$.
+2. If $\mathbb{E}|X|<\infty$, then $|X|<\infty$ a.s., but not vise versa.
+3. If $X=Y$ a.s. and either $\mathbb{E}X$ or $\mathbb{E}Y$ exists, then so is the other and they are equal.
+4. $\forall H\in \mathcal{F},\mathbb{E}X \bm{\mathbf{1}}_H \ge \mathbb{E} Y \bm{\mathbf{1}}_{H}\implies X \ge Y$ a.s. To see this, if there exist a subset $A\subset H$ s.t. $X<Y$ and $\mu(A)>0$ then there is a contradiction with monotonicity in $A$.
+
+:::
+
+### Expectations and integrals
+
+The following relates expectation and integrals w.r.t. distribution.
+
+::: {.theorem #expectation-integral name=""}
+
+Let $X$ be a r.v. taking value in $(E, \mathcal{E})$ then
+$$
+\int f\circ X d\mathbb{P}=\mathbb{E}f\circ X=\mu f=\int fd\mu
+$$
+holds for all $f\in \mathcal{E}$ iff $\mu$ is the distribution of $X$.
+
+:::
+
+
+::: {.proof}
+
+Note $\mu=\mathbb{P}\circ X^{-1}$, then $\impliedby$ follows from theorem \@ref(thm:image-measure). For $\implies$, taking $f=\bm{\mathbf{1}}_{A}$:
+$$
+\mu(A)=\mu \bm{\mathbf{1}}_{A}=\mathbb{E}\bm{\mathbf{1}}_{A}\circ X=\int\bm{\mathbf{1}}_{A}\circ Xd\mathbb{P}
+$$
+that implies $\mu=\mathbb{P}\circ X^{-1}$ and claim follows.
+
+:::
+
+
+::: {.remark}
+
+By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test all $f=\bm{\mathbf{1}}_{A}$ for $A \in \mathcal{E}$ or even $A\in \mathcal{C}$ where $\mathcal{C}$ is a $\pi$ system and generating $\mathcal{E}$.
+
+:::
+
+### Means, variances, Laplace and Fourier transforms.
+
+
+::: {.definition  name=""}
+
+Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\mu$, define
+
+1. rth Moment: $\mathbb{E}X^r$
+2. rth Absolute Moment: $\mathbb{E}|X|^r$
+3. rth Central Moment: $\mathbb{E}(X-\mathbb{E}X)^r$
+4. rth Absolute Central Moment: $\mathbb{E}|X-\mathbb{E}X|^r$
+5. $L^r$ space: $\{X:\mathbb{E}|X|^r<\infty\}$
+
+:::
+
+::: {.definition  name=""}
+
+Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ and its expectation $\hat{\mu}_r=\mathbb{E} e^{-rX}$ also in $[0,1]$. The resulting function $r \mapsto \hat{\mu}_r:\mathbb{R}_+\to [0,1]$ is called **Laplace transform** of the distribution $\mu$, or Laplace transform of $X$ for short.
+
+:::
+
+
+::: {.proposition #characterization-laplace name=""}
+
+Let $X,Y \in \mathcal{F}_+$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathbb{E}e^{-rX}=\mathbb{E}e^{-rY}$
+3. $\mathbb{E} f\circ X=\mathbb{E} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+Suppose that $X$ is real-valued, for $r\in \mathbb{R}$, define:
+$$
+\hat{\mu}_r=\mathbb{E}e^{irX}=\int (\cos rx+i\sin rx) d\mu 
+$$
+the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function** of $X$
+
+
+::: {.proposition #characterization-fourier name=""}
+
+Let $X,Y \in \mathcal{F}$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathbb{E}e^{irX}=\mathbb{E}e^{irY}$
+3. $\mathbb{E} f\circ X=\mathbb{E} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathbb{E} z^{X}$ is called **generating function** and also determined distribution of $X$.
+
+### Moment inequalities
+
+#### Young's inequality
+
+Let $f$ be a continues and strictly increasing function with $f(0)=0$, then we have
+
+$$ a b \leq \int _ { 0 } ^ { a } f ( x ) d x + \int _ { 0 } ^ { b } f ^ { - 1 } ( x ) d x $$
+
+#### Holder's inequality
+
+Suppose that $p,q>1$ satisfy $\frac{1}{p}+\frac{1}{q}=1$, then
+
+$$ E | X Y | \leq \left[ E | X | ^ { p } \right] ^ { 1 / p } \left[ E | Y | ^ { q } \right] ^ { 1 / q } $$
+
+
+#### Cauchy-Schwarz inequality
+
+$$ E | X Y | \leq \sqrt { \left[ E | X | ^ { 2 } \right] \left[ E | Y | ^ { 2 } \right] } $$
+
+#### Lyapunov's inequality
+1. $\forall p\ge 1, E|X|\le E(|X|^p)^{\frac{1}{p}}$
+2. $\forall 0<r\le s<\infty,\left[ E | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ E | Z | ^ { s } \right] ^ { 1 / s }$
+
+#### Minkowski's inequality
+
+$\forall p\ge 1$,
+$$ (E|\sum X_i|^p)^{\frac{1}{p}}\le \sum (E|X_i|^p)^{\frac{1}{p}} $$
+
+#### Jensen's inequality
+
+Let $\psi$ be convex, that is, $\forall \lambda\in (0,1), x,y\in \Reals$:
+$$
+\lambda \psi ( x ) + ( 1 - \lambda ) \psi ( y ) \geq \psi ( \lambda x + ( 1 - \lambda ) y ) $$
+
+Then
+$$ \psi ( E X ) \leq E [ \psi ( X ) ] $$
+
+#### Chebyshev(Markov) inequality
+
+If $g$ is strictly increasing and positive on $\Reals^+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $E(g(X))<\infty$, then $\forall a>0$ 
+$$ P ( | X | \geq a ) \leq \frac { E g ( X ) } { g ( a ) } $$
+
+
+
 
 
 

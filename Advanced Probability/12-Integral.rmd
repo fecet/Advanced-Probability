@@ -89,7 +89,7 @@ $$ \lim \int g_n=\int \lim g_n=\int \liminf f_n\le \liminf \int f_n $$
 
 :::
 
-::: {#DCT .theorem name="Dominated Convergence Theorem"}
+::: {.theorem #DCT name="Dominated Convergence Theorem"}
 
 Suppose $f_n(x)\to f(x) \forall x$, and there exists a nonnegative integrable $g$ s.t. $|f_n(x)|\le g(x)$(then we get $f_n\in L^1$ immediately), then
 
@@ -142,7 +142,13 @@ $$
 $$
 :::
 
+
+::: {.lemma  name=""}
+
 Suppose $f$ is measurable and non-negative and $\int fd\mu=0$. Then $f=0$ a.e.
+
+:::
+
 
 ::: {.proof}
 
@@ -154,7 +160,7 @@ Hence $f=0$ a.e.
 
 :::
 
-::: {.lemma name=""}
+::: {.lemma #zero-ae name=""}
 
 Suppose $f$ is integrable and $\int_A f=0$ for all measurable $A$. Then $f=0$ a.e.
 
@@ -229,7 +235,7 @@ Image inherit finite and s-finite, but not $\sigma$-finite.
 
 :::
 
-::: {#image-measure .theorem name=""}
+::: {.theorem #image-measure name=""}
 
 For every $f\in \mathcal{E}$, we have $(\nu\circ h^{-1})f=\nu(f\circ h)$.
 
@@ -254,6 +260,8 @@ By theorem \@ref(thm:image-measure), we have a convenient tool for creating new 
 Let $(\Omega,\mathcal{A},\mu)$ be a standard measure space where $\mu$ is s-finite and $b=\mu(\Omega)$. Then there exists a measurable mapping $h:([0,b),\mathcal{B}_{[0,b]})\to (\Omega,\mathcal{A})$ s.t. $\mu=\lambda \circ h^{-1}$, where $\lambda$ is the Lebesgue measure on $[0,b)$.
 
 :::
+
+
 
 ::: {.proof}
 
@@ -302,13 +310,13 @@ $$
 ::: {.remark}
 
 Writing above result in an explicit notation: 
-$$ 
+$$
 \int_E f d\nu=\int_E pf d\mu
-$$ 
+$$
 that is: 
-$$ 
+$$
 d\nu=pd\mu
-$$ 
+$$
 and it's precisely Fundamental theorem of calculus. Thus we can say:
 
 -   $\nu$ is the indefinite integral of $p$ w.r.t. $\mu$ or
@@ -318,20 +326,18 @@ and it's precisely Fundamental theorem of calculus. Thus we can say:
 
 ### Radon-Nikodym theorem
 
-::: {.definition name="absolutely continuous"}
+::: {.definition name="Absolutely continuous"}
 
-Let $\nu$ and $\mu$ be measures on a measurable space $(\Omega,\mathcal{A})$. Then $\nu$ is said to be **absolutely continuous** w.r.t. $\mu$ if for any set $A\in \mathcal{E}$, $\mu (A)=0\implies\nu(A)=0$ and denoted by $\nu \ll \mu$.
+Let $\nu$ and $\mu$ be measures on a measurable space $(\Omega,\mathcal{A})$. Then $\nu$ is said to be **absolutely continuous** w.r.t. $\mu$ if for any set $A\in \mathcal{E}$, $\mu(A)=0\implies\nu(A)=0$ and denoted by $\nu \ll \mu$.
 
 :::
 
 Clearly, if $\nu$ is the indefinite integral of some $p \in \mathcal{A}_+$ w.r.t. $\mu$, then it's absolutely continuous w.r.t. $\mu$. And the follows shows that the converse is true.
 
-
-
 ::: {.theorem #radon name="Radon-Nikodym Theorem"}
 
 Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous w.r.t. $\mu$. Then there exists unique(up to a.e.) $p \in \mathcal{A}_+$ s.t. for every $f\in \mathcal{A}_+$:
-$$ 
+$$
 \int_\Omega f d\nu=\int_\Omega f p d\mu
 $$
 
