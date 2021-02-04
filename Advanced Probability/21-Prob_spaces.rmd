@@ -192,10 +192,10 @@ By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test 
 
 Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\mu$, define
 
-1. rth Moment: $\mathbb{E}X^r$
-2. rth Absolute Moment: $\mathbb{E}|X|^r$
-3. rth Central Moment: $\mathbb{E}(X-\mathbb{E}X)^r$
-4. rth Absolute Central Moment: $\mathbb{E}|X-\mathbb{E}X|^r$
+1. $r$th Moment: $\mathbb{E}X^r$
+2. $r$th Absolute Moment: $\mathbb{E}|X|^r$
+3. $r$th Central Moment: $\mathbb{E}(X-\mathbb{E}X)^r$
+4. $r$th Absolute Central Moment: $\mathbb{E}|X-\mathbb{E}X|^r$
 5. $L^r$ space: $\{X:\mathbb{E}|X|^r<\infty\}$
 
 :::
@@ -205,6 +205,19 @@ Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\m
 Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ and its expectation $\hat{\mu}_r=\mathbb{E} e^{-rX}$ also in $[0,1]$. The resulting function $r \mapsto \hat{\mu}_r:\mathbb{R}_+\to [0,1]$ is called **Laplace transform** of the distribution $\mu$, or Laplace transform of $X$ for short.
 
 :::
+
+
+::: {.remark}
+
+1. $r \mapsto \hat{\mu}_r$ is continues and decreasing on $(0,\infty)$ and note $e^{-rX}=e^{-rX}\bm{\mathbf{1}}_{X<\infty}\nearrow \bm{\mathbf{1}}_{X<\infty}$ as $r \searrow 0$, then $\lim_{r \to 0^+}\hat{\mu}_r=\mathbb{P}\{X<\infty\}$
+2.  $\hat{\mu}_r$ is also called **Moment generating function** as
+    $$
+    \lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=(-1)^{n}\mathbb{E}X^{n}
+    $$
+    if $\mathbb{E}X^{n}<\infty$
+
+:::
+
 
 
 ::: {.proposition #characterization-laplace name=""}
@@ -224,9 +237,21 @@ $$
 the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function** of $X$
 
 
+::: {.remark}
+
+Similarly, we have
+$$
+\lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=i^{n}\mathbb{E}X^{n}
+$$
+if $\mathbb{E}X^{n}<\infty$
+
+:::
+
+
+
 ::: {.proposition #characterization-fourier name=""}
 
-Let $X,Y \in \mathcal{F}$, TFAE:
+Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
 
 1. $X$ and $Y$ have the same distribution
 2. $\forall r\in \mathbb{R}_+,\mathbb{E}e^{irX}=\mathbb{E}e^{irY}$
@@ -238,45 +263,200 @@ In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathbb{E
 
 ### Moment inequalities
 
-#### Young's inequality
+
+
+::: {.theorem #young name="Young's inequality"}
 
 Let $f$ be a continues and strictly increasing function with $f(0)=0$, then we have
 
 $$ a b \leq \int _ { 0 } ^ { a } f ( x ) d x + \int _ { 0 } ^ { b } f ^ { - 1 } ( x ) d x $$
 
-#### Holder's inequality
+:::
+
+::: {.theorem #holder name="Holder's inequality"}
 
 Suppose that $p,q>1$ satisfy $\frac{1}{p}+\frac{1}{q}=1$, then
 
-$$ E | X Y | \leq \left[ E | X | ^ { p } \right] ^ { 1 / p } \left[ E | Y | ^ { q } \right] ^ { 1 / q } $$
+$$ \mathbb{E} | X Y | \leq \left[ \mathbb{E} | X | ^ { p } \right] ^ { 1 / p } \left[ \mathbb{E} | Y | ^ { q } \right] ^ { 1 / q } $$
+
+:::
+
+Suppose $r>1$,
+$$
+\|XY\|_r=\left( \mathbb{E}|X^{r}Y^{r}| \right)^{\frac{1}{r}}\le (\mathbb{E}|X^{r}|^{p})^{\frac{1}{pr}} (\mathbb{E}|X^{r}|^{q})^{\frac{1}{qr}}=\|X\|_{rp}\|Y\|_{rq}
+$$
+that implies
+
+::: {.corollary #holder name=""}
+
+Suppose $p,q,r>1$ with $\frac{1}{p}+\frac{1}{q}=\frac{1}{r}$:
+$$
+\|XY\|_r\le \|X\|_p\|Y\|_q
+$$
+
+:::
 
 
-#### Cauchy-Schwarz inequality
+::: {.theorem #cauchy name="Cauchy-Schwarz inequality"}
 
-$$ E | X Y | \leq \sqrt { \left[ E | X | ^ { 2 } \right] \left[ E | Y | ^ { 2 } \right] } $$
+$$ \mathbb{E} | X Y | \leq \sqrt { \left[ \mathbb{E} | X | ^ { 2 } \right] \left[ \mathbb{E} | Y | ^ { 2 } \right] } $$
 
-#### Lyapunov's inequality
-1. $\forall p\ge 1, E|X|\le E(|X|^p)^{\frac{1}{p}}$
-2. $\forall 0<r\le s<\infty,\left[ E | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ E | Z | ^ { s } \right] ^ { 1 / s }$
+:::
 
-#### Minkowski's inequality
+::: {.theorem #lyapunov name="Lyapunov's inequality"}
+
+1. $\forall p\ge 1, \mathbb{E}|X|\le \mathbb{E}(|X|^p)^{\frac{1}{p}}$
+2. $\forall 0<r\le s<\infty,\left[ \mathbb{E} | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ \mathbb{E} | Z | ^ { s } \right] ^ { 1 / s }$
+
+:::
+
+::: {.theorem #minkowski name="Minkowski's inequality"}
 
 $\forall p\ge 1$,
-$$ (E|\sum X_i|^p)^{\frac{1}{p}}\le \sum (E|X_i|^p)^{\frac{1}{p}} $$
+$$ (\mathbb{E}|\sum X_i|^p)^{\frac{1}{p}}\le \sum (\mathbb{E}|X_i|^p)^{\frac{1}{p}} $$
 
-#### Jensen's inequality
+:::
+
+::: {.theorem #jensen name="Jensen's inequality"}
 
 Let $\psi$ be convex, that is, $\forall \lambda\in (0,1), x,y\in \Reals$:
 $$
 \lambda \psi ( x ) + ( 1 - \lambda ) \psi ( y ) \geq \psi ( \lambda x + ( 1 - \lambda ) y ) $$
 
 Then
-$$ \psi ( E X ) \leq E [ \psi ( X ) ] $$
+$$ \psi ( \mathbb{E} X ) \leq \mathbb{E} [ \psi ( X ) ] $$
 
-#### Chebyshev(Markov) inequality
+:::
 
-If $g$ is strictly increasing and positive on $\Reals^+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $E(g(X))<\infty$, then $\forall a>0$ 
-$$ P ( | X | \geq a ) \leq \frac { E g ( X ) } { g ( a ) } $$
+::: {.theorem #Markov name="Chebyshev(Markov) inequality"}
+
+If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathbb{E}(g(X))<\infty$, then $\forall a>0$
+$$
+\mathbb{P} ( | X | \geq a ) \leq \frac { \mathbb{E} g ( X ) } { g ( a ) }
+$$
+
+:::
+
+
+### $L^p$-spaces and uniform integrability
+
+
+::: {.definition  name=""}
+
+Let $X$ be a r.v. taking values in $\mathbb{R}$ with distribution $\mu$. For $p$ in $[1,\infty)$, define
+$$
+\|X\|_p=(\mathbb{E}|X|^{p})^{\frac{1}{p}}
+$$
+and for $p=\infty$, let
+$$
+\|X\|_{\infty}=\inf \{b \in R_+, |X|\le b \text{ a.s.}\}
+$$
+
+:::
+
+Clearly $\|\cdot\|_p$ is a norm for $p\in [1,\infty]$ and
+$$
+0\le \|X\|_p \le \|X\|_q \le \infty
+$$
+provided $1\le p\le q\le \infty$ as corollary \@ref(cor:holder).
+
+### Uniform integrability
+
+::: {.lemma  name=""}
+
+Let $X$ taking values in $\mathbb{R}$, then it's integrable iff
+$$
+\lim_{b \to \infty} \mathbb{E} |X|\bm{\mathbf{1}}_{|X|>b}=0
+$$
+
+:::
+
+::: {.proof}
+
+$\implies$ is follows from theorem \@ref(thm:DCT) as $|X|\bm{\mathbf{1}}_{|X|>b}\searrow 0$. Conversely, taking $b=c\gg 1$ s.t. $\mathbb{E}|X|\bm{\mathbf{1}}_{|X|>c}\le 1$ and then
+$$
+\mathbb{E}|X|\le \mathbb{E}(c+|X|\bm{\mathbf{1}}_{|X|>c})\le c+1<\infty
+$$
+
+:::
+
+::: {.definition  name=""}
+
+A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is said to **uniformly integrable** if
+$$
+k(b)=\sup_{X\in \mathcal{K}} \mathbb{E}|X|\bm{\mathbf{1}}_{|X|>b} \to 0
+$$
+as $b \to \infty$.
+
+:::
+
+::: {.remark}
+
+1. If $\mathcal{K}$ is finite and each of $\mathcal{K}$ is integrable then $\mathcal{K}$ is uniformly integrable.
+2. If $\mathcal{K}$ is dominated by an integrable $Y$ then it's uniformly integrable.
+3.  Uniform integrability implies $L^1$-boundedness: $\mathcal{K}\subset L^1$ and $\sup_{\mathcal{K}} \mathbb{E} |X|<\infty$. That follows from
+    $$
+    \begin{aligned}
+        \mathbb{E}|X|&\le \mathbb{E}\left( b+\mathbb{E}X \bm{\mathbf{1}}_{|X|>b} \right)
+        \\ &=
+        b+\mathbb{E}X \bm{\mathbf{1}}_{|X|>b}
+        \\&\le
+        b+ k(b)
+    \end{aligned}
+    $$
+    holds for each $X\in \mathcal{K}$.
+4. $L^1$ boundedness is not sufficient for uniform integrability.
+5. $L^{p}$ boundedness when $p>1$ implies uniform integrability.
+
+:::
+
+
+::: {.theorem  name=""}
+
+A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is uniformly integrable iff it's $L^{1}$-bounded and $\forall \epsilon >0 ,\exists \delta>0$ s.t. $\forall F\in \mathcal{F}$:
+$$
+\mathbb{P}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathbb{E}_F|X|\le \epsilon
+$$
+
+:::
+
+
+::: {.proof}
+
+We may assume $X\ge 0$ by obvious reason. Note $X \bm{\mathbf{1}}_{F}\le b \bm{\mathbf{1}}_{F}+X \bm{\mathbf{1}}_{X>b}$ for each $F$ and $b$, take expectation:
+$$
+\sup_{X\in \mathcal{K}} \mathbb{E} X \bm{\mathbf{1}}_{F}\le b \mathbb{P}(F)+k(b)
+$$
+then $\implies$ is immediately as $k(b)$ can be arbitrary small.
+
+Conversely, by Markov's inequality \@ref(thm:Markov):
+$$
+\sup_{X\in \mathcal{K}} \mathbb{P}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathbb{E}X=\frac{k(0)}{b}
+$$
+that suggests we may choose $b$ s.t. $\mathbb{P}\{X>b\}$ arbitrary small, and thus $\sup \mathbb{E}_F X$ arbitrary small, taking $H=\{X>b\}$, then we have definition of uniformly integrability exactly.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
