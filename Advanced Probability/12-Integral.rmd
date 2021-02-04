@@ -1,6 +1,6 @@
 ## Integration
 
-Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
+let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
 $$
 \int f ( \omega ) \mu ( d \omega ) = \int f d \mu = \int f 
 $$
@@ -89,7 +89,7 @@ $$ \lim \int g_n=\int \lim g_n=\int \liminf f_n\le \liminf \int f_n $$
 
 :::
 
-::: {#DCT .theorem name="Dominated Convergence Theorem"}
+::: {.theorem #DCT name="Dominated Convergence Theorem"}
 
 Suppose $f_n(x)\to f(x) \forall x$, and there exists a nonnegative integrable $g$ s.t. $|f_n(x)|\le g(x)$(then we get $f_n\in L^1$ immediately), then
 
@@ -142,7 +142,13 @@ $$
 $$
 :::
 
+
+::: {.lemma  name=""}
+
 Suppose $f$ is measurable and non-negative and $\int fd\mu=0$. Then $f=0$ a.e.
+
+:::
+
 
 ::: {.proof}
 
@@ -154,7 +160,7 @@ Hence $f=0$ a.e.
 
 :::
 
-::: {.lemma name=""}
+::: {.lemma #zero-ae name=""}
 
 Suppose $f$ is integrable and $\int_A f=0$ for all measurable $A$. Then $f=0$ a.e.
 
@@ -229,7 +235,7 @@ Image inherit finite and s-finite, but not $\sigma$-finite.
 
 :::
 
-::: {#image-measure .theorem name=""}
+::: {.theorem #image-measure name=""}
 
 For every $f\in \mathcal{E}$, we have $(\nu\circ h^{-1})f=\nu(f\circ h)$.
 
@@ -254,6 +260,8 @@ By theorem \@ref(thm:image-measure), we have a convenient tool for creating new 
 Let $(\Omega,\mathcal{A},\mu)$ be a standard measure space where $\mu$ is s-finite and $b=\mu(\Omega)$. Then there exists a measurable mapping $h:([0,b),\mathcal{B}_{[0,b]})\to (\Omega,\mathcal{A})$ s.t. $\mu=\lambda \circ h^{-1}$, where $\lambda$ is the Lebesgue measure on $[0,b)$.
 
 :::
+
+
 
 ::: {.proof}
 
@@ -302,13 +310,13 @@ $$
 ::: {.remark}
 
 Writing above result in an explicit notation: 
-$$ 
+$$
 \int_E f d\nu=\int_E pf d\mu
-$$ 
+$$
 that is: 
-$$ 
+$$
 d\nu=pd\mu
-$$ 
+$$
 and it's precisely Fundamental theorem of calculus. Thus we can say:
 
 -   $\nu$ is the indefinite integral of $p$ w.r.t. $\mu$ or
@@ -318,21 +326,19 @@ and it's precisely Fundamental theorem of calculus. Thus we can say:
 
 ### Radon-Nikodym theorem
 
-::: {.definition name="absolutely continuous"}
+::: {.definition name="Absolutely continuous"}
 
-Let $\nu$ and $\mu$ be measures on a measurable space $(\Omega,\mathcal{A})$. Then $\nu$ is said to be **absolutely continuous** w.r.t. $\mu$ if for any set $A\in \mathcal{E}$, $\mu (A)=0\implies\nu(A)=0$ and denoted by $\nu \ll \mu$.
+Let $\nu$ and $\mu$ be measures on a measurable space $(\Omega,\mathcal{A})$. Then $\nu$ is said to be **absolutely continuous** w.r.t. $\mu$ if for any set $A\in \mathcal{E}$, $\mu(A)=0\implies\nu(A)=0$ and denoted by $\nu \ll \mu$.
 
 :::
 
 Clearly, if $\nu$ is the indefinite integral of some $p \in \mathcal{A}_+$ w.r.t. $\mu$, then it's absolutely continuous w.r.t. $\mu$. And the follows shows that the converse is true.
 
-
-
 ::: {.theorem #radon name="Radon-Nikodym Theorem"}
 
 Suppose that $\mu$ is $\sigma$-finite and $\nu$ is absolutely continuous w.r.t. $\mu$. Then there exists unique(up to a.e.) $p \in \mathcal{A}_+$ s.t. for every $f\in \mathcal{A}_+$:
-$$ 
-\int_\Omega f d\nu=\int_\Omega pf d\mu
+$$
+\int_\Omega f d\nu=\int_\Omega f p d\mu
 $$
 
 :::
@@ -364,7 +370,7 @@ when fix $B\in \mathcal{F}$, $f(x)=K(x,B)$ is measurable follows from theorem \@
 ### Measure-kernel-function
 
 
-::: {.theorem name=""}
+::: {.theorem #kernel-op name=""}
 
 Let $K$ be a transition kernel from $(E,\mathcal{E})$ into $(F,\mathcal{F})$. Then
 $$
@@ -496,18 +502,151 @@ $$
 :::
 
 
+### Functions on product spaces
 
-::: {.theorem name=""}
+Sections of a measurable function are measurable:
 
-Let $f\in \mathcal{E\times F}$, then $x\mapsto f(x,y)\in \mathcal{E}$ for each $y\in F$ and $y\mapsto f(x,y)\in \mathcal{F}$ for each $x\in E$.
+
+::: {.proposition #selection-measurable name=""}
+
+Let $f \in  \mathcal{X \times Y}$, then it's selection, $x \mapsto f(x,y)$ and $y \mapsto f(x,y)$ are measurable for each $x$ and $y$.
 
 :::
 
-### Functions on product spaces
+Then we can generalize theorem \@ref(thm:kernel-op) to functions on product spaces:
 
 
+::: {.lemma #generalize-kernel-op name=""}
+
+Let $K$ be a s-finite kernel from $(X,\mathcal{X})$ into $(X,\mathcal{Y})$, then, $\forall f \in \left( \mathcal{X\times Y} \right)_+$, define
 $$
+Tf(x)=\int_F f(x,y) K(x,dy) \in \mathcal{X}_+
 $$
+moreover, $T:(\mathcal{X \times Y}) \to \mathcal{X}_+$ is linear and continuous from below:
+
+- $T(af+bg)=aTf+bTg$ for $f,g \in (\mathcal{X \times Y})_+$ and $a,b \in \mathbb{R}_+$
+- If $(f_n)\subset \mathcal{X\times Y} \nearrow f$, then $Tf_n \nearrow Tf$.
+
+
+:::
+
+
+::: {.proof}
+
+By proposition \@ref(prp:selection-measurable), $f_x: y \mapsto f(x,y)$ is measurable in $\mathcal{F}_+$ and thus $Tf(x)=Kf_x(x)$, hence
+
+-   Linearity:
+    $$
+    \begin{aligned}
+        T(af+bg)(x) &= K(af_x+bg_x)(x)
+        \\ &= aKf_x(x)+bKg_x(x)
+        \\ &= aTf(x)+bTg(x)
+        \\ &= (aTf+bTg)(x)
+    \end{aligned}
+    $$
+-   Continuity from below 
+    $$
+    f_n \nearrow f \implies K{f_n}_x(x)\nearrow Kf_x(x)\implies Tf_n(x) \nearrow Tf(x)
+    $$
+
+Then it's remain to show $Tf \in \mathcal{X}_+$, assume $K$ is bounded, suppose 
+$$
+\mathcal{M}=\{f\in \left( \mathcal{X \times Y} \right)_+ \cup  \left( \mathcal{X \times Y} \right)_b: Tf \in \mathcal{X}\}
+$$
+it's easy to check it's a monotone class and include all indicator of measurable rectangle $A\times B$. By theorem \@ref(thm:MCT-function), we have $\mathcal{M}=\left( \mathcal{X \times Y} \right)_+ \cup  \left( \mathcal{X \times Y} \right)_b$.
+
+
+:::
+
+### Measures on the product space
+
+::: {.theorem #product-measure-construction name=""}
+
+Let $\mu$ be a measure on $(X,\mathcal{X})$ and $K$ be a s-finite kernel from $(X,\mathcal{X})$ to $(Y,\mathcal{Y})$, then for any $f\in (\mathcal{X\times Y})_+$
+$$
+\pi f=\int_{X}  \int_{Y} f(x,y) K(x,dy) d\mu 
+$$
+define a measure $\pi$ on the product space. Moreover, if $\mu$ if $\sigma$-finite and $K$ is $\sigma$ bounded, then $\pi$ is $\sigma$ finite and unique that satisfying:
+$$
+\pi(A\times B)=\int_{A} K(x,B) d\mu
+$$
+
+:::
+
+
+::: {.proof}
+
+To see $\pi f$ define a measure, check theorem \@ref(thm:characterization-integral), which follows from $\pi f=\mu(Tf)$ and similar properties enjoyed by $T$ from lemma \@ref(lem:generalize-kernel-op).
+
+And the unique follows from theorem \@ref(thm:measure-agree) by noting that all measurable rectangles is a $\pi$-system.
+
+:::
+
+### Product measures and Fubini
+
+::: {.definition #label name=""}
+
+If $K(x,B)=\nu(B)$, i.e., independent to $x$, for some s-finite measure $\nu$ on $(Y,\mathcal{Y})$, then such $\pi$ is called **product** of $\mu$ and $\nu$.
+
+:::
+
+
+::: {.theorem #fubini name="Fubini's theorem"}
+
+Let $\mu$ and $\nu$ be s-finite measures on $(X,\mathcal{X})$ and $(F,\mathcal{F})$, respectively. 
+
+-   There exists a unique s-finite measure $\pi$ on $(X\times Y,\mathcal{X \times Y})$ s.t. $\forall f \in (X \times Y)_+$: 
+    $$
+    \pi f= \int_{X} \int_{Y} f(x,y) d\nu d\mu=\int_{Y}\int_{X} f(x,y) d\mu d\nu   
+    $$
+-   If $f\in \mathcal{X \times Y}$ and $\pi f < \infty$, then $y \mapsto f(x,y)$ is $\nu$ integrable $\mu$ a.e. for every $y$, $x \mapsto f(x,y)$ is $\mu$ integrable $\nu$ a.e. for every $x$.
+
+:::
+
+
+::: {.remark}
+
+For $A\in \mathcal{X}$ and $B \in \mathcal{Y}$, we have
+$$
+\begin{aligned}
+    \pi(A\times B)&=\pi \bm{\mathbf{1}}_{A\times B}
+    \\ &= 
+    \int_{X} \int_{Y} \bm{\mathbf{1}}_{A\times B}(x,y) d\nu d\mu
+    \\ &= 
+    \int_{X} \int_{Y} \bm{\mathbf{1}}_{A}(x) \bm{\mathbf{1}}_B(y) d\nu d\mu
+    \\ &= \mu(A)\nu(B)
+\end{aligned}
+$$
+and this is the reason we call $\pi$ the product and write $\pi=\mu \times \nu$.
+
+:::
+
+
+::: {.remark}
+
+By theorem \@ref(thm:product-measure-construction), only if both $\mu$ and $\nu$ are $\sigma$-finite the $\pi$ is the unique product
+
+:::
+
+### Finite products
+
+Now we can extend previous results to finitely many spaces' product. Similarly to product topology, $\prod_{i \in I} \mathcal{A_i}$ is generated by all measurable rectangles $\prod_{i \in I} A_i$ where $I$ is finite.
+
+Let $(\mu_{n})$ be s-finite measures, their product measure is defined by analogy with theorem \@ref(thm:fubini), $\forall f\in \prod_{i \in I} \mathcal{A_i}$,
+$$
+\pi f=\int_{} \dots \int_{} f d\mu_n \dots d\mu_1 
+$$
+
+### Infinite products
+
+Similar again with product topology, $\prod_{i \in I} \mathcal{A_i}$ is generated by all measurable rectangles $\prod_{i \in I} A_i$ where $A_i=\Omega_i$ with finite exception. In analogy with topology product, we have:
+
+
+::: {.proposition #factor-measurable name=""}
+
+Suppose there is $f_i:(X,\mathcal{F})\to (\Omega_i,\mathcal{A_i})$ for $i \in I$ and define $f(x)=(f_i(x))_{i \in I}$, then $f$ is measurable iff each $f_i$ is measurable.
+
+:::
 
 
 

@@ -13,6 +13,7 @@
 
 .history/
 .vscode/
+assets/
 .Rproj.user
 .RData
 .Rhistory

@@ -147,7 +147,10 @@ $$ \sigma(X_{1:})= \sigma(\cup_{i=1}^\infty\sigma(X_i))$$
 
 $$ \sigma(\mathcal{A})=\sigma(\cup_{n=1}^\infty \sigma(X_{1:n})) $$
 
-Note that $$\sigma(X_{1:n})\sub \sigma(X_{1:n+1})\sub \cdots\sub \sigma(X_{1:})$$
+Note that 
+$$
+\sigma(X_{1:n})\sub \sigma(X_{1:n+1})\sub \cdots\sub \sigma(X_{1:})
+$$
 
 hence $\sigma(\mathcal{A})=\sigma(X_{1:})$
 Then we have
