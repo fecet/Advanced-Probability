@@ -1,0 +1,200 @@
+### Background Knowledge
+
+::: {.definition  name=""}
+
+-   A set $A\subset X$ is called  **dense** in $X$ if $\overline{A}=X$ 
+-   A set $A\subset X$ is called **co-dense** in  $X$ if $X-A$ is dense
+-   A set $A\subset X$ is called **nowhere dense** if $\overline{A}$ is co-dense
+-   A set $A\subset X$ is called **dense in itself** if $A\subset A^{d}$ where $A^{d}$ denotes the set of accumulation point of  $A$.
+
+:::
+
+::: {.proposition  name=""}
+
+If $A$ is dense in $X$, then for every open $U\subset X$, $\overline{U}=\overline{U\cap A}$.
+
+:::
+
+::: {.proof}
+
+Give $x\in \overline{U}$, then every neighborhood $W\in \mathcal{N_x}$ s.t. $W\cap U$ is open and nonempty, and as  $\overline{A}=X$, so every open subset of $X$ intersects $A$, so $W\cap U\cap A\neq \varnothing$, so  $W\cap (U\cap A)\neq \varnothing$ for every $W\in \mathcal{N_x}$, so $x\in \overline{U\cap A}$.
+
+:::
+
+
+::: {.definition  name="density"}
+
+The **density of a space $X$** is defined as $\inf\{\mathop{\text{card}}A:A\mathop{\text{ is a dense set of }}X\}$, denoted as $d(X)$.  
+
+:::
+
+::: {.theorem  name=""}
+
+For every topological space $X$, we have $d(X)\le w(X)$, where $w(X)=\inf\{\mathop{\text{card}}\mathcal{B}:\mathcal{B}\mathop{\text{ is the topology base of }}X\}$.
+
+:::
+
+::: {.proof}
+
+Let $\mathcal{B}=\{U_s\}_{s \in S}$ be the topology base of $X$ consisting of non-empty set s.t. $\mathop{\text{card}}S=w(X)$. Then we choose for every $s \in S$, a point $a_s \in U_s$, so $A=\{a_s:s \in S\}$ is dense in $X$, since $\mathop{\text{card}}A\le \mathop{\text{card}}S$, so $d(X)\le w(X)$.  
+From this theorem, we immediately get the result: Every second-countable space is separable.
+
+:::
+
+::: {.definition  name="$G_\delta$ and $F_\sigma$"}
+
+A set which is called a $G_\delta$ set if it is a countable intersection of open sets.
+
+A set which is called a $F_\sigma$ set if it is a countable unions of closed sets.
+
+:::
+
+::: {.theorem  name=""}
+
+If a sequence $(f_{i})$ where $f_{i}:X\to \mathbb{R}$, is uniformly convergent to a real-valued function $f$, then  $f:X\to \mathbb{R}$ is continuous.
+
+:::
+
+::: {.proof}
+
+We should show that for every  $x_0\in X$, for any $\epsilon\gt 0$, there is a neighborhood $U\in \mathcal{N_x}$ s.t. $\lvert f(x)-f(x_0) \rvert\lt \epsilon$ for any $x\in U$.  
+As the uniform convergence, take some $k$ s.t. 
+$$ 
+\lvert f(x)-f_{i}(x) \rvert \lt \epsilon /3
+$$
+for every $x\in X$ and $i \ge k$.  
+As $f_k$ is continuous, so there exists a neighborhood of  $x$,  $U$, s.t. 
+$$ 
+\lvert f_k(x)-f_k(x_0) \rvert \lt \epsilon /3
+$$
+for every $x\in U$. Then we show that $\lvert f(x)-f(x_0) \rvert\lt \epsilon$ for all $x\in U$.
+$$ 
+\begin{aligned}
+    \lvert f(x)-f(x_0) \rvert &\le\lvert f(x_0)-f_k(x_0) \rvert+\lvert f_k(x_0)-f_k(x) \rvert+\lvert f_k(x)-f(x) \rvert \\ 
+    &\lt \epsilon / 3 +\epsilon /3+\epsilon /3 \\
+    &=\epsilon
+\end{aligned}
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+If there exists a continuous mapping $f:X\to Y$ onto $Y$, then $d(Y)\le d(X)$
+
+:::
+
+::: {.proof}
+
+Take a dense subset  $A \subset X$ s.t. $\overline{A}=X$, then $Y=f(X)=f(\overline{A})\subset \overline{f(A)}$, so $Y=\overline{f(A)}$, which means $f(A)$ is dense in $Y$. Notice that $f(x)$ is only onto $Y$ not one-to-one, so $\mathop{\text{card}}f(A)\le \mathop{\text{card}}A=d(X)$, which means $d(Y)\le d(X)$.
+
+:::
+
+::: {.corollary  name=""}
+
+A continuous image of a separable space is separable.
+
+:::
+
+::: {.definition  name=""}
+
+A continuous function $f:X\to Y$ is called open if every open subset  $A\subset X$, the image $f(A)$ is open in $Y$, similar as closed.  
+Functions which are both closed and open is called the closed-and-open mappings.
+
+:::
+
+Some prp of the weak topology and open(closed) mapping are going to supplement in future.
+
+
+#### Axioms of separation
+-   $T_0$ space: every pair of distinct point $x_1,x_2\in X$, there exists an open set containing exactly one of these points.
+-   $T_1$ space: every pair of distinct point $x_1,x_2\in X$, there exists an open set $U\subset X$ s.t. $x_1\in U,x_2 \notin U$
+-   $T_2$ space: Hausdorff space
+-   $T_3$ space: Regular space, which means $X$ is a $T_1$ space and for every $x\in X$ and every closed set $F\subset X$ s.t. $x \notin F$ there exists open sets $U_1,U_2$ s.t. $x\in U_1,F\subset U_2$ and $U_1\cap U_2=\varnothing$.
+-   $T_{3.5}$ space: Tychonoff space, completely regular space. $X$ is a $T_1$ space and for every $x\in X$ and every closed subset $F\subset X$ s.t. $x\notin F$ there exists a continuous function $f:X\to [0,1]$ s.t. $f(x)=0$ and $f(y)=1$ for some $y\in F$. Notice that every $T_{3.5}$ space is a regular space.
+-   $T_4$ space: Normal space.
+
+::: {.theorem  name=""}
+
+For every  $T_{0}$ space, we have $\mathop{\text{card}}X \le 2^{w(X)}$.
+
+:::
+
+::: {.proof}
+
+Let $\mathcal{B}$ be a base of $X$, s.t. $\mathop{\text{card}}\mathcal{B}=w(X)$ and for every $x\in X$ define $\mathcal{B}(x)=\{U\in \mathcal{B}:x\in U\}$, notice that for a $T_{0}$ space, $\mathcal{B(x)\neq B(y)}$ if $x\neq y$, as $\mathcal{B(x)}\subset \mathcal{B}$ for every $x\in X$, so the number of $\mathcal{B(x)}=\mathop{\text{card}}X$ where is smaller than $\mathop{\text{card}}2^{\mathcal{B}}$, so $\mathop{\text{card}}X\le 2^{w(X)}$ holds.
+
+:::
+
+::: {.proposition  name=""}
+
+-   Every $T_{1}$ space is $T_{0}$ space.
+-   $X$ is a $T_{1}$ space iff every point $x\in X$ is the intersection of all its neighborhood. This implies that in a first-countable $T_{1}$ space a singleton is a $G_\delta$ set.
+-   $X$ is a $T_{1}$ space iff for every $x\in X$, $\{x\}$ is closed.
+
+:::
+
+::: {.proof}
+
+We only prove the second result.  
+Notice that for every $x\in X$, and every $x_{i}\neq x,i\in I$ s.t. $\{x_{i}:i\in I\}=X-\{x\}$, there is an open set $U_{i}$ related to $x_{i}$ which means $x\in U_{i}$ and $x_{i}\notin U_{i}$. Then consider the intersection $\bigcap_{i \in  I} U_{i}=\{x\}$, $\implies$ is proved.  
+Consider the inverse, if $\{x_1\}=\bigcap_{i \in  I} U_{i}(x_1)$, then we can surely find a $i\in I$ s.t. for any $x_2\in X$ is given, $x_2\notin U_{i}$ to make sure that the intersection only has one point.
+
+:::
+
+::: {.theorem  name=""}
+
+For every Hausdorff space $X$, we have 
+$$ 
+\mathop{\text{card}}X \le 2^{2^{d(X)}}
+$$
+and $\mathop{\text{card}}X \le d(X)^{\chi(X)}$
+
+:::
+
+
+#### Subspace
+::: {.proposition  name=""}
+
+Let $X$ be a topological space and $M$ a subspace of $X$.
+-   The set $A\subset M$ is closed in $M$ iff $A=M\cap F$ where $F$ is closed in $X$.
+-   The closure $\tilde A\subset M$ in the space $M$ has the property: $\tilde A=\overline{A}\cap M$ where  $\overline{A}$ is the closure of $A$ in $X$.
+
+:::
+
+we say that a subspace $M\subset X$ is a closed subspace of $X$ if $M$ is closed in $X$. Then $A\subset M$ is closed iff $A$ is closed in $X$ and $\tilde A=\overline{A}$.
+
+::: {.definition  name="embedding"}
+
+For every $(X,\tau_{})$, and any subspace $M\subset X$, a function $i_M(x)=x$ defines a mapping from $M$ to $X$, since $i^{-1}_M(U)=M\cap U$ for any open $U$ in $X$. So $i_M$ is continuous which is called the embeddings of $M$.  
+For a continuous mapping $f:X\to Y$ and a subspace $M\subset X$, the composition $fi_M:M\to Y$ is also a continuous mapping which is called the **restriction** of $f$ to $M$ and denoted by $f\mid_M$.  
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
