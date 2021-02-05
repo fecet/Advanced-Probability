@@ -433,7 +433,7 @@ Let $(E,\mathcal{E}),(F,\mathcal{F})$ be two measurable spaces and $f$ is a bije
 
 ::: {.definition name=""}
 
-A measurable space $(\Omega,\mathcal{A})$ is said to be *standard* if it there exist an embedding $f: (\Omega,\mathcal{A}) \hookrightarrow (\mathbb{R},\mathcal{B})$.
+A measurable space $(\Omega,\mathcal{A})$ is said to be *standard* if there exist an embedding $f: (\Omega,\mathcal{A}) \hookrightarrow (\mathbb{R},\mathcal{B})$.
 
 :::
 

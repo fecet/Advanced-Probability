@@ -27,7 +27,13 @@ $f=x \mapsto 5x$ & $f(x)=5x$\\
 
 $f:X \hookrightarrow Y$ & $f$ is an embedding from $X$ to $Y$.\\
 
+$f(x)=O(g(x))   \iff g(x)=\Omega(f(x))$ & $f$ is bounded above by $g$ asymptotically \\& $\limsup_{x \to \infty} \frac{f(x)}{g(x)}<\infty$. \\
 
+$f(x)=\Theta (g(x))$ & $f$ is bounded by $g$ \\& asymptotically both above and below .  \\
+
+$f(x)=o(g(x)) \iff g(x)=\omega(f(x))$ & $f$ is dominated by $g$ asymptotically, i.e.,\\& $\lim_{x \to \infty} \frac{|f(x)|}{g(x)}=0$.  \\
+
+$f(x) \sim g(x)$ & $f$ is equal to $g$ asymptotically i.e. \\& $\lim_{x \to \infty} \frac{f(x)}{g(x)}=1$. \\
 
 
 
