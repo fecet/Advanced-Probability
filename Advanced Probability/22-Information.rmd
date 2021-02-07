@@ -58,6 +58,15 @@ Suppose $(X_t)_{t\in T}$ is family of r.v. then $V:\Omega \to \overline{\mathbb{
 
 :::
 
+
+::: {.definition  name=""}
+
+Suppose $X$ and $Y$ are r.v., then we say $X$ **determines** $Y$ if $Y=f \circ X$ for some measurable $f$. $\sigma X$ is called **information** as it contains all determined variables w.r.t. $X$.
+
+:::
+
+
+
 ### Filtrations
 
 
@@ -86,16 +95,160 @@ Let $\mathcal{M}_b\subset \mathcal{F}_{\infty}$ be collection of bounded variabl
 :::
 
 
+## Independence
+
+Suppose $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ be a probability space and let $(\mathcal{F}_i)_{i \in I}$ be a finite family sub-$\sigma$-algebra of $\mathcal{A}$, then $\{\mathcal{F}_i: i \in I\}$ is called **independency** if
+$$
+\mathop{{}\mathbb{E}} \prod_{i\in I} V_n = \prod_{i\in I} \mathop{{}\mathbb{E}} V_i
+$$
+for all positive $V_i \in \mathcal{F}_i$ respectively.
+
+If $I$ is arbitrary, then $\{\mathcal{F}_t:t \in I\}$ is independency if every finite subset of it is so.
+
+### Independence of $\sigma$-algebras
 
 
+::: {.lemma #test-independency name=""}
+
+Suppose $(\mathcal{F})_{i \in S}$ be a finite family of sub-$\sigma$-algebras, let $\mathcal{C}_i$ be a $\pi$-system that generates $\mathcal{F}_i$ respectively, then $\{\mathcal{F}_i:i \in I\}$ are independent iff:
+$$
+\mathop{{}\mathbb{P}}(\bigcap_{i \in  I}A_i)=\prod_{i \in I} \mathop{{}\mathbb{P}}(A_i)
+$$
+for any $A_i \in \mathcal{C_i}\cup \{\Omega\}$ respectively.
+
+:::
 
 
+::: {.proof}
+
+$\implies$ is immediately by taking $V_i=\bm{\mathbf{1}}_{A_i}$. For $\impliedby$, clearly the equality holds for all $A_i \in \mathcal{F_i}$ respectively in view of theorem \@ref(thm:measure-agree). It follows that indicator r.v. are independent and we can extend to general $V_i$ by theorem \@ref(thm:simple-approx) and theorem \@ref(thm:MCT).
+
+:::
+
+### Independence of collection
+
+::: {.proposition #independency-partition  name=""}
+
+Every partition of independency is an independency: let $\{\mathcal{F_t}:t \in T\}$ be an independency and $(T_i)_1^{\infty}$ be a partition of $T$ then $\{\mathcal{F}_{T_i}\}_i^{\infty}$ is an independency.
+
+:::
 
 
+::: {.proof}
+
+Let $\mathcal{C_i}$ be all events having the form $\bigcap_{S} A_s$ where $A_s \in \bigcup_{t \in T_i} \mathcal{F_t}$, then they are $\pi$-systems contains $\Omega$ and generates $\mathcal{F}_{T_i}$. Then $\{\mathcal{F}_{T_i}: 1\le i\}$ is an independency follows from lemma \@ref(lem:test-independency) and $\{\mathcal{F_t}:t\in T\}$ is an independency.
+
+:::
 
 
+A collection of objects are said to be pairwise independent if every pair of them is an independency. Though it's weaker than mutually independent, we can check independency by respected checking pairwise independency.
 
 
+::: {.lemma  name=""}
+
+Countable collection of sub-$\sigma$-algebras $\{\mathcal{F_i}\}_1^\infty$ are independent iff $\mathcal{F_{\{1\le i\le n\}}}$ and $\mathcal{F}_{n+1}$ are independent for all $n \ge 1$.
+
+:::
+
+
+::: {.proof}
+
+$\implies$ is immediate from \@ref(prp:independency-partition). For $\impliedby$, let $\mathcal{G_n}=\sigma(\bigcup_{i}^{n }\mathcal{F_i})$ and $A_i\in \mathcal{F_i}$ respectively for $1\le i\le m$ note:
+$$
+\bigcap_{1}^{m-1} A_i \in \mathcal{G_{m-1}}
+$$
+thus we can repeat apply lemma \@ref(lem:test-independency) and finally get what we need for apply lemma \@ref(lem:test-independency).
+
+:::
+
+### Independence of r.v.'s
+
+
+::: {.lemma name=""}
+
+The r.v.'s $X_1,\dots,X_n$ are independent iff
+$$
+\mathop{{}\mathbb{E}} \prod_{i=1} ^{\infty} f_i \circ X_i=\prod_{i=1} ^{\infty} \mathop{{}\mathbb{E}}f_i \circ X_i
+$$
+for all $f_i \in \mathcal{E_i}$ respectively.
+
+:::
+
+
+::: {.proof}
+
+Clearly from $f\circ X \in \sigma X$
+
+:::
+
+Let $\pi$ be joint distribution of $X_1,\dots,X_n$ and let $\mu_1,\dots,\mu_n$ be corresponding marginals. Then the equality becomes
+$$
+\int_{\prod_{i=1}^{n} E_i} \prod_{i=1}^{n} f_i(x_i) d\pi=\prod_{i=1} ^{n} \int_{E_i} f_i(x_i) d\mu_i
+$$
+and that suggests $\pi=\prod_{i=1} ^{n} \mu_i$.
+
+
+::: {.proposition  name=""}
+
+The random variables $X_1,\dots,X_n$ are independent iff their joint distribution is the product of their marginal distributions.
+
+:::
+
+In view of determined variables are in $\sigma X$, we have
+
+::: {.proposition  name=""}
+
+Measurable functions of independent r.v.'s are independent.
+
+:::
+
+### Sum of independent r.v.'s
+
+Let real valued r.v.'s $X$ and $Y$ with distribution $\mu$ and $\nu$ are independent. The distribution of $X+Y$ denoted as $\mu * \nu$ and given by
+$$
+(\mu * \nu) f=\mathop{{}\mathbb{E}}f(X+Y)=\iint f(x+y) d\nu d\mu
+$$
+This distribution $\mu * \nu$ is called **convolution** and can be extend to any number of distributions easily.
+
+### Kolmogorov's $0$-$1$ law
+
+Let $(\mathcal{G_n})$ be a sequence of sub-$\sigma$-algebras. We may treat $\mathcal{G_n}$ as the information revealed by the $n$th trial of an experiment. Then $\mathcal{J_n}=\sigma(\bigcup_{m>n}\mathcal{G_m})$ is information after $n$ and $\mathcal{J}=\bigcap_{n}\mathcal{J_n}$ is that about **remote future** and called **tail-$\sigma$-algebra**.
+The sets of which are called **tail events**, and functions on which are **tail functions**
+
+
+::: {.theorem #kolmogorov-0-1 name="Kolmogorov's 0-1 law"}
+
+Tail events of independent $(\mathcal{G_i})_{1}^{\infty}$ have probability $0$ or $1$.
+
+:::
+
+
+::: {.proof}
+
+By proposition \@ref(prp:independency-partition), $\{\mathcal{G_i}\}_{1}^{n}\cup \{\mathcal{J_n}\}$ is independency for each $n$ which implies so is $\{\mathcal{G_i}\}_{1}^{n}\cup \{\mathcal{J}\}$ as $\mathcal{J}\subset \mathcal{J_n}$ and thus so is $\{\mathcal{G_i}\}_{1}^{\infty}\cup \{\mathcal{J}\}$ by definition, that implies $\left\{ \mathcal{J},\mathcal{J_0} \right\}$ is an independency by proposition \@ref(prp:independency-partition) again and so is $\left\{ \mathcal{J,J} \right\}$ by noting $\mathcal{J}\subset \mathcal{J_0}$. Finally, for any event $A\in \mathcal{J}$, we have:
+$$
+\mathop{{}\mathbb{P}}(A\cap A)=\mathop{{}\mathbb{P}}(A)^2\implies \mathop{{}\mathbb{P}}(A)=0 \text{ or } 1
+$$
+as lemma \@ref(lem:test-independency).
+
+:::
+
+
+::: {.corollary  name=""}
+
+Tail function of independent r.v.'s are degenerate a.s.
+
+:::
+
+
+::: {.proof}
+
+
+Note that $Y\le c$ is tail events.
+
+:::
+
+By above corollary, we can see that $\limsup_n X_n$ and $\liminf_n X_n$ are degenerate a.s.
 
 
 

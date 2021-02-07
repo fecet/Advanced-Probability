@@ -46,7 +46,7 @@ $$ a\mu(A)\le \int _Af\le b\mu(A) $$
 
 ### Monotone Convergence Theorem
 
-::: {#MCT .theorem name="Monotone Convergence Theorem"}
+::: {.theorem #MCT name="Monotone Convergence Theorem"}
 
 Suppose nonnegative $f_n\nearrow f$ a.e., then $\int f_n d\mu \nearrow \int f d\mu$.
 
@@ -69,7 +69,7 @@ hence $L\ge c\int s\implies L\ge \int s\implies L= \lim L\ge \lim \int s_n=\int 
 
 :::
 
-::: {#fatou .lemma name="Fatou's Lemma"}
+::: {.lemma #fatou name="Fatou's Lemma"}
 
 If $f_n\ge 0$ a.e. then 
 

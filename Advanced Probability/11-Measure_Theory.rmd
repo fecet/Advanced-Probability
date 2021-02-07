@@ -106,7 +106,7 @@ Similarly, let $\mathcal{A}$ be a $\pi$ class, then $\lambda(\mathcal{A})=\sigma
 Then we have **Monotone class theorem**:
 
 
-::: {.theorem  name=""}
+::: {.theorem #MCT-set name=""}
 
 $\forall \mathcal{A} \subset  \mathcal{B} \subset  \mathcal{P}(\Omega),s.t.$:
 
@@ -410,7 +410,7 @@ If $\mathcal{M}$'s monotonicity condition only holds when $f$ is bounded, then w
 
 ::: {.definition  name=""}
 
-Let $(E,\mathcal{E}),(F,\mathcal{F})$ be two measurable spaces and $f$ is a bijection $E\to F$. Then $f$ is said to be a isomorphism of $(E,\mathcal{E})$ and  $(F,\mathcal{F})$ if $f$ is $\mathcal{E}$-measurable and $f^{-1}$ is $\mathcal{F}$-measurable. These two spaces are called isomorphic if there exists an isomorphisms between them.  
+Let $(E,\mathcal{E}),(F,\mathcal{F})$ be two measurable spaces and $f$ is a bijection $E\to F$. Then $f$ is said to be a isomorphism of $(E,\mathcal{E})$ and  $(F,\mathcal{F})$ if $f$ is $\mathcal{E}$-measurable and $f^{-1}$ is $\mathcal{F}$-measurable. These two spaces are called isomorphic if there exists an isomorphisms between them.
 
 :::
 
