@@ -79,7 +79,7 @@ A filtration is a filter with a total inclusion order where elements are all $\s
 Our aim is to approximate eternal variables by known r.v.:
 
 
-::: {.theorem #approximate-infty-rv name=""}
+::: {.theorem #approx-bounded-rv name=""}
 
 Let $\mathcal{F}=\{\mathcal{F_n:n \in \mathbb{N}}\}$ be a filtration and $\mathcal{F}_\infty=\sigma(\bigcup_{t \in T}\mathcal{F}_{t})=\bigcup_{t \in T}\mathcal{F}_t$. For bounded $V\in \mathcal{F}_\infty$ there are sequence of bounded $V_n \in \mathcal{F}_n,n \in \mathbb{N}$, s.t.:
 $$
@@ -212,8 +212,14 @@ This distribution $\mu * \nu$ is called **convolution** and can be extend to any
 
 ### Kolmogorov's $0$-$1$ law
 
+
+::: {.definition  name=""}
+
 Let $(\mathcal{G_n})$ be a sequence of sub-$\sigma$-algebras. We may treat $\mathcal{G_n}$ as the information revealed by the $n$th trial of an experiment. Then $\mathcal{J_n}=\sigma(\bigcup_{m>n}\mathcal{G_m})$ is information after $n$ and $\mathcal{J}=\bigcap_{n}\mathcal{J_n}$ is that about **remote future** and called **tail-$\sigma$-algebra**.
-The sets of which are called **tail events**, and functions on which are **tail functions**
+
+The sets of which are called **tail events**, and functions on which are **tail functions**.
+
+:::
 
 
 ::: {.theorem #kolmogorov-0-1 name="Kolmogorov's 0-1 law"}
@@ -250,10 +256,66 @@ Note that $Y\le c$ is tail events.
 
 By above corollary, we can see that $\limsup_n X_n$ and $\liminf_n X_n$ are degenerate a.s.
 
+### Hewitt-Savage $0$-$1$ law
 
 
+::: {.definition  name=""}
+
+A **finite permutation** of $\mathbb{N}$ is a map $\pi:\mathbb{N}\to \mathbb{N}$ s.t. $\pi(n)=n$ for all but finite exception. For such permutation $\pi$, we write
+$$
+X \circ \pi = \{X_{\pi(i)}:i \in \mathbb{N}\}
+$$
+for countable $X=(X_1,X_2,\dots)$. Variable is said to be permutation invariant if $V\circ \pi=V$ for any $\pi$ and event is said to be so if its indicator is such.
+
+:::
+
+The collection of all permutation invariant events is a $\sigma$-algebra which contains the tail-$\sigma$-algebra of $X$. 
+
+The following theorem generalized kolmogorov 0-1 law \@ref(thm:kolmogorov-0-1) in i.i.d. cases.
 
 
+::: {.theorem #hawitt-savage name="Hewitt-Savage 0-1 law"}
 
+Suppose $(X_i)_{i \in \mathbb{N}}$ are i.i.d., then every permutation invariant event has probability $0$ or $1$ and every permutation invariant r.v. is degenerate a.s..
+
+:::
+
+
+::: {.proof}
+
+It's sufficient to show that if $V:\Omega \to [0,1]$ is permutation invariant in $\mathcal{F}_\infty$, then $\mathop{\text{Var}}\left[ V \right]=\mathop{{}\mathbb{E}}V^2-(\mathop{{}\mathbb{E}}V)^2=0$. For such $V$, there exist $\{V_n:n \in \mathbb{N}\}$ and also bounded in $[0,1]$ by theorem \@ref(thm:approx-bounded-rv) s.t.:
+$$
+\lim_{n \to \infty} \mathop{{}\mathbb{E}}|V-V_n|=\lim_{n \to \infty}\mathop{{}\mathbb{E}}V_n-\mathop{{}\mathbb{E}}V=0
+$$
+As $(X_i)_{i \in \mathbb{N}}$ are i.i.d. $V$ and $V \circ \pi$ share the same distribution and thus same expectation:
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}|V-V_n|&=\mathop{{}\mathbb{E}}|(V-V_n)\circ \pi|
+    \\ &= 
+    \mathop{{}\mathbb{E}}|V\circ p-V_n \circ \pi|
+    \\ &= 
+    \mathop{{}\mathbb{E}}|V-V_n \circ \pi|
+\end{aligned}
+$$
+Note we can taking $\pi$ s.t. $V$ and $V_n \circ \pi$ are independent when $n$ is fixed, then
+$$
+\mathop{{}\mathbb{E}}V_n \cdot V_n \circ p=(\mathop{{}\mathbb{E}} V_n)^2
+$$
+which in turn show that
+$$
+\begin{aligned}
+    |\mathop{{}\mathbb{E}}V^2-(\mathop{{}\mathbb{E}}V_n)^2|&=|\mathop{{}\mathbb{E}}(V^2-V_n \cdot V_n \circ \pi)|
+    \\ & \le 
+    \mathop{{}\mathbb{E}}|V^2-V_n \cdot V_n\circ \pi|
+    \\ & \le 
+    2 \mathop{{}\mathbb{E}} |V-V_n|\to 0
+\end{aligned}
+$$
+where the final step followed by noting:
+$$
+|V^2-V_n \cdot V_n \circ \pi|=|(V-V_n)V+(V-V_n \circ \pi)V_n|\le |V-V_n|+|V-V_n \circ \pi|
+$$
+
+:::
 
 
