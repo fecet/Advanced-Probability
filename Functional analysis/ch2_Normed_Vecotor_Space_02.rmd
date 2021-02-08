@@ -1,0 +1,91 @@
+#### More about $L^p(\Omega)$ 
+
+::: {.definition  name="Locally integrable"}
+
+Let $\Omega$ be a open subset s.t. $\Omega\subset \mathbb{R}^{n}$.  
+A function $f:\Omega\to [-\infty,\infty]$ is said to be locally integrable if $f$ is measurable and the restriction $f\mid _K$ of $f$ on any compact subset $K\subset \Omega$ belongs to $\mathcal{L}^{1}(K)$.  
+
+As the usual method, we construct a quotient set 
+$$ 
+L^p_{loc}(\Omega)=\mathcal{L}^{p}_{loc}(\Omega)/\mathcal{R}
+$$
+where $\mathcal{R}$ is the a.e. equivalence.
+
+:::
+
+Note that in this chapter we change the notations of norm. For example, a $L^p(\Omega)$ norm of $f$ is noted as 
+$$ 
+\|f\|_{L^p(\Omega)}=\bigg(\int_\Omega \lvert f \rvert^{p}\bigg)^{1 /p}
+$$
+Usually we use the Lebesgue measure $\mu$ and if so we don't show it in the integral.
+
+Notice that every $f\in L^p(\Omega),p \in [1,\infty]$ is locally integrable in $\Omega$ since for any compact $K\subset \Omega$ :
+$$ 
+\int_K \lvert f(x) \rvert \le \|f\|_{L^1(\Omega)}\lt \infty
+$$
+and as Holder's inequality:
+$$ 
+\begin{aligned}
+    \int_K \lvert f \rvert &\le \bigg(\int_K\bigg)^{1 /q} \bigg(\int_K \lvert f \rvert^{p}\bigg)^{1 /p} \\
+    &\le \bigg(\int_K\bigg)^{1 /q} \|f\|_{L^p(\Omega)} \\
+    &\lt \infty
+\end{aligned}
+$$
+with $\frac{1}{p}+\frac{1}{q}=1$.
+
+::: {.definition  name="family of mollifiers"}
+
+A **family of mollifies** in $\mathbb{R}^{n}$ is a family $(\omega_\epsilon)_{\epsilon\gt 0}$ of functions $\omega_\epsilon:\mathbb{R}^{n}\to \mathbb{R}$ of the form
+$$ 
+\omega_\epsilon(x)=\frac{1}{\epsilon^{n}}\omega\bigg(\frac{x}{\epsilon}\bigg), \qquad x\in \mathbb{R}^{n}
+$$
+where $\omega:\mathbb{R}^{n}\to \mathbb{R}$ is any functions with following properties:
+$$ 
+\begin{aligned}
+    \omega\in \mathcal{C}^{\infty}(\mathbb{R}^{n}) ,\ \omega(x)\ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega\subset \overline{B_0(1)} & \mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega =1
+\end{aligned}
+$$
+Hence for each $\epsilon\gt 0$,
+$$ 
+\begin{aligned}
+    \omega_\epsilon\in \mathcal{C}^{\infty}(\mathbb{R}^{n}),\ \omega_\epsilon \ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega_\epsilon\subset \overline{B_0(\epsilon)} &\mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega_\epsilon=1
+\end{aligned}
+$$
+:::
+
+::: {.definition  name="regularizing family of $f$"}
+
+Let $\Omega$ be a open subset of $\mathbb{R}^{n}$. Give a function $f\in L^1_{loc}(\Omega)$ and a family $\left( \omega_\epsilon \right)_{\epsilon\gt 0}$ of mollifiers, define the set $\Omega_\epsilon$ and $f_\epsilon:\Omega_\epsilon\to \mathbb{R}$ :
+
+$$ 
+\begin{aligned}
+    \Omega_\epsilon &= \left\{ x\in \Omega; \mathop{\text{dist}}\left( x,\mathbb{R}^{n}-\Omega \right)\gt \epsilon \right\} \\
+    f_\epsilon\left( x \right)&= \int_\Omega \omega_\epsilon\left( x-y \right)f\left( y \right)dy \qquad \mathop{\text{for all }}x\in \Omega_\epsilon
+\end{aligned}
+$$
+Then the family $\left( f_\epsilon \right)_{\epsilon\gt 0}$ is called a regularizing family of $f$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

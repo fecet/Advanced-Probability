@@ -107,12 +107,14 @@ Some prp of the weak topology and open(closed) mapping are going to supplement i
 
 
 #### Axioms of separation
+
 -   $T_0$ space: every pair of distinct point $x_1,x_2\in X$, there exists an open set containing exactly one of these points.
 -   $T_1$ space: every pair of distinct point $x_1,x_2\in X$, there exists an open set $U\subset X$ s.t. $x_1\in U,x_2 \notin U$
 -   $T_2$ space: Hausdorff space
 -   $T_3$ space: Regular space, which means $X$ is a $T_1$ space and for every $x\in X$ and every closed set $F\subset X$ s.t. $x \notin F$ there exists open sets $U_1,U_2$ s.t. $x\in U_1,F\subset U_2$ and $U_1\cap U_2=\varnothing$.
 -   $T_{3.5}$ space: Tychonoff space, completely regular space. $X$ is a $T_1$ space and for every $x\in X$ and every closed subset $F\subset X$ s.t. $x\notin F$ there exists a continuous function $f:X\to [0,1]$ s.t. $f(x)=0$ and $f(y)=1$ for some $y\in F$. Notice that every $T_{3.5}$ space is a regular space.
 -   $T_4$ space: Normal space.
+
 
 ::: {.theorem  name=""}
 
@@ -152,11 +154,32 @@ and $\mathop{\text{card}}X \le d(X)^{\chi(X)}$
 
 :::
 
+::: {.theorem  name=""}
+
+For any pair $f,g$ of continuous mappings of a space $X$ into a Hausdorff space $Y$, the set $\left\{ x\in X:f\left(x\right)=g\left(x\right) \right\}$ is closed in $X$.
+
+:::
+
+::: {.proof}
+
+We shall see that $A=\left\{ x\in X:f\left(x\right)\neq g\left(x\right) \right\}$ is open.
+
+Notice that if $f\left(x\right)\neq g\left(x\right)$ then there exists $U_1,U_2$ s.t. $U_1\cap U_2=\varnothing$ with $f\left(x\right)\in U_1,g\left(x\right)\in U_2$. For every $x\in A$, as $U_1\cap U_2=\varnothing$ so $f^{-1}\left(U_1\right)\subset A$, same as $g^{-1}\left(U_2\right)$. Note that $x\in f^{-1}\left(U_1\right)\cap g ^{-1}\left(U_2\right)=U_x\subset A$ is open. Then $A=\bigcup_{x\in A} U_x$ is open.
+
+:::
+
+::: {.theorem  name=""}
+
+A $T_{1}$ space is a regular space iff for every $x\in X$ and every neighborhood $V\in \mathcal{N_x}$ in a fixed subbase $\mathcal{P}$ there exists a neighborhood $U$ of $x$ s.t. $\overline{U}\subset V$.
+
+:::
+
 
 #### Subspace
 ::: {.proposition  name=""}
 
 Let $X$ be a topological space and $M$ a subspace of $X$.
+
 -   The set $A\subset M$ is closed in $M$ iff $A=M\cap F$ where $F$ is closed in $X$.
 -   The closure $\tilde A\subset M$ in the space $M$ has the property: $\tilde A=\overline{A}\cap M$ where  $\overline{A}$ is the closure of $A$ in $X$.
 

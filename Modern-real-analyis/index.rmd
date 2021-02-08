@@ -1,0 +1,19 @@
+---
+title: "Notes of GTM278"
+author: Zhang Songxin
+institute: SUSTech
+date: "2021.2.8"
+bibliography: references.bib
+output:
+  bookdown::pdf_book:
+    includes:
+      in_header: preamble.tex
+site: bookdown::bookdown_site
+
+---
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Tau}{T}

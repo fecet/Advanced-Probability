@@ -1,0 +1,59 @@
+
+::: {.definition  name="Group"}
+
+A group is a set $G$ with a binary low of composition
+$$ 
+\mu :G\times G\to G
+$$
+denoting as $\mu \left(x,y\right)=xy$.
+
+-   $\left(xy\right)z=x\left(yz\right)$
+-   There exists an element $e$ called the identity s.t. $xe=ex=x$ 
+-   To each $x\in G$ there is an element $x^{-1}$ s.t. $x x^{-1}=x^{-1}x=e$
+
+:::
+
+Let $G$ and $H$ be two groups, then a mapping $\phi:G\to H$ is called a homomorphism if
+$$ 
+\phi\left(xy\right)=\phi x\phi y \qquad x,y\in G
+$$
+
+A group is called commutative or abelian if for each $x,y\in G$, $xy=yx$.
+
+
+::: {.definition  name="field"}
+
+A field is a set $K$ on which two binary lows of composition s.t. 
+
+-   $K$ is a commutative group with respect to addition.
+-   The set $K-\left\{ 0 \right\}$ is a commutative group with respect to multiplication.
+-   Addition and multiplication are connected by the distributive low,
+    $$ 
+    \left(\alpha+\beta\right)\gamma=\alpha\gamma+\beta\gamma
+    $$
+    
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

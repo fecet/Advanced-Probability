@@ -1,3 +1,26 @@
+---
+title: 
+author:
+  - Xie zejian
+bibliography: references.bib
+output:
+  bookdown::pdf_document2:
+    includes:
+      in_header: preamble.tex
+---
+
+```{=latex}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sub}{\subset}
+\newcommand{\subsets}{\subset}
+\newcommand{\exist}{\exists}
+```
 
 ::: {.definition  name=""}
 
@@ -83,9 +106,8 @@ Let $X$ be a finite-dimensional vector space over $\mathbb{K}$, and let $(e_i)_{
     For each $p \in [1,\infty]$, the mapping $\|\cdot \|_p$ defined by: 
     $$ 
     \begin{aligned}
-        x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_p=\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p} \qquad &&\text{if } p \in [1,\infty) 
-    \\ x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_{\infty}= \max_{1\le i\le n}\lvert x_{i} \rvert &&\text{if }p=\infty
-
+        x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_p=\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p} \qquad &&\text{if } p \in [1,\infty) \\
+        x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_{\infty}= \max_{1\le i\le n}\lvert x_{i} \rvert &&\text{if }p=\infty
     \end{aligned}
     $$
     is a norm on $X$. 
