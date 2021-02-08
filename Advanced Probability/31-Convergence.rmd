@@ -1,0 +1,26 @@
+# Convergence
+
+## Cauchy criterion
+
+Following are useful for determining convergence.
+
+
+::: {.proposition #cauchy name=""}
+
+Sequence $(x_n)$ converges iff
+$$
+\lim_{m,n \to \infty} |x_m-x_n|=0
+$$
+
+:::
+
+
+::: {.proposition  name=""}
+
+IF there exists a positive sequence $(\epsilon_n)$ s.t.
+$$
+\sum_{n}^{} \epsilon_n <\infty
+$$
+
+:::
+

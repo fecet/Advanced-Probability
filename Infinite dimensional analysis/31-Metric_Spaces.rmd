@@ -1,3 +1,4 @@
+# Metric space
 
 ::: {.definition  name="metric/distance"}
 

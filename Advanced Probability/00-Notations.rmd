@@ -35,7 +35,7 @@ $f(x)=o(g(x)) \iff g(x)=\omega(f(x))$ & $f$ is dominated by $g$ asymptotically, 
 
 $f(x) \sim g(x)$ & $f$ is equal to $g$ asymptotically i.e. \\& $\lim_{x \to \infty} \frac{f(x)}{g(x)}=1$. \\
 
-
+$i_{\epsilon}$ & $\bm{\mathbf{1}}_{(\epsilon,\infty)}$\\
 
 
 

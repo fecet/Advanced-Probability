@@ -258,7 +258,6 @@ By above corollary, we can see that $\limsup_n X_n$ and $\liminf_n X_n$ are dege
 
 ### Hewitt-Savage $0$-$1$ law
 
-
 ::: {.definition  name=""}
 
 A **finite permutation** of $\mathbb{N}$ is a map $\pi:\mathbb{N}\to \mathbb{N}$ s.t. $\pi(n)=n$ for all but finite exception. For such permutation $\pi$, we write
@@ -292,14 +291,14 @@ $$
 \begin{aligned}
     \mathop{{}\mathbb{E}}|V-V_n|&=\mathop{{}\mathbb{E}}|(V-V_n)\circ \pi|
     \\ &= 
-    \mathop{{}\mathbb{E}}|V\circ p-V_n \circ \pi|
+    \mathop{{}\mathbb{E}}|V\circ \pi-V_n \circ \pi|
     \\ &= 
     \mathop{{}\mathbb{E}}|V-V_n \circ \pi|
 \end{aligned}
 $$
 Note we can taking $\pi$ s.t. $V$ and $V_n \circ \pi$ are independent when $n$ is fixed, then
 $$
-\mathop{{}\mathbb{E}}V_n \cdot V_n \circ p=(\mathop{{}\mathbb{E}} V_n)^2
+\mathop{{}\mathbb{E}}V_n \cdot V_n \circ \pi=(\mathop{{}\mathbb{E}} V_n)^2
 $$
 which in turn show that
 $$

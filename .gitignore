@@ -27,3 +27,5 @@ Advanced Probability/Probability_and_Stochastics.Rmd
 Infinite-dimensional-analysis_files
 _bookdown_files
 Infinite dimensional analysis/Infinite dimensional analysis.Rmd
+*.Rproj
+*.Rproj
