@@ -4,26 +4,26 @@
 
 ::: {.definition  name=""}
 
-Let $(\Omega,\mathcal{F},\mathbb{P})$ be a probability space. The set $\Omega$ is called the **sample space** and whose elements are called **outcomes**. $\mathcal{F}$ is called **history** and whose elements are called **events**.
+Let $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ be a probability space. The set $\Omega$ is called the **sample space** and whose elements are called **outcomes**. $\mathcal{F}$ is called **history** and whose elements are called **events**.
 
 :::
 
-Note here $\mathbb{P}$ is finite measure, so it's continuous. We collect it's properties below :
+Note here $\mathop{{}\mathbb{P}}$ is finite measure, so it's continuous. We collect it's properties below :
 
 
 ::: {.proposition  name=""}
 
 For probability measure, which has following properties:
 
-1. $\forall A\in \mathcal{A},\quad 0\le \mathbb{P}(A) \le 1$
-2. $\mathbb{P}(\Omega)=1$
-3. $\mathbb{P} \left( \sum _ { 1 } ^ { \infty } A _ { n } \right) = \sum _ { 1 } ^ { \infty } \mathbb{P} \left( A _ { n } \right)$
-4. $\mathbb{P}(A) \le \mathbb{P}(B) \impliedby A\sub B$
-5. $\mathbb{P}$ is continuous, as well as continuous from above and below.
+1. $\forall A\in \mathcal{A},\quad 0\le \mathop{{}\mathbb{P}}(A) \le 1$
+2. $\mathop{{}\mathbb{P}}(\Omega)=1$
+3. $\mathop{{}\mathbb{P}} \left( \sum _ { 1 } ^ { \infty } A _ { n } \right) = \sum _ { 1 } ^ { \infty } \mathop{{}\mathbb{P}} \left( A _ { n } \right)$
+4. $\mathop{{}\mathbb{P}}(A) \le \mathop{{}\mathbb{P}}(B) \impliedby A\sub B$
+5. $\mathop{{}\mathbb{P}}$ is continuous, as well as continuous from above and below.
 
 6.  **Boole's inequality**
     $$
-    \mathbb{P} \left( \bigcup _ { i = 1 } ^ { \infty } A _ { i } \right) \leq \sum _ { i = 1 } ^ { \infty } \mathbb{P} \left( A _ { i } \right)
+    \mathop{{}\mathbb{P}} \left( \bigcup _ { i = 1 } ^ { \infty } A _ { i } \right) \leq \sum _ { i = 1 } ^ { \infty } \mathop{{}\mathbb{P}} \left( A _ { i } \right)
     $$
 
 :::
@@ -39,13 +39,13 @@ For probability measure, which has following properties:
 
 ### Distribution of a r.v.
 
-Let $X$ be a r.v. taking values in some measurable space $(Y,\mathcal{Y})$, then let $\mu$ be the image of $\mathbb{P}$ under $X$, i.e.:
+Let $X$ be a r.v. taking values in some measurable space $(Y,\mathcal{Y})$, then let $\mu$ be the image of $\mathop{{}\mathbb{P}}$ under $X$, i.e.:
 $$
-\mu(A)=\mathbb{P}(X^{-1}A)=\mathbb{P}\{X \in A\}
+\mu(A)=\mathop{{}\mathbb{P}}(X^{-1}A)=\mathop{{}\mathbb{P}}\{X \in A\}
 $$
 then $\mu$ is a probability measure on $(Y,\mathcal{Y})$, it's called the **distribution** of $X$. In view of theorem \@ref(thm:measure-agree), it suffices to specify $\mu(A)$ forall $A$ belongs to a $\pi$-system which generates $\mathcal{Y}$. In particular, if $(Y,\mathcal{Y})=(\overline{\mathbb{R}},\mathcal{B})$, it's enough to specify
 $$
-c(x)=\mu[-\infty,x]=\mathbb{P}\{X \le x\}
+c(x)=\mu[-\infty,x]=\mathop{{}\mathbb{P}}\{X \le x\}
 $$
 and such $c:\mathbb{R} \to [0,1]$ is called **distribution function(d.f.)** 
 
@@ -63,11 +63,11 @@ Let $X$ and $Y$ taking values in $(E,\mathcal{E})$ and $(F, \mathcal{F})$ respec
 
 Recall the product spaces, to specifies distribution $\pi$ of $Z$ is suffices to: 
 $$
-\pi(A\times B)=\mathbb{P}\{X \in A, Y\in B\}
+\pi(A\times B)=\mathop{{}\mathbb{P}}\{X \in A, Y\in B\}
 $$
 thus we have
 $$
-\mu(A)=\mathbb{P}\{x\in A\}=\pi(A\times F)
+\mu(A)=\mathop{{}\mathbb{P}}\{x\in A\}=\pi(A\times F)
 $$
 $\mu$ and $\nu$ are called **marginal distributions**
 
@@ -75,7 +75,7 @@ $\mu$ and $\nu$ are called **marginal distributions**
 
 Let $X$ and $Y$ taking values in $(E,\mathcal{E})$ and $(F, \mathcal{F})$ with marginal $\mu$ and $\nu$, then they are said **independent** if their joint distribution is the product formed by their marginals:
 $$
-\mathbb{P}\{X\in A,Y\in B\}=\mathbb{P}\{X\in A\}\mathbb{P}\{Y\in B\}
+\mathop{{}\mathbb{P}}\{X\in A,Y\in B\}=\mathop{{}\mathbb{P}}\{X\in A\}\mathop{{}\mathbb{P}}\{Y\in B\}
 $$
 A finite collection $\{X_i\}_i^n$ is said to be **independency** if their product distribution has form $\prod_{i=1}^n \mu_i$. An arbitrary collection of r.v. is an independency if every finite subcollection is so.
 
@@ -91,7 +91,7 @@ Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus 
 
 Recall the product $\sigma$ algebra construction, the probability law is determined by:
 $$
-\mathbb{P}\{\bigcap_{i \in I} X_i\in A_i\}
+\mathop{{}\mathbb{P}}\{\bigcap_{i \in I} X_i\in A_i\}
 $$
 where $I\subset T$ is finite and $A_i\subset E$
 
@@ -99,57 +99,57 @@ where $I\subset T$ is finite and $A_i\subset E$
 
 Suppose $X$ taking values in $\overline{\mathbb{R}}$, then we can talk about it's expectation:
 $$
-\mathbb{E} X=\int_{\Omega} X d\mathbb{P}=\mathbb{P}X
+\mathop{{}\mathbb{E}} X=\int_{\Omega} X d\mathop{{}\mathbb{P}}=\mathop{{}\mathbb{P}}X
 $$
-the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathbb{E}X \bm{\mathbf{1}}_H$
+the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_H$
 
 ### Properties of expectation
 
 Suppose $X,Y$ taking values in $\overline{\mathbb{R}}$ and $a,b>0$. The following holds:
 
-(**Absolute integrability**). $\mathbb{E}X$ is finite iff $\mathbb{E}|X|$ is finite.
+(**Absolute integrability**). $\mathop{{}\mathbb{E}}X$ is finite iff $\mathop{{}\mathbb{E}}|X|$ is finite.
 
-**(Positivity)** If $X\ge 0$ a.s., then $\mathbb{E}X\ge 0$
+**(Positivity)** If $X\ge 0$ a.s., then $\mathop{{}\mathbb{E}}X\ge 0$
 
-**(Monotonicity)** If $X\ge Y$ or either $\mathbb{E}X$ and $\mathbb{E} Y$ is finite then both $\mathbb{E}X$ and $\mathbb{E}Y$ exist and $\mathbb{E}X\ge \mathbb{E}Y$.
+**(Monotonicity)** If $X\ge Y$ or either $\mathop{{}\mathbb{E}}X$ and $\mathop{{}\mathbb{E}} Y$ is finite then both $\mathop{{}\mathbb{E}}X$ and $\mathop{{}\mathbb{E}}Y$ exist and $\mathop{{}\mathbb{E}}X\ge \mathop{{}\mathbb{E}}Y$.
 
 **(Linearity)** 
-$$ \mathbb{E}(aX+bY)=a\mathbb{E}X+b\mathbb{E}Y $$
+$$ \mathop{{}\mathbb{E}}(aX+bY)=a\mathop{{}\mathbb{E}}X+b\mathop{{}\mathbb{E}}Y $$
 
 **($\sigma$ additivity over sets)** If $A=\sum_{i=1}^\infty A_i$, then
-$$ \mathbb{E} _ { A } X = \sum _ { i = 1 } ^ { \infty } \mathbb{E} _ { A _ { i } } X $$
+$$ \mathop{{}\mathbb{E}} _ { A } X = \sum _ { i = 1 } ^ { \infty } \mathop{{}\mathbb{E}} _ { A _ { i } } X $$
 
 **(Mean value theorem)** If $a\le X \le b$ a.s., then 
 
-$$ a\mathbb{P}(A)\le \mathbb{E}_AX\le b\mathbb{P}(A) $$
+$$ a\mathop{{}\mathbb{P}}(A)\le \mathop{{}\mathbb{E}}_AX\le b\mathop{{}\mathbb{P}}(A) $$
 
-**(Modulus inequality)**: $|\mathbb{E}X|\le \mathbb{E}|X|$
+**(Modulus inequality)**: $|\mathop{{}\mathbb{E}}X|\le \mathop{{}\mathbb{E}}|X|$
 
 **(Fatou's) inequality** If  $X_n\ge 0$ a.s., then
-$$ \mathbb{E} \left( \liminf _ { n } X _ { n } \right) \leq \liminf _ { n } \mathbb{E} X _ { n } $$
+$$ \mathop{{}\mathbb{E}} \left( \liminf _ { n } X _ { n } \right) \leq \liminf _ { n } \mathop{{}\mathbb{E}} X _ { n } $$
 
-**(Dominated Convergence Theorem)** If $X_n \to X$ a.s., $|X_n|\le Y$ a.s. for all n and $\mathbb{E}Y<\infty$, then
+**(Dominated Convergence Theorem)** If $X_n \to X$ a.s., $|X_n|\le Y$ a.s. for all n and $\mathop{{}\mathbb{E}}Y<\infty$, then
 
-$$ \lim_n \mathbb{E}X_n=\mathbb{E}X=\mathbb{E}\lim_n X_n $$
+$$ \lim_n \mathop{{}\mathbb{E}}X_n=\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}\lim_n X_n $$
 
 **(Monotone Convergence Theorem)** If $0\le X_n\nearrow X$, then
-$$ \lim_n \mathbb{E}X_n=\mathbb{E}X=\mathbb{E}\lim_n X_n $$
+$$ \lim_n \mathop{{}\mathbb{E}}X_n=\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}\lim_n X_n $$
 
-**(Integration term by term)** If $\sum_{i=1}^\infty \mathbb{E}|X_n|<\infty$, then
+**(Integration term by term)** If $\sum_{i=1}^\infty \mathop{{}\mathbb{E}}|X_n|<\infty$, then
 $$ \sum_{i=1}^\infty |X_n|<\infty,\ a.s. $$ 
 
 and
 
-$$ \mathbb{E} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \mathbb{E} X_ { n } $$ 
+$$ \mathop{{}\mathbb{E}} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \mathop{{}\mathbb{E}} X_ { n } $$ 
 
 
 
 ::: {.remark  name=""}
 
-1. If $\mathbb{P}(A)=1$, then $\mathbb{E}X=\mathbb{E}_AX$.
-2. If $\mathbb{E}|X|<\infty$, then $|X|<\infty$ a.s., but not vise versa.
-3. If $X=Y$ a.s. and either $\mathbb{E}X$ or $\mathbb{E}Y$ exists, then so is the other and they are equal.
-4. $\forall H\in \mathcal{F},\mathbb{E}X \bm{\mathbf{1}}_H \ge \mathbb{E} Y \bm{\mathbf{1}}_{H}\implies X \ge Y$ a.s. To see this, if there exist a subset $A\subset H$ s.t. $X<Y$ and $\mu(A)>0$ then there is a contradiction with monotonicity in $A$.
+1. If $\mathop{{}\mathbb{P}}(A)=1$, then $\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}_AX$.
+2. If $\mathop{{}\mathbb{E}}|X|<\infty$, then $|X|<\infty$ a.s., but not vise versa.
+3. If $X=Y$ a.s. and either $\mathop{{}\mathbb{E}}X$ or $\mathop{{}\mathbb{E}}Y$ exists, then so is the other and they are equal.
+4. $\forall H\in \mathcal{F},\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_H \ge \mathop{{}\mathbb{E}} Y \bm{\mathbf{1}}_{H}\implies X \ge Y$ a.s. To see this, if there exist a subset $A\subset H$ s.t. $X<Y$ and $\mu(A)>0$ then there is a contradiction with monotonicity in $A$.
 
 :::
 
@@ -157,11 +157,45 @@ $$ \mathbb{E} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i =
 
 The following relates expectation and integrals w.r.t. distribution.
 
+
+::: {.theorem #expectation-distribution name=""}
+
+If $X\ge 0$, then
+
+$$
+\mathop{{}\mathbb{E}}X=\int_{0}^{\infty}\mathop{{}\mathbb{P}}\{X>x\}dx
+$$
+
+:::
+
+
+::: {.proof}
+
+
+Note
+$$
+X(\omega)=\int_{0}^{X(\omega)} dx = \int_{0}^{\infty} \bm{\mathbf{1}}_{X>x}(\omega)dx
+$$
+then
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}X&=\int_{\Omega}X(\omega)\mathop{{}\mathbb{P}}(d\omega)
+    \\ &= 
+    \int_{\Omega} \int_{0} ^{\infty}\bm{\mathbf{1}}_{X>x}(\omega)dx\mathop{{}\mathbb{P}}(d\omega)
+    \\ &= 
+    \int_{0} ^{\infty}\int_{\Omega} \bm{\mathbf{1}}_{X>x}(\omega)\mathop{{}\mathbb{P}}(d\omega)dx 
+    \\ &= \int_{0} ^{\infty} \mathop{{}\mathbb{P}}\{X>x\}dx
+\end{aligned}
+$$
+:::
+
+
+
 ::: {.theorem #expectation-integral name=""}
 
 Let $X$ be a r.v. taking value in $(E, \mathcal{E})$ then
 $$
-\int f\circ X d\mathbb{P}=\mathbb{E}f\circ X=\mu f=\int fd\mu
+\int f\circ X d\mathop{{}\mathbb{P}}=\mathop{{}\mathbb{E}}f\circ X=\mu f=\int fd\mu
 $$
 holds for all $f\in \mathcal{E}$ iff $\mu$ is the distribution of $X$.
 
@@ -170,11 +204,11 @@ holds for all $f\in \mathcal{E}$ iff $\mu$ is the distribution of $X$.
 
 ::: {.proof}
 
-Note $\mu=\mathbb{P}\circ X^{-1}$, then $\impliedby$ follows from theorem \@ref(thm:image-measure). For $\implies$, taking $f=\bm{\mathbf{1}}_{A}$:
+Note $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$, then $\impliedby$ follows from theorem \@ref(thm:image-measure). For $\implies$, taking $f=\bm{\mathbf{1}}_{A}$:
 $$
-\mu(A)=\mu \bm{\mathbf{1}}_{A}=\mathbb{E}\bm{\mathbf{1}}_{A}\circ X=\int\bm{\mathbf{1}}_{A}\circ Xd\mathbb{P}
+\mu(A)=\mu \bm{\mathbf{1}}_{A}=\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{A}\circ X=\int\bm{\mathbf{1}}_{A}\circ Xd\mathop{{}\mathbb{P}}
 $$
-that implies $\mu=\mathbb{P}\circ X^{-1}$ and claim follows.
+that implies $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$ and claim follows.
 
 :::
 
@@ -185,6 +219,9 @@ By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test 
 
 :::
 
+
+
+
 ### Means, variances, Laplace and Fourier transforms.
 
 
@@ -192,19 +229,32 @@ By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test 
 
 Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\mu$, define
 
-1. rth Moment: $\mathbb{E}X^r$
-2. rth Absolute Moment: $\mathbb{E}|X|^r$
-3. rth Central Moment: $\mathbb{E}(X-\mathbb{E}X)^r$
-4. rth Absolute Central Moment: $\mathbb{E}|X-\mathbb{E}X|^r$
-5. $L^r$ space: $\{X:\mathbb{E}|X|^r<\infty\}$
+1. $r$th Moment: $\mathop{{}\mathbb{E}}X^r$
+2. $r$th Absolute Moment: $\mathop{{}\mathbb{E}}|X|^r$
+3. $r$th Central Moment: $\mathop{{}\mathbb{E}}(X-\mathop{{}\mathbb{E}}X)^r$
+4. $r$th Absolute Central Moment: $\mathop{{}\mathbb{E}}|X-\mathop{{}\mathbb{E}}X|^r$
+5. $L^r$ space: $\{X:\mathop{{}\mathbb{E}}|X|^r<\infty\}$
 
 :::
 
 ::: {.definition  name=""}
 
-Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ and its expectation $\hat{\mu}_r=\mathbb{E} e^{-rX}$ also in $[0,1]$. The resulting function $r \mapsto \hat{\mu}_r:\mathbb{R}_+\to [0,1]$ is called **Laplace transform** of the distribution $\mu$, or Laplace transform of $X$ for short.
+Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ and its expectation $\hat{\mu}_r=\mathop{{}\mathbb{E}} e^{-rX}$ also in $[0,1]$. The resulting function $r \mapsto \hat{\mu}_r:\mathbb{R}_+\to [0,1]$ is called **Laplace transform** of the distribution $\mu$, or Laplace transform of $X$ for short.
 
 :::
+
+
+::: {.remark}
+
+1. $r \mapsto \hat{\mu}_r$ is continues and decreasing on $(0,\infty)$ and note $e^{-rX}=e^{-rX}\bm{\mathbf{1}}_{X<\infty}\nearrow \bm{\mathbf{1}}_{X<\infty}$ as $r \searrow 0$, then $\lim_{r \to 0^+}\hat{\mu}_r=\mathop{{}\mathbb{P}}\{X<\infty\}$
+2.  $\hat{\mu}_r$ is also called **Moment generating function** as
+    $$
+    \lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=(-1)^{n}\mathop{{}\mathbb{E}}X^{n}
+    $$
+    if $\mathop{{}\mathbb{E}}X^{n}<\infty$
+
+:::
+
 
 
 ::: {.proposition #characterization-laplace name=""}
@@ -212,71 +262,291 @@ Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ a
 Let $X,Y \in \mathcal{F}_+$, TFAE:
 
 1. $X$ and $Y$ have the same distribution
-2. $\forall r\in \mathbb{R}_+,\mathbb{E}e^{-rX}=\mathbb{E}e^{-rY}$
-3. $\mathbb{E} f\circ X=\mathbb{E} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{-rX}=\mathop{{}\mathbb{E}}e^{-rY}$
+3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
 
 :::
 
 Suppose that $X$ is real-valued, for $r\in \mathbb{R}$, define:
 $$
-\hat{\mu}_r=\mathbb{E}e^{irX}=\int (\cos rx+i\sin rx) d\mu 
+\hat{\mu}_r=\mathop{{}\mathbb{E}}e^{irX}=\int (\cos rx+i\sin rx) d\mu 
 $$
 the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function** of $X$
 
 
-::: {.proposition #characterization-fourier name=""}
+::: {.remark}
 
-Let $X,Y \in \mathcal{F}$, TFAE:
-
-1. $X$ and $Y$ have the same distribution
-2. $\forall r\in \mathbb{R}_+,\mathbb{E}e^{irX}=\mathbb{E}e^{irY}$
-3. $\mathbb{E} f\circ X=\mathbb{E} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+Similarly, we have
+$$
+\lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=i^{n}\mathop{{}\mathbb{E}}X^{n}
+$$
+if $\mathop{{}\mathbb{E}}X^{n}<\infty$
 
 :::
 
-In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathbb{E} z^{X}$ is called **generating function** and also determined distribution of $X$.
+
+
+::: {.proposition #characterization-fourier name=""}
+
+Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{irX}=\mathop{{}\mathbb{E}}e^{irY}$
+3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathop{{}\mathbb{E}} z^{X}$ is called **generating function** and also determined distribution of $X$.
 
 ### Moment inequalities
 
-#### Young's inequality
+
+::: {.theorem #young name="Young's inequality"}
 
 Let $f$ be a continues and strictly increasing function with $f(0)=0$, then we have
 
 $$ a b \leq \int _ { 0 } ^ { a } f ( x ) d x + \int _ { 0 } ^ { b } f ^ { - 1 } ( x ) d x $$
 
-#### Holder's inequality
+:::
+
+As consequence:
+
+::: {.theorem #holder name="Holder's inequality"}
 
 Suppose that $p,q>1$ satisfy $\frac{1}{p}+\frac{1}{q}=1$, then
 
-$$ E | X Y | \leq \left[ E | X | ^ { p } \right] ^ { 1 / p } \left[ E | Y | ^ { q } \right] ^ { 1 / q } $$
+$$ \mathop{{}\mathbb{E}} | X Y | \leq \left[ \mathop{{}\mathbb{E}} | X | ^ { p } \right] ^ { 1 / p } \left[ \mathop{{}\mathbb{E}} | Y | ^ { q } \right] ^ { 1 / q } $$
+
+:::
+
+Suppose $r>1$,
+$$
+\|XY\|_r=\left( \mathop{{}\mathbb{E}}|X^{r}Y^{r}| \right)^{\frac{1}{r}}\le (\mathop{{}\mathbb{E}}|X^{r}|^{p})^{\frac{1}{pr}} (\mathop{{}\mathbb{E}}|X^{r}|^{q})^{\frac{1}{qr}}=\|X\|_{rp}\|Y\|_{rq}
+$$
+That implies:
+
+::: {.corollary #holder name=""}
+
+Suppose $p,q,r>1$ with $\frac{1}{p}+\frac{1}{q}=\frac{1}{r}$:
+$$
+\|XY\|_r\le \|X\|_p\|Y\|_q
+$$
+
+:::
 
 
-#### Cauchy-Schwarz inequality
+::: {.theorem #cauchy name="Cauchy-Schwarz inequality"}
 
-$$ E | X Y | \leq \sqrt { \left[ E | X | ^ { 2 } \right] \left[ E | Y | ^ { 2 } \right] } $$
+$$ \mathop{{}\mathbb{E}} | X Y | \leq \sqrt { \left[ \mathop{{}\mathbb{E}} | X | ^ { 2 } \right] \left[ \mathop{{}\mathbb{E}} | Y | ^ { 2 } \right] } $$
 
-#### Lyapunov's inequality
-1. $\forall p\ge 1, E|X|\le E(|X|^p)^{\frac{1}{p}}$
-2. $\forall 0<r\le s<\infty,\left[ E | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ E | Z | ^ { s } \right] ^ { 1 / s }$
+:::
 
-#### Minkowski's inequality
+And:
+
+::: {.theorem #lyapunov name="Lyapunov's inequality"}
+
+1. $\forall p\ge 1, \mathop{{}\mathbb{E}}|X|\le \mathop{{}\mathbb{E}}(|X|^p)^{\frac{1}{p}}$
+2. $\forall 0<r\le s<\infty,\left[ \mathop{{}\mathbb{E}} | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ \mathop{{}\mathbb{E}} | Z | ^ { s } \right] ^ { 1 / s }$
+
+:::
+
+::: {.theorem #minkowski name="Minkowski's inequality"}
 
 $\forall p\ge 1$,
-$$ (E|\sum X_i|^p)^{\frac{1}{p}}\le \sum (E|X_i|^p)^{\frac{1}{p}} $$
+$$ (\mathop{{}\mathbb{E}}|\sum X_i|^p)^{\frac{1}{p}}\le \sum (\mathop{{}\mathbb{E}}|X_i|^p)^{\frac{1}{p}} $$
 
-#### Jensen's inequality
+:::
+
+::: {.theorem #jensen name="Jensen's inequality"}
 
 Let $\psi$ be convex, that is, $\forall \lambda\in (0,1), x,y\in \Reals$:
 $$
 \lambda \psi ( x ) + ( 1 - \lambda ) \psi ( y ) \geq \psi ( \lambda x + ( 1 - \lambda ) y ) $$
 
 Then
-$$ \psi ( E X ) \leq E [ \psi ( X ) ] $$
+$$ \psi ( \mathop{{}\mathbb{E}} X ) \leq \mathop{{}\mathbb{E}} [ \psi ( X ) ] $$
 
-#### Chebyshev(Markov) inequality
+:::
 
-If $g$ is strictly increasing and positive on $\Reals^+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $E(g(X))<\infty$, then $\forall a>0$ 
-$$ P ( | X | \geq a ) \leq \frac { E g ( X ) } { g ( a ) } $$
+::: {.theorem #Markov name="Chebyshev(Markov) inequality"}
+
+If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathop{{}\mathbb{E}}(g(X))<\infty$, then $\forall a>0$
+$$
+\mathop{{}\mathbb{P}} ( | X | \geq a ) \leq \frac { \mathop{{}\mathbb{E}} g ( X ) } { g ( a ) }
+$$
+
+:::
+
+
+## $L^p$-spaces and uniform integrability
+
+
+::: {.definition  name=""}
+
+Let $X$ be a r.v. taking values in $\mathbb{R}$ with distribution $\mu$. For $p$ in $[1,\infty)$, define
+$$
+\|X\|_p=(\mathop{{}\mathbb{E}}|X|^{p})^{\frac{1}{p}}
+$$
+and for $p=\infty$, let
+$$
+\|X\|_{\infty}=\inf \{b \in R_+, |X|\le b \text{ a.s.}\}
+$$
+
+:::
+
+Clearly $\|\cdot\|_p$ is a norm for $p\in [1,\infty]$ and
+$$
+0\le \|X\|_p \le \|X\|_q \le \infty
+$$
+provided $1\le p\le q\le \infty$ as corollary \@ref(cor:holder).
+
+### Uniform integrability
+
+::: {.lemma  name=""}
+
+Let $X$ taking values in $\mathbb{R}$, then it's integrable iff
+$$
+\lim_{b \to \infty} \mathop{{}\mathbb{E}} |X|\bm{\mathbf{1}}_{|X|>b}=0
+$$
+
+:::
+
+::: {.proof}
+
+$\implies$ is follows from theorem \@ref(thm:DCT) as $|X|\bm{\mathbf{1}}_{|X|>b}\searrow 0$. Conversely, taking $b=c\gg 1$ s.t. $\mathop{{}\mathbb{E}}|X|\bm{\mathbf{1}}_{|X|>c}\le 1$ and then
+$$
+\mathop{{}\mathbb{E}}|X|\le \mathop{{}\mathbb{E}}(c+|X|\bm{\mathbf{1}}_{|X|>c})\le c+1<\infty
+$$
+
+:::
+
+::: {.definition  name=""}
+
+A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is said to **uniformly integrable** if
+$$
+k(b)=\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}|X|\bm{\mathbf{1}}_{|X|>b} \to 0
+$$
+as $b \to \infty$.
+
+:::
+
+::: {.remark}
+
+1. If $\mathcal{K}$ is finite and each of $\mathcal{K}$ is integrable then $\mathcal{K}$ is uniformly integrable.
+2. If $\mathcal{K}$ is dominated by an integrable $Y$ then it's uniformly integrable.
+3.  Uniform integrability implies $L^1$-boundedness: $\mathcal{K}\subset L^1$ and $\sup_{\mathcal{K}} \mathop{{}\mathbb{E}} |X|<\infty$. That follows from
+    $$
+    \begin{aligned}
+        \mathop{{}\mathbb{E}}|X|&\le \mathop{{}\mathbb{E}}\left( b+\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{|X|>b} \right)
+        \\ &=
+        b+\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{|X|>b}
+        \\&\le
+        b+ k(b)
+    \end{aligned}
+    $$
+    holds for each $X\in \mathcal{K}$.
+
+:::
+
+$L^1$ boundedness is not sufficient for uniform integrability. In fact, we need:
+
+::: {.theorem  name=""}
+
+A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is uniformly integrable iff it's $L^{1}$-bounded and $\forall \epsilon >0 ,\exists \delta>0$ s.t. $\forall F\in \mathcal{F}$:
+$$
+\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}_F|X|\le \epsilon
+$$
+
+:::
+
+
+::: {.proof}
+
+We may assume $X\ge 0$ by obvious reason. Note $X \bm{\mathbf{1}}_{F}\le b \bm{\mathbf{1}}_{F}+X \bm{\mathbf{1}}_{X>b}$ for each $F$ and $b$, take expectation:
+$$
+\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}} X \bm{\mathbf{1}}_{F}\le b \mathop{{}\mathbb{P}}(F)+k(b)
+$$
+then $\implies$ is immediately as $k(b)$ can be arbitrary small.
+
+Conversely, by Markov's inequality \@ref(thm:Markov):
+$$
+\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{P}}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}X=\frac{k(0)}{b}
+$$
+that suggests we may choose $b$ s.t. $\mathop{{}\mathbb{P}}\{X>b\}$ arbitrary small, and thus $\sup \mathop{{}\mathbb{E}}_F X$ arbitrary small, taking $H=\{X>b\}$, then we have definition of uniformly integrability exactly.
+
+:::
+
+However, $L^{p}$ boundedness when $p>1$ implies uniform integrability.
+
+
+::: {.lemma  name=""}
+
+Suppose there is a borel $f:\mathbb{R}_+:\overline{\mathbb{R}}_+$ s.t. $f(x)=\omega(x)$ and
+$$
+\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}} f\circ |X| < \infty
+$$
+then $\mathcal{K}$ is uniformly integrable.
+
+:::
+
+
+::: {.proof}
+
+Again we may assume $X \ge 0$ and it's sufficient to assume $f\ge 1$, let $g(x)=\frac{x}{f(x)}$ and note
+$$
+X \bm{\mathbf{1}}_{X>b} = f \circ Xg \circ X \bm{\mathbf{1}}_{X>b} \le f \circ X \sup_{x>b}g(x)
+$$
+let $c=\sup_{X\in \mathcal{K}} f\circ X\le \infty$, we have
+$$
+k(b)\le  c \sup_{x>b} g(x)
+$$
+it follows $\lim_{b \to \infty}k(b)=0$ as $\lim_{x \to \infty}g(x)=0$
+
+:::
+
+And the converse is also true:
+
+::: {.theorem  name=""}
+
+Using notations above, TFAE:
+
+1. $\mathcal{K}$ is uniformly integrable.
+2. $h(b)=\sup_{\mathcal{K}} \int_{b} ^ \infty \mathop{{}\mathbb{P}}\{|X|>y\}\to 0$ as $b \to \infty$.
+3. $\sup_{\mathcal{K}}\mathop{{}\mathbb{E}} f \circ |X|<\infty$ for some increasing convex $f$ on $\mathbb{R}_+$ s.t. $f(X)=\omega(x)$.
+
+:::
+
+
+::: {.proof}
+
+Assume $X$ is positive and it suffices to show $1\implies 2\implies 3$.
+
+$1\implies 2$. $\forall X\in \mathcal{K}$,
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}} X \bm{\mathbf{1}}_{X>b}&=\int_{0} ^{\infty}\mathop{{}\mathbb{P}} \{X \bm{\mathbf{1}}_{X>b} > y\}dy
+    \\ &= \int_{0} ^{\infty} \mathop{{}\mathbb{P}}\{X>b \vee y \} dy 
+    \\& \ge 
+    \int_{b} ^{\infty}\mathop{{}\mathbb{P}} \{X > y\} dy
+\end{aligned}
+$$
+thus $k(b)\ge h(b)$ and claim follows.
+
+$2\implies 3$ follows from construction and omitted.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -304,5 +574,5 @@ $$ P ( | X | \geq a ) \leq \frac { E g ( X ) } { g ( a ) } $$
 
 **Bonferroni's inequality**
 $$
-\mathbb{P} \left( \bigcap _ { i = 1 } ^ { n } A _ { i } \right) \geq \sum _ { i = 1 } ^ { n } \mathbb{P} \left( A _ { i } \right) - ( n - 1 )
+\mathop{{}\mathbb{P}} \left( \bigcap _ { i = 1 } ^ { n } A _ { i } \right) \geq \sum _ { i = 1 } ^ { n } \mathop{{}\mathbb{P}} \left( A _ { i } \right) - ( n - 1 )
 $$

@@ -11,8 +11,11 @@ bibliography: [book.bib, packages.bib]
 biblio-style: apalike
 link-citations: yes
 description: "Notes"
+indent: true
 ---
 
+
+```{=latex}
 \newcommand{\lt}{<}
 \newcommand{\gt}{>}
 \newcommand{\R}{\mathbb{R}}
@@ -23,3 +26,4 @@ description: "Notes"
 \newcommand{\sub}{\subset}
 \newcommand{\subsets}{\subset}
 \newcommand{\exist}{\exists}
+```
