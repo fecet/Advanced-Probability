@@ -5,7 +5,7 @@
 Following are useful for determining convergence.
 
 
-::: {.proposition #cauchy name=""}
+::: {.proposition #cauchy name="Cauchy criterion"}
 
 Sequence $(x_n)$ converges iff
 $$
@@ -19,8 +19,186 @@ $$
 
 IF there exists a positive sequence $(\epsilon_n)$ s.t.
 $$
-\sum_{n}^{} \epsilon_n <\infty
+\sum_{n}^{} \epsilon_n <\infty, \sum_{n}^{} i_{\epsilon_n}(|x_{n+1}-x_n|)< \infty
+$$
+then $(x_{n})$ is convergent.
+
+:::
+
+### Subsequence
+
+::: {.definition  name=""}
+
+Let $(x_{i})_{i \in \mathbb{N}}$ be a sequence. Then $(x_{k_i})_{i \in \mathbb{N}}$ is a subsequence of $(x_{i})_{i \in \mathbb{N}}$ if $(k_{i})_{i \in \mathbb{N}}\subset \mathbb{N}$ if it's increasing with $\lim_{i \to \infty}k_i=\infty$. Regarding $\mathbb{N}$ as a sequence then $(k_{i})_{i \in \mathbb{N}}$ is a subsequence of $\mathbb{N}$. Denoted $(k_{i})_{i \in \mathbb{N}}$ as $N$, we can write $(x_{i})_{i \in N}$ for $(x_{k_i})_{i \in \mathbb{N}}$ and we say $(x_{i})_{i \in \mathbb{N}}$ converges along $N$ to $x$ if $\lim_{i \to \infty} x_{k_i}=x$.
+
+:::
+
+
+::: {.proposition  name=""}
+
+Subsequence converges to $\limsup_{n \to \infty} x_n$ as a maximum and $\liminf_{n \to \infty} x_n$ as a minimum
+
+:::
+
+Following is useful for future studies.
+
+::: {.lemma #sequence-mean name=""}
+
+Let $(x_{i})_{i \in \mathbb{N}}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r>1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
+$$
+\frac{x}{r} \le \liminf_{n \to \infty} \overline{x}_n \le \limsup_{n \to \infty} \overline{x}_n\le rx
 $$
 
 :::
+
+
+::: {.proof}
+
+For $n_k \le n <n_{k+1}$, note that
+$$
+\frac{n_k}{n_{k+1}}\overline{x}_{n_k}=\frac{\sum_{n_k}^{} x_i}{n_{k+1}} \le  \overline{x}_{n} \le  \frac{\sum_{n_{k+1}}^{} x_i}{n_{k}} = \frac{n_{k+1}}{n_k} \overline{x}_{n_{k+1}}
+$$
+Take limit each side we have result desired.
+
+:::
+
+### Diagonal method
+
+::: {.lemma #diagonal-method  name=""}
+
+Suppose there is a countable family of bounded sequence $\{S_i:i \in \mathbb{N}\}$, then there exists a subsequence $N$ of $\mathbb{N}$ s.t. each of them converges along $N$.
+
+:::
+
+::: {.proof}
+
+As each $S_i$ is bounded, we can pick $N_1$ s.t. $S_1$ converges along $N_1$, then consider $S_2$ along $N_1$ as a new sequence there exists $N_2\subset N_1$ s.t. which converges along $N_2$. Thus for each $m < \infty$, we have $S_i$ converges along $N_m$ for $i\le m$.
+
+Now let $n_m$ be the $m$th entry of $N_m$ and define $N=(n_1,n_2,\dots)$, one can check it's tail is a subsequence of each $N_i$ and thus $S_i$ converges along $N$ for each $i$.
+
+
+:::
+
+
+::: {.remark}
+
+If the sequence $(N_{i})_{i \in \mathbb{N}}$ is written as
+$$
+\begin{bmatrix}
+    N_1\\
+    N_2\\
+    \vdots
+\end{bmatrix}
+$$
+then $N$ is precisely the diagonal of above matrix, and that's why it called diagonal method.
+
+:::
+
+Following is an application of some importance.
+
+### Helly's Theorem
+
+
+::: {.theorem #helly name="Helly's theorem"}
+
+Suppose $(c_{i})_{i \in \mathbb{N}}$ is a sequence of d.f.'s, then there exists a subsequence $(b_{i})_{i \in \mathbb{N}}$ and a d.f. $c$ s.t. $\lim_{i \to \infty} b_i(t) = c(t)$ at which $t$ is continuous.
+
+:::
+
+
+::: {.proof}
+
+Treat $(c_{i}(r))_{i \in \mathbb{N}}$ as a sequence and $r$ is taken as an enumeration of $\mathbb{Q}$. Consider the subsequence $N\subset \mathbb{N}$ from lemma \@ref(lem:diagonal-method), we claim that $(c_i)_{i \in N}$ is exactly $(b_{i})_{i \in \mathbb{N}}$, recall that $b(r)=\lim_{n \to \infty}b_n(r)$ exists for each $r\in \mathbb{Q}$.
+
+For each $t\in \mathbb{R}$, define
+$$
+c(t)=\inf \{b(r):r\in \mathbb{Q}\text{ and }r>t\}
+$$
+One can check $c$ is a d.f. Then suppose $c$ is continuous at $t$, for any $\epsilon > 0$ there is a $s<t$ s.t. $c(s) > c(t)-\epsilon$ and there is a rational $r > t$ s.t. $b(r)<c(t)+\epsilon$ by definition. Pick rational $q$ s.t. $s < q < t < r$, we have
+$$
+c(t)-\epsilon < c(s) \le  b(q) \le  b(r)  <c(t)+\epsilon
+$$
+note:
+$$
+\begin{aligned}
+    &\liminf_{n \to \infty} b_n(t) \ge \liminf_{n \to \infty} b_n(q)=b(q) 
+    \\
+    &\limsup_{n \to \infty} b_n(t) \le \limsup_{n \to \infty} b_n(r)=b(r) 
+\end{aligned}
+$$
+thus they are sandwiched by $c(t)-\epsilon$ and $c(T)+\epsilon$ and thus agree at $c(t)$ and it follows that $\lim_{n \to \infty}b_n(t)=c(t)$.
+
+:::
+
+### Kronecker's Lemma
+
+Following relates convergence of averages and convergence.
+
+
+::: {.lemma  name=""}
+
+Suppose $(x_{i})_{i \in \mathbb{N}}\subset \mathbb{R}$ and $(a_{i})_{i \in \mathbb{N}} \nearrow \infty$ be strictly positive. Put $y_n=\sum_{i=1}^{n}\frac{x_i}{a_i}$. If $(y_{i})_{i \in \mathbb{N}}$ converges, then
+$$
+\lim_{n \to \infty} \frac{\sum_{i=1}^{n} x_i}{a_n}=0
+$$
+
+:::
+
+
+::: {.proof}
+
+Put $a_0=y_0=0$. Note $x_i=(y_i-y_{i-1})a_i$ and
+$$
+\sum_{i=1}^{n} x_i=\sum_{i=0}^{n-1}(a_{i+1}-a_i)(y_n-y_i)
+$$
+By Cauchy criterion \@ref(prp:cauchy), there exists $k$ for any $\epsilon$ s.t. $|y_n-y_m|\le \epsilon$ for all $n,m\ge k$ and thus
+$$
+\begin{aligned}
+    \left|\sum_{i=1}^{n}x_i\right|&=\left|\sum_{i=0}^{n-1}(a_{i+1}-a_i)(y_n-y_i)\right|
+    \\ & \le 
+\left|\sum_{i=k}^{n-1}(a_{i+1}-a_i)|y_n-y_i|\right|+
+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+    \\ & \le 
+    (a_n-a_k)\epsilon+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+    \\&\le 
+    a_n\epsilon+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+\end{aligned}
+$$
+where the second term is finite and thus dominated by $a_n$, that implies $\lim_{n \to \infty}\frac{\left|\sum_{i=1}^{n}x_i\right|}{a_n}\to 0$ and then claim follows.
+
+:::
+
+## Almost Sure Convergence
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 
