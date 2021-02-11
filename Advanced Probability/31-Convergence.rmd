@@ -41,9 +41,9 @@ Let $(x_{i})_{i \in \mathbb{N}^*}$ be a sequence. Then $(x_{k_i})_{i \in \mathbb
 :::
 
 
-::: {.proposition  name=""}
+::: {.proposition #subsequence-convergence name=""}
 
-Subsequence converges to $\limsup_{n \to \infty} x_n$ as a maximum and $\liminf_{n \to \infty} x_n$ as a minimum
+Subsequence converges to $\limsup_{n \to \infty} x_n$ as a maximum and $\liminf_{n \to \infty} x_n$ as a minimum, the sequence converges iff they meet, i.e., every subsequence converges to the same point.
 
 :::
 
@@ -177,7 +177,9 @@ where the second term is finite and thus dominated by $a_n$, that implies $\lim_
 
 ## Almost Sure Convergence
 
-Sequence of r.v.'s $(X_{i})_{i \in \mathbb{N}^*}$ is said to be converges if $(X_{i}(\omega))_{i \in \mathbb{N}^*}$ is so for all $\omega \in \Omega$.
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+
+Sequence of r.v.'s $(X_i)$ is said to be converges if $(X_i(\omega))$ is so for all $\omega \in \Omega$.
 
 As $\liminf_{n \to \infty} X_n$ and $\limsup_{n \to \infty}  X_n$ are r.v.'s, the set
 $$
@@ -250,8 +252,8 @@ $$
     \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [1-\mathop{{}\mathbb{P}}(A_m)] \text{ (by independence)}
     \\ & \le 
     \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [e^{-\mathop{{}\mathbb{P}}(A_i)}]
-    \le 
-    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [e^{-\sum_{m=n}^{r}\mathop{{}\mathbb{P}}(A_m)}]
+     =  
+    \lim_{n \to \infty}\lim_{r \to \infty}  [e^{-\sum_{m=n}^{r}\mathop{{}\mathbb{P}}(A_m)}]
     \\ &= 
     \lim_{n \to \infty} e ^{-\sum_{m=n}^{\infty}\mathop{{}\mathbb{P}}(A_m)}=\lim_{n \to \infty}0=0
 \end{aligned}
@@ -265,23 +267,17 @@ $$
 
 ::: {.theorem #convergence-as name=""}
 
-Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, let
-$$
-Y_n=\sup_{i,j \ge n}\left|X_i-X_j\right|,Z_n=\sup_k \left|X_{n+k}-X_n\right|
-$$ 
-TFAE:
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, TFAE:
 
 1.  $X_n \to X$ a.s.
 2.  For every $\epsilon > 0$,
     $$
-    \sum_{i=1}^{\infty} i_{\epsilon}\circ \left|X_n-X\right| <\infty \text{ a.s.}
+    \sum_{i=1}^{\infty} i_{\epsilon}\circ \left|X_n-X\right| <\infty \text{ a.s.} \iff i_{\epsilon} \circ \left|X_n-X\right| \to 0 \text{ a.s.}
     $$
 3.  For every $\epsilon>0$,
     $$
     \mathop{{}\mathbb{P}}(\left|X_n-X\right|\ge \epsilon \text{ i.o.})=0
     $$
-4. $Y_n \to 0$ a.s.
-5. $Z_n \to 0$ a.s.
 
 :::
 
@@ -292,14 +288,32 @@ $1 \iff 2$ follows from the equivalent statement of convergence stated at the [b
 
 $2 \iff 3$ follows from remark 1 and 3 in definition \@ref(def:io-ult).
 
-$1\iff 4 \iff 5$ is clearly follows from 2.
 
 
 :::
 
 
 
-::: {.proposition  name=""}
+
+### Cauchy criterion for convergence a.s.
+
+
+::: {.theorem #cauchy-convergence-as name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, let
+$$
+Y_n=\sup_{i,j \ge n}\left|X_i-X_j\right|,Z_n=\sup_k \left|X_{n+k}-X_n\right|
+$$
+TFAE:
+
+1. $X_n$ converges a.s.
+2. $\lim_{m,n \to \infty} \left|X_n-X_m\right|=0$ a.s.
+3. $Y_n \to 0$ a.s.
+4. $Z_n \to 0$ a.s.
+
+:::
+
+::: {.proposition #convergence-as name=""}
 
 The follows are sufficient for convergence a.s.:
 
@@ -338,16 +352,137 @@ The follows are sufficient for convergence a.s.:
     )=0
     \end{aligned}
     $$
-    thus $\{Z_n>\epsilon \text{ ult.}\}$ has probability $0$ and thus $\{Z_n>\epsilon \text{ i.o.}\}$ is so, then $(Z_n)$ is converges and so is $(X_n)$ as theorem \@ref(thm:convergence-as).3,5.
+    thus $\{Z_n>\epsilon \text{ ult.}\}$ has probability $0$ and thus $\{Z_n>\epsilon \text{ i.o.}\}$ is so, then $(Z_n)$ is converges and so is $(X_n)$ as theorem \@ref(thm:convergence-as).3 and theorem \@ref(thm:cauchy-convergence-as).
 
 :::
 
+
 ## Convergence in Probability
 
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+
+
+::: {.definition  name=""}
+
+Sequence $(X_i)$ is said to be converge to $X$ **in probability** if, for every $\epsilon>0$,
+$$
+\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}=0
+$$
+and denoted as $X_n \xrightarrow{p} X$.
+
+:::
+
+The following relates a.s. convergence and convergence in probability:
+
+
+::: {.theorem #convergence-probability name=""}
+
+1. $X_n \to X$ a.s. $\implies$ $X_n \xrightarrow{p} X$
+2. If $X_n \xrightarrow{p} X$, then there exists a subsequence that converges to $X$ a.s.
+3. If every subsequence has further subsequence that converges to $X$ a.s., then $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+1. By theorem \@ref(thm:convergence-as).2, $i_{\epsilon} \circ \left|X_n-X\right|\to 0$ a.s., then $\mathop{{}\mathbb{E}}i_{\epsilon} \circ \left|X_n-X\right|\to 0$ by DCT \@ref(thm:DCT) and thus $\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}\to 0$.
+2.  As $\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}=0$, we can select a subsequence s.t.
+    $$
+    \sum_{i \in \mathbb{N}^*}^{} \mathop{{}\mathbb{P}}\{\left|X_{n_i}-X\right|> \epsilon\}<\infty
+    $$
+    then claim follows as proposition \@ref(prp:convergence-as).1.
+3.  Suppose $p_n=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}$ as a sequence and $N\subset \mathbb{N}^*$ is subsequence along which the sequence converges to, say, $p$. By assumption, there is a further subsequence $N'\subset N$ s.t. $(p_{i})_{i \in N'}\to 0$ and that implies $p=0$. By proposition \@ref(prp:subsequence-convergence), $p_n \to 0\iff X_n \xrightarrow{p} X$.
+
+:::
 
 
 
+### Convergence and continuous
 
+As an application of above theorem, we have
+
+
+::: {.proposition #convergence-probability-continuous name=""}
+
+Let $f:\mathbb{R} \to \mathbb{R}$ be continuous. Then $f(X_n)\xrightarrow{p}f(X)$ provided $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+For every subsequence $N\subset \mathbb{N}^*$, $X_n \xrightarrow{p} X$ along which and theorem \@ref(thm:convergence-probability).2 implies $N'\subset N$ exists s.t. $X_n \to X$ a.s. along and thus $f(X_n)\to X$ a.s. along $N'$. It follows that $f(X_n)\xrightarrow{p} f(X)$ by theorem \@ref(thm:convergence-probability).3.
+
+:::
+
+That implies convergence in probability
+is preserved under arithmetical operations, i.e., if $X_n \xrightarrow{p} X$ and $Y_n \xrightarrow{p} Y$, we have
+$$
+\begin{aligned}
+    X_n+Y_n \xrightarrow{p} X+Y &, X_n-Y_n \xrightarrow{p} X-Y
+    \\
+    X_nY_n \xrightarrow{p} XY &, \frac{X_n}{Y_n} \xrightarrow{p} \frac{X}{Y}
+\end{aligned}
+$$
+where the last equality holds when $Y$ and $Y_n$ are non-zero a.s.
+
+### Metric for convergence in probability
+
+For real-valued r.v.'s $X$ and $Y$, define
+$$
+d(X,Y)=\mathop{{}\mathbb{E}}(\left|X-Y\right|\wedge 1)
+$$
+one can check $d$ is a metric(except we treat $X$ and $Y$ are the same when $X=Y$ a.s.).
+
+The following shows that $d$ can induced convergence in probability.
+
+
+::: {.proposition  name=""}
+
+$$
+\lim_{n \to \infty} d(X_n,X)=0 \iff X_n \xrightarrow{p} X
+$$
+
+:::
+
+
+::: {.proof}
+
+Note for $\epsilon \in (0,1)$ and $x\ge 0$:
+$$
+\epsilon i_{\epsilon}(x) \le x \wedge 1 \le \epsilon+i_{\epsilon}(x) 
+$$
+replace $x$ with $\left|X_n-X\right|$ and take expectations:
+$$
+\epsilon \mathop{{}\mathbb{E}} i_{\epsilon} \circ \left|X_n-X\right|\le d(X_n,X) \le \epsilon+\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|
+$$
+thus $\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\to 0$ iff $d(X_n,X)\to 0$ as $\epsilon$ can be taken arbitrary small.
+
+:::
+
+### Cauchy criterion for convergence in probability
+
+
+::: {.theorem #cauchy-convergence-probability name=""}
+
+Sequence $(X_{i})_{i \in \mathbb{N}^*}$ converges in probability iff for every $\epsilon>0$,
+$$
+\lim_{m,n \to \infty} \mathop{{}\mathbb{P}}\{\left|X_m-X_n\right|>\epsilon\}=0
+$$
+
+
+:::
+
+### Convergence in $L^p$
+
+::: {.definition  name=""}
+
+A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ iff $(X_i)\subset L^p$ and $X\in L^p$ and $\|X_n-X\|_p\to 0$.
+
+:::
+
+Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality).
 
 
 
