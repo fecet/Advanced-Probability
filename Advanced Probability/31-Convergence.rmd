@@ -1,9 +1,16 @@
 # Convergence
 
-## Cauchy criterion
+## Convergence of Real Sequences
+
+Suppose $(x_{i})_{i \in \mathbb{N}^*} \subset \mathbb{R}$, then $(x_i)\to x$ iff $\left|x_i-x\right|\to 0$ and the classical statement for convergence is the same as
+$$
+\sum_{i=1}^{\infty} i_{\epsilon}(\left|x_i-x\right|) < \infty \iff \limsup_{n \to \infty} i_{\epsilon}(\left|x_i-x\right|)=0 \iff i_{\epsilon}(\left|x_i-x\right|)\to 0
+$$
+holds for all $\epsilon > 0$.
+
+### Cauchy criterion
 
 Following are useful for determining convergence.
-
 
 ::: {.proposition #cauchy name="Cauchy criterion"}
 
@@ -15,9 +22,9 @@ $$
 :::
 
 
-::: {.proposition  name=""}
+::: {.proposition #epsilon-sequence name=""}
 
-IF there exists a positive sequence $(\epsilon_n)$ s.t.
+If there exists a positive sequence $(\epsilon_n)$ s.t.
 $$
 \sum_{n}^{} \epsilon_n <\infty, \sum_{n}^{} i_{\epsilon_n}(|x_{n+1}-x_n|)< \infty
 $$
@@ -29,7 +36,7 @@ then $(x_{n})$ is convergent.
 
 ::: {.definition  name=""}
 
-Let $(x_{i})_{i \in \mathbb{N}}$ be a sequence. Then $(x_{k_i})_{i \in \mathbb{N}}$ is a subsequence of $(x_{i})_{i \in \mathbb{N}}$ if $(k_{i})_{i \in \mathbb{N}}\subset \mathbb{N}$ if it's increasing with $\lim_{i \to \infty}k_i=\infty$. Regarding $\mathbb{N}$ as a sequence then $(k_{i})_{i \in \mathbb{N}}$ is a subsequence of $\mathbb{N}$. Denoted $(k_{i})_{i \in \mathbb{N}}$ as $N$, we can write $(x_{i})_{i \in N}$ for $(x_{k_i})_{i \in \mathbb{N}}$ and we say $(x_{i})_{i \in \mathbb{N}}$ converges along $N$ to $x$ if $\lim_{i \to \infty} x_{k_i}=x$.
+Let $(x_{i})_{i \in \mathbb{N}^*}$ be a sequence. Then $(x_{k_i})_{i \in \mathbb{N}^*}$ is a subsequence of $(x_{i})_{i \in \mathbb{N}^*}$ if $(k_{i})_{i \in \mathbb{N}^*}\subset \mathbb{N}$ if it's increasing with $\lim_{i \to \infty}k_i=\infty$. Regarding $\mathbb{N}$ as a sequence then $(k_{i})_{i \in \mathbb{N}^*}$ is a subsequence of $\mathbb{N}$. Denoted $(k_{i})_{i \in \mathbb{N}^*}$ as $N$, we can write $(x_{i})_{i \in N}$ for $(x_{k_i})_{i \in \mathbb{N}^*}$ and we say $(x_{i})_{i \in \mathbb{N}^*}$ converges along $N$ to $x$ if $\lim_{i \to \infty} x_{k_i}=x$.
 
 :::
 
@@ -44,7 +51,7 @@ Following is useful for future studies.
 
 ::: {.lemma #sequence-mean name=""}
 
-Let $(x_{i})_{i \in \mathbb{N}}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r>1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
+Let $(x_{i})_{i \in \mathbb{N}^*}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r>1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
 $$
 \frac{x}{r} \le \liminf_{n \to \infty} \overline{x}_n \le \limsup_{n \to \infty} \overline{x}_n\le rx
 $$
@@ -82,7 +89,7 @@ Now let $n_m$ be the $m$th entry of $N_m$ and define $N=(n_1,n_2,\dots)$, one ca
 
 ::: {.remark}
 
-If the sequence $(N_{i})_{i \in \mathbb{N}}$ is written as
+If the sequence $(N_{i})_{i \in \mathbb{N}^*}$ is written as
 $$
 \begin{bmatrix}
     N_1\\
@@ -101,14 +108,14 @@ Following is an application of some importance.
 
 ::: {.theorem #helly name="Helly's theorem"}
 
-Suppose $(c_{i})_{i \in \mathbb{N}}$ is a sequence of d.f.'s, then there exists a subsequence $(b_{i})_{i \in \mathbb{N}}$ and a d.f. $c$ s.t. $\lim_{i \to \infty} b_i(t) = c(t)$ at which $t$ is continuous.
+Suppose $(c_{i})_{i \in \mathbb{N}^*}$ is a sequence of d.f.'s, then there exists a subsequence $(b_{i})_{i \in \mathbb{N}^*}$ and a d.f. $c$ s.t. $\lim_{i \to \infty} b_i(t) = c(t)$ at which $t$ is continuous.
 
 :::
 
 
 ::: {.proof}
 
-Treat $(c_{i}(r))_{i \in \mathbb{N}}$ as a sequence and $r$ is taken as an enumeration of $\mathbb{Q}$. Consider the subsequence $N\subset \mathbb{N}$ from lemma \@ref(lem:diagonal-method), we claim that $(c_i)_{i \in N}$ is exactly $(b_{i})_{i \in \mathbb{N}}$, recall that $b(r)=\lim_{n \to \infty}b_n(r)$ exists for each $r\in \mathbb{Q}$.
+Treat $(c_{i}(r))_{i \in \mathbb{N}^*}$ as a sequence and $r$ is taken as an enumeration of $\mathbb{Q}$. Consider the subsequence $N\subset \mathbb{N}$ from lemma \@ref(lem:diagonal-method), we claim that $(c_i)_{i \in N}$ is exactly $(b_{i})_{i \in \mathbb{N}^*}$, recall that $b(r)=\lim_{n \to \infty}b_n(r)$ exists for each $r\in \mathbb{Q}$.
 
 For each $t\in \mathbb{R}$, define
 $$
@@ -137,7 +144,7 @@ Following relates convergence of averages and convergence.
 
 ::: {.lemma  name=""}
 
-Suppose $(x_{i})_{i \in \mathbb{N}}\subset \mathbb{R}$ and $(a_{i})_{i \in \mathbb{N}} \nearrow \infty$ be strictly positive. Put $y_n=\sum_{i=1}^{n}\frac{x_i}{a_i}$. If $(y_{i})_{i \in \mathbb{N}}$ converges, then
+Suppose $(x_{i})_{i \in \mathbb{N}^*}\subset \mathbb{R}$ and $(a_{i})_{i \in \mathbb{N}^*} \nearrow \infty$ be strictly positive. Put $y_n=\sum_{i=1}^{n}\frac{x_i}{a_i}$. If $(y_{i})_{i \in \mathbb{N}^*}$ converges, then
 $$
 \lim_{n \to \infty} \frac{\sum_{i=1}^{n} x_i}{a_n}=0
 $$
@@ -170,9 +177,172 @@ where the second term is finite and thus dominated by $a_n$, that implies $\lim_
 
 ## Almost Sure Convergence
 
+Sequence of r.v.'s $(X_{i})_{i \in \mathbb{N}^*}$ is said to be converges if $(X_{i}(\omega))_{i \in \mathbb{N}^*}$ is so for all $\omega \in \Omega$.
+
+As $\liminf_{n \to \infty} X_n$ and $\limsup_{n \to \infty}  X_n$ are r.v.'s, the set
+$$
+\Omega_0=\{\omega:\liminf_{n \to \infty} X_n=\limsup_{n \to \infty} X_n\}
+$$
+is an event. Then $(X_{i})_{i \in \mathbb{N}^*}$ is converges a.s. iff $\mathop{{}\mathbb{P}}(\Omega_0)=1$. 
+
+
+### Borel-Cantelli lemmas
+
+::: {.definition #io-ult name=""}
+
+Suppose $(A_{i})_{i \in \mathbb{N}^*}$ is sequence of events, then **infinite often(i.o.)** and **ultimately(ult.)** are defined by:
+$$
+\begin{aligned}
+     \{A_n,\ i.o.\}&=\limsup_n A_n=\bigcap_{n=1}^\infty \bigcup_{m=n}^\infty A_m=\lim_{n\to\infty}\sup\{ A_{n:\infty}\}=\lim_{n\to\infty}\bigcup_{m=n}^\infty A_m
+     \\   \{A_n,\ ult.\}&=\liminf_n A_n=\bigcup_{n=1}^\infty \bigcap_{m=n}^\infty A_m=\lim_{n\to\infty}\inf\{ A_{n:\infty}\}=\lim_{n\to\infty}\bigcap_{m=n}^\infty A_m
+\end{aligned}
+$$
+
+:::
+
+
+::: {.remark}
+
+By intuition, we have:
+
+1. $\{A_n \text{ ult.}\}^c=\{A_n^c \text{ i.o.}\}$
+2. $\bm{\mathbf{1}}_{\{A_n \text{ i.o.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ i.o.}\}$, $\bm{\mathbf{1}}_{\{A_n \text{ ult.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ ult.}\}$
+3. $\{A_n \text{ i.o.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n}=\infty\}$, $\{A_n \text{ ult.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n^c}<\infty\}$
+4. $\{A_n \text{ i.o.}\} \subset \{A_n \text{ ult.}\}$
+5. $\mathop{{}\mathbb{P}}(\liminf_{n \to \infty} A_n)\le \liminf_{n \to \infty} \mathop{{}\mathbb{P}}(A_n)\le \limsup_{n \to \infty} (A_n)\le \mathop{{}\mathbb{P}}(\limsup_{n \to \infty} A_n)$
+
+:::
+
+Borel-Cantelli lemma implies some sufficient conditions for a.s. convergence.
+
+::: {.lemma #borel-cantelli name="Borel-Cantelli lemma"}
+
+Let $(A_{i})_{i \in \mathbb{N}^*}$ be a sequence of events. Then
+$$
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i) < \infty \implies \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i} < \infty \text{ a.s.} \iff \mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=0
+$$
+If $(A_i)$ are independent, then
+$$
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i)=\infty \implies \sum_{1=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\infty \text{ a.s.} \iff \mathop{{}\mathbb{P}} \{A_n \text{ i.o.}\}=1
+$$
+
+:::
+
+::: {.proof}
+
+By the MCT \@ref(thm:MCT),
+$$
+\mathop{{}\mathbb{E}} \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{E}}1_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{P}}(A_i)<\infty
+$$
+and the claim follows as remark 2 in [**Properties of expectation**][Properties of expectation].
+
+If $(A_i)$ are independent, noting $1-x \le e^{-x}$ for all $x\in \mathbb{R}$, it's sufficient to show that $0\le 1-\mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}\le 0$:
+$$
+\begin{aligned}
+    0 & \le  
+    1-\mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=\mathop{{}\mathbb{P}}\{A_n^c \text{ ult.}\}
+    \\ &= 
+    \mathop{{}\mathbb{P}}(\liminf_{n \to \infty} A_n^c)=\lim_{n \to \infty} \mathop{{}\mathbb{P}}(\inf_{m \ge n}A_m^c)
+    \\ &=
+    \lim_{n \to \infty}\mathop{{}\mathbb{P}}(\bigcap_{m=n}^{\infty} A_m^c)=
+    \lim_{n \to \infty}\lim_{r \to \infty}\mathop{{}\mathbb{P}}(\bigcap_{m=n}^{r}A_m^c)
+    \\ &= 
+    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [1-\mathop{{}\mathbb{P}}(A_m)] \text{ (by independence)}
+    \\ & \le 
+    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [e^{-\mathop{{}\mathbb{P}}(A_i)}]
+    \le 
+    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [e^{-\sum_{m=n}^{r}\mathop{{}\mathbb{P}}(A_m)}]
+    \\ &= 
+    \lim_{n \to \infty} e ^{-\sum_{m=n}^{\infty}\mathop{{}\mathbb{P}}(A_m)}=\lim_{n \to \infty}0=0
+\end{aligned}
+$$
+
+
+:::
+
+
+### Convergence a.s. theorem
+
+::: {.theorem #convergence-as name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, let
+$$
+Y_n=\sup_{i,j \ge n}\left|X_i-X_j\right|,Z_n=\sup_k \left|X_{n+k}-X_n\right|
+$$ 
+TFAE:
+
+1.  $X_n \to X$ a.s.
+2.  For every $\epsilon > 0$,
+    $$
+    \sum_{i=1}^{\infty} i_{\epsilon}\circ \left|X_n-X\right| <\infty \text{ a.s.}
+    $$
+3.  For every $\epsilon>0$,
+    $$
+    \mathop{{}\mathbb{P}}(\left|X_n-X\right|\ge \epsilon \text{ i.o.})=0
+    $$
+4. $Y_n \to 0$ a.s.
+5. $Z_n \to 0$ a.s.
+
+:::
+
+
+::: {.proof}
+
+$1 \iff 2$ follows from the equivalent statement of convergence stated at the [beginning][Almost Sure Convergence].
+
+$2 \iff 3$ follows from remark 1 and 3 in definition \@ref(def:io-ult).
+
+$1\iff 4 \iff 5$ is clearly follows from 2.
+
+
+:::
 
 
 
+::: {.proposition  name=""}
+
+The follows are sufficient for convergence a.s.:
+
+1.  For every $\epsilon > 0$
+    $$
+    \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}<\infty
+    $$
+2.  There exist a sequence $(\epsilon_{i})_{i \in \mathbb{N}^*} \searrow 0$ s.t.
+    $$
+    \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}<\infty
+    $$
+3.  There exist a sequence $(\epsilon_{i})_{i \in \mathbb{N}^*} > 0$ s.t. 
+    $$
+    \sum_{n \to  \infty}^{} \epsilon_n < \infty,  \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}} \{ \left|X_{n+1}-X_n\right|>\epsilon_n\} < \infty
+    $$
+4.  For every $\epsilon > 0$, 
+    $$
+    \liminf_{n \to \infty}\lim_{m \to \infty} \mathop{{}\mathbb{P}}\{\sup_{k\le m}\left|X_{n+k}-X_n\right|>\epsilon\}=0
+    $$
+
+:::
+
+
+::: {.proof}
+
+1.  By Borel-Cantelli lemma \@ref(lem:borel-cantelli), that implies statement $2$ in theorem \@ref(thm:convergence-as) and thus implies $X_n \to X$ a.s..
+2.  As $\epsilon_n \to 0$, the equality also holds for all $\epsilon$ as one can always find a less $\epsilon$ from $(\epsilon_{i})_{i \in \mathbb{N}^*}$ and thus $2\implies 1$.
+3.  By Borel-Cantelli lemma and proposition \@ref(prp:epsilon-sequence).
+4.  Write $Z_n$ for $\sup_{k \ge 1}\left|X_{n+k}-X_n\right|$, by remark 5 in definition \@ref(def:io-ult):
+    $$
+    \begin{aligned}
+        0=\liminf_{n \to \infty} \mathop{{}\mathbb{P}}\{Z_n > \epsilon\}
+        &\ge  
+        \mathop{{}\mathbb{P}}(\liminf_{n \to \infty} 
+    \{Z_n > \epsilon\}
+    )=0
+    \end{aligned}
+    $$
+    thus $\{Z_n>\epsilon \text{ ult.}\}$ has probability $0$ and thus $\{Z_n>\epsilon \text{ i.o.}\}$ is so, then $(Z_n)$ is converges and so is $(X_n)$ as theorem \@ref(thm:convergence-as).3,5.
+
+:::
+
+## Convergence in Probability
 
 
 
@@ -191,7 +361,6 @@ where the second term is finite and thus dominated by $a_n$, that implies $\lim_
 <br>
 <br>
 <br>
-
 <br>
 <br>
 <br>
