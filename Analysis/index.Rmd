@@ -24,7 +24,6 @@ description: "Notes of analysis"
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\sub}{\subset}
-\newcommand{\subsets}{\subset}
+\newcommand{\subsets}{\subset}cvbn
 \newcommand{\exist}{\exists}
-\newcommand{\Tau}{\tau}
 ```
