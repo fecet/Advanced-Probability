@@ -420,7 +420,7 @@ $$
 
 :::
 
-::: {.definition  name=""}
+::: {.definition #uniform-integrability name=""}
 
 A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is said to **uniformly integrable** if
 $$

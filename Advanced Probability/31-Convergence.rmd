@@ -508,7 +508,7 @@ Suppose $(X_{i})_{i \in \mathbb{N}^*}$ taking values in $\mathbb{R}$ and $p \ge 
 
 $a\implies b$. By the triangle inequality:
 $$
-\|X_m-X_n\|_P\le \|X_m-X\|_p+\|X-X_n\|_p \to 0
+\|X_m-X_n\|_p\le \|X_m-X\|_p+\|X-X_n\|_p \to 0
 $$
 and thus $\|X_m-X_n\|_p\to 0$.
 
@@ -516,10 +516,35 @@ $b\implies c$ By Markov-inequality again and theorem \@ref(thm:cauchy-convergenc
 $$
 \mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
 $$
+and $(X_n^{p})$ is $L^{1}$ bounded.
 
-$c\implies a$
+The cauchy yields $\mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p \le \epsilon$ for sufficient large $m,n \ge k \gg 1$, thus, for every event $A \in \mathcal{F}$:
+$$
+\mathop{{}\mathbb{E}}\left|X_n^p\right| =\mathop{{}\mathbb{E}} \left|X_n\right|^{p} \le 2^{p-1}( \mathop{{}\mathbb{E}}\left|X_n-X_k\right|^{p}+\mathop{{}\mathbb{E}} \left|X_k\right|^{p})\le 2^{p-1}(\epsilon+\mathop{{}\mathbb{E}}\left|X_k^{p}\right|)
+$$
+thus
+$$
+\sup_n \mathop{{}\mathbb{E}}\left|X_n^{p}\right|\bm{\mathbf{1}}_{A}\le 2^{p-1}\epsilon+2^{p-1}\sup_{n\le k}\mathop{{}\mathbb{E}}\left|X_n^p\right|\bm{\mathbf{1}}_{A}
+$$
+In view of remark 2 in definition \@ref(def:uniform-integrability), $\{X_n:n\le k\}$ is uniformly integrability and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(A)$ is sufficient small and thus the left side. It follows that $(X_n^{p})$ is $L^{1}$ bounded by taking $A=\Omega$ and claim follows.
+
+$c\implies a$. Note $X_n^{p} \xrightarrow{p} X^{p}$ by proposition \@ref(prp:convergence-probability-continuous).
+By theorem \@ref(thm:convergence-probability).2, there is a subsequence $X_n'^{p}\to X^{p}$ a.s.  then Fatou's lemma \@ref(lem:fatou) yields
+
+$$
+\mathop{{}\mathbb{E}} \left|X^{p}\right|=\mathop{{}\mathbb{E}}\liminf_{n} \left|X'^{p}_n\right|\le \liminf_{n} \mathop{{}\mathbb{E}}\left|X'^{p}_n\right|\le \sup_{n} \mathop{{}\mathbb{E}} \left|X^{p}_n\right| < \infty
+$$
+thus $X^{p} \in L^{1}$. Let $F_n=\{\left|X_n^{p}-X^{p}\right|^{}>\epsilon\}$, note
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}&\le \mathop{{}\mathbb{E}}\left|X_n^{p}-X^{p}\right| 
+    \\&\le \epsilon+\mathop{{}\mathbb{E}}\left|X_n^{p}-X^{p}\right|\bm{\mathbf{1}}_{F_n}
+\end{aligned}
+$$
+As $X^{p}$ is integrable and $X_n^{p}$ is uniformly so, $(X_n^{p}-X^{p})$ is uniformly integrable and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(F_n)$ can be also arbitrary small. It follows that $\mathop{{}\mathbb{E}} \left|X_n -X\right|^{p} \to 0$.
 
 :::
+
 
 
 
