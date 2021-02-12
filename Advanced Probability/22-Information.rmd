@@ -270,7 +270,7 @@ for countable $X=(X_1,X_2,\dots)$. Variable is said to be permutation invariant 
 
 The collection of all permutation invariant events is a $\sigma$-algebra which contains the tail-$\sigma$-algebra of $X$. 
 
-The following theorem generalized kolmogorov 0-1 law \@ref(thm:kolmogorov-0-1) in i.i.d. cases.
+The following theorem generalized kolmogorov 0-1 law \@ref(thm:kolmogorov-0-1) in i.i.d.\ cases.
 
 
 ::: {.theorem #hawitt-savage name="Hewitt-Savage 0-1 law"}
@@ -286,7 +286,7 @@ It's sufficient to show that if $V:\Omega \to [0,1]$ is permutation invariant in
 $$
 \lim_{n \to \infty} \mathop{{}\mathbb{E}}|V-V_n|=\lim_{n \to \infty}\mathop{{}\mathbb{E}}V_n-\mathop{{}\mathbb{E}}V=0
 $$
-As $(X_i)_{i \in \mathbb{N}}$ are i.i.d. $V$ and $V \circ \pi$ share the same distribution and thus same expectation:
+As $(X_i)_{i \in \mathbb{N}}$ are i.i.d., $V$ and $V \circ \pi$ share the same distribution and thus same expectation:
 $$
 \begin{aligned}
     \mathop{{}\mathbb{E}}|V-V_n|&=\mathop{{}\mathbb{E}}|(V-V_n)\circ \pi|

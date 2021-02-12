@@ -368,7 +368,7 @@ $$ \psi ( \mathop{{}\mathbb{E}} X ) \leq \mathop{{}\mathbb{E}} [ \psi ( X ) ] $$
 
 :::
 
-::: {.theorem #Markov name="Chebyshev(Markov) inequality"}
+::: {.theorem #Markov-inequality name="Chebyshev(Markov) inequality"}
 
 If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathop{{}\mathbb{E}}(g(X))<\infty$, then $\forall a>0$
 $$
@@ -468,7 +468,7 @@ $$
 $$
 then $\implies$ is immediately as $k(b)$ can be arbitrary small.
 
-Conversely, by Markov's inequality \@ref(thm:Markov):
+Conversely, by Markov's inequality \@ref(thm:Markov-inequality):
 $$
 \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{P}}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}X=\frac{k(0)}{b}
 $$

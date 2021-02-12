@@ -1,11 +1,18 @@
 # Convergence
 
-## Cauchy criterion
+## Convergence of Real Sequences
+
+Suppose $(x_{i})_{i \in \mathbb{N}^*} \subset \mathbb{R}$, then $(x_i)\to x$ iff $\left|x_i-x\right|\to 0$ and the classical statement for convergence is the same as
+$$
+\sum_{i=1}^{\infty} i_{\epsilon}(\left|x_i-x\right|) < \infty \iff \limsup_{n \to \infty} i_{\epsilon}(\left|x_i-x\right|)=0 \iff i_{\epsilon}(\left|x_i-x\right|)\to 0
+$$
+holds for all $\epsilon > 0$.
+
+### Cauchy criterion
 
 Following are useful for determining convergence.
 
-
-::: {.proposition #cauchy name=""}
+::: {.proposition #cauchy name="Cauchy criterion"}
 
 Sequence $(x_n)$ converges iff
 $$
@@ -15,12 +22,487 @@ $$
 :::
 
 
-::: {.proposition  name=""}
+::: {.proposition #epsilon-sequence name=""}
 
-IF there exists a positive sequence $(\epsilon_n)$ s.t.
+If there exists a positive sequence $(\epsilon_n)$ s.t.
 $$
-\sum_{n}^{} \epsilon_n <\infty
+\sum_{n}^{} \epsilon_n <\infty, \sum_{n}^{} i_{\epsilon_n}(|x_{n+1}-x_n|)< \infty
+$$
+then $(x_{n})$ is convergent.
+
+:::
+
+### Subsequence
+
+::: {.definition  name=""}
+
+Let $(x_{i})_{i \in \mathbb{N}^*}$ be a sequence. Then $(x_{k_i})_{i \in \mathbb{N}^*}$ is a subsequence of $(x_{i})_{i \in \mathbb{N}^*}$ if $(k_{i})_{i \in \mathbb{N}^*}\subset \mathbb{N}$ if it's increasing with $\lim_{i \to \infty}k_i=\infty$. Regarding $\mathbb{N}$ as a sequence then $(k_{i})_{i \in \mathbb{N}^*}$ is a subsequence of $\mathbb{N}$. Denoted $(k_{i})_{i \in \mathbb{N}^*}$ as $N$, we can write $(x_{i})_{i \in N}$ for $(x_{k_i})_{i \in \mathbb{N}^*}$ and we say $(x_{i})_{i \in \mathbb{N}^*}$ converges along $N$ to $x$ if $\lim_{i \to \infty} x_{k_i}=x$.
+
+:::
+
+
+::: {.proposition #subsequence-convergence name=""}
+
+Subsequence converges to $\limsup_{n \to \infty} x_n$ as a maximum and $\liminf_{n \to \infty} x_n$ as a minimum, the sequence converges iff they meet, i.e., every subsequence converges to the same point.
+
+:::
+
+Following is useful for future studies.
+
+::: {.lemma #sequence-mean name=""}
+
+Let $(x_{i})_{i \in \mathbb{N}^*}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r>1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
+$$
+\frac{x}{r} \le \liminf_{n \to \infty} \overline{x}_n \le \limsup_{n \to \infty} \overline{x}_n\le rx
 $$
 
 :::
+
+
+::: {.proof}
+
+For $n_k \le n <n_{k+1}$, note that
+$$
+\frac{n_k}{n_{k+1}}\overline{x}_{n_k}=\frac{\sum_{n_k}^{} x_i}{n_{k+1}} \le  \overline{x}_{n} \le  \frac{\sum_{n_{k+1}}^{} x_i}{n_{k}} = \frac{n_{k+1}}{n_k} \overline{x}_{n_{k+1}}
+$$
+Take limit each side we have result desired.
+
+:::
+
+### Diagonal method
+
+::: {.lemma #diagonal-method  name=""}
+
+Suppose there is a countable family of bounded sequence $\{S_i:i \in \mathbb{N}\}$, then there exists a subsequence $N$ of $\mathbb{N}$ s.t. each of them converges along $N$.
+
+:::
+
+::: {.proof}
+
+As each $S_i$ is bounded, we can pick $N_1$ s.t. $S_1$ converges along $N_1$, then consider $S_2$ along $N_1$ as a new sequence there exists $N_2\subset N_1$ s.t. which converges along $N_2$. Thus for each $m < \infty$, we have $S_i$ converges along $N_m$ for $i\le m$.
+
+Now let $n_m$ be the $m$th entry of $N_m$ and define $N=(n_1,n_2,\dots)$, one can check it's tail is a subsequence of each $N_i$ and thus $S_i$ converges along $N$ for each $i$.
+
+
+:::
+
+
+::: {.remark}
+
+If the sequence $(N_{i})_{i \in \mathbb{N}^*}$ is written as
+$$
+\begin{bmatrix}
+    N_1\\
+    N_2\\
+    \vdots
+\end{bmatrix}
+$$
+then $N$ is precisely the diagonal of above matrix, and that's why it called diagonal method.
+
+:::
+
+Following is an application of some importance.
+
+### Helly's Theorem
+
+
+::: {.theorem #helly name="Helly's theorem"}
+
+Suppose $(c_{i})_{i \in \mathbb{N}^*}$ is a sequence of d.f.'s, then there exists a subsequence $(b_{i})_{i \in \mathbb{N}^*}$ and a d.f. $c$ s.t. $\lim_{i \to \infty} b_i(t) = c(t)$ at which $t$ is continuous.
+
+:::
+
+
+::: {.proof}
+
+Treat $(c_{i}(r))_{i \in \mathbb{N}^*}$ as a sequence and $r$ is taken as an enumeration of $\mathbb{Q}$. Consider the subsequence $N\subset \mathbb{N}$ from lemma \@ref(lem:diagonal-method), we claim that $(c_i)_{i \in N}$ is exactly $(b_{i})_{i \in \mathbb{N}^*}$, recall that $b(r)=\lim_{n \to \infty}b_n(r)$ exists for each $r\in \mathbb{Q}$.
+
+For each $t\in \mathbb{R}$, define
+$$
+c(t)=\inf \{b(r):r\in \mathbb{Q}\text{ and }r>t\}
+$$
+One can check $c$ is a d.f. Then suppose $c$ is continuous at $t$, for any $\epsilon > 0$ there is a $s<t$ s.t. $c(s) > c(t)-\epsilon$ and there is a rational $r > t$ s.t. $b(r)<c(t)+\epsilon$ by definition. Pick rational $q$ s.t. $s < q < t < r$, we have
+$$
+c(t)-\epsilon < c(s) \le  b(q) \le  b(r)  <c(t)+\epsilon
+$$
+note:
+$$
+\begin{aligned}
+    &\liminf_{n \to \infty} b_n(t) \ge \liminf_{n \to \infty} b_n(q)=b(q) 
+    \\
+    &\limsup_{n \to \infty} b_n(t) \le \limsup_{n \to \infty} b_n(r)=b(r) 
+\end{aligned}
+$$
+thus they are sandwiched by $c(t)-\epsilon$ and $c(T)+\epsilon$ and thus agree at $c(t)$ and it follows that $\lim_{n \to \infty}b_n(t)=c(t)$.
+
+:::
+
+### Kronecker's Lemma
+
+Following relates convergence of averages and convergence.
+
+
+::: {.lemma  name=""}
+
+Suppose $(x_{i})_{i \in \mathbb{N}^*}\subset \mathbb{R}$ and $(a_{i})_{i \in \mathbb{N}^*} \nearrow \infty$ be strictly positive. Put $y_n=\sum_{i=1}^{n}\frac{x_i}{a_i}$. If $(y_{i})_{i \in \mathbb{N}^*}$ converges, then
+$$
+\lim_{n \to \infty} \frac{\sum_{i=1}^{n} x_i}{a_n}=0
+$$
+
+:::
+
+
+::: {.proof}
+
+Put $a_0=y_0=0$. Note $x_i=(y_i-y_{i-1})a_i$ and
+$$
+\sum_{i=1}^{n} x_i=\sum_{i=0}^{n-1}(a_{i+1}-a_i)(y_n-y_i)
+$$
+By Cauchy criterion \@ref(prp:cauchy), there exists $k$ for any $\epsilon$ s.t. $|y_n-y_m|\le \epsilon$ for all $n,m\ge k$ and thus
+$$
+\begin{aligned}
+    \left|\sum_{i=1}^{n}x_i\right|&=\left|\sum_{i=0}^{n-1}(a_{i+1}-a_i)(y_n-y_i)\right|
+    \\ & \le 
+\left|\sum_{i=k}^{n-1}(a_{i+1}-a_i)|y_n-y_i|\right|+
+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+    \\ & \le 
+    (a_n-a_k)\epsilon+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+    \\&\le 
+    a_n\epsilon+\left|\sum_{i=0}^{k-1}(a_{i+1}-a_i)|y_n-y_i|\right|
+\end{aligned}
+$$
+where the second term is finite and thus dominated by $a_n$, that implies $\lim_{n \to \infty}\frac{\left|\sum_{i=1}^{n}x_i\right|}{a_n}\to 0$ and then claim follows.
+
+:::
+
+## Almost Sure Convergence
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+
+Sequence of r.v.'s $(X_i)$ is said to be converges if $(X_i(\omega))$ is so for all $\omega \in \Omega$.
+
+As $\liminf_{n \to \infty} X_n$ and $\limsup_{n \to \infty}  X_n$ are r.v.'s, the set
+$$
+\Omega_0=\{\omega:\liminf_{n \to \infty} X_n=\limsup_{n \to \infty} X_n\}
+$$
+is an event. Then $(X_{i})_{i \in \mathbb{N}^*}$ is converges a.s. iff $\mathop{{}\mathbb{P}}(\Omega_0)=1$. 
+
+
+### Borel-Cantelli lemmas
+
+::: {.definition #io-ult name=""}
+
+Suppose $(A_{i})_{i \in \mathbb{N}^*}$ is sequence of events, then **infinite often(i.o.)** and **ultimately(ult.)** are defined by:
+$$
+\begin{aligned}
+     \{A_n,\ i.o.\}&=\limsup_n A_n=\bigcap_{n=1}^\infty \bigcup_{m=n}^\infty A_m=\lim_{n\to\infty}\sup\{ A_{n:\infty}\}=\lim_{n\to\infty}\bigcup_{m=n}^\infty A_m
+     \\   \{A_n,\ ult.\}&=\liminf_n A_n=\bigcup_{n=1}^\infty \bigcap_{m=n}^\infty A_m=\lim_{n\to\infty}\inf\{ A_{n:\infty}\}=\lim_{n\to\infty}\bigcap_{m=n}^\infty A_m
+\end{aligned}
+$$
+
+:::
+
+
+::: {.remark}
+
+By intuition, we have:
+
+1. $\{A_n \text{ ult.}\}^c=\{A_n^c \text{ i.o.}\}$
+2. $\bm{\mathbf{1}}_{\{A_n \text{ i.o.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ i.o.}\}$, $\bm{\mathbf{1}}_{\{A_n \text{ ult.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ ult.}\}$
+3. $\{A_n \text{ i.o.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n}=\infty\}$, $\{A_n \text{ ult.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n^c}<\infty\}$
+4. $\{A_n \text{ i.o.}\} \subset \{A_n \text{ ult.}\}$
+5. $\mathop{{}\mathbb{P}}(\liminf_{n \to \infty} A_n)\le \liminf_{n \to \infty} \mathop{{}\mathbb{P}}(A_n)\le \limsup_{n \to \infty} (A_n)\le \mathop{{}\mathbb{P}}(\limsup_{n \to \infty} A_n)$
+
+:::
+
+Borel-Cantelli lemma implies some sufficient conditions for a.s. convergence.
+
+::: {.lemma #borel-cantelli name="Borel-Cantelli lemma"}
+
+Let $(A_{i})_{i \in \mathbb{N}^*}$ be a sequence of events. Then
+$$
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i) < \infty \implies \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i} < \infty \text{ a.s.} \iff \mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=0
+$$
+If $(A_i)$ are independent, then
+$$
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i)=\infty \implies \sum_{1=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\infty \text{ a.s.} \iff \mathop{{}\mathbb{P}} \{A_n \text{ i.o.}\}=1
+$$
+
+:::
+
+::: {.proof}
+
+By the MCT \@ref(thm:MCT),
+$$
+\mathop{{}\mathbb{E}} \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{E}}1_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{P}}(A_i)<\infty
+$$
+and the claim follows as remark 2 in [**Properties of expectation**][Properties of expectation].
+
+If $(A_i)$ are independent, noting $1-x \le e^{-x}$ for all $x\in \mathbb{R}$, it's sufficient to show that $0\le 1-\mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}\le 0$:
+$$
+\begin{aligned}
+    0 & \le  
+    1-\mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=\mathop{{}\mathbb{P}}\{A_n^c \text{ ult.}\}
+    \\ &= 
+    \mathop{{}\mathbb{P}}(\liminf_{n \to \infty} A_n^c)=\lim_{n \to \infty} \mathop{{}\mathbb{P}}(\inf_{m \ge n}A_m^c)
+    \\ &=
+    \lim_{n \to \infty}\mathop{{}\mathbb{P}}(\bigcap_{m=n}^{\infty} A_m^c)=
+    \lim_{n \to \infty}\lim_{r \to \infty}\mathop{{}\mathbb{P}}(\bigcap_{m=n}^{r}A_m^c)
+    \\ &= 
+    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [1-\mathop{{}\mathbb{P}}(A_m)] \text{ (by independence)}
+    \\ & \le 
+    \lim_{n \to \infty}\lim_{r \to \infty} \prod_{m=n} ^{r} [e^{-\mathop{{}\mathbb{P}}(A_i)}]
+     =  
+    \lim_{n \to \infty}\lim_{r \to \infty}  [e^{-\sum_{m=n}^{r}\mathop{{}\mathbb{P}}(A_m)}]
+    \\ &= 
+    \lim_{n \to \infty} e ^{-\sum_{m=n}^{\infty}\mathop{{}\mathbb{P}}(A_m)}=\lim_{n \to \infty}0=0
+\end{aligned}
+$$
+
+
+:::
+
+
+### Convergence a.s. theorem
+
+::: {.theorem #convergence-as name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, TFAE:
+
+1.  $X_n \to X$ a.s.
+2.  For every $\epsilon > 0$,
+    $$
+    \sum_{i=1}^{\infty} i_{\epsilon}\circ \left|X_n-X\right| <\infty \text{ a.s.} \iff i_{\epsilon} \circ \left|X_n-X\right| \to 0 \text{ a.s.}
+    $$
+3.  For every $\epsilon>0$,
+    $$
+    \mathop{{}\mathbb{P}}(\left|X_n-X\right|\ge \epsilon \text{ i.o.})=0
+    $$
+
+:::
+
+
+::: {.proof}
+
+$1 \iff 2$ follows from the equivalent statement of convergence stated at the [beginning][Almost Sure Convergence].
+
+$2 \iff 3$ follows from remark 1 and 3 in definition \@ref(def:io-ult).
+
+
+
+:::
+
+
+
+
+### Cauchy criterion for convergence a.s.
+
+
+::: {.theorem #cauchy-convergence-as name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, let
+$$
+Y_n=\sup_{i,j \ge n}\left|X_i-X_j\right|,Z_n=\sup_k \left|X_{n+k}-X_n\right|
+$$
+TFAE:
+
+1. $X_n$ converges a.s.
+2. $\lim_{m,n \to \infty} \left|X_n-X_m\right|=0$ a.s.
+3. $Y_n \to 0$ a.s.
+4. $Z_n \to 0$ a.s.
+
+:::
+
+::: {.proposition #convergence-as name=""}
+
+The follows are sufficient for convergence a.s.:
+
+1.  For every $\epsilon > 0$
+    $$
+    \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}<\infty
+    $$
+2.  There exist a sequence $(\epsilon_{i})_{i \in \mathbb{N}^*} \searrow 0$ s.t.
+    $$
+    \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}<\infty
+    $$
+3.  There exist a sequence $(\epsilon_{i})_{i \in \mathbb{N}^*} > 0$ s.t. 
+    $$
+    \sum_{n \to  \infty}^{} \epsilon_n < \infty,  \sum_{n \to  \infty}^{} \mathop{{}\mathbb{P}} \{ \left|X_{n+1}-X_n\right|>\epsilon_n\} < \infty
+    $$
+4.  For every $\epsilon > 0$, 
+    $$
+    \liminf_{n \to \infty}\lim_{m \to \infty} \mathop{{}\mathbb{P}}\{\sup_{k\le m}\left|X_{n+k}-X_n\right|>\epsilon\}=0
+    $$
+
+:::
+
+
+::: {.proof}
+
+1.  By Borel-Cantelli lemma \@ref(lem:borel-cantelli), that implies statement $2$ in theorem \@ref(thm:convergence-as) and thus implies $X_n \to X$ a.s..
+2.  As $\epsilon_n \to 0$, the equality also holds for all $\epsilon$ as one can always find a less $\epsilon$ from $(\epsilon_{i})_{i \in \mathbb{N}^*}$ and thus $2\implies 1$.
+3.  By Borel-Cantelli lemma and proposition \@ref(prp:epsilon-sequence).
+4.  Write $Z_n$ for $\sup_{k \ge 1}\left|X_{n+k}-X_n\right|$, by remark 5 in definition \@ref(def:io-ult):
+    $$
+    \begin{aligned}
+        0=\liminf_{n \to \infty} \mathop{{}\mathbb{P}}\{Z_n > \epsilon\}
+        &\ge  
+        \mathop{{}\mathbb{P}}(\liminf_{n \to \infty} 
+    \{Z_n > \epsilon\}
+    )=0
+    \end{aligned}
+    $$
+    thus $\{Z_n>\epsilon \text{ ult.}\}$ has probability $0$ and thus $\{Z_n>\epsilon \text{ i.o.}\}$ is so, then $(Z_n)$ is converges and so is $(X_n)$ as theorem \@ref(thm:convergence-as).3 and theorem \@ref(thm:cauchy-convergence-as).
+
+:::
+
+
+## Convergence in Probability
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+
+
+::: {.definition  name=""}
+
+Sequence $(X_i)$ is said to be converge to $X$ **in probability** if, for every $\epsilon>0$,
+$$
+\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}=0
+$$
+and denoted as $X_n \xrightarrow{p} X$.
+
+:::
+
+The following relates a.s. convergence and convergence in probability:
+
+
+::: {.theorem #convergence-probability name=""}
+
+1. $X_n \to X$ a.s. $\implies$ $X_n \xrightarrow{p} X$
+2. If $X_n \xrightarrow{p} X$, then there exists a subsequence that converges to $X$ a.s.
+3. If every subsequence has further subsequence that converges to $X$ a.s., then $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+1. By theorem \@ref(thm:convergence-as).2, $i_{\epsilon} \circ \left|X_n-X\right|\to 0$ a.s., then $\mathop{{}\mathbb{E}}i_{\epsilon} \circ \left|X_n-X\right|\to 0$ by DCT \@ref(thm:DCT) and thus $\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}\to 0$.
+2.  As $\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}=0$, we can select a subsequence s.t.
+    $$
+    \sum_{i \in \mathbb{N}^*}^{} \mathop{{}\mathbb{P}}\{\left|X_{n_i}-X\right|> \epsilon\}<\infty
+    $$
+    then claim follows as proposition \@ref(prp:convergence-as).1.
+3.  Suppose $p_n=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}$ as a sequence and $N\subset \mathbb{N}^*$ is subsequence along which the sequence converges to, say, $p$. By assumption, there is a further subsequence $N'\subset N$ s.t. $(p_{i})_{i \in N'}\to 0$ and that implies $p=0$. By proposition \@ref(prp:subsequence-convergence), $p_n \to 0\iff X_n \xrightarrow{p} X$.
+
+:::
+
+
+
+### Convergence and continuous
+
+As an application of above theorem, we have
+
+
+::: {.proposition #convergence-probability-continuous name=""}
+
+Let $f:\mathbb{R} \to \mathbb{R}$ be continuous. Then $f(X_n)\xrightarrow{p}f(X)$ provided $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+For every subsequence $N\subset \mathbb{N}^*$, $X_n \xrightarrow{p} X$ along which and theorem \@ref(thm:convergence-probability).2 implies $N'\subset N$ exists s.t. $X_n \to X$ a.s. along and thus $f(X_n)\to X$ a.s. along $N'$. It follows that $f(X_n)\xrightarrow{p} f(X)$ by theorem \@ref(thm:convergence-probability).3.
+
+:::
+
+That implies convergence in probability
+is preserved under arithmetical operations, i.e., if $X_n \xrightarrow{p} X$ and $Y_n \xrightarrow{p} Y$, we have
+$$
+\begin{aligned}
+    X_n+Y_n \xrightarrow{p} X+Y &, X_n-Y_n \xrightarrow{p} X-Y
+    \\
+    X_nY_n \xrightarrow{p} XY &, \frac{X_n}{Y_n} \xrightarrow{p} \frac{X}{Y}
+\end{aligned}
+$$
+where the last equality holds when $Y$ and $Y_n$ are non-zero a.s.
+
+### Metric for convergence in probability
+
+For real-valued r.v.'s $X$ and $Y$, define
+$$
+d(X,Y)=\mathop{{}\mathbb{E}}(\left|X-Y\right|\wedge 1)
+$$
+one can check $d$ is a metric(except we treat $X$ and $Y$ are the same when $X=Y$ a.s.).
+
+The following shows that $d$ can induced convergence in probability.
+
+
+::: {.proposition  name=""}
+
+$$
+\lim_{n \to \infty} d(X_n,X)=0 \iff X_n \xrightarrow{p} X
+$$
+
+:::
+
+
+::: {.proof}
+
+Note for $\epsilon \in (0,1)$ and $x\ge 0$:
+$$
+\epsilon i_{\epsilon}(x) \le x \wedge 1 \le \epsilon+i_{\epsilon}(x) 
+$$
+replace $x$ with $\left|X_n-X\right|$ and take expectations:
+$$
+\epsilon \mathop{{}\mathbb{E}} i_{\epsilon} \circ \left|X_n-X\right|\le d(X_n,X) \le \epsilon+\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|
+$$
+thus $\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\to 0$ iff $d(X_n,X)\to 0$ as $\epsilon$ can be taken arbitrary small.
+
+:::
+
+### Cauchy criterion for convergence in probability
+
+
+::: {.theorem #cauchy-convergence-probability name=""}
+
+Sequence $(X_{i})_{i \in \mathbb{N}^*}$ converges in probability iff for every $\epsilon>0$,
+$$
+\lim_{m,n \to \infty} \mathop{{}\mathbb{P}}\{\left|X_m-X_n\right|>\epsilon\}=0
+$$
+
+
+:::
+
+### Convergence in $L^p$
+
+::: {.definition  name=""}
+
+A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ iff $(X_i)\subset L^p$ and $X\in L^p$ and $\|X_n-X\|_p\to 0$.
+
+:::
+
+Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality).
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
 

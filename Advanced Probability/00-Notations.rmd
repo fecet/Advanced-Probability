@@ -41,6 +41,7 @@ $i_{\epsilon}$ & $\bm{\mathbf{1}}_{(\epsilon,\infty)}$\\
 
 
 
+
 s.t. & such that\\
 w.r.t. & with respect to\\
 r.v. & random variable\\
