@@ -1,3 +1,4 @@
+# Background Knowledge
 
 ::: {.definition  name="Group"}
 
@@ -33,27 +34,3 @@ A field is a set $K$ on which two binary lows of composition s.t.
     $$
     
 :::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

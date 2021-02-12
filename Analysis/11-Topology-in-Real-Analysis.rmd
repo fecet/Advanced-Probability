@@ -1,0 +1,194 @@
+# Topology Background in Real Analysis
+## Meager Set
+
+::: {.definition  name=""}
+
+A subset $E$ of a metric space $X$ is said to be **dense in an open set** $U$ if $U\subset \overline{E}$. $E$ is defined to be **nowhere dense** if it is not dense in any open subset $U\subset X$. It means $\overline{E}$ does not contain any open set.
+
+:::
+
+::: {.definition  name="first and second category"}
+
+A set $E$ is said to be of **first category** in $X$ if it is the union of a countable family of nowhere dense sets.
+
+A set $E$ is said to be a of **second category** in $X$ if it is not the first category set.
+
+:::
+
+::: {.theorem  name="Baire Category Theorem"}
+
+A complete metric space $X$ is not the union of a countable family of nowhere dense sets. That is, a complete metric space is of the second category. 
+
+:::
+
+::: {.proof}
+
+The proof of the Baire category theorem is to construct a sequence of balls and show that the center of the balls is a Cauchy sequence and find the limit of this sequence is not in $X$ then result in a contradiction.
+
+:::
+
+::: {.theorem  name="uniform boundedness theorem"}
+
+Let $\mathcal{F}$ be a family of real-valued functions defined on a complete metric space $X$ and suppose 
+$$ 
+f^{*}\left( x \right)=\sup_{f\in \mathcal{F}}\left|f\left( x \right)\right|\lt \infty
+$$
+for each $x\in X$.
+
+Then there exists a nonempty open set $U\subset X$ and a constant $M$ s.t. $\left|f\left( x \right)\right|\le M$ for all $x\in U$ and $f\in \mathcal{F}$.
+
+:::
+
+::: {.proof}
+
+For each positive $i\in \mathbb{N}$, let 
+$$ 
+E_{i,f}=\left\{ x;\left|f\left(x\right)\right|\le i \right\},\  E_{i}=\bigcap_{f\in \mathcal{F}} E_{i,f}
+$$
+Notice that $E_{i,f}$ is closed so is $E_i$ and as the hypothesis, we find that for each $x\in X$, there is a $M_x$ s.t. $f\left(x\right)\le M_x$ for all $f\in \mathcal{F}$, so
+$$ 
+X=\bigcup_{i=1} ^{\infty}E_{i}
+$$
+And the Baire category theorem implies that there is some $E_M,M\in \mathbb{N}$ is not nowhere dense which means there is some open subset $U\subset E_M$ s.t. for all $x\in U$,and $f\in \mathcal{F}$, $\left|f\left(x\right)\right|\le M$.
+
+:::
+
+## Compactness in Metric Spaces
+
+
+::: {.lemma  name=""}
+
+-   A convergent sequence in a metric space is Cauchy.
+-   A metric space which all the Cauchy sequence in it is convergence is **complete**.
+-   A metric space is a first countable space.
+-   A metric space is separable iff it is a second countable space.
+
+:::
+
+::: {.proof}
+
+Give a sequence $\left(x_{i}\right)\to x$ in $X$, as $X$ is a metric space, give any $\epsilon\gt 0$, there exists a $m\in \mathbb{N}$ s.t. for any $n_1,n_2\ge m$, $d\left(x,x_{n_1}\right)\le \epsilon /2$, and $d\left(x,x_{n_2}\right)\le \epsilon /2$, so $d\left(x_{n_1},x_{n_2}\right)\le d\left(x_{n_1},x\right)+d\left(x,x_{n_2}\right)\le \epsilon$, so $\left(x_{i}\right)$ is Cauchy.
+
+:::
+
+::: {.definition  name="totally bounded"}
+
+If $(X,d)$ is a metric space, a set $A\subset X$ is called totally bounded if for every $\epsilon\gt 0$, $A$ can be covered by finitely many balls of radius  $\epsilon$.
+
+A set $A$ is said to be bounded if there is $M\ge 0$ s.t. $d\left(x,y\right)\le M$ for all $x,y\in A$.
+
+Notice that a totally bounded set is bounded but a bounded set may not be totally bounded.
+
+:::
+
+::: {.definition  name="sequentially compact"}
+
+A set $A\subset X$ is said to be sequentially compact if every sequence in $A$ has a subsequence that converges to a point $x\in A$.
+
+Also, $A$ is said to have **Bolzano-Weierstrass** property if every infinite subset of $A$ has accumulation point in $A$.
+
+:::
+
+::: {.theorem  name=""}
+
+If $A$ is a subset of a metric space $(X,d)$, the following are equivalent:
+
+-   A is compact.
+-   A is sequentially compact.
+-   A is complete and totally bounded.
+-   A has the Bolzano-Weierstrass property.
+
+
+:::
+
+::: {.proof}
+
+We will give a proof from $1\implies 2$ :
+
+-
+    $1 \implies 2$ : Let  $\left(x_{i}\right)$ be a sequence in $A$. Assume that $\left(x_{i}\right)$ 's range is infinite, and suppose $\left(x_{i}\right)$ has no convergent subsequence. Let $E$ denotes the range of $\left(x_{i}\right)$.  
+    Notice that every subsequence of $\left(x_{i}\right)$ does not converge, so every point $x\in E$, there exists a $r_x$ s.t. $B_r\left(x\right)\cap E=\left\{ x \right\}$. Then as $\overline{E}=E\cup E^{*}$ where $E^{*}$ denotes the set of accumulation point of $E$ which is empty, so $\overline{E}=E\implies E$ is closed.  
+    $A$ is compact and $E$ is closed and $E\subset A$, so $E$ is compact. However, $E$ contains infinite points and every point is isolated, so the open cover $\left\{ B_r\left(x\right):r=r_x \right\}$ cant have a finite subcover that leads to a contradiction.
+
+-
+    $2\implies 3$ : First we need to show that if a subsequence of a Cauchy sequence converges, then the whole sequence converges.  
+    Let $\left(x_{i}\right)$ be a Cauchy sequence and let $\left(x_{i\left(k\right)}\right)_{k=1}^{\infty}$ be a subsequence of $\left(x_{i}\right)$ s.t. $\left(x_{i\left(k\right)}\right)\to x$ which means give a $\epsilon\gt 0$ there exists a $m\left(k\right)\in \mathbb{N}$ for all $k\ge m\left(k\right)$, $d\left(x_{i\left(k\right)},x\right)\le \epsilon /2$. Note that every subsequence of a Cauchy sequence is Cauchy, so there exists a $n\left(k\right)\in \mathbb{N}$ for all $k_1,k_2\ge n\left(k\right)$, $d\left(x_{i\left(k_1\right)},x_{i\left(k_2\right)}\right)\le \epsilon /2$, pick $s=i\left(\max_{}\left(m\left(k\right),n\left(k\right)\right)\right)$, when $i\ge s$, $d\left(x_{i},x\right)\le \epsilon$.  
+    So $A$ must be complete, if not there must be a Cauchy sequence $\left(x_{i}\right)$ in $A$ s.t. there exists a subsequence of $\left(x_{i}\right)$ converges but $\left(x_{i}\right)$ does not converge, which leads to a contradiction of the proposition above.
+
+    About the totally bounded, suppose that $A$ is not totally bounded and there exists a $\epsilon\gt 0$ s.t. $A$ cannot be covered by finitely many balls of radius $\epsilon$. Then we can choose a sequence in $A$ as follows:  
+    Pick $x_1\in A$, Then, since $A-B_\epsilon\left(x_1\right)\neq \varnothing$, we can choose $x_2\in A-B_\epsilon\left(x_2\right)$. Note that $d\left(x_1,x_2\right)\ge \epsilon$, then similarly we choose 
+    $$ 
+    x_{i}\in A-\bigcup_{j=1} ^{i-1}B_{\epsilon}\left(x_{j}\right)
+    $$
+    Then as the cover cannot be finite, so $\left(x_{i}\right)$ is a sequence in $A$ with $d\left(x_{i},x_{j}\right)\ge \epsilon$ when $i\neq j$ so clearly $\left(x_{i}\right)$ does not have any convergent subsequence.
+
+-
+    $3\implies 4$ : Let $A\subset X$ be an infinite subset. Notice that $A$ can be covered by a finite number of balls of radius $1$, and there is a $B_1$ of those balls contains infinite points in $A$. Let $x_1$ be one of them. Similarly, there is a ball $B_2$ of radius $1 /2$ s.t. $A\cap B_1\cap B_2$ has infinitely many points, then pick $x_2\neq x_1$ in it. Then we choose the ball $B_{i}$ of radius $1 /i$ and pick distinct $x_k$ from:
+    $$ 
+    \bigcap_{i=1} ^{k}A\cap B_{i}
+    $$
+    then the sequence $\left(x_k\right)$ is Cauchy, then it converges as the completeness, then there is at least one accumulation point of $A$ in $A$.
+
+-
+    $4\implies 1$ : Omission.
+
+:::
+
+
+::: {.corollary  name="Heine-Borel Theorem"}
+
+A compact subset $A\subset \mathbb{R}^{n}$ is compact iff $A$ is closed and bounded.
+
+:::
+
+::: {.proof}
+
+First, compact means totally bounded thus bounded. And a compact subset of Hausdorff space is closed.
+
+For the converse, if $A$ is closed, it is complete. To show this, use the definition of Cauchy sequence and for any closed subset $A$, $A=\overline{A}=A\cup A^{*}$ where $A^{*}$ denotes the set of the accumulation point of $A$.  
+Meanwhile, in $\mathbb{R}^{n}$, bounded means totally bounded. 
+(So, when bounded means totally bounded? Why $\mathbb{R}^{n}$?).
+
+:::
+
+::: {.lemma #lebesgue-number name="Lebesgue number"}
+
+Let  $(X,d)$ be a compact metric space, and let $\left\{V_{i}\right\}_{i\in I}$ be an open cover of $X$, then there exists some $\delta\gt 0$, called the **Lebesgue number** of the cover, s.t. for each $x\in X$ we have  $B_{\delta}(x)\subset V_{i}$ for some $i\in I$.
+
+:::
+
+::: {.proof}
+
+Assume that there is not any $\delta\gt 0$ satisfies.  
+Then for each $n$ there exists some $x_n\in X$ s.t. $B_{1 /n}(x_n)\cap V_{i}^{c}\neq \varnothing$ for each $i\in I$. If $x$ is the limit point of some subsequence of $(x_n)$, and $x\in X$, then $B_{r}(x)\owns x_{i}$ for some $i$ for all $r\gt 0$ and also $B_{r}(x)\owns x_{j}$ where $x_{j}$ in this subsequence and $j\ge i$. This means give $r\gt 0$, we can find $1/i\le \epsilon\le r /2$ s.t. $x\in B_{\epsilon}(x_{i})$ for some $i$. Then $B_{\epsilon}(x_{i})\subset B_{r}(x)$ which means $B_{r}(x)$ intersects $V_{i}^{c}$ for all $i\in I$.  
+Notice that $V_{i}^{c}$ is closed, so $\overline{V_{i}^{c}}=V_{i}^{c}$ and $x$ is the accumulation point of all the $V_{i}^{c}$, so $x\in \bigcap_{i \in  I} V_{i}^{c}=\left(\bigcup_{i \in  I} V_{i}\right)^{c}=\varnothing$ which leads to a contradiction.
+
+:::
+
+ 
+::: {.theorem  name="Tychonoff product theorem"}
+
+If $\left\{ X_\alpha: \alpha\in A \right\}$ is a family of compact topological spaces and $X=\prod_{\alpha\in A}^{} X_\alpha$ with the **product topology**, then $X$ is compact.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

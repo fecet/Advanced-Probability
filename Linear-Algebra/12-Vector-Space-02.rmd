@@ -1,0 +1,81 @@
+## Dimension
+
+Recall \@ref(thm:f-dim-basis), every system of generators contains a basis, so if the generators of the system is finite, there exists a finite base of the space.
+
+
+::: {.definition #def-dim name="dim"}
+
+Consider a vector space $X$ whose basis is the family of finite number of vectors i.e. $\left\{x_1,\ldots,x_n\right\}$ generates $X$ and $\sum_{i=1}^{n} \alpha_{i}x_{i}=0$ whenever $\alpha_{i}=0$ for every $i$. Then denotes the **dim of $X$** as $\mathop{\text{dim}}X=n$.
+
+:::
+
+::: {.proposition  name=""}
+
+Suppose a vector space $X$ has a basis of $n$ vectors. Then every family of $(n+1)$ vectors is linearly dependent. That means $n$ is the maximum number of linearly independent vectors in $X$ and hence every basis of $X$ consists of $n$ vectors.
+
+:::
+
+::: {.proof}
+
+We use mathematical induction to prove this proposition.
+
+1.  Let $n=1$, let $x_1$ be a basis of $X$, then $y_1,y_2\neq 0$ and $y_1,y_2\in X$. Then $y_1=\alpha x,y_2=\beta x$. Now let $\gamma_1y_1+\gamma_2y_2=0$, we can let $\gamma_1=\alpha\beta,\gamma_2=-\alpha\beta$ which means $y_1,y_2$ are linearly dependent.
+
+2.  Assume that the proposition holds for every vector space having basis of $r\le n-1$ vectors by the induction. 
+
+3.  Let $X$ be a vector space and let $\left\{x_1,\ldots,x_n\right\}$ be the basis of $X$ and $\left\{y_1,\ldots,y_{n+1}\right\}$ be an arbitrary family of vectors in $X$.  
+    Now consider the factor space $X /\mathop{\text{span}}y_{n+1}$ and the canonical projection $\pi:X\to X /\mathop{\text{span}}y_{n+1}$. As $\left\{x_{i}:i=1,\ldots,n\right\}$ generates $X$ and $\pi$ is surjective, $\left\{\pi(x_{i}):i=1,\ldots,n\right\}$ generates $X_1=X /\mathop{\text{span}}y_{n+1}$, so according to \@ref(thm:f-dim-basis), it contains a basis of $X_1$ and as $y_{n+1}=\sum_{i=1}^{n} \alpha_{i}x_{i}$ for some not all zero $\alpha_{i}$, $\left\{\overline{x_{i}}=\pi(x_{i}):i=1,\ldots,n\right\}$ is linearly dependent, so $\mathop{\text{dim}}X_1\le n-1$, then by the hypothesis of induction, $\left\{\overline{y_{i}}=\pi(y_{i}):i=1,\ldots,n\right\}$ are linearly independent.  
+    so there exists:
+    $$ 
+    \sum_{i=1}^{n} \gamma_{i}\overline{y_{i}}=0 \mathop{\text{ for non-trivial }}\left\{\gamma_{i}\right\}
+    $$
+    which means $\left\{y_{i}:i=1,\ldots,n\right\}$ are linearly dependent mod $\mathop{\text{span}}y_{n+1}$ which means 
+    $$ 
+    \sum_{i=1}^{n} \gamma_{i}y_{i}=\lambda y_{n+1}
+    $$
+    leads to the consult that $\left\{y_1,\ldots,y_{n+1}\right\}$ are linearly dependent.
+
+:::
+
+Give a vector space $X$ and a subspace $A_1\subset X$, then there exists a subspace $A_2\subset X$ s.t. $A_1\oplus A_2=X$ by \@ref(prp:a). Then let $\left\{x_\alpha\right\}$ be a basis of $A_1$ and $\left\{x_\beta\right\}$ be a basis of $A_2$, notice that $\left\{x_\alpha\right\}\cap \left\{x_\beta\right\}=\varnothing$ and $\left\{x_\alpha\right\}\cup \left\{x_\beta\right\}$ generates $X$. So we easily observe that $\mathop{\text{dim}}X=\mathop{\text{dim}}A_1+\mathop{\text{dim}}A_2$ if $A_1\oplus A_2=X$.
+
+Then according to \@ref(prp:prp-factor-space-basis), let  $\pi$ be the canonical projection, $\left\{\overline{x_\beta}=\pi(x_\beta)\right\}$ forms a basis of $X /A_1$, so $\mathop{\text{dim}}(X /A_1)=\mathop{\text{card}}\left\{\overline{x_\beta}\right\}=\mathop{\text{card}}\left\{x_\beta\right\}=\mathop{\text{dim}}A_2$. So $\mathop{\text{dim}}X=\mathop{\text{dim}}A+\mathop{\text{dim}}(X /A_1)$.
+
+::: {.proposition  name=""}
+
+Let $A_1,A_2\subset X$ be arbitrary subspace of $X$. Then
+$$ 
+\mathop{\text{dim}}A_1+\mathop{\text{dim}}A_2=\mathop{\text{dim}}(A_1+A_2)+\mathop{\text{dim}}(A_1\cap A_2)
+$$
+
+:::
+
+::: {.proof}
+
+Just let $\left\{x_\alpha\right\}$ be the basis of $A_1\cap A_2$ and let $\left\{y_\beta\right\},\left\{y_\gamma\right\}$ be the extending tail i.e. they don't intersect  $\left\{x_\alpha\right\}$ and $\left\{x_\alpha\right\}\cup \left\{y_\beta\right\}$ is a basis of $A_1$ and $\left\{x_\alpha\right\}\cup \left\{y_\gamma\right\}$ is a basis of $A_2$.
+
+Let $\mathop{\text{card}}\left\{x_\alpha\right\}=\alpha,\mathop{\text{card}}\left\{y_\beta\right\}=\beta,\mathop{\text{card}}\left\{y_\gamma\right\}=\gamma$. Then $\mathop{\text{dim}}A_1=\alpha+\beta,\mathop{\text{dim}}A_2=\alpha+\gamma,\mathop{\text{dim}}(A_1\cap A_2)=\alpha$. Now we only need to show that $\left\{x_\alpha\right\}\cup \left\{y_\beta\right\}\cup \left\{y_\gamma\right\}$ generates $A_1+A_2$. It is easy to show by the definition of generators of system. And notice that they are independent with each other. Thus $\left\{x_\alpha\right\}\cup \left\{y_\beta\right\}\cup \left\{y_\gamma\right\}$ is a basis of $A_1+A_2$ which means $\mathop{\text{dim}}(A_1+A_2)=\mathop{\text{card}}(\left\{x_\alpha\right\}+\left\{y_\beta\right\}+\left\{y_\gamma\right\})=\alpha+\beta+\gamma$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
