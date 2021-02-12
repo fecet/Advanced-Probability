@@ -482,8 +482,44 @@ A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ i
 
 :::
 
-Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality).
+Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality) and taking $g$ corresponding to the power:
+$$
+\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\le (\frac{1}{\epsilon})^p \mathop{{}\mathbb{E}} \left|X_n-X\right|^p \to 0
+$$
 
+### Convergence, Cauchy, uniform integrability
+
+
+::: {.theorem #convergence-cauchy-uniform name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ taking values in $\mathbb{R}$ and $p \ge 1$, TFAE:
+
+1.  It converges in $L^p$.
+2.  It's cauchy in $L^p$, i.e.:
+    $$
+    \lim_{m,n \to \infty} \mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p=0
+    $$
+3. It converges in probability and $(X_n^p)$ is uniformly integrable.
+
+:::
+
+
+::: {.proof}
+
+$a\implies b$. By the triangle inequality:
+$$
+\|X_m-X_n\|_P\le \|X_m-X\|_p+\|X-X_n\|_p \to 0
+$$
+and thus $\|X_m-X_n\|_p\to 0$.
+
+$b\implies c$ By Markov-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
+$$
+\mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
+$$
+
+$c\implies a$
+
+:::
 
 
 

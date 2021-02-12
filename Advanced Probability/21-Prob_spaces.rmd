@@ -450,11 +450,11 @@ as $b \to \infty$.
 
 $L^1$ boundedness is not sufficient for uniform integrability. In fact, we need:
 
-::: {.theorem  name=""}
+::: {.theorem #uniform-integrability-L1 name=""}
 
 A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is uniformly integrable iff it's $L^{1}$-bounded and $\forall \epsilon >0 ,\exists \delta>0$ s.t. $\forall F\in \mathcal{F}$:
 $$
-\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}_F|X|\le \epsilon
+\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}|X| \bm{\mathbf{1}}_{F}\le \epsilon
 $$
 
 :::
