@@ -641,8 +641,6 @@ Note $\{[-\infty,r]:r\in \mathbb{R}\}$ is a $\pi$ system and generates $\mathcal
 
 ### Atomic and diffuse measure
 
-
-
 ::: {.definition  name=""}
 
 Let $(\Omega,\mathcal{A},\mu)$ be a measure space where $\mathcal{A}$ contains all the singletons: $\{x\}\in \mathcal{A}$ for every $x\in \Omega$ (it's true for all the standard measure).
@@ -652,7 +650,7 @@ A point $x$ is said to be an **atom** if $\mu(\{x\})>0$, the measure is said to 
 :::
 
 
-::: {.lemma  name=""}
+::: {.lemma #atomic-countable name=""}
 
 A s-finite measure has at most countable many atoms.
 

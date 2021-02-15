@@ -47,6 +47,14 @@ Subsequence converges to $\limsup_{n \to \infty} x_n$ as a maximum and $\liminf_
 
 :::
 
+
+::: {.proposition #further-subsequence name=""}
+
+If every subsequence of $(x_n)$ has a further subsequence converges to $x$, then $x_n\to x$.
+
+:::
+
+
 Following is useful for future studies.
 
 ::: {.lemma #sequence-mean name=""}
@@ -177,7 +185,7 @@ where the second term is finite and thus dominated by $a_n$, that implies $\lim_
 
 ## Almost Sure Convergence
 
-Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a sequence of real-valued r.v.'s.
 
 Sequence of r.v.'s $(X_i)$ is said to be converges if $(X_i(\omega))$ is so for all $\omega \in \Omega$.
 
@@ -355,215 +363,6 @@ The follows are sufficient for convergence a.s.:
     thus $\{Z_n>\epsilon \text{ ult.}\}$ has probability $0$ and thus $\{Z_n>\epsilon \text{ i.o.}\}$ is so, then $(Z_n)$ is converges and so is $(X_n)$ as theorem \@ref(thm:convergence-as).3 and theorem \@ref(thm:cauchy-convergence-as).
 
 :::
-
-
-## Convergence in Probability
-
-Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
-
-
-::: {.definition  name=""}
-
-Sequence $(X_i)$ is said to be converge to $X$ **in probability** if, for every $\epsilon>0$,
-$$
-\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}=0
-$$
-and denoted as $X_n \xrightarrow{p} X$.
-
-:::
-
-The following relates a.s. convergence and convergence in probability:
-
-
-::: {.theorem #convergence-probability name=""}
-
-1. $X_n \to X$ a.s. $\implies$ $X_n \xrightarrow{p} X$
-2. If $X_n \xrightarrow{p} X$, then there exists a subsequence that converges to $X$ a.s.
-3. If every subsequence has further subsequence that converges to $X$ a.s., then $X_n \xrightarrow{p} X$.
-
-:::
-
-
-::: {.proof}
-
-1. By theorem \@ref(thm:convergence-as).2, $i_{\epsilon} \circ \left|X_n-X\right|\to 0$ a.s., then $\mathop{{}\mathbb{E}}i_{\epsilon} \circ \left|X_n-X\right|\to 0$ by DCT \@ref(thm:DCT) and thus $\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}\to 0$.
-2.  As $\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}=0$, we can select a subsequence s.t.
-    $$
-    \sum_{i \in \mathbb{N}^*}^{} \mathop{{}\mathbb{P}}\{\left|X_{n_i}-X\right|> \epsilon\}<\infty
-    $$
-    then claim follows as proposition \@ref(prp:convergence-as).1.
-3.  Suppose $p_n=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}$ as a sequence and $N\subset \mathbb{N}^*$ is subsequence along which the sequence converges to, say, $p$. By assumption, there is a further subsequence $N'\subset N$ s.t. $(p_{i})_{i \in N'}\to 0$ and that implies $p=0$. By proposition \@ref(prp:subsequence-convergence), $p_n \to 0\iff X_n \xrightarrow{p} X$.
-
-:::
-
-
-
-### Convergence and continuous
-
-As an application of above theorem, we have
-
-
-::: {.proposition #convergence-probability-continuous name=""}
-
-Let $f:\mathbb{R} \to \mathbb{R}$ be continuous. Then $f(X_n)\xrightarrow{p}f(X)$ provided $X_n \xrightarrow{p} X$.
-
-:::
-
-
-::: {.proof}
-
-For every subsequence $N\subset \mathbb{N}^*$, $X_n \xrightarrow{p} X$ along which and theorem \@ref(thm:convergence-probability).2 implies $N'\subset N$ exists s.t. $X_n \to X$ a.s. along and thus $f(X_n)\to X$ a.s. along $N'$. It follows that $f(X_n)\xrightarrow{p} f(X)$ by theorem \@ref(thm:convergence-probability).3.
-
-:::
-
-That implies convergence in probability
-is preserved under arithmetical operations, i.e., if $X_n \xrightarrow{p} X$ and $Y_n \xrightarrow{p} Y$, we have
-$$
-\begin{aligned}
-    X_n+Y_n \xrightarrow{p} X+Y &, X_n-Y_n \xrightarrow{p} X-Y
-    \\
-    X_nY_n \xrightarrow{p} XY &, \frac{X_n}{Y_n} \xrightarrow{p} \frac{X}{Y}
-\end{aligned}
-$$
-where the last equality holds when $Y$ and $Y_n$ are non-zero a.s.
-
-### Metric for convergence in probability
-
-For real-valued r.v.'s $X$ and $Y$, define
-$$
-d(X,Y)=\mathop{{}\mathbb{E}}(\left|X-Y\right|\wedge 1)
-$$
-one can check $d$ is a metric(except we treat $X$ and $Y$ are the same when $X=Y$ a.s.).
-
-The following shows that $d$ can induced convergence in probability.
-
-
-::: {.proposition  name=""}
-
-$$
-\lim_{n \to \infty} d(X_n,X)=0 \iff X_n \xrightarrow{p} X
-$$
-
-:::
-
-
-::: {.proof}
-
-Note for $\epsilon \in (0,1)$ and $x\ge 0$:
-$$
-\epsilon i_{\epsilon}(x) \le x \wedge 1 \le \epsilon+i_{\epsilon}(x) 
-$$
-replace $x$ with $\left|X_n-X\right|$ and take expectations:
-$$
-\epsilon \mathop{{}\mathbb{E}} i_{\epsilon} \circ \left|X_n-X\right|\le d(X_n,X) \le \epsilon+\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|
-$$
-thus $\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\to 0$ iff $d(X_n,X)\to 0$ as $\epsilon$ can be taken arbitrary small.
-
-:::
-
-### Cauchy criterion for convergence in probability
-
-
-::: {.theorem #cauchy-convergence-probability name=""}
-
-Sequence $(X_{i})_{i \in \mathbb{N}^*}$ converges in probability iff for every $\epsilon>0$,
-$$
-\lim_{m,n \to \infty} \mathop{{}\mathbb{P}}\{\left|X_m-X_n\right|>\epsilon\}=0
-$$
-
-
-:::
-
-### Convergence in $L^p$
-
-::: {.definition  name=""}
-
-A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ iff $(X_i)\subset L^p$ and $X\in L^p$ and $\|X_n-X\|_p\to 0$.
-
-:::
-
-Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality) and taking $g$ corresponding to the power:
-$$
-\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\le (\frac{1}{\epsilon})^p \mathop{{}\mathbb{E}} \left|X_n-X\right|^p \to 0
-$$
-
-### Convergence, Cauchy, uniform integrability
-
-
-::: {.theorem #convergence-cauchy-uniform name=""}
-
-Suppose $(X_{i})_{i \in \mathbb{N}^*}$ taking values in $\mathbb{R}$ and $p \ge 1$, TFAE:
-
-1.  It converges in $L^p$.
-2.  It's cauchy in $L^p$, i.e.:
-    $$
-    \lim_{m,n \to \infty} \mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p=0
-    $$
-3. It converges in probability and $(X_n^p)$ is uniformly integrable.
-
-:::
-
-
-::: {.proof}
-
-$a\implies b$. By the triangle inequality:
-$$
-\|X_m-X_n\|_p\le \|X_m-X\|_p+\|X-X_n\|_p \to 0
-$$
-and thus $\|X_m-X_n\|_p\to 0$.
-
-$b\implies c$ By Markov-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
-$$
-\mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
-$$
-and $(X_n^{p})$ is $L^{1}$ bounded.
-
-The cauchy yields $\mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p \le \epsilon$ for sufficient large $m,n \ge k \gg 1$, thus, for every event $A \in \mathcal{F}$:
-$$
-\mathop{{}\mathbb{E}}\left|X_n^p\right| =\mathop{{}\mathbb{E}} \left|X_n\right|^{p} \le 2^{p-1}( \mathop{{}\mathbb{E}}\left|X_n-X_k\right|^{p}+\mathop{{}\mathbb{E}} \left|X_k\right|^{p})\le 2^{p-1}(\epsilon+\mathop{{}\mathbb{E}}\left|X_k^{p}\right|)
-$$
-thus
-$$
-\sup_n \mathop{{}\mathbb{E}}\left|X_n^{p}\right|\bm{\mathbf{1}}_{A}\le 2^{p-1}\epsilon+2^{p-1}\sup_{n\le k}\mathop{{}\mathbb{E}}\left|X_n^p\right|\bm{\mathbf{1}}_{A}
-$$
-In view of remark 2 in definition \@ref(def:uniform-integrability), $\{X_n:n\le k\}$ is uniformly integrability and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(A)$ is sufficient small and thus the left side. It follows that $(X_n^{p})$ is $L^{1}$ bounded by taking $A=\Omega$ and claim follows.
-
-$c\implies a$. Note $X_n^{p} \xrightarrow{p} X^{p}$ by proposition \@ref(prp:convergence-probability-continuous).
-By theorem \@ref(thm:convergence-probability).2, there is a subsequence $X_n'^{p}\to X^{p}$ a.s.  then Fatou's lemma \@ref(lem:fatou) yields
-
-$$
-\mathop{{}\mathbb{E}} \left|X^{p}\right|=\mathop{{}\mathbb{E}}\liminf_{n} \left|X'^{p}_n\right|\le \liminf_{n} \mathop{{}\mathbb{E}}\left|X'^{p}_n\right|\le \sup_{n} \mathop{{}\mathbb{E}} \left|X^{p}_n\right| < \infty
-$$
-thus $X^{p} \in L^{1}$. Let $F_n=\{\left|X_n^{p}-X^{p}\right|^{}>\epsilon\}$, note
-$$
-\begin{aligned}
-    \mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}&\le \mathop{{}\mathbb{E}}\left|X_n^{p}-X^{p}\right| 
-    \\&\le \epsilon+\mathop{{}\mathbb{E}}\left|X_n^{p}-X^{p}\right|\bm{\mathbf{1}}_{F_n}
-\end{aligned}
-$$
-As $X^{p}$ is integrable and $X_n^{p}$ is uniformly so, $(X_n^{p}-X^{p})$ is uniformly integrable and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(F_n)$ can be also arbitrary small. It follows that $\mathop{{}\mathbb{E}} \left|X_n -X\right|^{p} \to 0$.
-
-:::
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 

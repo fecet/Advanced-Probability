@@ -1,0 +1,383 @@
+## Convergence in Probability
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a subsequence of real-valued r.v.'s.
+
+
+::: {.definition  name=""}
+
+Sequence $(X_i)$ is said to be converge to $X$ **in probability** if, for every $\epsilon>0$,
+$$
+\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}=0
+$$
+and denoted as $X_n \xrightarrow{p} X$.
+
+:::
+
+The following relates a.s. convergence and convergence in probability:
+
+
+::: {.theorem #convergence-probability name=""}
+
+1. $X_n \to X$ a.s. $\implies$ $X_n \xrightarrow{p} X$
+2. If $X_n \xrightarrow{p} X$, then there exists a subsequence that converges to $X$ a.s.
+3. If every subsequence has further subsequence that converges to $X$ a.s., then $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+1. By theorem \@ref(thm:convergence-as).2, $i_{\epsilon} \circ \left|X_n-X\right|\to 0$ a.s., then $\mathop{{}\mathbb{E}}i_{\epsilon} \circ \left|X_n-X\right|\to 0$ by DCT \@ref(thm:DCT) and thus $\mathop{{}\mathbb{P}}\{\left|X_n-X\right|> \epsilon\}\to 0$.
+2.  As $\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}=0$, we can select a subsequence such that
+    $$
+    \sum_{i \in \mathbb{N}^*}^{} \mathop{{}\mathbb{P}}\{\left|X_{n_i}-X\right|> \epsilon\}<\infty
+    $$
+    then claim follows as proposition \@ref(prp:convergence-as).1.
+3.  Suppose $p_n=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}$ as a sequence and $N\subset \mathbb{N}^*$ is subsequence along which the sequence converges to, say, $p$. By assumption, there is a further subsequence $N'\subset N$ such that $(p_{i})_{i \in N'}\to 0$ and that implies $p=0$. By proposition \@ref(prp:subsequence-convergence), $p_n \to 0\iff X_n \xrightarrow{p} X$.
+
+:::
+
+
+
+### Convergence and continuous
+
+As an application of above theorem, we have
+
+
+::: {.proposition #convergence-probability-continuous name=""}
+
+Let $f:\mathbb{R} \to \mathbb{R}$ be continuous. Then $f(X_n)\xrightarrow{p}f(X)$ provided $X_n \xrightarrow{p} X$.
+
+:::
+
+
+::: {.proof}
+
+For every subsequence $N\subset \mathbb{N}^*$, $X_n \xrightarrow{p} X$ along which and theorem \@ref(thm:convergence-probability).2 implies $N'\subset N$ exists such that $X_n \to X$ a.s. along and thus $f(X_n)\to X$ a.s. along $N'$. It follows that $f(X_n)\xrightarrow{p} f(X)$ by theorem \@ref(thm:convergence-probability).3.
+
+:::
+
+That implies convergence in probability
+is preserved under arithmetical operations, i.e., if $X_n \xrightarrow{p} X$ and $Y_n \xrightarrow{p} Y$, we have
+$$
+\begin{aligned}
+    X_n+Y_n \xrightarrow{p} X+Y &, X_n-Y_n \xrightarrow{p} X-Y
+    \\
+    X_nY_n \xrightarrow{p} XY &, \frac{X_n}{Y_n} \xrightarrow{p} \frac{X}{Y}
+\end{aligned}
+$$
+where the last equality holds when $Y$ and $Y_n$ are non-zero a.s.
+
+### Metric for convergence in probability
+
+For real-valued r.v.'s $X$ and $Y$, define
+$$
+d(X,Y)=\mathop{{}\mathbb{E}}(\left|X-Y\right|\wedge 1)
+$$
+one can check $d$ is a metric(except we treat $X$ and $Y$ are the same when $X=Y$ a.s.).
+
+The following shows that $d$ can induced convergence in probability.
+
+
+::: {.proposition #convergence-probability-metric name=""}
+
+$$
+\lim_{n \to \infty} d(X_n,X)=0 \iff X_n \xrightarrow{p} X
+$$
+
+:::
+
+
+::: {.proof}
+
+Note for $\epsilon \in (0,1)$ and $x\ge 0$:
+$$
+\epsilon i_{\epsilon}(x) \le x \wedge 1 \le \epsilon+i_{\epsilon}(x) 
+$$
+replace $x$ with $\left|X_n-X\right|$ and take expectations:
+$$
+\epsilon \mathop{{}\mathbb{E}} i_{\epsilon} \circ \left|X_n-X\right|\le d(X_n,X) \le \epsilon+\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|
+$$
+thus $\mathop{{}\mathbb{E}} i_{\epsilon}\circ \left|X_n-X\right|=\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\to 0$ iff $d(X_n,X)\to 0$ as $\epsilon$ can be taken arbitrary small.
+
+:::
+
+### Cauchy criterion for convergence in probability
+
+
+::: {.theorem #cauchy-convergence-probability name=""}
+
+Sequence $(X_{i})_{i \in \mathbb{N}^*}$ converges in probability iff for every $\epsilon>0$,
+$$
+\lim_{m,n \to \infty} \mathop{{}\mathbb{P}}\{\left|X_m-X_n\right|>\epsilon\}=0
+$$
+
+
+:::
+
+### Convergence in $L^p$
+
+::: {.definition  name=""}
+
+A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ iff $(X_i)\subset L^p$ and $X\in L^p$ and $\|X_n-X\|_p\to 0$.
+
+:::
+
+Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality) and taking $g$ corresponding to the power:
+$$
+\mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\le (\frac{1}{\epsilon})^p \mathop{{}\mathbb{E}} \left|X_n-X\right|^p \to 0
+$$
+
+### Convergence, Cauchy, uniform integrability
+
+
+::: {.theorem #convergence-cauchy-uniform name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ taking values in $\mathbb{R}$ and $p \ge 1$, TFAE:
+
+1.  It converges in $L^p$.
+2.  It's cauchy in $L^p$, i.e.:
+    $$
+    \lim_{m,n \to \infty} \mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p=0
+    $$
+3. It converges in probability and $(X_n^p)$ is uniformly integrable.
+
+:::
+
+
+::: {.proof}
+
+$a\implies b$. By the triangle inequality:
+$$
+\|X_m-X_n\|_p\le \|X_m-X\|_p+\|X-X_n\|_p \to 0
+$$
+and thus $\|X_m-X_n\|_p\to 0$.
+
+$b\implies c$ By Markov-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
+$$
+\mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
+$$
+and $(X_n^{p})$ is $L^{1}$ bounded.
+
+The cauchy yields $\mathop{{}\mathbb{E}} \left|X_m-X_n\right|^p \le \epsilon$ for sufficient large $m,n \ge k \gg 1$, thus, for every event $A \in \mathcal{F}$:
+$$
+\mathop{{}\mathbb{E}}\left|X_n^p\right| =\mathop{{}\mathbb{E}} \left|X_n\right|^{p} \le 2^{p-1}( \mathop{{}\mathbb{E}}\left|X_n-X_k\right|^{p}+\mathop{{}\mathbb{E}} \left|X_k\right|^{p})\le 2^{p-1}(\epsilon+\mathop{{}\mathbb{E}}\left|X_k^{p}\right|)
+$$
+thus
+$$
+\sup_n \mathop{{}\mathbb{E}}\left|X_n^{p}\right|\bm{\mathbf{1}}_{A}\le 2^{p-1}\epsilon+2^{p-1}\sup_{n\le k}\mathop{{}\mathbb{E}}\left|X_n^p\right|\bm{\mathbf{1}}_{A}
+$$
+In view of remark 2 in definition \@ref(def:uniform-integrability), $\{X_n:n\le k\}$ is uniformly integrability and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(A)$ is sufficient small and thus the left side. It follows that $(X_n^{p})$ is $L^{1}$ bounded by taking $A=\Omega$ and claim follows.
+
+$3\implies 1$. Let $X$ be the limit. Then $X_n^{p} \xrightarrow{p} X^{p}$ by proposition \@ref(prp:convergence-probability-continuous).
+By theorem \@ref(thm:convergence-probability).2, there is a subsequence $X_n'^{p}\to X^{p}$ a.s.  then Fatou's lemma \@ref(lem:fatou) yields
+
+$$
+\mathop{{}\mathbb{E}} \left|X^{p}\right|=\mathop{{}\mathbb{E}}\liminf_{n} \left|X'^{p}_n\right|\le \liminf_{n} \mathop{{}\mathbb{E}}\left|X'^{p}_n\right|\le \sup_{n} \mathop{{}\mathbb{E}} \left|X^{p}_n\right| < \infty
+$$
+thus $X^{p} \in L^{1}$. Let $F_n=\{\left|X_n-X\right|^{p}>\epsilon\}$, note
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}&    \le 
+    \epsilon+\mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}\bm{\mathbf{1}}_{F_n}
+\end{aligned}
+$$
+As $X^{p}$ is integrable and $X_n^{p}$ is uniformly so, $(X_n-X)^{p}$ is uniformly integrable and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(F_n)$ can be also arbitrary small. It follows that $\mathop{{}\mathbb{E}} \left|X_n -X\right|^{p} \to 0$.
+
+:::
+
+The following is a variation of the main results when $p=1$
+
+
+::: {.theorem #var-cauchy-convergence-probability name=""}
+
+If $X_n \xrightarrow{p} X$, TFAE:
+
+1. $X_n\to X$ in $L^{1}$.
+2. $(X_n)$ is uniformly integrable.
+3. $(X_n)\cup \{X\}\subset L^{1}$ and $\mathop{{}\mathbb{E}}\left|X_n\right|\to \mathop{{}\mathbb{E}}\left|X\right|$.
+
+:::
+
+
+
+
+### Convergence of expectations, weak convergence in $L^{1}$.
+
+Note convergence in $L^{1}$ allows taking limits inside: $X_n \to X$ in $L^{1}$ implies $\mathop{{}\mathbb{E}} X_n = \mathop{{}\mathbb{E}} X$:
+
+
+
+
+::: {.definition  name=""}
+
+A sequence $(X_n)\subset L^{1}$ is said to be **converge weakly** in $L^{1}$ to $X$ if 
+$$
+\lim_{n \to \infty} \mathop{{}\mathbb{E}} X_n Y=\mathop{{}\mathbb{E}}XY
+$$
+holds for all $Y \in \mathcal{F}_b$.
+
+:::
+
+
+::: {.remark}
+
+Where the bounded condition can be replaced by a.s. bounded, then $Y$ can be taken in $L^{\infty}$. Such convergence induce a topology on $L^{1}$ and denoted by $\sigma(L^{1},L^{\infty})$.
+
+:::
+
+
+
+::: {.proposition  name=""}
+
+If $X_n \to X$ in $L^{1}$, then it's converge weakly in $L^{1}$.
+
+:::
+
+
+::: {.proof}
+
+Supposing that $\left|Y\right|\le b$, if $X_n \to X$ in $L^{1}$, then
+$$
+\left|\mathop{{}\mathbb{E}}X_nY-\mathop{{}\mathbb{E}}XY\right|\le \mathop{{}\mathbb{E}}\left|X_nY-XY\right|\le b \mathop{{}\mathbb{E}}\left|X_n-X\right|\to 0
+$$
+
+:::
+
+Weak convergence implies a deep result:
+
+
+::: {.proposition  name=""}
+
+Sequence $(X_{i})_{i \in \mathbb{N}^*}$ is uniformly integrable iff it's every subsequence has a further subsequence that converges weakly in $L^{1}$.
+
+:::
+
+## Weak Convergence
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a sequence of real-valued r.v.'s with corresponding distribution $(\mu_{i})_{i \in \mathbb{N}^*}$, quantile $(q_{i})_{i \in \mathbb{N}^*}$ and d.f. $(c_{i})_{i \in \mathbb{N}^*}$. See [distribution and quantile et seq.][Quantile functions].
+
+::: {.definition  name=""}
+
+Sequence $(\mu_{i})_{i \in \mathbb{N}^*}$ is said to be converge weakly to $\mu$ iff for any $f\in \mathbb{C}_b$
+$$
+\lim_{n \to \infty} \int f d\mu_n=\int f d\mu
+$$
+Sequence $(X_n)$ is said to converge in **distribution** to $X$ if $\mu_n \to \mu$ weakly, that is
+$$
+\mathop{{}\mathbb{E}} f(X_n) \to \mathop{{}\mathbb{E}} f(X)
+$$ 
+for every $f\in \mathbb{C}_b$ and denoted as $X_n\xrightarrow{d}X$
+
+:::
+
+
+::: {.remark}
+
+$\xrightarrow{p}\implies \xrightarrow{d}$ as every subsequence has a further subsequence converges to $X$ a.s. by theorem \@ref(thm:convergence-probability), then $\mathop{{}\mathbb{E}}f\circ X_n\to \mathop{{}\mathbb{E}}f \circ X$ along this further subsequence, it follows that $\mathop{{}\mathbb{E}} f \circ X_n \to  \mathop{{}\mathbb{E}}f \circ X$ by proposition \@ref(prp:further-subsequence).
+
+When $X$ is degenerate, i.e., $X=x_0$ a.s., then $\xrightarrow{d}\implies \xrightarrow{p}$ by taking $f(x)=\left|x-x_0\right|\wedge 1$ and applying proposition \@ref(prp:convergence-probability-metric).
+
+:::
+
+
+### Characterization theorem
+
+
+::: {.theorem #characterization-convergence-weakly name=""}
+
+Suppose $A$ is borel set in $\mathbb{R}$, TFAE:
+
+1. $\mu_n\to \mu$ weakly.
+2. $\limsup \mu_n(A)\le \mu(A)$ for every $A$ is closed.
+3. $\liminf \mu_n(A)\ge \mu(A)$ for every $A$ is open.
+4. $\mu_n(A)\to \mu(A)$ for every $A$ with $\mu(\partial A)=0$
+
+:::
+
+::: {.proof}
+
+$1\implies 2$. Suppose $A$ is closed, let $A_{\epsilon}=\{x:d(x,A)<\epsilon\}$. Then $A_{\epsilon} \to \overline{A}=A$ as $\epsilon \to 0$ and thus $\mu (A_{\epsilon}) \searrow \mu(A)$ as $\epsilon \searrow 0$. For any $\epsilon$, define $f(x)=(1-\frac{d(x,A)}{\epsilon}) \vee 0$, clearly $f\in \mathbb{C}_b$ and $\bm{\mathbf{1}}_{A}\le f \le \bm{\mathbf{1}}_{A_{\epsilon}}$. Hence
+$$
+\mu_n(A) \le \mu_nf \to \mu f \le \mu(A_{\epsilon}) \searrow \mu(A)
+$$
+It follows that $\limsup \mu_n(A) \le \mu(A)$.
+
+$2 \iff 3$. Suppose $A$ is open, then we have
+$$
+\liminf \mu_n(A)=\liminf (1-\mu_n(A^c))=1-\limsup \mu_n(A^c) \ge 1-\mu(A^c)=\mu(A)
+$$
+similarly, we can show that $3\implies 2$.
+
+$3\implies 4$, By $3$ and $2$, we have
+$$
+\mu(\overline{A}) \ge \limsup \mu_n(\overline{A}) \ge \limsup \mu_n(A) \ge \liminf \mu_n(A) \ge \liminf \mu_n(A^{\circ}) \ge \mu(A^{\circ})
+$$
+note $\mu(\partial A)=0 \iff \mu(\overline{A})=\mu(A^{\circ})$, thus the inequalities becomes equalities and thus $\lim_{n \to \infty}\mu_n(A)=\mu(A)$
+
+$4\implies 1$. Note borel indicator can approximate any $f\in \mathbb{C}_b$.
+
+:::
+
+As borel is $\pi$ system, weak limits is unique
+
+### Convergence of quantiles and distribution functions
+
+Suppose $q_n(u)\to q(u)$ a.s. in $(0,1)$. For $f\in \mathbb{C}_b$, $f\circ q_n \to f\circ q$ a.s. and hence
+$$
+\mu_n f=\lambda(f\circ q_n)\to \lambda(f \circ q)=\mu f
+$$
+by DCT \@ref(thm:DCT). That is, $(\mu_n)$ converges to $\mu$ weakly. We should see the condition of convergence a.s. can be loose and the converse also holds.
+
+
+::: {.theorem #distribution-quantile-convergence name=""}
+
+TFAE:
+
+1.  $\mu_n \to \mu$ weakly.
+2.  $c_n(x)\to c(x)$ for every continuity point $x$ of $c$.
+3.  $q_n(u)\to q(u)$ for every continuity point $u$ of $q$.
+
+:::
+
+
+::: {.proof}
+
+$1 \implies 2$. Let $x$ be a continuity point of $c$, then $\mu \{x\}=\mathop{{}\mathbb{P}}\{X=x\}=0$. Note $\partial (-\infty,x]=\{x\}$, it follows that
+$$
+c_n(x)=\mu_n(-\infty,x] \to \mu(-\infty,x]=c(x)
+$$
+
+$2\implies 3$. Let $u$ be continuity point of $q$ and $x=q(u)$, for any $\epsilon$, pick $y\in (x-\epsilon,x)$ and $z$ in $(x,x+\epsilon)$ such that they are continuity points for $c$, we can do so as discontinuity points are countable. As $q$ is continues at $u$, $c$ is not flat at level $u$ and thus $c(y)<u<c(z)$. As $c_n(y)\to c(y)$, we have $c_n(y)<u\implies q_n(u)>y>x-\epsilon$ for tail $n$ and thus $\liminf q_n(u)>x-\epsilon$. Similarly, we have $\lim_{n \to \infty}q_n(u)<x+\epsilon$. As $\epsilon$ can be arbitrary small, we have $q_n(u)\to x=q(u)$.
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
