@@ -222,7 +222,7 @@ so if $(f_n)\to f$ locally uniformly, and $f_n$ is continuous at $x_0$ for every
 
 ::: {.definition  name="equicontinuous"}
 
-A family $\mathcal{F}$ of 
+A family $\mathcal{F}$ of functions
 
 :::
 

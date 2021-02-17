@@ -1,0 +1,138 @@
+### Riesz Theorem
+
+To prove the first result, we need to prove a lemma first.
+
+::: {.lemma  name=""}
+
+Two norms on a vector space $X$ are equivalent iff there exists constants $C_a,C_b$ s.t. 
+$$ 
+\|x\|_{a}\le C_b\|x\|_{b}\mathop{\text{ and }}\|x\|_{b}\le C_a\|x\|_{a}
+$$
+for all $x\in X$.
+
+:::
+
+::: {.proof}
+
+-   
+    $\implies$ : Assume that $\|\|_{a},\|\|_{b}$ are equivalent. Notice that the identity mapping $\mathop{\text{id}}:(X,\|\|_{a})\to (X,\|\|_{b})$ is continuous.  
+    Consider the set $B'=\left\{y\in X:\|y\|_{b}\lt 1\right\}$ then $\mathop{\text{id}}^{-1}(B')\subset X$ is open. Then exists a $C_a\gt 0$ s.t. $\left\{y\in X:\|y\|_{a}\lt \frac{1}{C}\right\}$ is contained in $\mathop{\text{id}}^{-1}(B')$ as $\mathop{\text{id}}(0)=0\in B'$. Therefore, we find a $C_a$ s.t. 
+    $$ 
+    \|y\|_{a}\le \frac{1}{C_a}\implies \|y\|_{b}\le 1
+    $$
+    So give any nonzero vector $x\in X$, the vector $y=\frac{1}{C_a\|x\|_{a}}x$ satisfies $\|y\|_{a}=\frac{1}{C_a}$, so $\|y\|_{b}=\frac{1}{C_a\|x\|_{a}}\|x\|_{b}\le 1$ which means
+    $$ 
+    \|x\|_{b}\le C_a\|x\|_{a}
+    $$
+    The other side is similar.
+
+-
+    $\Longleftarrow$ : Assume that $\|x\|_{b}\le C_a\|x\|_{a}$ holds for every $x\in X$. This implies that the closure of any ball centered at any $y \in X$, $B_{r}(y)$ in the topological space $(X,\|\|_{b})$ contains a ball $B_{r /C_a}(y)$ in $(X,\|\|_{a})$ hence every open set in $(X,\|\|_{b})$ is the open set in $(X,\|\|_{a})$, and similar on the other side. Thus we assert that two topology are equivalent.
+
+:::
+
+::: {.theorem #thm-finite-dim name=""}
+
+1.  Any two norms $\|\|_{}$ and $\|\|'_{}$ in a finite-dimensional vector space are equivalent, i.e. the topology they induced are identical.
+2.  Any finite-dimensional vector space is separable.
+3.  A subset of a finite-dim normed vector space is compact iff it is closed and bounded.
+4.  A finite-dim subspace of a normed vector space $X$ is closed in $X$.
+
+:::
+
+::: {.proof}
+
+1.
+    As the lemma we proved above, we need to find $C$ and $C'$ s.t. the condition of lemma holds, then we can assert the equivalence.  
+    Now let $(e_{i})_{i=1}^{n}$ be a basis of $X$, define $\|\|_{1}:x=\sum_{i=1}^{n} x_{i}e_{i}\to \sum_{i=1}^{n} \left|x_{i}\right|$. Then for any norm $\|\|_{}$,
+    $$ 
+    \|x\|_{}=\left|\left|\sum_{i=1}^{n} x_{i}e_{i}\right|\right|_{}\le C_1\|x\|_{1}
+    $$
+    where $C_1=\max_{1\le i\le n}\|e_{i}\|_{}$  
+    Then consider the function:
+    $$ 
+    f:x\in (X,\|\|_{1})\to f(x)=\|x\|_{}\in \mathbb{R}
+    $$
+    and the set $K=\left\{y\in X:\|y\|_{1}=1\right\}$. Notice that $f$ is continuous on $X$ since:
+    $$ 
+    \left|f(x)-f(y)\right|=\left|\|x\|_{}-\|y\|_{}\right|\le \|x-y\|_{}\le C_1\|x-y\|_{1}
+    $$
+    for all $x,y\in X$, and $K$ is compact in $X$ since closed and bounded. Then there exists  $y_0\in K$ s.t. $f(y_0)=\inf_{y\in K}f(y)$ and let $\frac{1}{C}=f(y_0)=\|y_0\|_{}\gt 0$. Then $\|y\|_{1}=1$ implies $\|y\|_{}\ge \frac{1}{C}$.  
+    Give any $x\in X$, let $y=x /\|x\|_{1}$ s.t. $\|y\|_{1}=1$ so $\|y\|_{}\ge \frac{1}{C}$ which means
+    $$ 
+    \frac{\|x\|_{}}{\|x\|_{1}}\ge \frac{1}{C}\implies \|x\|_{}\ge \frac{1}{C}\|x\|_{1}
+    $$
+    so the topology they induced are equivalent.
+
+2.
+    According to \@ref(thm:thm-lp-separable), and 1, we find that the topology induced by $\|\|_{p}$ is equivalent to any other norm in a finite-dim space. Then we prove the separability.
+
+3.
+    Let $K$ be a closed and bounded set in $(X,\|\|_{})$. Suppose in $(X,\|\|_{1})$, then according to \@ref(thm:thm-heine-borel), compact in $(X,\|\|_{1})$ means closed and bounded, as $(1)$ proved above, the topology induced by any norm is equivalent, so $K$ is compact in $(X,\|\|_{})$. The other side is the property of metric spaces.
+    
+4.
+    Let $Y\subset X$ be a subspace of $X$ and let a sequence (since metric space) converges to a point in $X$ i.e. $(y_n)\to y\in X$ for each $n$, $y_n\in Y$, now we need to prove that $y\in Y$.  
+    Notice that for all $k\in \mathbb{N}_+$, $y_k=\sum_{i=1}^{n} y_{k,i}e_{i}$ where $(e_{i})_{i=1}^{n}$ is the basis of $Y$. Then $(y_n)\to y$ means that $(y_{i,n})_{n=1}^{\infty}$ is a Cauchy sequence for there exists a $C$ s.t. 
+    $$ 
+    \sum_{i=1}^{n} \left|y_{i,k}-y_{i,\ell}\right|=\|y_k-y_{\ell}\|_{1}\le C\|y_k-y_\ell\|_{}
+    $$
+    for all $k,\ell\ge 1$. Notice that $(X,\|\|_{})$ is a metric space and $(y_n)\to y\in X$, so $(y_n)$ is Cauchy which means $C\|y_k-y_\ell\|_{}$ can be arbitrarily small which implies that $(y_{i,n})_{n=1}^{\infty}$ is Cauchy in $\mathbb{K}$ and as the completeness of $\mathbb{K}$, $(y_{i,n})\to y_{i}\in \mathbb{K}$ as $n\to \infty$. Let $y=\sum_{i=1}^{n} y_{i}e_{i}$.  
+    Now prove that $(y_n)\to y$. Notice that there exists a $C_1$ s.t. 
+    $$ 
+    \|y_k-y\|_{}\le C_1\|y_k-y\|_{1}=C_1 \sum_{i=1}^{n} \left|y_{i,k}-y_{i}\right|
+    $$
+    Since $(y_{i,n})\to y_{i}$ for each $i$, $\|y_k-y\|_{}$ can also be arbitrarily small thus convergent.  
+    So all the sequence in $Y$ convergence in $Y$ means $Y=\overline{Y}$ thus closed.
+
+:::
+
+::: {.theorem #thm-riesz name="F.Riesz Theorem"}
+
+A normed vector space $(X,\|\|_{})$ is finite-dim iff the unit sphere of $X$ i.e. $K=\left\{x\in X:\|x\|_{}=1\right\}$ is compact.
+
+:::
+
+::: {.proof}
+
+-
+    Assume that $K$ is compact. Then there exists a finite number of points $x_{i}\in X$ s.t. $K\subset \bigcup_{i=1} ^{n}B_{1 /2}(x_{i})$.
+
+    Then we need to show that $Y=\mathop{\text{span}}(x_{i})_{i=1}^{n}$ is coincide with $X$ and it is enough to show that 
+    $$ 
+    \inf_{y\in Y}\|x-y\|_{}=0
+    $$
+    for all $x\in X$ as $Y$ is finite-dim and $\overline{Y}=Y$.
+
+    Let $x\in X$ and $y\in Y$ be given, then let 
+    $$ 
+    x'=\frac{x}{\|x-y\|_{}} \mathop{\text{ and }}y'=\frac{y}{\|x-y\|_{}}
+    $$
+    Notice that $x'-y'\in K$ thus in some $B_{1 /2}(x_{i_0})$. So
+    $$ 
+    \|x-y\|_{}(\|(x'-y')-x_{i_0}\|_{})\le \frac{1}{2}\|x-y\|_{}
+    $$
+    Now let $y_1=\|x-y\|_{}(y'+x_{i_0})$, then $\|x-y_1\|_{}\le \frac{1}{2}\|x-y\|_{}$. Then let $y=y_1$, and by induction, we find
+    $$ 
+    \|x-y_n\|_{}\le \frac{1}{2^{n}}\|x-y\|_{}
+    $$
+    Notice that $\|x-y\|_{}\lt \infty$, so there exists a sequence $(y_n)\to x$ for all $y_n\in Y$ and as $Y=\overline{Y}$, $x\in Y$, so $X=Y=\mathop{\text{span}}(x_{i})_{i=1}^{n}$ thus finite-dim.
+
+-
+    For the converse, we notice that $K$ is closed and bounded, then compact since \@ref(thm:thm-finite-dim)(3).
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

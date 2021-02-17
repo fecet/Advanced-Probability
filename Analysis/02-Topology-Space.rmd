@@ -5,6 +5,7 @@
 Let $\Omega$ be as space
 
 :::{.definition #topology name=""}
+
 A class of subset $\tau$ of $\Omega$ is an **topology** if
 
 1. $\emptyset$ and $\Omega$ belongs to $\tau$.

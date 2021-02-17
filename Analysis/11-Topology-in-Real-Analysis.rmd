@@ -135,7 +135,7 @@ We will give a proof from $1\implies 2$ :
 :::
 
 
-::: {.corollary  name="Heine-Borel Theorem"}
+::: {.corollary #thm-heine-borel name="Heine-Borel Theorem"}
 
 A compact subset $A\subset \mathbb{R}^{n}$ is compact iff $A$ is closed and bounded.
 

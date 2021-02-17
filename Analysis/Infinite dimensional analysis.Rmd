@@ -1,0 +1,4270 @@
+--- 
+title: "Notes of analysis"
+author: 
+  - "Xie Zejian"
+  - "Zhang Songxin"
+Institute: SUSTech
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Notes of analysis"
+
+---
+
+```{=latex}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\reals}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sub}{\subset}
+\newcommand{\subsets}{\subset}cvbn
+\newcommand{\exist}{\exists}
+```
+
+<!--chapter:end:index.Rmd-->
+
+# Odds and ends
+
+## Space of sequences
+
+```{definition, seqspace, name=""}
+For $1\le p \lt \infty$, $\ell_p$ is defined to be the set of all sequences $x.=(x_1,x_2,\cdots)$ for which $\|x\|_p\lt \infty$. Where 
+$$ \|x\|_p=(\sum_1^\infty |x_i|^p)^{1/p} $$
+is the **$\ell_p$ norm** of the sequences.
+
+While $\ell_\infty$ is defined as the set of all $\sup \{|x_n|\}\le \infty$, such norm is called **$\ell_\infty$ norm**, **supremum norm** or **uniform norm**.
+```
+
+All of these spaces are vector space. And sequence $\{\ell_i\}_{i=1}^\infty$ is increasing.
+
+The space of all convergent sequence is denoted $c$ and all sequences convergent to $0$ is denoted $c_0$. Finally, the collection of sequences with finite nonzero terms is $\varphi$. One can check that
+
+$$ \varphi\subset \ell_p \subset c_0 \subset \ell_\infty \subset \R^n $$
+
+## Spaces of functions
+
+One can think $\R^n$ as 
+
+$$ \{f:\{1,2,\cdots,n\}\to \R\}=\R^n=\R^{\{1,2,\cdots,n\}} $$
+
+Replace $\{1,2,\cdots,n\}$ by an arbitrary $X$, then $\R^X$ is all functions from $X$ to $\R$.
+
+For $1\le p \lt \infty$, $L_p(\mu)$ is defined to be the set of all $\mu$ measurable functions $f$ for which $\|f  \|_p< \infty$, where the **$L_p$ norm** is defined as 
+
+$$ \|f\|_p=(\int_\Omega |f|^p)^{1/p} $$
+
+And the **$L_\infty$ norm**, or **essential supremum** is defined as
+
+$$ \|f\|_\infty=\operatorname{ess}\sup f=\sup \{t:\mu(\{x:|f(x)|\ge t\})0\}  $$
+
+## Ordinals
+
+Suppose $R$ is an order relation on $\Omega$, then $\Omega$ is said to be **inductively ordered** by $R$ if every totally ordered subset has an **supremum**.
+
+**Zorn's Lemma** states that every inductively ordered set has a maximal element.
+
+```{definition, wellord, name=""}
+A set $X$ is **well ordered** by linear $\preceq$ if every nonempty subset has a least element. 
+```
+
+```{definition, initseg, name=""}
+An **initial segement** of $(X,\preceq)$ is any set of the form $I(x)=\{y\in X:y\le x\}$. 
+```
+
+```{definition, ideal, name=""}
+An **ideal** in a well ordered $X$ is a subset $A$ s.t. forall $a\in A$, $I(a)\subset A$.
+```
+
+```{theorem, WOP, name="Well Ordering Principle"}
+Every nonempty set can be well ordered.
+```
+
+```{proof}
+Let $X$ nonempty, and let
+
+$$ \mathcal{X}=\{(A,\preceq_A) \text{ is well order}:A\subset X\} $$
+
+all well ordered sets, and define $\preceq$ on $\mathcal{X}$ as $(B,\preceq_B) \preceq (A,\preceq_A)$ if $B$ is an ideal in $A$ and $\preceq_A$ extends $\preceq_B$. Suppose every chain $\mathcal{C}$ in $\mathcal{X}$, $(\cup \mathcal{C},\cup \{\prec_A:A\in \mathcal{C}\})$ clearly an upper bound of $\mathcal{C}$ and well ordered. By Zorn's lemma, there is a maximal element of $\mathcal{X}$ and it's actually $X$. 
+```
+
+Kind of remarkable and useful well ordered set is exist:
+
+```{theorem, usefulorder, name=""}
+There exist poset $(\Omega,\preceq )$ satisfy
+
+1. $(\Omega,\preceq)$ is well ordered.
+2. $\Omega$ has a greast element $\omega_1$
+3. $I(x)$ is countable for $x<\omega_1$
+4. $\{y\in \Omega:x\le y\le \omega_1\}$ is uncountable.
+5. Every nonempty subset of $\Omega$ has a least upper bound.
+6. A nonempty subset of $\Omega-\{\omega_1\}$ has greatst element iff it's countable. Every uncountable subset has least upper bound $\omega_1$.
+
+```
+
+```{proof}
+Let $(X,\preceq)$ be uncountable well ordered set, and let $A$
+
+$$ A=\{x\in X: I(x) \text{is uncountable}\} $$
+
+w.l.o.g we may assume $A$ is nonempty. Then there is a first element and denoted by $\omega_1$. Then we show that $\Omega=I(\omega_1)$ enjoy all the properies.
+
+1-4 is straightforward and 5 follows from all the upper bound is well ordered and thus least upper bound exist. For 6, suppose there is a countable $C\subset\Omega-\{\omega_1\}$, then $\bigcup_{i=1}^\infty I(x_i)$ is countable, so there is some $x<\omega_1 \notin \bigcup_{i=1}^\infty I(x_i)$, that is an upper bound. By 5, least upper bound is exist and belong to $C$. Conversely, if some subset $C$ has some least upper bound $b<\omega_1$, then $C\subset I(b)$ and must countable.
+```
+
+The elements of $\Omega$ are called **ordinals** and $\omega_1$ is called **first uncountable ordinal**. The elements of $\Omega_0=\Omega-\{\omega_1\}$ is **countable ordinals**. We treat $\N$ as a subset of $\Omega$. Then the first element of $\Omega-\N$ is **first infinite ordinal**.
+
+```{theorem, intlace, name="Interlacing Lemma"}
+Suppose sequence $\{x_n\}$ and $\{y_n\}$ in $\Omega_0$ with $x_n\le y_n \le x_{n+1}$. Then they share the same least upper bound.
+```
+
+```{proof}
+Clearly since $x_n\le y_n \le x_{n+1}$.     
+```
+
+
+<!--chapter:end:01-Odds.Rmd-->
+
+# Topology
+
+## Topological spaces
+
+Let $\Omega$ be as space
+
+:::{.definition #topology name=""}
+
+A class of subset $\tau$ of $\Omega$ is an **topology** if
+
+1. $\emptyset$ and $\Omega$ belongs to $\tau$.
+2. closed under arbitrary union.
+3. closed under finite intersection.
+
+:::
+
+$(\Omega,\tau)$ called a **topological space** where $\Omega$ is called as **underlying set**. The sets in $\tau$ are called **open** while sets with complement in $\tau$ is **closed**. Both open and closed set is called **clopen**. 
+
+:::{.definition #countableclosed name=""}
+
+Countable intersection of open sets is $\mathcal{G}_\sigma$ set and countable union of closed sets is $\mathcal{F}_\delta$ set.
+
+:::
+
+:::{.definition #metric name=""}
+
+$(X,\rho)$ is a **semimetric space**, when $\rho$ defined on $X\times X$ s.t. $\forall x,y,z \in X$:
+
+1. $\rho(x,y)\ge 0$
+2. $\rho(x,y)=\rho(y,x)$
+3. $\rho(x,y)\le\rho(x,z)+\rho(z,y)$
+
+$\rho$ is called a **semimetric**.
+
+:::
+
+If $\rho(x,y)=0\iff x=y$, $\rho$ become a **metric** and $(X,\rho)$ become **metric space**.
+$B(a,r)=\{x\in E,d(x,a)<r\}$ is $r$-ball with center $a$. 
+
+$U$ is **open** in $(\Omega,d)$ iff $\forall x\in U, \exists r_x 0 \ni B_d(x,r_x)\subseteq U$. Let $\tau_d$ be the set of all open subsets of $\Omega$, we call $\tau_d$ the **topology generated by** $d$. A Topological space is **metrizable** if there exist metric $d$ generates it.
+
+Suppose $d$ is discrete, that is, $d(x,y)=0$ iff $x=y$, otherwise, $d(x,y)=1$. Then every subset is open hence $\tau_d=\mathcal{P}(\Omega)$ and called **discrete topology**. The zero semimetric, defined by $d(x,y)=0$ for all $x,y\in \Omega$ generates $\tau_d=\{\emptyset,\Omega\}$ and called **trivial topology**.
+
+Let $\Omega=\R^n$, $l^2=\sqrt{\sum_1^n(x_i-y_i)^2}$ is called **Euclidean metric**. $l^1=\sum_1^n|x_i-y_i|$ is called **taxi-cab metric** and $l^\infty=\sup\{|x_i-y_i|\}$ is called **sup norm metric**.
+
+Note $d_{l^2}(x,y)\le d_{l^1}(x,y)\le \sqrt{n}d_{l^2}(x,y)$ and $d_{l^2}(x,y)\le \sqrt{n}d_{l^\infty}(x,y)\le \sqrt{n}d_{l^2}(x,y)$, then $d_{l^\infty}$ open $\iff d_{l^2}$ open $\iff$ $d_{l^1}$ open. Hence $\tau_{d_{l^2}}=\tau_{d_{l^1}}=\tau_{d_{l^\infty}}$.
+
+All topologies on $\Omega$ is poset with greatest element $\mathcal{P(\Omega )}$ and least $\{\emptyset,\Omega\}$. If $\tau'\subset \tau$, we say $\tau'$ **coarser** than $\tau$ while $\tau$ finer than $\tau'$.
+
+
+If $\tau$ can be form by taking union of families in some $\mathcal{B}\subset \tau$, we call $\mathcal{B}$ the **base** for the topology $\tau$.
+
+:::{.theorem #equivbase name=""}
+
+$\mathcal{B}$ is a base in $(X,\tau)$ iff $\forall U\in \tau,\forall x\in U, \exists W\in \mathcal{B}\ni x\in W\subset U$.
+
+:::
+
+:::{.proof}
+
+$\implies$: Any $U$ can be written as $U=\cup W_i$ and $x\in U\implies x\in W_i$ for some $i$ and $W_i\in \mathcal{B}$.
+$\impliedby$: For any $U\in T$, consider arbitrary $x\in U$, then there exist $W_x$ such that $x\in W_x \subset U$, thus we have $U=\cup_x W_x$.
+
+:::
+
+Let $\mathcal{S}\subset \tau$, suppose all topologies include $\mathcal{S}$. Then the intersection of all of them is again a topology, denoted as $\tau(S)=\cap \Tau$, then $\tau(\mathcal{S})$ is the smallest topology contains $\mathcal{S}$. We call it the topology **generated** by $\mathcal{S}$.
+
+:::{.theorem #topogen name=""}
+
+$\tau(\mathcal{S})$ is unions of families of finite intersections together with $\Omega$, formally:
+
+$$ \{\bigcup(\bigcap_1^N S_i)\}\cup \Omega $$
+
+:::
+
+$\mathcal{S}\subset \tau$ is a **subbase** for $\tau$ if $\bigcup \mathcal{S}=\Omega$ then all finite intersections of $\mathcal{S}$ is a base. Note that if $\Omega \in \mathcal{S}$, $\mathcal{S}$ is the subbase of $\tau(\mathcal{S})$. 
+
+$(\Omega,\tau)$ is **second countable** if $\tau$ has countable base. Clearly, a topology is second countable iff it has countable subbase.
+
+For any subset $X$ in $(\Omega,\tau)$, then
+
+$$ \tau_X=\{X\cap V:V\in \tau \} $$
+
+form a topology in $X$ and we call $(X,\tau_X)$ a **subspace** or **relative topology**. Sets in $\tau_X$ are **relative open**. **Relative closed** sets of the form
+
+$$ X-(X\cap V)=X-V=X\cap V^c $$
+
+## Neighborhood
+
+A subset $V$ is called a **neighborhood** of $a$ if there exists a open set $U\subset V$ contains $a$. Then we called $V'=V-\{a\}$ **punctured(deleted)** neighborhood. A **neighborhood base** is a collection of neighborhood $BN(a)$ s.t. for any neighborhood $V$ of $a$, there exist a $W\in BN(a)$ and $W\subset V$. Clearly, all the neighborhoods is a neighborhood base and denoted as $\mathcal{N}(x)$, which is called **neighborhood system**.
+
+:::{.lemma #openquiv name=""}
+
+A subset $U$ is open iff it's a neighborhood for each of its points.
+
+:::
+
+:::{.proof}
+
+$\implies$ is trivial. $\impliedby$ follows from $\cup_x G_x=U$ and unions of open set is still open. $\blacksquare$
+
+:::
+
+This suggest a equivalent definition of finer topology:
+
+:::{.lemma #euqivfiner name=""}
+$\tau'\subset \tau\iff$ $\tau$' neighborhood is a $\tau$ neighborhood.
+:::
+
+:::{.proof}
+
+$\implies$ any open set $G_x$ satisfy $x\in G_x\subset V$ in $T'$ is still open in $T$, hence $V$ is $T$ neighborhood.
+$\impliedby$ Consider any open set $G\in T'$, it's a $T'$ neighborhood for each of its points implies it's a $T$ neighborhood for each of its points and hence $G$ is $T$ open.
+
+:::
+
+
+
+## Closures
+
+The **interior** of $A$ is the union of all open sets which are included $A$, i.e., the largest open set included in $A$, we denote it $A^\circ$. And the **closure** is the intersection of all closed sets which include $A$ and thus the smallest closed set includes $A$, we denote it $\overline{A}$.
+
+:::{.lemma name=""}
+Following is some useful truth:
+
+1. $(A\cap B)^\circ=A^\circ \cap B^\circ$
+2. $\overline{A\cup B}=\overline{A}\cup \overline{B}$
+3. $A \subset \overline{B}\implies \overline{A}\subset \overline{B}$
+4. $A^\circ\subset B\implies A^\circ \subset B^\circ$
+5. $\overline{A^c}=(A^\circ)^c$
+6. $(\overline{A})^c=(A^c)^\circ$
+
+:::
+
+:::{.proof}
+
+We only prove **5**, note $(A^\circ)^c$ is closed and
+
+$$ A^\circ\subset A\implies (A^c)\subset (A^\circ)^c $$
+
+we have $\overline{A^c}\subset (A^\circ)^c$. On the other hand
+
+$$\overline{A^c}\supset (A^\circ)^c\impliedby (\overline{A^c})^c\subset A^\circ\impliedby (\overline{A^c})^c \subset A \impliedby \overline{A^c}\supset A^c$$
+
+:::
+
+The **frontier** of $A$ is $\partial A=\overline{A}\cap \overline{A^c}=\overline{A}\cap (A^\circ)^c=\overline{A}-A^\circ$.
+
+
+$x$ is said to be an **interior point** of $A$ if $A$
+is neighborhood of $x$.
+
+$x$ is said to be an **adherent point** if it's every neighborhood meets $A$, an **$\omega$ accumulation point** of $A$ if every neighborhood of $x$ contains **infinitely** many points of $A$ and is a **condensation point** of $A$ if every neighborhood of $x$ contains **uncountable** many points of $A$. 
+
+$x$ is a **cluster point** or **accumulation point** if every deleted neighborhood of $x$ meets $A$ and is **isolated point** if $x$ is not cluster point. That is, $\{x\}$ is relative open in $A$. We denoted all the cluster points as $A'$ and called **derived set**.
+
+$x$ is **frontier point** or **boundary point** if every neighborhood of $x$ meets both $A$ and $A^c$.
+
+It's east to show that the points of $A^\circ$ are precisely all the interior points of $A$ and $\overline{A}$ are precisely all the adherent points. $\partial A$ is precisely points of frontier. We claim that
+
+$$ \overline{A}=A^\circ\cup \partial A=A\cup A' $$
+
+A subset $A$ is called **perfect** if it's closed while point in $A$ is cluster points in $A$, that is $A'=A=\overline{A}$.
+
+## Dense
+
+$A$ is said **dense** if $\overline{A}=\Omega$ and **nowhere dense** if $(\overline{A})^\circ=\emptyset$ ($\mathbb{Q}$ is dense in $\mathbb{R}$ while $\mathbb{Z}$ is nowhere dense.) $A$ is said to be **meagre** or **set of the first category** if it's countable union of nowhere dense. Sets which are not meagre is **set of the second** category set.
+
+Space $(\Omega,\tau)$ is **first countable** if every point of $\Omega$ has countable neighborhood base. The space is said **separable** if $\Omega$ has a countable dense subset.
+
+:::{.lemma #snds name=""}
+
+Second countable space is separable
+
+:::
+
+:::{.proof}
+
+Suppose $\mathcal{B}=(B_i)_{i\in I}$ is a countable base, by axiom of choice, we may take $x_i$ in $I$, let $X=\{x_i\}_{i\in I}\subset \Omega$. Then we show that $X$ is dense. For any $x\in \Omega$, it's neighborhood must contain some open $G$ which is unions of $\mathcal{B}$ and thus contains at least one element in $X$, that is, $G$ meet $X$. Hence $\overline{X}=\Omega$. 
+
+:::
+
+:::{.lemma #sndc name=""}
+
+Second countable space is first countable
+
+:::
+
+:::{.proof}
+
+Suppose $\mathcal{B}=(B_i)_{i\in I}$ is a countable base, for each point $x\in \Omega$, one may take all the sets in $\mathcal{B}$ which contains $x$ as a neighborhood base. To verify it's neighborhood base, if there is a neighborhood $N$ of $x$, then there is a open $G$ contains $x$. By the definition of base, $G$ is the union of sets of $\mathcal{B}$ and those sets must at least one contains $x$ and these sets is subset to $G$.
+
+:::
+
+
+## Mappings
+
+Suppose $(\Omega,\tau)$ and $(\Omega',\tau')$ are two spaces and $f$ is a mapping from $\Omega$ to $\Omega'$ in the following.
+
+
+:::{.lemma name=""}
+
+Following is some useful truth for mappings.
+
+1. $ff^{-1}(A)\subset A$
+2. $f^{-1}f(A)\supset A$
+3. $f^{-1}(U\cap N)=f^{-1}(U)\cap f^{-1}(N)$
+4. $f^{-1}(U\cup N)=f^{-1}(U)\cup f^{-1}(N)$
+5. $f^{-1}(A^c)=(f^{-1}(A))^c$
+6. $f^{-1}f(A)=A$ always holds if $f$ is injection while $ff^{-1}(A)=A$ always holds if $g$ is surjection.
+7. If $f$ is bijection, $(f^{-1})^{-1}(A)=f(A)$ always hold.
+8. $(f\circ g)^{-1}(A)=g^{-1}f^{-1}(A)$
+9. $f^{-1}(A)\subset f^{-1}(B)\impliedby A\subset B$
+10. $f(A)\subset f(B) \impliedby A\subset B$
+
+:::
+
+
+:::{.definition #cont name=""}
+
+$f$ is **continuous** at $x$ if for every neighborhood $N'$ of $f(x)$, there is a neighborhood $N$ of $x$ s.t. $f(N)\subset N'$. It's continuous if it's continuous at every points $x\in \Omega$.
+:::
+
+:::{.theorem name=""}
+
+$f$ is continuous iff 
+
+1. $f^{-1}(G')$ is open for every open subset $G'$ of $\Omega'$.
+2. $f^{-1}(F')$ is closed for every closed subset $F'$ of $\Omega'$.
+3. If $A\subset \Omega'$, then $f^{-1}({A^\circ})\subset (f^{-1}(A))^\circ$
+4. If $A\subset \Omega$, then $f(\overline{A}\subset \overline{f(A)})$
+
+:::
+
+:::{.proof}
+
+We only prove 1 and 3.
+
+1 $\implies$: For any $x\in f^{-1}(G')$, it's sufficient to show that $f^{-1}(G')$ is its neighborhood. By definition, there is a neighborhood $N$ s.t. $f(N)\subset G'$, and
+ 
+$$ x\in N\subset f^{-1}f(N)\subset f^{-1}(G') $$
+
+$\impliedby$: For every neighborhood $N'$, there is some open $G'$ contain $f(x)$, and $f^{-1}(G')$ is neighborhood of $x$ and $ff^{-1}(G')\subset G'$.
+
+3 $\implies$: $f^{-1}(A^\circ)$ is open and th claim follows from $f^{-1}(A\circ)\subset f^{-1}(A)$.
+$\impliedby$: Suppose $A$ is open, then $A^\circ=A$ and hence $f^{-1}(A)\subset (f^{-1}(A))^\circ$. Which suggest $f^{-1}(A)$ is open. 
+
+:::
+
+
+::: {.lemma #glue name="Glueing Lemma"}
+
+Let $X=A \cup B$ and $A$ and $B$ are both closed or both open, then $f:X \to Y$ is continuous iff it's restriction on $A$ and $B$ are both continuous.
+
+:::
+
+
+::: {.proof}
+
+$\implies$ is trivial.
+
+$\xLeftarrow{}$ Suppose they are both open and $U$ be any open set in $Y$. Note $f_{|A}^{-1}(U)$ is open in $A$ and thus open in $X$, thus
+$$ 
+f^{-1}(U)=\left( f^{-1}(U) \cap B \right) \cup\left(  f^{-1}(U) \cap A \right)=f_{|A}^{-1}(U)+f_{|B}^{-1}(U)
+$$
+is open.
+
+:::
+
+
+
+:::{.lemma name=""}
+
+Suppose $f:\Omega_1 \to \Omega_2$ and $g:\Omega_2\to \Omega_3$, $f\circ g$ is continuous if $f$ and $g$ are continuous.
+
+:::
+ 
+:::{.proof}
+
+Suppose $G_3$ is open and the claims follows from $(f\circ g)^{-1}(G_3)=f^{-1}(g^{-1}(G_3))$.
+
+:::
+
+:::{.lemma #contingen name=""}
+Suppose $f:(\Omega,\tau),(\Omega',\tau(\mathcal{S}))$, $f$ is continuous iff $f^{-1}(S)\in \tau$ for any $S\in \mathcal{S}$.
+:::
+
+
+$(\Omega,\tau)$ and $(\Omega',\tau')$ are said to be **homeomorphic** if there exist continuous bijection $f$, s.t. $f^{-1}$ is continuous and such $f$ is called **homeomorphism**. In particular, $f$ is an **embedding** if $f:(\Omega,\tau) \to (f(\Omega),\tau|f(\Omega))$ is a homeomorphism.
+
+$f$ is **open** if $f(G)$ is open for all open set $G\in \tau$ and is **closed** if $f(F)$ is closed for all closed set $F^c\in \tau$.
+
+:::{.lemma #homoclopen name=""}
+Suppose $f$ is bijection, then it's homeomorphism iff it's continuous and either open or closed.
+:::
+ 
+:::{.proof}
+
+By the continuity of $f^{-1}$, since $(f^{-1})^{-1}(G)=f(G)$ for all open set $G$.
+
+$$f^{-1} \text{ is continuous} \iff f(G) \text{ is open} \iff f \text{ is open .}$$
+
+:::
+
+:::{.lemma name=""}
+
+Suppose $f$ is bijection, it's a homeomorphism iff $\tau'$ is the finest topology where $f$ continuous.
+
+:::
+ 
+:::{.proof}
+
+Suppose $f$ is homeomorphism, $T_0$ is another topology where $f$ is continuous. For any $G\in \tau_0$, $f^{-1}(G)\in \tau$ by the continuity of $f^{-1}$,
+ $$G= (f^{-1})^{-1}(f^{-1}(G))\in \tau' $$
+ That is $\tau'$ is finer than any $\tau_0$.
+
+:::
+
+Note that $\mathcal{P(\Omega)}$ let all $f$ continuous and $\{\emptyset,\Omega\}$ let all $g:\Omega'\to \Omega$ continuous.
+
+
+## Semicontinuous
+
+$f:\Omega \to \R^*$ is
+
+- **lower semicontinuous** if for any $c\in \R$, the set $\{x\in \Omega:f(x)\le c\}$ is closed.
+- **upper semicontinuous** if for any $c\in \R$, the set $\{x\in \Omega:f(x)\ge c\}$ is closed.
+
+Clearly $f$ is lower semicontinuous iff $-f$ is upper and vice versa. Also, $f$ is continuous iff it's both upper and lower semicontinuous.
+
+:::{.lemma name=""}
+Suppose $\{f_i\}_{i\in I}$ is family of lower(upper) semicontinuous function then $\sup f_i(\inf f_i)$ is lower(upper) semicontinuous.
+:::
+
+:::{.proof}
+Note
+
+$$ \{x\in \Omega:\sup f_i(x)\le c\} =\bigcap_{i\in I} \{x\in \Omega:f_i(x)\le c\}$$
+
+is closed.
+:::
+
+:::{.lemma name=""}
+$f:\Omega \to \R^*$ is
+
+- **lower semicontinuous** iff for any net
+  $$ x.\to x \implies \liminf f(x.) \ge f(x) $$
+- **upper semicontinuous** iff for any net
+  $$ x.\to x \implies \limsup f(x.) \le f(x) $$
+  
+:::
+
+:::{.proof}
+Suppose $f$ is lower semicontinuous and $x.\to x$. For any $c<f(x)$, then $G=\{\omega\in \Omega:f(\omega)c\}$ is open and thus $x.$ eventually in, that is $x.c$ eventually and thus $\liminf f(x.) \ge c$. This implies that $\liminf f(x.)\ge f(x)$.
+
+Conversely, for any $c\in \R$, consider $F=\{\omega\in\Omega:f(\omega)\le c\}$. Then we show that $F$ is closed. Suppose $x.$ is nets in $F$ and converges to some $x\in \Omega$. Then $c\ge \lim\inf f(x.) \ge f(x)$ thus $x$ in $F$ and thus $F$ is closed.
+:::
+
+Then we can generalizes Weierstrass' Theorem in corollary \@ref(cor:exvalue).
+
+:::{.theorem name=""}
+$f:\Omega \to \R^*$ on a compact set attains a minimum(maximum) value and set of minima(maxima) is compact if it's lower(upper) semicontinuous.
+:::
+
+:::{.proof}
+Suppose $X$ is compact and $f$ is lower semicontinuous, then for every $c\in f(X)$, $F_c=\{x\in X:f(x)\le c\}$ is closed and $\{F_c:c\in f(X)\}$ has FIP clearly. Note $X$ is compact, $\ker \{F_c:c\in f(X)\}$ is nonempty by \@ref(thm:cptequiv). That is just the set of minima and it's compact since it's closed.
+:::
+
+## Comparing topologies
+
+We list some useful properties when comparing topologies, some of them has been mentioned before and proof omitted.
+
+:::{.lemma #weaker name=""}
+Suppose $\tau'$ and $\tau$ are two topologies on $\Omega$, then the following are equivalent.
+
+1. $\tau'\subset \tau$
+2. Identity mapping $I:x\mapsto x$ from $(\Omega,\tau)$ to $(\Omega',\tau')$ is continuous.
+3. $\tau'$ closed set is closed in $\tau$.
+4. $x.\overset{\tau}{\to} x\implies x. \overset{\tau'}{\to} x$
+5. $\mathop{\text{Cl}}_{\tau}(A) \subset \mathop{\text{Cl}}_{\tau'}(A)$
+
+:::
+
+:::{.lemma name=""}
+Suppose $\tau'\subset \tau$, then
+
+1. Every $\tau$ compact set is $\tau'$ compact.
+2. Every $\tau'$ continuous function is $\tau$ continuous.
+3. Every $\tau$ dense set is $\tau'$ dense.
+
+:::
+
+<!--chapter:end:02-Topology-Space.rmd-->
+
+## Filter
+
+```{definition, filter, name=""}
+A **filter** is a non-empty collection $\mathcal{F}$ of subset in $\Omega$ s.t.
+
+1. $A\in \mathcal{F},A\subset \mathcal{B}\implies \mathcal{B}\in \mathcal{F}$
+2. Closed under finite intersection.
+3. $\emptyset \notin \mathcal{F}$
+
+```
+
+Note the definition of $\mathcal{F}$ is independent with topology $\tau$. A **free filter** is filter with $\ker \mathcal{F}=\bigcap_{F\in \mathcal{F}}^{}F=\emptyset$. Not free filters are called **fixed**. 
+
+Filter can be formed by taking upward closure of a filter base.
+
+```{definition, base, name=""}
+A collection $\mathcal{B}$ of subset in $\Omega$ is a **fiter base** of $\mathcal{}$ or **prefilter** if
+
+1. $\mathcal{B}\subset \mathcal{F}$
+2. $\forall N\in \mathcal{F},\exists W\in \mathcal{B}\ni W\subset N$
+
+We say $\mathcal{B}$ generates $\mathcal{F}$, where
+
+$$ \mathcal{\mathcal{F}}=\mathcal{B}^\uparrow=\{X\in \mathcal{P}(\Omega):\exists A\in \mathcal{B}\ni X\supset A\}  $$
+```
+
+For example, 
+
+- Suppose $x\in \Omega$ then 
+  $$ \mathcal{N}(x)=\{\text{All neighbourhoods of } x\} $$
+  
+  is a filter on $\Omega$, that is, **neighbourhood filter**, while each neighborhood base is a base for this filter. Note
+  
+  $$ \tau(x)=\{X\in \tau:x\in X\} $$
+  
+  is a base for $\mathcal{N}(x)$ and thus $\mathcal{N}(x)=\tau(x)^\uparrow$.
+
+- Suppose $\Omega$ is infinite, the collection of all **cofinite** subsets( subset s with finite complement) is a filter on $\Omega$, such filter is free and called **Frechet filter**.
+
+To assert a collection is a base, we have
+
+```{theorem, defprefilter, name=""}
+Let $\mathcal{B}$ be a collection of nonempty subsets. Then $\mathcal{B}$ is a filter base, that is, $\mathcal{B}$ may generates a filter iff
+
+1. The intersection of each finite family of sets in $\mathcal{B}$ inclueds a set in $\mathcal{B}$ 
+2. $\mathcal{B}$ is non-empty and $\emptyset \notin \mathcal{B}$.
+
+```
+
+```{proof}
+We claim that
+
+$$ \mathcal{\mathcal{F}}=\{X\in \mathcal{P}(\Omega):\exists A\in \mathcal{B}\ni X\supset A\} $$
+
+$\mathcal{F}$ is the filter generated by $\mathcal{B}$.
+```
+
+A family of subsets $\mathcal{F}$ is said to have **finite intersection property** if intersection of every finite subfaimily is nonempty. 
+
+Let $\mathcal{A}$ be collection of subsets with finite intersection property, then collection of all finite intersection of $\mathcal{A}$ is a base, we call the filter generated **filter generated by $\mathcal{A}$**. Formally
+
+$$ \mathcal{F}=\{\bigcap_{A \in \mathcal{I}} A:\mathcal{I}\subset \mathcal{A} \text{ and } \mathcal{I} \text{ is finite}\}^\uparrow $$
+
+A filter $\mathcal{F}$ is **finer** than another $\mathcal{G}$ if $\mathcal{F\subset G}$. Clearly, the set of all filters on $\Omega$ is inductively ordered by inclusion. By Zorn's lemma, the set of all filters has maximal filters and we call such fliters **ultrafilters**.
+
+```{lemma, , name=""}
+Every fixed ultrafilter of the form
+
+$$ \mathcal{U(x)}=\{x\}^\uparrow $$
+
+for any $x\in \Omega$. And every free ultrafilter contains no finite subsets.
+```
+
+
+
+To assert a filter is ultra, we have:
+
+```{theorem, ufq, name=""}
+Let $A$ be a collection of subsets and $\mathcal{F}$ the filter generates by $A$. If 
+
+$$ \forall X\subset \Omega, \text{either } X\in A \text{ or } X^c \in A $$
+
+then $A$ is an ultrafilter on $\Omega$.
+```
+
+```{proof}
+Suppose $\mathcal{F}'$ is an ultrafilter include $\mathcal{F}$, we have $\mathcal{F}'\supset A$ clearly. Consider any $X\in \mathcal{F}'$, we claim that $X\in A$ since if $X^c\in A$ then $X^c\in \mathcal{F}'$ as $\mathcal{F}'\supset \mathcal{F}\supset A$ and $X\cap X^c=\emptyset\in \mathcal{F}'$ results in a contradiction. It follows that $A\supset \mathcal{F}'$ and thus $A=\mathcal{F}'$.
+```
+
+
+```{theorem, , name=""}
+Every filter $\mathcal{F}$ is the intersection of all the ultrafilter which include $\mathcal{F}$.
+```
+
+```{proof}
+We claim that
+
+$$ \mathcal{F}=\cap \{\text{ultrafilter generates by } \{x\}:x\in \cap \mathcal{F}\} $$
+```
+
+Suppose mappings on a filter:
+
+```{theorem, , name=""}
+Let $f$ be a mapping from $\Omega$ to $\Omega'$ and $\mathcal{B}$ a base for a fliter $\mathcal{F}$ on $\Omega$. Then $f(\mathcal{B})=\{f(X)\}_{X\in B}$ is also a base on $\Omega'$. Moreover, if $\mathcal{F}$ is ultra then $f(\mathcal{B})$ also generates an ultrafilter.
+```
+
+```{proof}
+First assertion is straightforward and the second follows from $\mathcal{B}$ is collection of supset for some $\{x\}$, then $f(\mathcal{B})$ generates the fliter that generates by $\{f(x)\}$.
+```
+
+```{theorem, , name=""}
+In the same situation as previous theorem. If $\mathcal{B}'$ is a base on $\Omega'$, then $f^{-1}(\mathcal{B}')$ is a base on $\Omega$ iff every set in $\mathcal{B}'$ meets $f(\Omega)$
+```
+
+```{proof}
+We have 
+
+$$ \Omega\in f^{-1}(\mathcal{B}')\implies f(\Omega)\subset X' $$
+
+for some $X'\in f^{-1}(\mathcal{B}')$, by definition, $\implies$ is immediately.
+
+For $\impliedby$, suppose any finite family $X_i\in \mathcal{B}'$, then
+
+$$ \bigcap_{i=1} f^{-1}(X_i)=f^{-1}(\bigcap_i X_i)\in f^{-1}(\mathcal{B}') $$
+
+Then the claim follows from theorem \@ref(thm:defprefilter). 
+```
+
+A point $x\in \Omega$ is said to be a **limit** or a **limit point** of the fliter $\mathcal{F}$ and $\mathcal{F}$ is said to **converge** to $x$, or $\mathcal{F}\to x$, if the neighborhood filter $\mathcal{N}(x)\subset \mathcal{F}$. For filter base $\mathcal{B}$, we define on the filter generated by $\mathcal{B}$, that is, if $\mathcal{N}(x)\subset \mathcal{B}^\uparrow$.
+
+This implies a equivalent definition of finer topology:
+
+$$ \tau \supset \tau'\iff \mathcal{N}_\tau(x)\supset \mathcal{N}_{\tau'}(x) \iff \mathcal{F} \to a \implies \mathcal{F}' \to a  $$
+
+also, an equivalent definition of continuity as follows:
+
+```{theorem, defcontinue, name=""}
+$f:(\Omega,\tau)\to (\Omega',\tau')$ is continous at $x$ iff 
+
+$$ \forall \mathcal{F}\to x, f(\mathcal{F})\to f(x) $$
+```
+
+```{proof}
+By definition, $f(\mathcal{F})\to f(x)$ if
+
+$$\mathcal{N}(f(x))\subset f(\mathcal{F})^\uparrow  $$
+
+That is, for any neighbourhood $N'\in \mathcal{N}(f(x))$, there exist some $A\in \mathcal{F}$ s.t. $f(A)\subset N'$, as $\mathcal{N}(x)\subset \mathcal{F}$ and $f$ is continous at $x$, such $A$ is always exists. Conversely, take $\mathcal{F}=\mathcal{N}(x)$ then the claim is follows 
+```
+
+A point $x\in \Omega$ is said to be an **adherent point** of $\mathcal{F}$ if $x$ is an adherent point of every set in $\mathcal{F}$. The **adherence** of $\mathcal{F}$, $\mathop{\text{Adh}}_{\tau}(\mathcal{F})$ or $\overline{\mathcal{F}}$ is the set of all adherent points, thus
+
+$$ \overline{\mathcal{F}}=\bigcap_{X\in F} \overline{X} $$
+
+Define similarly on filter base $\mathcal{B}$ by the filter generated. By definition, we have
+
+
+$$ \overline{\mathcal{B}}=\bigcap_{X\in B} \overline{X} $$
+
+```{lemma, , name=""}
+Suppose $A$ be a subset of $\Omega$, then $x\in \overline{A}$ iff there is a filter $\mathcal{F}$ s.t. $A\in \mathcal{F}$ and $\mathcal{F}$ converges to $x$.
+```
+ 
+```{theorem, bnn, name=""}
+Suppose $BN(x)$ a neighbourhood base of $x$, then
+ 
+1. $\mathcal{B}$ converges to $x$ iff every set in $BN(x)$ includes a set in $\mathcal{B}$.
+2. $x\in \overline{\mathcal{B}}$ iff every set in $BN(x)$ meets every set in $\mathcal{B}$.
+
+```
+
+As consequence, we have
+
+```{corollary, adhlim1, name=""}
+$x$ is adherent to a filter $\mathcal{F}$ iff there is $\mathcal{F}'\supset \mathcal{F}$ and converges to $x$
+```
+```{proof}
+$\implies$ follows from taking $\mathcal{F}=BN(x)$. Conversely, $\forall N\in BN(x)$, we have $X'\subset N$ for some $X'\in \mathcal{F'}$, thus for any $X\in \mathcal{F}$, $N\cap X\subset X'\cap X\neq \emptyset$ as $X',X\in \mathcal{F}'$.
+```
+ 
+```{corollary, adhlim2, name=""}
+Every limit point of $\mathcal{F}$ is adherent to $\mathcal{F}$
+```
+ 
+```{proof}
+Clearly holds by applying theorem \@ref(thm:bnn).1 and  \@ref(thm:bnn).2.
+```
+ 
+```{corollary, adhlim3, name=""}
+Every adherent point of an ultra-filter is a limit point of it. 
+```
+ 
+```{proof}
+Clearly as kernel of ultrafilter is a one point set.
+```
+
+Suppose $f:(\Omega,\tau)\to (\Omega',\tau')$, a point $x'\in \Omega'$ is called 
+
+1. a **limit point** of $f$ relative to $\mathcal{F}$ if $f(\mathcal{F})\to x$. 
+2. an **adherent point** of $f$ relative $\mathcal{F}$ if it's adherent point of $f(\mathcal{F})$.
+
+```{theorem, , name=""}
+Suppose $f:(\Omega ,\tau )\to (\Omega ',\tau ')$
+
+1. $x'$ is a limit point of $f$ relative to $\mathcal{F}$ iff for any $\tau'$ neighbourhood $N'\in \mathcal{N}(x')$, we have $f^{-1}(N')\in \mathcal{F}$.
+2. $x'$ is an adherent point of $f$ relative to $\mathcal{F}$ iff for any $\tau'$ neighbourhood $N'\in \mathcal{N}(x')$, it meets $f(X)$ for any $X\in \mathcal{F}$.
+
+```
+
+```{proof}
+$x'$ is limit is equivalent to
+$$ \mathcal{N}(x')\subset f(\mathcal{F})^\uparrow $$
+That is, there exist some $A=f(X)\subset N'$ for any $N'$, followed by $X\subset f^{-1}f(X)\subset f^{-1} (N')$, then the claim follows from the definition of filter.
+
+By theorem \@ref(thm:bnn), $x'$ is adherent to $f(\mathcal{F})$ iff
+$$ \forall N'\in BN(x'), \forall X\in \mathcal{F},f(X)\cap N'\neq \emptyset $$
+note for any $N'\in N'(x')$, there exist $N'\in BN(x') \ni N'\subset N'$, thus $f(X)\cap N'\neq \emptyset$ also holds. Conversely, making use of $BN(x')\subset N'(x')$.
+```
+
+For example, suppose $f:(\mathbb{N},\tau)\to (\Omega',\tau')$ and $\mathcal{F}$ the frechet filter on $\mathbb{N}$. Then $x'$ is limit of $f$ relative to $\mathcal{F}$ iff for all $N'\in N'(x')$, $f^{-1}(N')\in \mathcal{F}\iff f^{-1}(N')^c\subset [0,k] \iff f^{-1}(N')\supset \{n\in\mathbb{N}:n\ge k\}$ for some $k$, that is, $f(n)\in N'$ for any $n\ge k$.
+
+```{theorem, contatx, name=""}
+Suppose $f:(\Omega,\tau)\to (\Omega',\tau')$ and let $\mathcal{F}=\mathcal{N}(x)$. By theorm 9, $x'$ is limit of $f$ relative to $\mathcal{N}(x)$ iff for all $N'\in \mathcal{N}(x')$, $f^{-1}(N')\in \mathcal{N}(x) \iff N\subset f^{-1}(N')\iff f(N)\subset N'$ for some $N\in \mathcal{N}(x)$. That is, iff $x'=f(x)$, $f$ is continous at $x$. Such limit points also called limit points of $f$ at $x$.
+```
+
+## Net
+
+$(D,\preceq)$ is called a **directed set** if every couple $\{x,y\}$ in which has an upper bound. 
+
+If $\{D_i\}_{i\in I}$ is family of directed set then $D=\prod_{i\in I} D_i$ is also directed under **product direction** defined by $(a_i)_{i\in I}\succeq (b_i)_{i\in I}$ for all $i\in I$.
+
+```{definition, net, name=""}
+Let $(D,\preceq)$ be a directed set, $\nu:D\to \Omega$ is called a **net** in $\Omega$ with domain $D$. The directed set is called **index set** of the net and members of $D$ are **indexes**. We often write $\nu$ as $x.$ or $\{x_\alpha\}$.
+```
+
+Suppose $A$ a subset of $\Omega$, we say $x.$ **eventually in** $A$ if there exist some $k\in D$ s.t. $x_n \in A$  for all $n\succeq k$. And we say $\nu$ is **frequently** in $A$ if for all $n\in D$, there exist an $n'\succeq n$ s.t. $x_{n'}\in A$. 
+
+```{lemma, , name=""}
+If $x.$ not frequently in $A$, then $x.$ eventually in $A^c$. Thus, for any $X\in \Omega$, $x.$ frequently in either $X$ or $X^c$.
+```
+
+Suppose $x\in \Omega$, then $x.$ is said **converge** to $x$, or $x.\to x$ if $x.$ eventually in $N$ for all $N\in \mathcal{N}(x)$, i.e., $\mathcal{N}(x)\subset \mathcal{F}(x.)$. The point $x$ is **adherent** to $x.$ if $x.$ frequently in $N$ for all $N\in \mathcal{N}(x)$.
+
+```{theorem, , name=""}
+Suppose $A\in (\Omega,\tau)$, then $x\in \overline{A}$ iff it's the limit of some net in the set.
+```
+
+```{proof}
+$\impliedby$ is clear. $\implies$ follows from we may find a associated net taking value in $A$(since each neighborhood meets $A$) and such net converges to $x$.
+```
+
+As with sequence, if $x.$ is bounded, there is
+
+$$ \liminf x.=\sup\inf x. \preceq \limsup x.=\inf \sup x $$
+
+Subnet generalizes subsequence.
+
+```{definition, , name=""}
+Suppose $D$ is directed, a subset $B$ of $D$ is called **cofinal** if for any $a \in D$, there exist $b\in B$ s.t. $a\preceq b$. A map $f:D\to A$ is **final** if $f(D)$ is cofinal of $A$.
+
+Let $x.$ and $x.'$ are two nets in $\Omega$ with domains $D$ and $D'$ respectively. We say that $x.'$ is a **subnet** of $x.$ if there exists a final mapping $\varphi:D'\to D$ s.t. $x'_{\alpha}=x_{\varphi(\alpha)}$.
+```
+
+```{theorem, evinsub, name=""}
+Let $\mathcal{A}$ be a collection of subsets that $x.$ is frequently in. If $\mathcal{A}$ is closed under finite intersection, then there exists a subnet $x'.$ of $x.$ and $x.'$ eventually in every member of $\mathcal{A}$
+```
+
+```{lemma, netwithsubnet, name=""}
+Suppose $x.'$ is subnet of $x.$, we have
+
+1. $x.\to x\implies x.'\to x$
+2. $x$ adherent to $x.'$ $\implies$ $x$ adherent to $x.$.
+
+```
+
+```{theorem, , name=""}
+A point $x$ is adherent to $x.$ iff there is a subnet converges to $x$. While $x.\to x$ iff every subnet converges to $x$.
+```
+
+```{proof}
+$\implies$ is clear by lemma\@ref(lem:netwithsubnet). Conversely, suppose $a$ is not adherent to $x$, there exist a neighborhood $N$ that $x.$ not frequently in, i.e., exist $k$ s.t. $x_n\notin N$ for any $n\ge k$, thus there is no subnet eventually in $N$.
+
+For the second part, $\implies$ is also clear by lemma\@ref(lem:netwithsubnet) and $\impliedby$ comes from taking subnet as itself.
+```
+
+A net $x.$ is called **ultranet** or **universal net** if for all $X\in \Omega$, we have either $x.$ eventually in $X$ or $x.$ eventually in $X^c$. Clearly, subnet of ultranet is ultra and
+
+```{lemma, , name=""}
+Every net has a ultra subnet.
+```
+ 
+```{proof}
+Consider collection of $\mathcal{Q}$ s.t. $x.$ is frequently in every member and closed under finite intersection. By Zorn's Lemma, there is a maximal $\mathcal{Q}_0$. By theorem 11, $x.$ has a subnet $x.'$ which eventually in every member of $\mathcal{Q}_0$. We claim that this subnet is ultra since, $\mathcal{Q}_0$ is maximal and thus either $X\in \mathcal{Q}_0$ or $X^c \in \mathcal{Q}_0$.
+```
+
+## Nets and filters
+
+Let 
+
+$$ \mathcal{F}(x.)=\{X\in \mathcal{P}(\Omega ): x.\text{ is eventually in } X\}  $$
+
+
+Then $\mathcal{F}(x.)$ is a filter and we call it the **filter associated with the net $x.$**.
+
+```{theorem, equivassf, name=""}
+Associated filter is the upward closure of the net's tail, that is
+
+$$ \mathcal{F}(x.)=\{\{x_b:b\succeq a\}: a\in D\} $$
+```
+
+Motivated by the definition of filter that filter is closed under pairwise intersection, let $X\preceq Y\iff X\supset Y$, then any mapping $\nu:\mathcal{F}\to \Omega$ s.t. $\nu(X)\in X$ is a **net associated with the filter $\mathcal{F}$**. 
+
+By definition, we claim that $\mathcal{F}$ is the associated filter of every associated net and $x.$ is an associted net of the associated fiter.
+
+
+
+
+
+```{theorem, assn, name=""}
+Filter $\mathcal{F}\to x$ iff $x.\to x$ for any $x.$ associated with $\mathcal{F}$.
+```
+
+```{proof}
+Note
+$$\forall N\in \mathcal{N}(x), x.\text{ eventually in } N  \iff \mathcal{N}(x)\subset\mathcal{F}(x.)  $$
+Then is sufficient to show that $\mathcal{F}(x.)=\mathcal{F}$. It's follows from for any $X\in \mathcal{F}$, $x.$ eventually in $X$.
+```
+
+```{theorem, assf, name=""}
+$$ x.\to x \iff \mathcal{F}(x.)\to x $$
+```
+ 
+```{proof}
+Both side is equivalent to $\mathcal{N}(x)\subset \mathcal{F}(x.)$
+```
+
+```{theorem, , name=""}
+Suppose $f:(\Omega,\tau)\to (\Omega',\tau')$, then $f$ is continous at $x$ iff $\forall x.\to x$, $f(x.)\to f(x)$.
+```
+
+```{proof}
+By theorem \@ref(thm:assf),\@ref(thm:assn) and \@ref(thm:contatx).
+```
+
+By above theorems, we have
+
+$$ \mathop{\text{Adh}}_{}(\mathcal{F(x.)})=\mathop{\text{Adh}}_{}(x.), \mathop{\text{Lim}}_{}(\mathcal{F(x.)})=\mathop{\text{Lim}}_{}(x.)  $$
+
+and similarly results holds for any filter and one of associated nets.
+
+```{lemma, , name=""}
+If $x.$ is ultra then the associated filter $\mathcal{F}(x.)$ is also ultra and if $\mathcal{F}$ is ultra, every associated net is ultra.
+```
+ 
+```{proof}
+Directly from theorm \@ref(thm:ufq).
+```
+
+
+## Convergence
+
+If $\mathcal{F}$ is collection of functions on $X$, $X$ can be seen as functions on $\mathcal{F}$ by $e_x(f)=f(x)$ for each $x \in  X$, such functions are called  **evaluation functional**. 
+
+The product topology on $\R^X$ is also called **topology of pointwise convergence** on $X$ because a net $f.\to f$ iff $e_x(f.)\to e_x(f)\iff f.(x)\to f(x)$ for each $x \in X$.
+
+ There also exist induced topology $\sigma\left( \mathcal{F},X \right)$ on $\mathcal{F}$, which is identical to the subspace  $\R^X |_{\mathcal{F}}$ endowed the product topology. Formally 
+
+$$ \sigma(\mathcal{F},X)=\sigma(\R^X,X)|_{\mathcal{F}} $$
+
+::: {.lemma  name=""}
+
+If $\mathcal{F}$ is total, the function 
+
+$$ x\mapsto e_x:(X,\sigma(X,\mathcal{F}))\to (\R^{\mathcal{F}},\sigma(\R^{\mathcal{F}},\mathcal{F})) $$
+
+is injective and thus an embedding.
+
+:::
+
+::: {.proof}
+
+It's remain to show the continuity.
+
+$$ \begin{aligned}
+	 x. \to x &\iff \forall  f \in \mathcal{F}, f(x.) \to f(x) 
+	 \\&\iff \forall f \in \mathcal{F}, e_{f}(e_{x.})\to e_f(e_{x})
+	 \\&\iff e_{x.}\to e_{x} 
+\end{aligned} $$
+
+:::
+
+By Tychonoff theorem \@ref(thm:tychonoff), $\mathcal{F}$ is compact iff $\forall x \in X$, $\{f(x)\}_{f\in \mathcal{F}}$ it's closed and pointwise bounded by borel theorem. 
+
+::: {.definition name=""}
+
+A net $f.$ converges uniformly to $f\in \R^X$ iff $|f.(x)-f(x)|< \epsilon$ eventually for each $x \in X$ after some $f_{\alpha}$ for any $\epsilon$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+The uniform limit of a continuous net is continuous.
+
+:::
+
+
+::: {.proof}
+
+Suppose $f.\to f$ uniformly, then for any $x\in X$, for any $\alpha>\alpha_0$
+$$ 
+|f_\alpha(x)-f(x)|<\epsilon
+$$
+as $f_\alpha$ is continuous, for any $x. \to x$, for any $\lambda>\lambda_0$
+$$ 
+|f_\alpha(x_\lambda)-f_\alpha(x)|<\epsilon
+$$
+also, there is 
+$$ 
+|f_\alpha(x_\lambda)-f(x_\lambda)|<\epsilon
+$$
+Hence, we have 
+$$ 
+|f(x_\lambda)-f(x)|<3\epsilon
+$$
+
+Thus, $f(x.)\to f$ and continuity follows.
+
+:::
+
+
+::: {.theorem #dini name="Dini's Theorem"}
+
+If continuous real function net $f.$ on a compact set converges monotonically to $f$ pointwise, then the net converges to $f$ uniformly.
+
+:::
+
+
+::: {.proof}
+
+Let $g.=f.-f$, we have $g.\to 0$, $|g.|$ is decreasing as monotone. Then it's sufficient to show that $g.\to g$ uniformly. Note $|g.(x)|<\epsilon$ eventually for any $x \in X$ after, say, $\alpha_x$. By continuity and compactness:
+
+$$ X=\bigcup_{x \in X} |g_{\alpha_x}|^{-1}(B(0,\epsilon))=\bigcup_{x \in J} |g_{\alpha_x}|^{-1}(B(0,\epsilon)) $$
+
+Then we may pick $\alpha_0 \ge \alpha_x$ for all $x\in J$, and for any $\alpha \ge \alpha_0$ and any $x\in X$, suppose $x\in |g_{\alpha_{x_j}}|^{-1}\left( B(0,\epsilon) \right)$
+$$ 
+\epsilon>|g_{\alpha_{x_j}}(x)|>|g_{\alpha}(x)|
+$$
+by monotone and thus $g. \to 0$ uniformly.
+
+:::
+
+
+
+<!--chapter:end:03-Convergence.rmd-->
+
+## Separation
+
+```{definition, T0, name=""}
+Space $(\Omega,\tau)$ is said to be $T_0$ or **kolmogorov** if for every pair $(x,y)\in \Omega^2$, either there exist $N\in \mathcal{N}(x)$ s.t. $y\notin N$ or $N\in \mathcal{N}(y)$ s.t. $x\notin N$.
+```
+
+```{lemma, , name=""}
+$\tau$ isn't $T_0$ iff there exist pair $(x,y)$, s.t:
+
+1. $\mathcal{N}(x)=\mathcal{N}(y)$.
+2. $\overline{\{x\}}=\overline{\{y\}}$.
+
+```
+
+```{proof}
+1 If every $N\in \mathcal{N}(x)$ contains $y$, then $N\in \mathcal{N}(y)\implies \mathcal{N}(x)\subset \mathcal{N}(y)$, thus $\mathcal{N}(x)=\mathcal{N}(y)$.
+
+2 If some point $a\in \overline{\{x\}}$, then every $N\in \mathcal{N}(a)$ also is neighborhood of $x$ and thus neighborhood of $y$, hence $a\in \overline{\{y\}}$.
+
+```
+
+```{definition, T1, name=""}
+Space $(\Omega,\tau)$ is said to be $T_1$ or **Frechet** if for every pair $(x,y)\in \Omega^2$,there exist $N\in \mathcal{N}(x)$ s.t. $y\notin N$ and $N\in \mathcal{N}(y)$ s.t. $x\notin N$.
+```
+
+```{theorem, , name=""}
+Following statements are equivalent:
+
+1. $\tau$ is $T_1$.
+2. Singetons are closed.
+3. $\ker \mathcal{N}(x)=\{x\}$ holds for any $x\in \Omega$.
+
+```
+
+
+```{proof}
+$1\implies 2$ If there exist a singeton $\{x\}$ not closed, there is $y\in \overline{\{x\}}$, hence every neighborhood of $y$ contains $x$, contradiction.
+
+$2\implies 3$ Suppose $\ker \mathcal{N}(x)$ contains $y$ diifer $x$, that implies any neighborhood of $x$ contains $y$ and contradict $2$.
+
+$3\implies 1$ is straightforward.
+```
+
+```{lemma, , name=""}
+Suppose $(\Omega,\tau)$ with a finite base is $T_1$, then $\Omega$ is finite and $\tau$ is discrete.
+```
+
+
+
+
+```{definition, hausdorff, name=""}
+A topology $(\Omega,\tau)$ is $T_2$, or **Hausdorff** or **separated** if every pair $(x,y)\in \Omega^2$, there exist $U\in \mathcal{N(x)}$ and $V\in \mathcal{N(y)}$ s.t. $U\cap V=\emptyset$.
+```
+
+```{theorem, t2equiv, name=""}
+Following statements are equivalent:
+
+1. $\tau$ is $T_2$.
+2. Intersection of family of closed neighborhoods of $x$ is $x$.
+3. If a filter(net) converges to some point $x$, then $\mathop{\text{Adh}}_{}(\mathcal{F})=\{x\}$
+3. Every net(filter) converges to at most one point.
+
+```
+
+```{proof}
+
+$1\implies 2$ For any pair $(x,y)$, by definition, there is $y\notin \overline{U}$, hence intersection of family of closed neighborhoods of $x$ can only contains $x$.
+
+$2\implies 3$ follows from a point adherent to a filter converges to $x$ must be in every closed neighborhood of $x$.
+
+$3\implies 4$ is clearly.
+
+$4\implies 1$
+If there is a net $x.$ converges to both $x$ and $y$, then $\mathcal{N}(x)\subset \mathcal{F}(x.)$ and $\mathcal{N}(y)\subset \mathcal{F}(x.)$, that is, $U$ and $V$ meets for any $U\in \mathcal{N(x)}$ and $V\in \mathcal{N(y)}$.
+
+```
+
+
+```{definition, , name=""}
+Space $(\Omega,\tau)$ is said to be $T_{2.5}$ or **Completely Hausdorff** if for every pair $(x,y)\in \Omega^2$, there exist $U\in \mathcal{N(x)}$ and $V\in \mathcal{N(y)}$ s.t. $\overline{U}\cap \overline{V}=\emptyset$.
+```
+
+Two nonempty sets are caled **separated by open sets** if they are included in disjoint open sets, and they are **separated by continous functions** if there is continos $f$ taking values in $[0,1]$ and assign $0$ on one set and $1$ on the other.
+
+
+
+Space $(\Omega,\tau)$ are said to be **regular** if every singeton and any closed $A$ disjoint from it can be separated by open sets.
+
+```{definition, , name=""}
+Space $(\Omega,\tau)$ is said to be $T_3$ if it's $T_1$ and regular.
+```
+
+Space $(\Omega,\tau)$ are said to **Completely regular** if every singeton and any closed $A$ disjoint from it can be separated by continous function.
+
+```{definition, , name=""}
+Space $(\Omega,\tau)$ is said to be $T_{3.5}$ or **Tychonoff space** if it's $T_1$ and completely regular.
+```
+
+```{theorem, tychemb, name="Tychonoff's Embedding Theorem"}
+Space $(\Omega,\tau)$ is $T_{3.5}$ iff it's homeomorphic to a subspace of $([0,1]^n,\tau_{d_{l^1}})$.
+```
+
+Space $(\Omega,\tau)$ is said to be **normal** if two disjoint closed subsets can be separated by open sets.
+
+```{definition, , name=""}
+Space $(\Omega,\tau)$ is said to be $T_4$ if it's normal and $T_1$.
+```
+
+
+
+
+```{theorem, urs, name="Urysohn's Lemma"}
+Following statements are equivalent:
+
+1. $(\Omega,\tau)$ is normal. 
+2. For any $U\in \tau$ and any closed $A\subset U$, there is a $U'\in \tau$ s.t. $A\subset U'$ and $\overline{U'}\subset U$.
+3. Every two disjoint closed subsets can be separated by continous function.
+
+```
+
+```{proof}
+$1 \implies 2$ Apply normal property to $A$ and $U^c$, there is a $U'$ include $A$ and $V$ include $U^c$, as $U'\cap V=\emptyset \implies U'\subset V^c\implies \overline{U'}\subset V^c \subset U$.
+
+$2\implies 3$ Suppose $A$ and $B$ are two disjoint closed subset, apply $2$ to $A$ and $U_1=B^c$ we have $A\subset U_0$ and $\overline{U_0}\subset U_1$. Apply again for $\overline{U_0}$ and $U_1$ to generates $U_0\subset U_{\frac{1}{2}}$ and $\overline{ U_{\frac{1}{2}}}\subset U_1$, repeat such process, that is, apply 2 to $\overline{U_{\frac{j}{2^k}}}$ and $U_{\frac{j+1}{2^k}}$ to generates $U_{\frac{2j+1}{2^{k+1}}}$. Finally, we construct a open strictly increasing squence $U_{r}.$ where $r$ is any dyadic rational in $[0,1]$, i.e., $r\in DR\cap [0,1]$.
+
+Then define $f$ as
+
+$$ f=\begin{cases}
+    1& x\in B\\
+    \inf \{r:x\in U_r\}& x\in B^c
+\end{cases} $$
+
+Then it's sufficient to show that $f$ is continous. Note subspace $[0,1]$ of $\R$ can be generated by collection of $[0,s)$ and $(t,1]$ and
+
+$$ \begin{aligned}
+    f^{-1}[0,s)=\bigcup_{r\in DR\cap [0,s)} U_r\\
+    f^{-1}(t,1]=\bigcup_{r\in DR\cap (t,1]} \overline{U_r}^c
+\end{aligned} $$
+
+Then the claim follows from lemma \@ref(lem:contingen).
+
+$3 \implies 1$ By taking any disjoint open set $A$ contains $0$ and $B$ contains $1$ and looking $f^{-1}(A)$ and $f^{-1}(B)$.
+```
+
+```{theorem, tietze, name="Tietze's Extension Theorem"}
+Let $(\Omega,\tau)$ be normal, $F$ any closed subset and $I$ any bounded closed interval of $\R$. Then any continous $f:F\to I$ can be extended to $f':\Omega\to I$ and remain continous.
+```
+
+```{proof}
+Suppose $I=[-1,1]$, then $A=f^{-1}[-1,-\frac{1}{3}]$ and $f^{-1}[\frac{1}{3},1]$ are disjoint and closed. By Urysohn's Lemma, there is $g:\Omega \to [-\frac{1}{3},\frac{1}{3}]$ s.t. $g(A)=\{-\frac{1}{3}\}$ and $g(B)=\frac{1}{3}$. Set $f_0=f,g_0=g,f_1=f-g|_F$. Then we can show that $|f_1|$ is bounded by $\frac{2}{3}$.
+
+Repeat such process, we have series of 
+
+$$ \begin{aligned}
+    f_n&:F\to [-(\frac{2}{3})^n,(\frac{2}{3})^n]\\
+    g_n&:E\to [-\frac{1}{3}(\frac{2}{3})^n,\frac{1}{3}(\frac{2}{3})^n]\\
+    f_{n+1}&=(f_n-g_n)|_F
+\end{aligned} $$
+
+Then we show that $g=\sum_{i=0}^\infty g_i$ is the extension of $f$. That is $g$ is continous and $f=g$ in $F$. Note for any $x$
+
+$$ \begin{aligned}
+   | \sum_{i=m}^n g_i(x)|\le  \sum_{i=m}^n |g_i(x)|\le \sum_{i=m}^n \frac{1}{3}(\frac{2}{3})^i \le (\frac{2}{3})^m \to 0
+\end{aligned} $$
+
+Thus $\{\sum_{i=0}^n g_i\}_{n=0}^\infty$ converges uniformly by Cauchy's criterion, followed by $g$ is continous. And $f=g$ on $F$ follows from
+
+$$ |f(x)-\sum_{i=0}^n g_i(x)|=|f_0(x)-\sum_{i=0}^n g_i(x)|=|f_1(x)-\sum_{i=1}^n g_i(x)|=|f_{n+1}(x)|\le (\frac{2}{3})^{n+1} \to 0 $$
+```
+
+
+<!--chapter:end:04-Separation.rmd-->
+
+## Compactness
+
+::: {.definition  name=""}
+
+A **cover** of a set $K$ is collection of sets whose union includes $K$. A **subcover** is subcollection of a cover and also covers $K$. 
+
+:::
+
+::: {.definition  name=""}
+
+$K$ is **compact** if every open cover has a finite subcover and called **relatively compact** if it's closure is compact. A topology $(\Omega,\tau)$ is **compact** if $\Omega$ is compact.
+
+:::
+
+Compactness is a "topological" property. That is, subset compactness in a subspace iff it's also compact in full space.
+
+::: {.theorem #cptequiv name=""}
+
+Let $(\Omega,\tau)$ be a space, TFAE:
+
+1. $(\Omega,\tau)$ is compact.
+2. Every filter(net) has at least one adherent point.
+3. Every ultrafilter(ultranet) converges.
+4. $\ker \mathcal{F}\neq \emptyset$ For every collection $\mathcal{F}$ of closed sets having FIP.
+
+:::
+
+::: {.proof}
+
+$4\iff 1$ Taking contrapositive:
+
+$$ \neg {\ker \mathcal{F}\neq\emptyset}\equiv\ker \mathcal{F}=\emptyset\equiv\bigcup_{F\in \mathcal{F}} F^c=\Omega $$
+
+And
+
+$$\neg \forall \bigcap_{i}^n F_i=\emptyset \equiv  \exists\bigcup_{i}^n F_i^c=\Omega $$
+
+note that's precisely the definition of compactness.
+
+$1\implies 2$ Suppose filter $\mathcal{F}$, then
+
+$$ \{\overline{F}:F\in \mathcal{F}\} $$
+
+Enjoy finite intersection property by definition, then $\overline{F}$ has at least one adherent point since $\ker \{\overline{F}:F\in \mathcal{F}\}=\overline{\mathcal{F}} \neq \emptyset$ by 4
+
+$2\implies 3$ Clearly by corollary \@ref(cor:adhlim3).
+
+$3 \implies 1$ Suppose $\mathcal{A}$ a family of closed subsets with finite intersection property. Then the filter generates by $\mathcal{A}$ has an ultrafilter with a limit point $x$. Note $x$ is also adherent to $\mathcal{U}$ and thus adherent to $\mathcal{F}$, followed by $x\in A$ for any $A\in \mathcal{A}$, hence $\ker \mathcal{A} \supset \{x\}$. Then the claim follows from 4.
+
+:::
+
+:::{.theorem #cptiscl name=""}
+
+Let $(\Omega , \tau )$ be Hausdorff, then every compact subset and disjoint singleton can be separated by open sets. In particular, compact subset is closed.
+
+:::
+
+:::{.proof}
+
+Suppose $F\subset \Omega$ is compact, for any $x\in \Omega$ not in $F$, by Hausdorff, there is $x\notin U_y$ and $y\notin V_y$. Then $\bigcup_{y\in F} U_y$ cover $F$, there is subcover $U=\bigcup_{i}^n U_{y_i}$ and $V=\bigcup_{i}^n V_{y_i}$ selected from the same family separated $F$ and $\{x\}$.
+
+:::
+
+:::{.theorem #clcpt name=""}
+
+Closed subset is compact in compact topological space.
+
+:::
+
+:::{.proof}
+
+Note any open cover of $F$ plus $F^c$ become a open cover of $\Omega$.
+
+:::
+
+:::{.theorem name=""}
+
+Every compact Hausdorff space is normal.
+
+:::
+
+:::{.proof}
+
+Suppose $A$ and $B$ are closed and thus compact by theorem \@ref(thm:clcpt). For any point $x\in A$, there exist disjoint $V_x \supset B$ and $x\in U_x$ by theorem \@ref(thm:cptiscl). Note $\bigcup_{x\in A} U_x$ cover $A$, there exist subcover $U=\bigcup_i^n U_{x_i}\supset A$ and $V=\bigcap_i^n V_{x_i}\supset B$ separated $A$ and $B$.
+
+:::
+
+:::{.theorem #contcpt name=""}
+
+Suppose $f:(\Omega,\tau ) \to (\Omega',\tau ')$ is continuous, then $f(A)$ is compact if $A$ is compact.
+
+:::
+
+:::{.proof}
+
+For any open cover of $f(A)$:
+
+$$ \cup G_i \supset f(A)\implies f^{-1}(\cup G_i)=\cup f^{-1}(G_i) \supset f^{-1}f(A)\supset A$$
+
+Thus there exist subcover s.t.
+
+$$ \cup_1^n f^{-1}(G_i)=f^{-1}(\cup_1^n G_i)\supset A \implies\cup_1^n G_i\supset ff^{-1}(\cup_1^n G_i)\supset f(A)$$
+
+Which shows that $f(A)$ is compact.
+
+:::
+
+::: {.corollary #contcpthcl name=""}
+
+Let $X$ be compact and $Y$ be Hausdorff and $f:X\to Y$ is continuous bijection, then $f$ is closed.
+
+:::
+
+::: {.proof}
+
+Note $F$ is closed and thus compact as theorem \@ref(thm:clcpt) then $f(F)$ is compact as theorem \@ref(thm:contcpt) and thus closed by theorem \@ref(thm:cptiscl).
+
+:::
+
+
+As consequence:
+
+:::{.corollary #exvalue name="Extreme value theorem"}
+
+A continuous real valued function defined on a compact space achieves its maximum and minimum values.
+
+:::
+
+:::{.theorem name=""}
+
+Let $X$ be compact and $Y$ be Hausdorff and $f:X\to Y$ is continuous bijection. Then $f$ is homeomorphism.
+
+:::
+
+:::{.proof}
+
+By lemma \@ref(lem:homoclopen) and corollary \@ref(cor:contcpthcl).
+
+:::
+
+### Sequentially compact
+
+A subset $A$ of a topological space is **sequentially compact** if every sequence in $A$ has a subsequence converging to an element of $A$. A topological space is sequentially compact if itself is a sequentially compact set.
+
+
+::: {.example  name=""}
+
+The open interval $(0,1)$ is not sequentially compact because $\{\frac{1}{n}\}$ has no convergent subsequence.
+
+:::
+
+## Locally compact spaces
+
+::: {.definition #loccpt name=""}
+
+A topological space is **locally compact** if every point has a compact neighborhood.
+
+:::
+
+
+::: {.definition  name=""}
+
+Subset $A\subset X$ is said **precompact** if $\overline{A}$ is compact.
+
+:::
+
+
+
+
+::: {.theorem #loccptnb name="Compact neighborhood base"}
+
+Let $X$ be Hausdorff, TFAE
+
+1. $X$ is locally compact.
+2. Every $x\in X$ has a precompact neighborhood.
+3. $X$ has a basis of precompact open sets, i.e., there exist $x\in K^\circ \subset K\subset N$.
+
+:::
+
+
+::: {.proof}
+
+It's clear that $3\xRightarrow{}2\xRightarrow{}1$ even without Hausdorff, so we show that $1\xRightarrow{}3$.
+
+Begin by open $G$ and compact $K$ neighborhood for $x$ s.t.  $A:=K-G \neq \emptyset$. For any $y\in A$, there is $U_y\cap W_y=\emptyset$ by Hausdorff, where $y\in U_y$ and $x \in W_y \subset K$. Note $A$ is also compact and then there exist:
+$$ 
+U=\bigcup_{i=1}^k U_{y_i} \supset A
+$$
+Respectively, consider $W=\bigcap_{i=1}^{k} W_{y_i}$, and we claim that $\overline{W}$ is compact and included in $G$. Compactness is clear as $\overline{V}\subset K$. By theorem \@ref(thm:cptiscl), $\overline{W}\cap U=\emptyset$. Consequently,
+$$ 
+\overline{W}\cap G^{c}=\overline{W}\cap K\cap G^c=\overline{W}\cap A\subset \overline{W}\cap U=\emptyset
+$$
+hence $\overline{W}\subset G$.	
+
+::: 
+
+Consequently, that imply the existence of a compact neighborhood base.
+
+::: {.corollary #cloptisloccpt name=""}
+
+Suppose $G$ is open and $F$ is closed in a locally compact Hausdorff space, then $G \cap F$ is locally compact. That implies every closed and open set is locally compact. 
+
+:::
+
+
+::: {.proof}
+
+Let $x \in G \cap F$, and $N\cap G \cap F$ be neighborhood of $x$ in the subspace, by theorem \@ref(thm:loccptnb), there exist $K$ s.t.
+$$ 
+x \in K^\circ \subset K\subset N \cap G
+$$
+Then $F \cap K$ is compact as it's closed in compact Hausdorff subspace $K$. 
+
+:::
+
+
+::: {.corollary #loccptasnorm name=""}
+
+If $K$ is compact in a locally compact Hausdorff space and $G$ is an open set including $K$, then there is an open $V$ with compact closure s.t.
+
+$$ 
+K\subset V\subset \overline{V}\subset G
+$$
+
+:::
+
+::: {.proof}
+
+For any $x \in K$, by theorem \@ref(thm:loccptnb), we have 
+$$ 
+x \in V_x \subset \overline{V_{x}}\subset G
+$$
+then note 
+$$ 
+K\subset \bigcup_{i=1}^{k} V_{x_i}=V
+$$
+we claim that $V$ is desired. Since 
+$$ 
+\overline{V}=\overline{\bigcup_{i=1}^{k}V_{x_i}}=\bigcup_{i=1}^{k}\overline{V_{x_i}}
+$$
+is compact and included in $G$.
+
+:::
+
+### Compactification
+
+Locally compact Hausdorff space is very close to a compact Hausdorff space
+
+
+::: {.definition name=""}
+
+A **Compactification** of a space $X$ is an embedding $i:X \hookrightarrow Y$, where $Y$ is compact and $i(X)$ is dense.
+
+:::
+
+
+::: {.definition  name=""}
+
+Let $(X,\tau)$ be a space and define $\hat{X}=X\cup \{\infty\}$, with topology $\hat{\tau}$ consisting of sets that:
+
+1. $G\in \tau$.
+2. $\infty\in G$ and $\hat{X} - G =X-G \subset X$ is compact.
+
+:::
+
+
+::: {.theorem  name=""}
+
+If $X$ is Hausdorff and noncompact, then $\hat{X}$ is a compactification.
+
+:::
+
+
+::: {.proof}
+
+Firstly we show that $\hat{X}$ is a space. By definition, $\emptyset$ and $\hat{X}$ are open clearly. To show it's closed under countable intersection, it suffices to show that $U_1\cap U_2$ is open when $U_1$ and $U_2$ are so. We classify cases by whether $\infty$ occurs.
+
+1. If $\infty\notin U_1\cup U_2$, $U_1\cap U_2\in \hat{\tau}$ as $U_1\cap U_2\in \tau$.
+2. If $\infty\in U_1$ and $\infty\notin U_2$, then $X-U_1$ is compact, as $X$ is Hausdorff, $X-U_1$ is closed in $X$ and thus $X-(X-U_1)=U_1-\{\infty\}$ is open in $X$, it follows that $U_1\cap U_2=(U_1-\{\infty\})\cap U_2$ and the same as 1.
+3. 
+	If $\infty\in U_1\cap U_2$, then
+	$$ 
+	X-(U_1\cap U_2)=(X-U_1)\cup (X-U_2)
+	$$
+
+	is compact as it's union of compact sets and thus $U_1\cap U_2$ is open.
+
+Now we turn to show closed under union. Suppose $\bigcup_{i \in  I}U_i$ is a collection of open sets. If none contain $\infty$, $\bigcup_{i \in  I}U_i$ is open clearly as it's open in $X$. If $\infty\in U_j, \forall j\in J$ for some $J\subset I$. Then
+
+$$ 
+X-\bigcup_{i \in  I}U_i=\bigcap_{i\in I}\left( X-U_i \right)
+$$
+
+is closed subset of any compact Hausdorff space $X-U_j$ and thus compact. It follows that $\bigcap_{i \in  I}U_i$ is open.
+
+Next, we show that $\iota:X \xrightarrow{} \hat{X}$ is an embedding. It's injective and open clearly and it suffices to show it continuity by lemma \@ref(lem:homoclopen). For open sets  $G$ in $\hat{X}$:
+
+$$ 
+\iota^{-1}(G)=\begin{cases}
+	G&\infty\notin G\\
+	G-\{\infty\}&\infty \in G
+\end{cases}
+$$
+
+is also open as $G-\{\infty\}=X-(X-G)$ is open have shown above.
+
+To see $\iota(X)$ is dense, it suffices to see $\{\infty\}$ is not open and that follows from definition of $\hat{X}$.
+
+Finally, we show that $\hat{X}$ is compact. Let $\mathcal{G}$ be open cover, then there is some $G\in \mathcal{G}$ contains $\infty$. Note remaining of $\mathcal{G}$ still cover $X-G$ and thus have a finite cover then claim follows easily,
+
+
+:::
+
+
+::: {.lemma #loccpt-compactification name=""}
+
+If noncompact $X$ is Hausdorff and locally compact, $\hat{X}$ is also Hausdorff.
+
+:::
+
+
+::: {.proof}
+
+Let $x_1$ and $x_2$ in $\hat{X}$. If neither is $\infty$, we have desired disjoint neighborhood immediately. If $x_2=\infty$, let $x_1\in U\subset K$ then $U$ and $V=\hat{X}-K$ are what we desired.
+
+:::
+
+
+::: {.lemma name=""}
+ 
+$\hat{X}$ is not Hausdorff if there is no subset $G$ and $K$ of $X$ s.t. $G\subset K$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $\hat{X}$ is Hausdorff, then there is $\infty\in U$ s.t. $K=X-U$ is compact and disjoint to some $V$ open in $X$, note
+
+$$ 
+\begin{aligned}
+	U\cap V=\emptyset&\xRightarrow{}(U-\{\infty\})\cap V=\emptyset
+	\\&\xRightarrow{}(X-K)\cap V=\emptyset
+	\\&\xRightarrow{}V\subset K
+\end{aligned}
+$$
+
+:::
+
+
+
+::: {.example  name=""}
+
+$\hat{\mathbb{Q}}$ is non Hausdorff as any open sets $G$ of the form $(a,b)\cap \mathbb{Q}$, if it's contained in a compact subset $K$, then $\overline{G}$ would be compact, which contradict to $[a,b]\cap \mathbb{Q}$ is not compact.
+
+:::
+
+::: {.theorem #loccpt-open name=""}
+
+$X$ is locally compact iff $X$ is open of $\hat{X}$.
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$ comes from corollary \@ref(cor:cloptisloccpt).
+
+$\implies$ Suppose $(\hat{X},\hat{\tau})$ is compactification of Hausdorff $(X,\tau)$. For any $x \in X$, we may pick $x \in  G \subset K$, where $G$ is open and $K$ is compact in $\tau$. Consider $W \in \hat{\tau}$ where $W \cap X=G$, we have 
+$$ 
+W=W \cap \hat{X}=W \cap \overline{X} \subset \overline{W \cap X}=\overline{G}\subset K\subset X
+$$
+
+that implies $x \in X^\circ\implies X^\circ=X$, i.e. $X$ is open.
+
+:::
+
+::: {.lemma  name=""}
+
+Let $X$ be a locally compact Hausdorff space and $f:X\to Y$ a compactification, then $f$ is open.
+
+:::
+
+
+::: {.proof}
+
+As $f$ is an embedding, we can pretend $X\subset Y$ and $f$ is just inclusion. Then it suffices to show that $X$ is open and that follows from theorem \@ref(thm:loccpt-open).
+
+:::
+
+
+::: {.theorem  name="Universal property of compactification"}
+
+Let $X$ be a locally compact Hausdorff space and $f:X\hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q:Y\to \hat{X}$ s.t. $q\circ f=\iota$.
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {X};
+		\obj [above left=of X] {Y};
+		\obj [above right=of X] { |(hx)| \hat{X}\\};
+		\mor[swap] X "\iota":-> hx;
+		\mor[swap] * ["f",below]:-> Y;
+		\mor [swap]:[dashed] Y ["\exists ! q" ,above]:-> hx;
+	\end{codi}
+\end{center}
+```
+
+:::
+
+
+
+
+
+Let $X$ be locally compact and Hausdorff and let $f:X \hookrightarrow Y$ be a compactification. Then there is a unique quotient map $q$: $Y\to \hat{X}$ s.t. $q\circ f=\iota$. 
+
+
+
+
+
+
+
+<!--chapter:end:05-Compatness.rmd-->
+
+
+## Weak topology
+
+Suppose $\{(Y_i,\tau_i)\}_{i\in I}$ a family of topological space and ${ f_i:X\to Y_i }_{i\in I}$. Let $\mathscr{F}$ be the set of all the topologies s.t. $f_i$ is continuous for all $i$. We call $\cap \mathscr{F}$, i.e., the coarsest topology the **induced topology** or **weak topology** or **initial topology** on $X$ by $\{ f_i \}_{i\in I}$. The topology induced by $\{ f_i \}_{i\in I}$ is generated by 
+$$ \mathcal{S}=\{f_i^{-1}(G_i):  G_i\in \tau_i \} $$
+
+or
+
+$$ \mathcal{S}=\{f_i^{-1}(G_i):  G_i\in \mathcal{S_i} \} $$
+
+where $\mathcal{S_i}$ is a subbase for $\tau_i$.
+
+:::{.lemma name=""}
+A net $x.\to x$ in the weak topology iff $f_i(x.)\to f_i(x)$ for each $i$.
+:::
+
+:::{.proof}
+$\implies$ is immediately. Conversely, noting sets of the form $\bigcap_1^n f_{i}^{-1}(V_i)$ consist a neighborhood base.
+:::
+
+:::{.theorem name=""}
+$g$ is $(\tau',\tau)$ continuous iff $f_i\circ g$ continuous for each $f_i$. Where $\tau$ is $\tau(S)$ in above .theorem.
+:::
+:::{.proof}
+$\implies$ is immediately. $\impliedby$, suppose $G\in \tau$,by above .theorem, this implies
+$$ G=\cup_I \cap_F X = \cup_I  \cap_F  f_i^{-1}(G_i)       $$
+thus $g^{-1}(G)$ is open since $f\circ g^{-1}$ is continuous and thus $g^{-1}(G)= \cup_I  \cap_F g^{-1}f^{-1}(G)= \cup_I  \cap_F (f\circ g)^{-1}(G)$. 
+:::
+
+If the family $\mathcal{F}$ consists of real function on $X$, the weak topology is denoted $\sigma(X,\mathcal{F})$. A subbase for $\sigma(X,\mathcal{F})$ consist of
+
+$$ U(f,x,\epsilon)=f^{-1}(B(f(x),\epsilon))=\{y\in X: |f(y)-f(x)|<\epsilon\} $$
+
+where $f\in \mathcal{F},x\in X, \epsilon>0$. $\mathcal{F}$ is said **total** if $\forall f\in \mathcal{F},f(x)=f(y)\implies x=y$. $\sigma(X,\mathcal{F})$ is Hausdorff iff $\mathcal{F}$ is total.
+
+:::{.lemma name=""}
+Let $A$ be a subset, then
+
+$$ (A,\sigma(A,\mathcal{F}|_A))=(A,\sigma(X,\mathcal{F})|_A) $$
+:::
+
+:::{.proof}
+Nets converges in $(A,\sigma(X,\mathcal{F})|_A)$ also converges in $(X,\sigma(X,\mathcal{F}))$, that is $\forall f,f_i(x.)\to x.$ and thus the same as nets converges in $\sigma(A,\mathcal{F}|_A)$. That implies identical mapping is a homeomorphism since $x.\to x \iff I(x.)\to I(x)$.
+:::
+
+The weak topology generated by $C(X)$ is also generated by $C_b(X)$ by noting for any $f\in C(X)$,
+
+$$ g(y)=\min \{f(x)+\epsilon,\max \{f(x)-\epsilon,f(y)\}\} $$
+
+is bounded by $B(f(x),\epsilon)$ and $U(g,x,\epsilon)=U(f,x,\epsilon)$.
+
+:::{.theorem name=""}
+(X,\tau) is completely regular iff $\tau=\sigma(X,C(X))$
+:::
+Suppose $\tau=\sigma(X,\mathcal{F})$ and is completely regular, then we claim that $\mathcal{F}=C(X)$.
+
+
+## Product topology
+
+
+::: {.theorem #upcont name="Universal property of the Cartesian product"}
+
+Let $X,Y$ and $Z$ be any space and given $f_X:Z\to X$ and $f_Y:Z \to Y$, there exist unique function $f:Z \to X \times Y$ s.t.
+$$ 
+f_X=\pi_X \circ f \text{ and } f_Y=\pi_Y \circ f
+$$
+
+and $f$ is just $(f_X,f_Y)$.
+
+:::
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj { Z & |(pb)| X \times Y \\ };
+		\obj [above right=of pb] {X};
+		\obj [below right=of pb] {Y};
+		\mor[swap] pb "\pi_X":-> X;
+		\mor[swap] pb "\pi_Y":-> Y;
+		\mor [swap]:[dashed] Z "\exists ! f":-> pb;
+		\mor :[bend left=15] * "f_X":-> X;
+		\mor[swap]:[bend right=15] * "f_Y":-> Y;
+	\end{codi}
+\end{center}
+```
+
+
+
+::: {.lemma name=""}
+
+Suppose $\varphi:X \times Y \to Z$ is continuous, for each $x\in X$, define $\hat{\varphi}:Y \to Z$ by $\hat{\varphi}_x(y)=\varphi(x,y)$, then $\varphi_x$ is continuous.
+
+:::
+
+
+::: {.proof}
+
+Note $\hat{\varphi}_x$ is composition by $Y \overset{i_x}{\to } X \times Y \overset{\varphi}{\to }Z$, so it suffices to show that $i_x$ is continuous. And that is just the product of constant map $Y \to X$ and identity map $Y \to Y$. Then the claim follows as both is continuous.
+
+:::
+
+Also, $\varphi$ is continuous if $\hat{\varphi}$ is continuous as $\varphi$ is composition by
+
+$$ 
+\begin{aligned}
+X \times Y \xrightarrow{ \hat{\varphi} \times  i } \mathcal{C}(Y,Z) \times Y \xrightarrow{eval} Z
+\end{aligned}
+$$
+
+Where we should use the truth that product of continuous function is continuous:
+
+::: {.theorem  name=""}
+
+Let $f:X \xrightarrow{} Y$ and $f':X' \xrightarrow{} Y'$ be continuous. Then the product $f \times f': X \times X'\xrightarrow{} Y\times Y'$ is also continuous.
+
+:::
+
+
+::: {.proof}
+
+Clearly as the factor $X \times X' \xrightarrow{} Y$ is the composition $X \times X' \xrightarrow{\pi_X} X \xrightarrow{f} Y$
+
+:::
+
+
+Let $((\Omega_i,\tau_i))_{i\in I}$ be family of topological spaces, let $\Omega=\prod_{i\in I} \Omega_i$ and $\pi_i$ be projection mappings from $\Omega$ to $\Omega_i$. The topology $\tau$ induced by $(\pi_i)_{i\in I}$ is called **product topology** on $\Omega$ and denoted by $\prod_{i\in I} \tau_i$. $(\Omega,\tau)$ is called **topological product**. 
+
+A subbase of this topology is all the sets of the form $\pi_i^{-1}(U_i)=\prod_{i\in I} X_i$ where $X_j=\Omega_j$ for all $i \neq j$ and $X_i=U_i$. 
+
+:::{.lemma name=""}
+
+Suppose $G\in \prod \tau_i$, then $\pi_i(G)=\Omega_i$ except a finite set in $I$.
+
+:::
+
+:::{.proof}
+
+By definition, 
+$$ G=\bigcup_I \bigcap_F(\prod_{i\in I} X_i) $$
+where $X_i=\Omega_i$ for all $i$ but one. Note there is a finitely intersection, that is
+$$ G=\bigcup_I (\prod_{i\in I} X_i)  $$
+where $X_i=\Omega_i$ for all $i$ but finite exception. And the claim is easily follows.
+
+:::
+
+The product topology satisfy similar universal property if $I$ is finite, that is 
+
+
+::: {.theorem  name=""}
+
+Given any space $Z$ and $\{f_i:Z\xrightarrow{}\Omega_i\}_{i\in I}$, there exist unique continuous $f:Z \xrightarrow{} \prod_{i\in I}\Omega_i$ s.t. $\forall i\in I,\pi_i \circ f=f_i$.
+
+:::
+
+
+::: {.proof}
+
+Existence is clear as we may define $f$ by $f(z)_i=f_i(z)$ and $\pi_i \circ f=f_\alpha$ suggests the uniqueness. Then it suffices to show that continuity. Note the product topology has subbasis $\pi_i^{-1}(U_i)$ and
+$$ 
+f^{-1}(\pi_i^{-1}(U_i))=(\pi_i \circ f)^{-1}(U_i)=f_i^{-1}(U_i)
+$$
+is open as $f_i$ is continuous.
+
+:::
+
+We call the topology generated by $\{\prod_{i\in I} U_i \}$ **box topology** and it's finer than product topology unless $I$ is finite and can't enjoy universal property. But they still share following property.
+
+
+::: {.lemma  name=""}
+
+Let $A_i \subset \Omega_i$ for each $i \in I$, then
+$$ 
+\prod_{i \in I}^{} \overline{A_i}=\overline{\prod_{i \in I}^{} A_i} 
+$$
+in both product and box topology.
+
+:::
+
+
+::: {.proof}
+
+$\subset$: Let $(x_i)_{\{i \in I\}} \in \prod_{i \in I} \overline{A_i}$, and $U=\prod_{i \in I}^{} U_i$ be a open neighborhood of which, then $U_i$ is neighborhood of $x_i$ and thus $U_i$ meet $A_i$ in, say, $y_i$, then we may find $(y_i) \in U\cap \prod_{i \in I} A_i$ and thus $(x_i) \in \overline{\prod_{i \in I} A_i }$.
+
+$\supset$: Note product closed set is closed as
+
+$$ 
+\left( \prod_{i \in I} F_i \right)^c=\bigcup_{i \in  I} \prod_{i=I}^{} X_i 
+$$
+
+Where $X_j=\Omega_j$ for $j\neq i$ and $X_i=F_i^c$, that is open clearly. And the claim follows as closure is minimum.
+
+:::
+
+::: {.lemma  name=""}
+
+$\Omega_i$ is Hausdorff for each $i$ iff so is $\prod_{i \in I} \Omega_j$ in both product and box topology.
+
+:::
+
+::: {.proof}
+
+$\xRightarrow{}$: Pick any different $(x_i)$ and $(x_i')$ in $\prod_{i \in I}\Omega_i$ and suppose $x_\ell \neq x_{\ell}'$ for particular $\ell$ and they can be separated by $U_\ell$ and $U_{\ell}'$. Then $(x_i)$ and $(x_i)'$ can be separated by $\pi_{\ell}^{-1}(U_i)$ and $\pi_{\ell}^{-1}(U_i')$ and thus Hausdorff. For box topology, it's Hausdorff clearly as it's finer than product topology.
+
+$\xLeftarrow{}$: Note Hausdorff property is hereditary and we may treat factor $\Omega_{\ell}$ as subspace by define embedding
+$$ 
+f_{\ell}(x)_{j}:\Omega_\ell\xrightarrow{}\prod_{i \in I} \Omega_i =\begin{cases}
+	x&j= \ell\\
+	y_j&j\neq \ell
+\end{cases}
+$$
+where $y_j$ is any fixed point for each $j$. It's continuous and injective certainly, to see it's embedding, it suffices to show that it's open. Suppose any open $U_\ell \subset \Omega_\ell$, then
+$$ 
+f_\ell(U_\ell)=\pi_\ell^{-1}(U_\ell)\cap f_\ell(\Omega_\ell)
+$$
+is open in subspace $f_\ell(\Omega_\ell)$.
+
+:::
+
+
+Thus,$\{\left( x_{i}^\alpha \right)\}_{\{i \in I\}}$ in $X$ converges to some $\left( x_{i} \right)_{i\in I}$ iff its every components converges to the components respectably. A function is called **jointly continuous** if it's continuous w.r.t. the product topology. 
+
+
+:::{.theorem #CGT name="Closed Graph Theorem"}
+
+Function $f:\left( X,\tau \right)\to \left(Y,\tau\right)$ where $Y$ is compact Hausdorff is continuous iff its graph $\mathop{\text{Gr}}f$ is closed.
+
+:::
+
+
+:::{.proof}
+
+$\implies$. For any net $\left( x.,y. \right)\to \left( x,y \right)$, we show that $(x,y)\in  \mathop{\text{Gr}}f$. Note $f(x.)=y.\to y$, also, $f(x.)\to f(x)$ by continuity. It follows by $f(x)=y$ since Hausdorff and we finished.
+
+$\impliedby$. Since $Y$ is compact and Hausdorff, $f(x.)$ converges to precisely one point and denoted as $y$. As $\mathop{\text{Gr}}f$ is closed, $y=f(x)$ and hence $f$ is continuous.
+
+:::
+
+Suppose $A_i$ is subset of each $i$, then
+$$ \mathop{\text{Cl}}_{\tau}(\prod A_i)=\prod(\mathop{\text{Cl}}_{\tau_i}(A_i)) $$
+
+Thus we have an alternative definition of semicontinuous:
+
+$f:X\to \R^*$ is 
+
+- lower semicontinuous iff its epigraph $\{(x,c):c\ge f(x)\}$ is closed.
+- upper semicontinuous iff its hypograph $\{(x,c):c\le f(x)\}$ is closed.
+
+
+:::{.theorem #tychonoff name="Tychonoff Product Theorem"}
+The product topology of a family of topologies $\tau=\prod_{i\in I} \tau_{i}$ is compact iff $\tau_{i}$ is compact for every $i\in I$.
+
+
+:::
+
+
+:::{.proof}
+
+$\implies$ is clearly as projection is continuous. 
+
+$\impliedby$, suppose $\mathcal{U}$ is ultrafilter in $\tau$, then $\pi_{i}(\mathcal{U})$ is ultra base and thus converges to some point, say $x_{i}$, then we claim that $\mathcal{U}\to x=(x_{i})_{i \in I}$. Suppose $V$ any neighborhood of $x$, there is
+
+$$ a \in \bigcap_{i \in J} \pi^{-1}_{i}(X_{i}) \subset V $$
+
+where $X_{i}$ is neighborhood of $x_{i}$ and thus belong to  $\pi_{i}(\mathcal{U})^\uparrow$, that implies there is $U\in \mathcal{U}$ s.t. $\pi_{i}(U) \subset X_{i}$, note $U \subset \pi_{i}^{-1}\pi_{i}(U)\subset \pi_{i}^{-1}(X_i)$, then $\pi_{i}^{-1}	(X_i) \in \mathcal{U}$ and thus $V \in \mathcal{U}$. It followed by $x$ is adherent to $\mathcal{U}$ and thus $\mathcal{U}\to x$ as $\mathcal{U}$ is ultra.
+:::
+
+As consequence, we have
+
+
+:::{.theorem name=""}
+
+In the same notations, let $K_{i}$ be compact for each $i$, $G$ is open in  $\tau$ and including $\prod_{i \in I} K_{i}$, then there exist basic open set sandwich by them.
+
+:::
+
+
+
+<!--chapter:end:06-Product.rmd-->
+
+## coinduced topology
+
+If we turn all of the arrows around in the diagram of product, that is, 
+
+
+::: {.theorem  name=""}
+
+Given space $Z$ and $f_X$ and $f_Y$, there is a unique map from $X \coprod Y$ to $Z$:
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {|(pb)| X \coprod Y & Z\\ };
+		\obj [above left=of pb] {X};
+		\obj [below left=of pb] {Y};
+		\mor[swap] X "\iota_X":-> pb;
+		\mor[swap] Y "\iota_Y":-> pb;
+		\mor [swap]:[dashed] pb "\exists ! f":-> Z;
+		\mor :[bend left=15] X "f_X":-> *;
+		\mor[swap]:[bend right=15] Y "f_Y":-> *;
+	\end{codi}
+\end{center}
+```
+
+The coproduct of $\{X_i\}_{i\in I}$ is given by
+$$ 
+\coprod_{i\in I}X_i =\bigcup_{i \in  I}\left( X_i\times \{i\} \right)
+$$
+
+Clearly, there are nature inclusions $\iota_{X_i}:X_i \hookrightarrow \coprod_{i\in I} X_i=x_i \mapsto (x_i,i)$. We topologize the coproduct by giving it the finest topology s.t. all $\iota_{X_i}$ are continuous. 
+
+:::
+
+
+::: {.proof}
+
+Suppose $V\subset Z$ is open, then is open in $\coprod_{i\in I} X_i$ if each $\iota_{i}^{-1}f^{-1}(V)$ is open. Note
+
+$$ 
+\left( f\circ \iota_i \right)^{-1}(V)=f_i^{-1}(V)
+$$
+
+is open as each $f_i$ is continuous.
+
+:::
+
+
+
+::: {.lemma  name=""}
+
+Let $X_i$ be a space for $i\in I$, then $\coprod_{i\in I} X_i$ is Hausdorff iff all $X_i$ are Hausdorff.
+
+:::
+
+
+::: {.proof}
+
+$\xRightarrow{}$ is trivial as $X_i$ embeds as a subset. For $\xRightarrow{}$, suppose $x\neq y$ in $\coprod_{i\in I} X_i$, if $x$ and $y$ come from different $X_i$, we simple select $X_i$ and $X_j$ they live, otherwise, $X_i$ is Hausdorff and guarantee a disjoint neighborhood.
+
+:::
+
+### Quotient
+
+Suppose $q:X\to Y$ is any subjective function, we define $\sim$ by $x\sim y$ if $q(x)=q(y)$, then $X/ \sim \to Y$ is bijection and we can treat $q$ as function that $X/\sim \to Y$. And that gives the universal property of the quotient.
+
+
+::: {.definition  name=""}
+
+A surjection $q:X\to Y$ is a **quotient map** if $V\subset Y$ is open iff $q^{-1}(V)$ is open in $X$.
+
+:::
+
+
+::: {.theorem  name="Universal property of quotient"}
+
+Let $q:X\to Y$ be a quotient map and $f:X\to Z$ is continuous and constant on the fiber of $q$, then there exist a unique continuous $g:Y\to Z$.
+
+```{=latex}
+\begin{center}
+	\begin{codi}[tetragonal]
+		\obj {Y & Z\\};
+		\obj [above left=of Y] {X};
+		\mor[swap] X "q":-> Y;
+		\mor[swap] * ["f",above]:-> Z;
+		\mor [swap]:[dashed] Y ["\exists ! g"]:-> *;
+	\end{codi}
+\end{center}
+```
+
+:::
+
+
+::: {.proof}
+
+Clearly $g$ must be defined by $g=f\circ q^{-1}$ and it remains to show that $g$ is continuous. Let $G\subset Z$ is open then $g^{-1}(G)\subset Y$ is open iff $q^{-1}(g^{-1}(G))=(g\circ q)^{-1}(G)=f^{-1}(G)$ is open, and that follows from $f$ is continuous.
+
+:::
+
+
+::: {.lemma  name=""}
+
+Let $q:X\to Y$ be a continuous open surjection, then it's quotient map. The same is true if $q$ is closed instead of open.
+
+:::
+
+
+::: {.proof}
+
+Open case follows easily. For the other, for $V\subset Y$ s.t. $q^{-1}(V)\subset X$ is open, then $q^{-1}(V^c)$ is closed and thus $q(q^{-1}(V^c))=V^c$ is close as surjection.
+
+:::
+
+
+However, the converse is not true.
+
+
+::: {.definition  name=""}
+
+Let $q:X\to Y$ be a continuous surjection. We say $U\subset X$ is **saturated** w.r.t. $q$ if $U=q^{-1}(V)$ for some $V\subset Y$, i.e., $q^{-1}(q(U))=U$.
+
+:::
+
+
+::: {.lemma  name=""}
+
+Let $q:X\to Y$ be a continuous surjection, then it's a quotient map iff it takes saturated open sets to open sets.
+
+:::
+
+
+::: {.proof}
+
+Suppose $q^{-1}(V)\subset X$ is open, then it's a saturated open sets, thus $q(q^{-1}(V))=V$ is open. And the other implication follows from definition of continuity and quotient map.
+
+:::
+
+
+
+
+Suppose $\{(\Omega_i,\mathcal{T_i})\}_{i\in I}$ a family of topological space and $\{f_i:(\Omega_i,\mathcal{T_i})\to (\Omega,\tau)\}_{i\in I}$. Let $A$ be the set of all the topologies s.t. $f_i$ is continuous for all $i$. We call the finest of $A$ **topology coinduced** on $\Omega$ by $\{(f_i)\}_{i\in I}$.
+
+
+Let $R$ an equivalence relation on $\Omega$, $\eta:\Omega\to \Omega/R$ the canonical surjection. The coinduced topology on $\Omega/R$ by $\eta$ is denoted by $\tau/R$ and $(\Omega/R,\tau/R)$ is the quotient space w.r.t. $R$.
+
+
+
+
+<!--chapter:end:07-Coproduct.rmd-->
+
+## Connection
+
+::: {.definition  name=""}
+
+Two subset $A$ and $B$ are said to be **separated** if
+
+$$ 
+A \cap \overline{B}=B\cap \overline{A}=\emptyset
+$$
+
+:::
+
+Clearly, if disjoint $A$ and $B$ are both open or closed, they are separated.
+
+
+
+::: {.definition  name=""}
+
+Two nonempty separated subset $A$ and $B$ are called a **separation** if $A \cup B=X$. 
+
+:::
+
+
+::: {.lemma  name=""}
+
+Separation are both clopen.
+
+:::
+
+
+::: {.proof}
+
+Suppose $A$ and $B$ is a separation, then
+$$ 
+\overline{A}=\overline{A}\cap X=\overline{A}\cap (A \cup B)=(\overline{A}\cap A) \cup (\overline{A}\cap B)=\overline{A}\cap A=A
+$$
+
+thus $A$ and $B$ are closed, that implies $A$ and $B$ are open.
+
+:::
+
+::: {.definition  name=""}
+
+Space $X$ is said to be **connected** if the only clopen set is $X$ and $\emptyset$. Not connected space is said to be disconnection. Subset $A$ is said to be $connected$ or $disconnected$ according to the connectedness of their subspace $(A,\tau_A)$
+
+:::
+
+Note separation are clopen, thus $X$ is disconnected iff there exist a separation in $X$.
+
+
+::: {.theorem #connect-cl name=""}
+
+Suppose $A$ is connected in $X$, then every set $B$ s.t. $A \subset B \subset \overline{A}$ is connected.
+
+:::
+
+
+::: {.proof}
+
+Suppose $B$ is disconnected and separated by $X$ and $Y$, then
+
+$$ 
+A=(A\cap X)\cup (A\cap Y)
+$$
+also construct a separation, as $A$ is connected, we have, say $A\cap X=\emptyset$ and thus $A \subset Y$. It follows that
+
+$$ 
+X \subset B \subset \overline{A} \subset \overline{Y}
+$$
+
+whence contradict to $X \cap  \overline{Y}=\emptyset$.
+
+:::
+
+
+::: {.theorem #connect-union name=""}
+
+Suppose $\{A_i\}_{i\in I}$ is a family of connected subsets, then $A=\bigcup_{i \in  I} A_i$ is connected if $\ker \{A_i\}_{i\in I} \neq \emptyset$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $A$ is disconnected and separated by $X$ and $Y$, then
+
+$$ 
+A_i=A_i\cap A=(A_i\cap X)\cup (A_i \cap Y) 
+$$
+
+also construct a separation, as $A_i$ is connected, we have $A_i\cap X=\emptyset$ or $A_i\cap Y=\emptyset$, suppose $I_X + I_Y=I$ and $A_i\cap X=\emptyset$ for $i\in I_X$ and $A_{i}\cap Y=\emptyset$ for $i\in I_Y$. Note $A_i\cap X=\emptyset \xRightarrow{} A_i\cap Y=A_i$ and thus
+$$ 
+\begin{aligned}
+\emptyset&=X \cap Y\supset (X \cap \bigcap_{i \in  I_Y} A_i)\cap (Y\cap \bigcap_{i \in I_X}A_i)\\
+&=
+\left( \bigcap_{i \in  I_Y} A_i \right) \cap 
+\left( \bigcap_{i \in  I_X} A_i \right)\\
+&=\ker \{A_i\}_{i \in I}
+\end{aligned}
+$$
+
+A contradiction.
+
+:::
+
+
+::: {.theorem #cont-connect name=""}
+
+Suppose $f:X \xrightarrow{} Y$ is continuous, then $f$ bring connected set subset $A \subset X$ to connected subset of $Y$.
+
+:::
+
+
+::: {.proof}
+
+Suppose $f(A)$ is disconnected and separated by two open set, say, $f(A)\cap U$ and $f(A) \cap V$, where $U,V$ are open in $Y$. That implies $f(A) \subset U\cup V$, note
+$$ 
+A \subset f^{-1}f(A) \subset f^{-1}(U\cup V)=f^{-1}(U)\cup f^{-1}(V)
+$$
+
+thus $A$ is separated by $A\cap f^{-1}(U)$ and $A\cap f^{-1}(V)$, say, $A\cap f^{-1}(U)=\emptyset$, then
+$$ 
+A \subset f^{-1}(V) \xRightarrow{} f(A)\subset V \xRightarrow{}f(A)\cap U=\emptyset
+$$
+A contradiction.
+
+:::
+
+::: {.theorem  name=""}
+
+Suppose each of family $\{X_i\}_{i\in I}$ is nonempty, then their product topology $\prod_{i \in I}X_i$ is connected iff each $X_i$ is closed.
+
+:::
+
+
+::: {.proof}
+
+$\xRightarrow{}$ follows from $\pi_i$ is continuous and theorem \@ref(thm:cont-connect)(uses each $X_i$ is nonempty).
+
+$\xLeftarrow{}$ Firstly, we should prove that in finite case, i.e., when $I$ is finite. By induction, it suffices to show that $X_1\times X_2$ is connected. Pick fixed $z\in X_2$ we have the embedding $f(x):X_1\xrightarrow{}X_1\times X_2=(x,z)$ and thus $D=f(X_1)$ is connected as theorem \@ref(thm:cont-connect). Then for each $x\in X$, define embedding $g_{x}(y)=(x,y)$, let $D_{x}=g_x(X_2)\cup C$, it's connected as theorem \@ref(thm:connect-union), then $X_1\times X_2=\bigcup_{x \in X_1} D_x$ is connected for the same reason.
+
+Now we are ready for the general case. Pick some $(z_i)_{i\in I}\in \prod_{i \in I} X_i$, for each finite collection $S_j \subset I$, let
+
+$$ 
+F_{S_j}=\bigcap_{i \notin S_j} \pi_i^{-1}(z_i) \subset \prod_{i \in I}X_i 
+$$
+
+Clearly $F_{S_j} \cong \prod_{i \in S_j} X_i$, so it follows that $F_{S_j}$ is connected and $(z_i)\in F_{S_j}$ for each $S_j$, so it follows that
+
+$$ 
+F=\bigcup_{j\in J} F_{S_j}
+$$
+is connected. Then it remains to show that $F$ is dense in $\prod_{i \in I} X_i$ as lemma \@ref(lem:connect-cl). Recall any nonempty basis element of the form $\bigcap_{i \in S_j} \pi_i^{-1}(U_i)$ for some $S_j$ and thus meet $F_{S_j}$($X \times \dots \times X\times U \times \dots \times U \times X\times  \dots \times  X$ and $z \times \dots \times z\times X \times \dots \times X \times z \times  \dots \times  z$), that implies $F$ must be dense.
+
+:::
+
+
+::: {.definition  name=""}
+
+$A\subset X$ is said **path-connected** if every distinction singleton $a$ and $b$ has a **path** $f:[0,1]\xrightarrow{}A$ s.t. $f(a)=0$ and $f(b)=1$.
+
+:::
+
+::: {.lemma #path-connect name=""}
+
+Path-connected implies connected.
+
+:::
+
+
+::: {.proof}
+
+Pick any $a_0\in A$, for each other $b\in A$, there exit a path $f_b$, then $f_b(I)$ is connected. Then
+
+$$ 
+A=\bigcup_{b\in A} f_b(I)
+$$
+
+is connected as theorem \@ref(thm:connect-union).
+
+:::
+
+Path-connected is quite similar to connected.
+
+::: {.theorem  name=""}
+
+1. Image of path-connected spaces are path-connected.
+2. Overlapping unions of path-connected spaces are path-connected.
+3. Product is path-connected iff every factor is path-connected.
+
+:::
+
+
+::: {.proof}
+
+We only prove part 3. $\xRightarrow{}$ is trivial. To achieve $\xLeftarrow{}$, for any pair $(x_i)$ and $(y_i)$, there exist path $f_i$ for each $i \in I$, and then we get a continuous path $f=(f_i)$ by the universal property.
+
+:::
+
+The overlapping union property for (path-)connectedness allows us to make the following definition.
+
+
+::: {.definition  name=""}
+
+Let $x\in X$, **connected component** of $x$ is defined as:
+$$ 
+C_x=\bigcup_{}\{C|C \text{ is connected and } x\in C\}
+$$
+
+Similarly, the **path-component** is
+
+$$ 
+PC_x=\bigcup_{} \{C|C \text{ is path-connected and } x\in C\}
+$$
+
+:::
+
+
+::: {.example #Q-is-totally-discont name=""}
+
+Suppose $\mathbb{Q}$ equipped with the subspace topology from $\mathbb{R}$. Then the only connected subsets are singletons, so $C_x=\{x\}$. Such a space is said **totally disconnected**
+
+:::
+
+In the light of connected component is maximum, each component $C_x$ is closed as $\overline{C_x}$ is connected.
+
+
+::: {.definition  name=""}
+
+Let $X$ be a space, it's **locally connected** if any neighborhood $U$ of any $x$ contains a connected neighborhood. And we define **locally path connected** in a similar way.
+
+:::
+
+::: {.theorem #loc-connected name=""}
+
+Let $X$ be a space. TFAE:
+
+1. $X$ is locally connected.
+2. $X$ has a basis consisting of connected open sets.
+3. For every open set $G \subset X$, any component $C\subset U$ is open in $X$.
+
+:::
+
+
+::: {.proof}
+
+$1\xRightarrow{}3$. For any open $G\subset X$ and any $C\subset G$, for any $x\in C$, there exist connected neighborhood $x\in U \subset G$, as $C$ is component, we have $U\subset C$ and thus $C$ is open.
+
+$3\xRightarrow{}1$. Let $G$ be a open neighborhood of $x$, then the component $C_x$ is the desired neighborhood.
+
+$3\xLeftrightarrow{}2$. $3\xRightarrow{}2$ is clear, for the converse, note $2\xRightarrow{}1$ and thus implies $3$.
+:::
+
+The property of path-connected is even better.
+
+
+::: {.theorem #loc-path-connected name=""}
+
+Let $X$ be a space, TFAE:
+
+1. $X$ is locally path-connected.
+2. $X$ has a basis consisting of path-connected open sets.
+3. For every open $G\subset X$, the path-component of $G$ are open in $X$.
+4. For every open set $G\subset X$, every component of $G$ is path-connected and thus a path-component.
+
+:::
+
+
+::: {.proof}
+
+We only show that $1\xLeftrightarrow{}4$. Suppose $X$ is locally path-connected, and let $P\subset C\subset G\subset X$, where $P,C,G$ are path-component, component and open set respectly. Then $P$ is open.
+$$ 
+$$
+
+
+:::
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+<!--chapter:end:08-Connectedness.rmd-->
+
+
+<!--chapter:end:11-Operation-of-Topology.rmd-->
+
+# Topology Background in Real Analysis
+## Meager Set
+
+::: {.definition  name=""}
+
+A subset $E$ of a metric space $X$ is said to be **dense in an open set** $U$ if $U\subset \overline{E}$. $E$ is defined to be **nowhere dense** if it is not dense in any open subset $U\subset X$. It means $\overline{E}$ does not contain any open set.
+
+:::
+
+::: {.definition  name="first and second category"}
+
+A set $E$ is said to be of **first category** in $X$ if it is the union of a countable family of nowhere dense sets.
+
+A set $E$ is said to be a of **second category** in $X$ if it is not the first category set.
+
+:::
+
+::: {.theorem  name="Baire Category Theorem"}
+
+A complete metric space $X$ is not the union of a countable family of nowhere dense sets. That is, a complete metric space is of the second category. 
+
+:::
+
+::: {.proof}
+
+The proof of the Baire category theorem is to construct a sequence of balls and show that the center of the balls is a Cauchy sequence and find the limit of this sequence is not in $X$ then result in a contradiction.
+
+:::
+
+::: {.theorem  name="uniform boundedness theorem"}
+
+Let $\mathcal{F}$ be a family of real-valued functions defined on a complete metric space $X$ and suppose 
+$$ 
+f^{*}\left( x \right)=\sup_{f\in \mathcal{F}}\left|f\left( x \right)\right|\lt \infty
+$$
+for each $x\in X$.
+
+Then there exists a nonempty open set $U\subset X$ and a constant $M$ s.t. $\left|f\left( x \right)\right|\le M$ for all $x\in U$ and $f\in \mathcal{F}$.
+
+:::
+
+::: {.proof}
+
+For each positive $i\in \mathbb{N}$, let 
+$$ 
+E_{i,f}=\left\{ x;\left|f\left(x\right)\right|\le i \right\},\  E_{i}=\bigcap_{f\in \mathcal{F}} E_{i,f}
+$$
+Notice that $E_{i,f}$ is closed so is $E_i$ and as the hypothesis, we find that for each $x\in X$, there is a $M_x$ s.t. $f\left(x\right)\le M_x$ for all $f\in \mathcal{F}$, so
+$$ 
+X=\bigcup_{i=1} ^{\infty}E_{i}
+$$
+And the Baire category theorem implies that there is some $E_M,M\in \mathbb{N}$ is not nowhere dense which means there is some open subset $U\subset E_M$ s.t. for all $x\in U$,and $f\in \mathcal{F}$, $\left|f\left(x\right)\right|\le M$.
+
+:::
+
+## Compactness in Metric Spaces
+
+
+::: {.lemma  name=""}
+
+-   A convergent sequence in a metric space is Cauchy.
+-   A metric space which all the Cauchy sequence in it is convergence is **complete**.
+-   A metric space is a first countable space.
+-   A metric space is separable iff it is a second countable space.
+
+:::
+
+::: {.proof}
+
+Give a sequence $\left(x_{i}\right)\to x$ in $X$, as $X$ is a metric space, give any $\epsilon\gt 0$, there exists a $m\in \mathbb{N}$ s.t. for any $n_1,n_2\ge m$, $d\left(x,x_{n_1}\right)\le \epsilon /2$, and $d\left(x,x_{n_2}\right)\le \epsilon /2$, so $d\left(x_{n_1},x_{n_2}\right)\le d\left(x_{n_1},x\right)+d\left(x,x_{n_2}\right)\le \epsilon$, so $\left(x_{i}\right)$ is Cauchy.
+
+:::
+
+::: {.definition  name="totally bounded"}
+
+If $(X,d)$ is a metric space, a set $A\subset X$ is called totally bounded if for every $\epsilon\gt 0$, $A$ can be covered by finitely many balls of radius  $\epsilon$.
+
+A set $A$ is said to be bounded if there is $M\ge 0$ s.t. $d\left(x,y\right)\le M$ for all $x,y\in A$.
+
+Notice that a totally bounded set is bounded but a bounded set may not be totally bounded.
+
+:::
+
+::: {.definition  name="sequentially compact"}
+
+A set $A\subset X$ is said to be sequentially compact if every sequence in $A$ has a subsequence that converges to a point $x\in A$.
+
+Also, $A$ is said to have **Bolzano-Weierstrass** property if every infinite subset of $A$ has accumulation point in $A$.
+
+:::
+
+::: {.theorem  name=""}
+
+If $A$ is a subset of a metric space $(X,d)$, the following are equivalent:
+
+-   A is compact.
+-   A is sequentially compact.
+-   A is complete and totally bounded.
+-   A has the Bolzano-Weierstrass property.
+
+
+:::
+
+::: {.proof}
+
+We will give a proof from $1\implies 2$ :
+
+-
+    $1 \implies 2$ : Let  $\left(x_{i}\right)$ be a sequence in $A$. Assume that $\left(x_{i}\right)$ 's range is infinite, and suppose $\left(x_{i}\right)$ has no convergent subsequence. Let $E$ denotes the range of $\left(x_{i}\right)$.  
+    Notice that every subsequence of $\left(x_{i}\right)$ does not converge, so every point $x\in E$, there exists a $r_x$ s.t. $B_r\left(x\right)\cap E=\left\{ x \right\}$. Then as $\overline{E}=E\cup E^{*}$ where $E^{*}$ denotes the set of accumulation point of $E$ which is empty, so $\overline{E}=E\implies E$ is closed.  
+    $A$ is compact and $E$ is closed and $E\subset A$, so $E$ is compact. However, $E$ contains infinite points and every point is isolated, so the open cover $\left\{ B_r\left(x\right):r=r_x \right\}$ cant have a finite subcover that leads to a contradiction.
+
+-
+    $2\implies 3$ : First we need to show that if a subsequence of a Cauchy sequence converges, then the whole sequence converges.  
+    Let $\left(x_{i}\right)$ be a Cauchy sequence and let $\left(x_{i\left(k\right)}\right)_{k=1}^{\infty}$ be a subsequence of $\left(x_{i}\right)$ s.t. $\left(x_{i\left(k\right)}\right)\to x$ which means give a $\epsilon\gt 0$ there exists a $m\left(k\right)\in \mathbb{N}$ for all $k\ge m\left(k\right)$, $d\left(x_{i\left(k\right)},x\right)\le \epsilon /2$. Note that every subsequence of a Cauchy sequence is Cauchy, so there exists a $n\left(k\right)\in \mathbb{N}$ for all $k_1,k_2\ge n\left(k\right)$, $d\left(x_{i\left(k_1\right)},x_{i\left(k_2\right)}\right)\le \epsilon /2$, pick $s=i\left(\max_{}\left(m\left(k\right),n\left(k\right)\right)\right)$, when $i\ge s$, $d\left(x_{i},x\right)\le \epsilon$.  
+    So $A$ must be complete, if not there must be a Cauchy sequence $\left(x_{i}\right)$ in $A$ s.t. there exists a subsequence of $\left(x_{i}\right)$ converges but $\left(x_{i}\right)$ does not converge, which leads to a contradiction of the proposition above.
+
+    About the totally bounded, suppose that $A$ is not totally bounded and there exists a $\epsilon\gt 0$ s.t. $A$ cannot be covered by finitely many balls of radius $\epsilon$. Then we can choose a sequence in $A$ as follows:  
+    Pick $x_1\in A$, Then, since $A-B_\epsilon\left(x_1\right)\neq \varnothing$, we can choose $x_2\in A-B_\epsilon\left(x_2\right)$. Note that $d\left(x_1,x_2\right)\ge \epsilon$, then similarly we choose 
+    $$ 
+    x_{i}\in A-\bigcup_{j=1} ^{i-1}B_{\epsilon}\left(x_{j}\right)
+    $$
+    Then as the cover cannot be finite, so $\left(x_{i}\right)$ is a sequence in $A$ with $d\left(x_{i},x_{j}\right)\ge \epsilon$ when $i\neq j$ so clearly $\left(x_{i}\right)$ does not have any convergent subsequence.
+
+-
+    $3\implies 4$ : Let $A\subset X$ be an infinite subset. Notice that $A$ can be covered by a finite number of balls of radius $1$, and there is a $B_1$ of those balls contains infinite points in $A$. Let $x_1$ be one of them. Similarly, there is a ball $B_2$ of radius $1 /2$ s.t. $A\cap B_1\cap B_2$ has infinitely many points, then pick $x_2\neq x_1$ in it. Then we choose the ball $B_{i}$ of radius $1 /i$ and pick distinct $x_k$ from:
+    $$ 
+    \bigcap_{i=1} ^{k}A\cap B_{i}
+    $$
+    then the sequence $\left(x_k\right)$ is Cauchy, then it converges as the completeness, then there is at least one accumulation point of $A$ in $A$.
+
+-
+    $4\implies 1$ : Omission.
+
+:::
+
+
+::: {.corollary #thm-heine-borel name="Heine-Borel Theorem"}
+
+A compact subset $A\subset \mathbb{R}^{n}$ is compact iff $A$ is closed and bounded.
+
+:::
+
+::: {.proof}
+
+First, compact means totally bounded thus bounded. And a compact subset of Hausdorff space is closed.
+
+For the converse, if $A$ is closed, it is complete. To show this, use the definition of Cauchy sequence and for any closed subset $A$, $A=\overline{A}=A\cup A^{*}$ where $A^{*}$ denotes the set of the accumulation point of $A$.  
+Meanwhile, in $\mathbb{R}^{n}$, bounded means totally bounded. 
+(So, when bounded means totally bounded? Why $\mathbb{R}^{n}$?).
+
+:::
+
+::: {.lemma #lebesgue-number name="Lebesgue number"}
+
+Let  $(X,d)$ be a compact metric space, and let $\left\{V_{i}\right\}_{i\in I}$ be an open cover of $X$, then there exists some $\delta\gt 0$, called the **Lebesgue number** of the cover, s.t. for each $x\in X$ we have  $B_{\delta}(x)\subset V_{i}$ for some $i\in I$.
+
+:::
+
+::: {.proof}
+
+Assume that there is not any $\delta\gt 0$ satisfies.  
+Then for each $n$ there exists some $x_n\in X$ s.t. $B_{1 /n}(x_n)\cap V_{i}^{c}\neq \varnothing$ for each $i\in I$. If $x$ is the limit point of some subsequence of $(x_n)$, and $x\in X$, then $B_{r}(x)\owns x_{i}$ for some $i$ for all $r\gt 0$ and also $B_{r}(x)\owns x_{j}$ where $x_{j}$ in this subsequence and $j\ge i$. This means give $r\gt 0$, we can find $1/i\le \epsilon\le r /2$ s.t. $x\in B_{\epsilon}(x_{i})$ for some $i$. Then $B_{\epsilon}(x_{i})\subset B_{r}(x)$ which means $B_{r}(x)$ intersects $V_{i}^{c}$ for all $i\in I$.  
+Notice that $V_{i}^{c}$ is closed, so $\overline{V_{i}^{c}}=V_{i}^{c}$ and $x$ is the accumulation point of all the $V_{i}^{c}$, so $x\in \bigcap_{i \in  I} V_{i}^{c}=\left(\bigcup_{i \in  I} V_{i}\right)^{c}=\varnothing$ which leads to a contradiction.
+
+:::
+
+ 
+::: {.theorem  name="Tychonoff product theorem"}
+
+If $\left\{ X_\alpha: \alpha\in A \right\}$ is a family of compact topological spaces and $X=\prod_{\alpha\in A}^{} X_\alpha$ with the **product topology**, then $X$ is compact.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:11-Topology-in-Real-Analysis.rmd-->
+
+# Continuous Function and Continuous Function Space
+
+## Continuous Function
+
+::: {.definition  name="oscillation"}
+
+If $f:\left(X,d\right)\to \left(Y,\rho\right)$ is an arbitrary mapping, then the oscillation of $f$ on a ball $B\left(x_0\right)$ is defined by:
+$$ 
+\mathop{\text{osc}}(f,B_r(x_0))=\sup\left\{\rho(f(x),f(y)):x,y\in B_r(x_0)\right\}
+$$
+Notice that the oscillation is non-decreasing corresponding to $r$ on each $x_0$.
+
+:::
+
+::: {.proposition  name=""}
+
+A function $f:X\to Y$ is continuous at $x_0$ iff 
+$$ 
+\lim _{r\to 0}\mathop{\text{osc}}(f,B_r(x_0))=0
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+Let $f:X\to Y$ be an arbitrary function. Then the set of points at which $f$ is continuous is a $G_\delta$ set.
+
+:::
+
+::: {.proof}
+
+Let 
+$$ 
+G_{i}=\left\{x\in X:\inf_{r\gt 0}\mathop{\text{osc}}(f,B_r(x))\lt \frac{1}{i}\right\}
+$$
+so the set that $f$ is continuous is given by:
+$$ 
+A=\bigcap_{i=1} ^{\infty}G_{i}
+$$
+Now we need to prove that $G_{i}$ is open. Observe that $x\in G_{i}$ there exists $r\gt 0$ s.t. $\mathop{\text{osc}}(f,B_r(x_0))\lt 1 /i$. Give $y\in B_r(x)$, there exists $t\gt 0$ s.t. $B_t(y)\subset B_{r}(x)$, so
+$$ 
+\mathop{\text{osc}}(f,B_{y}(t))\le \mathop{\text{osc}}(f,B_{r}(x))\le 1 /i
+$$
+which means each point $y\in B_{r}(x)$ is an element of $G_{i}$, that is $B_{r}(x)\subset G_{i}$, as the arbitrary picking of $x$, $G_{i}$ is thus a open set.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $f$ be an arbitrary function defined on $[0,1]$ and let 
+$$ 
+E=\left\{x\in [0,1]:\mathop{\text{ $f$ is continuous at}}x\right\}
+$$
+Then $E$ cannot be the set of rational numbers in $[0,1]$.
+
+:::
+
+::: {.proof}
+
+Observe that if $E$ is the set of rational numbers, then the set of rational numbers in  $[0,1]$ is a $G_\delta$ set which implies that the irrational numbers in $[0,1]$ is a $F_\sigma$ set.  
+Notice that the rational numbers are the countable union of closed set (singletons). And since the rational numbers are dense in $[0,1]$, so if the irrational number set is $F_\sigma$, then every closed set in this family cannot have any interiors which means the whole $[0,1]$ is a $F_\sigma$ set with a family of nowhere dense set, which is contrary with the Baire category theorem.
+
+:::
+
+
+::: {.theorem  name=""}
+
+A continuous functions carries a compact subset into a compact subset.
+
+:::
+
+::: {.proof}
+ 
+Let $X,Y$ be two topological space and $f:X\to Y$ is continuous, now we prove that if $K\subset X$ is compact, then $f(K)\subset Y$ is compact too.  
+Notice that $f\mid _K$ is surjective, so $f(f^{-1}(U))=U$. Then consider a open cover $\mathcal{F}$ of $f(K)$, then the set $\mathcal{E}=\left\{f^{-1}(U):U\in \mathcal{F}\right\}$ is a open cover of $K$, then there exists a finite open subcover $\left\{V_1,\ldots,V_n:V_{i}\in \mathcal{E}\right\}$ s.t. $\bigcup_{i=1} ^{n}V_{i}\supset K$ where $V_{i},i=1,\ldots,n$ is $f^{-1}(U_{i})$ for some $U_{i}\in \mathcal{F}$, so there exists some $i$ s.t. $\bigcup_{i=1} ^{n}f^{-1}(U_{i})\supset K$, then 
+$$ 
+f \left(\bigcup_{i=1} ^{n}f^{-1}(U_{i})\right)=\bigcup_{i=1} ^{n}f\left(f^{-1}(U_{i})\right)=\bigcup_{i=1} ^{n}U_{i}
+$$
+Notice that
+$$ 
+f\left(\bigcup_{i=1} ^{n}f^{-1}(U_{i})\right)\supset f(K)
+$$
+so $f(K)\subset \bigcup_{i=1} ^{n}U_{i}$.
+
+:::
+
+::: {.definition #u-continuity name="uniformly continuous"}
+
+A function $f:(X,d)\to (Y,\rho)$ is said to be uniformly continuous on $X$ if for each $\epsilon\gt 0$, there exists $\delta\gt 0$ s.t. when $d(x,y)\le \delta$, $\rho(f(x),f(y))\le \epsilon$ for all $x,y\in X$.
+
+An equivalent formulation of uniform continuity can be stated in oscillation. For each $r\gt 0$, let 
+$$ 
+\omega_f(r)=\sup_{x\in X}\mathop{\text{osc}}\left(f,B_{r}(x)\right)
+$$
+The function $\omega_f$ is called the modulus of continuity of $f$. Observe that $f$ is uniformly continuous if
+$$ 
+\lim _{r\to 0}\omega_f(r)=0
+$$
+
+:::
+
+::: {.proof}
+
+Give a $\epsilon\gt 0$, there exists a $\delta\gt 0$, when $r\le \delta$, $\omega_f(r)\le \epsilon$. Then
+$$ 
+\sup_{x\in X}\mathop{\text{osc}}(f,B_{r}(x))\le \epsilon
+$$
+so when $d(x,y)\le r\le \delta$, $\sup_{x\in X}\rho(f(x),f(y))\le \epsilon$ which means uniform continuity.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $f:X\to Y$ be a continuous mapping. If $X$ is compact, then $f$ is uniformly continuous on $X$.
+
+:::
+
+::: {.proof}
+
+From \@ref(def:u-continuity), we notice that if $\lim _{r\to 0}\omega_f(r)=0$, then $f$ is uniformly continuous.  
+Choose $\epsilon\gt 0$, the collection
+$$ 
+\mathcal{F}=\left\{f^{-1}(B_{\epsilon /2}(y))):y\in Y\right\}
+$$
+is a open cover of $X$, then there exists a Lebesgue number $\delta\gt 0$ s.t. $B_{\delta}(x)\subset f^{-1}(B_{\epsilon /2}(y))$ for all $x\in X$ follows from \@ref(lem:lebesgue-number).  
+So $f(B_{\delta}(x))\subset B_{\epsilon /2}(y)$ for some $y\in Y$ which means $\omega_f(\delta)\le \epsilon$ for arbitrary $\epsilon$, so $f$ is uniformly continuous.
+
+:::
+
+
+
+::: {.theorem  name=""}
+
+Let $K$ be a compact topological space and let $(Y,\|\cdot\|_{Y})$ be a normed vector space. Then $\mathcal{C}(K;Y)$ is a vector space with the norm $\|\cdot \|:\mathcal{C}(K;Y)\to \mathbb{R}$ :
+$$ 
+\|f\|_{\mathcal{C}}=\sup_{x\in K}\|f(x)\|_{Y}
+$$
+for each $f\in \mathcal{C}(K;Y)$. It is called the **sup-norm** on $\mathcal{C}(K;Y)$.
+
+:::
+
+::: {.proof}
+
+Notice that $(Y,\|\cdot\|_{})$ is a metric space and a compact subset in a metric space is bounded and closed.  
+-   $\sup\|f(x)\|_Y \lt \infty$ and $\sup\|f(x)\|_Y \ge 0$ 
+-   $\sup\|\alpha f(x)\|_Y=\lvert \alpha \rvert \sup \|f(x)\|_Y$
+-   $\sup\|f+g\|_Y \le\sup\|f\|_Y+\sup\|g\|_Y$
+
+:::
+
+
+::: {.definition  name="converge uniformly"}
+
+A sequence $(f_n)_{n=1}^{\infty}$ of functions $f_n\in \mathcal{C}(K;Y)$ is said to **converge uniformly** if $\lim _{n\to \infty}\|f_n-f\|_{\mathcal{C}}=0$. It means
+$$ 
+\lim _{n\to \infty}\bigg(\sup_{x\in K}\|f_n(x)-f(x)\|_Y\bigg)=0
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ be any set and let $(Y,\|\cdot\|_{Y})$ be a normed vector space. Then the set $\mathcal{B}(X;Y)$ of all bounded mappings $f:X\to Y$ i.e. $f(X)\subset Y$ is a bounded subset in $Y$ is a vector space and the function $\|\cdot \|_{\mathcal{B}}:\mathcal{B}(X;Y)\to \mathbb{R}$ defined by:
+$$ 
+\|f\|_{\mathcal{B}}=\sup_{x\in X}\|f(x)\|_{Y}
+$$
+is a norm on $\mathcal{B}(X;Y)$.
+
+:::
+
+::: {.proof}
+
+Notice that a bounded function $f$ over $\mathbb{K}$, for any $\alpha\in \mathbb{K}$, $\alpha f$ is still bounded and for $f,g\in \mathcal{B}(X;Y)$, $f+g$ is still bounded.
+
+It is easy to show that $\|f\|_{\mathcal{B}}$ is truly a norm on $\mathcal{B}(X;Y)$.
+
+:::
+
+::: {.definition  name="local uniform convergence"}
+
+Let $X$ be a topological space and $Y$ be a normed vector space. Then a sequence $(f_n)_{n=1}^{\infty}$ of mappings $f_n:X\to Y$ is said to converge locally uniformly to a mapping $f:X\to Y$ as $n\to \infty$ if given any $x_0\in X$ there exists a neighborhood $V(x_0)$ of $x_0$ s.t. 
+$$ 
+\lim _{n\to \infty}\bigg(\sup_{x\in V(x_0)}\|f_n(x)-f(x)\|_{Y}\bigg)=0
+$$
+
+:::
+
+Notice that local uniform convergence and uniform convergence implies the pointwise convergence.
+
+
+::: {.theorem  name=""}
+
+Let $X$ is a topological space and $Y$ be a normed vector space, let $(f_n)_{n=1}^{\infty}$ be a sequence of continuous mapping from $X$ to $Y$ that converges locally uniformly to a $f:X\to Y$, then $f$ is continuous on  $X$.
+
+Moreover, if $f_n$ continuous at $x_0$ and they locally uniformly convergence to $f$ then $f$ is continuous at $x_0$.
+
+:::
+
+::: {.proof}
+
+Assume that $f$ is continuous at $x_0$ which means give $\epsilon\gt 0$, there exists a neighborhood  $V(x_0)\in \mathcal{N}_{x_0}$ s.t. for every $x\in V(x_0)$, $\|f(x_0)-f(x)\|_{Y}\le \epsilon$.
+
+Now suppose that $\epsilon\gt 0$ is given. As $(f_n)\to f$ locally uniformly. Then we can choose a $k\in \mathbb{N}$ s.t. for any $i\ge k$, we can find a neighborhood $V(x_0)$ s.t. for any $x\in V(x_0)$, 
+$$
+\sup_{x\in V(x_0)}\|f_i(x)-f(x)\|_{Y}\le \epsilon /3
+$$
+and as all $f_n:n\in \mathbb{N}$ is continuous at $x_0$, so we can find a neighborhood of $x_0$, $U(x_0)\in \mathcal{N_{x_0}}$ s.t. for any $x\in U(x_0)$, 
+$$ 
+\sup_{x\in U(x_0)}\|f_{i}(x)-f_{i}(x_0)\|_{Y}\le \epsilon /3
+$$
+Then we consider the set $W(x_0)=U(x_0)\cap V(x_0)\in \mathcal{N}_{x_0}$, for any $x\in W(x_0)$ :
+$$ 
+\begin{aligned}
+    \|f(x)-f(x_0)\|_{Y}&\le \|f(x)-f_{i}(x)\|_{Y}+\|f_{i}(x)-f_{i}(x_0)\|_{Y}+\|f_{i}(x_0)-f(x_0)\|_{Y} \\
+    &\le \epsilon /3 + \epsilon /3 +\epsilon /3 \\ 
+    &= \epsilon
+\end{aligned}
+$$
+so if $(f_n)\to f$ locally uniformly, and $f_n$ is continuous at $x_0$ for every $n$ then $f$ is continuous at $x_0$. Moreover, if $f_n$ is continuous at every $x\in X$ i.e. continuous at $X$, then $f$ is continuous at $X$.
+
+:::
+
+::: {.definition  name="equicontinuous"}
+
+A family $\mathcal{F}$ of functions
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:12-Space-of-Continuouss-Function.rmd-->
+
+---
+title: 
+author:
+  - Xie zejian
+bibliography: references.bib
+output:
+  bookdown::pdf_document2:
+    includes:
+      in_header: preamble.tex
+---
+
+```{=latex}
+\newcommand{\lt}{<}
+\newcommand{\gt}{>}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Reals}{\mathbb{R}}
+\newcommand{\Real}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\sub}{\subset}
+\newcommand{\subsets}{\subset}
+\newcommand{\exist}{\exists}
+```
+
+::: {.definition  name=""}
+
+- 
+    A set $X$ is a **vector space** over $\mathbb{K}$ if there exists two mappings: 
+    $$ 
+    \begin{aligned}
+        (x,y)\in X\times X&\to x+y\in X \\
+        (\alpha,x)\in \mathbb{K}\times X&\to \alpha x\in X 
+    \end{aligned}
+    $$ 
+    there exists an element of $X$ denoted as $0$ s.t. $x+0=x$ for all $x\in X$, define $(-x)$ is a vector s.t. $x+(-x)=0$.
+- 
+    A **subspace** of a vector space $X$ over $\mathbb{K}$ is any subset of $X$ which is also a vector space over $\mathbb{K}$.
+- 
+    Let $Y$ and $Z$ be two subspace of $X$ then $X$ is said to be the **direct sum** of $Y,Z$ if any vector $x\in X$ can be written as 
+    $$ 
+    x=y+z \qquad y\in Y,z\in Z
+    $$
+    and such a decomposition is unique.
+- 
+    A subspace $B$ is called **subspace spanned by a subset $A$** of $X$ consisting of all finite linear combinations of vectors of $A$, i.e., $x\in B$ of the form $x=\sum_{i\in I}^{} \alpha_{i}a_{i}$ where the set $I$ is finite and $\alpha_{i}\in \mathbb{K}$, $a_{i}\in A$, we said that 
+    $$ 
+    B=\text{span}A
+    $$
+- 
+    The **Hamel basis** in $X$ is any family $\{e_i\}_{i\in I}$ of vectors $e_{i}\in X$ satisfying:  
+    + First, the family is linearly independent. It means that give any finite subfamily of $\{e_j\}_{j\in J}$ and any scalars $\alpha_j\in \mathbb{K},j\in J$ s.t. $\sum_{j\in J}^{} \alpha_j e_j=0$ then $\alpha_j=0,j\in J$.
+    + Second, $\text{span}\{e_{i}\}_{i\in I}=X$.
+
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $X\neq \{0\}$ be a vector space.  
+- There exists a Hamel base of $X$ 
+- Let $E,F$ be two Hamel bases of $X$. Then $\text{card}E=\text{card}F$.
+
+:::
+
+::: {.definition  name=""}
+
+A vector space $X$ is finite-dimensional if there exists a finite Hamel basis of $X$, and its  **dimension** denoted as $\text{dim}X$.  
+If $E$ is a Hamel base of $X$, then $\text{dim}X=\text{card}E$
+
+:::
+
+::: {.definition  name="norm"}
+
+Let $X$ be a vector space over $\mathbb{K}$. A norm on $X$ is a mapping $\|\cdot \|:X\to \mathbb{R}$ with:
+- $\|x\|\ge 0$ for all $x\in X$ and $\|x\|=0$ iff $x=0$
+- $\|\alpha x\|=\|\alpha\|\|x\|$ for all $\alpha\in \mathbb{K},x\in X$ 
+- $\|x+y\|\le \|x\|+\|y\|$ for all  $x,y\in X$
+
+:::
+
+::: {.definition  name="distance in normed vector space"}
+
+Let $(X,\|\cdot\|)$ be a normed vector space, then the mapping $d:X\times X\to \mathbb{R}$ defined by $d(x,y)=\|x-y\|$ for all $x,y\in X$ is a **distance** on $X$.
+
+:::
+
+::: {.proof}
+
+First we need to show that $\big\lvert\|x\|-\|y\|\big\rvert\le \|x-y\|$.  
+Assume that $\|x\|\ge \|y\|$, then consider $\|x\|=\|x-y+y\|\le \|x-y\|+\|y\|$, so $\|x\|-\|y\|\le \|x-y\|$, as they all non-negative, $\big\lvert\|x\|-\|y\|\big\rvert\le \|x-y\|$ holds.  
+- $d(x,y)=\|x-y\|\ge 0$ 
+- $d(x,y)=0\implies \|x-y\|=0\implies x=y$ 
+- $d(x,y)=\|x-y\|=\|y-x\|=d(y,x)$ 
+- $d(x,y)\le d(x,z)+d(y,z)$, notice that  $\|x-z\|+\|z-y\|\ge \|(x-z)+(z-y)\|=\|x+y\|$, so for any $x,y,z\in X$, $d(x,y)\le d(x,z)+d(y,z)$  
+
+So we find that  $d(x,y)=\|x-y\|$ is truly a metric on $X$, so $(X,d)$ is a metric topological space. It is also called the **norm topology** of $X$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ be a finite-dimensional vector space over $\mathbb{K}$, and let $(e_i)_{i=1}^{n}$ denote a basis of $X$ :
+
+- 
+    For each $p \in [1,\infty]$, the mapping $\|\cdot \|_p$ defined by: 
+    $$ 
+    \begin{aligned}
+        x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_p=\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p} \qquad &&\text{if } p \in [1,\infty) \\
+        x&=\sum_{i=1}^{n} x_{i}e_{i}\in X\to \|x\|_{\infty}= \max_{1\le i\le n}\lvert x_{i} \rvert &&\text{if }p=\infty
+    \end{aligned}
+    $$
+    is a norm on $X$. 
+- For each $p \in [1,\infty]$, the space $(X,\|\cdot\|_{p})$ is separable.
+
+
+:::
+
+::: {.theorem  name="Holder's and Minkowski's inequalities"}
+
+- 
+    Given a $p \in \mathbb{R}$ s.t. $p>1$, let the real number $q$ be defined by: 
+    $$ 
+    \frac{1}{p}+\frac{1}{q}=1 \qquad \text{hense }q>1
+    $$
+    and let $(x_{i})_{i=1}^{\infty}$ and $(y_{i})_{i=1}^{\infty}$ be two sequences of scalers satisfying 
+    $$ 
+    \sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\lt \infty \text{  and  } \sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{q}\lt \infty
+    $$
+    Then the series $\sum_{i=1}^{\infty} \lvert x_{i}y_{i} \rvert$ converges and Holder's inequality holds:
+    $$ 
+    \sum_{i=1}^{\infty} \lvert x_{i}y_{i} \rvert\le \bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg) ^{1 /p} \bigg(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{q}\bigg) ^{1/q}
+    $$
+- 
+    Give a real number $p\ge 1$ s.t. 
+    $$ 
+    \sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\lt \infty \text{ and } \sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p}\lt \infty
+    $$
+    Then $\sum_{i=1}^{\infty} \lvert x_{i}+y_{i} \rvert ^{p}$ converges and Minkowski's inequality holds: 
+    $$ 
+    \bigg(\sum_{i=1}^{\infty} \lvert x_{i}+y_{i} \rvert ^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p}\bigg) ^{1/p}
+    $$
+    
+
+:::
+
+::: {.proof}
+
+1. 
+    If $p>1$ and $\frac{1}{p}+\frac{1}{q}=1$, then 
+    $$ 
+    \alpha \beta\le \frac{\alpha ^{p}}{p}+\frac{\beta^{q}}{q}\qquad \text{for all $\alpha>0$, $\beta>0$}
+    $$
+    To see this, note that the convexity of exponential function implies that 
+    $$ 
+    e^{\theta r+(1-\theta)s}\le \theta e^{r}+(1-\theta)e^{s}
+    $$
+    for all $\theta\in (0,1)$ and $r,s \in \mathbb{R}$. Now let $\theta=\frac{1}{p},r=p\text{Log}\alpha,s=q\text{Log}\beta$, the first inequality is proved.  
+
+2. 
+    Let $\|x\|_{p}=(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p})^{1 /p}$ and $\|y\|_p=(\sum_{i=1}^{\infty} \lvert y_{i} \rvert ^{p})^{1 /p}$. Let $\alpha=\frac{\lvert x_{i} \rvert}{\|x\|_{p}}$ and $\beta=\frac{\lvert y_{i} \rvert}{\|y\|_p}$. Then as shown above: 
+    $$ 
+    \frac{\lvert x_{i}y_{i} \rvert}{\|x\|_p \|y\|_q}\le \frac{\lvert x_{i} \rvert ^{p}}{p(\|x\|_p)^{p}}+\frac{\lvert y_{i} \rvert ^{q}}{q(\|y\|_q)^{q}}
+    $$
+    for each $i\in \mathbb{N},i\ge 1$. Then take sum of above inequality: 
+    $$ 
+    \sum_{i=1}^{n} \bigg(\frac{\lvert x_{i}y_{i} \rvert}{\|x\|_{p} \|y\|_{q}}\bigg)\le \sum_{i=1}^{n} \bigg(\frac{\lvert x_{i} \rvert ^{p}}{p(\|x\|_{p})^{p}}+\frac{\lvert y_{i} \rvert ^{q}}{q(\|y\|_q)^{q}}\bigg)
+    $$
+    Notice that the right side of above:
+    $$ 
+    \|x\|_p=\bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}\bigg)^{1 /p}\implies \|x\|_p ^{p}=\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p}
+    $$
+    similar of $\|y\|_{q}$, so
+    $$ 
+    \frac{\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}}{p(\|x\|_p)^{p}}=\frac{\sum_{i=1}^{n} \lvert x_{i} \rvert ^{p}}{p(\sum_{i=1}^{\infty} \lvert x_{i} \rvert ^{p})}\le \frac{1}{p}
+    $$
+    and the same as $\|y\|_q$, so the right side is less than $\frac{1}{p}+\frac{1}{q}=1$, so 
+    $$ 
+    \sum_{i=1}^{n} \lvert x_{i}y_{i} \rvert\le \|x\|_p \|y\|_q
+    $$
+    holds for every $n\in \mathbb{N}$ and take the limit $n\to \infty$, the holder's inequality holds.  
+
+3. 
+    Notice that $\frac{1}{p}+\frac{1}{q}=1\implies p+q=pq\implies p-1=\frac{p}{q}$.
+    $$ 
+    \begin{aligned}
+        \sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}&=\sum_{i=1}^{n} \lvert x_{i} \rvert(\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p-1}+\sum_{i=1}^{n} \lvert y_{i} \rvert(\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p-1} 
+        \\ &\le \bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p} \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /q}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1 /p} \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1/q} 
+        \\ &=\bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /q} \bigg(\bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1/p}\bigg)
+    \end{aligned}
+    $$
+    Notice that 
+    $$ 
+    \bigg(\sum_{i=1}^{n} \lvert x_{i}+y_{i} \rvert^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{n} (\lvert x_{i} \rvert+\lvert y_{i} \rvert)^{p}\bigg)^{1 /p}
+    $$
+    so the Minkowski's inequality holds.
+
+:::
+
+::: {.proof}
+
+Now we prove that $\|x\|_p$ satisfies the triangle inequality.  
+$$ 
+\|x+y\|_p \le \|x\|_p+\|y\|_p
+$$
+As shown above, when we prove Minkowski's inequality, before letting $n\to \infty$, we find that
+$$ 
+\bigg(\sum_{i=1}^{n} \lvert x_{i}+y_{i} \rvert^{p}\bigg)^{1 /p}\le \bigg(\sum_{i=1}^{n} \lvert x_{i} \rvert^{p}\bigg)^{1 /p}+\bigg(\sum_{i=1}^{n} \lvert y_{i} \rvert^{p}\bigg)^{1 /p}
+$$
+which means $\|x+y\|_p \le \|x\|_p +\|y\|_p$ holds.
+
+Then we prove that $\|x\|_\infty$ is a norm.  
+- $\|x\|_\infty=\max_{1\le i\le n}\lvert x_{i} \rvert \ge 0$
+- $\|\alpha x\|_\infty=\max_{1\le i\le n}\lvert \alpha x_{i} \rvert=\lvert \alpha \rvert\|x\|_\infty$ 
+- 
+    $$ 
+    \begin{aligned}
+        \|x+y\|_\infty &= \max_{1\le i\le n}\lvert x_{i}+y_{i} \rvert\le \max_{1\le i\le n}\lvert x_{i} \rvert+\max_{1\le i\le n}\lvert y_{i} \rvert
+        \\ &=\|x\|_\infty+\|y\|_\infty
+    \end{aligned}
+    $$
+    
+
+:::
+
+Notice that when $p=2$, $\|x\|_2$ is the Euclidean distance between point $x\in \mathbb{R}^{n}$ and $0$, and the distance generated by $\|x\|_2$, $d(x,y)=\|x-y\|_2$ is the Euclidean distance between $x$ and $y$.
+
+#### Space $\mathcal{C}(K;Y)$ with $K$ compact
+
+
+::: {.theorem  name=""}
+
+Let $K$ be a compact topological space and let $(Y,\|\cdot\|_{Y})$ be a normed vector space. Then $\mathcal{C}(K;Y)$ is a vector space with the norm $\|\cdot \|:\mathcal{C}(K;Y)\to \mathbb{R}$ :
+$$ 
+\|f\|_{\mathcal{C}}=\sup_{x\in K}\|f(x)\|_{Y}
+$$
+for each $f\in \mathcal{C}(K;Y)$. It is called the **sup-norm** on $\mathcal{C}(K;Y)$.
+
+:::
+
+::: {.proof}
+
+Notice that $(Y,\|\cdot\|_{})$ is a metric space and a compact subset in a metric space is bounded and closed.  
+-   $\sup\|f(x)\|_Y \lt \infty$ and $\sup\|f(x)\|_Y \ge 0$ 
+-   $\sup\|\alpha f(x)\|_Y=\lvert \alpha \rvert \sup \|f(x)\|_Y$
+-   $\sup\|f+g\|_Y \le\sup\|f\|_Y+\sup\|g\|_Y$
+
+:::
+
+
+::: {.definition  name="converge uniformly"}
+
+A sequence $(f_n)_{n=1}^{\infty}$ of functions $f_n\in \mathcal{C}(K;Y)$ is said to **converge uniformly** if $\lim _{n\to \infty}\|f_n-f\|_{\mathcal{C}}=0$. It means
+$$ 
+\lim _{n\to \infty}\bigg(\sup_{x\in K}\|f_n(x)-f(x)\|_Y\bigg)=0
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ be any set and let $(Y,\|\cdot\|_{Y})$ be a normed vector space. Then the set $\mathcal{B}(X;Y)$ of all bounded mappings $f:X\to Y$ i.e. $f(X)\subset Y$ is a bounded subset in $Y$ is a vector space and the function $\|\cdot \|_{\mathcal{B}}:\mathcal{B}(X;Y)\to \mathbb{R}$ defined by:
+$$ 
+\|f\|_{\mathcal{B}}=\sup_{x\in X}\|f(x)\|_{Y}
+$$
+is a norm on $\mathcal{B}(X;Y)$.
+
+:::
+
+::: {.proof}
+
+Notice that a bounded function $f$ over $\mathbb{K}$, for any $\alpha\in \mathbb{K}$, $\alpha f$ is still bounded and for $f,g\in \mathcal{B}(X;Y)$, $f+g$ is still bounded.
+
+It is easy to show that $\|f\|_{\mathcal{B}}$ is truly a norm on $\mathcal{B}(X;Y)$.
+
+:::
+
+::: {.definition  name="local uniform convergence"}
+
+Let $X$ be a topological space and $Y$ be a normed vector space. Then a sequence $(f_n)_{n=1}^{\infty}$ of mappings $f_n:X\to Y$ is said to converge locally uniformly to a mapping $f:X\to Y$ as $n\to \infty$ if given any $x_0\in X$ there exists a neighborhood $V(x_0)$ of $x_0$ s.t. 
+$$ 
+\lim _{n\to \infty}\bigg(\sup_{x\in V(x_0)}\|f_n(x)-f(x)\|_{Y}\bigg)=0
+$$
+
+:::
+
+Notice that local uniform convergence and uniform convergence implies the pointwise convergence.
+
+
+::: {.theorem  name=""}
+
+Let $X$ is a topological space and $Y$ be a normed vector space, let $(f_n)_{n=1}^{\infty}$ be a sequence of continuous mapping from $X$ to $Y$ that converges locally uniformly to a $f:X\to Y$, then $f$ is continuous on  $X$.
+
+Moreover, if $f_n$ continuous at $x_0$ and they locally uniformly convergence to $f$ then $f$ is continuous at $x_0$.
+
+:::
+
+::: {.proof}
+
+Assume that $f$ is continuous at $x_0$ which means give $\epsilon\gt 0$, there exists a neighborhood  $V(x_0)\in \mathcal{N}_{x_0}$ s.t. for every $x\in V(x_0)$, $\|f(x_0)-f(x)\|_{Y}\le \epsilon$.
+
+Now suppose that $\epsilon\gt 0$ is given. As $(f_n)\to f$ locally uniformly. Then we can choose a $k\in \mathbb{N}$ s.t. for any $i\ge k$, we can find a neighborhood $V(x_0)$ s.t. for any $x\in V(x_0)$, 
+$$
+\sup_{x\in V(x_0)}\|f_i(x)-f(x)\|_{Y}\le \epsilon /3
+$$
+and as all $f_n:n\in \mathbb{N}$ is continuous at $x_0$, so we can find a neighborhood of $x_0$, $U(x_0)\in \mathcal{N_{x_0}}$ s.t. for any $x\in U(x_0)$, 
+$$ 
+\sup_{x\in U(x_0)}\|f_{i}(x)-f_{i}(x_0)\|_{Y}\le \epsilon /3
+$$
+Then we consider the set $W(x_0)=U(x_0)\cap V(x_0)\in \mathcal{N}_{x_0}$, for any $x\in W(x_0)$ :
+$$ 
+\begin{aligned}
+    \|f(x)-f(x_0)\|_{Y}&\le \|f(x)-f_{i}(x)\|_{Y}+\|f_{i}(x)-f_{i}(x_0)\|_{Y}+\|f_{i}(x_0)-f(x_0)\|_{Y} \\
+    &\le \epsilon /3 + \epsilon /3 +\epsilon /3 \\ 
+    &= \epsilon
+\end{aligned}
+$$
+so if $(f_n)\to f$ locally uniformly, and $f_n$ is continuous at $x_0$ for every $n$ then $f$ is continuous at $x_0$. Moreover, if $f_n$ is continuous at every $x\in X$ i.e. continuous at $X$, then $f$ is continuous at $X$.
+
+:::
+
+#### $\ell^{p}$ space and $L^{p}$ space
+
+
+::: {.definition  name="$\ell^{p}$ space"}
+
+ $\ell^{p}$ space is a normed vector space of all the infinite sequences $x=(x_{i})_{i=1}^{\infty}$ of scalars $x_{i}\in \mathbb{K}$ that satisfy: 
+$$ 
+\begin{aligned}
+    \sum_{i=1}^{\infty} \lvert x_{i} \rvert^{p}\lt \infty \qquad &\mathop{\text{if }}p \in [1,\infty) \\ 
+    \sup_{i\ge 1}\lvert x_{i} \rvert \lt \infty \qquad &\mathop{\text{if }} p = \infty
+\end{aligned}
+$$
+For each $p \in [1,\infty]$, the set $\ell^{p}$ is a vector space with the norm $\|\cdot \|_{p}$ :
+$$ 
+\begin{aligned}
+    x= (x_{i})\in \ell^p & \to \|x\|_{p}=\bigg(\sum_{i=1}^{\infty} \lvert x_{i} \rvert^{p}\bigg)^{1 /p} \qquad &&\mathop{\text{if }}p \in [1,\infty) \\
+    x=(x_{i})\in \ell ^{\infty}& \to \|x\|_{\infty}=\sup_{i \ge 1}\lvert x_{i} \rvert &&\mathop{\text{if }} p=\infty
+\end{aligned}
+$$
+is a norm on $\ell^{p}$ space.
+
+:::
+
+::: {.proof}
+
+Notice that from Minkowski's inequality, when $p \in [1,\infty)$ and $\sum_{i=1}^{\infty} \lvert x_{i} \rvert^{p}\lt \infty, \sum_{i=1}^{\infty} \lvert y_{i} \rvert^{p}\lt \infty$, $\sum_{i=1}^{\infty} \lvert x_{i}+y_{i} \rvert^{p}$ converges, and for a finite $\alpha\in \mathbb{K}$, $\sum_{i=1}^{\infty} \alpha \lvert x_{i} \rvert^{p}=\alpha \sum_{i=1}^{\infty} \lvert x_{i} \rvert^{p}$ also converges.
+
+And with Minkowski's inequality, we can also easily to determine that $\|\cdot \|_{p}$ is a norm.
+
+:::
+
+::: {.theorem #thm-lp-separable name=""}
+
+-   The normed vector space $\ell^{p}$ space is separable if $p \in [1,\infty)$ 
+-   The normed vector space $\ell^{p}$ space is not separable if $p=\infty$
+
+:::
+
+::: {.proof}
+
+Let $\mathbb{K}=\mathbb{R}$, and $p \in [1,\infty)$, let
+$$ 
+A=\bigcup_{n=1} ^{\infty}\{(y_{i})\in \ell^p ;y_{i}\in \mathbb{Q}\mathop{\text{ for }}i\le n,y_{i}=0\mathop{\text{ for }}i\ge n+1\}
+$$
+Then we show  $\overline{A}=\ell^p$, notice that $\ell^p$ is a metric space and we only need to show that for any $x\in \ell^p$ and any $\epsilon\gt 0$, there exists some $y\in A$ s.t. $\|x-y\|_{p}\le \epsilon$.
+
+Give any $x=(x_{i})\in \ell^p$, there exists a $k\in \mathbb{N}$ s.t. $\sum_{i=k}^{\infty} \lvert x_{i} \rvert^{p}\le \epsilon^{p} /2$, and there exists some $y\in A$ which means $y_{i}\in \mathbb{Q}$ for each $i$ s.t. $\sum_{i=1}^{k-1} \lvert x_{i}-y_{i} \rvert^{p}\le \epsilon^{p} /2$, then for these $x,y\in \ell^p$, we find that $\|x-y\|_{p}\le \epsilon$.
+
+Now give a proof of $\ell^\infty$ space is not separable.  
+Give a set 
+$$ 
+B=\{(x_{i})\in \ell^\infty;x_{i}=0\mathop{\text{ or }}x_{i}=1,i\ge 1\}
+$$
+is an **uncountable set** since there is a one-to-one and onto mapping:
+$$ 
+(x_{i})\in B\to \sum_{i=1}^{\infty} \frac{1}{2^{i}}x_{i}
+$$
+It is one-to-one obviously and onto $[0,1]$ by the binary representation of a real number.  
+Now suppose there is a $C \subset \ell^\infty$ s.t. $\overline{C}=\ell^\infty$. Then give any $x\in B$, there exists a $y(x)\in C$ s.t. $\|y(x)-x\|_{\infty}\lt 1 /2$ then the mapping $x\in B\to y(x)\in C$ is a injection  since if $x_1,x_2\in B$ with $x_1\neq x_2$, then $\|x_1-x_2\|_{\infty}=1$, now let $y(x_1)=y(x_2)=y$, we find that $\|x_1-x_2\|_{\infty}\le \|x_1-y\|_{\infty}+\|y-x_2\|_{\infty}$, then we get the contradiction. So if $x_1\neq x_2$, $y(x_1)\neq y(x_2)$, so this mapping must be one-to-one. It means  $\mathop{\text{card}} C \ge \mathop{\text{card}}B$ so $C$ is uncountable.
+
+:::
+
+
+::: {.definition  name="$L^{p}(\Omega)$"}
+
+Let $\Omega$ is a open subset in $\mathbb{R}^{n}$ thus measurable. Remember that the $L^{1}(A)$ consists of all equivalence classes of real Lebesgue-measurable functions, i.e. those measurable functions $f:\Omega\to [-\infty,\infty]$ that satisfy:
+$$ 
+\int_\Omega \lvert f(x) \rvert dx \lt \infty
+$$
+Notice that a function $f:\Omega\to \overline{\mathbb{R}}$ is integrable iff $\int_\Omega \lvert f(x) \rvert dx \lt \infty$.
+
+Now extend this definition. Let $p \in [1,\infty)$, we let $L^p(\Omega)$ denote the set formed by all equivalence classes of measurable functions $f:\Omega\to [-\infty,\infty]$ s.t. $f'=\lvert f \rvert^{p}\in L^1(\Omega)$ which means:
+$$ 
+\int_\Omega \lvert f(x) \rvert^{p}dx \lt  \infty \qquad \mathop{\text{for some }}p \in [1,\infty)
+$$
+
+:::
+
+::: {.theorem  name="Holder and Minkowski's inequality for functions"}
+
+-
+    Holder:
+    $$ 
+    \begin{aligned}
+        \frac{1}{p}+\frac{1}{q}&=1 \\
+        \int_\Omega \lvert f(x) \rvert^{p}dx \lt  \infty &\mathop{\text{ and }}\int_\Omega \lvert g(x) \rvert^{q}dx \lt \infty \\
+        \int_\Omega \lvert f(x)g(x) \rvert dx &\le \bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1 /p}\bigg(\int_\Omega\lvert g(x) \rvert^{p}dx\bigg)^{1 /q}
+    \end{aligned}
+    $$
+
+-
+    Minkowski:
+    $$ 
+    \begin{aligned}
+        \int_\Omega \lvert f(x) \rvert^{p}dx \lt \infty &\mathop{\text{ and }}\int_\Omega\lvert g(x) \rvert^{p}dx \lt \infty \\
+        \bigg(\int_\Omega \lvert f(x)+g(x) \rvert^{p}dx\bigg)^{1 /p}&\le \bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1/p}+\bigg(\int_\Omega\lvert g(x) \rvert^{p}dx\bigg)^{1 /p}
+    \end{aligned}
+    $$
+    
+:::
+
+::: {.proof}
+
+Replace the sum to integral from the sequence Holder and Minkowski's inequality.
+
+:::
+
+As we defined the space $L^p(\Omega)$ above, it is easy to verify that $L^p(\Omega)$ is a vector space and $\|\cdot \|_{p}:f\to \mathbb{R}$ defined by:
+$$ 
+\|f\|_{p}=\bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1 /p} \qquad p \in [1,\infty)
+$$
+Now we define the space $L^\infty(\Omega)$.
+
+::: {.definition  name="$L^\infty(\Omega)$ space"}
+
+-
+    $L^\infty(\Omega)$ space denote the set of all measurable functions $f:\Omega\to [\infty,\infty]$ that satisfy:
+    $$ 
+    \inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}\lt \infty
+    $$
+    
+-
+    The norm $\|\cdot \|_{\infty}$ on $L^\infty(\Omega)$ is defined:
+    $$ 
+    \|f\|_{\infty}=\inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}
+    $$
+
+:::
+
+
+::: {.definition  name="essential supremum"}
+
+Give a measurable function $f:\Omega\to [-\infty,\infty]$, the extended real number
+$$ 
+\inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}\in [0,\infty]
+$$
+is called the **essential supremum** of $f$.
+
+Notice that $L^\infty(\Omega)$ space consists of all equivalence class of measurable functions whose essential supremum is finite.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $\Omega$ is a open subset of $\mathbb{R}^{n}$, define the space
+$$ 
+\mathcal{C}_c(\Omega)=\{g\in \mathcal{C}(\Omega); \mathop{\text{ supp $g$ is compact in $\Omega$}}\}
+$$
+Then, for each $p \in [1,\infty)$, the subspace $\mathcal{C}_c(\Omega)$ is dense in $L^p(\Omega)$.
+
+:::
+
+::: {.proof}
+
+To prove that $\mathcal{C}_c(\Omega)$ is a dense set, we need to show that for every $f\in L^p(\Omega)$, give any $\epsilon\gt 0$, we have some $g\in \mathcal{C}_c(\Omega)$ s.t. $\|f-g\|_{p}\le \epsilon$.
+
+1.
+    There exists a measurable simple function $s=s(f,\epsilon)$ s.t. 
+    $$ 
+    \mu (\{x\in \Omega;s(x)\neq 0\})\lt \infty \mathop{\text{ and }}\|f-s\|_{p}\le \epsilon /2
+    $$
+    to achieve this, assume that $f\ge 0$ then there exists a sequence of simple function with:
+    $$ 
+    0\le s_k\le f \mathop{\text{ for all }}k\ge 1 \mathop{\text{ and }}(s_k)\nearrow f \mathop{\text{ pointwise}}
+    $$
+    Notice that $f\in L^p(\Omega)$, which means $\int_\Omega \lvert f(x) \rvert^{p}dx\lt \infty$. As $s_k\le f$ holds for every $k\in \mathbb{N}$, $s_k\in L^p(\Omega)$. So $\mu (\{x\in \Omega;s_k(x)\neq 0\})\lt \infty$ as the definition of the integral over a simple function.  
+    As $(s_k)\nearrow f$, notice that $\lvert (f-s_k) \rvert^{p}\le \lvert f \rvert^{p}$ and $\lvert f-s_k \rvert^{p}\to 0$ when $k\to \infty$, using Lebesgue's dominated convergence theorem:
+    $$ 
+    \int_\Omega \lim_{k\to \infty}\lvert f-s_k \rvert^{p}=\lim _{k\to \infty}\int_\Omega\lvert f-s_k \rvert^{p}=0
+    $$
+    so we can find some $k$ s.t. $\int_\Omega \lvert f-s_i \rvert^{p}\le (\epsilon /2)^{p}$ for all $i\ge k$, so there exists some $s=s(f,\epsilon)$ s.t. $\|f-s\|_{p}\le \epsilon /2$.
+
+2.
+    Let $s=s(f,\epsilon)$ be the measurable simple function constructed in step 1. Then there exists a function $g=g(s,\epsilon)=g(f,\epsilon)\in \mathcal{C}_c(\Omega)$ s.t. 
+    $$ 
+    \|s-g\|_{p}\le \epsilon /2
+    $$
+    Since $\mu (\{x\in \Omega;s(x)\neq 0\})\lt \infty$, Lusin's property implies that there exists a function $g\in \mathcal{C}_{c}(\Omega)$ that satisfies 
+    $$ 
+    \sup_{x\in \Omega}\lvert g(x) \rvert\le \|s\|_{\infty}
+    $$
+    $$ 
+    \mu (\{x\in \Omega;g(x)\neq s(x)\})\le \bigg(\frac{\epsilon}{4\|s\|_{\infty}}\bigg)^{p}
+    $$
+    Then 
+    $$ 
+    \|s-g\|_{p}=\bigg(\int_A \lvert s-g \rvert^{p}\bigg)^{1 /p}
+    $$
+    Notice that $\lvert s-g \rvert\le 2\|s\|_{\infty}$ as $\sup\lvert g(x) \rvert\le \|s\|_{\infty}$, and $A$ denotes the set $\{x\in \Omega;g(x)\neq s(x)\}$, so the integral above is less than $2\|s\|_{\infty}\cdot \mu A\le \epsilon /2$.
+
+As shown above, give $\epsilon\gt 0$ and $f\in L^p(\Omega)$ there is a $g(f,\epsilon)$ s.t. $\|f-g\|_{p}\le \|f-s_k\|_{p}+\|s_k-g\|_{p}\le \epsilon /2 +\epsilon/2=\epsilon$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+1.  $L^p(\Omega)$ is separable if $p \in [1,\infty)$ 
+2.  $L^\infty(\Omega)$ is not separable.
+
+:::
+
+::: {.proof}
+
+1.
+    Let a $f\in L^p(\Omega)$ where $p \in [1,\infty)$ then there exists a $g=g(f,\epsilon)\in \mathcal{C}_{c}(\Omega)$ s.t. 
+    $$ 
+    \|f-g\|_{p}\le \epsilon /2
+    $$
+    Since $K=\mathop{\text{supp}}g$ is compact, there exists a bounded open set $U$ s.t. $K\subset U\subset \Omega$.
+    As $U$ is bounded, $\overline{U}$ is bounded too, so $g$ is uniformly continuous on  $\overline{U}$, then there exists $\delta_0\gt 0$ s.t. 
+    $$ 
+    \lvert g(x)-g(y) \rvert\le \frac{\epsilon}{2(\mu (U))^{1 /p}} = \epsilon'
+    $$
+    for all $x,y\in \overline{U}$ s.t. $\|y-x\|_{\infty}\lt \delta_0$  
+    As the compactness of $K$ and the property of distance function, there exists $\delta_1\gt 0$ s.t. 
+    $$ 
+    \{y\in \mathbb{R}^{n};\|y-x\|_{\infty}\lt \delta_1\} \subset U \mathop{\text{ for all }}x\in K
+    $$
+    Let $\delta\in \mathbb{Q}$ s.t. $0\lt \delta \le \min_{}\{\delta_0,\delta_1\}$.  
+    Let $(B_{i})_{i\in I}$ denote the countable family formed by all open balls:
+    $$ 
+    \bigg\{y\in \mathbb{R}^{n};\|x-y\|_{\infty}\lt \frac{\delta}{2}\mathop{\text{ with }}x_{j}=p_{j}\delta\mathop{\text{ for some }}p_{j}\in \mathbb{Z},j\in [1,n]\bigg\}
+    $$
+    Now pick the subfamily $(B_{i})_{i\in I(K)}$ s.t. for any  $i\in I(K)$, $B_{i}\cap K\neq \varnothing$.
+    Then for each $i\in I(K)$, notice that $\delta /2$ makes sure that $\mathop{\text{diam}}(B_{i}\cap K)\le \delta\le \delta_0$, so if $x\in K$, then $B_{i}\subset U$ and $\lvert g(y_1)-g(y_2) \rvert \le \epsilon'$ for every $y_1,y_2\in B_{i}$ since the property of uniform continuous. If $x\notin K$, then  as its minimum is $0$, we can also pick some $\alpha_{i}$ as blow:  
+    we pick some $\alpha_{i}\in \mathbb{Q}$ s.t. 
+    $$ 
+    \lvert g(y)-\alpha_{i} \rvert\le \epsilon' \mathop{\text{ for all }}y\in B_{i}
+    $$
+    Now we can construct a simple function:
+    $$ 
+    h=\sum_{i\in I(K)}^{} \alpha_{i}\bm{\mathbf{1}}_{B_{i}}
+    $$
+    which satisfies that $\lvert h(x)-g(x) \rvert\le \epsilon'$ for almost all $x\in U$ s.t. 
+    $$ 
+    \|h-g\|_{p}=\bigg(\int_U \lvert h-g \rvert^{p}\bigg)^{1 /p}\le (\mu (U))^{1 /p}\cdot \frac{\epsilon}{2(\mu (U))^{1 /p}}=\frac{\epsilon}{2}
+    $$
+    Notice that $\|f-g\|_{p}+\|g-h\|_{p}\ge \|f-h\|_{p}$, so $\|f-h\|_{p}\le \epsilon$ and as $h$ is simple and $\alpha_{i}\in \mathbb{Q}$, so $h$ is countable as $I(K)$ is always a finite subset of a countable set and $\mathbb{Q}$ is a countable set. So $L^p(\Omega)$ is separable.
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:13-Normed-Vector-Space.rmd-->
+
+## More about $L^p(\Omega)$ 
+
+::: {.definition  name="Locally integrable"}
+
+Let $\Omega$ be a open subset s.t. $\Omega\subset \mathbb{R}^{n}$.  
+A function $f:\Omega\to [-\infty,\infty]$ is said to be locally integrable if $f$ is measurable and the restriction $f\mid _K$ of $f$ on any compact subset $K\subset \Omega$ belongs to $\mathcal{L}^{1}(K)$.  
+
+As the usual method, we construct a quotient set 
+$$ 
+L^p_{loc}(\Omega)=\mathcal{L}^{p}_{loc}(\Omega)/\mathcal{R}
+$$
+where $\mathcal{R}$ is the a.e. equivalence.
+
+:::
+
+Note that in this chapter we change the notations of norm. For example, a $L^p(\Omega)$ norm of $f$ is noted as 
+$$ 
+\|f\|_{L^p(\Omega)}=\bigg(\int_\Omega \lvert f \rvert^{p}\bigg)^{1 /p}
+$$
+Usually we use the Lebesgue measure $\mu$ and if so we don't show it in the integral.
+
+Notice that every $f\in L^p(\Omega),p \in [1,\infty]$ is locally integrable in $\Omega$ since for any compact $K\subset \Omega$ :
+$$ 
+\int_K \lvert f(x) \rvert \le \|f\|_{L^1(\Omega)}\lt \infty
+$$
+and as Holder's inequality:
+$$ 
+\begin{aligned}
+    \int_K \lvert f \rvert &\le \bigg(\int_K\bigg)^{1 /q} \bigg(\int_K \lvert f \rvert^{p}\bigg)^{1 /p} \\
+    &\le \bigg(\int_K\bigg)^{1 /q} \|f\|_{L^p(\Omega)} \\
+    &\lt \infty
+\end{aligned}
+$$
+with $\frac{1}{p}+\frac{1}{q}=1$.
+
+::: {.definition  name="family of mollifiers"}
+
+A **family of mollifies** in $\mathbb{R}^{n}$ is a family $(\omega_\epsilon)_{\epsilon\gt 0}$ of functions $\omega_\epsilon:\mathbb{R}^{n}\to \mathbb{R}$ of the form
+$$ 
+\omega_\epsilon(x)=\frac{1}{\epsilon^{n}}\omega\bigg(\frac{x}{\epsilon}\bigg), \qquad x\in \mathbb{R}^{n}
+$$
+where $\omega:\mathbb{R}^{n}\to \mathbb{R}$ is any functions with following properties:
+$$ 
+\begin{aligned}
+    \omega\in \mathcal{C}^{\infty}(\mathbb{R}^{n}) ,\ \omega(x)\ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega\subset \overline{B_1(0)} & \mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega =1
+\end{aligned}
+$$
+Hence for each $\epsilon\gt 0$,
+$$ 
+\begin{aligned}
+    \omega_\epsilon\in \mathcal{C}^{\infty}(\mathbb{R}^{n}),\ \omega_\epsilon \ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega_\epsilon\subset \overline{B_\epsilon(0)} &\mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega_\epsilon=1
+\end{aligned}
+$$
+:::
+
+::: {.definition  name="regularizing family of $f$"}
+
+Let $\Omega$ be a open subset of $\mathbb{R}^{n}$. Give a function $f\in L^1_{loc}(\Omega)$ and a family $\left( \omega_\epsilon \right)_{\epsilon\gt 0}$ of mollifiers, define the set $\Omega_\epsilon$ and $f_\epsilon:\Omega_\epsilon\to \mathbb{R}$ :
+
+$$ 
+\begin{aligned}
+    \Omega_\epsilon &= \left\{ x\in \Omega; \mathop{\text{dist}}\left( x,\mathbb{R}^{n}-\Omega \right)\gt \epsilon \right\} \\
+    f_\epsilon\left( x \right)&= \int_\Omega \omega_\epsilon\left( x-y \right)f\left( y \right)dy \qquad \mathop{\text{for all }}x\in \Omega_\epsilon
+\end{aligned}
+$$
+Then the family $\left( f_\epsilon \right)_{\epsilon\gt 0}$ is called a regularizing family of $f$.
+
+:::
+
+Notice that $\mathop{\text{dist}}(x,\mathbb{R}^{n}-\Omega)$ is a continuous function thus $\Omega_\epsilon$ is a open set and for every $x\in \Omega_\epsilon$, the ball $\overline{B_{\epsilon}(x)}\subset \Omega$ which means $f_\epsilon(x)$ is well-defined on $\Omega$. Then
+$$ 
+\begin{aligned}
+    f_\epsilon(x)&= \int_{B_{\epsilon}(x)}\omega_\epsilon(x-y)f(y)dy=\int_{B_{0}(\epsilon)}\omega(z)f(x-z)dz \\
+    &= \frac{1}{\epsilon^{n}}\int_{B_{1}(x)}\omega\left(\frac{x-y}{\epsilon}\right)f(y)dy \\
+\end{aligned}
+$$
+
+
+::: {.theorem  name=""}
+
+1.  
+    Let $\Omega$ be an open subset of $\mathbb{R}^{n}$, and let a function $f\in L^1_{loc}(\Omega)$ and a regularizing family $(f_\epsilon)_{\epsilon\gt 0}$ of $f$ is given. Then:
+    $$ 
+    f_\epsilon\in \mathcal{C}^{\infty}_{}(\Omega_\epsilon) \mathop{\text{ for all }}\epsilon \gt 0
+    $$
+    Moreover,
+    $$ 
+    \begin{aligned}
+        \partial ^{\alpha}f_\epsilon(x)&= \int_\Omega \partial ^{\alpha}\omega_\epsilon(x-y)f(y)dy \\
+        &= \int_{B_{\epsilon}(x)}\partial ^{\alpha}\omega_\epsilon(x-y)f(y)dy \\
+    \end{aligned}
+    $$
+    at each $x\in \Omega_\epsilon$. For any multi-index $\alpha=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ with $\left|\alpha\right|=\sum_{i=1}^{n} \alpha_{i}\ge 1$.
+
+2.
+     Assume in addition that $f\in \mathcal{C}^{m}_{}(\Omega)$ for some integer $m \ge 1$. Then, given any compact subset $K\subset \Omega$ there exists $\epsilon_0=\epsilon_0(K)\gt 0$ s.t. $K\subset \Omega_\epsilon$ for all $0\lt \epsilon\le \epsilon_0$, $f_\epsilon(x)$ is well-defined for all $x\in K$ and 
+     $$ 
+     \sup_{x\in K}\left|\partial ^{\alpha}f_\epsilon(x)-\partial ^{\alpha}f(x)\right|\to 0 \mathop{\text{ for all }}\left|\alpha\right|\le m
+     $$
+     as $\epsilon\to 0$.
+
+:::
+
+::: {.theorem  name=""}
+
+Give an open subset $\Omega\subset \mathbb{R}^{n}$. For each $p \in [1,\infty)$, the space $\mathcal{C}^{\infty}_{c}(\Omega)=\mathcal{D}^{}_{}(\Omega)$ is dense in $L^p_{}(\Omega)$.
+
+:::
+
+::: {.theorem  name="regularization and approximation in $L^p_{}(\mathbb{R}^{n})$"}
+
+Let a function $f\in L^p_{}(\mathbb{R}^{n})$, $p \in [1,\infty)$ be given, and let $(f_\epsilon)_{\epsilon\gt 0}$ be a regularizing family of $f$, then
+$$ 
+f_\epsilon\in \mathcal{C}^{\infty}_{}(\mathbb{R}^{n}) \mathop{\text{ for all }}\epsilon\gt 0
+$$
+and 
+$$ 
+\|f_\epsilon-f\|_{L^p_{}(\mathbb{R}^{n})}\to 0 \mathop{\text{ as $\epsilon\to 0$}}
+$$
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:14-Normed-Vector-Space-01.rmd-->
+
+### Riesz Theorem
+
+To prove the first result, we need to prove a lemma first.
+
+::: {.lemma  name=""}
+
+Two norms on a vector space $X$ are equivalent iff there exists constants $C_a,C_b$ s.t. 
+$$ 
+\|x\|_{a}\le C_b\|x\|_{b}\mathop{\text{ and }}\|x\|_{b}\le C_a\|x\|_{a}
+$$
+for all $x\in X$.
+
+:::
+
+::: {.proof}
+
+-   
+    $\implies$ : Assume that $\|\|_{a},\|\|_{b}$ are equivalent. Notice that the identity mapping $\mathop{\text{id}}:(X,\|\|_{a})\to (X,\|\|_{b})$ is continuous.  
+    Consider the set $B'=\left\{y\in X:\|y\|_{b}\lt 1\right\}$ then $\mathop{\text{id}}^{-1}(B')\subset X$ is open. Then exists a $C_a\gt 0$ s.t. $\left\{y\in X:\|y\|_{a}\lt \frac{1}{C}\right\}$ is contained in $\mathop{\text{id}}^{-1}(B')$ as $\mathop{\text{id}}(0)=0\in B'$. Therefore, we find a $C_a$ s.t. 
+    $$ 
+    \|y\|_{a}\le \frac{1}{C_a}\implies \|y\|_{b}\le 1
+    $$
+    So give any nonzero vector $x\in X$, the vector $y=\frac{1}{C_a\|x\|_{a}}x$ satisfies $\|y\|_{a}=\frac{1}{C_a}$, so $\|y\|_{b}=\frac{1}{C_a\|x\|_{a}}\|x\|_{b}\le 1$ which means
+    $$ 
+    \|x\|_{b}\le C_a\|x\|_{a}
+    $$
+    The other side is similar.
+
+-
+    $\Longleftarrow$ : Assume that $\|x\|_{b}\le C_a\|x\|_{a}$ holds for every $x\in X$. This implies that the closure of any ball centered at any $y \in X$, $B_{r}(y)$ in the topological space $(X,\|\|_{b})$ contains a ball $B_{r /C_a}(y)$ in $(X,\|\|_{a})$ hence every open set in $(X,\|\|_{b})$ is the open set in $(X,\|\|_{a})$, and similar on the other side. Thus we assert that two topology are equivalent.
+
+:::
+
+::: {.theorem #thm-finite-dim name=""}
+
+1.  Any two norms $\|\|_{}$ and $\|\|'_{}$ in a finite-dimensional vector space are equivalent, i.e. the topology they induced are identical.
+2.  Any finite-dimensional vector space is separable.
+3.  A subset of a finite-dim normed vector space is compact iff it is closed and bounded.
+4.  A finite-dim subspace of a normed vector space $X$ is closed in $X$.
+
+:::
+
+::: {.proof}
+
+1.
+    As the lemma we proved above, we need to find $C$ and $C'$ s.t. the condition of lemma holds, then we can assert the equivalence.  
+    Now let $(e_{i})_{i=1}^{n}$ be a basis of $X$, define $\|\|_{1}:x=\sum_{i=1}^{n} x_{i}e_{i}\to \sum_{i=1}^{n} \left|x_{i}\right|$. Then for any norm $\|\|_{}$,
+    $$ 
+    \|x\|_{}=\left|\left|\sum_{i=1}^{n} x_{i}e_{i}\right|\right|_{}\le C_1\|x\|_{1}
+    $$
+    where $C_1=\max_{1\le i\le n}\|e_{i}\|_{}$  
+    Then consider the function:
+    $$ 
+    f:x\in (X,\|\|_{1})\to f(x)=\|x\|_{}\in \mathbb{R}
+    $$
+    and the set $K=\left\{y\in X:\|y\|_{1}=1\right\}$. Notice that $f$ is continuous on $X$ since:
+    $$ 
+    \left|f(x)-f(y)\right|=\left|\|x\|_{}-\|y\|_{}\right|\le \|x-y\|_{}\le C_1\|x-y\|_{1}
+    $$
+    for all $x,y\in X$, and $K$ is compact in $X$ since closed and bounded. Then there exists  $y_0\in K$ s.t. $f(y_0)=\inf_{y\in K}f(y)$ and let $\frac{1}{C}=f(y_0)=\|y_0\|_{}\gt 0$. Then $\|y\|_{1}=1$ implies $\|y\|_{}\ge \frac{1}{C}$.  
+    Give any $x\in X$, let $y=x /\|x\|_{1}$ s.t. $\|y\|_{1}=1$ so $\|y\|_{}\ge \frac{1}{C}$ which means
+    $$ 
+    \frac{\|x\|_{}}{\|x\|_{1}}\ge \frac{1}{C}\implies \|x\|_{}\ge \frac{1}{C}\|x\|_{1}
+    $$
+    so the topology they induced are equivalent.
+
+2.
+    According to \@ref(thm:thm-lp-separable), and 1, we find that the topology induced by $\|\|_{p}$ is equivalent to any other norm in a finite-dim space. Then we prove the separability.
+
+3.
+    Let $K$ be a closed and bounded set in $(X,\|\|_{})$. Suppose in $(X,\|\|_{1})$, then according to \@ref(thm:thm-heine-borel), compact in $(X,\|\|_{1})$ means closed and bounded, as $(1)$ proved above, the topology induced by any norm is equivalent, so $K$ is compact in $(X,\|\|_{})$. The other side is the property of metric spaces.
+    
+4.
+    Let $Y\subset X$ be a subspace of $X$ and let a sequence (since metric space) converges to a point in $X$ i.e. $(y_n)\to y\in X$ for each $n$, $y_n\in Y$, now we need to prove that $y\in Y$.  
+    Notice that for all $k\in \mathbb{N}_+$, $y_k=\sum_{i=1}^{n} y_{k,i}e_{i}$ where $(e_{i})_{i=1}^{n}$ is the basis of $Y$. Then $(y_n)\to y$ means that $(y_{i,n})_{n=1}^{\infty}$ is a Cauchy sequence for there exists a $C$ s.t. 
+    $$ 
+    \sum_{i=1}^{n} \left|y_{i,k}-y_{i,\ell}\right|=\|y_k-y_{\ell}\|_{1}\le C\|y_k-y_\ell\|_{}
+    $$
+    for all $k,\ell\ge 1$. Notice that $(X,\|\|_{})$ is a metric space and $(y_n)\to y\in X$, so $(y_n)$ is Cauchy which means $C\|y_k-y_\ell\|_{}$ can be arbitrarily small which implies that $(y_{i,n})_{n=1}^{\infty}$ is Cauchy in $\mathbb{K}$ and as the completeness of $\mathbb{K}$, $(y_{i,n})\to y_{i}\in \mathbb{K}$ as $n\to \infty$. Let $y=\sum_{i=1}^{n} y_{i}e_{i}$.  
+    Now prove that $(y_n)\to y$. Notice that there exists a $C_1$ s.t. 
+    $$ 
+    \|y_k-y\|_{}\le C_1\|y_k-y\|_{1}=C_1 \sum_{i=1}^{n} \left|y_{i,k}-y_{i}\right|
+    $$
+    Since $(y_{i,n})\to y_{i}$ for each $i$, $\|y_k-y\|_{}$ can also be arbitrarily small thus convergent.  
+    So all the sequence in $Y$ convergence in $Y$ means $Y=\overline{Y}$ thus closed.
+
+:::
+
+::: {.theorem #thm-riesz name="F.Riesz Theorem"}
+
+A normed vector space $(X,\|\|_{})$ is finite-dim iff the unit sphere of $X$ i.e. $K=\left\{x\in X:\|x\|_{}=1\right\}$ is compact.
+
+:::
+
+::: {.proof}
+
+-
+    Assume that $K$ is compact. Then there exists a finite number of points $x_{i}\in X$ s.t. $K\subset \bigcup_{i=1} ^{n}B_{1 /2}(x_{i})$.
+
+    Then we need to show that $Y=\mathop{\text{span}}(x_{i})_{i=1}^{n}$ is coincide with $X$ and it is enough to show that 
+    $$ 
+    \inf_{y\in Y}\|x-y\|_{}=0
+    $$
+    for all $x\in X$ as $Y$ is finite-dim and $\overline{Y}=Y$.
+
+    Let $x\in X$ and $y\in Y$ be given, then let 
+    $$ 
+    x'=\frac{x}{\|x-y\|_{}} \mathop{\text{ and }}y'=\frac{y}{\|x-y\|_{}}
+    $$
+    Notice that $x'-y'\in K$ thus in some $B_{1 /2}(x_{i_0})$. So
+    $$ 
+    \|x-y\|_{}(\|(x'-y')-x_{i_0}\|_{})\le \frac{1}{2}\|x-y\|_{}
+    $$
+    Now let $y_1=\|x-y\|_{}(y'+x_{i_0})$, then $\|x-y_1\|_{}\le \frac{1}{2}\|x-y\|_{}$. Then let $y=y_1$, and by induction, we find
+    $$ 
+    \|x-y_n\|_{}\le \frac{1}{2^{n}}\|x-y\|_{}
+    $$
+    Notice that $\|x-y\|_{}\lt \infty$, so there exists a sequence $(y_n)\to x$ for all $y_n\in Y$ and as $Y=\overline{Y}$, $x\in Y$, so $X=Y=\mathop{\text{span}}(x_{i})_{i=1}^{n}$ thus finite-dim.
+
+-
+    For the converse, we notice that $K$ is closed and bounded, then compact since \@ref(thm:thm-finite-dim)(3).
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:15-Riesz-theorem.rmd-->
+
+## Product Structure
+
+### Product Topology
+
+
+::: {.proposition  name="weak topology"}
+
+Suppose there exists a topological space $X$ and a family of topological space $\left\{Y_s\right\}_{s \in S}$, and a family of mappings $\left\{f_s\right\}_{s \in S}$ where $f_{i}:X\to Y_{i}$. In all the topologies on $X$ s.t. $f_s$ is a continuous function for each $s \in S$, there exists a weakest topology which generated by the base consisting of all sets of the form $\bigcap_{i=1} ^{k}f_{s_{i}}^{-1}(V_{i})$ where $s_1,\ldots,s_k\in S$ and $V_{i}$ is a open subset of $Y_{s_{i}}$ for $i=1,2,\ldots,k$.
+
+:::
+
+::: {.proof}
+
+We only prove that the family which consists all the sets of the form $\bigcap_{i=1} ^{k}f_{s_{i}}^{-1}(V_{i})$ is actually a base.
+
+-
+    For any $x\in X$, we only need to find a open set $V_s$ containing $f_s(x)$ and notice that $f^{-1}_s(V)\owns x$.
+
+-
+    Suppose there exists a $x\in X$ s.t.
+    $$ 
+    x\in \left(\bigcap_{i=1} ^{k_1}f_{s_{i}}^{-1}(V_{i})\right)\cap \left(\bigcap_{i=1} ^{k_2}f_{s_{i}}^{-1}(V_{i})\right)
+    $$
+    Notice that $f(x)\in V_{i}$ for all $i$, just for each $V_{i}$, pick a $U_{i}\owns f(x)$ s.t. $U_{i}\subset V_{i}$ and notice that 
+    $$ 
+    x\in \left(\bigcap_{i=1} ^{k_1}f_{s_{i}}^{-1}(U_{i})\right)\cap \left(\bigcap_{i=1} ^{k_2}f_{s_{i}}^{-1}(U_{i})\right)
+    $$
+    and the right side is also a member of the family thus it is a base.
+
+:::
+
+
+Let $\left\{(X_{i},\tau_{i})\right\}$ be a family of topological spaces and let $X=\prod_{i\in I}^{} X_{i}$ denote its Cartesian product. A typical element $x\in X$ is also denoted as $(x_{i})_{i\in I}$ or $(x_{i})$. For each $i\in I$, the **projection** $P_{i}:X\to X_{i}$ is defined by:
+$$ 
+P_{i}(x)=x_{i}
+$$
+
+
+::: {.definition  name="product topology"}
+
+The product topology on $X=\prod_{i\in I}^{} X_{i}$ is the weak topology on $X$ generated by the family of projections $\left\{P_{i}:i\in I\right\}$, i.e. $\tau$ is the weakest topology that makes $P_{i}$ continuous for each $i\in I$.
+
+Product topology is also called Tychonoff topology.
+
+:::
+
+::: {.proposition  name=""}
+
+The family of all sets $\prod_{i\in I}^{} V_{i}$ where $V_{i}$ is an open subset of $X_{i}$ and $V_{i}\neq X_{i}$ only for finitely many $i\in I$, is a base for Cartesian product $\prod_{i\in I}^{} X_{i}$.
+
+Moreover, if for every $i\in I$ a base $\mathscr{B}_{i}$ for $X_{i}$ is fixed, then the subfamily consisting of those $\prod_{i\in I}^{} V_{i}$ with $V_{i}\in \mathscr{B}_{i}$ whenever $V_{i}\neq X_{i}$, is also a base.
+
+:::
+
+::: {.proof}
+
+As the definition of the weak topology, $\bigcap_{i=1} ^{k}P_{i}^{-1}(V_{i})$ is open in product topology for $V_{i}\in \mathscr{B}_i$ and notice that it is a base of $\prod_{i\in I}^{} X_{i}$. Just need to observe that 
+$$ 
+P_{j}^{-1}(V_{j})=\prod_{i\in I}^{} V_{i} \mathop{\text{ where }}V_{i}=X_{i} \mathop{\text{ for }}i\neq j
+$$
+so $\prod_{i\in I}^{} V_{i}$ is open and $\bigcap_{i=1} ^{k}P_{i}^{-1}(V_{i})$ forms the style that $\prod_{i\in I}^{} V_{i}$ where $V_{i}\neq X_{i}$ for only finitely many $V_{i}$.
+
+:::
+
+
+::: {.remark  name=""}
+
+The base described above is called the canonical base for Cartesian product.
+
+:::
+
+::: {.proposition  name=""}
+
+If $\left\{X_s\right\}_{s \in S}$ is a family of topological space and $\left\{A_s\subset X_s\right\}_{s \in S}$ is a family of subspaces, then two topologies defined on $A=\prod_{s \in S}^{} A_s$, viz., the topology of the Cartesian product of subspaces $\left\{A_s\right\}_{s \in S}$ and the topology of subspace of $\prod_{s \in S}^{} X_s$, coincide.
+
+:::
+
+::: {.proof}
+
+Consider the restrictions $P_s\mid _A:A\to A_s$, 
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:16-Product-Structure.rmd-->
+
+# Metric space
+
+::: {.definition  name="metric/distance"}
+
+A metric on a set $X$ is a function $d:X\times X\to \mathbb{R}$ satisfying:
+- $d(x,y)\ge 0$ and $d(x,x)=0$ for all $x,y\in X$ 
+- $d(x,y)=0\implies x=y$ 
+- $d(x,y)=d(y,x)$ for all $x,y\in X$ 
+- $d(x,y)\le d(y,z)+d(x,z)$ for all $x,y,z\in X$
+
+A semimetric on $X$ is a function $d:X\times X\to \mathbb{R}$ which satisfies the condition 1,3,4.  
+If $d$ is a metric on $X$, then $(X,d)$ is called a metric space.
+
+:::
+
+Give a metric space $(X,d)$, and $A\subset X$, we said the diameter of $A$ is 
+$$ 
+\text{diam} A=\sup\{d(x,y):x,y\in A\}
+$$
+A set $A$ is bounded if $\text{diam}A\lt\infty$ while $A$ is unbounded if $\text{diam}A=\infty$.
+
+
+::: {.definition  name=""}
+
+Let $(X,d)$ be a semimetric space. $A\subset X$ is d-open if for each $a\in A$ there exists some $r>0$ s.t. $B_r(a)\subset A$.  
+Then consider about the family $\{A\subset X:A\text{ is d-open}\}$, it generates a topology on $X$, denoted as $\tau_d$.
+
+:::
+
+::: {.lemma  name=""}
+
+Let $(X,d)$ be a semimetric space. Then:
+
+1. $(X,\tau_d)$ is Hausdorff space iff $d$ is a metric
+2. A sequence $(x_n)$ in $X$ satisfies $x_n\to x$ in $(X,\tau_{d})$ iff $d(x_n,x)\to 0$
+3. Every $d$-open ball is an open set
+4. The topology $\tau_d$ is first countable
+5. A point $x\in \overline{A}$ of some $A\subset X$ iff there exists some sequence $(x_n)$ in $A$ with $(x_n)\to x$.
+6. A closed ball is a closed set.
+7. The closure of the open ball $B_r(	x)$ is included in the closed ball $C_r(x)$.
+8. If $(X,d_1)$ and $(Y,d_2)$ are semimetric spaces, the product topology on $X\times Y$ is generated by the semimetric 
+$$ 
+D((x,y),(u,v))=d_1(x,u)+d_2(y,v)
+$$
+9. For any four points $u,v,x,y$ the semimetric obeys: 
+$$ 
+\lvert d(x,y)-d(u,v) \rvert\le d(x,u)+d(y,v)
+$$
+10. The real funtion $d:X\times X\to \mathbb{R}$ is jointly continuous.
+
+
+:::
+
+::: {.definition  name=""}
+
+- A subset $A$ is called $d$-open if it there is a open ball $B_r^{d}(x)\subset A$ for every $x\in A$.
+- A topology $\tau_d$ is **generated by $d$** if $\tau_d=\{A\subset X:A\text{ is }d\text{-open}\}$
+- Two metrics is called equivalent if the topology they generated are the same. 
+
+:::
+
+::: {.lemma  name=""}
+
+A metrizable space is separable iff it is second countable.
+
+:::
+
+::: {.proof}
+
+Let $(X,\tau_{})$ is a second countable space. There exists a topology base $\mathcal{B}=\{B_{i}:i=1,2,\ldots\}$, let $A=\{x_{i}:i=1,2,\ldots\}$ where $x_{i}\in B_{i}$ is arbitrary get. Then it is easy to show that $\overline{A}=X$ which means every give any point  $x\in X$, $U\in \mathcal{N_x}$, $U$ intersects $A$. Notice that for any open set $U$, there is some  $B_i\in \{B_{i}\}$ s.t. $B_{i}\subset U$. Now give some $x\notin A$, let $U_x\in \mathcal{N_x}$, then $B_{i}\subset U_x$ for some $i$, and there is at least a point $x_{i}\in B_{i}$ s.t. $U_x\cap A\supset\{x_{i}\}\neq \varnothing$.  
+Let $(X,d)$ is a metric space and $(X,\tau_{d})$ is a topological space generated by $d$. Let $A=\{x_{i}:i=1,2,\ldots\}$ be a countable dense subset in $X$. Then the collection $\{B_{\frac{1}{n}}(x):x\in A,n\in \mathbb{N}\}$ of $d$-open balls is a countable base for the topology $\tau$.
+
+:::
+
+::: {.definition  name="completeness"}
+
+A **Cauchy Sequence** in a metric space $(X,d)$is a sequence $(x_n)$ s.t. for each $\epsilon>0$ there exists some $n_0$ satisfying $d(x_n,x_m)\lt \epsilon$ for all $n,m\ge n_0$, or equivalently if $\lim _{n,m\to \infty}d(x_m,x_n)=0$ or also equivalently if $\lim _{n\to \infty}\text{diam}\{x_n,x_{n+1},\ldots\}=0$.  
+A metric space $(X,d)$ is **complete** if every Cauchy sequence in $X$ converges in $X$, in which case we say that $d$ is a **complete metric** on $X$.  
+A topological space $x$ is **completely metrizable** if there exists a consistent metric $d$ for which  $(X,d)$ is complete. A separable topological space that is completely metrizable is called **Polish space**.
+
+:::
+
+::: {.definition  name="uniform metric"}
+
+If $X$ is a nonempty set, then the vector space $B(X)$ of all bounded real functions on $X$ is a complete metric space under the **uniform metric** defined by 
+$$ 
+d(f,g)=\sup_{x\in X}\lvert f(x)-g(x) \rvert
+$$
+It is clear that a sequence $(f_n)$ in $B(X)$ is $d$-convergent to $f\in B(X)$ iff it converges uniformly to $f$.
+
+
+:::
+
+::: {.proposition  name=""}
+
+Let $(X,d)$ be an arbitrary metric space. Then the metric $\rho(x,y)=\frac{d(x,y)}{1+d(x,y)}$ is a bounded equivalent metric taking values on $[0,1)$.  
+ $\rho$ and $d$ has the same Cauchy sequences, and  $(X,d)$ is complete iff $(X,\rho)$ is complete.
+
+:::
+
+Let us say that a sequence $(A_n)$ of nonempty sets has vanishing diameter if 
+$$ 
+\lim _{n\to \infty}\text{diam}A_n=0
+$$
+
+::: {.theorem  name="Cantor's Intersection Theorem"}
+
+In a complete metric space, if a decreasing sequence of nonempty closed subsets has vanishing diameter, then the intersection of the sequence is a singleton.
+
+:::
+
+::: {.proof}
+
+Let $(F_n)$ be a decreasing sequence which means  $F_{n+1}\subset F_n$ holds for every $n$ of nonempty closed subsets of the complete metric space $(X,d)$, and let $\lim _{n\to \infty}\text{diam}F_n=0$. Give $F=\bigcap_{n=1} ^{\infty}F_n$, assume that  there are more than one point in $F$, suppose $a,b\in F$, then $d(a,b)\le \text{diam}F$, it implies that $d(a,b)=0$.As $d$ is a metric, $a=b$.  
+Now we just need to prove that $F$ is a nonempty set. For each $n$ pick $x_n\in F_n$, since $d(x_n,x_m)\le \text{diam}F_n$ for $m\ge n$, the sequence $(x_n)$ is Cauchy. As $X$ is a complete metric space, there is some $x\in X$ s.t. $(x_n)\to x$. Since $(F_n)$ is decreasing, $x_m\in F_n$ for every $m\ge n$, let $m\to \infty$, as $F_n$ is closed, it contains all its accumulation point, so  $\lim _{m\to \infty}x_m\in F_n$ for every $n$, so $\bigcap_{n=1} ^{\infty}F_n$ is nonempty.
+
+:::
+
+Continuous images may preserve the vanishing diameter property.
+
+::: {.proposition  name=""}
+
+Let $(A_n)$ be a sequence of subsets in a metric space $(X,d)$ s.t. $\bigcap_{n=1}^{\infty} A_n$ is nonempty. If $f:(X,d)\to (Y,\rho)$ is a continuous function and $(A_n)$ has vanishing $d$-diameter, then $(f(A_n))$ has vanishing $\rho$-diameter.
+
+:::
+
+
+::: {.proof}
+
+Since $(A_n)$ has vanishing diameter and $\bigcap_{n=1} ^{\infty}A_n$ is nonempty, then $\bigcap_{n=1} ^{\infty}A_n$ must be a singleton, namely $\{x\}$. As $f$ is continuous, give $\epsilon>0$, there exists $\delta>0$ when $d(x,z)\lt \delta$ it implies that $\rho(f(x),f(z))<\epsilon$.   
+Also there is some $n_0$ s.t. for $n\ge n_0$ if $z\in A_n$, $d(z,x)<\delta$, so $f(A_n)\subset B(2\epsilon)$. So the series $(f(A_n))$ has vanishing $\rho$ diameter and $\bigcap_{n=1} ^{\infty}f(A_n)=\{f(x)\}$.
+
+:::
+
+
+::: {.definition  name="Uniformly Continuous"}
+
+A function is called uniformly continuous if for each $\epsilon>0$, there exists some $\delta>0$ s.t. $d(x,y)<\delta\implies \rho(f(x),f(y))<\epsilon$ for every $x,y\in X$.
+
+:::
+
+::: {.definition  name="Lipschitz continuous"}
+
+A function $f:(X,d)\to (Y,\rho)$ is called Lipschitz continuous if for every $x,y\in X$:
+$$ 
+\rho(f(x),f(y))\le c d(x,y)
+$$
+The number $c$ is called **Lipschitz constant** for $f$. Every Lipschitz continuous function is uniformly continuous.
+
+:::
+
+::: {.definition  name="isometry"}
+
+An isometry between $(X,d)$ and $(Y,\rho)$ is a one-to-one function $\phi:X\to Y$ satisfying:
+
+$$ 
+d(x,y)=\rho(\phi(x),\phi(y))
+$$
+for all $x,y\in X$.
+If $\phi$ is one-to-one and onto, then $(X,d)$ and $(Y,\rho)$ is said to be isometric.  
+Notice that the isometry is uniform continuous, indeed, Lipschitz continuous.
+
+
+:::
+
+::: {.proposition  name=""}
+
+Let $\phi:(X,d)\to Y$ to be one-to-one and onto, then $\phi$ is induces a metric on $Y$ s.t. $\rho(u,v)=d(\phi^{-1}(u),\phi^{-1}(v))$. Furthermore, $\phi:(X,d)\to (Y,\rho)$ is a isometry
+
+:::
+
+::: {.proposition  name=""}
+
+If $X$ is metrizable and $\rho$ is a compatible metric on $X$, then the vector space $U_{\rho}(X)$ of all bounded $\rho$-uniformly continuous real functions on $X$ is a closed subspace of $U_
+ho(X)$. Thus $U_\rho(X)$ equipped with the uniform metric is a complete metric space in its own right.
+
+:::
+
+::: {.proof}
+
+Notice that $X$ is metrizable means $X$ is first countable and in a first countable space, a point $x\in A$ which satisfies $x\in \overline{A}$ iff there is a sequence $(x_n)$ in $A$ s.t. $x_n\to x$. And a sequence of uniform continuous function will converge to a uniform continuous function. So $\overline{U_{\rho}(X)}=U_{\rho}(X)$ which means $U_{\rho}(X)$ is closed.
+
+:::
+
+::: {.lemma  name="Uniformly continuous extensions"}
+
+Let $A$ be a nonempty subset of $(X,d)$. Let $\phi:(A,d)\to (Y,\rho)$ be a uniformly continuous function. Assume that $(Y,\rho)$ is complete. Then $\phi$ has a uniformly continuous extension $\phi'$ to the $\overline{A}$. Moreover, the extension $\phi'=\overline{A}\to Y$ is given by 
+$$ 
+\phi'(x)=\lim _{n\to \infty}\phi(x_n)
+$$
+for any $(x_n)\subset A$ satisfying $x_n\to x$.  
+In particular, if $Y=\mathbb{R}$, then $\|\phi\|_{\infty}=\|\phi'\|_\infty$.
+
+
+:::
+
+::: {.proof}
+
+Notice that a sequence $(x_n)\to x$ in $(X,d)$ must be d-Cauchy, for as $(x_n)\to x$, give a $\epsilon>0$, there exists  $n_0$ when $n>n_0$, $d(x,x_n)<\epsilon$. Now suppose that $m\ge n$, then $d(x_m,x)<\epsilon$ and as the triangle inequality, $d(x_m,x_n)\le d(x_m,x)+d(x_n,x)<2\epsilon$, so $\lim _{m\to \infty,m\ge n}d(x_m,x_n)=0$.  
+Then we need to show that a uniformly continuous function carries a $d$-Cauchy sequence to a $\rho$-Cauchy sequence. Let $\phi$ be a uniformly continuous function and $(x_n)\to x$ be a Cauchy sequence. Give $\epsilon>0$, then there exists $\delta>0$ when $d(x_n,x_m)<\delta$, $\rho(\phi(x_n),\phi(x_m))<\epsilon$. Give $n_0(\delta)$, then for all $m,n\ge n_0$, $d(x_m,x_n)<\delta$, which means give $\epsilon>0$, there exists $n_0(\delta)$ s.t. for any $m,n\ge n_0(\delta)$, $\rho(\phi(x_n),\phi(x_m))<\epsilon$, which means $(\phi(x_n))$ is $\rho$-Cauchy.  
+Then we begin our proof. Let $x\in \overline{A}$ and pick a sequence $(x_n)\to x$ in $A$. Since $(x_n)$ converges, $(x_n)$ is $d$-Cauchy, and as $\phi$ is uniformly continuous, then $(\phi(x_n))$ is $\rho$-Cauchy. Since $Y$ is complete, there are some $y\in Y$ s.t. $\phi(x_n)\to y$.  
+$y$ is independent of particular $(x_n)$. To prove this, let $(z_n)$ be another sequence converging to $x$. Then $\{x_1,z_1,x_2,z_2,\ldots\}$ is a new sequence which is $d$-Cauchy and converges to $x$. Notice that $\{\phi(x_1),\phi(z_1),\phi(x_2),\phi(z_2),\ldots\}$ is also $\rho$-Cauchy and since $\phi(x_n)$ is a convergent subsequence and its limit is $y$, the sequence above is $y$ again which implies that $(\phi(z_n))\to y$ too.  
+It is easy to show that $\phi'$ is uniformly continuous on $\overline{A}$ by particularly prove that $\phi'$ on $\text{boundary}(A)$ is continuous.
+
+:::
+
+::: {.lemma  name=""}
+
+Let $(X,d)$ be a metric space, let $d_1$ is a new metric on $X$. Then $d$ is equivalent to $d_1$ iff a sequence $(x_n)\to x$ in $d$ iff it converges to $x$ in $d_1$, namely $d(x_n,x)\to 0\iff d_1(x_n,x)\to 0$
+
+:::
+
+::: {.proof}
+
+
+
+:::
+
+::: {.lemma  name=""}
+
+If $f:(X,d)\to (Y,\rho)$ is a continuous function between metric spaces, then there exists an equivalent metric $d_1$ on $X$ s.t. $f:(X,d_1)\to (Y,\rho)$ is Lipschitz continuous.
+
+:::
+
+::: {.proof}
+
+Define $d_1(x,y)=d(x,y)+\rho(f(x),f(y))$. Give a $d$-open subset $U\subset X$, it means every point $x\in X$, there exists $r>0$ s.t. $B_r(x)\subset U$, we would show that 
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:21-Metric_Spaces.rmd-->
+
+## Measurability
+
+### Algebra of sets
+
+ 
+::: {.definition  name="algebra"}
+
+A non-empty family of subsets $\mathscr{A}$ is called the algebra of sets $X$ if 
+
+-   $A,B\in \mathscr{A}\implies A\cup B\in \mathscr{A}$
+-   $A\in \mathscr{A}\implies A^{c}=X-A\in \mathscr{A}$
+
+:::
+
+::: {.definition  name="$\sigma$-Algebra"}
+
+A family is called $\sigma$-Algebra if it is an algebra and
+
+-   $(A_n)_{n=1}^{\infty}\subset \mathscr{A}\implies \bigcup_{n=1} ^{\infty}A_n\in \mathscr{A}$
+
+:::
+
+::: {.theorem  name=""}
+
+If  $\mathscr{C}$ is a nonempty collection of subsets of $X$ then $\sigma(\mathscr{C})=\mathscr{A}$ which is the smallest $\sigma$-Algebra containing $\mathscr{C}$ satisfies:
+
+-   If $A\in \mathscr{A}$, then $A^{c}\in \mathscr{A}$.
+-   $\mathscr{A}$ is closed under countable intersections.
+-   $\mathscr{A}$ is closed under countable disjoint unions.
+
+:::
+
+::: {.definition  name="ring"}
+
+A nonempty family $\mathscr{R}$ of subsets of $X$ is a ring if:
+
+-   $A,B\in \mathscr{R}\implies A\cup B\in \mathscr{R}$ 
+-   $A,B\in \mathscr{R}\implies A-B\in \mathscr{R}$
+
+Notice that $A-(A-B)=A\cap B$, so $A,B\in \mathscr{R}\implies A\cap B\in \mathscr{R}$.
+
+:::
+
+::: {.definition  name="semiring"}
+
+A semiring  $\mathscr{S}$ is a non-empty family of subsets of $X$ satisfying:
+
+-   $\varnothing\in \mathscr{S}$ 
+-   $A,B\in \mathscr{S}\implies A\cap B\in \mathscr{S}$ 
+-   If $A,B\in \mathscr{S}$, then there exists pairwise disjoint sets $C_1,\ldots,C_n\in \mathscr{S}$ s.t. $A-B=\bigcup_{i=1} ^{n}C_{i}$
+
+:::
+
+::: {.theorem  name=""}
+
+If $\mathscr{S_1,S_2}$ are semirings, then $\mathscr{S_1\times S_2}$ is also semiring where $\times$ denotes the Cartesian product.
+
+:::
+
+::: {.proof}
+
+-   Let  $\varnothing\times \varnothing=\varnothing$ without any doubt.
+-   Let $A,C\in \mathscr{S_1}$ and $B,D\in \mathscr{S_2}$ then $A\times B,C\times D\in \mathscr{S_1\times S_2}$. Notice that $(A\times B)\cap (C\times D)=(A\cap C)\times (B\cap D)$ where $A\cap C\in \mathscr{S_1},B\cap D\in \mathscr{S_2}$, so $(A\cap C)\times (B\cap D)\in \mathscr{S_1\times S_2}$.
+-
+    Let $A,C\in \mathscr{S_1}$ and $B,D\in \mathscr{S_2}$.  
+    $$ 
+    \begin{aligned}
+        (A\times B)-(C\times D)&= (A-C)\times B\cup A\times (B-D) \\
+    \end{aligned}
+    $$
+
+:::
+
+### Dynkin's Lemma
+
+
+::: {.definition  name="$\lambda$-system"}
+
+A $\lambda$-system or Dynkin system is a nonempty family $\mathscr{A}$ s.t. 
+
+-   $X\in \mathscr{A}$ 
+-   $A,B\in \mathscr{A},B\subset A\implies A-B\in \mathscr{A}$ 
+-   $(A_n)\subset \mathscr{A},(A_n)\nearrow A\implies A\in \mathscr{A}$
+
+:::
+
+::: {.theorem  name=""}
+
+A nonempty family of subsets of $X$ is a  $\sigma$-Algebra iff it is both a $\pi$-system and a $\lambda$-system.
+
+:::
+
+::: {.theorem  name="Dynkin's Lemma"}
+
+If $\mathscr{A}$ is a $\lambda$-system and a nonempty family $\mathscr{F\subset A}$ is closed under finite intersection, then $\sigma(\mathscr{F})\subset \mathscr{A}$.
+
+In other words, if $\mathscr{F}$ is a $\pi$-system, then $\sigma(\mathscr{F})$ is the smallest $\lambda$-system containing $\mathscr{F}$.
+
+:::
+
+### Borel $\sigma$-Algebra
+
+::: {.definition  name="borel set"}
+
+The Borel $\sigma$-Algebra of a topological space $(X,\tau_{})$, is $\sigma(\tau)$. The set in $\sigma(\tau)$ is called the Borel sets.
+
+:::
+
+::: {.corollary  name=""}
+
+1.  The Borel $\sigma$-Algebra is the smallest $\lambda$-system containing the open sets. It is also the smallest $\lambda$-system containing all the closed sets.
+2.  The Borel $\sigma$-Algebra of a topological space is the smallest family of sets containing all the open sets and all the closed sets that is the closed under countable intersections and countable disjoint unions.
+3.  The Borel $\sigma$-Algebra of a metrizable space is the smallest family of sets that include the open (closed) sets and is closed under countable intersections and countable disjoint unions.
+
+:::
+
+::: {.remark  name=""}
+
+For the difference between $(2)$ and $(3)$, just notice that in a metrizable space, every closed set is $G_\delta$ and every open set is $F_\sigma$.
+
+:::
+
+### Product Structure
+
+
+::: {.definition  name="product $\sigma$-Algebra"}
+
+Let $\mathcal{F}_i$ be a $\sigma$-Algebra of $X_{i}$, $i=1,\ldots,n$. Then the product $\sigma$-Algebra denoting as $\mathcal{F}_1\otimes \cdots\otimes \mathcal{F}_n$ is the $\sigma$-Algebra generated by the product semiring $\prod_{i=1}^{n} \mathcal{F}_i$.
+
+:::
+
+::: {.theorem  name=""}
+
+For any two topological space $X$ and $Y$:
+
+1.  $\mathscr{B}_X\otimes \mathscr{B}_Y\subset \mathscr{B}_{X\times Y}$ 
+2.  If $X,Y$ are second countable, then $\mathscr{B}_X\otimes \mathscr{B}_Y=\mathscr{B}_{X\times Y}$.
+
+:::
+
+::: {.proof}
+
+For each $A\subset X$, let
+$$ 
+\mathcal{F}(A)=\left\{B\subset Y:A\times B\in \mathscr{B}_{X\times Y}\right\}
+$$
+Then $\mathcal{F}(A)$ satisfies:
+
+1.  $\varnothing\in \mathcal{F}(A)$ for $A\times \varnothing=\varnothing\in \mathscr{B}_{X\times Y}$.
+2.  If $B,C\in \mathcal{F}(A)$ then $B-C\in \mathcal{F}(A)$. Notice that if $B,C\in \mathcal{F}(A)$, then $A\times (B-C)=(A\times B)-(A\times C)$, so $A\times (B-C)\in \mathscr{B}_{X\times Y}$ as the property of $\sigma$-Algebra.
+3.  $\mathcal{F}(A)$ is closed under countable unions. To see this, notice that if $(B_n)_{n=1}^{\infty}\subset \mathcal{F}(A)$, then $A\times (\bigcup_{n=1} ^{\infty}B_n)=\bigcup_{n=1} ^{\infty}(A\times B_n)\in \mathscr{B}_{X\times Y}$.
+
+From above properties, we find that $\mathcal{F}(A)$ is a $\sigma$-ring. If $Y\in \mathcal{F}(A)$, then $\mathcal{F}(A)$ is a $\sigma$-Algebra.
+
+Then note that for any open subset $G\in \tau_X$, $U\in \mathcal{F}(G)$ for every $U\in \tau_X$. To see this, just recall the base of product topology of finite Cartesian product of sets which has the form $\prod_{i=1}^{n} V_{i}$ where $V_{i}\subset X_{i}$ is the open subsets. Notice that $Y\in \tau_Y$ so $Y\in \mathcal{F}(G)$ s.t. $\mathcal{F}(G)$ is a $\sigma$-Algebra and $\tau_Y\subset \mathcal{F}(G)$ thus $\mathscr{B}_Y\subset \mathcal{F}(G)$ when $G$ is open.
+
+Now let 
+$$ 
+\mathscr{A}=\left\{A\subset X:\mathscr{B}_Y\subset \mathcal{F}(A)\right\}
+$$
+As we discussed above, $\tau_X\subset \mathscr{A}$.
+
+Also note that $\mathscr{A}$ is closed under complementation. To see this, let $A\in \mathscr{A},B\in \mathscr{B}_Y$, then $A\times B\in \mathscr{B}_{X\times Y}$, as $X\in \tau_X$, then $X\times B\in \mathscr{B}_{X\times Y}$. Therefore, $A^{c}\times B=(X-A)\times B=(X\times B)-(A\times B)=(X\times B)\cap (A\times B)^{c}\in \mathscr{B}_{X\times Y}$. As the arbitrary picking of $B\in \mathscr{B}_Y$ we find that $\mathcal{F}(A^{c})\supset \mathscr{B}$ thus $A^{c}\in \mathscr{A}$.
+
+Finally, if $(A_n)_{n=1}^{\infty}\subset \mathscr{A}$ and $B\in \mathscr{B}_Y$, we have $A_n\times B\in \mathscr{B}_{X\in Y}$ for each $n$. As
+$$ 
+\bigcup_{n=1} ^{\infty}(A_n\times B)=\left(\bigcup_{n=1} ^{\infty}A_n\right)\times B
+$$
+and $(A_n\times B)_{n=1}^{\infty}$ is a sequence in $\mathscr{B}_{X\times Y}$, so the left side is still belong to $\mathscr{B}_{X\times Y}$, so as the arbitrary picking of $B\in \mathscr{B}_Y$, $\bigcup_{n=1} ^{\infty}A_n\in \mathscr{A}$ since $\mathscr{B}\subset \mathcal{F}(\bigcup_{n=1} ^{\infty}A_n)$.
+
+The above steps show that $\mathscr{A}$ is a $\sigma$-Algebra containing $\tau_X$ which means $\mathscr{B}_X\subset \mathscr{A}$.
+
+So if $A\in \mathscr{B}_X$, then $A\in \mathscr{A}$ and as the property of $\mathscr{A}$, if there exists $B\in \mathscr{B}_Y$, then $A\times B\in \mathscr{B}_{X\times Y}$ which means $\mathscr{B}_X\otimes \mathscr{B}_Y\subset \mathscr{B}_{X\times Y}$.
+
+Note that if $X,Y$ are second countable space, then $X\times Y$ is. Every open subset of $X\times Y$ is the countable union of the form $U\times V$ where $U\in \tau_X,V\in \tau_Y$. So $\mathscr{B}_{X\times Y}=\sigma\left\{U\times V:U\in \tau_X,V\in \tau_Y\right\}\subset \sigma(\mathscr{B}_X\times \mathscr{B}_Y)=\mathscr{B}_X\otimes \mathscr{B}_Y$, so $\mathscr{B}_X\otimes \mathscr{B}_Y\supset \mathscr{B}_{X\times Y}$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $(X,\mathcal{F})$ be a measurable space and $Y$ be a second countable Hausdorff space. If $f:X\to Y$ is $(\mathcal{F},\mathscr{B}_Y)$-measurable, then $\mathop{\text{Gr}}f\in \mathcal{F}\otimes \mathscr{B}_Y$.
+
+:::
+
+::: {.proof}
+
+Let $\left\{U_{i}\right\}_{i=1}^{\infty}$ be a countable base of $Y$, then $f(x)\neq y$ iff there exists some $U_{i}$ s.t. $f(x)\in U_{i}$ and $y\notin U_{i}$. Thus
+$$ 
+(\mathop{\text{Gr}}f)^{c}=\bigcup_{i=1} ^{\infty}f^{-1}(U_{i})\times (U_{i})^{c}
+$$
+So $\mathop{\text{Gr}}f$ is $\mathcal{F}\otimes \mathscr{B}_Y$-measurable.
+
+:::
+
+::: {.definition  name="measurable section"}
+
+If $A\subset X\times Y$, then we define $x$-section $A^{x}$ and $y$-section $A^{y}$ as:
+$$ 
+A^{x}=\left\{y\in Y:(x,y)\in A\right\}\mathop{\text{ and }}A^{y}=\left\{x\in X:(x,y)\in A\right\}
+$$
+Let $(X,\mathcal{F}_X),(Y,\mathcal{F}_Y)$ be measurable spaces, then a subset $A\subset X\times Y$ has measurable sections if $A^{x}\in \mathcal{F}_Y$ for each $x\in X$ and $A^{y}\in \mathcal{F}_X$ for each $y\in Y$.
+
+:::
+
+::: {.proposition  name=""}
+
+Every $A\in \mathcal{F}_X\otimes \mathcal{F}_Y$ has measurable sections.
+
+:::
+
+::: {.proof}
+
+Consider the family $\mathscr{A}$ of subsets of $X\times Y$ :
+$$ 
+\mathscr{A}=\left\{A\subset X\times Y:A^{x}\in \mathcal{F}_Y \mathop{\text{ and }}A^{y}\in \mathcal{F}_X\right\}
+$$
+for each $x\in X$ and $y\in Y$. Then we show that $\mathscr{A}$ is a $\sigma$-Algebra.
+
+:::
+
+::: {.definition  name=""}
+
+Let $(X,\mathcal{F}_X)$, $(Y,\mathcal{F}_Y)$ and $(Z,\mathcal{F}_Z)$ be measurable spaces. We say a function $f:X\times Y\to Z$ is:
+
+1.  jointly measurable if it is $(\mathcal{F}_X\otimes \mathcal{F}_Y,\mathcal{F}_Z)$-measurable.
+2.  measurable in $x$ if $f^{y}:(X,\mathcal{F}_X)\to (Z,\mathcal{F}_Z)$ is measurable for each $y\in Y$. Similarly, measurable in $y$ means $f^{x}:(Y,\mathcal{F}_Y)\to (Z,\mathcal{F}_Z)$ is measurable for each $x\in X$.
+3.  separately measurable if it is both measurable in $x$ and measurable in  $y$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $(X,\mathcal{F}_X),(Y,\mathcal{F}_Y),(Z,\mathcal{F}_Z)$ be measurable spaces, then every jointly measurable $f:X\times Y\to Z$ is separately measurable.
+
+:::
+
+::: {.proof}
+
+Give a $y\in Y$, notice that for each $A\in \mathcal{F}_Z$,
+$$ 
+\begin{aligned}
+    (f^{y})^{-1}(A)&=\left\{x\in X:f^{y}(x)=f(x,y)\in A\right\} \\
+    &= (f^{-1}(A))^{y} 
+\end{aligned}
+$$
+Note that $f$ is jointly measurable that implies $f^{-1}(A)\in \mathcal{F}_X\otimes \mathcal{F}_Y$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--chapter:end:41-Measurability.rmd-->
+

@@ -30,6 +30,7 @@ Then consider about the family $\{A\subset X:A\text{ is d-open}\}$, it generates
 ::: {.lemma  name=""}
 
 Let $(X,d)$ be a semimetric space. Then:
+
 1. $(X,\tau_d)$ is Hausdorff space iff $d$ is a metric
 2. A sequence $(x_n)$ in $X$ satisfies $x_n\to x$ in $(X,\tau_{d})$ iff $d(x_n,x)\to 0$
 3. Every $d$-open ball is an open set
