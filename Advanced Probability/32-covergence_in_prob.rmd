@@ -189,7 +189,7 @@ As $X^{p}$ is integrable and $X_n^{p}$ is uniformly so, $(X_n-X)^{p}$ is uniform
 The following is a variation of the main results when $p=1$
 
 
-::: {.theorem #var-cauchy-convergence-probability name=""}
+::: {.theorem #var-convergence-cauchy-uniform name=""}
 
 If $X_n \xrightarrow{p} X$, TFAE:
 
@@ -323,12 +323,6 @@ As borel is $\pi$ system, weak limits is unique
 
 ### Convergence of quantiles and distribution functions
 
-Suppose $q_n(u)\to q(u)$ a.s. in $(0,1)$. For $f\in \mathbb{C}_b$, $f\circ q_n \to f\circ q$ a.s. and hence
-$$
-\mu_n f=\lambda(f\circ q_n)\to \lambda(f \circ q)=\mu f
-$$
-by DCT \@ref(thm:DCT). That is, $(\mu_n)$ converges to $\mu$ weakly. We should see the condition of convergence a.s. can be loose and the converse also holds.
-
 
 ::: {.theorem #distribution-quantile-convergence name=""}
 
@@ -348,10 +342,149 @@ $$
 c_n(x)=\mu_n(-\infty,x] \to \mu(-\infty,x]=c(x)
 $$
 
-$2\implies 3$. Let $u$ be continuity point of $q$ and $x=q(u)$, for any $\epsilon$, pick $y\in (x-\epsilon,x)$ and $z$ in $(x,x+\epsilon)$ such that they are continuity points for $c$, we can do so as discontinuity points are countable. As $q$ is continues at $u$, $c$ is not flat at level $u$ and thus $c(y)<u<c(z)$. As $c_n(y)\to c(y)$, we have $c_n(y)<u\implies q_n(u)>y>x-\epsilon$ for tail $n$ and thus $\liminf q_n(u)>x-\epsilon$. Similarly, we have $\lim_{n \to \infty}q_n(u)<x+\epsilon$. As $\epsilon$ can be arbitrary small, we have $q_n(u)\to x=q(u)$.
+$2\implies 3$. Let $u$ be continuity point of $q$ and $x=q(u)$, for any $\epsilon$, pick $y\in (x-\epsilon,x)$ and $z$ in $(x,x+\epsilon)$ such that they are continuity points for $c$, we can do so as discontinuity points are countable. As $q$ is continues at $u$, $c$ is not flat at level $u$ and thus $c(y)<u<c(z)$. As $c_n(y)\to c(y)$, we have
+$$
+c_n(y)<u\implies q_n(u)>y>x-\epsilon
+$$
+for tail $n$ and thus $\liminf q_n(u)>x-\epsilon$. Similarly, we have $\lim_{n \to \infty}q_n(u)<x+\epsilon$. Since $\epsilon$ can be arbitrary small, we have $q_n(u)\to x=q(u)$.
+
+$3\implies 1$. Note discontinuities are at most countable and thus $q_n\to q$ a.s., it follows that for $f\in \mathbb{C}_b$, $f\circ q_n \to f\circ q$ a.s. and hence
+$$
+\mu_n f=\lambda(f\circ q_n)\to \lambda(f \circ q)=\mu f
+$$
+by DCT \@ref(thm:DCT). That is, $(\mu_n)$ converges to $\mu$ weakly. 
+
+:::
+
+### Almost sure representations of weak convergence
+
+
+::: {.theorem #convergence-weakly-as name=""}
+
+The sequence $(\mu_n)$ converges weakly to $\mu$ iff there exist corresponding r.v.'s $(Y_n),Y$ on some probability space $(\Omega',\mathcal{F'},\mathop{{}\mathbb{P}}')$ and $Y_n \to Y$ a.s. on $\mathop{{}\mathbb{P}}'$.
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$ is obvious as $\xrightarrow{a.s.}\implies \xrightarrow{d}$.
+
+$\implies$. Let $q_n=Y_n$, the distribution of $Y_n$ is $\mathop{{}\mathbb{P}}'\circ q_n ^{-1}=\lambda \circ q_n ^{-1} = \mu_n$ as desired and live in probability space $((0,1),\mathcal{B},\lambda)$. By theorem \@ref(thm:distribution-quantile-convergence), $Y_n \to Y$. a.s.
+
+:::
+
+This theorem is quite useful in the case of only the distribution are matter.
+
+
+::: {.proposition  name=""}
+
+Suppose $X_n \xrightarrow{d} X$, TFAE:
+
+1. $(X_n)$ is uniformly integrable.
+2. $(X_n)\cup \{X\}\in L^{1}$ and $\mathop{{}\mathbb{E}}\left|X_n\right|\to \mathop{{}\mathbb{E}}\left|X\right|$.
+
+:::
+
+
+::: {.proof}
+
+By theorem \@ref(thm:convergence-weakly-as), this is immediate from theorem \@ref(thm:var-convergence-cauchy-uniform).
+
+:::
+
+Note absence here of one statement in theorem \@ref(thm:var-convergence-cauchy-uniform). This is because $L^{1}$ convergence concern the joint distribution to determine $X_i-X$.
+
+### Tightness and Prohorov's theorem
+
+
+::: {.definition  name=""}
+
+Sequence $(\mu_{i})_{i \in \mathbb{N}^*}$ is said to be **tight** if for every $\epsilon>0$, there is a compact $K$ such that $1-\mu_n(K)=\mu_n(K^c)<\epsilon$ for all $n$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+If $\mu_n$ is tight then every subsequence has a further subsequence converges weakly.
+
+:::
+
+
+::: {.proof}
+
+By Helly's theorem \@ref(thm:helly), for each subsequence $N\subset \mathbb{N}$, there is a further subsequence converges to some d.f. $c$ pointwise on the continuity set of $c$. In view of theorem \@ref(thm:distribution-quantile-convergence), it's sufficient to show that the corresponding $\mu$ of $c$ is a probability measure, i.e., $c(\infty)=1$ and $c(-\infty)=0$. For any $\epsilon$, as $(\mu_n)$ is tight, there is a compact $[a,b]$ interval such that $\mu_n[a,b] > 1-\epsilon$. Select continuity $x$ of $c$ from $(-\infty,a)$ and $y$ from $(b,\infty)$. Then
+$$
+\begin{aligned}
+    c_n(x)&=\mu_n(-\infty,x)\le \mu_n(-\infty,a)\le \mu_n[a,b]^c < \epsilon
+    \\
+    c_n(y) &= \mu_n(-\infty,y) \ge \mu_n[a,b] > 1=\epsilon
+\end{aligned}
+$$
+That implies $c(-\infty)\le c(x)<\epsilon$ and $c(\infty) \ge c(y) > 1-\epsilon$ and the claim follows.
+
+:::
+
+That implies $\mu_n \to \mu$ weakly in view of proposition \@ref(prp:further-subsequence) if every further subsequence converges to the same $\mu$.
+
+### Convergence of ch.f. 
+
+Let $\varphi_{n}$ be corresponding ch.f. of $\mu_n$, i.e. $\varphi_n(r)=\mathop{{}\mathbb{E}}e^{irx}$, the next theorem connects the convergence of $(\mu_n)$ and $(\varphi_n)$.
+
+::: {.theorem #levy-continuity name="Levy's continuity theorem"}
+
+The sequence $(\mu_n)$ is weakly converges to a distribution $\mu$ iff $\lim_{n \to \infty}\varphi_n(r)\to \varphi(r)$ for every $r\in \mathbb{R}$ and $\varphi$ is continuous at $0$. Moreover, $\varphi$ is precisely ch.f. of $\mu$.
+
+:::
+
+::: {.proof}
+
+$\implies$ is immediate from $\cos(rx)$ and $\sin(rx)$ are both continuous and bounded and hence
+$$
+\varphi_n(r)=\mu_n\cos(rx)+i\mu_n \sin(rx) \to \mu \cos(rx)+i\mu \sin(rx) = \varphi(r)
+$$
+and the continuity of $0$ follows from uniformly continuity of $\varphi$.
+
+$\impliedby$. Let $\mu$ be corresponding distribution of $\varphi$, for any $\epsilon>0$, note
+$$
+\begin{aligned}
+    \frac{1}{2 \epsilon} \int_{(-\epsilon,\epsilon)} \varphi(t) dt&=
+    \frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\int e^{itx}d\mu dt
+    \\ &= 
+    \frac{1}{2 \epsilon} \int \int_{(-\epsilon,\epsilon)} e^{itx}dt d\mu
+    \\ &= 
+    \frac{1}{2 \epsilon}\int \int _{(-\epsilon,\epsilon)} \cos tx dt d\mu
+    \\ &= 
+    \int \frac{\sin \epsilon x}{\epsilon x} d\mu=\mu(\frac{\sin \epsilon x}{\epsilon x})
+\end{aligned}
+$$
+Then we show that $(\mu_n)$ is tight, for any $M>0$,
+$$
+\begin{aligned}
+    \left|\frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\varphi_n(t) dt\right|&\le
+    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right| 
+    \\&=
+    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]}+
+    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \\&\le 
+    \mu \bm{\mathbf{1}}_{[-M,M]}+
+    \mu \left|\frac{1}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \\&\le \mu[-M,M]+\frac{1}{\epsilon M}\mu_n([-M,M]^c)
+    \\&\le 
+    \mu[-M,M]+\frac{1}{\epsilon M}
+\end{aligned}
+$$
+
+
 
 
 :::
+
+
+
+
+
 
 
 

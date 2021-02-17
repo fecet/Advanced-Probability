@@ -116,7 +116,7 @@ Following is an application of some importance.
 
 ::: {.theorem #helly name="Helly's theorem"}
 
-Suppose $(c_{i})_{i \in \mathbb{N}^*}$ is a sequence of d.f.'s, then there exists a subsequence $(b_{i})_{i \in \mathbb{N}^*}$ and a d.f. $c$ s.t. $\lim_{i \to \infty} b_i(t) = c(t)$ at which $t$ is continuous.
+Suppose $(c_{i})_{i \in \mathbb{N}^*}$ is a sequence of d.f.'s, then there exists a subsequence $N\subset \mathbb{N}^*$ $(c_{i})_{i \in N}$ and a d.f. $c$ s.t. $\lim_{i \in N} c_i(t) = c(t)$ at which $t$ is continuous.
 
 :::
 
