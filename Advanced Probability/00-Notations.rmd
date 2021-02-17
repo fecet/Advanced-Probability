@@ -37,7 +37,7 @@ $f(x) \sim g(x)$ & $f$ is equal to $g$ asymptotically i.e. \\& $\lim_{x \to \inf
 
 $i_{\epsilon}$ & $\bm{\mathbf{1}}_{(\epsilon,\infty)}$\\
 
-
+$d(x,A)$ & $\inf \{d(x,y):y \in A\}$ \\
 
 
 

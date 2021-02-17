@@ -37,7 +37,7 @@ For probability measure, which has following properties:
 | Measurable function | Random Variable |
 |      a.e.      |      a.s.       |
 
-### Distribution of a r.v.
+## Distribution
 
 Let $X$ be a r.v. taking values in some measurable space $(Y,\mathcal{Y})$, then let $\mu$ be the image of $\mathop{{}\mathbb{P}}$ under $X$, i.e.:
 $$
@@ -47,15 +47,41 @@ then $\mu$ is a probability measure on $(Y,\mathcal{Y})$, it's called the **dist
 $$
 c(x)=\mu[-\infty,x]=\mathop{{}\mathbb{P}}\{X \le x\}
 $$
-and such $c:\mathbb{R} \to [0,1]$ is called **distribution function(d.f.)** 
+when $x\in \mathbb{R}$, such $c:\mathbb{R} \to [0,1]$ is called **distribution function(d.f.)** and is nondecreasing and right continuous. As it's increasing and bounded, the one-side limit always exists. In fact, we have
+$$
+\begin{aligned}
+    &c(-\infty)=\mathop{{}\mathbb{P}}\{X=-\infty\},c(\infty)=\mathop{{}\mathbb{P}}\{X=\infty\}
+    \\&
+    c(x-)=\mathop{{}\mathbb{P}}\{X<x\},c(x)-c(x-)=\mathop{{}\mathbb{P}}\{X=x\}
+\end{aligned}
+$$
+Let $D$ be set of all atoms in $\mu$, then $D$ is
+$$
+D=\{x\in \overline{\mathbb{R}}:\mathop{{}\mathbb{P}}\{X=x\}>0 \}
+$$
+and countable by lemma \@ref(lem:atomic-countable). Define $D_x=D\cap [-\infty,x]$ and
+$$
+a(x)=\sum_{y \in D_x}^{} \mathop{{}\mathbb{P}}\{X=y\},b(x)=c(x)-a(x)
+$$
+for $x\in \mathbb{R}$. Then $a$ is d.f. of measure $\mu_a$ defined by
+$$
+\mu_a(B)=\mu(B \cap D),B\in \mathcal{B}(\overline{\mathbb{R}})
+$$
+and $b$ is d.f. of $\mu_{b}=\mu-\mu_a$. Then we decomposition $\mu$ into a purely atomic $\mu_a$ and diffuse $\mu_b$.
 
+### Quantile functions
 
-::: {.remark}
+Let $q:(0,1)\to \overline{\mathbb{R}}$ be the right continuous functional inverse of $c$,i.e.,
+$$
+q(u)=\inf \{x\in \mathbb{R},u < c(x)\}
+$$
+Note that $q$ is real valued iff $c(\infty)=1$ and $c(-\infty)=0$.
 
-Distribution function is nondecreasing and right continuous.
+As $c$ is right continuous, if $c(x)<u$, $q(u)>x$, but $c(x)>u$ can only implies $q(u)\le x$.
 
-:::
+$c(x-)\le u$ iff $q(u)\ge x$ and $q(u-)\le x$ iff $c(x)\ge u$.
 
+Let $\lambda$ denote the Lebesgue measure on $(0,1)$ then $\mu=\lambda \circ q^{-1}$.
 
 ### Joint distributions
 
@@ -71,7 +97,8 @@ $$
 $$
 $\mu$ and $\nu$ are called **marginal distributions**
 
-### Independence
+
+#### Independence of distribution
 
 Let $X$ and $Y$ taking values in $(E,\mathcal{E})$ and $(F, \mathcal{F})$ with marginal $\mu$ and $\nu$, then they are said **independent** if their joint distribution is the product formed by their marginals:
 $$
@@ -298,6 +325,45 @@ Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
 
 In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathop{{}\mathbb{E}} z^{X}$ is called **generating function** and also determined distribution of $X$.
 
+
+
+## $L^p$-spaces and uniform integrability
+
+
+::: {.definition  name=""}
+
+Let $X$ be a r.v. taking values in $\mathbb{R}$ with distribution $\mu$. For $p$ in $[1,\infty)$, define
+$$
+\|X\|_p=(\mathop{{}\mathbb{E}}|X|^{p})^{\frac{1}{p}}
+$$
+and for $p=\infty$, let
+$$
+\|X\|_{\infty}=\inf \{b \in R_+, |X|\le b \text{ a.s.}\}
+$$
+
+:::
+
+Clearly $\|\cdot\|_p$ is a norm for $p\in [1,\infty]$ and
+$$
+0\le \|X\|_p \le \|X\|_q \le \infty
+$$
+provided $1\le p\le q\le \infty$ as corollary \@ref(cor:holder).
+
+$L^{p}$ is a vector space since:
+
+-   For any $X\in L^{p}$ and $a\in \mathbb{R}$,
+    $$
+    \mathop{{}\mathbb{E}} \left|aX\right|^{p}=\left|a\right|^{p}\mathop{{}\mathbb{E}}\left|X\right|^{p}<\infty
+    $$
+-   For any $X,Y \in L^p$, by jensen's inequality \@ref(thm:jensen), we have
+    $$
+    \left|\frac{a+b}{2}\right|^{p}\le (\frac{\left|a\right|+\left|b\right|}{2}^{p})\le \frac{\left|x\right|^{p}+\left|b\right|^{p}}{2}
+    $$
+    that implies
+    $$
+    \mathop{{}\mathbb{E}}\left|X+Y\right|^{p}\le 2^{p-1}(\mathop{{}\mathbb{E}}\left|X\right|^{p}+\mathop{{}\mathbb{E}}\left|Y\right|^{p})<\infty
+    $$
+
 ### Moment inequalities
 
 
@@ -352,8 +418,10 @@ And:
 
 ::: {.theorem #minkowski name="Minkowski's inequality"}
 
-$\forall p\ge 1$,
-$$ (\mathop{{}\mathbb{E}}|\sum X_i|^p)^{\frac{1}{p}}\le \sum (\mathop{{}\mathbb{E}}|X_i|^p)^{\frac{1}{p}} $$
+$\forall p \in [1,\infty]$,
+$$
+\|\sum_{}^{}X\|_p \le \sum_{}^{} \|X\|_p
+$$
 
 :::
 
@@ -377,29 +445,6 @@ $$
 
 :::
 
-
-## $L^p$-spaces and uniform integrability
-
-
-::: {.definition  name=""}
-
-Let $X$ be a r.v. taking values in $\mathbb{R}$ with distribution $\mu$. For $p$ in $[1,\infty)$, define
-$$
-\|X\|_p=(\mathop{{}\mathbb{E}}|X|^{p})^{\frac{1}{p}}
-$$
-and for $p=\infty$, let
-$$
-\|X\|_{\infty}=\inf \{b \in R_+, |X|\le b \text{ a.s.}\}
-$$
-
-:::
-
-Clearly $\|\cdot\|_p$ is a norm for $p\in [1,\infty]$ and
-$$
-0\le \|X\|_p \le \|X\|_q \le \infty
-$$
-provided $1\le p\le q\le \infty$ as corollary \@ref(cor:holder).
-
 ### Uniform integrability
 
 ::: {.lemma  name=""}
@@ -420,7 +465,7 @@ $$
 
 :::
 
-::: {.definition  name=""}
+::: {.definition #uniform-integrability name=""}
 
 A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is said to **uniformly integrable** if
 $$
@@ -450,11 +495,11 @@ as $b \to \infty$.
 
 $L^1$ boundedness is not sufficient for uniform integrability. In fact, we need:
 
-::: {.theorem  name=""}
+::: {.theorem #uniform-integrability-L1 name=""}
 
 A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is uniformly integrable iff it's $L^{1}$-bounded and $\forall \epsilon >0 ,\exists \delta>0$ s.t. $\forall F\in \mathcal{F}$:
 $$
-\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}_F|X|\le \epsilon
+\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}|X| \bm{\mathbf{1}}_{F}\le \epsilon
 $$
 
 :::
