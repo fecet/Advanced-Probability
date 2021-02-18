@@ -347,7 +347,7 @@ The follows are sufficient for convergence a.s.:
 
 ::: {.proof}
 
-1.  By Borel-Cantelli lemma \@ref(lem:borel-cantelli), that implies statement $2$ in theorem \@ref(thm:convergence-as) and thus implies $X_n \to X$ a.s..
+1.  By Borel-Cantelli lemma \@ref(lem:borel-cantelli), that implies statement $2$ in theorem \@ref(thm:convergence-as) and thus implies $X_n \to X$ a.s.
 2.  As $\epsilon_n \to 0$, the equality also holds for all $\epsilon$ as one can always find a less $\epsilon$ from $(\epsilon_{i})_{i \in \mathbb{N}^*}$ and thus $2\implies 1$.
 3.  By Borel-Cantelli lemma and proposition \@ref(prp:epsilon-sequence).
 4.  Write $Z_n$ for $\sup_{k \ge 1}\left|X_{n+k}-X_n\right|$, by remark 5 in definition \@ref(def:io-ult):
