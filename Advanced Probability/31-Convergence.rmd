@@ -55,11 +55,11 @@ If every subsequence of $(x_n)$ has a further subsequence converges to $x$, then
 :::
 
 
-Following is useful for future studies.
+Following is useful in proving LLN.
 
 ::: {.lemma #sequence-mean name=""}
 
-Let $(x_{i})_{i \in \mathbb{N}^*}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r>1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
+Let $(x_{i})_{i \in \mathbb{N}^*}\subset  \overline{\mathbb{R}}_+$ and put $\overline{x}_n=\frac{\sum_{i=1}^{n}x_i}{n}$. Let $N=(n_k)$ is a subsequence of $\mathbb{N}$ with $\lim_{k \to \infty}\frac{n_{k+1}}{n_k}=r\ge 1$. If the sequence $(x_i)$ converges along $N$ to $x$, then
 $$
 \frac{x}{r} \le \liminf_{n \to \infty} \overline{x}_n \le \limsup_{n \to \infty} \overline{x}_n\le rx
 $$

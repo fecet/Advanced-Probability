@@ -123,7 +123,7 @@ A sequence $(X_{i})_{i \in \mathbb{N}^*}$ is said to converges to $X$ in $L^p$ i
 
 :::
 
-Converges in $L^p$ also implies convergence in probability by Markov's inequality \@ref(thm:Markov-inequality) and taking $g$ corresponding to the power:
+Converges in $L^p$ also implies convergence in probability by Chebyshev's inequality \@ref(thm:chebyshev-inequality) and taking $g$ corresponding to the power:
 $$
 \mathop{{}\mathbb{P}}\{\left|X_n-X\right|>\epsilon\}\le (\frac{1}{\epsilon})^p \mathop{{}\mathbb{E}} \left|X_n-X\right|^p \to 0
 $$
@@ -153,7 +153,7 @@ $$
 $$
 and thus $\|X_m-X_n\|_p\to 0$.
 
-$b\implies c$ By Markov-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
+$b\implies c$ By Chebyshev's-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
 $$
 \mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
 $$
@@ -405,7 +405,7 @@ Sequence $(\mu_{i})_{i \in \mathbb{N}^*}$ is said to be **tight** if for every $
 :::
 
 
-::: {.theorem  name=""}
+::: {.theorem #tight-further-subsequence name="Prohorov's theorem"}
 
 If $\mu_n$ is tight then every subsequence has a further subsequence converges weakly.
 
@@ -426,7 +426,15 @@ That implies $c(-\infty)\le c(x)<\epsilon$ and $c(\infty) \ge c(y) > 1-\epsilon$
 
 :::
 
+
+::: {.remark}
+
+
 That implies $\mu_n \to \mu$ weakly in view of proposition \@ref(prp:further-subsequence) if every further subsequence converges to the same $\mu$.
+
+:::
+
+
 
 ### Convergence of ch.f. 
 
@@ -463,24 +471,73 @@ Then we show that $(\mu_n)$ is tight, for any $M>0$,
 $$
 \begin{aligned}
     \left|\frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\varphi_n(t) dt\right|&\le
-    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right| 
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right| 
     \\&=
-    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]}+
-    \mu \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]}+
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
     \\&\le 
-    \mu \bm{\mathbf{1}}_{[-M,M]}+
-    \mu \left|\frac{1}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
-    \\&\le \mu[-M,M]+\frac{1}{\epsilon M}\mu_n([-M,M]^c)
+    \mu_n \bm{\mathbf{1}}_{[-M,M]}+
+    \mu_n \left|\frac{1}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \\&\le \mu_n[-M,M]+\frac{1}{\epsilon M}\mu_n([-M,M]^c)
     \\&\le 
-    \mu[-M,M]+\frac{1}{\epsilon M}
+    \mu_n[-M,M]+\frac{1}{\epsilon M}
 \end{aligned}
 $$
-
-
-
+Let $n \to \infty$, by DCT \@ref(thm:DCT) we have
+$$
+\inf \mu_n[-M,M]+\frac{1}{\epsilon M} \ge \frac{1}{2 \epsilon}\int _{(-\epsilon,\epsilon)} d\varphi 
+$$
+Since $\varphi$ is continuous at $0$, in view of [Mean Value Theorem](https://en.wikipedia.org/wiki/Mean_value_theorem#Mean_value_theorems_for_definite_integrals), for any $\epsilon>0$, we can find $\delta$ such that 
+$$
+\frac{1}{2 \delta}\int _{(-\delta,\delta)}d\varphi> \varphi(0)-\epsilon=1-\epsilon
+$$
+and we can find $M$ such that $\frac{1}{\delta M}<\epsilon$ clearly, thus
+$$
+\inf \mu_n[-M,M] \ge 1-2\epsilon
+$$
+and thus $(\mu_n)$ is tight. Then claim follows as remark in theorem \@ref(thm:tight-further-subsequence).
 
 :::
 
+## Laws of Large Numbers
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a sequence of real-valued r.v.'s, and for $n \ge 1$, define
+$$
+S_n=\sum_{i=1}^{n}X_i, \overline{X}_n=\frac{S_n}{n}
+$$
+
+
+::: {.theorem  name=""}
+
+Suppose $(X_n)$ are pairwise independent and identical distributed with finite mean $a$ and finite variation $b$. Then $(\overline{X}_n)$ converges to $a$ in $L^2$ and a.s.
+
+:::
+
+
+::: {.proof}
+
+The $L^2$ convergence follows by noting
+$$
+\mathop{{}\mathbb{E}}\left|\overline{X}_n-a\right|^2=\mathop{\text{Var}} \overline{X}_n=\frac{b}{n} \to 0
+$$
+
+For the $a.s.$ convergence, WLOG, we may assume $X_n\ge 0$ for all $n$. Let $N=(n_i)$ be subsequence of $\mathbb{N}$ by $n_i=i^2$, by Chebyshev's inequality \@ref(thm:chebyshev-inequality).
+$$
+\begin{aligned}
+   \epsilon^2 \sum_{n \in N}^{} \mathop{{}\mathbb{P}}\{\left|\overline{X}_n-a\right|>\epsilon\}\le \sum_{n \in N}^{} \mathop{{}\mathbb{E}}\left|\overline{X}_n-a\right|^2=\sum_{n \in N}^{} \frac{b}{n}=b \sum_{i \in \mathbb{N}^*}^{}\frac{1}{i^2} < \infty
+\end{aligned}
+$$
+Thus $\overline{X}_n \to a$ $a.s.$ along $N$ by proposition \@ref(prp:convergence-as). Let $\Omega_0$ be the set witness the $a.s.$ convergence, for $\omega \in \Omega_0$, by lemma \@ref(lem:sequence-mean) where $r=1$, we have:
+$$
+a \le \liminf \overline{X}_n(\omega)\le \limsup \overline{X}_n(\omega) \le a
+$$
+The inequalities should be equalities, which completes the proof.
+
+:::
+
+### Strong law of large numbers
+
+### Weak law of large numbers
 
 
 

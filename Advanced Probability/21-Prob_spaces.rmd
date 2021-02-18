@@ -396,7 +396,7 @@ Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
 
 ::: {.proof}
 
-$1 \iff 2$ follows from Inversion formula \@ref(thm:inversion-formula) immediately.
+$1 \iff 2$ follows from Inversion formula \@ref(prp:inversion-formula) immediately.
 
 :::
 
@@ -524,7 +524,7 @@ $$ \psi ( \mathop{{}\mathbb{E}} X ) \leq \mathop{{}\mathbb{E}} [ \psi ( X ) ] $$
 
 :::
 
-::: {.theorem #Markov-inequality name="Chebyshev(Markov) inequality"}
+::: {.theorem #chebyshev-inequality name="Chebyshev inequality"}
 
 If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathop{{}\mathbb{E}}(g(X))<\infty$, then $\forall a>0$
 $$
@@ -601,7 +601,7 @@ $$
 $$
 then $\implies$ is immediately as $k(b)$ can be arbitrary small.
 
-Conversely, by Markov's inequality \@ref(thm:Markov-inequality):
+Conversely, by Markov's inequality \@ref(thm:markov-inequality):
 $$
 \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{P}}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}X=\frac{k(0)}{b}
 $$
