@@ -115,7 +115,7 @@ $$
 
 :::
 
-### Convergence in $L^p$
+## Convergence in $L^p$
 
 ::: {.definition  name=""}
 

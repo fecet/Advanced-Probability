@@ -121,7 +121,7 @@ for any $A_i \in \mathcal{C_i}\cup \{\Omega\}$ respectively.
 
 ::: {.proof}
 
-$\implies$ is immediately by taking $V_i=\bm{\mathbf{1}}_{A_i}$. For $\impliedby$, clearly the equality holds for all $A_i \in \mathcal{F_i}$ respectively in view of theorem \@ref(thm:measure-agree). It follows that indicator r.v. are independent and we can extend to general $V_i$ by theorem \@ref(thm:simple-approx) and theorem \@ref(thm:MCT).
+$\implies$ is immediately by taking $V_i=\bm{\mathbf{1}}_{A_i}$. For $\impliedby$, clearly the equality holds for all $A_i \in \mathcal{F_i}$ respectively in view of theorem \@ref(thm:measure-agree). It follows that indicator $r.v.$ are independent and we can extend to general $V_i$ by theorem \@ref(thm:simple-approx) and theorem \@ref(thm:MCT).
 
 :::
 

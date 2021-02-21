@@ -250,11 +250,13 @@ Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space 
 $$
 S_n=\sum_{i=1}^{n}X_i, \overline{X}_n=\frac{S_n}{n}
 $$
+Now we are ready for the important results in classical probability theory. The statement about convergence in probability is called **weak law of large numbers** and the one about $a.s.$ convergence is called **strong law of large numbers**.
 
+We start with finite case.
 
 ::: {.theorem #finite-LLN name=""}
 
-Suppose $(X_n)$ are pairwise independent and identical distributed with finite mean $a$ and finite variation $b$. Then $(\overline{X}_n)$ converges to $a$ in $L^2$ and a.s.
+Suppose $(X_n)$ are pairwise independent and identical distributed with finite mean $a$ and finite variation $b$. Then $(\overline{X}_n)$ converges to $a$ in $L^2$(and thus in probability) and a.s.
 
 :::
 
@@ -382,58 +384,36 @@ $$
 $$
 as $X\ge 3$. Then claim follows as $s<\infty$.
 
-**Step 4**
-
-
-
-
-
-
-
-
-
+**Step 4** Similar to the proof in finite case \@ref(thm:finite-LLN), by lemma \@ref(lem:sequence-mean) where $r=e^{a}$:
+$$
+e^{-a}\mathop{{}\mathbb{E}}X\le \liminf \overline{Y}_n(\omega)\le \limsup \overline{Y}_n(\omega)\le e^{a}\mathop{{}\mathbb{E}}X
+$$
+which completes the proof by letting $a\to 0$.
 
 
 :::
 
 
-
-
-
-
-
-
 ### Weak law of large numbers
 
+In the classical LLN, we completes the proof by $\mathop{\text{Var}}S_n=\sum_{}^{}\mathop{\text{Var}}X_i$ and $\mathop{\text{Var}} \frac{S_n}{n}\to 0$. Both can be ensured by some weaker conditions.
 
 
+::: {.theorem #WLLN name=""}
+
+Suppose that $X_n$ are pairwise uncorrelated and $\sum_{}^{} \mathop{\text{Var}}\frac{X_n}{b_n}$ converges for some diverge $b_n >0$. Then $\frac{S_n-\mathop{{}\mathbb{E}}S_n}{b_n}\to 0$ in $L^2$.
+
+:::
 
 
+::: {.proof}
 
+Uncorrelatedness implies
+$$
+\mathop{{}\mathbb{E}}\left|\frac{S_n-\mathop{{}\mathbb{E}}S_n}{b_n}\right|^2=\mathop{\text{Var}}\frac{S_n}{b_n}=\frac{1}{b_n^2}\sum_{}^{} \mathop{\text{Var}}X_i
+$$
+then claim follows as lemma \@ref(lem:kronecker-lemma).
 
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+:::
 
 

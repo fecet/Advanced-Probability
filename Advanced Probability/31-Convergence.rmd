@@ -150,7 +150,7 @@ thus they are sandwiched by $c(t)-\epsilon$ and $c(T)+\epsilon$ and thus agree a
 Following relates convergence of averages and convergence.
 
 
-::: {.lemma  name=""}
+::: {.lemma #kronecker-lemma name=""}
 
 Suppose $(x_{i})_{i \in \mathbb{N}^*}\subset \mathbb{R}$ and $(a_{i})_{i \in \mathbb{N}^*} \nearrow \infty$ be strictly positive. Put $y_n=\sum_{i=1}^{n}\frac{x_i}{a_i}$. If $(y_{i})_{i \in \mathbb{N}^*}$ converges, then
 $$
@@ -284,7 +284,7 @@ Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is sequence of r.v.'s, TFAE:
     $$
 3.  For every $\epsilon>0$,
     $$
-    \mathop{{}\mathbb{P}}(\left|X_n-X\right|\ge \epsilon \text{ i.o.})=0
+    \mathop{{}\mathbb{P}}\{\left|X_n-X\right|\ge \epsilon \text{ i.o.}\}=0
     $$
 
 :::
@@ -296,15 +296,9 @@ $1 \iff 2$ follows from the equivalent statement of convergence stated at the [b
 
 $2 \iff 3$ follows from remark 1 and 3 in definition \@ref(def:io-ult).
 
-
-
 :::
 
-
-
-
 ### Cauchy criterion for convergence a.s.
-
 
 ::: {.theorem #cauchy-convergence-as name=""}
 
