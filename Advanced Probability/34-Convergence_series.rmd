@@ -322,9 +322,9 @@ It follows that $Z_i\xrightarrow{d}\mathfrak{Z}$ by theorem \@ref(thm:levy-conti
 The generalization of Liapunov's theorem is also true.
 
 
-::: {.corollary  name=""}
+::: {.corollary #general-liapunov-theorem name=""}
 
-Let $\mathop{{}\mathbb{E}}Z_i=\mu_i$ and $\mathop{\text{Var}}Z_i=\sigma_i^2$, suppose $\mu_i\to \mu$ and $\sigma_i\to \sigma \neq 0$, each $\bm{\mathbf{X}}_{ij}$ is bounded by $c_{ij}$ and $\lim_{i \to \infty}\sup _{j}c_{ij}=0$. Then, $\frac{Z_i-a}{b} \xrightarrow{d}\mathfrak{Z}$.
+Let $\mathop{{}\mathbb{E}}Z_i=\mu_i$ and $\mathop{\text{Var}}Z_i=\sigma_i^2$, suppose $\mu_i\to \mu$ and $\sigma_i\to \sigma \neq 0$, each $\bm{\mathbf{X}}_{ij}$ is bounded by $c_{ij}$ and $\lim_{i \to \infty}\sup _{j}c_{ij}=0$. Then, $\frac{Z_i-\mu}{\sigma} \xrightarrow{d}\mathfrak{Z}$.
 
 :::
 
@@ -339,35 +339,67 @@ and thus $\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \left| \bm{\mathbf{
 $$
 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \sum_{j}^{} \frac{\mathop{\text{Var}} \bm{\mathbf{X}}_{ij}}{b_i}=\epsilon_i
 $$
-where $\epsilon_i \to 0$ by assumption and thus theorem \@ref(thm:liapunov-theorem) applies to $\bm{\mathbf{Y}}_{ij}$ to show:
+where $\epsilon_i \to 0$ by assumption and thus Liapunov's theorem \@ref(thm:liapunov-theorem) applies to $\bm{\mathbf{Y}}_{ij}$ to show:
 $$
 \frac{Z_i-\mu_i}{\sigma_i}=\sum_{j}^{} \bm{\mathbf{Y}}_{ij} \xrightarrow{d} \mathfrak{Z}
 $$
 and claim follows by continuity of convergence in distribution.
 
+:::
+
+### Lindeberg's Theorem
+
+Now we relax the condition on the third moments to **Lindeberg's condition**: $\forall \epsilon>0$,
+$$
+L_i(\epsilon)=\sum_{j}^{}\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}^2 \bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon}\to 0
+$$
+Select $m(\epsilon)$ $s.t.$ $L_n(\epsilon)\le \epsilon^3$ for all $n\ge m(\epsilon)$, then, choose $\epsilon_n$ $s.t.$ $m(\epsilon_n)\le n$ for $n$ large enough, then $\epsilon_n \to 0$ as $n\to \infty$. Then
+$$
+\lim_{n \to \infty}\left( \frac{1}{\epsilon_n} \right)^2L_n(\epsilon_n)\le 
+\lim_{n \to \infty}\left( \frac{1}{\epsilon_n} \right)^2 \epsilon_n^3=\lim_{n \to \infty}\epsilon_n =0
+$$
+By similar deduction, we have $\frac{1}{\epsilon}L_i(\epsilon)\to 0$ across some $\epsilon_n$.
 
 
+
+::: {.theorem #lindberg name="Lindeberg's theorem"}
+
+WLOG, suppose $\mathop{{}\mathbb{E}}\bm{\mathbf{X}}_{ij}=0$ and $\mathop{\text{Var}}Z_i=1$ with Lindeberg's condition, then $Z_i \xrightarrow{d} \mathfrak{Z}$.
 
 :::
 
 
+::: {.proof}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+Let $\bm{\mathbf{Y}}_{ij}=\bm{\mathbf{X}}_{ij}\bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|\le \epsilon_n}$ and put $S_i=\sum_{j}^{}\bm{\mathbf{Y}}_{ij}$, then
+$$
+\mathop{{}\mathbb{P}}\{Z_i\neq S_i\}\le \sum_{j}^{}\mathop{{}\mathbb{P}}\{\bm{\mathbf{X}}_{ij} \neq \bm{\mathbf{Y}}_{ij}\}=\sum_{j}^{}\mathop{{}\mathbb{P}}\{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon_i\}\le \left( \frac{1}{\epsilon_i} \right)^2L_i(\epsilon_i) \to 0
+$$
+where the last inequality follows by noting that $\epsilon^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$. In view of proposition \@ref(prp:construction-convergence-distribution), it's sufficient to show that $S_n\xrightarrow{d}\mathfrak{Z}$. 
 
-In view of theorem \@ref(thm:distribution-quantile-convergence), then claim is that
+Denoted $\bm{\mathbf{X}}_{ij}=X$ and $\bm{\mathbf{Y}}_{ij}=Y$ for short. Since $\mathop{{}\mathbb{E}}X=0$, $\mathop{{}\mathbb{E}}Y=\mathop{{}\mathbb{E}}(Y-X)=-\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$ and thus
 $$
-\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\frac{S_n-n\mu}{\sqrt{n\sigma^2}}\le x\}=\int_{-\infty}^{x} \frac{e^{-\frac{y^2}{2}}}{\sqrt{2\pi}}dy
+\left|\mathop{{}\mathbb{E}}Y\right|\le \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le \frac{1}{\epsilon}\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
 $$
+It follows that
+$$
+\begin{aligned}
+    \mathop{\text{Var}}Y &= \mathop{{}\mathbb{E}}Y^2-(\mathop{{}\mathbb{E}}Y)^2
+    \\& \ge 
+    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\left( \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|> \epsilon}\right)^2
+    \\& \ge 
+    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \\ &= 
+    \mathop{{}\mathbb{E}}X^2-2\mathop{{}\mathbb{E}}X^2\bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \end{aligned}
+$$
+and note $\mathop{\text{Var}}X=\mathop{{}\mathbb{E}}X^2 \ge \mathop{{}\mathbb{E}}Y^2 \ge \mathop{\text{Var}}Y$. Summing them over $j$, we have
+$$
+\begin{aligned}
+    \left|\mathop{{}\mathbb{E}}S_i\right|&\le \sum_{j}^{} \left|\mathop{{}\mathbb{E}}Y_{ij}\right|\le \frac{1}{\epsilon}L_i(\epsilon), 1-2L_i(\epsilon)\le \mathop{\text{Var}}S_i\le 1
+\end{aligned}
+$$
+thus $\mathop{{}\mathbb{E}}S_n\to 0$ and $\mathop{\text{Var}}S_n\to 1$ and claim follows from corollary \@ref(cor:general-liapunov-theorem).
+
+:::
+

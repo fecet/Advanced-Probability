@@ -104,7 +104,7 @@ by DCT \@ref(thm:DCT). That is, $(\mu_n)$ converges to $\mu$ weakly.
 ### Almost sure representations of weak convergence
 
 
-::: {.theorem #convergence-weakly-as name=""}
+::: {.theorem #as-representation-weak name=""}
 
 The sequence $(\mu_n)$ converges weakly to $\mu$ iff there exist corresponding r.v.'s $(Y_n),Y$ on some probability space $(\Omega',\mathcal{F'},\mathop{{}\mathbb{P}}')$ and $Y_n \to Y$ a.s. on $\mathop{{}\mathbb{P}}'$.
 
@@ -131,14 +131,54 @@ Suppose $X_n \xrightarrow{d} X$, TFAE:
 
 :::
 
+If $X_n \xrightarrow{d} X$ and $\mathop{{}\mathbb{P}}\{X_n \neq Y_n\}\to 0$, then $Y_n \xrightarrow{X}$ in distribution.
+
 
 ::: {.proof}
 
-By theorem \@ref(thm:convergence-weakly-as), this is immediate from theorem \@ref(thm:var-convergence-cauchy-uniform).
+By theorem \@ref(thm:as-representation-weak), this is immediate from theorem \@ref(thm:var-convergence-cauchy-uniform).
 
 :::
 
 Note absence here of one statement in theorem \@ref(thm:var-convergence-cauchy-uniform). This is because $L^{1}$ convergence concern the joint distribution to determine $X_i-X$.
+
+### Construction of convergence in distribution
+
+
+::: {.proposition #construction-convergence-distribution name=""}
+
+Suppose $X_n \xrightarrow{d} X$, $Y_n \xrightarrow{d} Y$ and they are independent, $a,b \in \mathbb{R}$:
+
+1. $\mathop{{}\mathbb{E}}\left|X\right|\le \liminf \mathop{{}\mathbb{E}}\left|X_n\right|$.
+2. $X_n+Y_n \xrightarrow{d} X+Y$.
+3. $a+bX_n \xrightarrow{d} a+bX$.
+4. Suppose $Y$ is degenerate to $y$, then $X_nY_n\xrightarrow{d}Xy$ and $X_n+Y_n \xrightarrow{d} X_n+y$.
+5. Suppose $\mathop{{}\mathbb{P}}\{X_n \neq Y_n\}\to  0$, then $Y_n \xrightarrow{d}X$.
+
+:::
+
+
+::: {.proof}
+
+1.  By theorem \@ref(thm:as-representation-weak), consider $U_n \xrightarrow{a.s.}U$ share the same distribution with $X_n$ and $X$ and thus share the same expansion, the claim follows by Fatou's lemma \@ref(lem:fatou).
+
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+
+5.  Let $c_n,c,c_n'$ by $d.f.$ corresponding to $X_n,X,Y_n$, note that
+    $$
+    c_n(x)=\mathop{{}\mathbb{P}}\{X_n\le x\}\le \mathop{{}\mathbb{P}}\{X_n \neq Y_n\}+\mathop{{}\mathbb{P}}\{Y_n \le x\}\le \mathop{{}\mathbb{P}}\{X_n \neq Y_n\}+c_n'(x)
+    $$
+    similarly results holds for $c_n'(x)$, thus
+    $$
+    c_n(x)-\mathop{{}\mathbb{P}}\{X_n\neq Y_n\}\le c_n'(x)\le c_n(x)+\mathop{{}\mathbb{P}}\{X_n\neq Y_n\}
+    $$
+    Then claim follows by assumption and $c_n\to c$.
+
+:::
+
+
 
 ### Tightness and Prohorov's theorem
 
