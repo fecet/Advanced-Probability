@@ -1,0 +1,459 @@
+## Weak Convergence
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a sequence of real-valued r.v.'s with corresponding distribution $(\mu_{i})_{i \in \mathbb{N}^*}$, quantile $(q_{i})_{i \in \mathbb{N}^*}$ and d.f. $(c_{i})_{i \in \mathbb{N}^*}$. See [distribution and quantile et seq.][Quantile functions].
+
+::: {.definition  name=""}
+
+Sequence $(\mu_{i})_{i \in \mathbb{N}^*}$ is said to be converge weakly to $\mu$ iff for any $f\in \mathbb{C}_b$
+$$
+\lim_{n \to \infty} \int f d\mu_n=\int f d\mu
+$$
+Sequence $(X_n)$ is said to converge in **distribution** to $X$ if $\mu_n \to \mu$ weakly, that is
+$$
+\mathop{{}\mathbb{E}} f(X_n) \to \mathop{{}\mathbb{E}} f(X)
+$$ 
+for every $f\in \mathbb{C}_b$ and denoted as $X_n\xrightarrow{d}X$
+
+:::
+
+
+::: {.remark}
+
+$\xrightarrow{p}\implies \xrightarrow{d}$ as every subsequence has a further subsequence converges to $X$ a.s. by theorem \@ref(thm:convergence-probability), then $\mathop{{}\mathbb{E}}f\circ X_n\to \mathop{{}\mathbb{E}}f \circ X$ along this further subsequence, it follows that $\mathop{{}\mathbb{E}} f \circ X_n \to  \mathop{{}\mathbb{E}}f \circ X$ by proposition \@ref(prp:further-subsequence).
+
+When $X$ is degenerate, i.e., $X=x_0$ a.s., then $\xrightarrow{d}\implies \xrightarrow{p}$ by taking $f(x)=\left|x-x_0\right|\wedge 1$ and applying proposition \@ref(prp:convergence-probability-metric).
+
+:::
+
+
+### Characterization theorem
+
+
+::: {.theorem #characterization-convergence-weakly name=""}
+
+Suppose $A$ is borel set in $\mathbb{R}$, TFAE:
+
+1. $\mu_n\to \mu$ weakly.
+2. $\limsup \mu_n(A)\le \mu(A)$ for every $A$ is closed.
+3. $\liminf \mu_n(A)\ge \mu(A)$ for every $A$ is open.
+4. $\mu_n(A)\to \mu(A)$ for every $A$ with $\mu(\partial A)=0$
+
+:::
+
+::: {.proof}
+
+$1\implies 2$. Suppose $A$ is closed, let $A_{\epsilon}=\{x:d(x,A)<\epsilon\}$. Then $A_{\epsilon} \to \overline{A}=A$ as $\epsilon \to 0$ and thus $\mu (A_{\epsilon}) \searrow \mu(A)$ as $\epsilon \searrow 0$. For any $\epsilon$, define $f(x)=(1-\frac{d(x,A)}{\epsilon}) \vee 0$, clearly $f\in \mathbb{C}_b$ and $\bm{\mathbf{1}}_{A}\le f \le \bm{\mathbf{1}}_{A_{\epsilon}}$. Hence
+$$
+\mu_n(A) \le \mu_nf \to \mu f \le \mu(A_{\epsilon}) \searrow \mu(A)
+$$
+It follows that $\limsup \mu_n(A) \le \mu(A)$.
+
+$2 \iff 3$. Suppose $A$ is open, then we have
+$$
+\liminf \mu_n(A)=\liminf (1-\mu_n(A^c))=1-\limsup \mu_n(A^c) \ge 1-\mu(A^c)=\mu(A)
+$$
+similarly, we can show that $3\implies 2$.
+
+$3\implies 4$, By $3$ and $2$, we have
+$$
+\mu(\overline{A}) \ge \limsup \mu_n(\overline{A}) \ge \limsup \mu_n(A) \ge \liminf \mu_n(A) \ge \liminf \mu_n(A^{\circ}) \ge \mu(A^{\circ})
+$$
+note $\mu(\partial A)=0 \iff \mu(\overline{A})=\mu(A^{\circ})$, thus the inequalities becomes equalities and thus $\lim_{n \to \infty}\mu_n(A)=\mu(A)$
+
+$4\implies 1$. Note borel indicator can approximate any $f\in \mathbb{C}_b$.
+
+:::
+
+As borel is $\pi$ system, weak limits is unique
+
+### Convergence of quantiles and distribution functions
+
+
+::: {.theorem #distribution-quantile-convergence name=""}
+
+TFAE:
+
+1.  $\mu_n \to \mu$ weakly.
+2.  $c_n(x)\to c(x)$ for every continuity point $x$ of $c$.
+3.  $q_n(u)\to q(u)$ for every continuity point $u$ of $q$.
+
+:::
+
+
+::: {.proof}
+
+$1 \implies 2$. Let $x$ be a continuity point of $c$, then $\mu \{x\}=\mathop{{}\mathbb{P}}\{X=x\}=0$. Note $\partial (-\infty,x]=\{x\}$, it follows that
+$$
+c_n(x)=\mu_n(-\infty,x] \to \mu(-\infty,x]=c(x)
+$$
+
+$2\implies 3$. Let $u$ be continuity point of $q$ and $x=q(u)$, for any $\epsilon$, pick $y\in (x-\epsilon,x)$ and $z$ in $(x,x+\epsilon)$ such that they are continuity points for $c$, we can do so as discontinuity points are countable. As $q$ is continues at $u$, $c$ is not flat at level $u$ and thus $c(y)<u<c(z)$. As $c_n(y)\to c(y)$, we have
+$$
+c_n(y)<u\implies q_n(u)>y>x-\epsilon
+$$
+for tail $n$ and thus $\liminf q_n(u)>x-\epsilon$. Similarly, we have $\lim_{n \to \infty}q_n(u)<x+\epsilon$. Since $\epsilon$ can be arbitrary small, we have $q_n(u)\to x=q(u)$.
+
+$3\implies 1$. Note discontinuities are at most countable and thus $q_n\to q$ a.s., it follows that for $f\in \mathbb{C}_b$, $f\circ q_n \to f\circ q$ a.s. and hence
+$$
+\mu_n f=\lambda(f\circ q_n)\to \lambda(f \circ q)=\mu f
+$$
+by DCT \@ref(thm:DCT). That is, $(\mu_n)$ converges to $\mu$ weakly. 
+
+:::
+
+### Almost sure representations of weak convergence
+
+
+::: {.theorem #as-representation-weak name=""}
+
+The sequence $(\mu_n)$ converges weakly to $\mu$ iff there exist corresponding r.v.'s $(Y_n),Y$ on some probability space $(\Omega',\mathcal{F'},\mathop{{}\mathbb{P}}')$ and $Y_n \to Y$ a.s. on $\mathop{{}\mathbb{P}}'$.
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$ is obvious as $\xrightarrow{a.s.}\implies \xrightarrow{d}$.
+
+$\implies$. Let $q_n=Y_n$, the distribution of $Y_n$ is $\mathop{{}\mathbb{P}}'\circ q_n ^{-1}=\lambda \circ q_n ^{-1} = \mu_n$ as desired and live in probability space $((0,1),\mathcal{B},\lambda)$. By theorem \@ref(thm:distribution-quantile-convergence), $Y_n \to Y$. a.s.
+
+:::
+
+This theorem is quite useful in the case of only the distribution are matter.
+
+
+::: {.proposition  name=""}
+
+Suppose $X_n \xrightarrow{d} X$, TFAE:
+
+1. $(X_n)$ is uniformly integrable.
+2. $(X_n)\cup \{X\}\in L^{1}$ and $\mathop{{}\mathbb{E}}\left|X_n\right|\to \mathop{{}\mathbb{E}}\left|X\right|$.
+
+:::
+
+If $X_n \xrightarrow{d} X$ and $\mathop{{}\mathbb{P}}\{X_n \neq Y_n\}\to 0$, then $Y_n \xrightarrow{X}$ in distribution.
+
+
+::: {.proof}
+
+By theorem \@ref(thm:as-representation-weak), this is immediate from theorem \@ref(thm:var-convergence-cauchy-uniform).
+
+:::
+
+Note absence here of one statement in theorem \@ref(thm:var-convergence-cauchy-uniform). This is because $L^{1}$ convergence concern the joint distribution to determine $X_i-X$.
+
+### Construction of convergence in distribution
+
+
+::: {.proposition #construction-convergence-distribution name=""}
+
+Suppose $X_n \xrightarrow{d} X$, $Y_n \xrightarrow{d} Y$ and they are independent, $a,b \in \mathbb{R}$:
+
+1. $\mathop{{}\mathbb{E}}\left|X\right|\le \liminf \mathop{{}\mathbb{E}}\left|X_n\right|$.
+2. $X_n+Y_n \xrightarrow{d} X+Y$.
+3. $a+bX_n \xrightarrow{d} a+bX$.
+4. Suppose $Y$ is degenerate to $y$, then $X_nY_n\xrightarrow{d}Xy$ and $X_n+Y_n \xrightarrow{d} X_n+y$.
+5. Suppose $\mathop{{}\mathbb{P}}\{X_n \neq Y_n\}\to  0$, then $Y_n \xrightarrow{d}X$.
+
+:::
+
+
+::: {.proof}
+
+1.  By theorem \@ref(thm:as-representation-weak), consider $U_n \xrightarrow{a.s.}U$ share the same distribution with $X_n$ and $X$ and thus share the same expansion, the claim follows by Fatou's lemma \@ref(lem:fatou).
+
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+2.  Follows from [Continuous mapping theorem](https://en.wikipedia.org/wiki/Continuous_mapping_theorem).
+
+5.  Let $c_n,c,c_n'$ by $d.f.$ corresponding to $X_n,X,Y_n$, note that
+    $$
+    c_n(x)=\mathop{{}\mathbb{P}}\{X_n\le x\}\le \mathop{{}\mathbb{P}}\{X_n \neq Y_n\}+\mathop{{}\mathbb{P}}\{Y_n \le x\}\le \mathop{{}\mathbb{P}}\{X_n \neq Y_n\}+c_n'(x)
+    $$
+    similarly results holds for $c_n'(x)$, thus
+    $$
+    c_n(x)-\mathop{{}\mathbb{P}}\{X_n\neq Y_n\}\le c_n'(x)\le c_n(x)+\mathop{{}\mathbb{P}}\{X_n\neq Y_n\}
+    $$
+    Then claim follows by assumption and $c_n\to c$.
+
+:::
+
+
+
+### Tightness and Prohorov's theorem
+
+
+::: {.definition  name=""}
+
+Sequence $(\mu_{i})_{i \in \mathbb{N}^*}$ is said to be **tight** if for every $\epsilon>0$, there is a compact $K$ such that $1-\mu_n(K)=\mu_n(K^c)<\epsilon$ for all $n$.
+
+:::
+
+
+::: {.theorem #tight-further-subsequence name="Prohorov's theorem"}
+
+If $\mu_n$ is tight then every subsequence has a further subsequence converges weakly.
+
+:::
+
+
+::: {.proof}
+
+By Helly's theorem \@ref(thm:helly), for each subsequence $N\subset \mathbb{N}$, there is a further subsequence converges to some d.f. $c$ pointwise on the continuity set of $c$. In view of theorem \@ref(thm:distribution-quantile-convergence), it's sufficient to show that the corresponding $\mu$ of $c$ is a probability measure, i.e., $c(\infty)=1$ and $c(-\infty)=0$. For any $\epsilon$, as $(\mu_n)$ is tight, there is a compact $[a,b]$ interval such that $\mu_n[a,b] > 1-\epsilon$. Select continuity $x$ of $c$ from $(-\infty,a)$ and $y$ from $(b,\infty)$. Then
+$$
+\begin{aligned}
+    c_n(x)&=\mu_n(-\infty,x)\le \mu_n(-\infty,a)\le \mu_n[a,b]^c < \epsilon
+    \\
+    c_n(y) &= \mu_n(-\infty,y) \ge \mu_n[a,b] > 1=\epsilon
+\end{aligned}
+$$
+That implies $c(-\infty)\le c(x)<\epsilon$ and $c(\infty) \ge c(y) > 1-\epsilon$ and the claim follows.
+
+:::
+
+
+::: {.remark}
+
+
+That implies $\mu_n \to \mu$ weakly in view of proposition \@ref(prp:further-subsequence) if every further subsequence converges to the same $\mu$.
+
+:::
+
+
+
+### Convergence of ch.f. 
+
+Let $\varphi_{n}$ be corresponding ch.f. of $\mu_n$, i.e. $\varphi_n(r)=\mathop{{}\mathbb{E}}e^{irx}$, the next theorem connects the convergence of $(\mu_n)$ and $(\varphi_n)$.
+
+::: {.theorem #levy-continuity name="Levy's continuity theorem"}
+
+The sequence $(\mu_n)$ is weakly converges to a distribution $\mu$ iff $\lim_{n \to \infty}\varphi_n(r)\to \varphi(r)$ for every $r\in \mathbb{R}$ and $\varphi$ is continuous at $0$. Moreover, $\varphi$ is precisely ch.f. of $\mu$.
+
+:::
+
+::: {.proof}
+
+$\implies$ is immediate from $\cos(rx)$ and $\sin(rx)$ are both continuous and bounded and hence
+$$
+\varphi_n(r)=\mu_n\cos(rx)+i\mu_n \sin(rx) \to \mu \cos(rx)+i\mu \sin(rx) = \varphi(r)
+$$
+and the continuity of $0$ follows from uniformly continuity of $\varphi$.
+
+$\impliedby$. Let $\mu$ be corresponding distribution of $\varphi$, for any $\epsilon>0$, note
+$$
+\begin{aligned}
+    \frac{1}{2 \epsilon} \int_{(-\epsilon,\epsilon)} \varphi(t) dt&=
+    \frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\int e^{itx}d\mu dt
+    \\ &= 
+    \frac{1}{2 \epsilon} \int \int_{(-\epsilon,\epsilon)} e^{itx}dt d\mu
+    \\ &= 
+    \frac{1}{2 \epsilon}\int \int _{(-\epsilon,\epsilon)} \cos tx dt d\mu
+    \\ &= 
+    \int \frac{\sin \epsilon x}{\epsilon x} d\mu=\mu(\frac{\sin \epsilon x}{\epsilon x})
+\end{aligned}
+$$
+Then we show that $(\mu_n)$ is tight, for any $M>0$,
+$$
+\begin{aligned}
+    \left|\frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\varphi_n(t) dt\right|&\le
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right| 
+    \\&=
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]}+
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \\&\le 
+    \mu_n \bm{\mathbf{1}}_{[-M,M]}+
+    \mu_n \left|\frac{1}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \\&\le \mu_n[-M,M]+\frac{1}{\epsilon M}\mu_n([-M,M]^c)
+    \\&\le 
+    \mu_n[-M,M]+\frac{1}{\epsilon M}
+\end{aligned}
+$$
+Let $n \to \infty$, by DCT \@ref(thm:DCT) we have
+$$
+\inf \mu_n[-M,M]+\frac{1}{\epsilon M} \ge \frac{1}{2 \epsilon}\int _{(-\epsilon,\epsilon)} d\varphi 
+$$
+Since $\varphi$ is continuous at $0$, in view of [Mean Value Theorem](https://en.wikipedia.org/wiki/Mean_value_theorem#Mean_value_theorems_for_definite_integrals), for any $\epsilon>0$, we can find $\delta$ such that 
+$$
+\frac{1}{2 \delta}\int _{(-\delta,\delta)}d\varphi> \varphi(0)-\epsilon=1-\epsilon
+$$
+and we can find $M$ such that $\frac{1}{\delta M}<\epsilon$ clearly, thus
+$$
+\inf \mu_n[-M,M] \ge 1-2\epsilon
+$$
+and thus $(\mu_n)$ is tight. Then claim follows as remark in theorem \@ref(thm:tight-further-subsequence).
+
+:::
+
+## Laws of Large Numbers
+
+Throughout, $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a probability space and $(X_{i})_{i \in \mathbb{N}^*}$ is a sequence of real-valued r.v.'s, and for $n \ge 1$, define
+$$
+S_n=\sum_{i=1}^{n}X_i, \overline{X}_n=\frac{S_n}{n}
+$$
+Now we are ready for the important results in classical probability theory. The statement about convergence in probability is called **weak law of large numbers** and the one about $a.s.$ convergence is called **strong law of large numbers**.
+
+We start with finite case.
+
+::: {.theorem #finite-LLN name=""}
+
+Suppose $(X_n)$ are pairwise independent and identical distributed with finite mean $a$ and finite variation $b$. Then $(\overline{X}_n)$ converges to $a$ in $L^2$(and thus in probability) and a.s.
+
+:::
+
+
+::: {.proof}
+
+The $L^2$ convergence follows by noting
+$$
+\mathop{{}\mathbb{E}}\left|\overline{X}_n-a\right|^2=\mathop{\text{Var}} \overline{X}_n=\frac{b}{n} \to 0
+$$
+
+For the $a.s.$ convergence, WLOG, we may assume $X_n\ge 0$ for all $n$. Let $N=(n_i)$ be subsequence of $\mathbb{N}$ by $n_i=i^2$, by Chebyshev's inequality \@ref(thm:chebyshev-inequality).
+$$
+\begin{aligned}
+   \epsilon^2 \sum_{n \in N}^{} \mathop{{}\mathbb{P}}\{\left|\overline{X}_n-a\right|>\epsilon\}\le \sum_{n \in N}^{} \mathop{{}\mathbb{E}}\left|\overline{X}_n-a\right|^2=\sum_{n \in N}^{} \frac{b}{n}=b \sum_{i \in \mathbb{N}^*}^{}\frac{1}{i^2} < \infty
+\end{aligned}
+$$
+Thus $\overline{X}_n \to a$ $a.s.$ along $N$ by proposition \@ref(prp:convergence-as). Let $\Omega_0$ be the set witness the $a.s.$ convergence, for $\omega \in \Omega_0$, by lemma \@ref(lem:sequence-mean) where $r=1$, we have:
+$$
+a \le \liminf \overline{X}_n(\omega)\le \limsup \overline{X}_n(\omega) \le a
+$$
+The inequalities should be equalities, which completes the proof.
+
+:::
+
+### Strong law of large numbers
+
+In the preceding lemma we assume $(X_n)$ have finite variation and variation, now we remove them.
+
+
+::: {.proposition  name=""}
+
+Suppose $X_n\ge 0$ are pairwise independent and identically distributed with $\mathop{{}\mathbb{E}} X_i=\infty$, then $\overline{X}_n \to \infty$ $a.s.$
+
+:::
+
+
+::: {.proof}
+
+Fix $b \ge 0$ and let $Y_n=X_n \wedge b$, then theorem \@ref(thm:finite-LLN) applies to $(Y_n)$ and $\overline{Y}_n\to \mathop{{}\mathbb{E}}(X \wedge b)$ $a.s.$ Since $X_n \ge Y_n$ for all $n$,
+$$
+\liminf \overline{X}_{n} \ge \lim_{n \to \infty} \overline{Y}_n=\mathop{{}\mathbb{E}}(X \wedge b)
+$$
+holds $a.s.$ Then claim follows as $\lim_{b \to \infty} \mathop{{}\mathbb{E}}(X \wedge b)=\mathop{{}\mathbb{E}}X=\infty$ by MCT \@ref(thm:MCT).
+
+:::
+
+Now we are ready to give Etemadi's proof:
+
+
+::: {.theorem #SLLN name="Strong law of large numbers"}
+
+Suppose $X_n$ are pairwise independent and identical distributed with $X$, then $\overline{X}_n\to \mathop{{}\mathbb{E}}X$ $a.s.$ if $\mathop{{}\mathbb{E}}X$ exist.
+
+:::
+
+
+::: {.proof}
+
+WLOG, assume $X_n\ge 3$(We can do so by replacing $X_n \leftarrow X_n+3$) and preceding proof guarantee we can assume $3 \le X_n<\infty$ as $\mathop{{}\mathbb{E}}X<\infty$.
+
+**Step 1** Let
+$$
+Y_n=X_n \bm{\mathbf{1}}_{X_n<n},T_n=\sum_{i=1}^{n}Y_i,\overline{Y}_n=\frac{T_n}{n}
+$$
+Clearly, $Y_n$ is bounded and do not differ from $X_n$ much since
+$$
+\sum_{n}^{} \mathop{{}\mathbb{P}}\{X_n \neq Y_n\}=\sum_{n}^{}\mathop{{}\mathbb{P}}\{X_n \ge n\}=\sum_{n}^{}\mathop{{}\mathbb{P}}\{X \ge n\} \le \int_{0}^{\infty} \mathop{{}\mathbb{P}}\{X \ge t\}dt =\mathop{{}\mathbb{E}}X<\infty
+$$
+which implies, through Borel-Cantelli lemma \@ref(lem:borel-cantelli), $X_n=Y_n$ $a.s.$ for all but finitely many $n$, therefore it's sufficient to show that $\overline{Y}_n\to \mathop{{}\mathbb{E}}X$ $a.s.$
+
+**Step 2** $(Y_n)$ remain pairwise independent and hence:
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}T_n&=\sum_{i=1}^{n}\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{X<i}=\mathop{{}\mathbb{E}}X \sum_{i>X}^{} \delta_i[1,n]
+    \\
+    \mathop{\text{Var}}T_n&=\sum_{i=1}^{n}\mathop{\text{Var}} Y_i\le \sum_{i=1}^{n}\mathop{{}\mathbb{E}}Y_i^2=\mathop{{}\mathbb{E}} X^2 \sum_{i>X}^{} \delta_i[1,n]
+\end{aligned}
+$$
+where $\delta_i$ is Dirac sitting at $i$ as usual. Let $Z_n=\sum_{i>X}^{} \delta_i[1,n]$, note that it's the number of integers in $(X,n]$, $(\frac{XZ_n}{n})$ is dominated by $X$ and converges to $X$, by DCT \@ref(thm:DCT), we have
+$$
+\mathop{{}\mathbb{E}} \overline{Y}_n=\mathop{{}\mathbb{E}} \frac{XZ_n}{n}\to \mathop{{}\mathbb{E}}X
+$$
+
+**Step 3** Then we find a subsequence $N\subset \mathbb{N}^*$ for which $\overline{Y_n}\to \mathop{{}\mathbb{E}}X$ $a.s.$ across it and it's equivalent to $\overline{Y}_n-\mathop{{}\mathbb{E}}\overline{Y}_n \to 0$ $a.s.$ across $N$.
+
+Let $N=(n_i)\subset \mathbb{N}^*$ where $n_i=\left\lceil e^{ai} \right\rceil$ for some fixed $a$. In view of proposition \@ref(prp:convergence-as), it's sufficient to show that $\forall \epsilon>0$
+$$
+s=\sum_{n \in N}^{}\mathop{{}\mathbb{P}}\{\left|\overline{Y}_n-\mathop{{}\mathbb{E}}\overline{Y}_n\right|>\epsilon\}<\infty
+$$
+by Chebyshev's inequality:
+$$
+\begin{aligned}
+    \epsilon^2s&\le \sum_{n \in N}^{} \mathop{\text{Var}}\overline{Y}_n=\sum_{n \in N}^{}\frac{1}{n^2}\mathop{{}\mathbb{E}}X^2Z_n
+    \\ &= 
+    \mathop{{}\mathbb{E}}X^2\sum_{n \in N}^{}\frac{1}{n^2}Z_n=
+    \mathop{{}\mathbb{E}}X^2\sum_{i>X}^{}\sum_{n \in N}^{} \frac{1}{n^2} \delta_i[1,n]
+    \\ & \le 
+    \mathop{{}\mathbb{E}}X^2\sum_{i>X}^{}\sum_{\{n \in N:n \ge i\}}^{} \frac{1}{n^2}
+    \\ &= 
+    \mathop{{}\mathbb{E}}X^2\sum_{i>X}^{}\sum_{k\ge m_i}^{} \frac{1}{n_k^2}
+\end{aligned}
+$$
+where $m_i=\inf_{\mathbb{N}}\{j:n_j \ge i\}$, note
+$$
+e^{am_i}+1> n_{m_i} \ge i\implies e^{am_i}>i-1
+$$
+thus
+$$
+\begin{aligned}
+    \sum_{k\ge m_i}^{} \frac{1}{n_k^2}&\le \sum_{k\ge m_i}^{} \exp -2ak=\sum_{j=1}^{\infty}\exp -2a(j+m_i)
+    \\&=(\sum_{j=1}^{\infty}\exp -2aj)\exp-2am_i
+    \\ &= 
+    c\exp-2am_i \le 
+    c \frac{1}{(i-1)^2}
+\end{aligned}
+$$
+Where we denoted $c=\frac{1}{e^{2a}-1}<\infty$. Then
+$$
+\sum_{i>X}^{} \frac{1}{(i-1)^2}\le \int_{X-2}^{\infty}\frac{1}{x^2}dx=\frac{1}{X-2}
+$$
+Thus
+$$
+\epsilon^2 s \le c \mathop{{}\mathbb{E}}\frac{X^2}{X-2}\le c \mathop{{}\mathbb{E}}(X+6)<\infty
+$$
+as $X\ge 3$. Then claim follows as $s<\infty$.
+
+**Step 4** Similar to the proof in finite case \@ref(thm:finite-LLN), by lemma \@ref(lem:sequence-mean) where $r=e^{a}$:
+$$
+e^{-a}\mathop{{}\mathbb{E}}X\le \liminf \overline{Y}_n(\omega)\le \limsup \overline{Y}_n(\omega)\le e^{a}\mathop{{}\mathbb{E}}X
+$$
+which completes the proof by letting $a\to 0$.
+
+
+:::
+
+
+### Weak law of large numbers
+
+In the classical LLN, we completes the proof by $\mathop{\text{Var}}S_n=\sum_{}^{}\mathop{\text{Var}}X_i$ and $\mathop{\text{Var}} \frac{S_n}{n}\to 0$. Both can be ensured by some weaker conditions.
+
+
+::: {.theorem #WLLN name=""}
+
+Suppose that $X_n$ are pairwise uncorrelated and $\sum_{}^{} \mathop{\text{Var}}\frac{X_n}{b_n}$ converges for some diverge $b_n >0$. Then $\frac{S_n-\mathop{{}\mathbb{E}}S_n}{b_n}\to 0$ in $L^2$.
+
+:::
+
+
+::: {.proof}
+
+Uncorrelatedness implies
+$$
+\mathop{{}\mathbb{E}}\left|\frac{S_n-\mathop{{}\mathbb{E}}S_n}{b_n}\right|^2=\mathop{\text{Var}}\frac{S_n}{b_n}=\frac{1}{b_n^2}\sum_{}^{} \mathop{\text{Var}}X_i
+$$
+then claim follows as lemma \@ref(lem:kronecker-lemma).
+
+:::
+
+

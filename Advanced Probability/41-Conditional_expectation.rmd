@@ -1,0 +1,19 @@
+# Conditioning
+
+## Conditional Expectations
+
+Throughout, $X$ is an $\overline{\mathbb{R}}$-valued $r.v.$ in $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$. Let $\mathcal{F}$ be sub-$\sigma$-algebra, and we regard it as a body of information. And the conditional expectation $\mathop{{}\mathbb{E}}_{\mathcal{F}}X=\mathop{{}\mathbb{E}}(X|\mathcal{F})=\overline{X}$ is the "best" estimate of $X(\omega)$ given $\mathcal{F}$. Where the meaning of "best" comes from the usual MSE metric, $\mathop{{}\mathbb{E}}(X-\overline{X})^2$, which justified when $X$ is square integrable.
+
+### Preparatory steps
+
+Recall that $\mathcal{A}$ is the collection of all $\overline{\mathbb{R}}$-valued $r.v.'s$, similarly, $\mathcal{F}$ is the collection of all $\mathcal{F}$ measurable $r.v.'s$ taking value in $\overline{\mathbb{R}}$. WLOG, we assume $X \in \mathcal{A}_+$ for simplifying discussion.
+
+Let $A$ be an event containing $\omega$, all we know about $\omega$ is it's in $A$. Based on this information, our best estimate should be simply the average over $A$:
+$$
+\mathop{{}\mathbb{E}}_H X=\frac{1}{\mathop{{}\mathbb{P}}H} \int _{H}Xd\mathop{{}\mathbb{P}}=\frac{\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{H}}{\mathop{{}\mathbb{P}}H}
+$$
+where we assume $\mathop{{}\mathbb{P}}H>0$. Such definition is agree with $\mathop{{}\mathbb{E}}X$ when $A=\Omega$. The number $\mathop{{}\mathbb{E}}_H X$ is called **conditional expectation** of $X$ **given the event** $A$.
+
+
+
+

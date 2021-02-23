@@ -129,7 +129,7 @@ $$ \int h=\lim \int h_k= \sum_1^\infty \int f_n$$
 
 ### Criteria for zero a.e.
 
-::: {.lemma #markov-inequality  name="Markov inequality"}
+::: {.theorem #markov-inequality  name="Markov inequality"}
 Let $A=\{x\in \Omega: f(x)\ge M\}$, then 
 $$
 \mu(A)\le \frac{\int f}{M} 
@@ -152,7 +152,7 @@ Suppose $f$ is measurable and non-negative and $\int fd\mu=0$. Then $f=0$ a.e.
 
 ::: {.proof}
 
-By lemma \@ref(lem:markov-inequality) and define $A_M=\{x\in \Omega:f(x)\ge M\}$. Consequently, $\mu(A_M)=0$ for all $M > 0$, note $A_{\frac{1}{n}}\nearrow A_0$:
+By lemma \@ref(thm:markov-inequality) and define $A_M=\{x\in \Omega:f(x)\ge M\}$. Consequently, $\mu(A_M)=0$ for all $M > 0$, note $A_{\frac{1}{n}}\nearrow A_0$:
 
 $$ A_0=\bigcup_1^\infty A_{\frac{1}{n}}\implies \mu(A_0)=\sum 0=0 $$
 

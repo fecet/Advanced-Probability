@@ -1,0 +1,405 @@
+## Convergence of Series
+
+Now we focus on the $a.s.$ convergence of series $S_n=\sum_{i\le n}^{}X_i$. All the results rests on independence of $(X_n)$, thus we can use Kolmogorov's 0-1 law and thus the convergence of the series has probability $0$ or $1$.
+
+### Inequalities for maxima
+
+Suppose $\mathop{{}\mathbb{E}}X_i=0$ for each of $(X_n)$, then Chebyshev's inequality \@ref(thm:chebyshev-inequality) yields:
+$$
+\epsilon^2 \mathop{{}\mathbb{P}}\{\left|S_n\right|>\epsilon\}\le \mathop{\text{Var}}S_n=\mathop{{}\mathbb{E}}S_n^2
+$$
+We can improve it when $X_n$ are independent:
+
+
+::: {.theorem #kolmogorov-inequality name="Kolmogorov's inequality"}
+
+Suppose that $X_n$ are independent and have mean $0$, then $\forall \epsilon\in (0,\infty)$,
+$$
+\epsilon^2\mathop{{}\mathbb{P}}\{\max_{k\le n}\left|S_k\right|>\epsilon\}\le \mathop{\text{Var}}S_n
+$$
+
+:::
+
+::: {.proof}
+
+Fix $\epsilon>0$ and $n \ge 1$, define $N(\omega)=\inf \{k \ge 1:\left|S_k(\omega)\right|>\epsilon\}$, one can check that it's a $r.v.$ by noting that $\bm{\mathbf{1}}_{N=k}$ is a function of $(X_{i})_{1\le i\le k}$. Consequently, for $k<n$, $U=S_k \bm{\mathbf{1}}_{N=k}$ and $V=S_n-S_k$ are functions of independent $(X_i)_1^{k}$ and $(X_i)_{k+1}^{n}$. And thus $\mathop{{}\mathbb{E}}UV=\mathop{{}\mathbb{E}}U\mathop{{}\mathbb{E}}V=0$ as $\mathop{{}\mathbb{E}}V=0 \impliedby \mathop{{}\mathbb{E}}X_i=0$. Hence, for $k\le n$:
+$$
+\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}=0
+$$
+Note $S_n^2\ge S_k^2+2S_k(S_n-S_k)$ and $\left|S_k\right|^2>\epsilon^2$ on the event $\{N=k\}$. Thus
+$$
+\mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N=k} \ge \epsilon^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}=\epsilon^2\mathop{{}\mathbb{P}}\{N=k\}
+$$
+Summing both sides:
+$$
+\epsilon^2\mathop{{}\mathbb{P}}\{N\le n\}\le \mathop{{}\mathbb{E}}S_n^2\bm{\mathbf{1}}_{N\le n}\le \mathop{{}\mathbb{E}}S_n^2=\mathop{\text{Var}}S_n
+$$
+Then claim follows from $\{N\le n\}=\{\max_{k\le n}\left|S_k\right|>a\}$.
+
+
+:::
+
+The assumption of independence for the $(X_n)$ will be relaxed later by martingaling. For the present, the following is an estimate going in the opposite
+direction.
+
+
+::: {.lemma #opposite-kolmogorov-inequality name=""}
+
+Suppose $(X_n)$ are independent with zero mean and dominated by some constant $M$, then $\forall \epsilon>0$,
+$$
+\mathop{{}\mathbb{P}}\{\max_{k\le n}\left|S_k\right|>\epsilon\} \ge 1-\frac{(M+\epsilon)^2}{\mathop{\text{Var}}S_n}
+$$
+
+:::
+
+
+::: {.proof}
+
+Fix $n$ and $\epsilon$ and define $N$ as preceding proof. Now the claim is
+$$
+\mathop{{}\mathbb{P}}\{N>n\}\mathop{\text{Var}}S_n\le (M+\epsilon)^2
+$$
+For $k\le n$, note $S_n^2=S_k^2+2S_k(S_n-S_k)+(S_n-S_k)^2$ and $\left|S_k\right|=\left|X_k+S_{k-1}\right|\le M+\epsilon$ if $N=k$. Thus
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N=k} &\le 
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{\mathbf{1}}_{N=k}
+    \\ &= 
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{\mathbf{1}}_{N=k}
+    \\&\le 
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}S_n^2\mathop{{}\mathbb{E}} \bm{\mathbf{1}}_{N=k}
+\end{aligned}
+$$
+Summing over $k\le n$,
+$$
+\mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N\le n} \le [(M+\epsilon)^2+\mathop{\text{Var}}S_n] \mathop{{}\mathbb{P}}\{N \le n\}
+$$
+On the other hand, if $N<n$, we have $\left|S_n\right|\le \epsilon$ and hence
+$$
+\mathop{{}\mathbb{E}}S_n^2\bm{\mathbf{1}}_{N>n}\le \mathop{{}\mathbb{E}}\epsilon^2\bm{\mathbf{1}}_{N>n}=\epsilon^2\mathop{{}\mathbb{P}}\{N>n\}
+$$
+Then claim follows by adding them and some rearrangement.
+
+:::
+
+### Convergence of series and variance
+
+
+::: {.theorem #variance-series-convergence name=""}
+
+Suppose $(X_n)$ are independent with zero mean, then $\mathop{\text{Var}}S_n=\sum_{}^{} \mathop{\text{Var}}X_n$ converges implies $S_n=\sum_{}^{}X_n$ converges $a.s.$
+
+:::
+
+
+::: {.proof}
+
+Apply Kolmogorov's inequality \@ref(thm:kolmogorov-inequality) to $(X_i)_{i=n+1}^{n+m}=S_{n+m}-S_n$, $\forall \epsilon>0$,
+$$
+\epsilon^2\mathop{{}\mathbb{P}}\{\max_{k\le m}\left|S_{n+k}-S_n\right|>\epsilon\} \le \sum_{i=n+1}^{n+m} \mathop{\text{Var}}X_i
+$$
+By assumption, the right side goes to $0$ as $m\to \infty$ and $n\to \infty$, then $(S_n)$ converges in view of proposition \@ref(prp:convergence-as).4.
+
+:::
+
+The following is a partial converse:
+
+
+::: {.proposition #series-variance-convergence name=""}
+
+Suppose $(X_n)$ are bounded and independent. If $\sum_{}^{} (X_n-a_n)$ converges $a.s.$ for some $(a_n)\subset \mathbb{R}$, then $\sum_{}^{}\mathop{\text{Var}}X_i<\infty$
+
+:::
+
+
+::: {.proof}
+
+**Step 1** Start with extra condition that $a_n=0$ and $\mathop{{}\mathbb{E}}X_n=0$ for all $n$. Let $b$ be a bound for $X_n$, note
+$$
+Z_m=\sup _{k} \left|S_{m+k}-S_m\right|=\lim_{n \to \infty} \max _{k\le n} \left|S_{m+k}-S_m\right|
+$$
+Thus, for any $\epsilon>0$, by lemma \@ref(lem:opposite-kolmogorov-inequality):
+$$
+\mathop{{}\mathbb{P}}\{Z_m>\epsilon\}=\lim_{n \to \infty}\mathop{{}\mathbb{P}}\{\max _{k\le n}\left|S_{m+k}-S_m\right|>\epsilon\}\ge 1-\frac{(\epsilon+b)^2}{\sum_{i=m+1}^{\infty}\mathop{\text{Var}}X_i}
+$$
+Note $Z_m\to 0$ $a.s.$ in view of theorem \@ref(thm:cauchy-convergence-as) and thus $Z_m \xrightarrow{p} 0$, that implies $\sum_{}^{} \mathop{\text{Var}} X_i$ can not diverge.
+
+**Step 2** Suppose $(Y_n)$ and $(X_n)$ are independent and share the same the law, then $\sum_{}^{}(Y_n-a_n)$ converges $a.s.$ and thus $\sum_{}^{}(X_n-Y_n)$ is so. Apply the result in step 1 to $(X_n-Y_n)$ and claim follows by noting $\mathop{\text{Var}}(X_n-Y_n)=2\mathop{\text{Var}}X_n$.
+
+:::
+
+### Kolmogorov's three series theorem
+
+We have given the necessary and sufficient conditions for the $a.s.$ convergence of $S_n$, then we are ready to combine them. As $(X_n)$ is generally not bounded, define
+$$
+Y_n=X_n \bm{\mathbf{1}}_{\left|X_n\right|\le b}
+$$
+where $b>0$.
+
+
+::: {.theorem #kolmogorov-series name=""}
+
+Suppose $(X_n)$ are independent then $S_n$ is converges $a.s.$ iff so are the following:
+$$
+\sum_{}^{}\mathop{{}\mathbb{P}}\{X_n \neq Y_n\}, \sum_{}^{} \mathop{{}\mathbb{E}}Y_n, \sum_{}^{} \mathop{\text{Var}}Y_n
+$$
+
+:::
+
+
+::: {.proof}
+
+$\impliedby$. Clearly, $(Y_n)$ is also independent. Apply theorem \@ref(thm:variance-series-convergence) to $(Y_n-\mathop{{}\mathbb{E}}Y_n)$ then the convergence of $\sum_{}^{}\mathop{\text{Var}}Y_n$ implies $\sum_{}^{}(Y_n-\mathop{{}\mathbb{E}}Y_n)$ converges $a.s.$. That along with convergence of $\sum_{}^{}\mathop{{}\mathbb{E}}Y_n$ implies $\sum_{}^{}Y_n$ converges $a.s.$ It follows that $X_n=Y_n$ $a.s.$ for all but finite many $n$ by lemma \@ref(lem:borel-cantelli) and claim follows.
+
+$\implies$. Suppose $(S_n)$ converges $a.s.$, let $\Omega_0$ be the set where $(S_n)$ converges. For $\omega\in \Omega_0$, there are at most finitely many $n$ $s.t.$ $\left|X_n(\omega)\right|>b$, which in turn implies $X=Y$ in $\Omega_0$ for all but finitely many $n$, $i.e.$, $\mathop{{}\mathbb{P}}\{X_n \neq Y_n \text{ i.o.}\}=0$. In view of lemma \@ref(lem:borel-cantelli), $\sum_{}^{}\mathop{{}\mathbb{P}}\{X_n\neq Y_n\}$ must converges.
+
+On the other hand, $\sum_{}^{}Y_n$ converges $a.s.$, then  $\sum_{}^{}\mathop{\text{Var}}Y_n$ follows by proposition \@ref(prp:series-variance-convergence) and so is $\sum_{}^{}(Y_n-\mathop{{}\mathbb{E}}Y_n)$ by theorem \@ref(thm:variance-series-convergence), that together with convergence of $\sum_{}^{} Y_n$ implies the convergence of $\sum_{}^{}\mathop{{}\mathbb{E}}Y_n$.
+
+:::
+
+
+### Application to strong laws
+
+By Kolmogorov's series theorem, we can improve results in theorem \@ref(thm:WLLN) in independent case.
+
+
+::: {.proposition  name=""}
+
+Suppose that $X_n$ are independent and $\sum_{}^{} \mathop{\text{Var}}\frac{X_n}{b_n}$ converges for some diverge $b_n >0$. Then $\frac{S_n-\mathop{{}\mathbb{E}}S_n}{b_n}\to 0$ in $L^2$ and $a.s.$
+
+:::
+
+
+::: {.proof}
+
+Apply theorem \@ref(thm:variance-series-convergence) to $(\frac{X_n-\mathop{{}\mathbb{E}}X_n}{b_n})$, we have $\sum_{}^{}\frac{X_n-\mathop{{}\mathbb{E}}X_n}{b_n}$ converges $a.s.$, then claim follows by Kronecker's lemma \@ref(lem:kronecker-lemma).
+
+:::
+
+## Central Limits
+
+Start with a generalization of DeMoivre-Laplace theorem:
+
+
+::: {.theorem #demoivre-laplace name="DeMoivre-Laplace Theorem"}
+
+Let $(X_{i})_{i \in \mathbb{N}^*}$ are $i.i.d.$ Bernoulli variables with mean $\mu=p$ and variance $\sigma^2=p(1-p)$, then
+$$
+\frac{S_n-n\mu}{\sqrt{n\sigma^2}}\xrightarrow{d} \mathfrak{Z}
+$$
+
+:::
+
+
+::: {.theorem #CLT name="Lindeberg-Levy Theorem"}
+
+Let $(X_{i})_{i \in \mathbb{N}^*}$ be $i.i.d.$ with mean $\mu$ and variance $\sigma^2$, both finite, then
+$$
+Z_n=\frac{S_n-n\mu}{\sqrt{n\sigma^2}}\xrightarrow{d} \mathfrak{Z}
+$$
+
+:::
+
+
+::: {.proof}
+
+In view of theorem \@ref(thm:levy-continuity), the claim is
+$$
+\varphi_{Z_n}(t)\to \varphi_{\mathfrak{Z}}(t)=e^{-t^2 / 2}
+$$
+Let $\varphi$ denote the $ch.f.$ of $\frac{X_n-\mu}{\sigma}$, then Taylor's theorem yields
+$$
+\begin{aligned}
+    \varphi(t)&=\varphi(0)+\varphi'(0)t+\frac{1}{2}\varphi''(0)t^2(1+h(t))
+    \\ &= 
+    1-\frac{1}{2}t^2(1+h(t))
+\end{aligned}
+$$
+for some $h$ $s.t.$ $\lim_{t \to \infty}\left|h(t)\right|=0$. As $(X_n)$ are independent, note $Z_n=\sum_{}^{}\frac{X_n-\mu}{\sigma} / \sqrt{n}$:
+$$
+\varphi_{Z_n}(t)=\varphi^{n}(\frac{t}{\sqrt{n}})=[1-\frac{r^2 / 2}{n}(1+h(\frac{r}{\sqrt{n}}))]^{n}
+$$
+note $\frac{r}{\sqrt{n}}\to 0$ as $n \to \infty$, thus
+$$
+[1-\frac{r^2 / 2}{n}(1+h(\frac{r}{\sqrt{n}}))]^{n}\to (1-\frac{r^2 / 2}{n})^{n}\to e^{-r^2 / 2}
+$$
+and claim follows.
+
+:::
+
+### Triangular matrix
+
+Throughout, we shall deal with a infinite random matrix:
+$$
+\bm{\mathbf{X}}=\begin{bmatrix}
+    X_{11} & X_{12} & X_{13} & \dots \\
+    X_{21} & X_{22} & X_{23} &\dots \\
+    X_{31} & X_{32} & X_{33} &\dots \\
+    \vdots & 
+    \vdots & 
+    \vdots & \ddots
+\end{bmatrix}
+$$
+where each entry is real-valued, for each $i$, there is an $k_i$ $s.t.$ $\bm{\mathbf{X}}_{ij}=0$ for all $j>k_i$ and $k_i\to \infty$. Thus the random matrix is basically triangular. We let $Z_i$ denoted as row sum, $Z_i=\sum_{j}^{}X_{ij}$ and variables among each row are independent.
+
+### Liapunov's Theorem
+
+Following lemma is useful for Liapunov's Theorem.
+
+::: {.lemma  name=""}
+
+Let $(Y_i)_1^{k}$ be independent and have mean $0$. Let $S$ be their sum and assume $\mathop{\text{Var}}S=1$. Let $f:\mathbb{R}\to \mathbb{R}$ be differentiable thrice and assume that the derivatives are all bounded and continues where $f'''$ are bounded by $c$. Then
+$$
+\left|\mathop{{}\mathbb{E}}f(S)-\mathop{{}\mathbb{E}}f(\mathfrak{Z})\right|\le c \sum_{j=1}^{k}\mathop{{}\mathbb{E}}\left|Y_j\right|^3
+$$
+
+:::
+
+
+::: {.proof}
+
+Let $(Z_{i})_{i \in \mathbb{N}^*}$ be independent with distribution $\mathcal{N}(0,\mathop{\text{Var}}Y_j)$ respectively, then $T=\sum_{i=1}^{k}Z_i$ has the same distribution with $\mathfrak{Z}$ and the claim is:
+$$
+\left|\mathop{{}\mathbb{E}}f(S)-\mathop{{}\mathbb{E}}f(T)\right|\le c \sum_{j=1}^{k}\mathop{{}\mathbb{E}}\left|Y_j\right|^3
+$$
+The idea is to replace $Y_i$ with $Z_i$ one by one, define
+$$
+V_i=S+\sum_{j<i}^{}(Z_j-Y_j)-Y_i=\sum_{j> i}^{}Y_j+\sum_{j<i}^{}Z_j
+$$
+where $V_i$ is independent with $Y_i$ and $Z_i$, note $V_k+Z_k=T$ and $V_1+Y_1=S$, we have
+$$
+f(S)-f(T)=\sum_{i=1}^{k}[f(V_i+Y_i)-f(V_i+Z_i)]
+$$
+So it's enough to show that
+$$
+\left|\mathop{{}\mathbb{E}}f(V_i+Y_i)-\mathop{{}\mathbb{E}}f(V_i+Z_i)\right|\le c\mathop{{}\mathbb{E}}\left|Y_i\right|^3
+$$
+for all $i \le k$. By Taylor's expansion of $f$ at $v$:
+$$
+f(v+x)=f(v)+f'(v)x+\frac{1}{2}f''(v)x^2+\frac{1}{6}f'''(\xi)x^3
+$$
+where $\left|f'''(\xi)\right|\le c$. Replace $v$ with $V$ and $x$ with $V$ and $Z$ respectively and note $Y$ and $Z$ share the same mean and variance, we have
+$$
+\left|\mathop{{}\mathbb{E}}f(V_i+Y_i)-\mathop{{}\mathbb{E}}f(V_i+Z_i)\right|\le \frac{c}{6}\left|\mathop{{}\mathbb{E}}Y_i^3-\mathop{{}\mathbb{E}}Z_i^3\right|\le \frac{c}{6}(\mathop{{}\mathbb{E}}\left|Y_i\right|^3+\mathop{{}\mathbb{E}}\left|Z_i\right|^3)
+$$
+Direct computation shows that
+$$
+\mathop{{}\mathbb{E}}\left|Z_i\right|^3=\sigma^3\sqrt{\frac{8}{\pi}}\le 2\sigma^3=2\|Y_i\|_2^3\le 2\|Y_i\|_3^3=2\mathop{{}\mathbb{E}}\left|Y_i\right|^3
+$$
+and the claim follows.
+
+:::
+
+By intuition, some condition on the third moments is sufficient to CLT:
+
+
+::: {.theorem #liapunov-theorem name="Liapunov's Theorem"}
+
+Suppose that $\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}=0$, $\mathop{\text{Var}}Z_i=1$ and $\lim_{i \to \infty}\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3=0$, then, $Z_i \xrightarrow{d} \mathfrak{Z}$.
+
+:::
+
+
+::: {.proof}
+
+Apply above lemma to $\cos tx$ and $\sin tx$, we get
+$$
+\begin{aligned}
+    &\left|\mathop{{}\mathbb{E}} \cos(t Z_i)-\mathop{{}\mathbb{E}}\cos(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3
+    \\&
+     \left|i\mathop{{}\mathbb{E}} \sin(t Z_i)-i\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right|=   \left|\mathop{{}\mathbb{E}} \sin(t Z_i)-\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3
+\end{aligned}
+$$
+thus
+$$
+\left|\varphi_{Z_i}(t)-\varphi_{\mathfrak{Z}}(t)\right|\le 
+2\left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3\to 0
+$$
+It follows that $Z_i\xrightarrow{d}\mathfrak{Z}$ by theorem \@ref(thm:levy-continuity).
+
+:::
+
+The generalization of Liapunov's theorem is also true.
+
+
+::: {.corollary #general-liapunov-theorem name=""}
+
+Let $\mathop{{}\mathbb{E}}Z_i=\mu_i$ and $\mathop{\text{Var}}Z_i=\sigma_i^2$, suppose $\mu_i\to \mu$ and $\sigma_i\to \sigma \neq 0$, each $\bm{\mathbf{X}}_{ij}$ is bounded by $c_{ij}$ and $\lim_{i \to \infty}\sup _{j}c_{ij}=0$. Then, $\frac{Z_i-\mu}{\sigma} \xrightarrow{d}\mathfrak{Z}$.
+
+:::
+
+
+::: {.proof}
+
+Put $\bm{\mathbf{Y}}_{ij}=\frac{\bm{\mathbf{X}}_{ij}-\mathop{{}\mathbb{E}}\bm{\mathbf{X}}_{ij}}{b_i}$. Note that
+$$
+\left| \bm{\mathbf{Y}}_{ij}\right|\le \frac{2c_{ij}}{b_i}\le \frac{2 \sup _{j} c_{ij}}{b_i}=\epsilon_i
+$$
+and thus $\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \left| \bm{\mathbf{Y}}_{ij}\right|^2$. Thus
+$$
+\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \sum_{j}^{} \frac{\mathop{\text{Var}} \bm{\mathbf{X}}_{ij}}{b_i}=\epsilon_i
+$$
+where $\epsilon_i \to 0$ by assumption and thus Liapunov's theorem \@ref(thm:liapunov-theorem) applies to $\bm{\mathbf{Y}}_{ij}$ to show:
+$$
+\frac{Z_i-\mu_i}{\sigma_i}=\sum_{j}^{} \bm{\mathbf{Y}}_{ij} \xrightarrow{d} \mathfrak{Z}
+$$
+and claim follows by continuity of convergence in distribution.
+
+:::
+
+### Lindeberg's Theorem
+
+Now we relax the condition on the third moments to **Lindeberg's condition**: $\forall \epsilon>0$,
+$$
+L_i(\epsilon)=\sum_{j}^{}\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}^2 \bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon}\to 0
+$$
+Select $m(\epsilon)$ $s.t.$ $L_n(\epsilon)\le \epsilon^3$ for all $n\ge m(\epsilon)$, then, choose $\epsilon_n$ $s.t.$ $m(\epsilon_n)\le n$ for $n$ large enough, then $\epsilon_n \to 0$ as $n\to \infty$. Then
+$$
+\lim_{n \to \infty}\left( \frac{1}{\epsilon_n} \right)^2L_n(\epsilon_n)\le 
+\lim_{n \to \infty}\left( \frac{1}{\epsilon_n} \right)^2 \epsilon_n^3=\lim_{n \to \infty}\epsilon_n =0
+$$
+By similar deduction, we have $\frac{1}{\epsilon}L_i(\epsilon)\to 0$ across some $\epsilon_n$.
+
+
+
+::: {.theorem #lindberg name="Lindeberg's theorem"}
+
+WLOG, suppose $\mathop{{}\mathbb{E}}\bm{\mathbf{X}}_{ij}=0$ and $\mathop{\text{Var}}Z_i=1$ with Lindeberg's condition, then $Z_i \xrightarrow{d} \mathfrak{Z}$.
+
+:::
+
+
+::: {.proof}
+
+Let $\bm{\mathbf{Y}}_{ij}=\bm{\mathbf{X}}_{ij}\bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|\le \epsilon_n}$ and put $S_i=\sum_{j}^{}\bm{\mathbf{Y}}_{ij}$, then
+$$
+\mathop{{}\mathbb{P}}\{Z_i\neq S_i\}\le \sum_{j}^{}\mathop{{}\mathbb{P}}\{\bm{\mathbf{X}}_{ij} \neq \bm{\mathbf{Y}}_{ij}\}=\sum_{j}^{}\mathop{{}\mathbb{P}}\{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon_i\}\le \left( \frac{1}{\epsilon_i} \right)^2L_i(\epsilon_i) \to 0
+$$
+where the last inequality follows by noting that $\epsilon^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$. In view of proposition \@ref(prp:construction-convergence-distribution), it's sufficient to show that $S_n\xrightarrow{d}\mathfrak{Z}$. 
+
+Denoted $\bm{\mathbf{X}}_{ij}=X$ and $\bm{\mathbf{Y}}_{ij}=Y$ for short. Since $\mathop{{}\mathbb{E}}X=0$, $\mathop{{}\mathbb{E}}Y=\mathop{{}\mathbb{E}}(Y-X)=-\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$ and thus
+$$
+\left|\mathop{{}\mathbb{E}}Y\right|\le \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le \frac{1}{\epsilon}\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+$$
+It follows that
+$$
+\begin{aligned}
+    \mathop{\text{Var}}Y &= \mathop{{}\mathbb{E}}Y^2-(\mathop{{}\mathbb{E}}Y)^2
+    \\& \ge 
+    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\left( \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|> \epsilon}\right)^2
+    \\& \ge 
+    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \\ &= 
+    \mathop{{}\mathbb{E}}X^2-2\mathop{{}\mathbb{E}}X^2\bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \end{aligned}
+$$
+and note $\mathop{\text{Var}}X=\mathop{{}\mathbb{E}}X^2 \ge \mathop{{}\mathbb{E}}Y^2 \ge \mathop{\text{Var}}Y$. Summing them over $j$, we have
+$$
+\begin{aligned}
+    \left|\mathop{{}\mathbb{E}}S_i\right|&\le \sum_{j}^{} \left|\mathop{{}\mathbb{E}}Y_{ij}\right|\le \frac{1}{\epsilon}L_i(\epsilon), 1-2L_i(\epsilon)\le \mathop{\text{Var}}S_i\le 1
+\end{aligned}
+$$
+thus $\mathop{{}\mathbb{E}}S_n\to 0$ and $\mathop{\text{Var}}S_n\to 1$ and claim follows from corollary \@ref(cor:general-liapunov-theorem).
+
+:::
+

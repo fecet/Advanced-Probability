@@ -114,13 +114,13 @@ Suppose $\{X_t:t\in T\}$ is a collection of r.v. taking values in $(E, \mathcal{
 
 :::
 
-Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $P \circ X^{-1}$ is called **probability law** of stochastic process $\{X_t:t\in T\}$.
+Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $\mathop{{}\mathbb{P}} \circ X^{-1}$, is called **probability law** of stochastic process $\{X_t:t\in T\}$.
 
 Recall the product $\sigma$ algebra construction, the probability law is determined by:
 $$
 \mathop{{}\mathbb{P}}\{\bigcap_{i \in I} X_i\in A_i\}
 $$
-where $I\subset T$ is finite and $A_i\subset E$
+where $I\subset T$ is finite and $A_i\subset E$.
 
 ## Expectation
 
@@ -248,10 +248,6 @@ By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test 
 
 
 
-
-### Means, variances, Laplace and Fourier transforms.
-
-
 ::: {.definition  name=""}
 
 Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\mu$, define
@@ -263,6 +259,8 @@ Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\m
 5. $L^r$ space: $\{X:\mathop{{}\mathbb{E}}|X|^r<\infty\}$
 
 :::
+
+### Laplace and Fourier transforms
 
 ::: {.definition  name=""}
 
@@ -294,11 +292,116 @@ Let $X,Y \in \mathcal{F}_+$, TFAE:
 
 :::
 
+The definition of characteristic function require taking expectation of a complex-valued r.v. Suppose $Z$ is complex, define
+$$
+\mathop{{}\mathbb{E}}Z=\mathop{{}\mathbb{E}} \Re(Z)+i\mathop{{}\mathbb{E}}\Im(Z)
+$$
+Then Jensen's inequality \@ref(thm:jensen) yields $\left|\mathop{{}\mathbb{E}}Z\right|\le \mathop{{}\mathbb{E}}\left|Z\right|$ and thus integrability of $Z$ is equivalent to $\left|Z\right|$.
+
 Suppose that $X$ is real-valued, for $r\in \mathbb{R}$, define:
 $$
 \hat{\mu}_r=\mathop{{}\mathbb{E}}e^{irX}=\int (\cos rx+i\sin rx) d\mu 
 $$
-the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function** of $X$
+the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function(ch.f.)** of $X$. We denoted it as $\varphi_X(t)=\hat{\mu}_t$.
+
+
+::: {.theorem #characteristic-function name=""}
+
+Characteristic functions have following properties:
+
+1. $\left|\varphi(t)\right| \le 1$ for all $t$ and equality occurs when $t=0$.
+2. $\varphi(-t)=\overline{\varphi(t)}$ for all $t$.
+3. $\varphi$ is uniformly continues on $\mathbb{R}$.
+4. $\varphi_{aX+b}(t)=e^{itb}\varphi_X(at)$.
+5. A convex countable combination of ch.f.'s is a ch.f. 
+
+:::
+
+
+::: {.proof}
+
+1,2,4 is clear. For 3, note
+$$
+\begin{aligned}
+    \left|\varphi(t+h)-\varphi(t)\right|&=\left|\mathop{{}\mathbb{E}}(e^{i(t+h)X}-e^{itX})\right|
+    \\ & \le 
+    \mathop{{}\mathbb{E}}\left|e^{i(t+h)X}-e^{itX}\right|
+    \\ &= 
+    \mathop{{}\mathbb{E}}\left|e^{ihX}-1\right|
+    \\& \le \mathop{{}\mathbb{E}} \left|hX\right|
+\end{aligned}
+$$
+Where the last inequality follows from [$\left|e^{ix}-e^{iy}\right|\le \left|x-y\right|$](https://math.stackexchange.com/questions/372337/inequality-involving-complex-exponential). If $X$ is not integrable, [DCT](https://math.stackexchange.com/questions/1247373/proving-that-the-characteristic-function-is-uniformly-continous) also guarantee the uniform continuity. 
+
+For 5, suppose their corresponding distribution is $(\mu_{i})_{i \in \mathbb{N}^*}$, then the same convex combination generates a new distribution $\sum_{i \in \mathbb{N}^{*}}^{}\lambda_i\mu_i$ and the corresponding ch.f.:
+$$
+\int e^{itX} d \sum_{}^{} \lambda_i\mu_i=\sum_{}^{}\lambda_i \int e^{itX} d\mu_i=\sum_{}^{} \lambda_i \varphi_i(t)
+$$
+
+:::
+
+
+::: {.remark}
+
+As consequence, $X$ and $-X$ have the same distribution iff $\varphi$ is real-valued as $\varphi_{-X}(t)=\varphi_{X}(-t)=\overline{\varphi_{X}(t)}$.
+
+:::
+
+
+The main reason for introducing characteristic function is if $X_1$ and $X_2$ are independent with ch.f.'s $\varphi_1$ and $\varphi_2$ then $X_1+X_2$ has ch.f. $\varphi_1\varphi_2$ by noting 
+$$
+\mathop{{}\mathbb{E}} e^{it(X_1+X_2)}=\mathop{{}\mathbb{E}}(e^{itX_1}e^{itX_2})=\mathop{{}\mathbb{E}}e^{itX_1}\mathop{{}\mathbb{E}}e^{itX_2}=(\varphi_1 \varphi_2)(t)
+$$
+
+::: {.proposition #inversion-formula name="The inversion formula"}
+
+For interval $(a,b)\subset \mathbb{R}$:
+$$
+\lim_{T \to \infty} (2\pi)^{-1} \int _{-T}^{T} \frac{e^{-ta}-e^{-tb}}{it} \varphi(t) dt = \mu(a,b)+\frac{1}{2}\mu \{a,b\}
+$$
+where
+$$
+\left|\frac{e^{-ta}-e^{-tb}}{it}\right|=\left|\int _a^{b}e ^{-itx} dx\right|\le \left|b-a\right|
+$$
+
+:::
+
+Also
+
+::: {.lemma  name=""}
+
+For any $x \ge 0$:
+$$
+\int_0 ^{\pi} \frac{\sin t}{t} d t \ge \int _0^{x} \frac{\sin t}{t} dt \ge 0
+$$
+In particular,
+$$
+\int_{0}^{\infty}\frac{\sin t}{t} dt=\frac{\pi}{2}
+$$
+
+:::
+
+That implies
+
+::: {.proposition #characterization-fourier name=""}
+
+Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{irX}=\mathop{{}\mathbb{E}}e^{irY}$
+3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+
+::: {.proof}
+
+$1 \iff 2$ follows from Inversion formula \@ref(prp:inversion-formula) immediately.
+
+:::
+
+
+
 
 
 ::: {.remark}
@@ -311,24 +414,9 @@ if $\mathop{{}\mathbb{E}}X^{n}<\infty$
 
 :::
 
-
-
-::: {.proposition #characterization-fourier name=""}
-
-Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
-
-1. $X$ and $Y$ have the same distribution
-2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{irX}=\mathop{{}\mathbb{E}}e^{irY}$
-3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
-
-:::
-
 In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathop{{}\mathbb{E}} z^{X}$ is called **generating function** and also determined distribution of $X$.
 
-
-
 ## $L^p$-spaces and uniform integrability
-
 
 ::: {.definition  name=""}
 
@@ -436,7 +524,7 @@ $$ \psi ( \mathop{{}\mathbb{E}} X ) \leq \mathop{{}\mathbb{E}} [ \psi ( X ) ] $$
 
 :::
 
-::: {.theorem #Markov-inequality name="Chebyshev(Markov) inequality"}
+::: {.theorem #chebyshev-inequality name="Chebyshev inequality"}
 
 If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathop{{}\mathbb{E}}(g(X))<\infty$, then $\forall a>0$
 $$
@@ -513,7 +601,7 @@ $$
 $$
 then $\implies$ is immediately as $k(b)$ can be arbitrary small.
 
-Conversely, by Markov's inequality \@ref(thm:Markov-inequality):
+Conversely, by Markov's inequality \@ref(thm:markov-inequality):
 $$
 \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{P}}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}X=\frac{k(0)}{b}
 $$
