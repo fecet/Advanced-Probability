@@ -1,0 +1,235 @@
+## Continuous Linear Operators
+
+### General properties
+
+::: {.definition  name="linear operator"}
+
+A mapping $A:X\to Y$ is a linear operator from $X$ into $Y$, or a linear functional if $Y=\mathbb{K}$ where $\mathbb{K}=\mathbb{R} \mathop{\text{ or }}\mathbb{C}$ and
+
+-   $A(x+y)=A(x)+A(y)$ for all $x,y\in X$ 
+-   $A(\alpha x)=\alpha A(x)$ where $x\in X$ and $\alpha\in \mathbb{K}$ 
+
+Moreover, if $\mathbb{K}=\mathbb{C}$, then a mapping $A:X\to Y$ is semilinear if:
+
+-   $A(x+y)=A(x)+A(y)$ 
+-   $A(\alpha x)=\overline{\alpha}A(x)$ where $\overline{\alpha}$ denotes the complex conjugate of $\alpha$.
+
+:::
+
+
+::: {.definition  name="kernel and image"}
+
+The kernel of $A$ defined by:
+$$ 
+\ker A=\left\{x\in X:Ax=0\right\}
+$$
+The image of $A$ defined by:
+$$ 
+\mathop{\text{Im}}A=\left\{y\in Y:y=Ax \mathop{\text{ for some }}x\in X\right\}
+$$
+Notice that $\ker A$ is a subspace of $X$ and $\mathop{\text{Im}}A$ is a subspace of $Y$.
+
+:::
+
+::: {.proposition  name=""}
+
+1.  A linear operator $A:X\to Y$ is injective iff $\ker A=\left\{0\right\}$.
+2.  If a linear operator $A:X\to Y$ is injective, the inverse mapping $A^{-1}:\mathop{\text{Im}}A\to X$ of $A\mid _{\mathop{\text{Im}}A}$ is a linear operator.
+
+:::
+
+::: {.definition  name="eigenvalue"}
+
+Let $X$ be a vector space over $\mathbb{K}$ and let $A:X\to Y$ be a linear operator. Then a scalar $\lambda\in \mathbb{K}$ is a eigenvalue of $A$ if there exists a vector $p \in X$ s.t. 
+$$ 
+Ap=\lambda p \mathop{\text{ and }}p\neq 0
+$$
+and such $p$ is called the eigenvector of $A$, corresponding to the eigenvalue $\lambda$.
+
+For a particular eigenvalue  $\lambda$, note that the subset $\left\{p \in X:Ap=\lambda p\right\}\subset X$ is a subspace, which is called eigenspace corresponding to $\lambda$.
+
+:::
+
+::: {.definition  name="continuity of operator"}
+
+When $X,Y$ are normed vector space which equipped their norm topology, then a mapping $A:X\to Y$ is called continuous linear operator if it is both continuous between their norm topology and keep linearity.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X,Y$ be normed vector spaces, and $A:X\to Y$ be linear operator, then the following properties are equivalent:
+
+1.  $A$ is continuous on $X$.
+2.  $A$ is continuous at $0\in X$.
+3.  
+    There exists a $C\gt 0$ s.t. 
+    $$ 
+    \|Ax\|_{}\le C\|x\|_{} \mathop{\text{ for all }}x\in X
+    $$
+    
+4.  The image under $A$ of any bounded subset $K\subset X$, $A(K)\subset Y$ is bounded.
+
+:::
+
+::: {.proof}
+
+-   $1\implies 2$ : Obvious.
+-   
+    $2\implies 3$ : Consider the closed unit ball $B_{1}[0]\subset Y$, then there exists a $C\gt 0$ s.t. 
+    $$
+    A^{-1}\left(B_{1}[0]\right)=B_{1 /C}[0]\subset X
+    $$ 
+    so for any $x\in X$, 
+    $$ 
+    \left|\left|A \left(\frac{x}{C\|x\|_{}}\right)\right|\right|\le 1
+    $$
+    thus $\|Ax\|_{}\le C\|x\|_{}$ for any $x\in X$.
+
+-   $3\implies 4$ : Notice that every bounded set $B\subset X$ is contained in a ball $B_{r(B)}[0]$ and so for every $x\in B_{r(B)}[0]$, $\|Ax\|_{}\le C\|x\|_{}\le C\cdot r(B)$ thus bounded in $Y$.
+-   
+    $4\implies 1$ : Note that the image of ball $B_{1}[0]\subset X$ is bounded in $Y$. In other words, there exists $M\ge 0$ s.t. $\|x\|_{}\le 1\implies \|Ax\|_{}\le M$. Now give an $x_0\in X$ and a $\epsilon\gt 0$, let $\delta=\epsilon /M$, then $\|x-x_0\|_{}\le \delta$ implies that $\frac{1}{\delta}(x-x_0)\in B_{1}[0]$ so
+    $$ 
+    \frac{1}{\delta}\|A(x-x_0)\|_{}=\left|\left|A\left(\frac{x-x_0}{\delta}\right)\right|\right|\le M
+    $$
+    so $\|Ax-Ax_0\|_{}\le \delta\cdot M=\epsilon$ which means the continuity.
+
+:::
+
+::: {.remark  name=""}
+
+The above theorem shows that in normed vector spaces, continuous linear operator is equal to the linear bounded operator. So continuous linear operator is also called bounded linear operator.
+
+:::
+
+Let $X\subset Y$ be a subspace of $Y$, then $X\hookrightarrow Y$ denotes the canonical injection from $X$ into $Y$. So according to  \@ref(lem:lem-norm-equal), we observe that:
+$$ 
+\|x\|_{Y}\le C\|x\|_{X}
+$$
+
+::: {.theorem  name=""}
+
+Let $X$ and $Y$ be two normed vector spaces.
+
+-   Any continuous linear operator from $X$ into $Y$ is uniformly continuous.
+-   If $X$ is finite-dim, any linear operator from $X$ into $Y$ is continuous.
+
+:::
+
+::: {.proof}
+
+Notice that if $A$ is continuous, then there exists a $C\ge 0$ s.t. $\|Ax\|_{}\le C\|x\|_{}$ for every $x\in X$. So for any $x_1,x_2\in X$, 
+$$ 
+\|A(x_1-x_2)\|=\|Ax_1-Ax_2\|_{}\le C\|x_1-x_2\|_{}
+$$
+so $A$ is Lipschitz continuous on $X$.
+
+If $X$ is finite-dim, then let $(e_{i})_{i=1}^{n}\subset X$ be a basis of $X$. Observe that for any $x=\sum_{i=1}^{n} x_{i}e_{i}\in X$ :
+$$ 
+\|Ax\|_{}=\left|\left|A\left(\sum_{i=1}^{n} x_{i}e_{i}\right)\right|\right|\le C_1\|x\|_{1}
+$$
+where $C_1=\max_{1\le i\le n}\|A e_{i}\|_{}$ and $\|x\|_{1}=\sum_{i=1}^{n} \left|x_{i}\right|$ so we can induce that the image of every bounded set is bounded, thus continuous.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X,Y$ be two normed vector spaces, and let $A:X\to Y$ be a linear operator, then the properties are equivalent:
+
+-   The linear operator $A$ is injective and inverse mapping $A^{-1}:\mathop{\text{Im}}A\to X$ is a continuous linear operator.
+-   
+    There exists a constant $C\gt 0$ s.t.
+    $$ 
+    \|x\|_{}\le C\|Ax\|_{} \mathop{\text{ for all }}x\in X
+    $$
+
+:::
+
+::: {.proof}
+
+Suppose the first property holds, then $A':X\to \mathop{\text{Im}}A$ is a one-to-one and onto function, then there exits a unique $x\in X$ s.t. $A^{-1}(y)=x$ for unique $y\in Y$. Then the continuity of $A^{-1}$ implies that there exists a $C\gt 0$ s.t. 
+$$ 
+\|A^{-1}(y)\|_{}\le C\|y\|_{}\mathop{\text{ for all }}y\in \mathop{\text{Im}}A
+$$
+which is equal to the second.
+
+If the second property holds, then $\ker A=\left\{0\right\}$ which means $A$ is injective and $\|x\|_{}\le C\|Ax\|_{}$ for every $x\in X$ implies that for every $y\in \mathop{\text{Im}}A$, $\|A^{-1}(y)\|_{}\le C\|y\|_{}$ implies the continuity of $A^{-1}$.
+
+:::
+
+
+::: {.definition  name="$\mathcal{L}^{}_{}(X;Y)$"}
+
+Let $X$ and $Y$ be two normed vector spaces over the same field $\mathbb{K}$, then the vector space formed by all continuous linear operator from $X$ into $Y$, denote by: $\mathcal{L}^{}_{}(X;Y)$ or $\mathcal{L}^{}_{}(X)$ if $X$ to $X$.
+
+:::
+
+::: {.theorem  name="norm of $\mathcal{L}^{}_{}(X;Y)$"}
+
+1.
+    The mapping defined by:
+    $$ 
+    \|\cdot \|_{}:A\in \mathcal{L}(X;Y)\to \|A\|_{}=\sup_{x\neq 0}\frac{\|Ax\|_{}}{\|x\|_{}}
+    $$
+    is a norm of $\mathcal{L}^{}_{}(X;Y)$ which is called the sup-norm.
+
+2.
+    The norm of any $A\in \mathcal{L}^{}_{}(X;Y)$ may be equivalently defined as 
+    $$ 
+    \begin{aligned}
+        \|A\|_{}&= \sup_{\|x\|_{}\le 1}\|Ax\|_{}=\sup_{\|x\|_{}\lt 1}\|Ax\|_{}=\sup_{\|x\|_{}=1}\|Ax\|_{} \\
+        &= \inf\left\{C\gt 0:\|Ax\|_{}\le C\|x\|_{}\mathop{\text{ for all }}x\in X\right\} \\
+    \end{aligned}
+    $$
+    where the last norm is called the inf-norm.
+
+3.
+    From $1$, we can get $\|Ax\|_{}\le \|A\|_{}\|x\|_{}$ for every $x\in X$, and if $X$ is finite-dim, there exists $0\neq x_0\in X$ s.t. 
+    $$ 
+    \|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}
+    $$
+    
+4.
+    Let $Z$ be a normed vector space and let $A\in \mathcal{L}^{}_{}(X;Y)$ and $B\in \mathcal{L}^{}_{}(Y;Z)$, then $BA=B\circ A\in \mathcal{L}^{}_{}(X;Z)$ and 
+    $$ 
+    \|BA\|_{}\le \|A\|_{}\|B\|_{}
+    $$
+    Particularly, if $A\in \mathcal{L}(X)$, then
+    $$ 
+    \|A^{n}\|_{}\le \|A\|_{}^{n}\mathop{\text{ for any }}n\in \mathbb{N}_+
+    $$
+    
+5.
+    If $A\in \mathcal{L}(X)$, then any eigenvalue $\lambda$ of $A$ satisfies $\left|\lambda\right|\le \|A\|_{}$.
+
+:::
+
+::: {.proof}
+
+Now give a proof of $3$.
+
+Note that if $X$ is finite-dim, then the unit sphere $\left\{x\in X:\|x\|_{}=1\right\}$ is compact. And the mapping $x\in X\mapsto y\in Y=Ax\mapsto \|Ax\|_{}$ is the composition of two continuous functions thus continuous. Then there exists some $x=x_0\in \left\{x\in X:\|x\|_{}=1\right\}$ s.t. this continuous function attains its supremum over $\mathbb{K}$ i.e. $\|Ax_0\|_{}=\sup\|Ax\|_{},\|x\|_{}=1$ then $\|A\|_{}=\|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

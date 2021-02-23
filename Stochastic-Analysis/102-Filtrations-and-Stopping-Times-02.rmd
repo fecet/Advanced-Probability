@@ -1,0 +1,56 @@
+
+::: {.definition  name="continuity of process"}
+
+A process $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ is called continuous if for each $\omega\in \Omega$, the path $t\mapsto X_t(\omega)$ is continuous as a function of $t$.
+
+An $\mathbb{R}^{d}$-valued process $X$ is right continuous with left limits if for all $\omega\in \Omega$ :
+$$ 
+X_t(\omega)=\lim _{s\searrow t}X_s(w)\mathop{\text{ for all }}t\in \mathbb{R}_+
+$$
+and
+$$ 
+X_{t^{-}}(\omega)=\lim _{s\nearrow t}X_s(\omega)\mathop{\text{ exists in $\mathbb{R}^{d}$ for all }}t\gt 0
+$$
+denoted as a RCLL process, similar as the LCRL process.
+
+:::
+
+::: {.definition  name="FV process"}
+
+$X$ is a finite variation process, denoted as FV-process if for each $\omega\in \Omega$ the path $t\mapsto X_t(\omega)$ has bounded variation on each compact interval $[0,T]$. In other words, the total variation function $V_{X(\omega)}(T)\lt \infty$ for each $(\omega,T)\in \Omega\times \mathbb{R}_+$.
+
+We called a process is bounded uniformly if there exists a $u\in \mathbb{R}_+$ s.t. $V_{X(\omega)}(T)\le u$ for every $(\omega,T)\in \Omega\times \mathbb{R}$.
+
+:::
+
+::: {.proposition  name=""}
+
+Let $X$ be adapted to the filtration $\left\{\mathcal{F}_{t}\right\}$ and suppose $X$ is left or right continuous, then $X$ is progressively measurable.
+
+:::
+
+::: {.proof}
+
+Fix $T\lt \infty$, define a function on $[0,T]\times \Omega$ :
+$$ 
+X_n(t,\omega)=X(0,\omega)\cdot \bm{\mathbf{1}}_{\left\{0\right\}}(t)+\sum_{k=0}^{2^{n}-1} X\left(\frac{(k+1)T}{2^{n}},\omega\right)\cdot \bm{\mathbf{1}}_{(kT 2^{-n},(k+1)T 2^{-n})}(t)
+$$
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

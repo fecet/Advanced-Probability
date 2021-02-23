@@ -1,3 +1,5 @@
+# Real Analysis
+
 ## Measurability
 
 ### Algebra of sets
@@ -216,6 +218,21 @@ $$
 $$
 for each $x\in X$ and $y\in Y$. Then we show that $\mathscr{A}$ is a $\sigma$-Algebra.
 
+-   $\varnothing ^{x}=\varnothing ^{y}=\varnothing$ 
+-   $(X\times Y)^{x}=Y,(X\times Y)^{y}=X$ 
+-   For each family of subsets $\left\{A_{i}\right\}_{i\in I}\subset X\times Y$, $(\bigcup_{i \in  I} A_{i})^{x}=\bigcup_{i \in  I} (A_{i})^{x}$ and $(\bigcap_{i \in  I} A_{i})^{x}=\bigcap_{i \in  I} (A_{i})^{x}$, similar as $y$.
+
+So if $\mathcal{F}_X$ is a $\sigma$-Algebra of $X$, then $\left\{A\subset X\times Y:A^{y}\in \mathcal{F}_X \mathop{\text{ for all }}y\in Y\right\}$ is also a  $\sigma$-Algebra and denote it as $\mathscr{A}_y$, similar as $\mathscr{A}_x$. Notice that the intersection of $\sigma$-Algebra is also a $\sigma$-Algebra. So $\mathscr{A}=\mathscr{A}_x\cap \mathscr{A}_y$ is a $\sigma$-Algebra.
+
+Observe that for every measurable rectangles,
+$$ 
+(A\times B)^{x}=\begin{cases}
+    B &\mathop{\text{if }}x\in A \\
+    \varnothing &\mathop{\text{if }}x\notin A
+\end{cases} 
+$$
+similar as $y$, so every measurable rectangles $A\times B\in \mathscr{A}$, thus $\mathcal{F}_X\otimes \mathcal{F}_Y=\sigma(\mathcal{F}_X\times \mathcal{F}_Y)\subset \mathscr{A}$, so if $A\in \mathcal{F}_X\otimes \mathcal{F}_Y$, $A$ has measurable sections.
+
 :::
 
 ::: {.definition  name=""}
@@ -243,7 +260,26 @@ $$
     &= (f^{-1}(A))^{y} 
 \end{aligned}
 $$
-Note that $f$ is jointly measurable that implies $f^{-1}(A)\in \mathcal{F}_X\otimes \mathcal{F}_Y$
+Note that $f$ is jointly measurable that implies $f^{-1}(A)\in \mathcal{F}_X\otimes \mathcal{F}_Y$, recall that $f^{-1}(A)\in \mathcal{F}_X\otimes \mathcal{F}_Y\implies f^{-1}(A)$ has measurable sections. Thus $(f^{-1}(A))^{y}\in \mathcal{F}_X$. As the arbitrary picking of $y\in Y$, and similar as $x$'s situation. So it leads to separately measurable.
+
+:::
+
+::: {.proposition  name=""}
+
+Let $(X,\mathcal{F}),(X_1,\mathcal{F}_1),(X_2,\mathcal{F}_2)$ be measurable spaces, and let $f_1:X\to X_1$ and $f_2:X\to X_2$. Define $f:X\to X_1\times X_2$ by:
+$$ 
+f(x)=(f_1(x),f_2(x))
+$$
+Then $f$ is $(\mathcal{F},\mathcal{F}_1\otimes \mathcal{F}_2)$-measurable iff $f_1$ is $(\mathcal{F},\mathcal{F}_1)$-measurable and $f_2$ is $(\mathcal{F},\mathcal{F}_2)$-measurable.
+
+:::
+
+::: {.proof}
+
+Notice that 
+$$ 
+f^{-1}(A\times B)=f_1^{-1}(A)\cap f_2^{-1}(B)
+$$
 
 :::
 

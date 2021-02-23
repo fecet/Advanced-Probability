@@ -1,0 +1,103 @@
+## Signed Measure
+
+### Signed Measure
+
+::: {.definition  name="signed measure"}
+
+A finite signed measure $\mu$ on a measurable space $(X,\mathcal{F}_{})$ is a function $\mu:\mathcal{F}_{}\to \mathbb{R}$ s.t. $\mu(\varnothing)=0$ and 
+$$ 
+\mu(A)=\sum_{i=1}^{\infty} \mu(A_{i})\mathop{\text{ whenever }}A=\bigcup_{i=1} ^{\infty}A_{i}
+$$
+for disjoint $A_{i}$. And the series has to converge absolutely which means that
+$$ 
+\sum_{i=1}^{\infty} \left|\mu(A_{i})\right|\lt \infty
+$$
+More generally, a signed measure is allowed to take one of the values $\infty$ and $-\infty$.
+
+:::
+
+::: {.proposition  name="Jordan decomposition and Hahn decomposition"}
+
+-   For any signed measure $\mu$ there exists unique positive measures $\mu^{+}$ and $\mu^{-}$ s.t. $\mu=\mu^{+}-\mu^{-}$ and there exists a measurable set $A$ s.t. $\mu^{+}(A)=\mu^{-}(A^{c})=0$. The second condition is called mutually singular and $\mu^{+}$ is called the positive variation of $\mu$, similar as $\mu^{-}$.
+-   There exists measurable sets $P$ and $N$ s.t. $P\cup N=X$ and $P\cap N=\varnothing$ and $\mu^{+}(A)=\mu(A\cap P)$ and $\mu^{-}(A)=-\mu(A\cap N)$ which is called the Hahn decomposition.
+
+The total variation of $\mu$ is $\left|\mu\right|=\mu^{+}+\mu^{-}$, we say $\mu$ is $\sigma$-finite if $\left|\mu\right|$ is $\sigma$-finite.
+
+:::
+
+::: {.definition  name="integration"}
+
+Integration with respect to a signed measure is defined by:
+$$ 
+\int fd\mu=\int fd\mu^{+}-\int fd\mu^{-}
+$$
+Note that a function $f$ is integrable with respect to $\mu$ if it is integrable with respect to $\left|\mu\right|$ and it is easy to see:
+$$ 
+\left|\int fd\mu\right|\le \int\left|f\right|d\left|\mu\right|
+$$
+
+:::
+
+### BV functions and LS integrals
+
+
+::: {.definition  name="total variation function"}
+
+Let $F$ be a function on $[a,b]$, then the total variation function of $F$ is the function $V_F(x)$ defined on $[a,b]$ by:
+$$ 
+V_F(x)=\sup\left\{\sum_{i=1}^{n} \left|F(s_{i})-F(s_{i-1})\right|:a=s_0\lt s_1\lt \ldots \lt s_n=x\right\}
+$$
+Note that the supremum is taken over partitions of $[a,x]$. $F$ has bounded variation on $[a,b]$ if $V_F(b)\lt \infty$.
+
+$BV[a,b]$ denotes the space of functions with bounded variation on $[a,b]$. A function $f\in BV[a,b]$ is called a BV function over $[a,b]$.
+
+:::
+
+::: {.proposition  name=""}
+
+1.  $V_f$ is non-decreasing on $[a,b]$.
+2.  
+    $f$ is a BV function iff it is the difference of two bounded non-decreasing functions, and in case $f$ is BV, one way to write decomposition is
+    $$ 
+    f=\frac{1}{2}(V_f+f)-\frac{1}{2}(V_f-f)
+    $$
+    which is called the Jordan decomposition of $f$.
+
+:::
+
+::: {.definition  name="LS-measure"}
+
+Suppose $f$ is BV and right-continuous on $[a,b]$. Then there is a unique signed Borel measure $\mu_f$ on $(a,b]$ defined by
+$$ 
+\mu_f(u,v]=f(v)-f(u),\ a\le u\lt v\le b
+$$
+where this measure is called Lebesgue-Stietjes measure.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

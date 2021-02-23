@@ -1,0 +1,7 @@
+
+::: {.theorem  name=""}
+
+A non-zero continuous multilinear mapping is not uniformly continuous.
+
+:::
+

@@ -1,0 +1,199 @@
+# Stochastic Process
+
+## Filtrations and stopping time
+
+
+::: {.definition  name="filtration"}
+
+A **filtration** on $(\Omega,\mathcal{F},P)$ is a family of  $\sigma$-Algebra $\left\{\mathcal{F}_t:t\in \mathbb{R}_+\right\}$ satisfying:
+$$ 
+\mathcal{F_s\subset F_t\subset F}\mathop{\text{ for all }}0\le s\le t\lt \infty
+$$
+we add the definition:
+$$ 
+\mathcal{F}_\infty=\sigma\left(\bigcup_{0\le t\lt \infty} \mathcal{F_t}\right)
+$$
+Notice that $\mathcal{F}_\infty\subset \mathcal{F}$ and no need to equal to $\mathcal{F}$.
+
+:::
+
+Then we complete the filtration. Let 
+$$
+\overline{\mathcal{F}}_t=\left\{B\in \mathcal{F}:\mathop{\text{ there exists $A\in \mathcal{F}_t$ s.t. }}P(A\triangle B)=0\right\}
+$$
+Notice that $\overline{\mathcal{F}}_t$ is also a $\sigma$-Algebra and it contains all the $\mathcal{F}$-measurable $P$-null set.
+
+
+::: {.definition  name="stochastic process"}
+
+A **stochastic process** is a collection of random variables $\left\{X_{i}:i\in I\right\}$ indexed by an arbitrary index set $I$ and all defined on the same probability space $(\Omega,\mathcal{F},P)$.
+
+Let $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ be a process on $(\Omega,\mathcal{F},P)$. Then it is convenient to regard $X$ as a function on $\mathbb{R}_+\times \Omega$ through the formula $X(t,\omega)=X_t(\omega)$ for $\omega\in \Omega$ and $t\in \mathbb{R}_+$.
+
+:::
+
+::: {.definition  name="Adapted"}
+
+A process $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ is adapted to the filtration $\left\{\mathcal{F}_t\right\}$ if $X_t$ is $\mathcal{F_t}$-measurable for each $t\in [0,\infty)$. The smallest filtration to which $X$ is adapted is the filtration it generates, i.e. 
+$$ 
+\mathcal{F}_t^{X}=\sigma\left\{X_s:0\le s\le t\right\}
+$$
+
+:::
+
+::: {.definition  name="measurability of a process"}
+
+A process $X$ is measurable if $X$ is $\mathcal{B}_{\mathbb{R}_+}\times \mathcal{F}$ measurable as a function from $\mathbb{R}_+\times \Omega\to \mathbb{R}^{d}$.
+
+Furthermore, $X$ is **progressively measurable** if the restriction of the function $X$ to $[0,T]\times \Omega$ is  $\mathcal{B}_{[0,T]}\otimes \mathcal{F}_T$ measurable for each $T$.
+
+:::
+
+::: {.remark  name=""}
+
+Every progressively measurable process is adapted since every subset $A\subset \mathcal{F}_X\otimes \mathcal{F}_Y$ has measurable sections.
+
+:::
+
+::: {.definition  name="equivalence of process"}
+
+Let $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ and $Y=\left\{Y_t:t\in \mathbb{R}_+\right\}$ be two processes defined on same $(\Omega,\mathcal{F},P)$. We say:
+
+-   $X$ and $Y$ are equal by noticing that both $X$ and $Y$ are functions defined on $\Omega\times \mathbb{R}_+$, which means $X_t(\omega)=Y_t(\omega)$ for each pair $(t,\omega)\in \Omega\times \mathbb{R}_+$.
+-   $X$ and $Y$ are indistinguishable if there exists $\Omega_0\subset \Omega$ s.t. $P(\Omega_0)=1$ and $X_t(\omega)=Y_t(\omega)$ for all $(t,\omega)\in \Omega_0\times \mathbb{R}_+$.
+-   $Y$ is a modification or version of $X$ if for each $t\in \mathbb{R}_+$, $P\left\{X_t=Y_t\right\}=1$.
+-   $X$ and $Y$ are equal in distribution, denoted as $X\xlongequal{d}Y$ which means $P\left\{X\in A\right\}=P\left\{Y\in A\right\}$ for all measurable $A\in \mathcal{F}$ and for each $t\in \mathbb{R}_+$.
+
+:::
+
+::: {.proposition  name=""}
+
+Assume that $(\Omega,\mathcal{F},P)$ and $\left\{\mathcal{F}_t:t\in \mathbb{R}_+\right\}$ are complete, then if $X$ is adapted and $P\left\{X_t=Y_t\right\}=1$ for each $t\in \mathbb{R}_+$, then $Y_t$ is adapted.
+
+:::
+
+::: {.proof}
+
+Let $A\in \mathcal{F}$, then
+$$ 
+\left\{Y_t\in A\right\}=\left\{X_t\in A\right\}\cup \left\{Y_t\in B,X_t\notin B\right\}-\left\{Y_t\notin B,X_t\in B\right\}
+$$
+Notice that $P\left\{X_t\neq Y_t\right\}=0$ and every $P$-null set is contained in complete filtration  $\left\{\mathcal{F}_t\right\}$.
+
+:::
+
+::: {.definition  name="stopping time"}
+
+A stopping time is a random variable $\tau:\Omega\to [0,\infty]$ s.t. $\left\{\omega:\tau(\omega)\le t\right\}\in \mathcal{F}_t$ for each $t\in [0,\infty)$.
+
+:::
+
+::: {.proposition  name=""}
+
+If $\tau,\sigma$ are stopping times, then $\tau\land \sigma$ so $\tau\land \sigma$ and $\tau\lor \sigma$ are.
+
+:::
+
+::: {.proof}
+
+Notice that 
+$$ 
+\left\{\tau\land \sigma\le t\right\}=\left\{\sigma\le t\right\}\cup \left\{\tau\le t\right\}
+$$
+and
+$$ 
+\left\{\tau\lor \sigma\le t\right\}=\left\{\tau\le t\right\}\cap \left\{\sigma\le t\right\}
+$$
+
+:::
+
+If $\tau$ is a stopping time, the $\sigma$-Algebra of events known at time $\tau$ is defined by:
+$$ 
+\mathcal{F}_\tau=\left\{A\in \mathcal{F}:A\cap \left\{\tau\le t\right\}\in \mathcal{F}_t\mathop{\text{ for all }}t\in [0,\infty)\right\}
+$$
+A deterministic time is a special case which means $\tau(\omega)=u$ for every $\omega\in \Omega$, then $\mathcal{F}_\tau=\mathcal{F}_u$.
+
+If $\left\{X_t\right\}$ is a process and $\tau$ is a stopping time, then $X_\tau$ denotes the value of the process at random time $\tau$, in other words, $X_\tau(\omega)=X_{\tau(\omega)}(\omega)$. The random variable $X_\tau$ is defined on $\left\{\tau\lt \infty\right\}$.
+
+
+::: {.proposition  name=""}
+
+Let $\sigma,\tau$ be stopping times, and $X$ a process.
+
+1.  For $A\in \mathcal{F}_\sigma$, the events $A\cap \left\{\sigma\le \tau\right\}$ and $A\cap \left\{\sigma\lt \tau\right\}$ lie in $\mathcal{F}_\tau$. In particular, $\sigma\le \tau\implies \mathcal{F}_\sigma\subset \mathcal{F}_\tau$.
+2.  
+    Both $\tau$ and $\sigma\land \tau$ are $\mathcal{F}_\tau$ measurable.  
+    $$ 
+    \left\{\sigma\le \tau\right\},\left\{\sigma\lt \tau\right\},\left\{\sigma=\tau\right\}
+    $$
+    lie in both $\mathcal{F}_\sigma$ and $\mathcal{F}_\tau$.
+
+3.  If $X$ is progressively measurable then $X(\tau)$ is $\mathcal{F}_\tau$-measurable on the event $\left\{\tau\lt \infty\right\}$.
+
+:::
+
+::: {.proof}
+
+1.
+    Let $A\in \mathcal{F}_\sigma$ which implies $A\cap \left\{\sigma\le t\right\}\in \mathcal{F}_t$ for every $t\in [0,\infty)$. Now we need to show $A\cap \left\{\sigma\le \tau\right\}\cap \left\{\tau\le t\right\}\in \mathcal{F}_{t}$.  
+    $$ 
+    \begin{aligned}
+        (A&\cap \left\{\sigma\le \tau\right\})\cap \left\{\tau\le t\right\} \\
+        &= (A\cap \left\{\sigma\le t\right\})\cap \left\{\sigma\land t\le \tau\land t\right\}\cap \left\{\tau\le t\right\} \\
+    \end{aligned}
+    $$
+    Note that $u\in \mathbb{R}_+$, $\left\{\sigma\land t\le u\right\}$ is equal to $\left\{\sigma\le u\right\}$ if $u\lt t$, and equal to $\Omega$ if $u\ge t$, both $\mathcal{F}_{t}$-measurable. So $A\cap \left\{\sigma\le \tau\right\}\in \mathcal{F}_{t}$. In particular, $\sigma\le \tau$ in whole $\Omega$, 
+    $$
+    A\in \mathcal{F}_{\sigma}\implies A\cap \left\{\sigma\le \tau\right\}=A\cap \Omega=A\in \mathcal{F}_{\tau}
+    $$
+    Note that
+    $$ 
+    A\cap \left\{\sigma\lt \tau\right\}=\bigcup_{n=1} ^{\infty}A\cap \left\{\sigma+\frac{1}{n}\le \tau\right\}
+    $$
+    and $A\in \mathcal{F}_{\sigma}$ implies:
+    $$ 
+    A\cap \left\{\sigma\le t\right\}\in \mathcal{F}_{t}\implies A\cap \left\{\sigma\le t\right\}\cap \left\{\sigma\le t-\frac{1}{n}\right\}\in \mathcal{F}_{t}
+    $$
+    so $A\in \mathcal{F}_{\sigma}\implies A\in \mathcal{F}_{\sigma+1 /n}$, so all the sequence of sets is contained in $\mathcal{F}_{\sigma+1}$, so all $A\cap \left\{\sigma+\frac{1}{n}\le \tau\right\}\in \mathcal{F}_{\tau}$ thus $A\cap \left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. In particular, we find that for any $n\in (0,\infty)$, $\mathcal{F}_{\sigma+n}\supset \mathcal{F}_{\sigma}$.
+
+2.  
+    For each  $s$, $\left\{\tau\le s\right\}\cap \left\{\tau\le t\right\}=\left\{\tau\le t\land s\right\}\in \mathcal{F}_{t}$, so $\left\{\tau\le s\right\}$ for every $s \in \mathbb{R}_+$ lies in $\mathcal{F}_{\tau}$, so by the definition of Borel algebra, $\tau$ is $\mathcal{F}_{\tau}$-measurable. Similarly, $\sigma\land \tau$ is $\mathcal{F}_{\sigma\land \tau}$-measurable. Note that  $\sigma\land \tau\le \tau$, and by the statement above  $\mathcal{F}_{\sigma\land \tau}\subset \mathcal{F}_{\sigma}$ and $\mathcal{F}_{\sigma\land \tau}\subset \mathcal{F}_{\tau}$ then $\sigma\land \tau$ is $\mathcal{F}_{\sigma},\mathcal{F}_{\tau}$-measurable.
+
+    Taking $A=\Omega\in \mathcal{F}_{\sigma}$, then $\left\{\sigma\le \tau\right\}\in \mathcal{F}_{\tau}$, $\left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. Take difference, $\left\{\sigma=\tau\right\}=\left\{\sigma\le \tau\right\}-\left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. Take complement, we find $\left\{\sigma\ge \tau\right\}\in \mathcal{F}_{\tau}$ and $\left\{\sigma\gt \tau\right\}\in \mathcal{F}_{\tau}$ and the same as $\mathcal{F}_{\sigma}$.
+
+3.  
+    We claim first that $\omega\mapsto X(\tau(\omega)\land t,\omega)$ is $\mathcal{F}_{t}$-measurable. Write it as the composition:
+    $$ 
+    \omega\mapsto (\tau(\omega)\land t,\omega)\mapsto X(\tau(\omega)\land t,\omega)
+    $$
+    The first step is a mapping from $(\Omega,\mathcal{F}_{t})$ to $([0,t]\times \Omega,\mathscr{B}_{[0,t]}\otimes \mathcal{F}_{t})$. Then as discussed above, $\omega\mapsto \tau(\omega)\land t$ is well defined from $\mathcal{F}_{t}$ to $\mathscr{B}_{[0,t]}$.
+
+    By the definition of progressively measurable, $X$ is $(\mathscr{B}_{[0,t]}\otimes \mathcal{F}_{t})$-measurable for each  $t$ to the $\mathscr{B}_{\mathbb{R}_+}$.
+
+    By the discussion above, we have shown that $\omega\mapsto X(\tau(\omega)\land t,\omega)$ is $\mathcal{F}_{t}\to \mathscr{B}_{\mathbb{R}_+}$-measurable, so for $B\in \mathscr{B}_{\mathbb{R}_+}$, $\left\{X_{\tau\land t}\in B\right\}\in \mathcal{F}_{t}$ then
+    $$ 
+    \begin{aligned}
+        &\left\{X_{\tau\land t}\in B\right\}\cap \left\{\tau\le t\right\} \\
+        =&\left\{X_\tau\in B,\tau\lt \infty\right\}\cap \left\{\tau\le t\right\}\in \mathcal{F}_{t}
+    \end{aligned}
+    $$
+    so $\left\{X_\tau\in B,\tau\lt \infty\right\}\in \mathcal{F}_{\tau}$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

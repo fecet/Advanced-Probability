@@ -1,8 +1,8 @@
-### Riesz Theorem
+## Riesz Theorem
 
 To prove the first result, we need to prove a lemma first.
 
-::: {.lemma  name=""}
+::: {.lemma #lem-norm-equal name=""}
 
 Two norms on a vector space $X$ are equivalent iff there exists constants $C_a,C_b$ s.t. 
 $$ 
