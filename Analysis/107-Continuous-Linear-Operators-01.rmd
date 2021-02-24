@@ -1,0 +1,285 @@
+### Compact Continuous Linear Operator
+
+::: {.definition  name="compact linear operator"}
+
+A linear operator $A:X\to Y$ is said to be compact if $A(B)\subset Y$ is relatively compact whenever $B\subset X$ is bounded in $X$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ and $Y$ be two normed vector space over the same field, and let $A:X\to Y$ be a linear operator.
+
+1.  If $A$ is compact, then $A$ is continuous.
+2.  The operator $A$ is compact iff given any bounded sequence $(x_n)_{n=1}^{\infty}\subset X$, the sequence $(Ax_n)_{n=1}^{\infty}\subset Y$ contains a subsequence converging in $Y$.
+3.  If $X$ is finite-dim, $A$ is compact.
+4.  If $A$ is continuous and the image $A(X)$ is finite-dim, then $A$ is compact.
+
+:::
+
+::: {.proof}
+
+1.  Note that compact in metric space means bounded and closed, then  we have proved that if $A$ maps a bounded set to a bounded set for any subset $B\subset X$, then $A$ is continuous.
+2.  
+    Assume that $A$ is compact, and $(x_{i})_{i=1}^{\infty}$ is bounded in $X$, then $(A x_{i})_{i=1}^{\infty}$ is compact in $Y$ then there exists a subsequence converges in $Y$, particularly in $\left\{A x_{i}\right\}_{i=1}^{\infty}$as the compactness in metric space means sequentially compact.  
+
+    Pick any bounded set $B\subset X$, consider the set $A(B)\subset Y$, notice
+    $$ 
+    \lim _{i\to \infty}y_{\varphi(i)}=y\in Y
+    $$
+    Note that $y_{\varphi(i)}\in A(B)$ for any $i$, so $y\in \overline{A(B)}$. This implies that $\overline{A(B)}$ is sequentially compact thus compact in $Y$ which means $A(B)$ is relatively compact in $Y$.
+
+3.  Note that if $X$ is finite-dim, then any linear mapping $A$ is continuous, and a continuous mapping carries bounded set to bounded set, i.e. if $B\subset X$ is bounded, then $A(B)\subset Y$ is bounded. And since $A(B)\subset A(X)$ and $A(X)$ is finite-dim, $A(B)$ is bounded and finite-dim. So $\overline{A(B)}$ is closed and bounded in a finite-dim space, thus compact.
+
+4.  If $A\in \mathcal{L}^{}_{}(X;Y)$ and $A(X)\subset Y$ is finite-dim, suppose that $B\subset X$ is bounded then $A(B)\subset A(X)$ and $\overline{A(B)}$ is bounded and closed thus compact in a finite-dim space.
+
+:::
+
+::: {.remark  name=""}
+
+If $X\subset Y$ is a subspace in $Y$, then the notation:
+$$ 
+X\Subset Y
+$$
+means the canonical injection $x\in X\mapsto x\in Y$ is a compact linear operator. In other words, any bounded sequence in $X$ contains a subsequence converging in $Y$.
+
+:::
+
+### Continuous multilinear mappings
+
+::: {.definition  name="product vector space"}
+
+Suppose that $k\in \mathbb{N}_+$ and $k\ge 2$, $X_\ell,1\le \ell \le k$ and $Y$ are vector space over the same field $\mathbb{K}$. Then consider the product space:
+$$ 
+X=\prod_{i=1}^{k} X_{i}=X_1\times X_2\times \ldots\times X_k
+$$
+where $\times$ denotes the Cartesian product. And for $x=(x_1,\ldots,x_k),y=(y_1,\ldots,y_k)\in X$, define:
+$$ 
+\begin{aligned}
+    x+y&= (x_1+y_1,\ldots,x_k+y_k) \\
+    \alpha x&= (\alpha x_1,\ldots,\alpha x_k)\mathop{\text{ for }}\alpha\in \mathbb{K} \\
+\end{aligned}
+$$
+easy to see that $X$ is still a vector space over $\mathbb{K}$.
+
+:::
+
+::: {.definition  name="multilinear"}
+
+A mapping $A:\prod_{i=1}^{k} X_{i}\to Y$ is said to be multilinear or $k$-linear mapping if when $(k-1)$ other variables are kept fixed, for any $x_\ell\in X_\ell\mapsto y\in Y$ is linear.If $Y=\mathbb{K}$, it is called the multilinear functional.
+
+:::
+
+::: {.remark  name=""}
+
+Suppose $X=\prod_{i=1}^{k} X_{i}$ and $Y$ are vector space over $\mathbb{K}$, then a operator $A:X\to Y$ is said to:
+
+-
+    **linear** if for $x=(x_1,\ldots,x_k)$ and $y=(y_1,\ldots,y_k)$ in  $X$ :
+    $$ 
+    \begin{aligned}
+        A(x+y)&=Ax+Ay=A(x_1,\ldots,x_k)+A(y_1,\ldots,y_k) \\
+        A(\alpha x)&= \alpha Ax=\alpha A(x_1,\ldots,x_k) \\
+    \end{aligned}
+    $$
+
+-
+    **multilinear** if for $x,y\in X^{2}$ :
+    $$ 
+    \begin{aligned}
+        A(x+y)&= A((x_1,x_2)+(y_1,y_2)) \\
+        &= A(x_1+y_1,x_2+y_2) \\
+        &= A(x_1,x_2+y_2)+A(y_1,x_2+y_2) \\
+        &= A(x_1,x_2)+A(x_1,y_2)+A(y_1,x_2)+A(y_1,y_2) \\
+    \end{aligned}
+    $$
+    Similar as $A(\alpha x)$ :
+    $$ 
+    \begin{aligned}
+        A(\alpha x)&= A(\alpha(x_1,x_2)) \\
+        &= A(\alpha x_1,\alpha x_2) \\
+        &= \alpha A(x_1,\alpha x_2) \\
+        &= \alpha ^{2}A(x_1,x_2) \\
+    \end{aligned}
+    $$
+
+:::
+
+::: {.definition  name="multilinear operator space"}
+
+Define:
+$$ 
+\begin{aligned}
+    (A+B)(x_1,\ldots,x_k)&= A(x_1,\ldots,x_k)+B(x_1,\ldots,x_k) \\
+    (\alpha A)(x_1,\ldots,x_k)&= \alpha A(x_1,\ldots,x_k) \\
+\end{aligned}
+$$
+and note that $A+B$ is also a multilinear mapping so as $\alpha A$, so all linear mappings from $\prod_{i=1}^{k} X_{i}$ to $Y$ over $\mathbb{K}$ form a vector space.
+
+:::
+
+::: {.definition  name="symmetric and alternate"}
+
+Let $\mathcal{G}_k$ denote the set of all the permutations of the set $\left\{1,2,\ldots,k\right\}$ and suppose $X_{i}=X$ for $i=1,\ldots,k$,then a multilinear mapping $A:\prod_{i=1}^{n} X_{i}\to Y$ is said to be:
+
+-
+    **symmetric** if for all $\sigma\in \mathcal{G}_k$ and $x_{i}\in X_{i}=X$:
+    $$ 
+    A(x_{\sigma(1)},\ldots,x_{\sigma(k)})=A(x_1,\ldots,x_k)
+    $$
+    
+-
+    **alternate** if:
+    $$ 
+    A(x_{\sigma(1)},\ldots,x_{\sigma(k)})=\epsilon(\sigma)A(x_1,\ldots,x_k)
+    $$
+    where $\epsilon(\sigma)$ is the signature of $\sigma$.
+
+:::
+
+::: {.remark  name=""}
+
+Notice that the determinant of a $k\times k$ matrix is a alternate multilinear functional.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X_{i},1\le i\le k$ and $Y$ be normed vector space over $\mathbb{K}$ and let $X=\prod_{i=1}^{k} X_{i}$ and $A:X\to Y$ be a multilinear mapping. Then the following statements are equivalent:
+
+1.  The mapping $A:X\to Y$ is continuous.
+
+2.  The mapping $A$ is continuous at $0\in X$.
+
+3.
+    There exists a constant $C\gt 0$ s.t. 
+    $$ 
+    \|Ax\|_{Y}\le C\|x_1\|_{X_1}\cdots\|x_k\|_{X_k}\mathop{\text{ for all }}(x_1,\ldots,x_k)\in X
+    $$
+    
+4.
+    The image of any bounded subset of $X$ is bounded in $Y$.
+
+:::
+
+::: {.proof}
+
+For $x\in X$, define $\|x\|_{\infty}=\max_{1\le \ell \le k}\|x_\ell\|_{X_\ell}$ and consider the topology induced by $\|\cdot \|_{\infty}$.
+
+-   $1\implies 2$ : Obvious.
+-   
+    $2\implies 3$ : If $2$ holds, the inverse image under $A$ of a closed ball of $Y$ contains a closed ball centered at the origin of  $X$. Let $\alpha\gt 0$ denote the radius of the ball in $X$. Then by the definition of $\|\cdot \|_{\infty}$, if there exists a vector $x=(x_1,\ldots,x_k)\in X$ s.t. $\|x_{i}\|_{X_{i}}\le \alpha$ for all $i\in [1,k]$, then $Ax\in B_{1}[0]\subset Y$.
+
+    Given any vector $x=(x_1,\ldots,x_k)\in X$, s.t. $x_{i}\neq 0$ since if any $x_{i}=0$, $Ax=0\in Y$ for sure, let $x'=(x_1',\ldots,x_k')$ with $x_{i}'=\alpha(\|x_{i}\|_{X_{i}})^{-1}x_{i}$. Then $\|x_{i}'\|_{X_{i}}=\alpha$ for all $i$ and thus $\|Ax'\|_{Y}\le 1$. Note that $x_{i}=\frac{1}{\alpha}\|x_{i}\|_{X_{i}}x_{i}'$, so
+    $$ 
+    Ax=\frac{1}{\alpha ^{k}}\|x_1\|_{X_1}\cdots \|x_k\|_{X_k} Ax'
+    $$
+    and let $C=1 /\alpha ^{k}$.
+
+-
+    $3\implies 4$ : Assume that $3$ holds, note that any bounded subset $B\subset X$ is contained in a ball with radius $r(B)$, i.e. $B\subset B_{r(B)}(0)$, so $A(B)\subset A(B_{Cr(B)^{k}}(0))$, thus bounded in $Y$.
+
+-
+    $4\implies 1$ : Assume that $4$ holds, then the image of the closed unit ball $B_{1}[0]\subset X$ is bounded in $Y$ i.e. there exists a $C\ge 0$ s.t. if $\|x_{i}\|_{X_{i}}\le 1$ for all $i$, $\|Ax\|_{Y}\le C$. Therefore as the multilinearity of $A$,
+    $$ 
+    \|Ax\|_{Y}\le C\|x_1\|_{X_1}\cdots\|x_k\|_{X_k}
+    $$
+    for all $x=(x_1,\ldots,x_k)\in X$.
+
+    Given $x=(x_1,\ldots,x_k)\in X$ and $a=(a_1,\ldots,a_k)\in X$, $A(x)-A(a)$ can be written as:
+    $$ 
+    \begin{aligned}
+        A(x)-A(a)= &\ A(x_1-a_1,x_2,\ldots,x_k)\\
+        &+A(a_1,x_2-a_2,x_3,\ldots,x_k) \\
+        &\ \vdots \\
+        &+ A(a_1,a_2,\ldots,a_{k-1},x_k-a_k)
+    \end{aligned}
+    $$
+    Then use the result we proved before:
+    $$ 
+    \begin{aligned}
+        \|A(x)-A(a)\|_{Y}\le C(&\|x_1-a_1\|_{X_1}\|x_2\|_{X_2}\cdots \|x_k\|_{X_k}\\
+        &+\|a_1\|_{X_1}\|x_2-a_2\|_{X_2}\cdots \|x_k\|_{X_k} \\
+        &\ \vdots \\
+        &+ \|a_1\|_{X_1}\|a_2\|_{X_2}\cdots \|x_k-a_k\|_{X_k})
+    \end{aligned}
+    $$
+    Let $M=\|a\|_{\infty}$ and $\delta=\|x-a\|_{\infty}$, then above:
+    $$ 
+    \|A(x)-A(a)\|_{Y}\le C\delta\left\{(M+\delta)^{k-1}+M(M+\delta)^{k-2}+\cdots+M^{k-1}\right\}
+    $$
+    since $\|x\|_{\infty}\le \|x-a\|_{\infty}+\|a\|_{\infty}=M+\delta$ and the right side of the inequality approaches $0$ when $\delta\to 0$, so  $A$ is continuous.
+
+:::
+
+::: {.remark  name=""}
+
+For a linear operator:
+$$ 
+\|Ax\|_{Y}\le C\left(\|x_1\|_{X_1}+\|x_2\|_{X_2}+\cdots+\|x_k\|_{X_k}\right)
+$$
+Note that $\|x\|_{X}=\|x_1\|_{X_1}+\|x_2\|_{X_2}+\cdots+\|x_k\|_{X_k}$ is a norm on $X$. Or
+$$ 
+\|Ax\|_{Y}\le C \max_{1\le i\le k}\|x_{i}\|_{X_{i}}
+$$
+And for a multilinear operator:
+$$ 
+\|Ax\|_{Y}\le C\|x_1\|_{X_1}\|x_2\|_{X_2}\cdots\|x_k\|_{X_k}
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+If $X_{i}:1\le i\le k$ are all finite-dim, and $Y$ is a normed vector space, any multilinear mapping $A:\prod_{i=1}^{k} X_{i}=X\to Y$ is continuous.
+
+:::
+
+::: {.proof}
+
+For each $1\le \ell\le k$, $(e^{\ell}_{i(\ell)})_{i(\ell)=1}^{m(\ell)}$ is a basis. And suppose $x\in X$, $x=(x_1,\ldots,x_k)$, there exists:
+$$ 
+x_\ell=\sum_{i(\ell)=1}^{m(\ell)} x_{i(\ell)}^{\ell}e_{i(\ell)}^{\ell}
+$$
+then $\|Ax\|_{Y}$ can be expanded as:
+$$ 
+\|Ax\|_{Y}=\sum_{i(1)=1}^{m(1)} \cdots \sum_{i(k)=1}^{m(k)} x_{i(1)}^{1}\cdots x_{i(k)}^{k}A(e_{i(1)}^{1},\ldots,e_{i(k)}^{k})
+$$
+Note that the sum is finite and $\|A(e_{i(1)}^{1},\ldots,e_{i(k)}^{k})\|_{Y}$ are all finite, then there exists a constant $C$ s.t. 
+$$ 
+\|Ax\|_{Y}\le C\|x_1\|_{\infty}\|x_2\|_{\infty}\cdots \|x_k\|_{\infty}
+$$
+Note that each topology induced by norm are the same, so we get the result.
+
+:::
+
+::: {.remark  name=""}
+
+The theorem above proves that the determinate of a $k\times k$ matrix with coefficient in $\mathbb{K}$ is a continuous multilinear functional from $\mathbb{K}^{n}$ to $\mathbb{K}$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
