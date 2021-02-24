@@ -164,7 +164,6 @@ $$ \lim_n \mathop{{}\mathbb{E}}X_n=\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}\
 
 **(Integration term by term)** If $\sum_{i=1}^\infty \mathop{{}\mathbb{E}}|X_n|<\infty$, then
 $$ \sum_{i=1}^\infty |X_n|<\infty,\ a.s. $$ 
-
 and
 
 $$ \mathop{{}\mathbb{E}} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \mathop{{}\mathbb{E}} X_ { n } $$ 

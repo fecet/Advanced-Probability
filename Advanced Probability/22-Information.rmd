@@ -26,7 +26,7 @@ If $X=(X_{t})_{t\in T}$, then $\sigma X=\sigma \{X_t:t \in T\}$
 :::
 
 
-::: {.theorem  name=""}
+::: {.theorem #doob-dynkin name="Doob-Dynkin lemma"}
 
 Let $X$ be a r.v. taking values in space $(E, \mathcal{E})$. A mapping $V:\Omega \to \overline{\mathbb{R}}$ belongs to $\sigma X$ iff $V=f(X)$ for some $f\in \mathcal{E}$.
 
