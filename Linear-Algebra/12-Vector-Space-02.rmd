@@ -1,4 +1,19 @@
+## Inner Product
+
+
+::: {.definition  name=""}
+
+Let $X$ be a vector space, a function, $\langle \bm{\mathbf{x}}, \bm{\mathbf{y}}\rangle$, defined for all $\bm{\mathbf{x}}\in X$ and $\bm{\mathbf{y}} \in X$, is an **inner product** if for any $\bm{\mathbf{x,y,z}} \in X$ and any $c \in \mathbb{R}$:
+
+1. $\langle \bm{\mathbf{x,x}}\rangle \ge 0$ and equality holds iff $\bm{\mathbf{x=0}}$
+2. $\langle \bm{\mathbf{y,x}} \rangle=\langle \bm{\mathbf{x,y}} \rangle$
+3. $\langle \bm{\mathbf{x+y,z}} \rangle=\langle \bm{\mathbf{x,z}} \rangle+\langle \bm{\mathbf{y,z}} \rangle$
+4. $\langle c \bm{\mathbf{x,y}} \rangle=c \langle \bm{\mathbf{x,y}} \rangle$
+
+:::
+
 ## Dimension
+
 
 Recall \@ref(thm:f-dim-basis), every system of generators contains a basis, so if the generators of the system is finite, there exists a finite base of the space.
 
@@ -58,6 +73,83 @@ Let $\mathop{\text{card}}\left\{x_\alpha\right\}=\alpha,\mathop{\text{card}}\lef
 
 :::
 
+
+## Matrix and linear space
+
+
+::: {.definition  name=""}
+
+Let $\bm{\mathbf{X}}$ be matrix in $\mathbb{R}^{m\times n}$. The subspace of $\mathbb{R}^{n}$ spanned by the $m$ rows of $\bm{\mathbf{X}}$ is called the **row space** of $\bm{\mathbf{X}}$ and denoted as $\mathcal{R}(\bm{\mathbf{X}})$ and that of $\mathbb{R}^{m}$ is column space and denoted as $\mathcal{C}(\bm{\mathbf{X}})$
+
+:::
+
+The column(row) space often equipped:
+
+- Inner product: $\langle \bm{\mathbf{x,y}} \rangle=\bm{\mathbf{x'y}}$
+- Norm: $\bm{\mathbf{\|x}}\|=\sqrt{\bm{\mathbf{x'x}}}$
+- Metric: $d(\bm{\mathbf{x}},\bm{\mathbf{y}})=\sqrt{\langle \bm{\mathbf{x-y,x-y}} \rangle}$
+
+The column space of $\bm{\mathbf{X}}$ is sometimes also referred to as the range of $\bm{\mathbf{X}}$. Note
+$$
+\mathcal{C}(\bm{\mathbf{X}})=\{\bm{\mathbf{y}}:\bm{\mathbf{y=Xa}},\bm{\mathbf{a}}\in \mathbb{R}^{n}\}
+$$
+
+Clearly, the rank of $\bm{\mathbf{X}}$ is just the dimension of $\mathcal{C}(\bm{\mathbf{X}})$ and that agree with $\mathop{\text{dim}} \mathcal{C}(\bm{\mathbf{X'}})$, $i.e.$, the number of independent columns of $\bm{\mathbf{X}}$.
+
+
+::: {.proposition  name=""}
+
+Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$, then:
+
+1. $\mathop{\text{rank}}\left( \bm{\mathbf{AB}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right) \land \mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+2. $\left|\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)-\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)\right|\le \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+3. $\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{AA'}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'A}} \right)$
+
+:::
+
+
+::: {.proof}
+
+1.  Note $\bm{\mathbf{AB}}$ can be seen as linear transformation in $\mathcal{C}(X)$ or so in $\mathcal{C}(X')$ and claim follows.
+2.  Note
+    $$
+    \bm{\mathbf{A+B}}=\begin{bmatrix}
+        \bm{\mathbf{A}} & \bm{\mathbf{B}}
+    \end{bmatrix}
+    \begin{bmatrix}
+        \bm{\mathbf{I}} \\ \bm{\mathbf{I}}
+    \end{bmatrix}
+    $$
+    So property $1$ applies and conclude:
+    $$
+    \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)\le \mathop{\text{rank}}\left( \begin{bmatrix}
+        \bm{\mathbf{A}} & \bm{\mathbf{B}}
+    \end{bmatrix} \right) \le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)
+    $$
+    Replace $\bm{\mathbf{A}}$ and $\bm{\mathbf{B}}$ by $\bm{\mathbf{A+B}}$ and $-\bm{\mathbf{B}}$, we have
+    $$
+    \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)
+    $$
+    And similar result also hold for $\bm{\mathbf{B}}$ and then claim follows.
+3.  It's sufficient to show $\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'A}} \right)$ and it's enough to show
+    $$
+    \mathcal{N}(\bm{\mathbf{A}})=\mathcal{N}(\bm{\mathbf{A'A}})
+    $$
+    To see that, note $\bm{\mathbf{Ax=0}}\implies \bm{\mathbf{A'Ax=0}}$ clearly and if $\bm{\mathbf{A'Ax=0}}$ we have $\bm{\mathbf{x'A'Ax=0}}$ and thus $\bm{\mathbf{\|A'x}}\|=0$ and there must be $\bm{\mathbf{Ax=0}}$.
+
+
+:::
+
+
+::: {.proposition  name=""}
+
+Let $\bm{\mathbf{A,B,C}}$ are any matrices $s.t.$ all the block matrix involved are defined. We have
+
+1. $\mathop{\text{rank}}\left( \begin{bmatrix}
+    \bm{\mathbf{A}} & \bm{\mathbf{B}}
+\end{bmatrix} \right) \ge \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right) \lor \mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+
+:::
 
 
 
