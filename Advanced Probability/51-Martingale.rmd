@@ -1,0 +1,40 @@
+# Martingale
+
+Recall example \@ref(exm:number-of-children) that
+$$
+Z_{n+1}=\sum_{i=1}^{Z_n} X_{n+1,i}
+$$
+and $X_{n+1,i}$ is independent to $(Z_i)_{1}^{n}$. Thus
+$$
+\mathop{{}\mathbb{E}}_{}(Z_{n+1}|Z_i:i\le n)=\mathop{{}\mathbb{E}}_{}(Z_{n+1}|Z_n)=\mu Z_n
+$$
+by intuition. To see this, recall $\mathop{{}\mathbb{E}}_{Z_n}\theta^{Z_{n+1}}=f(\theta)^{Z_n}$ and differentiate $w.r.t.$ $\theta$ and let $\theta=1$.
+
+Define $M_n:=\frac{Z_n}{\mu^{n}}$, we then have $\mathop{{}\mathbb{E}}_{}(M_{n+1}|Z_i:i\le n)=M_n$, thus we can say
+
+> $M$ is a martingale relative to process $Z$
+
+Given history of $Z$ up to $n$, the next value of $M_{n+1}$ of $M$ is on average what is now, that is, $M$ is "constant on average". In this case, $\mathop{{}\mathbb{E}}_{}M_n=1$ for any $n$. 
+
+As $M_n\ge 0$, the **Martingale convergence theorem** implies $M_{\infty}:=\lim_{n \to \infty}M_n$ exists $a.s.$
+
+By intuition, $M_{\infty}$ seem to be $1$ in the light of LNN and $\mathop{{}\mathbb{E}}_{}M_n=1$. However, in previous example we have seen, $a.s.$, $Z_n$ dies out and $M_n=0$ for $n$ large enough when $\mu\le 1$ and that counter our raw intuition.
+
+To find the distribution of $M_{\infty}$, consider the mgf, note $\exp -t M_n \to \exp -t M_{\infty}$ by continuity of $\exp$, DCT applies and we have
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\exp(-t M_{\infty})&=\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{}\exp (-t M_{n})
+    \\ &= 
+    \lim_{n \to \infty} f_n(\exp \frac{-t}{\mu^{n}})=: L(t)
+\end{aligned}
+$$
+recall $f_{n+1}=f \circ f_n$, we have $L(t \mu)=f \circ L(t)$
+
+
+
+
+
+
+
+
+

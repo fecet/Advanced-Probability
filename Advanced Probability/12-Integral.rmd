@@ -1,6 +1,6 @@
 ## Integration
 
-let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
+Let $f$ be Borel measurable on $(\Omega,\mathcal{A},\mu)$. The **integral** of $f$ w.r.t $\mu$ is denoted by
 $$
 \int f ( \omega ) \mu ( d \omega ) = \int f d \mu = \int f 
 $$

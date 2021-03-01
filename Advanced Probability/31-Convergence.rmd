@@ -218,8 +218,8 @@ By intuition, we have:
 1. $\{A_n \text{ ult.}\}^c=\{A_n^c \text{ i.o.}\}$
 2. $\bm{\mathbf{1}}_{\{A_n \text{ i.o.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ i.o.}\}$, $\bm{\mathbf{1}}_{\{A_n \text{ ult.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ ult.}\}$
 3. $\{A_n \text{ i.o.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n}=\infty\}$, $\{A_n \text{ ult.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n^c}<\infty\}$
-4. $\{A_n \text{ i.o.}\} \subset \{A_n \text{ ult.}\}$
-5. $\mathop{{}\mathbb{P}}(\liminf_{n \to \infty} A_n)\le \liminf_{n \to \infty} \mathop{{}\mathbb{P}}(A_n)\le \limsup_{n \to \infty} (A_n)\le \mathop{{}\mathbb{P}}(\limsup_{n \to \infty} A_n)$
+4. $\{A_n \text{ i.o.}\} \supset  \{A_n \text{ ult.}\}$
+5. $\mathop{{}\mathbb{P}}(\liminf_{} A_n)\le \liminf_{} \mathop{{}\mathbb{P}}A_n\le \limsup_{} \mathop{{}\mathbb{P}} A_n\le \mathop{{}\mathbb{P}}(\limsup_{} A_n)$
 
 :::
 

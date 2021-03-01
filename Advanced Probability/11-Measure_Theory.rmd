@@ -537,7 +537,6 @@ $$ \mu(A_1)-\mu(A)=\mu(A_1-A)=\lim \mu(A_1-A_i)=\mu(A_1)-\lim(A_i) $$
 
 where $\mu(A_1)$ cannot be cancelled if $\mu(A_i)=\infty$.
 
-
 ::: {.definition  name=""}
 
 Let $(\Omega,\mathcal{A},\mathcal{\mu})$ be a measure space, and $N\subset\Omega$
