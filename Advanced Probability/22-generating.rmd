@@ -1,0 +1,240 @@
+## Generating functions
+
+### Laplace and Fourier transforms
+
+::: {.definition  name=""}
+
+Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ and its expectation $\hat{\mu}_r=\mathop{{}\mathbb{E}} e^{-rX}$ also in $[0,1]$. The resulting function $r \mapsto \hat{\mu}_r:\mathbb{R}_+\to [0,1]$ is called **Laplace transform** of the distribution $\mu$, or Laplace transform of $X$ for short.
+
+:::
+
+
+::: {.remark}
+
+1. $r \mapsto \hat{\mu}_r$ is continues and decreasing on $(0,\infty)$ and note $e^{-rX}=e^{-rX}\bm{\mathbf{1}}_{X<\infty}\nearrow \bm{\mathbf{1}}_{X<\infty}$ as $r \searrow 0$, then $\lim_{r \to 0^+}\hat{\mu}_r=\mathop{{}\mathbb{P}}\{X<\infty\}$
+2.  $\hat{\mu}_r$ is also called **Moment generating function** as
+    $$
+    \lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=(-1)^{n}\mathop{{}\mathbb{E}}X^{n}
+    $$
+    if $\mathop{{}\mathbb{E}}X^{n}<\infty$
+
+:::
+
+
+
+::: {.proposition #characterization-laplace name=""}
+
+Let $X,Y \in \mathcal{F}_+$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{-rX}=\mathop{{}\mathbb{E}}e^{-rY}$
+3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+The definition of characteristic function require taking expectation of a complex-valued r.v. Suppose $Z$ is complex, define
+$$
+\mathop{{}\mathbb{E}}Z=\mathop{{}\mathbb{E}} \Re(Z)+i\mathop{{}\mathbb{E}}\Im(Z)
+$$
+Then Jensen's inequality \@ref(thm:jensen) yields $\left|\mathop{{}\mathbb{E}}Z\right|\le \mathop{{}\mathbb{E}}\left|Z\right|$ and thus integrability of $Z$ is equivalent to $\left|Z\right|$.
+
+Suppose that $X$ is real-valued, for $r\in \mathbb{R}$, define:
+$$
+\hat{\mu}_r=\mathop{{}\mathbb{E}}e^{irX}=\int (\cos rx+i\sin rx) d\mu 
+$$
+the resulting function $r\mapsto \hat{\mu}_r:\mathbb{R}\to \mathbb{C}$ is called the **Fourier transform** of $\mu$ or **characteristic function(ch.f.)** of $X$. We denoted it as $\varphi_X(t)=\hat{\mu}_t$.
+
+
+::: {.theorem #characteristic-function name=""}
+
+Characteristic functions have following properties:
+
+1. $\left|\varphi(t)\right| \le 1$ for all $t$ and equality occurs when $t=0$.
+2. $\varphi(-t)=\overline{\varphi(t)}$ for all $t$.
+3. $\varphi$ is uniformly continues on $\mathbb{R}$.
+4. $\varphi_{aX+b}(t)=e^{itb}\varphi_X(at)$.
+5. A convex countable combination of ch.f.'s is a ch.f. 
+
+:::
+
+
+::: {.proof}
+
+1,2,4 is clear. For 3, note
+$$
+\begin{aligned}
+    \left|\varphi(t+h)-\varphi(t)\right|&=\left|\mathop{{}\mathbb{E}}(e^{i(t+h)X}-e^{itX})\right|
+    \\ & \le 
+    \mathop{{}\mathbb{E}}\left|e^{i(t+h)X}-e^{itX}\right|
+    \\ &= 
+    \mathop{{}\mathbb{E}}\left|e^{ihX}-1\right|
+    \\& \le \mathop{{}\mathbb{E}} \left|hX\right|
+\end{aligned}
+$$
+Where the last inequality follows from [$\left|e^{ix}-e^{iy}\right|\le \left|x-y\right|$](https://math.stackexchange.com/questions/372337/inequality-involving-complex-exponential). If $X$ is not integrable, [DCT](https://math.stackexchange.com/questions/1247373/proving-that-the-characteristic-function-is-uniformly-continous) also guarantee the uniform continuity. 
+
+For 5, suppose their corresponding distribution is $(\mu_{i})_{i \in \mathbb{N}^*}$, then the same convex combination generates a new distribution $\sum_{i \in \mathbb{N}^{*}}^{}\lambda_i\mu_i$ and the corresponding ch.f.:
+$$
+\int e^{itX} d \sum_{}^{} \lambda_i\mu_i=\sum_{}^{}\lambda_i \int e^{itX} d\mu_i=\sum_{}^{} \lambda_i \varphi_i(t)
+$$
+
+:::
+
+
+::: {.remark}
+
+As consequence, $X$ and $-X$ have the same distribution iff $\varphi$ is real-valued as $\varphi_{-X}(t)=\varphi_{X}(-t)=\overline{\varphi_{X}(t)}$.
+
+:::
+
+
+The main reason for introducing characteristic function is if $X_1$ and $X_2$ are independent with ch.f.'s $\varphi_1$ and $\varphi_2$ then $X_1+X_2$ has ch.f. $\varphi_1\varphi_2$ by noting 
+$$
+\mathop{{}\mathbb{E}} e^{it(X_1+X_2)}=\mathop{{}\mathbb{E}}(e^{itX_1}e^{itX_2})=\mathop{{}\mathbb{E}}e^{itX_1}\mathop{{}\mathbb{E}}e^{itX_2}=(\varphi_1 \varphi_2)(t)
+$$
+
+::: {.proposition #inversion-formula name="The inversion formula"}
+
+For interval $(a,b)\subset \mathbb{R}$:
+$$
+\lim_{T \to \infty} (2\pi)^{-1} \int _{-T}^{T} \frac{e^{-ta}-e^{-tb}}{it} \varphi(t) dt = \mu(a,b)+\frac{1}{2}\mu \{a,b\}
+$$
+where
+$$
+\left|\frac{e^{-ta}-e^{-tb}}{it}\right|=\left|\int _a^{b}e ^{-itx} dx\right|\le \left|b-a\right|
+$$
+
+:::
+
+Also
+
+::: {.lemma  name=""}
+
+For any $x \ge 0$:
+$$
+\int_0 ^{\pi} \frac{\sin t}{t} d t \ge \int _0^{x} \frac{\sin t}{t} dt \ge 0
+$$
+In particular,
+$$
+\int_{0}^{\infty}\frac{\sin t}{t} dt=\frac{\pi}{2}
+$$
+
+:::
+
+That implies
+
+::: {.proposition #characterization-fourier name=""}
+
+Let $X,Y$ taking values in $\mathbb{R}$, TFAE:
+
+1. $X$ and $Y$ have the same distribution
+2. $\forall r\in \mathbb{R}_+,\mathop{{}\mathbb{E}}e^{irX}=\mathop{{}\mathbb{E}}e^{irY}$
+3. $\mathop{{}\mathbb{E}} f\circ X=\mathop{{}\mathbb{E}} f\circ Y$ for every $f\in \mathbb{R}^{\mathbb{R}}_c \cap \mathbb{R}^{\mathbb{R}}_b$
+
+:::
+
+
+::: {.proof}
+
+$1 \iff 2$ follows from Inversion formula \@ref(prp:inversion-formula) immediately.
+
+:::
+
+
+
+
+
+::: {.remark}
+
+Similarly, we have
+$$
+\lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=i^{n}\mathop{{}\mathbb{E}}X^{n}
+$$
+if $\mathop{{}\mathbb{E}}X^{n}<\infty$
+
+:::
+
+### Generating function
+
+In particular, if $X\in \overline{\mathbb{N}}$,then for $z\in [0,1]$, $\mathop{{}\mathbb{E}} z^{X}$ is called **generating function** and also determined distribution of $X$.
+$$
+\mathop{{}\mathbb{E}}_{}z^{X}=\sum_{n=0}^{\infty}z^{n} \mathop{{}\mathbb{P}}\{X=n\}
+$$
+Similarly, we have
+$$
+\mathop{{}\mathbb{P}}\{X=n\}=\frac{f^{n}(0)}{n!}
+$$
+
+:::: {.example #number-of-children name="Typical number of children"}
+
+Suppose the number of children of a typical animal is a $r.v.$ $X$ taking values in $\mathbb{N}$ and $\mathop{{}\mathbb{P}}\{X=0\}> 0$.
+
+Derive generating function of $X$:
+$$
+f'(\theta)=\mathop{{}\mathbb{E}}_{} X\theta^{X-1}=\sum_{k}^{} k \theta^{k-1} \mathop{{}\mathbb{P}}\{X=k\}
+$$
+thus
+$$
+\mu:= \mathop{{}\mathbb{E}}_{}X=f'(1)=\sum_{k}^{}k \mathop{{}\mathbb{P}}\{X=k\}
+$$
+and recall that
+$$
+f'(1)=\lim_{\theta \to 1} \frac{f(\theta)-f(1)}{\theta-1}=\lim_{\theta \to 1} \frac{f(\theta)-1}{\theta-1}
+$$
+
+Suppose family of $r.v.'s$ $\{X_{m,r}\}$ are $i.i.d.$ with the same distribution as $X$. The index represents the children of the $r$th animal in $m$th generation. Let $Z_n$ be the size of $n$th generation, then
+$$
+Z_{n+1}=\sum_{i=1}^{Z_n}X_{n+1,i}
+$$
+and we assume $Z_0=1$. 
+
+Suppose we are interested in the distribution of $Z_n$. Denoted the generating function of $Z_n$ as $f_n=\mathop{{}\mathbb{E}}_{}\theta^{Z_n}$, we claim that
+$$
+f_{n+1}(\theta)=f_n(f(\theta))
+$$
+and that will fast implies $f_n=f^{n}$. To see that, note
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\theta^{Z_{n+1}}&=\mathop{{}\mathbb{E}}_{}\mathop{{}\mathbb{E}}_{Z_n} \theta^{Z_{n+1}}
+    =
+    \mathop{{}\mathbb{E}}_{}\mathop{{}\mathbb{E}}_{Z_n}\prod_{i=1} ^{Z_n}\theta^{X_{n+1},i}
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\prod_{i=1}^{Z_n}\mathop{{}\mathbb{E}}_{Z_n} \theta^{X} = \mathop{{}\mathbb{E}}_{}(\mathop{{}\mathbb{E}}_{}\theta^{X})^{Z_n}=\mathop{{}\mathbb{E}}_{}f(\theta)^{Z_n}
+\end{aligned}
+$$
+Then claim follows.
+
+Now, consider the probability $\pi_n:=\mathop{{}\mathbb{P}}\{Z_n=0\}$, $i.e.$, the extinction probability. To see this, let
+$$
+\pi:=\mathop{{}\mathbb{P}}\{\exists i,Z_i=0 \}=\mathop{{}\mathbb{P}}\left( \bigcup_{n \to \infty} \{Z_n=0\} \right)=\lim_{n \to \infty}\pi_n
+$$
+the last equality follows from $\{Z_n=0\}\subset \{Z_{n+1}=0\}$.
+
+On the other hand, note $\pi_n=f_n(0)$ and thus $\pi_{n+1}=f(\pi_n)$, that implies
+$$
+\pi=\lim_{n \to \infty}\pi_{n+1}=\lim_{n \to \infty}f(\pi_n)=f(\lim_{n \to \infty}\pi_n)=f(\pi)
+$$
+as $f$ is continues. Take a look at $f$, it's increasing and convex. Also, $f(1)=1$ and $f(0)=\mathop{{}\mathbb{P}}\{X=0\}>0$. Then the slope $f'(1)=\mu=\mathop{{}\mathbb{E}}_{}X$ determine the extinction probability, if $\mathop{{}\mathbb{E}}_{}X>1$, then the extinction probability $\pi$ is the root in $(0,1)$ and if $\mathop{{}\mathbb{E}}_{}X\le 1$, then $\pi=1$. Both cases are shown in figure \@ref(fig:extinction-probability-fixed-point).
+
+```{r extinction-probability-fixed-point, fig.cap="subcritical and supercritical"}
+
+p <- ggplot(data = data.frame(x = 0), mapping = aes(x = x))
+fun.1 <- function(x) .5*x^2+.5
+fun.2 <- function(x) (x-1/4)^2+7/16
+lin <- function(x) x
+p + 
+    stat_function(fun = fun.1,colour = "blue") +
+    stat_function(fun = fun.2,colour = "red") +
+    stat_function(fun = lin) +
+    xlim(0,1)+
+    coord_fixed()+
+    theme_classic()
+```
+
+::::
+
+
+
+
+
+
