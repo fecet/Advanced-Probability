@@ -1,0 +1,65 @@
+### Korovkin's Theorem
+
+Recall that compact metric space $(K,d)$, the space formed by all the continuous function $x\in K\mapsto \mathbb{R}$, $\mathcal{C}^{}_{}\left(K\right)$ can equip the sup-norm like $\|f\|_{}=\sup_{x\in K}\left|f(x)\right|$.
+
+
+::: {.theorem  name="Korovkin's theorem"}
+
+Let $(K,d)$ be a compact metric space, and let $\varphi\in \mathcal{C}^{}_{}\left([0,\infty]\right)$ be a function s.t. $\varphi(t)\gt 0$ for all $t\gt 0$ and let $\psi_x\in \mathcal{C}(K)$ be defined for each $x\in K$ by:
+$$ 
+\psi_x(y)=\varphi(d(x,y)) \mathop{\text{ for all }}x\in K
+$$
+Let $(A_{i})_{i=1}^{\infty}$ be a sequence of linear operators $A_{i}:\mathcal{C}(K)\to \mathcal{C}(K)$ that possess three properties:
+
+1.  
+    Each $A_{i}$ is nonnegativity-preserving which means:
+    $$ 
+    f\in \mathcal{C}(K)\mathop{\text{ and }}f(x)\ge 0\mathop{\text{ for all }}x\in K\implies A_{i}f(x)\ge 0 \mathop{\text{ for all }}x\in K
+    $$
+
+2.
+    $\lim _{n\to \infty}\|f_0-A_{n}f_0\|_{}=0$ where $f_0\in \mathcal{C}(K)$ and $f_0(x)=1$ for all $x\in K$.
+
+3.
+    $$ 
+    \lim _{n\to \infty}\left(\sup_{x\in K}\left|(A_{n}\psi_x)(x)\right|\right)=0
+    $$
+
+Then for each $f\in \mathcal{C}(K)$,
+$$ 
+\lim _{n\to \infty}\|f-A_nf\|_{}=0
+$$
+
+:::
+
+
+::: {.proof}
+
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

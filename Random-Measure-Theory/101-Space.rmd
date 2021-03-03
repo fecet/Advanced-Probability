@@ -1,0 +1,82 @@
+# Spaces, Kernels and Disintegration
+
+## Borel and Measure Spaces
+
+::: {.definition  name="borel isomorphic"}
+
+Two measurable space $(A,\mathcal{A})$ and $(B,\mathcal{B})$ are said to be Borel isomorphic if there exists a bijective mapping $f:A\to B$ s.t. $f$ and $f^{-1}$ are both measurable.
+
+:::
+
+::: {.definition  name="borel space"}
+
+A Borel space is a measurable space $(S,\mathcal{S})$ that is Borel isomorphic to Borel set on $\mathbb{R}$.
+
+:::
+
+::: {.definition  name="lcscH"}
+
+We said a space $S$ is lcscH if it is locally compact, second countable and Hausdorff.
+
+:::
+
+::: {.theorem  name=""}
+
+Any Polish space $S$ is:
+
+-   homeomorphic to a Borel set in $[0,1]^{\infty}$ 
+-   Borel isomorphic to a Borel set in $[0,1]$
+
+:::
+
+::: {.proof}
+
+Let $(S,\rho)$ be the Polish space and fix $d\le 1$ by $d\land 1$. Since $S$ is separable, then there exists a dense sequence $(x_{i})_{i=1}^{\infty}\subset S$ s.t. $\overline{(x_{i})_{i=1}^{\infty}}=S$. Then consider the mapping:
+$$ 
+x\in S\mapsto \left(\rho(x,x_1),\rho(x,x_2),\ldots\right)
+$$
+defines a homeomorphic embedding of $S$ into a compact space $K=[0,1]^{\infty}$ so we regard $S$ as subset of $K=[0,1]^{\infty}$.  
+In $K$ we define a metric
+$$ 
+d(x,y)=\sum_{n=1}^{\infty} \frac{1}{2^{n}}\left|x_n-y_n\right|
+$$
+Then define:
+$$ 
+U_n(\epsilon)=\left\{x\in \overline{S}:\mathop{\text{diam}}_\rho B_{d,\epsilon}(x)\lt \frac{1}{n}\right\}
+$$
+where $\epsilon\gt 0,n\in \mathbb{N}$. Then let $G_n=\bigcup_{\epsilon} U_n(\epsilon)$, now we show that $G_n$ is open in $\overline{S}$.  
+
+:::
+
+::: {.definition  name="localizing ring"}
+
+Given a measurable space $(S,\mathcal{S})$, we say a class $\hat{\mathcal{S}}\subset \mathcal{S}$ is a localizing ring in $S$ if:
+
+-   $\hat{\mathcal{S}}$ is a subring of $\mathcal{S}$ 
+-   $B\in \hat{\mathcal{S}},C\in \mathcal{S}$ implies $B\cap C\in \hat{\mathcal{S}}$.
+-   $\hat{\mathcal{S}}=\bigcup_{n} (\mathcal{S}\cap A_n)$ for some $(A_n)\nearrow S$
+
+Note that the third condition can be one of the definition of localizing ring.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
