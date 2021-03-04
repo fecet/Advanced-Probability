@@ -1,0 +1,25 @@
+# Singular Value Decomposition
+
+::: {.theorem  name=""}
+
+If $\bm{\mathbf{A}}\in \mathbb{R}^{m\times n}$ of rank $r>0$, there exist orthogonal matrix $\bm{\mathbf{P}}\in \mathbb{R}^{m\times m}$ and $\bm{\mathbf{Q}}\in \mathbb{R}^{n\times n}$ $s.t.$ $\bm{\mathbf{A=PDQ'}}$ where $\bm{\mathbf{D}}$ is:
+$$
+\begin{cases}
+    \Sigma & m=n=r\\
+    \begin{bmatrix}
+        \Sigma	& \bm{\mathbf{0}}	\\
+    \end{bmatrix} & r=m<n\\
+    \begin{bmatrix}
+        \Sigma	\\
+        	\bm{\mathbf{0}}\\
+    \end{bmatrix}& r=n<m \\
+    \begin{bmatrix}
+        \Sigma	& \bm{\mathbf{0}} 	\\
+        \bm{\mathbf{0}}	& \bm{\mathbf{0}} 	\\
+    \end{bmatrix} & r<m,r<n
+\end{cases}
+$$
+where $\Sigma \in \mathbb{R}^{r\times r}$ and is diagonal with positive entries, which are $\sqrt{\lambda_i}$ where $\lambda_i \in \sigma_{\bm{\mathbf{A'A}}}$
+
+:::
+

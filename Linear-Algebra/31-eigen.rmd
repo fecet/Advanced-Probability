@@ -1,0 +1,345 @@
+# Matrix Analysis {-}
+
+# Eigenvalues
+
+Suppose $\bm{\mathbf{A}}\in \mathbb{R}^{m}$, if $\bm{\mathbf{Ax=}}\lambda \bm{\mathbf{x}}$, we say $\lambda$ eigenvalue of $\bm{\mathbf{A}}$ and $\bm{\mathbf{x}}$ is eigenvector of $\bm{\mathbf{A}}$. To find $\lambda$, we solve following characteristic equation of $\bm{\mathbf{A}}$:
+$$
+\left| \bm{\mathbf{A}}-\lambda \bm{\mathbf{I}}\right|=0
+$$
+Recall the Fundamental theorem of algebra, there is $m$ eigenvalues and the times of $\lambda$ repeated is called **algebraic multiplicity**, or multiplicity for short and denoted as $\mu_{\bm{\mathbf{A}}}(\lambda)$.
+
+Note the eigenvector for a eigenvalue $\lambda$ is not unique, in fact, all of them formed a vector space.
+
+::: {.theorem  name=""}
+
+If $S_{\bm{\mathbf{A}}}(\lambda)$ is all eigenvectors of $\bm{\mathbf{A}}$ corresponding to $\lambda$, then $S_{\bm{\mathbf{A}}}(\lambda)$ is a vector space.
+
+:::
+
+The dimension of eigenspace of $\lambda$ is called **geometric multiplicity** of $\lambda$ and deonted as $\gamma_{\bm{\mathbf{A}}}(\lambda)$.
+
+Following are frequently using:
+
+
+::: {.proposition #eigen-property name=""}
+
+Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$, $\lambda$ is it's eigenvalue, then the following holds:
+
+1. The eigenvalues of $\bm{\mathbf{A'}}$ are the same as that of $\bm{\mathbf{A}}$.
+2. $\bm{\mathbf{A}}$ is singular iff $0$ is a eigenvalues.
+3. The eigenvalues of $\bm{\mathbf{BAB^{-1}}}$ are the same as $\bm{\mathbf{A}}$.
+4. If $\bm{\mathbf{A}}$ is orthogonal, $|\lambda_i|=1$.
+5. $1\le \gamma_{\bm{\mathbf{A}}}(\lambda)\le \mu_{\bm{\mathbf{A}}}(\lambda)\le m$.
+6. $\lambda^{n}$ is an eigenvalue of $\bm{\mathbf{A}}^{n}$ and the eigenspace remain the same, where $n$ can be negative when $\bm{\mathbf{A}}$ is invertible.
+7. $\mathop{\text{tr}}\left( \bm{\mathbf{A}} \right)=\sum_{i=1}^{m}\lambda_i$, $\left| \bm{\mathbf{A}}\right|=\prod_{i=1}^{m} \lambda_i$.
+8. $\sigma_{\bm{\mathbf{AB}}}=\sigma_{\bm{\mathbf{BA}}}$ if ignore zero eigenvalues.
+
+:::
+
+
+:::: {.proof}
+
+**7**. Recall the characteristic equation of the form:
+$$
+(-\lambda)^{m}+\alpha_{m-1}(-\lambda)^{m-1}+\dots+\alpha_1(-\lambda)+\alpha_0=0
+$$
+By the Vieta's formulas,
+$$
+\sum_{i=1}^{m}\lambda_i=\alpha_{m-1},\prod_{i=1}^{n} \lambda_i=\alpha_0
+$$
+For $\alpha_{m-1}$, by the definition of determinant, it comes from term $\prod_{i=1} ^{m} (a_{ii}-\lambda)$ and thus equal to $\sum_{i=1}^{m}a_{ii}=\mathop{\text{tr}}\left( \bm{\mathbf{A}}\right)$. For $\alpha_0$, let $\lambda=0$ in above equation and we have $\left| \bm{\mathbf{A}}\right|=\alpha_0$. This completes the proof.
+
+
+
+::::
+
+
+::: {.proposition  name=""}
+
+Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ and symmetric, $\bm{\mathbf{c,d}} \in \mathbb{R}^{m}$, then
+$$
+\left| \bm{\mathbf{A+cd'}}\right|=\left| \bm{\mathbf{A}}\right|(1+\bm{\mathbf{d'A^{-1}c}})
+$$
+
+:::
+
+:::: {.proof}
+
+$$
+\left| \bm{\mathbf{A+cd'}} \right|=\left| \bm{\mathbf{A(I+A^{-1}cd')}} \right|=\left| \bm{\mathbf{A}} \right|\left| \bm{\mathbf{I+A^{-1}cd'}} \right|=\left|  \bm{\mathbf{A}}\right|(1+\bm{\mathbf{c'A^{-1'}d}})=\left| \bm{\mathbf{A}} \right|(1+\bm{\mathbf{d'A^{-1}c}})
+$$
+where we use the truth:
+
+::: {.lemma  name=""}
+
+$\left| \bm{\mathbf{I+bd'}} \right|=1+\bm{\mathbf{d'b}}$
+
+:::
+
+Since for any orthogonal vector $\bm{\mathbf{x}}$ to $\bm{\mathbf{d}}$, $(\bm{\mathbf{I+bd'}})\bm{\mathbf{x}}=\bm{\mathbf{x}}$, they are eigenvectors of $1$ and thus $\mu_{\bm{\mathbf{A}}}(1)\ge \gamma_{\bm{\mathbf{A}}}(1)=m-1$. Notice $\mathop{\text{tr}}\left( \bm{\mathbf{I+bd'}} \right)=m+\bm{\mathbf{d'b}}$ and that implies there are exactly $1$ eigenvalues is $1+\bm{\mathbf{d'b}}$ and claim follows by compute $\prod_{} \lambda_i$.
+
+::::
+
+
+::: {.proposition  name=""}
+
+Suppose $\bm{\mathbf{x_1,x_2,\dots,x_r}}$ belong to different $\lambda_i$, then they are linearly independent.
+
+:::
+
+Suppose $\mathop{\text{eig}}\left(\bm{\mathbf{A}}\right)$ are all distinct, then let
+$$
+\bm{\mathbf{X}}=\begin{bmatrix}
+                    \bm{\mathbf{x_1}}	& 	\dots& 	\bm{\mathbf{x_m}}\\
+                \end{bmatrix}
+$$
+where $\bm{\mathbf{x}}_i$ is an eigenvector corresponding to $\lambda_i$. Then $\bm{\mathbf{Ax_i}}=\lambda_i \bm{\mathbf{x_i}}$ implies $\bm{\mathbf{AX=X}}\mathop{\text{diag}}(\lambda_i)$. That is, $\bm{\mathbf{A=X\Lambda X^{-1}}}$ is **diagonalizable**. If $\bm{\mathbf{A}}$ is diagonalizable, then it's rank is the number of its nonzero eigenvalues, also, in view of proposition \@ref(prp:eigen-property), $\mu_{\bm{\mathbf{A}}}(\lambda)=\gamma_{\bm{\mathbf{A}}}(\lambda)$.
+
+The following theorem stats that a matrix satisfy its own characteristic equation.
+
+::: {.theorem #cayley-hamilton name="Cayley-Hamilton"}
+
+Suppose $\mathop{\text{eig}}\left(\bm{\mathbf{A}}\right)=\lambda_1, \dots, \lambda_m$ then
+$$
+\prod_{i=1} ^{m} \bm{\mathbf{A}}-\lambda_i \bm{\mathbf{I}}=\bm{\mathbf{0}}
+$$
+
+:::
+
+## Symmetric matrices and Spectral Decomposition
+
+Symmetric matrices avoid occurrence of complex eigenvalues:
+
+
+::: {.theorem  name=""}
+
+Let $\bm{\mathbf{A}} \in \mathbb{R}^{m\times m}$ be symmetric, then all eigenvalues of $\bm{\mathbf{A}}$ are real.
+
+:::
+
+
+:::: {.proof}
+
+Suppose $\lambda \in \mathop{\text{eig}}\left(\bm{\mathbf{A}}\right)$, then
+$$
+\bm{\mathbf{(Ax)^*x}}=\overline{\lambda} \bm{\mathbf{x}}^*\bm{\mathbf{x}}
+$$
+on the other hand
+$$
+\bm{\mathbf{(Ax)^{*}x}}=\bm{\mathbf{x^*Ax}}=\lambda \bm{\mathbf{x^*x}}
+$$
+thus $\overline{\lambda}=\lambda$ and must be real.
+
+::::
+
+
+::: {.remark}
+
+The real eigenvalues suggest real eigenvector existence, suppose $\bm{\mathbf{x=a+}}i \bm{\mathbf{b}}$, then
+$$
+\bm{\mathbf{Ax}}=\bm{\mathbf{Aa}}+i \bm{\mathbf{Ab}}=\lambda \bm{\mathbf{a}}+i \lambda \bm{\mathbf{b}}
+$$
+thus $\bm{\mathbf{a}}$ is also eigenvector.
+
+
+:::
+
+We have see that sets of eigenvectors comes from different eigenvalues are linearly independent. If $\bm{\mathbf{A}}$ is symmetric, they are even orthogonal. Suppose $\lambda,\gamma \in \sigma_{\bm{\mathbf{A}}}$ and $\lambda \neq \gamma$, corresponding to eigenvectors $\bm{\mathbf{x}}$ and $\bm{\mathbf{y}}$.
+$$
+\begin{aligned}
+    \lambda \bm{\mathbf{x'y}}&=(\lambda \bm{\mathbf{x}})\bm{\mathbf{'y}} = (\bm{\mathbf{Ax}})' \bm{\mathbf{y}}=\bm{\mathbf{x'A'y}}
+    \\ &= 
+    \bm{\mathbf{x'}} \gamma \bm{\mathbf{y}}=\gamma \bm{\mathbf{x'y}}\implies \bm{\mathbf{x'y}}=0
+\end{aligned}
+$$
+Thus, if all the $m$ eigenvalues are distinct, Spectral decomposition can be applied. In fact, it's possible even $\bm{\mathbf{A}}$ has multiple eigenvalues. To see this, we need following theorem.
+
+
+::: {.lemma  name=""}
+
+Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ be symmetric and $\bm{\mathbf{x}}\in \mathbb{R}^{m}$, then there is some $\lambda_i \in \sigma_{\bm{\mathbf{A}}}$ $s.t.$
+$$
+\lambda_i \in \mathop{\text{span}}\left( \bm{\mathbf{x,Ax,\dots,A^{r-1}x}} \right)
+$$
+for some $r \ge 1$
+
+:::
+
+
+:::: {.proof}
+
+Let $r$ be the smallest for which $\left( \bm{\mathbf{x,Ax,\dots,A^{r}x}} \right)$ are linearly dependent. Then there exist not all zero $\alpha_i$ $s.t.$:
+$$
+\alpha_0 \bm{\mathbf{x}}+\alpha_1 \bm{\mathbf{Ax}}+\dots+\alpha_r \bm{\mathbf{A^{r}x}}=(\alpha_0 \bm{\mathbf{I}}+\alpha_1 \bm{\mathbf{A}}+\dots+\bm{\mathbf{A^r}})\bm{\mathbf{x}}=\bm{\mathbf{0}}
+$$
+where we let $\alpha_r=0$ WLOG. By Fundamental Algebra Theorem, there exist $\gamma_i$ $s.t.$
+$$
+\sum_{i=0}^{r} \alpha_i \bm{\mathbf{A}}^{i}=\prod_{i=1} ^{m} (\bm{\mathbf{A-}}\gamma_i \bm{\mathbf{I}})
+$$
+Now let $\bm{\mathbf{y=}}\left[\prod_{i=2} ^{m} (\bm{\mathbf{A}}-\gamma_i \bm{\mathbf{I}}) \right]\bm{\mathbf{x}}$, its nonzero as $\bm{\mathbf{x}},\bm{\mathbf{Ax}},\dots, \bm{\mathbf{A}}^{r-1}\bm{\mathbf{x}}$ are linearly independent. Thus $\bm{\mathbf{y}}$ is in $\mathop{\text{span}}\left( \bm{\mathbf{x}},\bm{\mathbf{Ax}},\dots, \bm{\mathbf{A}}^{r-1}\bm{\mathbf{x}} \right)$ and it follows that
+$$
+(\bm{\mathbf{A-}}\gamma_1 \bm{\mathbf{I}})\bm{\mathbf{y}}=\bm{\mathbf{0}}
+$$
+and then claim follows.
+
+::::
+
+Above lemma gives a way to find a new orthogonal eigenvector from existed $\bm{\mathbf{x_1,\dots,x_h}}$, select $\bm{\mathbf{x}}$ orthogonal to all of them then $\bm{\mathbf{A^{k}x}}$ remains orthogonal since
+$$
+\bm{\mathbf{x_i'A^{k}x}}=\bm{\mathbf{(A^{k}x_i)'x}}=\lambda_i^{k} \bm{\mathbf{x_i'x}}=0
+$$
+so the vector $\bm{\mathbf{y}}$ given by the lemma is desired. Then we can constructed a set of $m$ eigenvectors that are orthonormal.  
+As we said before, then so called spectral decomposition applied. Let $\bm{\mathbf{Q}}=(\bm{\mathbf{x_1}},\dots,\bm{\mathbf{x_m}})$ constructed by the orthonormal set and become an orthogonal matrix, then $\bm{\mathbf{A}}=\bm{\mathbf{Q \Lambda Q'}}$ where $\bm{\mathbf{\Lambda}}=\mathop{\text{diag}}(\lambda_i)$ as before.
+
+Clearly, in this case, geometric multiplicity and algebraic multiplicity coincide and rank is number of nonzero eigenvalues.
+
+## Eigenprojections
+
+A set of orthonormal eigenvectors can be used to find **eigenprojections** of $\bm{\mathbf{A}}$.
+
+
+::: {.definition  name=""}
+
+Let $\lambda$ be an eigenvalues of symmetric $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ with multiplicity $r \ge 1$, $\{\bm{\mathbf{x_i}}\}_{1}^{r}$ be the orthonormal set of eigenvectors, then the **eigenprojections** of $\bm{\mathbf{A}}$ is
+$$
+{\bm{\mathbf{P_A}}}(\lambda)=\sum_{i=1}^{r}\bm{\mathbf{x_ix_i'}}
+$$
+
+:::
+
+This is orthogonal projection for eigenspace $S_{\bm{\mathbf{A}}}(\lambda)$. Let $\{\lambda_i\}$ be the multiset of eigenvalues and $\{\mu_i\}$ be set of them, then
+$$
+\bm{\mathbf{A}}=\bm{\mathbf{Q\Lambda Q'}}=\sum_{i=1}^{m}\lambda_i \bm{\mathbf{x_ix_i'}}=\sum_{i=1}^{k}\mu_i \bm{\mathbf{P_A}}(\mu_i)
+$$
+The last term is preferred than the second since it's term are unique.
+
+## Advanced in eigenvalues
+
+
+::: {.theorem  name=""}
+
+Let $\bm{\mathbf{A,B}}\in \mathbb{R}^{m\times m}$ with eigenvalues $\lambda_1,\dots,\lambda_m$ and $\gamma_1,\dots,\gamma_m$. Define
+$$
+\begin{aligned}
+    M&=\max_{ij} \left| a_{ij} \right| \lor \left| b_{ij}\right|    \\
+    \delta_{}(\bm{\mathbf{A,B}})&=\frac{1}{m} \sum_{ij}^{}\left| a_{ij}-b_{ij} \right|
+\end{aligned}
+$$
+then
+$$
+\max_{i} \min_j \left| \lambda_i-\gamma_j \right|\le (m+2)M^{1-\frac{1}{m}} \delta(\bm{\mathbf{A,B}})^{\frac{1}{m}}
+$$
+
+:::
+
+That implies if $\bm{\mathbf{B_n}}\to \bm{\mathbf{A}}$ pointwise, then $\gamma \to \lambda$. 
+
+
+::: {.proposition  name=""}
+
+$\lambda_i$ is continues function of elements of $\bm{\mathbf{A}}$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Suppose $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ is symmetric and $\lambda \in \sigma_{\bm{\mathbf{A}}}$. Then $\bm{\mathbf{P_A}}(\lambda)$ is a continues function of $\bm{\mathbf{A}}$.
+
+:::
+
+## Quadratic form
+
+The quadratic form is something of the form $\bm{\mathbf{x'Ax}}$ as a function of $\bm{\mathbf{x\neq 0}}$, where $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ is symmetric. To avoid effect of scale, we often use **Rayleigh quotient**:
+$$
+R(x,\bm{\mathbf{A}})=\frac{\bm{\mathbf{x'Ax}}}{\bm{\mathbf{x'x}}}
+$$
+
+::: {.theorem  name=""}
+
+$R(\bm{\mathbf{x}},\bm{\mathbf{A}})$ take minimum in $S_{\bm{\mathbf{A}}}(\lambda_m)$ while maximum in $S_{\bm{\mathbf{A}}}(\lambda_1)$.
+
+:::
+
+Consequently, we have:
+
+::: {.theorem #courant-fischer name="Courant–Fischer min–max theorem"}
+
+Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ be symmetric with eigenvalues $\lambda_1\ge \lambda_2 \ge \dots\ge \lambda_m$. For $1\le h\le m$, let $\bm{\mathbf{B}}_h\in \mathbb{R}^{m\times (h-1)}$ and $\bm{\mathbf{C}}_h \in \mathbb{R}^{m\times (m-h)}$ which are orthogonal. Then
+$$
+\lambda_h=\min_{\bm{\mathbf{b}}_h} \max _{\bm{\mathbf{b}}_h' \bm{\mathbf{x}}=\bm{\mathbf{0}}} \frac{\bm{\mathbf{x'ax}}}{\bm{\mathbf{x'x}}}=\max_{\bm{\mathbf{C}}_h} \min _{\bm{\mathbf{C}}_h' \bm{\mathbf{x}}=\bm{\mathbf{0}}} \frac{\bm{\mathbf{x'ax}}}{\bm{\mathbf{x'x}}}
+$$
+
+:::
+
+
+:::: {.proof}
+
+Let $\bm{\mathbf{x}}_i$ be eigenvectors corresponding to $\lambda_i$. The idea is we should specify $\bm{\mathbf{B}}_h$ and $\bm{\mathbf{C}}_h$ to avoid $\bm{\mathbf{x}}_i$ according the larger (and smaller) occur in the $\mathcal{N}(\bm{\mathbf{B'}}_h)$, so we can hide them in $\mathcal{C}(\bm{\mathbf{B}}_h)$. That is, let $\bm{\mathbf{B}}_h$ constructed by $\{\bm{\mathbf{x}}\}_{1}^{h-1}$ and so the next maximum is $\lambda_h$.
+
+::::
+
+
+
+
+
+## Nonnegative Definite Matrix
+
+
+::: {.theorem  name=""}
+
+Suppose $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$ is symmetric, then
+
+1. $\bm{\mathbf{A}}$ is positive definite iff $\lambda>0$ for all $\lambda \in \sigma_{\bm{\mathbf{A}}}$
+2. $\bm{\mathbf{A}}$ is positive semidefinite iff $\lambda \ge 0$ for all $\lambda \in \sigma_{\bm{\mathbf{A}}}$ and $0\in \sigma_{\bm{\mathbf{A}}}$
+
+:::
+
+
+:::: {.proof}
+
+By spectral decomposition, the orthogonal matrix $\bm{\mathbf{Q}}$ span $\mathbb{R}^{m}$, thus any $\bm{\mathbf{x}}=\bm{\mathbf{Qa}}$ for some $\bm{\mathbf{a}}$, then
+$$
+\bm{\mathbf{x'Ax=x'(Q\Lambda Q')x=a'\Lambda a}}
+$$
+Then the claim follows easily.
+
+::::
+
+Symmetric matrix often obtained by taking $\bm{\mathbf{A}}=\bm{\mathbf{TT'}}$ or $\bm{\mathbf{TT'}}$, in fact, they share positive eigenvalues.
+
+::: {.theorem  name=""}
+
+Let $\bm{\mathbf{T}}\in \mathbb{R}^{m\times m}$ with rank $r$, then positive eigenvalues of $\bm{\mathbf{TT'}}$ are the same with $\bm{\mathbf{T'T}}$.
+
+:::
+
+
+:::: {.proof}
+
+
+
+::::
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
