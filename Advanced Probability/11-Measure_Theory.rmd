@@ -335,7 +335,7 @@ For a measurable function $f$, we may modify it at a null set into $f'$ and it r
 
 ::: {.definition  name=""}
 
-If $A\in \mathcal{A}$, the indicator function $\bm{\mathbf{1}}_A$ is a r.v. If $\Omega=\sum_1^n{A_i}$, where $A_i \in \mathcal{A}$, then $X=\sum_1^n a_i \bm{\mathbf{1}}_{A_i}$ is a r.v. and called **simple r.v.**
+If $A\in \mathcal{A}$, the indicator function $\bm{1}_A$ is a r.v. If $\Omega=\sum_1^n{A_i}$, where $A_i \in \mathcal{A}$, then $X=\sum_1^n a_i \bm{1}_{A_i}$ is a r.v. and called **simple r.v.**
 
 :::
 
@@ -380,7 +380,7 @@ where $\mathcal{M_+}$ is a subcollection consisting of positive functions in $\m
 
 ::: {.theorem #MCT-function name="Monotone class theorem for functions"}
 
-Let $\mathcal{M}$ be a monotone class of functions on $(\Omega,\mathcal{A})$. Suppose for some $\pi$-system $\mathcal{C}$ generating $\mathcal{A}$ and $\bm{\mathbf{1}}_A\in \mathcal{M}$ for every $A\in \mathcal{C}$. Then $\mathcal{A_+,A_b}\subset \mathcal{M}$
+Let $\mathcal{M}$ be a monotone class of functions on $(\Omega,\mathcal{A})$. Suppose for some $\pi$-system $\mathcal{C}$ generating $\mathcal{A}$ and $\bm{1}_A\in \mathcal{M}$ for every $A\in \mathcal{C}$. Then $\mathcal{A_+,A_b}\subset \mathcal{M}$
 
 :::
 

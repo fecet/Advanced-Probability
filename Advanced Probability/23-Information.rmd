@@ -121,7 +121,7 @@ for any $A_i \in \mathcal{C_i}\cup \{\Omega\}$ respectively.
 
 ::: {.proof}
 
-$\implies$ is immediately by taking $V_i=\bm{\mathbf{1}}_{A_i}$. For $\impliedby$, clearly the equality holds for all $A_i \in \mathcal{F_i}$ respectively in view of theorem \@ref(thm:measure-agree). It follows that indicator $r.v.$ are independent and we can extend to general $V_i$ by theorem \@ref(thm:simple-approx) and theorem \@ref(thm:MCT).
+$\implies$ is immediately by taking $V_i=\bm{1}_{A_i}$. For $\impliedby$, clearly the equality holds for all $A_i \in \mathcal{F_i}$ respectively in view of theorem \@ref(thm:measure-agree). It follows that indicator $r.v.$ are independent and we can extend to general $V_i$ by theorem \@ref(thm:simple-approx) and theorem \@ref(thm:MCT).
 
 :::
 
@@ -212,15 +212,36 @@ This distribution $\mu * \nu$ is called **convolution** and can be extend to any
 
 ### Kolmogorov's $0$-$1$ law
 
+Following methods is little silly but has lots of the flavour of the Kolmogorov's 0-1 law.
 
-::: {.definition  name=""}
+::: {.example  name="Monkey typing Shakespeare"}
 
-Let $(\mathcal{G_n})$ be a sequence of sub-$\sigma$-algebras. We may treat $\mathcal{G_n}$ as the information revealed by the $n$th trial of an experiment. Then $\mathcal{J_n}=\sigma(\bigcup_{m>n}\mathcal{G_m})$ is information after $n$ and $\mathcal{J}=\bigcap_{n}\mathcal{J_n}$ is that about **remote future** and called **tail-$\sigma$-algebra**.
-
-The sets of which are called **tail events**, and functions on which are **tail functions**.
+Suppose monkey types symbols at random, $X_i$ per unit time, producing an infinite sequence $(X_t)$ of $i.i.d.$ $r.v.$. Let $WS$ be the sequence of works of William Shakespeare, $H$ be the event that the monkey produces infinitely many copies of WS, $H_k$ produces at least $k$ copies, $H_{t,k}$ that $H_k$ do happen by time $t$ and $H^{t+}$ $H$ happens over $(t,\infty)$. As $X_t$ are independent, we have
+$$
+\mathop{{}\mathbb{P}}(H_{t,k} \cap H^{t+})=\mathop{{}\mathbb{P}}H_{t,k} \mathop{{}\mathbb{P}}H^{t+}
+$$
+and $H=H^{t+}$ since there are infinite many. Hence
+$$
+\mathop{{}\mathbb{P}}(H_{t,k} \cap H)=\mathop{{}\mathbb{P}}H_{t,k} \mathop{{}\mathbb{P}}H
+$$
+Note $H_{t,k} \nearrow H_k$, thus $H_{t,k}\cap H \nearrow H_k \cap H=H$, also, $H_k \searrow H$, thus
+$$
+\mathop{{}\mathbb{P}}H=\mathop{{}\mathbb{P}}H_k \cap \mathop{{}\mathbb{P}}H=\mathop{{}\mathbb{P}}H^2 \implies \mathop{{}\mathbb{P}}H=0 \text{ or } 1
+$$
+But we still have no idea about which is the true probability. To do this, add a fair enough assumption:
+$$
+\epsilon:=\inf_x \{\mathop{{}\mathbb{P}}\{X_1=x\}\}>0
+$$
+Now we can do it really fast. Suppose WS has total length $N$, and $A_i$ be the event WS precisely written in $((i-1)N,iN]$, then we have $\mathop{{}\mathbb{P}}A_i \ge \epsilon^{N}$ and thus $\sum_{i=1}^{\infty}\mathop{{}\mathbb{P}}A_i=\infty$, then Borel-Cantelli Lemma \@ref(lem:borel-cantelli) applies and thus $\mathop{{}\mathbb{P}}H=1$.
 
 :::
 
+
+::: {.definition  name=""}
+
+Let $(\mathcal{G_n})$ be a sequence of sub-$\sigma$-algebras. We may treat $\mathcal{G_n}$ as the information revealed by the $n$th trial of an experiment. Then $\mathcal{J_n}=\sigma(\bigcup_{m>n}\mathcal{G_m})$ is information after $n$ and $\mathcal{J}=\bigcap_{n}\mathcal{J_n}$ is that about **remote future** and called **tail-$\sigma$-algebra**. The sets of which are called **tail events**, and functions on which are **tail functions**.
+
+:::
 
 ::: {.theorem #kolmogorov-0-1 name="Kolmogorov's 0-1 law"}
 

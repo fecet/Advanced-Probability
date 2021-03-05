@@ -42,7 +42,7 @@ Suppose $A$ is borel set in $\mathbb{R}$, TFAE:
 
 ::: {.proof}
 
-$1\implies 2$. Suppose $A$ is closed, let $A_{\epsilon}=\{x:d(x,A)<\epsilon\}$. Then $A_{\epsilon} \to \overline{A}=A$ as $\epsilon \to 0$ and thus $\mu (A_{\epsilon}) \searrow \mu(A)$ as $\epsilon \searrow 0$. For any $\epsilon$, define $f(x)=(1-\frac{d(x,A)}{\epsilon}) \vee 0$, clearly $f\in \mathbb{C}_b$ and $\bm{\mathbf{1}}_{A}\le f \le \bm{\mathbf{1}}_{A_{\epsilon}}$. Hence
+$1\implies 2$. Suppose $A$ is closed, let $A_{\epsilon}=\{x:d(x,A)<\epsilon\}$. Then $A_{\epsilon} \to \overline{A}=A$ as $\epsilon \to 0$ and thus $\mu (A_{\epsilon}) \searrow \mu(A)$ as $\epsilon \searrow 0$. For any $\epsilon$, define $f(x)=(1-\frac{d(x,A)}{\epsilon}) \vee 0$, clearly $f\in \mathbb{C}_b$ and $\bm{1}_{A}\le f \le \bm{1}_{A_{\epsilon}}$. Hence
 $$
 \mu_n(A) \le \mu_nf \to \mu f \le \mu(A_{\epsilon}) \searrow \mu(A)
 $$
@@ -258,11 +258,11 @@ $$
     \left|\frac{1}{2 \epsilon} \int _{(-\epsilon,\epsilon)}\varphi_n(t) dt\right|&\le
     \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right| 
     \\&=
-    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]}+
-    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{1}_{[-M,M]}+
+    \mu_n \left|\frac{\sin \epsilon x}{\epsilon x}\right|\bm{1}_{[-M,M]^c}
     \\&\le 
-    \mu_n \bm{\mathbf{1}}_{[-M,M]}+
-    \mu_n \left|\frac{1}{\epsilon x}\right|\bm{\mathbf{1}}_{[-M,M]^c}
+    \mu_n \bm{1}_{[-M,M]}+
+    \mu_n \left|\frac{1}{\epsilon x}\right|\bm{1}_{[-M,M]^c}
     \\&\le \mu_n[-M,M]+\frac{1}{\epsilon M}\mu_n([-M,M]^c)
     \\&\le 
     \mu_n[-M,M]+\frac{1}{\epsilon M}
@@ -360,7 +360,7 @@ WLOG, assume $X_n\ge 3$(We can do so by replacing $X_n \leftarrow X_n+3$) and pr
 
 **Step 1** Let
 $$
-Y_n=X_n \bm{\mathbf{1}}_{X_n<n},T_n=\sum_{i=1}^{n}Y_i,\overline{Y}_n=\frac{T_n}{n}
+Y_n=X_n \bm{1}_{X_n<n},T_n=\sum_{i=1}^{n}Y_i,\overline{Y}_n=\frac{T_n}{n}
 $$
 Clearly, $Y_n$ is bounded and do not differ from $X_n$ much since
 $$
@@ -371,7 +371,7 @@ which implies, through Borel-Cantelli lemma \@ref(lem:borel-cantelli), $X_n=Y_n$
 **Step 2** $(Y_n)$ remain pairwise independent and hence:
 $$
 \begin{aligned}
-    \mathop{{}\mathbb{E}}T_n&=\sum_{i=1}^{n}\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{X<i}=\mathop{{}\mathbb{E}}X \sum_{i>X}^{} \delta_i[1,n]
+    \mathop{{}\mathbb{E}}T_n&=\sum_{i=1}^{n}\mathop{{}\mathbb{E}}X \bm{1}_{X<i}=\mathop{{}\mathbb{E}}X \sum_{i>X}^{} \delta_i[1,n]
     \\
     \mathop{\text{Var}}T_n&=\sum_{i=1}^{n}\mathop{\text{Var}} Y_i\le \sum_{i=1}^{n}\mathop{{}\mathbb{E}}Y_i^2=\mathop{{}\mathbb{E}} X^2 \sum_{i>X}^{} \delta_i[1,n]
 \end{aligned}

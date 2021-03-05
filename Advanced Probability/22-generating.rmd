@@ -11,7 +11,7 @@ Suppose $X\in \mathcal{F}_+$, for $r\in \mathbb{R}_+$, then $e^{-rX}\in [0,1]$ a
 
 ::: {.remark}
 
-1. $r \mapsto \hat{\mu}_r$ is continues and decreasing on $(0,\infty)$ and note $e^{-rX}=e^{-rX}\bm{\mathbf{1}}_{X<\infty}\nearrow \bm{\mathbf{1}}_{X<\infty}$ as $r \searrow 0$, then $\lim_{r \to 0^+}\hat{\mu}_r=\mathop{{}\mathbb{P}}\{X<\infty\}$
+1. $r \mapsto \hat{\mu}_r$ is continues and decreasing on $(0,\infty)$ and note $e^{-rX}=e^{-rX}\bm{1}_{X<\infty}\nearrow \bm{1}_{X<\infty}$ as $r \searrow 0$, then $\lim_{r \to 0^+}\hat{\mu}_r=\mathop{{}\mathbb{P}}\{X<\infty\}$
 2.  $\hat{\mu}_r$ is also called **Moment generating function** as
     $$
     \lim_{r \to 0^+}\frac{d^n}{dr^n} \hat{\mu}_r=(-1)^{n}\mathop{{}\mathbb{E}}X^{n}

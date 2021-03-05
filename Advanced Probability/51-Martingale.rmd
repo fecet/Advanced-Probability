@@ -1,4 +1,6 @@
-# Martingale
+# Martingale and Stochastic
+
+### Simple cases of Martingale
 
 Recall example \@ref(exm:number-of-children) that
 $$
@@ -30,11 +32,50 @@ $$
 $$
 recall $f_{n+1}=f \circ f_n$, we have $L(t \mu)=f \circ L(t)$
 
+### Stochastic process and probability laws
+
+::: {.definition  name=""}
+
+Suppose $\{X_t:t\in T\}$ is a collection of r.v. taking values in $(E, \mathcal{E})$. If $T$ can be seen as time, then $(X_{t})_{t\in T}$ is called a **stochastic process** with **state space** $(E,\mathcal{E})$ and **parameter set** $T$.
+
+:::
+
+Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $\mathop{{}\mathbb{P}} \circ X^{-1}$, is called **probability law** of stochastic process $\{X_t:t\in T\}$. For $\omega \in \Omega$, the map $t \mapsto X_t(\omega)$ is called **sample path** of $X$ corresponding to $\omega$.
+
+Recall the product $\sigma$ algebra construction, the probability law is determined by:
+$$
+\mathop{{}\mathbb{P}}\{\bigcap_{i \in I} X_i\in A_i\}
+$$
+where $I\subset T$ is finite and $A_i\subset E$.
+
+
+::: {.example  name=""}
+
+Let $E$ be a at most countable set and $\bm{P}$ be a random $E\times E$ matrix, $s.t.$:
+$$
+p_{ij} \ge 0 \text{ and } \sum_{k}^{} p_{ik}=1
+$$
+Let $\mu$ be a probability measure on $E$ that specify $\mu \{i\}=: \mu_i$ for every $i\in E$. 
+
+:::
 
 
 
 
 
 
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 

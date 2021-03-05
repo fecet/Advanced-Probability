@@ -5,7 +5,7 @@ $$
 \int f ( \omega ) \mu ( d \omega ) = \int f d \mu = \int f 
 $$
 
-1.  If $f=\sum_1^n a_i \bm{\mathbf{1}}_{A_i}$ with $a_i\ge 0$, 
+1.  If $f=\sum_1^n a_i \bm{1}_{A_i}$ with $a_i\ge 0$, 
 $$ \int f d \mu = \sum _ { 1 } ^ { n } a _ { i } \mu \left( A _ { i } \right) $$
 
 2.  If $f\ge 0$,define
@@ -22,7 +22,7 @@ $$ \int f d \mu = \sum _ { 1 } ^ { n } a _ { i } \mu \left( A _ { i } \right) $$
 
 ::: {.proposition name=""}
 (**Integral over sets**)
-$$ \int _ { A } f d \mu = \int f \bm{\mathbf{1}} _ { A } d \mu = \int f ( \omega ) \bm{\mathbf{1}} _ { A } ( \omega ) \mu ( d \omega ) $$
+$$ \int _ { A } f d \mu = \int f \bm{1} _ { A } d \mu = \int f ( \omega ) \bm{1} _ { A } ( \omega ) \mu ( d \omega ) $$
 
 (**Absolute integrability**). $\int f$ is finite iff $\int|f|$ is finite.
 
@@ -247,7 +247,7 @@ We only need to show that $\mathcal{E}_+$ case and then the general case follows
 
 Let $L:\mathcal{E}_+\to \overline{\R}_+$ by letting $L(f)=\nu(f\circ h)$. Then as the property of $\nu(f\circ h)$, $f$ satisfies the properties of integral characterization theorem. Then, $L(f)=\mu f$ for some unique measure $\mu$ on $(E,\mathcal{E})$. And note $\mu=\nu\circ h$ 
 $$
-\mu (B)=L(\bm{\mathbf{1}}_B)=\nu(\bm{\mathbf{1}}_B \circ h)=\nu(h^{-1}B)
+\mu (B)=L(\bm{1}_B)=\nu(\bm{1}_B \circ h)=\nu(h^{-1}B)
 $$
 :::
 
@@ -275,7 +275,7 @@ See 5.15 and 5.16 on page 34 in *Probability and Stochastic*.
 
 Let $(\Omega,\mathcal{A},\mu)$ be a measure space and $p \in \mathcal{A}_{+}$. Define: 
 $$
-\nu(A)=\mu (p \bm{\mathbf{1}}_A)=\int_A p d\mu
+\nu(A)=\mu (p \bm{1}_A)=\int_A p d\mu
 $$ 
 then $\nu$ is a measure on $(\Omega,\mathcal{A})$ and called **indefinite integral** of $p$ w.r.t. $\mu$.
 
@@ -303,7 +303,7 @@ Let $L(f)=\mu (pf)$. Check $L$ :
 
 So there exists $\hat{\mu}$ s.t. $\mu(pf)=\hat{\mu}f$ and that force $\hat{\mu}=\nu$ as 
 $$ 
-\hat{\mu}(A)=L(\bm{\mathbf{1}}_A)=\mu(p \bm{\mathbf{1}}_A)=\nu(A)
+\hat{\mu}(A)=L(\bm{1}_A)=\mu(p \bm{1}_A)=\nu(A)
 $$
 :::
 
@@ -362,7 +362,7 @@ If $\nu$ is a finite measure on $(F,\mathcal{F})$, and $k$ is a positive functio
 $$
 K(x,B)=\int_B k(x,y) d\nu
 $$
-when fix $x\in E$, $K(x,B)=\nu(k(x,y)\bm{\mathbf{1}}_{B})=\mu (B)$ for some $\mu$ which is the measure on $(F,\mathcal{F})$;  
+when fix $x\in E$, $K(x,B)=\nu(k(x,y)\bm{1}_{B})=\mu (B)$ for some $\mu$ which is the measure on $(F,\mathcal{F})$;  
 when fix $B\in \mathcal{F}$, $f(x)=K(x,B)$ is measurable follows from theorem \@ref(thm:simple-approx).
 
 :::
@@ -410,9 +410,9 @@ Define $L:\mathcal{F}_+ \to \overline{\mathbb{R}}_+=f \mapsto  \mu(Kf)$. Check
     $$
     as MCT.
 
-Hence, there exists a measure $\nu$ s.t. $L(f)=\mu(Kf)=\nu f$ as theorem \@ref(thm:characterization-integral). Then it suffices to show $\nu=\mu K$. Taking $f=\bm{\mathbf{1}}_B$, we have $\nu(B)=\nu(\bm{\mathbf{1}}_B)=\mu(K \bm{\mathbf{1}}_B)$, it follows that
+Hence, there exists a measure $\nu$ s.t. $L(f)=\mu(Kf)=\nu f$ as theorem \@ref(thm:characterization-integral). Then it suffices to show $\nu=\mu K$. Taking $f=\bm{1}_B$, we have $\nu(B)=\nu(\bm{1}_B)=\mu(K \bm{1}_B)$, it follows that
 $$
-\mu(K \bm{\mathbf{1}}_B)=\int_E \mu(dx) \int_F K(x,dy) \bm{\mathbf{1}}_B(y)=\int_E \mu(dx) K(x,B)=\mu K(B)
+\mu(K \bm{1}_B)=\int_E \mu(dx) \int_F K(x,dy) \bm{1}_B(y)=\int_E \mu(dx) K(x,B)=\mu K(B)
 $$
 :::
 
@@ -455,7 +455,7 @@ Let $K$ be a transition kernel from $(\Omega,\mathcal{A})$ into $(\Omega',\mathc
 
 :::
 
-If $K$ is a transition kernel on $(\Omega,\mathcal{A})$, similarly with product kernel, we can define its **power** by $K^n=KK^{n-1}$ and $K^0=I$ where $I$ is the identity kernel on $(\Omega,\mathcal{A})$: $I(x,A)=\bm{\mathbf{1}}_A(x)$. To see why it's called "identity", check
+If $K$ is a transition kernel on $(\Omega,\mathcal{A})$, similarly with product kernel, we can define its **power** by $K^n=KK^{n-1}$ and $K^0=I$ where $I$ is the identity kernel on $(\Omega,\mathcal{A})$: $I(x,A)=\bm{1}_A(x)$. To see why it's called "identity", check
 $$
 \begin{aligned}
     If(x)&=\int_{\Omega} I(x,dx)f(x)=\int_{\{x\}} f(x)=f(x)
@@ -609,11 +609,11 @@ Let $\mu$ and $\nu$ be s-finite measures on $(X,\mathcal{X})$ and $(F,\mathcal{F
 For $A\in \mathcal{X}$ and $B \in \mathcal{Y}$, we have
 $$
 \begin{aligned}
-    \pi(A\times B)&=\pi \bm{\mathbf{1}}_{A\times B}
+    \pi(A\times B)&=\pi \bm{1}_{A\times B}
     \\ &= 
-    \int_{X} \int_{Y} \bm{\mathbf{1}}_{A\times B}(x,y) d\nu d\mu
+    \int_{X} \int_{Y} \bm{1}_{A\times B}(x,y) d\nu d\mu
     \\ &= 
-    \int_{X} \int_{Y} \bm{\mathbf{1}}_{A}(x) \bm{\mathbf{1}}_B(y) d\nu d\mu
+    \int_{X} \int_{Y} \bm{1}_{A}(x) \bm{1}_B(y) d\nu d\mu
     \\ &= \mu(A)\nu(B)
 \end{aligned}
 $$

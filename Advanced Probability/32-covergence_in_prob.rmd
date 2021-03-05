@@ -155,7 +155,7 @@ and thus $\|X_m-X_n\|_p\to 0$.
 
 $b\implies c$ By Chebyshev's-inequality again and theorem \@ref(thm:cauchy-convergence-probability), it converges in probability. By theorem \@ref(thm:uniform-integrability-L1), it's sufficient to show that $\forall \epsilon>0,\exists \delta>0 \ni \forall A \in \mathcal{F}$,
 $$
-\mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{\mathbf{1}}_{A} \le \epsilon
+\mathop{{}\mathbb{P}}(A)\le \delta \implies \sup_{n} \mathop{{}\mathbb{E}} \left|X_n^p\right| \bm{1}_{A} \le \epsilon
 $$
 and $(X_n^{p})$ is $L^{1}$ bounded.
 
@@ -165,7 +165,7 @@ $$
 $$
 thus
 $$
-\sup_n \mathop{{}\mathbb{E}}\left|X_n^{p}\right|\bm{\mathbf{1}}_{A}\le 2^{p-1}\epsilon+2^{p-1}\sup_{n\le k}\mathop{{}\mathbb{E}}\left|X_n^p\right|\bm{\mathbf{1}}_{A}
+\sup_n \mathop{{}\mathbb{E}}\left|X_n^{p}\right|\bm{1}_{A}\le 2^{p-1}\epsilon+2^{p-1}\sup_{n\le k}\mathop{{}\mathbb{E}}\left|X_n^p\right|\bm{1}_{A}
 $$
 In view of remark 2 in definition \@ref(def:uniform-integrability), $\{X_n:n\le k\}$ is uniformly integrability and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(A)$ is sufficient small and thus the left side. It follows that $(X_n^{p})$ is $L^{1}$ bounded by taking $A=\Omega$ and claim follows.
 
@@ -179,7 +179,7 @@ thus $X^{p} \in L^{1}$. Let $F_n=\{\left|X_n-X\right|^{p}>\epsilon\}$, note
 $$
 \begin{aligned}
     \mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}&    \le 
-    \epsilon+\mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}\bm{\mathbf{1}}_{F_n}
+    \epsilon+\mathop{{}\mathbb{E}}\left|X_n-X\right|^{p}\bm{1}_{F_n}
 \end{aligned}
 $$
 As $X^{p}$ is integrable and $X_n^{p}$ is uniformly so, $(X_n-X)^{p}$ is uniformly integrable and thus the right side can be arbitrary small if $\mathop{{}\mathbb{P}}(F_n)$ can be also arbitrary small. It follows that $\mathop{{}\mathbb{E}} \left|X_n -X\right|^{p} \to 0$.

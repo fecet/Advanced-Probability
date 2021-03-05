@@ -22,17 +22,17 @@ $$
 
 ::: {.proof}
 
-Fix $\epsilon>0$ and $n \ge 1$, define $N(\omega)=\inf \{k \ge 1:\left|S_k(\omega)\right|>\epsilon\}$, one can check that it's a $r.v.$ by noting that $\bm{\mathbf{1}}_{N=k}$ is a function of $(X_{i})_{1\le i\le k}$. Consequently, for $k<n$, $U=S_k \bm{\mathbf{1}}_{N=k}$ and $V=S_n-S_k$ are functions of independent $(X_i)_1^{k}$ and $(X_i)_{k+1}^{n}$. And thus $\mathop{{}\mathbb{E}}UV=\mathop{{}\mathbb{E}}U\mathop{{}\mathbb{E}}V=0$ as $\mathop{{}\mathbb{E}}V=0 \impliedby \mathop{{}\mathbb{E}}X_i=0$. Hence, for $k\le n$:
+Fix $\epsilon>0$ and $n \ge 1$, define $N(\omega)=\inf \{k \ge 1:\left|S_k(\omega)\right|>\epsilon\}$, one can check that it's a $r.v.$ by noting that $\bm{1}_{N=k}$ is a function of $(X_{i})_{1\le i\le k}$. Consequently, for $k<n$, $U=S_k \bm{1}_{N=k}$ and $V=S_n-S_k$ are functions of independent $(X_i)_1^{k}$ and $(X_i)_{k+1}^{n}$. And thus $\mathop{{}\mathbb{E}}UV=\mathop{{}\mathbb{E}}U\mathop{{}\mathbb{E}}V=0$ as $\mathop{{}\mathbb{E}}V=0 \impliedby \mathop{{}\mathbb{E}}X_i=0$. Hence, for $k\le n$:
 $$
-\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}=0
+\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{1}_{N=k}=0
 $$
 Note $S_n^2\ge S_k^2+2S_k(S_n-S_k)$ and $\left|S_k\right|^2>\epsilon^2$ on the event $\{N=k\}$. Thus
 $$
-\mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N=k} \ge \epsilon^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}=\epsilon^2\mathop{{}\mathbb{P}}\{N=k\}
+\mathop{{}\mathbb{E}}S_n^2 \bm{1}_{N=k} \ge \epsilon^2\mathop{{}\mathbb{E}}\bm{1}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{1}_{N=k}=\epsilon^2\mathop{{}\mathbb{P}}\{N=k\}
 $$
 Summing both sides:
 $$
-\epsilon^2\mathop{{}\mathbb{P}}\{N\le n\}\le \mathop{{}\mathbb{E}}S_n^2\bm{\mathbf{1}}_{N\le n}\le \mathop{{}\mathbb{E}}S_n^2=\mathop{\text{Var}}S_n
+\epsilon^2\mathop{{}\mathbb{P}}\{N\le n\}\le \mathop{{}\mathbb{E}}S_n^2\bm{1}_{N\le n}\le \mathop{{}\mathbb{E}}S_n^2=\mathop{\text{Var}}S_n
 $$
 Then claim follows from $\{N\le n\}=\{\max_{k\le n}\left|S_k\right|>a\}$.
 
@@ -62,21 +62,21 @@ $$
 For $k\le n$, note $S_n^2=S_k^2+2S_k(S_n-S_k)+(S_n-S_k)^2$ and $\left|S_k\right|=\left|X_k+S_{k-1}\right|\le M+\epsilon$ if $N=k$. Thus
 $$
 \begin{aligned}
-    \mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N=k} &\le 
-    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{\mathbf{1}}_{N=k}
+    \mathop{{}\mathbb{E}}S_n^2 \bm{1}_{N=k} &\le 
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{1}_{N=k}+2\mathop{{}\mathbb{E}}S_k(S_n-S_k)\bm{1}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{1}_{N=k}
     \\ &= 
-    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{\mathbf{1}}_{N=k}
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{1}_{N=k}+\mathop{{}\mathbb{E}}(S_n-S_k)^2 \bm{1}_{N=k}
     \\&\le 
-    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{N=k}+\mathop{{}\mathbb{E}}S_n^2\mathop{{}\mathbb{E}} \bm{\mathbf{1}}_{N=k}
+    (M+\epsilon)^2\mathop{{}\mathbb{E}}\bm{1}_{N=k}+\mathop{{}\mathbb{E}}S_n^2\mathop{{}\mathbb{E}} \bm{1}_{N=k}
 \end{aligned}
 $$
 Summing over $k\le n$,
 $$
-\mathop{{}\mathbb{E}}S_n^2 \bm{\mathbf{1}}_{N\le n} \le [(M+\epsilon)^2+\mathop{\text{Var}}S_n] \mathop{{}\mathbb{P}}\{N \le n\}
+\mathop{{}\mathbb{E}}S_n^2 \bm{1}_{N\le n} \le [(M+\epsilon)^2+\mathop{\text{Var}}S_n] \mathop{{}\mathbb{P}}\{N \le n\}
 $$
 On the other hand, if $N<n$, we have $\left|S_n\right|\le \epsilon$ and hence
 $$
-\mathop{{}\mathbb{E}}S_n^2\bm{\mathbf{1}}_{N>n}\le \mathop{{}\mathbb{E}}\epsilon^2\bm{\mathbf{1}}_{N>n}=\epsilon^2\mathop{{}\mathbb{P}}\{N>n\}
+\mathop{{}\mathbb{E}}S_n^2\bm{1}_{N>n}\le \mathop{{}\mathbb{E}}\epsilon^2\bm{1}_{N>n}=\epsilon^2\mathop{{}\mathbb{P}}\{N>n\}
 $$
 Then claim follows by adding them and some rearrangement.
 
@@ -132,7 +132,7 @@ Note $Z_m\to 0$ $a.s.$ in view of theorem \@ref(thm:cauchy-convergence-as) and t
 
 We have given the necessary and sufficient conditions for the $a.s.$ convergence of $S_n$, then we are ready to combine them. As $(X_n)$ is generally not bounded, define
 $$
-Y_n=X_n \bm{\mathbf{1}}_{\left|X_n\right|\le b}
+Y_n=X_n \bm{1}_{\left|X_n\right|\le b}
 $$
 where $b>0$.
 
@@ -231,7 +231,7 @@ and claim follows.
 
 Throughout, we shall deal with a infinite random matrix:
 $$
-\bm{\mathbf{X}}=\begin{bmatrix}
+\bm{X}=\begin{bmatrix}
     X_{11} & X_{12} & X_{13} & \dots \\
     X_{21} & X_{22} & X_{23} &\dots \\
     X_{31} & X_{32} & X_{33} &\dots \\
@@ -240,7 +240,7 @@ $$
     \vdots & \ddots
 \end{bmatrix}
 $$
-where each entry is real-valued, for each $i$, there is an $k_i$ $s.t.$ $\bm{\mathbf{X}}_{ij}=0$ for all $j>k_i$ and $k_i\to \infty$. Thus the random matrix is basically triangular. We let $Z_i$ denoted as row sum, $Z_i=\sum_{j}^{}X_{ij}$ and variables among each row are independent.
+where each entry is real-valued, for each $i$, there is an $k_i$ $s.t.$ $\bm{X}_{ij}=0$ for all $j>k_i$ and $k_i\to \infty$. Thus the random matrix is basically triangular. We let $Z_i$ denoted as row sum, $Z_i=\sum_{j}^{}X_{ij}$ and variables among each row are independent.
 
 ### Liapunov's Theorem
 
@@ -295,7 +295,7 @@ By intuition, some condition on the third moments is sufficient to CLT:
 
 ::: {.theorem #liapunov-theorem name="Liapunov's Theorem"}
 
-Suppose that $\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}=0$, $\mathop{\text{Var}}Z_i=1$ and $\lim_{i \to \infty}\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3=0$, then, $Z_i \xrightarrow{d} \mathfrak{Z}$.
+Suppose that $\mathop{{}\mathbb{E}} \bm{X}_{ij}=0$, $\mathop{\text{Var}}Z_i=1$ and $\lim_{i \to \infty}\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{X}_{ij}\right|^3=0$, then, $Z_i \xrightarrow{d} \mathfrak{Z}$.
 
 :::
 
@@ -305,15 +305,15 @@ Suppose that $\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}=0$, $\mathop{\text{Var}
 Apply above lemma to $\cos tx$ and $\sin tx$, we get
 $$
 \begin{aligned}
-    &\left|\mathop{{}\mathbb{E}} \cos(t Z_i)-\mathop{{}\mathbb{E}}\cos(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3
+    &\left|\mathop{{}\mathbb{E}} \cos(t Z_i)-\mathop{{}\mathbb{E}}\cos(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{X}_{ij}\right|^3
     \\&
-     \left|i\mathop{{}\mathbb{E}} \sin(t Z_i)-i\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right|=   \left|\mathop{{}\mathbb{E}} \sin(t Z_i)-\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3
+     \left|i\mathop{{}\mathbb{E}} \sin(t Z_i)-i\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right|=   \left|\mathop{{}\mathbb{E}} \sin(t Z_i)-\mathop{{}\mathbb{E}}\sin(t\mathfrak{Z})\right| \le \left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{X}_{ij}\right|^3
 \end{aligned}
 $$
 thus
 $$
 \left|\varphi_{Z_i}(t)-\varphi_{\mathfrak{Z}}(t)\right|\le 
-2\left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{X}}_{ij}\right|^3\to 0
+2\left|t\right|^3 \sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{X}_{ij}\right|^3\to 0
 $$
 It follows that $Z_i\xrightarrow{d}\mathfrak{Z}$ by theorem \@ref(thm:levy-continuity).
 
@@ -324,24 +324,24 @@ The generalization of Liapunov's theorem is also true.
 
 ::: {.corollary #general-liapunov-theorem name=""}
 
-Let $\mathop{{}\mathbb{E}}Z_i=\mu_i$ and $\mathop{\text{Var}}Z_i=\sigma_i^2$, suppose $\mu_i\to \mu$ and $\sigma_i\to \sigma \neq 0$, each $\bm{\mathbf{X}}_{ij}$ is bounded by $c_{ij}$ and $\lim_{i \to \infty}\sup _{j}c_{ij}=0$. Then, $\frac{Z_i-\mu}{\sigma} \xrightarrow{d}\mathfrak{Z}$.
+Let $\mathop{{}\mathbb{E}}Z_i=\mu_i$ and $\mathop{\text{Var}}Z_i=\sigma_i^2$, suppose $\mu_i\to \mu$ and $\sigma_i\to \sigma \neq 0$, each $\bm{X}_{ij}$ is bounded by $c_{ij}$ and $\lim_{i \to \infty}\sup _{j}c_{ij}=0$. Then, $\frac{Z_i-\mu}{\sigma} \xrightarrow{d}\mathfrak{Z}$.
 
 :::
 
 
 ::: {.proof}
 
-Put $\bm{\mathbf{Y}}_{ij}=\frac{\bm{\mathbf{X}}_{ij}-\mathop{{}\mathbb{E}}\bm{\mathbf{X}}_{ij}}{b_i}$. Note that
+Put $\bm{Y}_{ij}=\frac{\bm{X}_{ij}-\mathop{{}\mathbb{E}}\bm{X}_{ij}}{b_i}$. Note that
 $$
-\left| \bm{\mathbf{Y}}_{ij}\right|\le \frac{2c_{ij}}{b_i}\le \frac{2 \sup _{j} c_{ij}}{b_i}=\epsilon_i
+\left| \bm{Y}_{ij}\right|\le \frac{2c_{ij}}{b_i}\le \frac{2 \sup _{j} c_{ij}}{b_i}=\epsilon_i
 $$
-and thus $\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \left| \bm{\mathbf{Y}}_{ij}\right|^2$. Thus
+and thus $\left| \bm{Y}_{ij}\right|^3\le \epsilon_i \left| \bm{Y}_{ij}\right|^2$. Thus
 $$
-\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{\mathbf{Y}}_{ij}\right|^3\le \epsilon_i \sum_{j}^{} \frac{\mathop{\text{Var}} \bm{\mathbf{X}}_{ij}}{b_i}=\epsilon_i
+\sum_{j}^{}\mathop{{}\mathbb{E}}\left| \bm{Y}_{ij}\right|^3\le \epsilon_i \sum_{j}^{} \frac{\mathop{\text{Var}} \bm{X}_{ij}}{b_i}=\epsilon_i
 $$
-where $\epsilon_i \to 0$ by assumption and thus Liapunov's theorem \@ref(thm:liapunov-theorem) applies to $\bm{\mathbf{Y}}_{ij}$ to show:
+where $\epsilon_i \to 0$ by assumption and thus Liapunov's theorem \@ref(thm:liapunov-theorem) applies to $\bm{Y}_{ij}$ to show:
 $$
-\frac{Z_i-\mu_i}{\sigma_i}=\sum_{j}^{} \bm{\mathbf{Y}}_{ij} \xrightarrow{d} \mathfrak{Z}
+\frac{Z_i-\mu_i}{\sigma_i}=\sum_{j}^{} \bm{Y}_{ij} \xrightarrow{d} \mathfrak{Z}
 $$
 and claim follows by continuity of convergence in distribution.
 
@@ -351,7 +351,7 @@ and claim follows by continuity of convergence in distribution.
 
 Now we relax the condition on the third moments to **Lindeberg's condition**: $\forall \epsilon>0$,
 $$
-L_i(\epsilon)=\sum_{j}^{}\mathop{{}\mathbb{E}} \bm{\mathbf{X}}_{ij}^2 \bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon}\to 0
+L_i(\epsilon)=\sum_{j}^{}\mathop{{}\mathbb{E}} \bm{X}_{ij}^2 \bm{1}_{\left| \bm{X}_{ij}\right|>\epsilon}\to 0
 $$
 Select $m(\epsilon)$ $s.t.$ $L_n(\epsilon)\le \epsilon^3$ for all $n\ge m(\epsilon)$, then, choose $\epsilon_n$ $s.t.$ $m(\epsilon_n)\le n$ for $n$ large enough, then $\epsilon_n \to 0$ as $n\to \infty$. Then
 $$
@@ -364,33 +364,33 @@ By similar deduction, we have $\frac{1}{\epsilon}L_i(\epsilon)\to 0$ across some
 
 ::: {.theorem #lindberg name="Lindeberg's theorem"}
 
-WLOG, suppose $\mathop{{}\mathbb{E}}\bm{\mathbf{X}}_{ij}=0$ and $\mathop{\text{Var}}Z_i=1$ with Lindeberg's condition, then $Z_i \xrightarrow{d} \mathfrak{Z}$.
+WLOG, suppose $\mathop{{}\mathbb{E}}\bm{X}_{ij}=0$ and $\mathop{\text{Var}}Z_i=1$ with Lindeberg's condition, then $Z_i \xrightarrow{d} \mathfrak{Z}$.
 
 :::
 
 
 ::: {.proof}
 
-Let $\bm{\mathbf{Y}}_{ij}=\bm{\mathbf{X}}_{ij}\bm{\mathbf{1}}_{\left| \bm{\mathbf{X}}_{ij}\right|\le \epsilon_n}$ and put $S_i=\sum_{j}^{}\bm{\mathbf{Y}}_{ij}$, then
+Let $\bm{Y}_{ij}=\bm{X}_{ij}\bm{1}_{\left| \bm{X}_{ij}\right|\le \epsilon_n}$ and put $S_i=\sum_{j}^{}\bm{Y}_{ij}$, then
 $$
-\mathop{{}\mathbb{P}}\{Z_i\neq S_i\}\le \sum_{j}^{}\mathop{{}\mathbb{P}}\{\bm{\mathbf{X}}_{ij} \neq \bm{\mathbf{Y}}_{ij}\}=\sum_{j}^{}\mathop{{}\mathbb{P}}\{\left| \bm{\mathbf{X}}_{ij}\right|>\epsilon_i\}\le \left( \frac{1}{\epsilon_i} \right)^2L_i(\epsilon_i) \to 0
+\mathop{{}\mathbb{P}}\{Z_i\neq S_i\}\le \sum_{j}^{}\mathop{{}\mathbb{P}}\{\bm{X}_{ij} \neq \bm{Y}_{ij}\}=\sum_{j}^{}\mathop{{}\mathbb{P}}\{\left| \bm{X}_{ij}\right|>\epsilon_i\}\le \left( \frac{1}{\epsilon_i} \right)^2L_i(\epsilon_i) \to 0
 $$
-where the last inequality follows by noting that $\epsilon^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$. In view of proposition \@ref(prp:construction-convergence-distribution), it's sufficient to show that $S_n\xrightarrow{d}\mathfrak{Z}$. 
+where the last inequality follows by noting that $\epsilon^2 \bm{1}_{\left|X\right|>\epsilon}\le X^2 \bm{1}_{\left|X\right|>\epsilon}$. In view of proposition \@ref(prp:construction-convergence-distribution), it's sufficient to show that $S_n\xrightarrow{d}\mathfrak{Z}$. 
 
-Denoted $\bm{\mathbf{X}}_{ij}=X$ and $\bm{\mathbf{Y}}_{ij}=Y$ for short. Since $\mathop{{}\mathbb{E}}X=0$, $\mathop{{}\mathbb{E}}Y=\mathop{{}\mathbb{E}}(Y-X)=-\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{\left|X\right|>\epsilon}$ and thus
+Denoted $\bm{X}_{ij}=X$ and $\bm{Y}_{ij}=Y$ for short. Since $\mathop{{}\mathbb{E}}X=0$, $\mathop{{}\mathbb{E}}Y=\mathop{{}\mathbb{E}}(Y-X)=-\mathop{{}\mathbb{E}}X \bm{1}_{\left|X\right|>\epsilon}$ and thus
 $$
-\left|\mathop{{}\mathbb{E}}Y\right|\le \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|>\epsilon}\le \frac{1}{\epsilon}\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+\left|\mathop{{}\mathbb{E}}Y\right|\le \mathop{{}\mathbb{E}} \left|X\right| \bm{1}_{\left|X\right|>\epsilon}\le \frac{1}{\epsilon}\mathop{{}\mathbb{E}} X^2 \bm{1}_{\left|X\right|>\epsilon}
 $$
 It follows that
 $$
 \begin{aligned}
     \mathop{\text{Var}}Y &= \mathop{{}\mathbb{E}}Y^2-(\mathop{{}\mathbb{E}}Y)^2
     \\& \ge 
-    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\left( \mathop{{}\mathbb{E}} \left|X\right| \bm{\mathbf{1}}_{\left|X\right|> \epsilon}\right)^2
+    \mathop{{}\mathbb{E}} X^2 \bm{1}_{\left|X\right|\le \epsilon}-\left( \mathop{{}\mathbb{E}} \left|X\right| \bm{1}_{\left|X\right|> \epsilon}\right)^2
     \\& \ge 
-    \mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|\le \epsilon}-\mathop{{}\mathbb{E}} X^2 \bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \mathop{{}\mathbb{E}} X^2 \bm{1}_{\left|X\right|\le \epsilon}-\mathop{{}\mathbb{E}} X^2 \bm{1}_{\left|X\right|>\epsilon}
     \\ &= 
-    \mathop{{}\mathbb{E}}X^2-2\mathop{{}\mathbb{E}}X^2\bm{\mathbf{1}}_{\left|X\right|>\epsilon}
+    \mathop{{}\mathbb{E}}X^2-2\mathop{{}\mathbb{E}}X^2\bm{1}_{\left|X\right|>\epsilon}
     \end{aligned}
 $$
 and note $\mathop{\text{Var}}X=\mathop{{}\mathbb{E}}X^2 \ge \mathop{{}\mathbb{E}}Y^2 \ge \mathop{\text{Var}}Y$. Summing them over $j$, we have

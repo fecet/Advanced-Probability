@@ -106,29 +106,13 @@ $$
 $$
 A finite collection $\{X_i\}_i^n$ is said to be **independency** if their product distribution has form $\prod_{i=1}^n \mu_i$. An arbitrary collection of r.v. is an independency if every finite subcollection is so.
 
-### Stochastic process and probability laws
-
-::: {.definition  name=""}
-
-Suppose $\{X_t:t\in T\}$ is a collection of r.v. taking values in $(E, \mathcal{E})$. If $T$ can be seen as time, then $(X_{t})_{t\in T}$ is called a **stochastic process** with **state space** $(E,\mathcal{E})$ and **parameter set** $T$.
-
-:::
-
-Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $\mathop{{}\mathbb{P}} \circ X^{-1}$, is called **probability law** of stochastic process $\{X_t:t\in T\}$.
-
-Recall the product $\sigma$ algebra construction, the probability law is determined by:
-$$
-\mathop{{}\mathbb{P}}\{\bigcap_{i \in I} X_i\in A_i\}
-$$
-where $I\subset T$ is finite and $A_i\subset E$.
-
 ## Expectation
 
 Suppose $X$ taking values in $\overline{\mathbb{R}}$, then we can talk about it's expectation:
 $$
 \mathop{{}\mathbb{E}} X=\int_{\Omega} X d\mathop{{}\mathbb{P}}=\mathop{{}\mathbb{P}}X
 $$
-the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_H$
+the integral of $X$ over an event $H \in \mathcal{F}$ is $\mathop{{}\mathbb{E}}X \bm{1}_H$
 
 ### Properties of expectation
 
@@ -175,7 +159,7 @@ $$ \mathop{{}\mathbb{E}} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = 
 1. If $\mathop{{}\mathbb{P}}(A)=1$, then $\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}_AX$.
 2. If $\mathop{{}\mathbb{E}}|X|<\infty$, then $|X|<\infty$ a.s., but not vise versa.
 3. If $X=Y$ a.s. and either $\mathop{{}\mathbb{E}}X$ or $\mathop{{}\mathbb{E}}Y$ exists, then so is the other and they are equal.
-4. $\forall H\in \mathcal{F},\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_H \ge \mathop{{}\mathbb{E}} Y \bm{\mathbf{1}}_{H}\implies X \ge Y$ a.s. To see this, if there exist a subset $A\subset H$ s.t. $X<Y$ and $\mu(A)>0$ then there is a contradiction with monotonicity in $A$.
+4. $\forall H\in \mathcal{F},\mathop{{}\mathbb{E}}X \bm{1}_H \ge \mathop{{}\mathbb{E}} Y \bm{1}_{H}\implies X \ge Y$ a.s. To see this, if there exist a subset $A\subset H$ s.t. $X<Y$ and $\mu(A)>0$ then there is a contradiction with monotonicity in $A$.
 
 :::
 
@@ -200,16 +184,16 @@ $$
 
 Note
 $$
-X(\omega)=\int_{0}^{X(\omega)} dx = \int_{0}^{\infty} \bm{\mathbf{1}}_{X>x}(\omega)dx
+X(\omega)=\int_{0}^{X(\omega)} dx = \int_{0}^{\infty} \bm{1}_{X>x}(\omega)dx
 $$
 then
 $$
 \begin{aligned}
     \mathop{{}\mathbb{E}}X&=\int_{\Omega}X(\omega)\mathop{{}\mathbb{P}}(d\omega)
     \\ &= 
-    \int_{\Omega} \int_{0} ^{\infty}\bm{\mathbf{1}}_{X>x}(\omega)dx\mathop{{}\mathbb{P}}(d\omega)
+    \int_{\Omega} \int_{0} ^{\infty}\bm{1}_{X>x}(\omega)dx\mathop{{}\mathbb{P}}(d\omega)
     \\ &= 
-    \int_{0} ^{\infty}\int_{\Omega} \bm{\mathbf{1}}_{X>x}(\omega)\mathop{{}\mathbb{P}}(d\omega)dx 
+    \int_{0} ^{\infty}\int_{\Omega} \bm{1}_{X>x}(\omega)\mathop{{}\mathbb{P}}(d\omega)dx 
     \\ &= \int_{0} ^{\infty} \mathop{{}\mathbb{P}}\{X>x\}dx
 \end{aligned}
 $$
@@ -230,9 +214,9 @@ holds for all $f\in \mathcal{E}$ iff $\mu$ is the distribution of $X$.
 
 ::: {.proof}
 
-Note $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$, then $\impliedby$ follows from theorem \@ref(thm:image-measure). For $\implies$, taking $f=\bm{\mathbf{1}}_{A}$:
+Note $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$, then $\impliedby$ follows from theorem \@ref(thm:image-measure). For $\implies$, taking $f=\bm{1}_{A}$:
 $$
-\mu(A)=\mu \bm{\mathbf{1}}_{A}=\mathop{{}\mathbb{E}}\bm{\mathbf{1}}_{A}\circ X=\int\bm{\mathbf{1}}_{A}\circ Xd\mathop{{}\mathbb{P}}
+\mu(A)=\mu \bm{1}_{A}=\mathop{{}\mathbb{E}}\bm{1}_{A}\circ X=\int\bm{1}_{A}\circ Xd\mathop{{}\mathbb{P}}
 $$
 that implies $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$ and claim follows.
 
@@ -241,7 +225,7 @@ that implies $\mu=\mathop{{}\mathbb{P}}\circ X^{-1}$ and claim follows.
 
 ::: {.remark}
 
-By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test all $f=\bm{\mathbf{1}}_{A}$ for $A \in \mathcal{E}$ or even $A\in \mathcal{C}$ where $\mathcal{C}$ is a $\pi$ system and generating $\mathcal{E}$.
+By intuition, for a measure $\mu$ to be distribution of $X$ it suffices to test all $f=\bm{1}_{A}$ for $A \in \mathcal{E}$ or even $A\in \mathcal{C}$ where $\mathcal{C}$ is a $\pi$ system and generating $\mathcal{E}$.
 
 :::
 
@@ -255,263 +239,9 @@ Let $X$ be a r.v. taking values in $\overline{\mathbb{R}}$ with distribution $\m
 2. $r$th Absolute Moment: $\mathop{{}\mathbb{E}}|X|^r$
 3. $r$th Central Moment: $\mathop{{}\mathbb{E}}(X-\mathop{{}\mathbb{E}}X)^r$
 4. $r$th Absolute Central Moment: $\mathop{{}\mathbb{E}}|X-\mathop{{}\mathbb{E}}X|^r$
-5. $L^r$ space: $\{X:\mathop{{}\mathbb{E}}|X|^r<\infty\}$
 
 :::
 
 
-
-## $L^p$-spaces and uniform integrability
-
-::: {.definition  name=""}
-
-Let $X$ be a r.v. taking values in $\mathbb{R}$ with distribution $\mu$. For $p$ in $[1,\infty)$, define
-$$
-\|X\|_p=(\mathop{{}\mathbb{E}}|X|^{p})^{\frac{1}{p}}
-$$
-and for $p=\infty$, let
-$$
-\|X\|_{\infty}=\inf \{b \in R_+, |X|\le b \text{ a.s.}\}
-$$
-
-:::
-
-Clearly $\|\cdot\|_p$ is a norm for $p\in [1,\infty]$ and
-$$
-0\le \|X\|_p \le \|X\|_q \le \infty
-$$
-provided $1\le p\le q\le \infty$ as corollary \@ref(cor:holder).
-
-$L^{p}$ is a vector space since:
-
--   For any $X\in L^{p}$ and $a\in \mathbb{R}$,
-    $$
-    \mathop{{}\mathbb{E}} \left|aX\right|^{p}=\left|a\right|^{p}\mathop{{}\mathbb{E}}\left|X\right|^{p}<\infty
-    $$
--   For any $X,Y \in L^p$, by jensen's inequality \@ref(thm:jensen), we have
-    $$
-    \left|\frac{a+b}{2}\right|^{p}\le (\frac{\left|a\right|+\left|b\right|}{2}^{p})\le \frac{\left|x\right|^{p}+\left|b\right|^{p}}{2}
-    $$
-    that implies
-    $$
-    \mathop{{}\mathbb{E}}\left|X+Y\right|^{p}\le 2^{p-1}(\mathop{{}\mathbb{E}}\left|X\right|^{p}+\mathop{{}\mathbb{E}}\left|Y\right|^{p})<\infty
-    $$
-
-### Moment inequalities
-
-
-::: {.theorem #young name="Young's inequality"}
-
-Let $f$ be a continues and strictly increasing function with $f(0)=0$, then we have
-
-$$ a b \leq \int _ { 0 } ^ { a } f ( x ) d x + \int _ { 0 } ^ { b } f ^ { - 1 } ( x ) d x $$
-
-:::
-
-As consequence:
-
-::: {.theorem #holder name="Holder's inequality"}
-
-Suppose that $p,q>1$ satisfy $\frac{1}{p}+\frac{1}{q}=1$, then
-
-$$ \mathop{{}\mathbb{E}} | X Y | \leq \left[ \mathop{{}\mathbb{E}} | X | ^ { p } \right] ^ { 1 / p } \left[ \mathop{{}\mathbb{E}} | Y | ^ { q } \right] ^ { 1 / q } $$
-
-:::
-
-Suppose $r>1$,
-$$
-\|XY\|_r=\left( \mathop{{}\mathbb{E}}|X^{r}Y^{r}| \right)^{\frac{1}{r}}\le (\mathop{{}\mathbb{E}}|X^{r}|^{p})^{\frac{1}{pr}} (\mathop{{}\mathbb{E}}|X^{r}|^{q})^{\frac{1}{qr}}=\|X\|_{rp}\|Y\|_{rq}
-$$
-That implies:
-
-::: {.corollary #holder name=""}
-
-Suppose $p,q,r>1$ with $\frac{1}{p}+\frac{1}{q}=\frac{1}{r}$:
-$$
-\|XY\|_r\le \|X\|_p\|Y\|_q
-$$
-
-:::
-
-
-::: {.theorem #cauchy name="Cauchy-Schwarz inequality"}
-
-$$ \mathop{{}\mathbb{E}} | X Y | \leq \sqrt { \left[ \mathop{{}\mathbb{E}} | X | ^ { 2 } \right] \left[ \mathop{{}\mathbb{E}} | Y | ^ { 2 } \right] } $$
-
-:::
-
-And:
-
-::: {.theorem #lyapunov name="Lyapunov's inequality"}
-
-1. $\forall p\ge 1, \mathop{{}\mathbb{E}}|X|\le \mathop{{}\mathbb{E}}(|X|^p)^{\frac{1}{p}}$
-2. $\forall 0<r\le s<\infty,\left[ \mathop{{}\mathbb{E}} | Z | ^ { r } \right] ^ { 1 / r } \leq \left[ \mathop{{}\mathbb{E}} | Z | ^ { s } \right] ^ { 1 / s }$
-
-:::
-
-::: {.theorem #minkowski name="Minkowski's inequality"}
-
-$\forall p \in [1,\infty]$,
-$$
-\|\sum_{}^{}X\|_p \le \sum_{}^{} \|X\|_p
-$$
-
-:::
-
-::: {.theorem #jensen name="Jensen's inequality"}
-
-Let $\psi$ be convex, that is, $\forall \lambda\in (0,1), x,y\in \Reals$:
-$$
-\lambda \psi ( x ) + ( 1 - \lambda ) \psi ( y ) \geq \psi ( \lambda x + ( 1 - \lambda ) y ) $$
-
-Then
-$$ \psi ( \mathop{{}\mathbb{E}} X ) \leq \mathop{{}\mathbb{E}} [ \psi ( X ) ] $$
-
-:::
-
-::: {.theorem #chebyshev-inequality name="Chebyshev inequality"}
-
-If $g$ is strictly increasing and positive on $\Reals_+$, $g(x)=g(-x)$, and $X$ is a r.v. s.t. $\mathop{{}\mathbb{E}}(g(X))<\infty$, then $\forall a>0$
-$$
-\mathop{{}\mathbb{P}} ( | X | \geq a ) \leq \frac { \mathop{{}\mathbb{E}} g ( X ) } { g ( a ) }
-$$
-
-:::
-
-### Uniform integrability
-
-::: {.lemma  name=""}
-
-Let $X$ taking values in $\mathbb{R}$, then it's integrable iff
-$$
-\lim_{b \to \infty} \mathop{{}\mathbb{E}} |X|\bm{\mathbf{1}}_{|X|>b}=0
-$$
-
-:::
-
-::: {.proof}
-
-$\implies$ is follows from theorem \@ref(thm:DCT) as $|X|\bm{\mathbf{1}}_{|X|>b}\searrow 0$. Conversely, taking $b=c\gg 1$ s.t. $\mathop{{}\mathbb{E}}|X|\bm{\mathbf{1}}_{|X|>c}\le 1$ and then
-$$
-\mathop{{}\mathbb{E}}|X|\le \mathop{{}\mathbb{E}}(c+|X|\bm{\mathbf{1}}_{|X|>c})\le c+1<\infty
-$$
-
-:::
-
-::: {.definition #uniform-integrability name=""}
-
-A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is said to **uniformly integrable** if
-$$
-k(b)=\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}|X|\bm{\mathbf{1}}_{|X|>b} \to 0
-$$
-as $b \to \infty$.
-
-:::
-
-::: {.remark}
-
-1. If $\mathcal{K}$ is finite and each of $\mathcal{K}$ is integrable then $\mathcal{K}$ is uniformly integrable.
-2. If $\mathcal{K}$ is dominated by an integrable $Y$ then it's uniformly integrable.
-3.  Uniform integrability implies $L^1$-boundedness: $\mathcal{K}\subset L^1$ and $\sup_{\mathcal{K}} \mathop{{}\mathbb{E}} |X|<\infty$. That follows from
-    $$
-    \begin{aligned}
-        \mathop{{}\mathbb{E}}|X|&\le \mathop{{}\mathbb{E}}\left( b+\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{|X|>b} \right)
-        \\ &=
-        b+\mathop{{}\mathbb{E}}X \bm{\mathbf{1}}_{|X|>b}
-        \\&\le
-        b+ k(b)
-    \end{aligned}
-    $$
-    holds for each $X\in \mathcal{K}$.
-
-:::
-
-$L^1$ boundedness is not sufficient for uniform integrability. In fact, we need:
-
-::: {.theorem #uniform-integrability-L1 name=""}
-
-A collection of r.v. taking values in $\mathbb{R}$, $\mathcal{K}$, is uniformly integrable iff it's $L^{1}$-bounded and $\forall \epsilon >0 ,\exists \delta>0$ s.t. $\forall F\in \mathcal{F}$:
-$$
-\mathop{{}\mathbb{P}}(F)\le \delta\implies \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}|X| \bm{\mathbf{1}}_{F}\le \epsilon
-$$
-
-:::
-
-
-::: {.proof}
-
-We may assume $X\ge 0$ by obvious reason. Note $X \bm{\mathbf{1}}_{F}\le b \bm{\mathbf{1}}_{F}+X \bm{\mathbf{1}}_{X>b}$ for each $F$ and $b$, take expectation:
-$$
-\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}} X \bm{\mathbf{1}}_{F}\le b \mathop{{}\mathbb{P}}(F)+k(b)
-$$
-then $\implies$ is immediately as $k(b)$ can be arbitrary small.
-
-Conversely, by Markov's inequality \@ref(thm:markov-inequality):
-$$
-\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{P}}\{X>b\}\le \frac{1}{b} \sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}}X=\frac{k(0)}{b}
-$$
-that suggests we may choose $b$ s.t. $\mathop{{}\mathbb{P}}\{X>b\}$ arbitrary small, and thus $\sup \mathop{{}\mathbb{E}}_F X$ arbitrary small, taking $H=\{X>b\}$, then we have definition of uniformly integrability exactly.
-
-:::
-
-However, $L^{p}$ boundedness when $p>1$ implies uniform integrability.
-
-
-::: {.lemma  name=""}
-
-Suppose there is a borel $f:\mathbb{R}_+:\overline{\mathbb{R}}_+$ s.t. $f(x)=\omega(x)$ and
-$$
-\sup_{X\in \mathcal{K}} \mathop{{}\mathbb{E}} f\circ |X| < \infty
-$$
-then $\mathcal{K}$ is uniformly integrable.
-
-:::
-
-
-::: {.proof}
-
-Again we may assume $X \ge 0$ and it's sufficient to assume $f\ge 1$, let $g(x)=\frac{x}{f(x)}$ and note
-$$
-X \bm{\mathbf{1}}_{X>b} = f \circ Xg \circ X \bm{\mathbf{1}}_{X>b} \le f \circ X \sup_{x>b}g(x)
-$$
-let $c=\sup_{X\in \mathcal{K}} f\circ X\le \infty$, we have
-$$
-k(b)\le  c \sup_{x>b} g(x)
-$$
-it follows $\lim_{b \to \infty}k(b)=0$ as $\lim_{x \to \infty}g(x)=0$
-
-:::
-
-And the converse is also true:
-
-::: {.theorem  name=""}
-
-Using notations above, TFAE:
-
-1. $\mathcal{K}$ is uniformly integrable.
-2. $h(b)=\sup_{\mathcal{K}} \int_{b} ^ \infty \mathop{{}\mathbb{P}}\{|X|>y\}\to 0$ as $b \to \infty$.
-3. $\sup_{\mathcal{K}}\mathop{{}\mathbb{E}} f \circ |X|<\infty$ for some increasing convex $f$ on $\mathbb{R}_+$ s.t. $f(X)=\omega(x)$.
-
-:::
-
-
-::: {.proof}
-
-Assume $X$ is positive and it suffices to show $1\implies 2\implies 3$.
-
-$1\implies 2$. $\forall X\in \mathcal{K}$,
-$$
-\begin{aligned}
-    \mathop{{}\mathbb{E}} X \bm{\mathbf{1}}_{X>b}&=\int_{0} ^{\infty}\mathop{{}\mathbb{P}} \{X \bm{\mathbf{1}}_{X>b} > y\}dy
-    \\ &= \int_{0} ^{\infty} \mathop{{}\mathbb{P}}\{X>b \vee y \} dy 
-    \\& \ge 
-    \int_{b} ^{\infty}\mathop{{}\mathbb{P}} \{X > y\} dy
-\end{aligned}
-$$
-thus $k(b)\ge h(b)$ and claim follows.
-
-$2\implies 3$ follows from construction and omitted.
-
-:::
 
 

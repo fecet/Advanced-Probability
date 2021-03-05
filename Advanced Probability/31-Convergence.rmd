@@ -216,8 +216,8 @@ $$
 By intuition, we have:
 
 1. $\{A_n \text{ ult.}\}^c=\{A_n^c \text{ i.o.}\}$
-2. $\bm{\mathbf{1}}_{\{A_n \text{ i.o.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ i.o.}\}$, $\bm{\mathbf{1}}_{\{A_n \text{ ult.}\}}=\{\bm{\mathbf{1}}_{A_n} \text{ ult.}\}$
-3. $\{A_n \text{ i.o.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n}=\infty\}$, $\{A_n \text{ ult.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{\mathbf{1}}_{A_n^c}<\infty\}$
+2. $\bm{1}_{\{A_n \text{ i.o.}\}}=\{\bm{1}_{A_n} \text{ i.o.}\}$, $\bm{1}_{\{A_n \text{ ult.}\}}=\{\bm{1}_{A_n} \text{ ult.}\}$
+3. $\{A_n \text{ i.o.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{1}_{A_n}=\infty\}$, $\{A_n \text{ ult.}\}=\{\omega:\sum_{n=1}^{\infty} \bm{1}_{A_n^c}<\infty\}$
 4. $\{A_n \text{ i.o.}\} \supset  \{A_n \text{ ult.}\}$
 5. $\mathop{{}\mathbb{P}}(\liminf_{} A_n)\le \liminf_{} \mathop{{}\mathbb{P}}A_n\le \limsup_{} \mathop{{}\mathbb{P}} A_n\le \mathop{{}\mathbb{P}}(\limsup_{} A_n)$
 
@@ -229,11 +229,11 @@ Borel-Cantelli lemma implies some sufficient conditions for a.s. convergence.
 
 Let $(A_{i})_{i \in \mathbb{N}^*}$ be a sequence of events. Then
 $$
-\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i) < \infty \implies \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i} < \infty \text{ a.s.} \iff \mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=0
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i) < \infty \implies \sum_{i=1}^{\infty} \bm{1}_{A_i} < \infty \text{ a.s.} \iff \mathop{{}\mathbb{P}}\{A_n \text{ i.o.}\}=0
 $$
 If $(A_i)$ are independent, then
 $$
-\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i)=\infty \implies \sum_{1=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\infty \text{ a.s.} \iff \mathop{{}\mathbb{P}} \{A_n \text{ i.o.}\}=1
+\sum_{i=1}^{\infty} \mathop{{}\mathbb{P}}(A_i)=\infty \implies \sum_{1=1}^{\infty} \bm{1}_{A_i}=\infty \text{ a.s.} \iff \mathop{{}\mathbb{P}} \{A_n \text{ i.o.}\}=1
 $$
 
 :::
@@ -242,7 +242,7 @@ $$
 
 By the MCT \@ref(thm:MCT),
 $$
-\mathop{{}\mathbb{E}} \sum_{i=1}^{\infty} \bm{\mathbf{1}}_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{E}}1_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{P}}(A_i)<\infty
+\mathop{{}\mathbb{E}} \sum_{i=1}^{\infty} \bm{1}_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{E}}1_{A_i}=\sum_{i=1}^{\infty}\mathop{{}\mathbb{P}}(A_i)<\infty
 $$
 and the claim follows as remark 2 in [**Properties of expectation**][Properties of expectation].
 
