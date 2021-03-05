@@ -2,24 +2,64 @@
 
 ::: {.theorem  name=""}
 
-If $\bm{\mathbf{A}}\in \mathbb{R}^{m\times n}$ of rank $r>0$, there exist orthogonal matrix $\bm{\mathbf{P}}\in \mathbb{R}^{m\times m}$ and $\bm{\mathbf{Q}}\in \mathbb{R}^{n\times n}$ $s.t.$ $\bm{\mathbf{A=PDQ'}}$ where $\bm{\mathbf{D}}$ is:
+If $\bm{A}\in \mathbb{R}^{m\times n}$ of rank $r>0$, there exist orthogonal matrix $\bm{V}\in \mathbb{R}^{m\times m}$ and $\bm{V}\in \mathbb{R}^{n\times n}$ $s.t.$ $\bm{A=UDV'}$ where $\bm{D}$ is:
 $$
 \begin{cases}
-    \Sigma & m=n=r\\
+    \bm{\Sigma} & m=n=r\\
     \begin{bmatrix}
-        \Sigma	& \bm{\mathbf{0}}	\\
+        \bm{\Sigma}	& \bm{0}	\\
     \end{bmatrix} & r=m<n\\
     \begin{bmatrix}
-        \Sigma	\\
-        	\bm{\mathbf{0}}\\
+        \bm{\Sigma}	\\
+        	\bm{0}\\
     \end{bmatrix}& r=n<m \\
     \begin{bmatrix}
-        \Sigma	& \bm{\mathbf{0}} 	\\
-        \bm{\mathbf{0}}	& \bm{\mathbf{0}} 	\\
+        \bm{\Sigma}	& \bm{0} 	\\
+        \bm{0}	& \bm{0} 	\\
     \end{bmatrix} & r<m,r<n
 \end{cases}
 $$
-where $\Sigma \in \mathbb{R}^{r\times r}$ and is diagonal with positive entries, which are $\sqrt{\lambda_i}$ where $\lambda_i \in \sigma_{\bm{\mathbf{A'A}}}$
+where $\bm{\Sigma} \in \mathbb{R}^{r\times r}$ and is diagonal with positive entries, which are $\sqrt{\lambda_i}$ where $\lambda_i \in \sigma_{\bm{A'A}}$
 
 :::
 
+
+:::: {.proof}
+
+Recall we can apply Spectral decomposition for symmetric matrix, in this case, $\bm{A'A}$, then we have
+$$
+\bm{V'A'AV}=\begin{bmatrix}
+                         \bm{\Sigma}^2	& \bm{0}	\\
+                         \bm{0}	& 	\bm{0}\\
+                     \end{bmatrix}
+$$
+Partitioning $\bm{V}$ as $\bm{V}=\left[ \bm{V}_1\quad \bm{V}_2 \right]$ where $\bm{V}_1$ is $n\times r$, then
+$$
+\begin{aligned}
+    \bm{V}_1' \bm{A'AV}_1 &=\bm{\Sigma}^2\\
+    \bm{V_2}' \bm{A'AV}_2 &=\bm{0}\implies \bm{AV_2=0}
+\end{aligned}
+$$
+Then let $\bm{U}=\left[ \bm{U}_1\quad \bm{U}_2 \right]$ be orthogonal with the same partition shape for $\bm{V}$, where $\bm{U}_1=\bm{AV}_1 \bm{\Sigma}^{-1}$. Then $\bm{U_2'U_1}=\bm{U_2'AV_1\Sigma^{-1}=0}$ implies $\bm{U_2'AV_1=0}$. Now, we find that
+$$
+\begin{aligned}
+    \bm{U'AV}&=\begin{bmatrix}
+                 \bm{U_1'AV_1} 	& \bm{U_1'AV_2}	\\
+                  \bm{U_2'AV_1}	& \bm{U_2'AV_2}	\\
+              \end{bmatrix}
+              \\ &= 
+              \begin{bmatrix}
+                  \bm{\Sigma^{-1} V_1'A'A V_1}	& \bm{\Sigma^{-1}V_1'A'A V_2}	\\
+                  \bm{U_2'AV_1}	& \bm{U_2'AV_2}	\\
+              \end{bmatrix}
+              \\ &= 
+              \begin{bmatrix}
+                  \bm{\Sigma}	& \bm{0}	\\
+                  	\bm{0}& \bm{0}	\\
+              \end{bmatrix}
+\end{aligned}
+$$
+
+::::
+
+The diagonal elements of the $\bm{\Sigma}$ are called the singular values of $\bm{A}$.

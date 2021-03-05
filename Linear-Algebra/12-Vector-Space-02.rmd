@@ -2,18 +2,18 @@
 
 ::: {.definition  name=""}
 
-Let $X$ be a vector space, a function, $\langle \bm{\mathbf{x}}, \bm{\mathbf{y}}\rangle$, defined for all $\bm{\mathbf{x}}\in X$ and $\bm{\mathbf{y}} \in X$, is an **inner product** if for any $\bm{\mathbf{x,y,z}} \in X$ and any $c \in \mathbb{R}$:
+Let $X$ be a vector space, a function, $\langle \bm{x}, \bm{y}\rangle$, defined for all $\bm{x}\in X$ and $\bm{y} \in X$, is an **inner product** if for any $\bm{x,y,z} \in X$ and any $c \in \mathbb{R}$:
 
-1. $\langle \bm{\mathbf{x,x}}\rangle \ge 0$ and equality holds iff $\bm{\mathbf{x=0}}$
-2. $\langle \bm{\mathbf{y,x}} \rangle=\langle \bm{\mathbf{x,y}} \rangle$
-3. $\langle \bm{\mathbf{x+y,z}} \rangle=\langle \bm{\mathbf{x,z}} \rangle+\langle \bm{\mathbf{y,z}} \rangle$
-4. $\langle c \bm{\mathbf{x,y}} \rangle=c \langle \bm{\mathbf{x,y}} \rangle$
+1. $\langle \bm{x,x}\rangle \ge 0$ and equality holds iff $\bm{x=0}$
+2. $\langle \bm{y,x} \rangle=\langle \bm{x,y} \rangle$
+3. $\langle \bm{x+y,z} \rangle=\langle \bm{x,z} \rangle+\langle \bm{y,z} \rangle$
+4. $\langle c \bm{x,y} \rangle=c \langle \bm{x,y} \rangle$
 
 :::
 
 ### Orthogonal
 
-Two vectors are said to be **orthogonal** if $\langle \bm{\mathbf{x,y}} \rangle=0$ and denoted as $\bm{\mathbf{x}} \perp \bm{\mathbf{y}}$ and $\bm{\mathbf{x}} \perp X$ if $\bm{\mathbf{x}} \perp \bm{\mathbf{y}}$ for all $\bm{\mathbf{y}}\in X$.
+Two vectors are said to be **orthogonal** if $\langle \bm{x,y} \rangle=0$ and denoted as $\bm{x} \perp \bm{y}$ and $\bm{x} \perp X$ if $\bm{x} \perp \bm{y}$ for all $\bm{y}\in X$.
 
 As one can apply Gram–Schmidt orthonormalization for a basis in a vector space equipped inner product, we have
 
@@ -27,16 +27,16 @@ Every finite dimensional non-trivial vector space has an orthogonal basis.
 
 ::: {.theorem  name=""}
 
-Let $X \subset \mathbb{R}^{m}$ is a subspace with an orthogonal basis, then each $\bm{\mathbf{x}}\in \mathbb{R}^{m}$ can be expressed uniquely as $\bm{\mathbf{x=u+v}}$ where $\bm{\mathbf{u}}\in X$ and $\bm{\mathbf{u}}\perp X$
+Let $X \subset \mathbb{R}^{m}$ is a subspace with an orthogonal basis, then each $\bm{x}\in \mathbb{R}^{m}$ can be expressed uniquely as $\bm{x=u+v}$ where $\bm{u}\in X$ and $\bm{u}\perp X$
 
 :::
 
-Such $\bm{\mathbf{u}}$ is known as the orthogonal projection of $\bm{\mathbf{x}}$ onto $X$ and such $\bm{\mathbf{v}}$ is called **component** of $\bm{\mathbf{x}}$ orthogonal to $X$. All orthogonal components is also a vector space.
+Such $\bm{u}$ is known as the orthogonal projection of $\bm{x}$ onto $X$ and such $\bm{v}$ is called **component** of $\bm{x}$ orthogonal to $X$. All orthogonal components is also a vector space.
 
 
 ::: {.definition  name=""}
 
-Suppose $S$ is a vector subspace of $X$ then it's orthogonal component $S^{\perp}$ is collection of all vectors $\bm{\mathbf{x}}$ in $X$ $s.t.$ $\bm{\mathbf{x}} \perp S$.
+Suppose $S$ is a vector subspace of $X$ then it's orthogonal component $S^{\perp}$ is collection of all vectors $\bm{x}$ in $X$ $s.t.$ $\bm{x} \perp S$.
 
 :::
 
@@ -118,9 +118,9 @@ Convex set is a special type subset of a vector space.
 
 ::: {.definition  name=""}
 
-A set $S\subset \mathbb{R}^{m}$ is said to be **convex** iff for any $\bm{\mathbf{x_1,x_2}}\in S$ and $0<c<1$, we have
+A set $S\subset \mathbb{R}^{m}$ is said to be **convex** iff for any $\bm{x_1,x_2}\in S$ and $0<c<1$, we have
 $$
-c \bm{\mathbf{x_1}}+(1-c) \bm{\mathbf{x_2}} \in S
+c \bm{x_1}+(1-c) \bm{x_2} \in S
 $$
 
 :::
@@ -144,14 +144,14 @@ If $S$ is convex, so is $\overline{S}$ and $S^{\circ}=\overline{S}^{\circ}$
 
 ::: {.lemma  name=""}
 
-Let $S$ be a closed convex set of $\mathbb{R}^{m}$ and $\bm{\mathbf{0}}\notin S$, then there exists $\bm{\mathbf{a}}\in \mathbb{R}^{m}$ $s.t.$ $\bm{\mathbf{a'x}}>0$ for all $\bm{\mathbf{x}}\in S$.
+Let $S$ be a closed convex set of $\mathbb{R}^{m}$ and $\bm{0}\notin S$, then there exists $\bm{a}\in \mathbb{R}^{m}$ $s.t.$ $\bm{a'x}>0$ for all $\bm{x}\in S$.
 
 :::
 
 
 ::: {.definition  name=""}
 
-Let $S_1,S_2\in \mathbb{R}^{m}$ be convex and $S_1\cap S_2=\emptyset$. Then there exists $\bm{\mathbf{b}}\neq 0 \in \mathbb{R}^{m}$ which separate $S_1$ and $S_2$.
+Let $S_1,S_2\in \mathbb{R}^{m}$ be convex and $S_1\cap S_2=\emptyset$. Then there exists $\bm{b}\neq 0 \in \mathbb{R}^{m}$ which separate $S_1$ and $S_2$.
 
 :::
 
@@ -161,63 +161,63 @@ Let $S_1,S_2\in \mathbb{R}^{m}$ be convex and $S_1\cap S_2=\emptyset$. Then ther
 
 ::: {.definition  name=""}
 
-Let $\bm{\mathbf{X}}$ be matrix in $\mathbb{R}^{m\times n}$. The subspace of $\mathbb{R}^{n}$ spanned by the $m$ rows of $\bm{\mathbf{X}}$ is called the **row space** of $\bm{\mathbf{X}}$ and denoted as $\mathcal{R}(\bm{\mathbf{X}})$ and that of $\mathbb{R}^{m}$ is column space and denoted as $\mathcal{C}(\bm{\mathbf{X}})$
+Let $\bm{X}$ be matrix in $\mathbb{R}^{m\times n}$. The subspace of $\mathbb{R}^{n}$ spanned by the $m$ rows of $\bm{X}$ is called the **row space** of $\bm{X}$ and denoted as $\mathcal{R}(\bm{X})$ and that of $\mathbb{R}^{m}$ is column space and denoted as $\mathcal{C}(\bm{X})$
 
 :::
 
 The column(row) space often equipped:
 
-- Inner product: $\langle \bm{\mathbf{x,y}} \rangle=\bm{\mathbf{x'Ay}}$, $\bm{\mathbf{A=I}}$ usually.
-- Norm: $\bm{\mathbf{\|x}}\|=\sqrt{\langle \bm{\mathbf{x,x}} \rangle}$
-- Metric: $d(\bm{\mathbf{x}},\bm{\mathbf{y}})=\sqrt{\langle \bm{\mathbf{x-y,x-y}} \rangle}$
+- Inner product: $\langle \bm{x,y} \rangle=\bm{x'Ay}$, $\bm{A=I}$ usually.
+- Norm: $\bm{\|x}\|=\sqrt{\langle \bm{x,x} \rangle}$
+- Metric: $d(\bm{x},\bm{y})=\sqrt{\langle \bm{x-y,x-y} \rangle}$
 
-The column space of $\bm{\mathbf{X}}$ is sometimes also referred to as the **range** or **image** of $\bm{\mathbf{X}}$. Note
+The column space of $\bm{X}$ is sometimes also referred to as the **range** or **image** of $\bm{X}$. Note
 $$
-\mathcal{C}(\bm{\mathbf{X}})=\{\bm{\mathbf{y}}:\bm{\mathbf{y=Xa}},\bm{\mathbf{a}}\in \mathbb{R}^{n}\}
+\mathcal{C}(\bm{X})=\{\bm{y}:\bm{y=Xa},\bm{a}\in \mathbb{R}^{n}\}
 $$
 
-Clearly, the rank of $\bm{\mathbf{X}}$ is just the dimension of $\mathcal{C}(\bm{\mathbf{X}})$ and that agree with $\mathop{\text{dim}} \mathcal{C}(\bm{\mathbf{X'}})$, $i.e.$, the number of independent columns of $\bm{\mathbf{X}}$. The null space $\mathcal{N}(\bm{\mathbf{X}})$ is the orthogonal space of $\mathcal{C}(\bm{\mathbf{X'}})$.
+Clearly, the rank of $\bm{X}$ is just the dimension of $\mathcal{C}(\bm{X})$ and that agree with $\mathop{\text{dim}} \mathcal{C}(\bm{X'})$, $i.e.$, the number of independent columns of $\bm{X}$. The null space $\mathcal{N}(\bm{X})$ is the orthogonal space of $\mathcal{C}(\bm{X'})$.
 
 
 ::: {.proposition  name=""}
 
-Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$, then:
+Let $\bm{A}\in \mathbb{R}^{m\times m}$, then:
 
-1. $\mathop{\text{rank}}\left( \bm{\mathbf{AB}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right) \land \mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
-2. $\left|\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)-\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)\right|\le \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
-3. $\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{AA'}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'A}} \right)$
+1. $\mathop{\text{rank}}\left( \bm{AB} \right)\le \mathop{\text{rank}}\left( \bm{A} \right) \land \mathop{\text{rank}}\left( \bm{B} \right)$
+2. $\left|\mathop{\text{rank}}\left( \bm{A} \right)-\mathop{\text{rank}}\left( \bm{B} \right)\right|\le \mathop{\text{rank}}\left( \bm{A+B} \right)\le \mathop{\text{rank}}\left( \bm{A} \right)+\mathop{\text{rank}}\left( \bm{B} \right)$
+3. $\mathop{\text{rank}}\left( \bm{A} \right)=\mathop{\text{rank}}\left( \bm{A'} \right)=\mathop{\text{rank}}\left( \bm{AA'} \right)=\mathop{\text{rank}}\left( \bm{A'A} \right)$
 
 :::
 
 
 ::: {.proof}
 
-1.  Note $\bm{\mathbf{AB}}$ can be seen as linear transformation in $\mathcal{C}(X)$ or so in $\mathcal{C}(X')$ and claim follows.
+1.  Note $\bm{AB}$ can be seen as linear transformation in $\mathcal{C}(X)$ or so in $\mathcal{C}(X')$ and claim follows.
 2.  Note
     $$
-    \bm{\mathbf{A+B}}=\begin{bmatrix}
-        \bm{\mathbf{A}} & \bm{\mathbf{B}}
+    \bm{A+B}=\begin{bmatrix}
+        \bm{A} & \bm{B}
     \end{bmatrix}
     \begin{bmatrix}
-        \bm{\mathbf{I}} \\ \bm{\mathbf{I}}
+        \bm{I} \\ \bm{I}
     \end{bmatrix}
     $$
     So property $1$ applies and conclude:
     $$
-    \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)\le \mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{A}} & \bm{\mathbf{B}}
-    \end{bmatrix} \right) \le \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)
+    \mathop{\text{rank}}\left( \bm{A+B} \right)\le \mathop{\text{rank}}\left( \begin{bmatrix}
+        \bm{A} & \bm{B}
+    \end{bmatrix} \right) \le \mathop{\text{rank}}\left( \bm{A} \right)+\mathop{\text{rank}}\left( \bm{B} \right)
     $$
-    Replace $\bm{\mathbf{A}}$ and $\bm{\mathbf{B}}$ by $\bm{\mathbf{A+B}}$ and $-\bm{\mathbf{B}}$, we have
+    Replace $\bm{A}$ and $\bm{B}$ by $\bm{A+B}$ and $-\bm{B}$, we have
     $$
-    \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)\le \mathop{\text{rank}}\left( \bm{\mathbf{A+B}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)
+    \mathop{\text{rank}}\left( \bm{A} \right)\le \mathop{\text{rank}}\left( \bm{A+B} \right)+\mathop{\text{rank}}\left( \bm{B} \right)
     $$
-    And similar result also hold for $\bm{\mathbf{B}}$ and then claim follows.
-3.  It's sufficient to show $\mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)=\mathop{\text{rank}}\left( \bm{\mathbf{A'A}} \right)$ and it's enough to show
+    And similar result also hold for $\bm{B}$ and then claim follows.
+3.  It's sufficient to show $\mathop{\text{rank}}\left( \bm{A} \right)=\mathop{\text{rank}}\left( \bm{A'A} \right)$ and it's enough to show
     $$
-    \mathcal{N}(\bm{\mathbf{A}})=\mathcal{N}(\bm{\mathbf{A'A}})
+    \mathcal{N}(\bm{A})=\mathcal{N}(\bm{A'A})
     $$
-    To see that, note $\bm{\mathbf{Ax=0}}\implies \bm{\mathbf{A'Ax=0}}$ clearly and if $\bm{\mathbf{A'Ax=0}}$ we have $\bm{\mathbf{x'A'Ax=0}}$ and thus $\bm{\mathbf{\|A'x}}\|=0$ and there must be $\bm{\mathbf{Ax=0}}$.
+    To see that, note $\bm{Ax=0}\implies \bm{A'Ax=0}$ clearly and if $\bm{A'Ax=0}$ we have $\bm{x'A'Ax=0}$ and thus $\bm{\|A'x}\|=0$ and there must be $\bm{Ax=0}$.
 
 
 :::
@@ -225,47 +225,47 @@ Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times m}$, then:
 
 ::: {.proposition #block-rank name=""}
 
-Let $\bm{\mathbf{A,B,C}}$ are any matrices $s.t.$ all the block matrix involved are defined. We have
+Let $\bm{A,B,C}$ are any matrices $s.t.$ all the block matrix involved are defined. We have
 
 1.	
     $\mathop{\text{rank}}\left( \begin{bmatrix}
-    \bm{\mathbf{A}} & \bm{\mathbf{B}}
-\end{bmatrix} \right) \ge \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right) \lor \mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+    \bm{A} & \bm{B}
+\end{bmatrix} \right) \ge \mathop{\text{rank}}\left( \bm{A} \right) \lor \mathop{\text{rank}}\left( \bm{B} \right)$
 2.	$\mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{A}} & \bm{\mathbf{0}}\\
-        \bm{\mathbf{0}} & \bm{\mathbf{B}}
+        \bm{A} & \bm{0}\\
+        \bm{0} & \bm{B}
     \end{bmatrix} \right)=
     \mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{0}} & \bm{\mathbf{A}}\\
-        \bm{\mathbf{B}} & \bm{\mathbf{0}}
+        \bm{0} & \bm{A}\\
+        \bm{B} & \bm{0}
     \end{bmatrix} \right)=
-    \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+    \mathop{\text{rank}}\left( \bm{A} \right)+\mathop{\text{rank}}\left( \bm{B} \right)$
 3. $\mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{A}} & \bm{\mathbf{0}}\\
-        \bm{\mathbf{C}} & \bm{\mathbf{B}}
+        \bm{A} & \bm{0}\\
+        \bm{C} & \bm{B}
     \end{bmatrix} \right)=
     \mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{C}} & \bm{\mathbf{A}}\\
-        \bm{\mathbf{B}} & \bm{\mathbf{0}}
+        \bm{C} & \bm{A}\\
+        \bm{B} & \bm{0}
     \end{bmatrix} \right)=
     \mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{B}} & \bm{\mathbf{C}}\\
-        \bm{\mathbf{0}} & \bm{\mathbf{A}}
+        \bm{B} & \bm{C}\\
+        \bm{0} & \bm{A}
     \end{bmatrix} \right)=
     \mathop{\text{rank}}\left( \begin{bmatrix}
-        \bm{\mathbf{0}} & \bm{\mathbf{A}}\\
-        \bm{\mathbf{B}} & \bm{\mathbf{C}}
+        \bm{0} & \bm{A}\\
+        \bm{B} & \bm{C}
     \end{bmatrix} \right)\ge 
-    \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)$
+    \mathop{\text{rank}}\left( \bm{A} \right)+\mathop{\text{rank}}\left( \bm{B} \right)$
 
 :::
 
 
 ::: {.theorem  name=""}
 
-Let $\bm{\mathbf{B}}$ be matrix in $\mathbb{R}^{m\times n}$ and $\bm{\mathbf{A,C}}$ justify the matrix multiplication:
+Let $\bm{B}$ be matrix in $\mathbb{R}^{m\times n}$ and $\bm{A,C}$ justify the matrix multiplication:
 $$
-\mathop{\text{rank}}\left( \bm{\mathbf{ABC}} \right)\ge \mathop{\text{rank}}\left( \bm{\mathbf{AB}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{BC}} \right)-\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)
+\mathop{\text{rank}}\left( \bm{ABC} \right)\ge \mathop{\text{rank}}\left( \bm{AB} \right)+\mathop{\text{rank}}\left( \bm{BC} \right)-\mathop{\text{rank}}\left( \bm{B} \right)
 $$
 
 :::
@@ -276,11 +276,11 @@ $$
 Note by some linear transformation, we have
 $$
 \begin{bmatrix}
-    \bm{\mathbf{B}}&\bm{\mathbf{0}}\\
-    \bm{\mathbf{0}}&\bm{\mathbf{ABC}}
+    \bm{B}&\bm{0}\\
+    \bm{0}&\bm{ABC}
 \end{bmatrix} \to \begin{bmatrix}
-    \bm{\mathbf{B}} & \bm{\mathbf{BC}}\\
-    \bm{\mathbf{AB}} & \bm{\mathbf{0}}
+    \bm{B} & \bm{BC}\\
+    \bm{AB} & \bm{0}
 \end{bmatrix}
 $$
 and claim follows by proposition \@ref(prp:block-rank).3.
@@ -288,7 +288,7 @@ and claim follows by proposition \@ref(prp:block-rank).3.
 
 :::
 
-Take $\bm{\mathbf{B=I}}$, we have 
+Take $\bm{B=I}$, we have 
 
 
 ::: {.corollary name=""}
@@ -296,7 +296,7 @@ Take $\bm{\mathbf{B=I}}$, we have
 If $A \in \mathbb{R}^{m\times n}, B\in \mathbb{R}^{n\times p}$
 
 $$
-\mathop{\text{rank}}\left( \bm{\mathbf{AB}} \right)\ge \mathop{\text{rank}}\left( \bm{\mathbf{A}} \right)+\mathop{\text{rank}}\left( \bm{\mathbf{B}} \right)-n
+\mathop{\text{rank}}\left( \bm{AB} \right)\ge \mathop{\text{rank}}\left( \bm{A} \right)+\mathop{\text{rank}}\left( \bm{B} \right)-n
 $$
 
 :::
@@ -307,35 +307,35 @@ On the space $\mathbb{R}^{m}$, there exist projection matrix:
 
 ::: {.proposition  name=""}
 
-Suppose $\bm{\mathbf{Q}}$ is orthogonal matrix, then $\bm{\mathbf{Q Q'}}$ is a projection on $\mathcal{C}(\bm{\mathbf{Q}})$.
+Suppose $\bm{Q}$ is orthogonal matrix, then $\bm{Q Q'}$ is a projection on $\mathcal{C}(\bm{Q})$.
 
 :::
 
-Such matrix is called **projection matrix** for the space $S$(if $S=\mathcal{C}(\bm{\mathbf{Q}})$) and denoted as $\bm{\mathbf{P_S}}$. Note for fixed $S$, the orthogonal basis $\bm{\mathbf{Q}}$ can be various, the projection matrix is unique.
+Such matrix is called **projection matrix** for the space $S$(if $S=\mathcal{C}(\bm{Q})$) and denoted as $\bm{P_S}$. Note for fixed $S$, the orthogonal basis $\bm{Q}$ can be various, the projection matrix is unique.
 
 
 ::: {.proposition  name=""}
 
-Suppose $\bm{\mathbf{Q_1}}$ and $\bm{\mathbf{Q_2}}$ are orthogonal matrices, and $\mathcal{C}(\bm{\mathbf{Q_1}})=\mathcal{C}(\bm{\mathbf{Q_2}})$, then $\bm{\mathbf{Q_1Q_1'=Q_2Q_2'}}$
+Suppose $\bm{Q_1}$ and $\bm{Q_2}$ are orthogonal matrices, and $\mathcal{C}(\bm{Q_1})=\mathcal{C}(\bm{Q_2})$, then $\bm{Q_1Q_1'=Q_2Q_2'}$
 
 :::
 
-Recall the Gram-Schmidt orthonormalization apply linear transformation on $\bm{\mathbf{X}}$ to finally get orthogonal $\bm{\mathbf{Q}}$, such process can be represented as
+Recall the Gram-Schmidt orthonormalization apply linear transformation on $\bm{X}$ to finally get orthogonal $\bm{Q}$, such process can be represented as
 $$
-\bm{\mathbf{Q}}=\bm{\mathbf{X}}\bm{\mathbf{A}}
+\bm{Q}=\bm{X}\bm{A}
 $$
-Note $\bm{\mathbf{I=Q'Q=A'X'XA}}$ and $\bm{\mathbf{A}}$ is full rank square matrix, we have $\bm{\mathbf{AA'=(X'X)^{-1}}}$. Consequently:
+Note $\bm{I=Q'Q=A'X'XA}$ and $\bm{A}$ is full rank square matrix, we have $\bm{\mathbf{AA'=(X'X)^{-1}}}$. Consequently:
 $$
 \bm{\mathbf{P_X=Q Q'=X(X'X)^{-1}X'}}
 $$
-In fact, $\bm{\mathbf{A}}$ must be upper triangle and $\bm{\mathbf{X=QA^{-1}}}$ is the so called QR decomposition.
+In fact, $\bm{A}$ must be upper triangle and $\bm{\mathbf{X=QA^{-1}}}$ is the so called QR decomposition.
 
 Note the projection matrix is symmetric and idempotent, we can show that it's precisely characterization of projection matrix:
 
 
 ::: {.proposition  name=""}
 
-If $\bm{\mathbf{P}}$ is symmetric and idempotent, then there is a vector space $X$ has $\bm{\mathbf{P}}$ as projection matrix, and $\mathop{\text{dim}} X=\mathop{\text{rank}}\left( \bm{\mathbf{P}} \right)$.
+If $\bm{P}$ is symmetric and idempotent, then there is a vector space $X$ has $\bm{P}$ as projection matrix, and $\mathop{\text{dim}} X=\mathop{\text{rank}}\left( \bm{P} \right)$.
 
 :::
 
@@ -344,24 +344,24 @@ If $\bm{\mathbf{P}}$ is symmetric and idempotent, then there is a vector space $
 
 ::: {.lemma  name=""}
 
-Let $\bm{\mathbf{A}}\in \mathbb{R}^{m\times n}$ with rank $r$, then there exists full rank $F \in \mathbb{R}^{m \times r}$ and $G \in \mathbb{R}^{r\times n}$ $s.t.$ $\bm{\mathbf{A=FG}}$.
+Let $\bm{A}\in \mathbb{R}^{m\times n}$ with rank $r$, then there exists full rank $F \in \mathbb{R}^{m \times r}$ and $G \in \mathbb{R}^{r\times n}$ $s.t.$ $\bm{A=FG}$.
 
 :::
 
-By above lemma, we have $\bm{\mathbf{P=FG}}$, since $\bm{\mathbf{P}}$ is idempotent then we have
+By above lemma, we have $\bm{P=FG}$, since $\bm{P}$ is idempotent then we have
 $$
 \begin{aligned}
-    \bm{\mathbf{FGFG=FG}} &\implies \bm{\mathbf{F'FGFGG'=F'FGG'}}
-    \\&\implies \bm{\mathbf{GF=I}}\implies \bm{\mathbf{FGF=F}}
+    \bm{FGFG=FG} &\implies \bm{F'FGFGG'=F'FGG'}
+    \\&\implies \bm{GF=I}\implies \bm{FGF=F}
     \\&\implies
-    \bm{\mathbf{(FG)'F=G'F'F=F}}
+    \bm{(FG)'F=G'F'F=F}
     \\&\implies
     \bm{\mathbf{G'=(F'F)^{-1}F}}
     \\&\implies
     \bm{\mathbf{P=F(F'F)^{-1}F'}}
 \end{aligned}
 $$
-Thus $\bm{\mathbf{P}}$ be projection on $\mathcal{C}(\bm{\mathbf{F}})$. This completes the proof.
+Thus $\bm{P}$ be projection on $\mathcal{C}(\bm{F})$. This completes the proof.
 
 ::::
 
@@ -370,73 +370,73 @@ Now we extend orthogonal projection to oblique case, where $X=S \oplus T$ still 
 
 ::: {.definition #angle-generalization-projection name=""}
 
-Suppose $S \oplus T=\mathbb{R}^{m}$ and $\bm{\mathbf{x=s+t}}$ where $\bm{\mathbf{x}} \in \mathbb{R}^{m}, \bm{\mathbf{s}}\in S, \bm{\mathbf{t}}\in T$, then $\bm{\mathbf{s}}$ is called **projection** on $S$ along $T$ while $\bm{\mathbf{t}}$ is so on $T$ along $S$.
+Suppose $S \oplus T=\mathbb{R}^{m}$ and $\bm{x=s+t}$ where $\bm{x} \in \mathbb{R}^{m}, \bm{s}\in S, \bm{t}\in T$, then $\bm{s}$ is called **projection** on $S$ along $T$ while $\bm{t}$ is so on $T$ along $S$.
 
 :::
 
-Suppose $\bm{\mathbf{X}} = \begin{bmatrix}
-    \bm{\mathbf{S}} &\bm{\mathbf{T}}
-\end{bmatrix}$ is nonsingular where $\bm{\mathbf{S}}\in \mathbb{R}^{m \times s},\bm{\mathbf{T}}\in \mathbb{R}^{m\times t}$, we have
+Suppose $\bm{X} = \begin{bmatrix}
+    \bm{S} &\bm{T}
+\end{bmatrix}$ is nonsingular where $\bm{S}\in \mathbb{R}^{m \times s},\bm{T}\in \mathbb{R}^{m\times t}$, we have
 $$
 \bm{\mathbf{X^{-1}S}}=\begin{bmatrix}
-                          \bm{\mathbf{I}}	\\
-                          \bm{\mathbf{0}}	\\
+                          \bm{I}	\\
+                          \bm{0}	\\
                       \end{bmatrix},
 \bm{\mathbf{X^{-1}T}}=\begin{bmatrix}
-                          \bm{\mathbf{0}}	\\
-                          \bm{\mathbf{I}}	\\
+                          \bm{0}	\\
+                          \bm{I}	\\
                       \end{bmatrix}
 $$
-They are orthogonal. Thus for arbitrary $\bm{\mathbf{y}}\in \mathbb{R}^{m}$, it can be unique expressed as $\bm{\mathbf{X^{-1}Sa+X^{-1}Tb}}$. To get the oblique projection, for any $\bm{\mathbf{x}}\in \mathbb{R}^{m}$, find $\bm{\mathbf{Xy=x}}$, then
+They are orthogonal. Thus for arbitrary $\bm{y}\in \mathbb{R}^{m}$, it can be unique expressed as $\bm{\mathbf{X^{-1}Sa+X^{-1}Tb}}$. To get the oblique projection, for any $\bm{x}\in \mathbb{R}^{m}$, find $\bm{Xy=x}$, then
 $$
 \bm{\mathbf{x=Xy=X(X^{-1}Sa+X^{-1}Tb)=Sa+Tb}}
 $$
-The oblique projection matrix is something map $\bm{\mathbf{x}}$ to $\bm{\mathbf{Sa}}$ and denoted as $\bm{\mathbf{P_{S|T}}}$. Note we have orthogonal projection matrix $\bm{\mathbf{P}}$ map $\bm{\mathbf{y}}$ to $\bm{\mathbf{X^{-1}Sa}}$, thus
+The oblique projection matrix is something map $\bm{x}$ to $\bm{Sa}$ and denoted as $\bm{\mathbf{P_{S|T}}}$. Note we have orthogonal projection matrix $\bm{P}$ map $\bm{y}$ to $\bm{\mathbf{X^{-1}Sa}}$, thus
 $$
-\bm{\mathbf{P_{S|T}=XPX^{-1}}}=\bm{\mathbf{X}}\begin{bmatrix}
-                                                  \bm{\mathbf{I}}_s	& \bm{\mathbf{0}}	\\
-                                                  \bm{\mathbf{0}}	& \bm{\mathbf{0}}	\\
-                                              \end{bmatrix}\bm{\mathbf{X}}
+\bm{\mathbf{P_{S|T}=XPX^{-1}}}=\bm{X}\begin{bmatrix}
+                                                  \bm{I}_s	& \bm{0}	\\
+                                                  \bm{0}	& \bm{0}	\\
+                                              \end{bmatrix}\bm{X}
 $$
 Clearly, $\bm{\mathbf{P_{S|T}}}$ is still idempotent but not symmetric, unless $S \perp T$.
 
-Another generalization of projection is define $x \perp y$ iff $\bm{\mathbf{x'Ay}}=0$, where $\bm{\mathbf{A}}$ is positive definite and so we have some invertible $\bm{\mathbf{B}}$ $s.t.$ $\bm{\mathbf{A=B'B}}$. 
+Another generalization of projection is define $x \perp y$ iff $\bm{x'Ay}=0$, where $\bm{A}$ is positive definite and so we have some invertible $\bm{B}$ $s.t.$ $\bm{A=B'B}$. 
 
 
 ::: {.definition #inner-generalization-projection  name=""}
 
-Then for any $\bm{\mathbf{x}}\in \mathbb{R}^{m}$, suppose it can be expressed as $\bm{\mathbf{x=s+t}}$ $s.t.$ $\bm{\mathbf{s}}\in S$ and $\bm{\mathbf{s'At}}=0$, then such $\bm{\mathbf{s}}$ is the orthogonal projection onto $S$ relative $A$.
+Then for any $\bm{x}\in \mathbb{R}^{m}$, suppose it can be expressed as $\bm{x=s+t}$ $s.t.$ $\bm{s}\in S$ and $\bm{s'At}=0$, then such $\bm{s}$ is the orthogonal projection onto $S$ relative $A$.
 
 :::
 
 We will see both generalization agree.
 
-Let $U=\{\bm{\mathbf{z}}:\bm{\mathbf{z=Bs}}, \bm{\mathbf{s}}\in S\}$, for decomposition $\bm{\mathbf{x=s+t}}$, we have $\bm{\mathbf{Bx=Bs+Bt}}$, where
+Let $U=\{\bm{z}:\bm{z=Bs}, \bm{s}\in S\}$, for decomposition $\bm{x=s+t}$, we have $\bm{Bx=Bs+Bt}$, where
 $$
-\bm{\mathbf{s'B'Bt=sAt=0}}
+\bm{s'B'Bt=sAt=0}
 $$
-Thus $\bm{\mathbf{Bt}}\in U^{\perp}$, by the uniqueness of orthogonal projection, this generalization is also unique. And if $S=\mathcal{C}(X)$, then $U=\mathcal{C}(BX)$, thus the projection onto $U$ is:
+Thus $\bm{Bt}\in U^{\perp}$, by the uniqueness of orthogonal projection, this generalization is also unique. And if $S=\mathcal{C}(X)$, then $U=\mathcal{C}(BX)$, thus the projection onto $U$ is:
 $$
 \bm{\mathbf{P=BX(X'AX)^{-1}X'B'}}
 $$
-which map $Bx$ to $Bs$ and that implies the projection onto $S$ relative to $\bm{\mathbf{A}}$ is:
+which map $Bx$ to $Bs$ and that implies the projection onto $S$ relative to $\bm{A}$ is:
 $$
-\bm{\mathbf{P}}=\bm{\mathbf{X(X'AX)^{-1}XA}}
+\bm{P}=\bm{\mathbf{X(X'AX)^{-1}XA}}
 $$
 
-Definition \@ref(def:angle-generalization-projection) and definition \@ref(def:inner-generalization-projection) agree since  in definition \@ref(def:angle-generalization-projection) $\bm{\mathbf{X}}=\begin{bmatrix}
-\bm{\mathbf{S}}	&\bm{\mathbf{T}} 	\\
+Definition \@ref(def:angle-generalization-projection) and definition \@ref(def:inner-generalization-projection) agree since  in definition \@ref(def:angle-generalization-projection) $\bm{X}=\begin{bmatrix}
+\bm{S}	&\bm{T} 	\\
 \end{bmatrix}$ then $\bm{\mathbf{X^{-1}S} }\perp \bm{\mathbf{X^{-1}T}}$ and we have $\bm{\mathbf{(X^{-1}Sa)'X^{-1}Tb=a'S'X^{-1'}X^{-1}Tb=s(XX')^{-1}t=0}}$, that relate to definition \@ref(def:inner-generalization-projection) clearly. For the other direction, it's clear as $\bm{\mathbf{P_{T|S}=I-P}}$.
 
-We can see that $\bm{\mathbf{s}}$ is the nearest with $\bm{\mathbf{x}}$, since for any $\bm{\mathbf{y}}\in S$:
+We can see that $\bm{s}$ is the nearest with $\bm{x}$, since for any $\bm{y}\in S$:
 $$
 \begin{aligned}
-    d(\bm{\mathbf{x,y}}) &= d(\bm{\mathbf{x-s,y-s}})
+    d(\bm{x,y}) &= d(\bm{x-s,y-s})
     \\ &= 
-    \bm{\mathbf{(x-s)'A(x-s)+(s-y)'A(s-y)}}+2\bm{\mathbf{(x-s)'A(s-y)}}
+    \bm{(x-s)'A(x-s)+(s-y)'A(s-y)}+2\bm{(x-s)'A(s-y)}
     \\ &= 
-    \bm{\mathbf{(x-s)'A(x-s)+(s-y)'A(s-y)}}
-    \\ & \ge \bm{\mathbf{(x-s)'A(x-s)}}=d(\bm{\mathbf{x,s}})
+    \bm{(x-s)'A(x-s)+(s-y)'A(s-y)}
+    \\ & \ge \bm{(x-s)'A(x-s)}=d(\bm{x,s})
 \end{aligned}
 $$
 
@@ -446,7 +446,7 @@ $$
 
 ### Linear transformation
 
-All linear mappings $\varphi:\mathbb{R}^{n} \to \mathbb{R}^{m}$ can be presented as a matrix $\bm{\mathbf{A}}\in \mathbb{R}^{m\times n}$ $s.t.$ $\varphi(\bm{\mathbf{x}})=\bm{\mathbf{Ax}}$. 
+All linear mappings $\varphi:\mathbb{R}^{n} \to \mathbb{R}^{m}$ can be presented as a matrix $\bm{A}\in \mathbb{R}^{m\times n}$ $s.t.$ $\varphi(\bm{x})=\bm{Ax}$. 
 
 
 
