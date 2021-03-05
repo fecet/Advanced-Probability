@@ -5,3 +5,93 @@ A non-zero continuous multilinear mapping is not uniformly continuous.
 
 :::
 
+::: {.proof}
+
+Given a nonzero continuous multilinear mapping $A:X=\prod_{i=1}^{k} X_{i}\to Y$, let $a\in X$  s.t. $A(a)\neq 0$. For each $n\in \mathbb{N}_{+}$, $n\ge 1$, let
+$$ 
+x_n=na\mathop{\text{ and }}y_n=\left(n-\frac{1}{n^{k-1}}\right)a
+$$
+so
+$$ 
+\|x_n-y_n\|_{X}=\frac{1}{n^{k-1}}\|a\|_{X}\mathop{\text{ for every }}n
+$$
+and $\frac{1}{n^{k-1}}\|a\|_{X}\to 0$ when $n\to \infty$. Since
+$$ 
+\|A(x_n)-A(y_n)\|_{Y}=\left(n^{k}-\left(n-\frac{1}{n^{k-1}}\right)^{k}\right)\|A(a)\|_{Y}
+$$
+by the assumed multilinearity of $A$, and
+$$ 
+\lim _{n\to \infty}\left(n^{k}-\left(n+\frac{1}{n^{k-1}}\right)^{k}\right)=k
+$$
+there exists $n_0\ge 1$ s.t. for all $n\ge n_0$ :
+$$ 
+\|A(x_n)-A(y_n)\|_{Y}\ge \frac{k}{2}\|A(a)\|_{Y}
+$$
+So we have constructed an example to show that $A$ cannot be uniformly continuous.
+
+:::
+
+::: {.definition  name="continuous multilinear operator space"}
+
+Let $X_1,X_2,\ldots,X_k$ and $Y$ be normed vector space over $\mathbb{K}$, then the vector space over $\mathbb{K}$ formed by all the continuous linear mappings from $\prod_{i=1}^{k} X_{i}$ to $Y$, denoted as:
+$$ 
+\mathcal{L}^{}_{k}\left(\prod_{i=1}^{k} X_{i};Y\right)
+$$
+Particularly, if $X=\prod_{i=1}^{k} X_{i}$ and $X_{i}=X$ for each $i$, then the space is also denoted as:
+$$ 
+\mathcal{L}^{}_{k}(X;Y)
+$$
+
+:::
+
+
+::: {.definition  name="norm of multilinear mappings"}
+
+Let $X_1,X_2,\ldots,X_k$ and $Y$ be normed vector spaces. Define:
+$$ 
+\|\cdot \|_{}:A\in \mathcal{L}^{}_{k}(\prod_{i=1}^{k} X_{i};Y)\mapsto \|A\|_{}=\sup_{\begin{cases}
+    x_{i}\neq 0\\
+    1\le i\le k
+\end{cases}}\frac{\|A(x_1,\ldots,x_k)\|_{Y}}{\|x_1\|_{X_1}\cdots\|x_k\|_{X_k}}
+$$
+is a norm on vector space $\mathcal{L}^{}_{k}(\prod_{i=1}^{k} X_{i};Y)$.
+
+Note that for any continuous multilinear mapping $A:\prod_{i=1}^{k} X_{i}\to Y$, and any $x\in \prod_{i=1}^{k} X_{i}$ :
+$$ 
+\|Ax\|_{Y}\le C \|x_1\|_{X_1}\|x_2\|_{X_2}\cdots \|x_k\|_{X_k}
+$$
+for some $C\gt 0$, then $\|A\|_{}=\inf C$.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X_1,\ldots,X_k$ and $Y$ be normed vector space over $\mathbb{K}$. Then there exists linear and bijective isometry:
+$$ 
+\tau:\mathcal{L}^{}_{}(X_1;\mathcal{L}^{}_{}(X_2;\ldots;\mathcal{L}^{}_{}(X_k;Y))\ldots)\to \mathcal{L}^{}_{k}\left(\prod_{i=1}^{k} X_{i};Y\right)
+$$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
