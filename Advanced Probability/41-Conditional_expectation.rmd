@@ -189,14 +189,13 @@ thus the claim follows.
 
 #### Special properties
 
-
-
 ::: {.proposition #special-conditional-properties name=""}
 
-Let $\mathcal{F},\mathcal{G}\subset \mathcal{A}$ and $X,W \in \mathcal{A}$ $s.t.$ $\mathop{{}\mathbb{E}}_{}X$ and $\mathop{{}\mathbb{E}}_{}WX$ integrable, then
+Let $\mathcal{F},\mathcal{G}\subset \mathcal{A}$ and $X,W \in \mathcal{A}$ $s.t.$ $\mathop{{}\mathbb{E}}_{}X$ and $\mathop{{}\mathbb{E}}_{}WX$ exist, then
 
-1. Conditional determinism: $W\in \mathcal{F}\implies \mathop{{}\mathbb{E}}_{\mathcal{F}}WX=W\mathop{{}\mathbb{E}}_{\mathcal{F}}X$.
-2. Repeated conditioning: $\mathcal{F}\subset \mathcal{G}\implies\mathop{{}\mathbb{E}}_{\mathcal{F}}\mathop{{}\mathbb{E}}_{\mathcal{G}}X=\mathop{{}\mathbb{E}}_{\mathcal{G}}\mathop{{}\mathbb{E}}_{\mathcal{F}}X=\mathop{{}\mathbb{E}}_{\mathcal{F}}X$.
+1. **Conditional determinism**: $W\in \mathcal{F}\implies \mathop{{}\mathbb{E}}_{\mathcal{F}}WX=W\mathop{{}\mathbb{E}}_{\mathcal{F}}X$.
+2. **Repeated conditioning**: $\mathcal{F}\subset \mathcal{G}\implies\mathop{{}\mathbb{E}}_{\mathcal{F}}\mathop{{}\mathbb{E}}_{\mathcal{G}}X=\mathop{{}\mathbb{E}}_{\mathcal{G}}\mathop{{}\mathbb{E}}_{\mathcal{F}}X=\mathop{{}\mathbb{E}}_{\mathcal{F}}X$.
+3. **Role of independency**: If $\mathcal{H}$ is independent of $\sigma(X,\mathcal{G})$, then $\mathop{{}\mathbb{E}}_{\sigma(\mathcal{G},\mathcal{H})}X=\mathop{{}\mathbb{E}}_{\mathcal{G}}X$.
 
 :::
 
@@ -215,6 +214,28 @@ $$
 \mathop{{}\mathbb{E}}_{}\left[ \bm{1}_{A}\mathop{{}\mathbb{E}}_{\mathcal{F}}X \right]=\mathop{{}\mathbb{E}}_{}\bm{1}_{A}X=\mathop{{}\mathbb{E}}_{}\left[ \bm{1}_{A}\mathop{{}\mathbb{E}}_{\mathcal{G}}X \right]
 $$
 by the projection properties of $\mathop{{}\mathbb{E}}_{\mathcal{G}}X$ and thus meet the projection properties of $\mathop{{}\mathbb{E}}_{\mathcal{F}}(\mathop{{}\mathbb{E}}_{\mathcal{G}}X)$.
+
+**Role of independency** WLOG, suppose $X\ge 0$. For $G\in \mathcal{G}$ and $H \in \mathcal{H}$, $X \bm{1}_{G}$ and $G$ are independent and so
+$$
+\mathop{{}\mathbb{E}}_{}X \bm{1}_{G\cap H}=\mathop{{}\mathbb{E}}_{}X \bm{1}_{G} \mathop{{}\mathbb{P}}H
+$$
+Note sets of the form $G \cap H$ is a $\pi$-system generates $\sigma(\mathcal{G},\mathcal{H})$, let $\overline{X}$ be a version of $\mathop{{}\mathbb{E}}_{\mathcal{G}}X$, then it's sufficient to show
+$$
+\mathop{{}\mathbb{E}}_{}\overline{X} \bm{1}_{G\cap H}=\mathop{{}\mathbb{E}}_{}X \bm{1}_{G\cap H}
+$$
+Whence
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\overline{X} \bm{1}_{G\cap H} &= \mathop{{}\mathbb{E}}_{}\overline{X} \bm{1}_{G} \bm{1}_{H}
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\overline{X}\bm{1}_{G} \mathop{{}\mathbb{P}}H
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}X \bm{1}_{G} \mathop{{}\mathbb{P}}H
+\end{aligned}
+$$
+This completes the proof.
+
+
 
 :::
 

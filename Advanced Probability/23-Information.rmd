@@ -339,3 +339,23 @@ $$
 :::
 
 
+Following example are shown in *Probability with Martingale* and said that it tripped up even Kolmogorov and Wiener. 
+
+Let $(Y_{i})_{i \in \mathbb{N}}$ be $i.i.d.$ with
+$$
+\mathop{{}\mathbb{P}}\{Y_i=1\}=\mathop{{}\mathbb{P}}\{Y_i=-1\}=\frac{1}{2}
+$$
+and define $X_n:=\prod_{i=0} ^{n}Y_i$. And define
+$$
+\mathcal{Y}:=\sigma((Y_{i})_{i\ge 1}), \mathcal{T_n}:=\sigma(X_r:r>n)
+$$
+Then
+$$
+\mathcal{L}:= \bigcap_{n} \sigma(\mathcal{Y},\mathcal{T}_n) \neq  \sigma \left( \mathcal{Y},\bigcap_{n} \mathcal{T_n} \right)=: \mathcal{R}
+$$
+My idea is that we can determine $Y_0$ given $\mathcal{Y}$ and any $\mathcal{T}_n$ and thus $Y_0 \in \mathcal{L}$. On the other hand, knowing remote future of $\mathcal{T}_n$ cannot help us tell $Y_0$ and thus $Y_0$ is independent of $\mathcal{R}$. Is this true? And maybe there is a much more rigorous solution.
+
+
+
+
+

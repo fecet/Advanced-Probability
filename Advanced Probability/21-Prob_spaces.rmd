@@ -153,7 +153,6 @@ and
 $$ \mathop{{}\mathbb{E}} \left( \sum _{ i = 1 } ^ { \infty } X_ { n } \right) = \sum _{ i = 1 } ^ { \infty } \mathop{{}\mathbb{E}} X_ { n } $$ 
 
 
-
 ::: {.remark  name=""}
 
 1. If $\mathop{{}\mathbb{P}}(A)=1$, then $\mathop{{}\mathbb{E}}X=\mathop{{}\mathbb{E}}_AX$.
