@@ -1,8 +1,8 @@
-# Functional Analysis
+# Functional Analysis {-}
 
-## Topology Background in Real Analysis
+# Topology Background in Functional Analysis
 
-### Meager Set
+## Meager Set
 
 ::: {.definition  name=""}
 
@@ -56,7 +56,7 @@ And the Baire category theorem implies that there is some $E_M,M\in \mathbb{N}$ 
 
 :::
 
-### Compactness in Metric Spaces
+## Compactness in Metric Spaces
 
 
 ::: {.lemma  name=""}
@@ -169,19 +169,6 @@ Notice that $V_{i}^{c}$ is closed, so $\overline{V_{i}^{c}}=V_{i}^{c}$ and $x$ i
 :::
 
  
-::: {.theorem  name="Tychonoff product theorem"}
-
-If $\left\{ X_\alpha: \alpha\in A \right\}$ is a family of compact topological spaces and $X=\prod_{\alpha\in A}^{} X_\alpha$ with the **product topology**, then $X$ is compact.
-
-:::
-
-
-
-
-
-
-
-
 
 
 

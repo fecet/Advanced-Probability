@@ -10,7 +10,7 @@ is the **$\ell_p$ norm** of the sequences.
 While $\ell_\infty$ is defined as the set of all $\sup \{|x_n|\}\le \infty$, such norm is called **$\ell_\infty$ norm**, **supremum norm** or **uniform norm**.
 ```
 
-All of these spaces are vector space. And sequence $\{\ell_i\}_{i=1}^\infty$ is increasing.
+All of these spaces are vector space. And sequence $\{\ell_i\}_{i=1}^\infty$ is increasing. For $p=0$, $\ell_0$ is defined as all sequence $(x_{i})_{i \in \mathbb{N}^*}$ that all but finite many $x_i=0$.
 
 The space of all convergent sequence is denoted $c$ and all sequences convergent to $0$ is denoted $c_0$. Finally, the collection of sequences with finite nonzero terms is $\varphi$. One can check that
 

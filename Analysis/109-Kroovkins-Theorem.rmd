@@ -1,4 +1,4 @@
-### Korovkin's Theorem
+## Korovkin's Theorem
 
 Recall that compact metric space $(K,d)$, the space formed by all the continuous function $x\in K\mapsto \mathbb{R}$, $\mathcal{C}^{}_{}\left(K\right)$ can equip the sup-norm like $\|f\|_{}=\sup_{x\in K}\left|f(x)\right|$.
 

@@ -1,71 +1,43 @@
+# Finite Dimension Normed space
+
 ## Riesz Theorem
 
-To prove the first result, we need to prove a lemma first.
+::: {.lemma #finite-dimensional-norm-inequality name=""}
 
-::: {.lemma #lem-norm-equal name=""}
-
-Two norms on a vector space $X$ are equivalent iff there exists constants $C_a,C_b$ s.t. 
-$$ 
-\|x\|_{a}\le C_b\|x\|_{b}\mathop{\text{ and }}\|x\|_{b}\le C_a\|x\|_{a}
+Let $(X,\left\| \cdot \right\|)$ be a finite-dimensional normed space with basis $\{x_1,x_2,\dots,x_n\}$, then there exists $m>0$ $s.t.$ for any $(\alpha_i)_{i=1}^{n}\subset \mathbb{K}^{n}$ we have
 $$
-for all $x\in X$.
+m \sum_{i=1}^{n} \left| \alpha_i \right|\le \left\| \sum_{i=1}^{n}\alpha_i x_i \right\|
+$$
+
 
 :::
 
-::: {.proof}
 
--   
-    $\implies$ : Assume that $\|\|_{a},\|\|_{b}$ are equivalent. Notice that the identity mapping $\mathop{\text{id}}:(X,\|\|_{a})\to (X,\|\|_{b})$ is continuous.  
-    Consider the set $B'=\left\{y\in X:\|y\|_{b}\lt 1\right\}$ then $\mathop{\text{id}}^{-1}(B')\subset X$ is open. Then exists a $C_a\gt 0$ s.t. $\left\{y\in X:\|y\|_{a}\lt \frac{1}{C}\right\}$ is contained in $\mathop{\text{id}}^{-1}(B')$ as $\mathop{\text{id}}(0)=0\in B'$. Therefore, we find a $C_a$ s.t. 
-    $$ 
-    \|y\|_{a}\le \frac{1}{C_a}\implies \|y\|_{b}\le 1
-    $$
-    So give any nonzero vector $x\in X$, the vector $y=\frac{1}{C_a\|x\|_{a}}x$ satisfies $\|y\|_{a}=\frac{1}{C_a}$, so $\|y\|_{b}=\frac{1}{C_a\|x\|_{a}}\|x\|_{b}\le 1$ which means
-    $$ 
-    \|x\|_{b}\le C_a\|x\|_{a}
-    $$
-    The other side is similar.
-
--
-    $\Longleftarrow$ : Assume that $\|x\|_{b}\le C_a\|x\|_{a}$ holds for every $x\in X$. This implies that the closure of any ball centered at any $y \in X$, $B_{r}(y)$ in the topological space $(X,\|\|_{b})$ contains a ball $B_{r /C_a}(y)$ in $(X,\|\|_{a})$ hence every open set in $(X,\|\|_{b})$ is the open set in $(X,\|\|_{a})$, and similar on the other side. Thus we assert that two topology are equivalent.
-
-:::
 
 ::: {.theorem #thm-finite-dim name=""}
 
-1.  Any two norms $\|\|_{}$ and $\|\|'_{}$ in a finite-dimensional vector space are equivalent, i.e. the topology they induced are identical.
+1.  Any two norms $\left\| \cdot \right\|$ and $\left\| \cdot \right\|_0$ in a finite-dimensional vector space are equivalent, i.e. the topology they induced are identical.
 2.  Any finite-dimensional vector space is separable.
 3.  A subset of a finite-dim normed vector space is compact iff it is closed and bounded.
-4.  A finite-dim subspace of a normed vector space $X$ is closed in $X$.
+4.  A finite-dim space normed vector space $X$ is complete and thus closed.
 
 :::
 
 ::: {.proof}
 
 1.
-    As the lemma we proved above, we need to find $C$ and $C'$ s.t. the condition of lemma holds, then we can assert the equivalence.  
-    Now let $(e_{i})_{i=1}^{n}$ be a basis of $X$, define $\|\|_{1}:x=\sum_{i=1}^{n} x_{i}e_{i}\to \sum_{i=1}^{n} \left|x_{i}\right|$. Then for any norm $\|\|_{}$,
-    $$ 
-    \|x\|_{}=\left|\left|\sum_{i=1}^{n} x_{i}e_{i}\right|\right|_{}\le C_1\|x\|_{1}
+    Suppose $\{x_i\}_{i=1}^{n}$ be a basis for $X$ and $\left\| \cdot \right\|_0$ and $\left\| \cdot \right\|$ be any two norms on $X$. For any $x\in X$, we can represent as $x=\sum_{i=1}^{n} \alpha_i x_i$, by lemma \@ref(lem:finite-dimensional-norm-inequality), we have
     $$
-    where $C_1=\max_{1\le i\le n}\|e_{i}\|_{}$  
-    Then consider the function:
-    $$ 
-    f:x\in (X,\|\|_{1})\to f(x)=\|x\|_{}\in \mathbb{R}
+    m \sum_{i=1}^{n} \left| \alpha_i \right| \le  \left\| \sum_{i=1}^{n} \alpha_ix_i \right\|=\left\| x \right\|
     $$
-    and the set $K=\left\{y\in X:\|y\|_{1}=1\right\}$. Notice that $f$ is continuous on $X$ since:
-    $$ 
-    \left|f(x)-f(y)\right|=\left|\|x\|_{}-\|y\|_{}\right|\le \|x-y\|_{}\le C_1\|x-y\|_{1}
+    and
     $$
-    for all $x,y\in X$, and $K$ is compact in $X$ since closed and bounded. Then there exists  $y_0\in K$ s.t. $f(y_0)=\inf_{y\in K}f(y)$ and let $\frac{1}{C}=f(y_0)=\|y_0\|_{}\gt 0$. Then $\|y\|_{1}=1$ implies $\|y\|_{}\ge \frac{1}{C}$.  
-    Give any $x\in X$, let $y=x /\|x\|_{1}$ s.t. $\|y\|_{1}=1$ so $\|y\|_{}\ge \frac{1}{C}$ which means
-    $$ 
-    \frac{\|x\|_{}}{\|x\|_{1}}\ge \frac{1}{C}\implies \|x\|_{}\ge \frac{1}{C}\|x\|_{1}
+    \left\| x \right\|_0 \le \sum_{i=1}^{n} \left| \alpha_i \right| \left\| x_i \right\|_0 \le M \sum_{i=1}^{n} \left| \alpha_i \right|
     $$
-    so the topology they induced are equivalent.
+    where $M=\max \left\| x_i \right\|_0$, which relate $\left\| \cdot \right\|$ and $\left\| \cdot \right\|_0$ in a direction and the other direction follows analogously. This completes the proof.
 
 2.
-    According to \@ref(thm:thm-lp-separable), and 1, we find that the topology induced by $\|\|_{p}$ is equivalent to any other norm in a finite-dim space. Then we prove the separability.
+    According to theorem \@ref(thm:thm-lp-separable), and 1, we find that the topology induced by $\|\|_{p}$ is equivalent to any other norm in a finite-dim space. Then we prove the separability.
 
 3.
     Let $K$ be a closed and bounded set in $(X,\|\|_{})$. Suppose in $(X,\|\|_{1})$, then according to \@ref(thm:thm-heine-borel), compact in $(X,\|\|_{1})$ means closed and bounded, as $(1)$ proved above, the topology induced by any norm is equivalent, so $K$ is compact in $(X,\|\|_{})$. The other side is the property of metric spaces.
@@ -86,9 +58,29 @@ for all $x\in X$.
 
 :::
 
+
+::: {.lemma #riesz-lemma name="Riesz's Lemma"}
+
+Let $F$ be a closed property subspace of normed space $(X,\left\| \cdot \right\|)$. Then for each $\epsilon \in (0,1)$, there is $z \in S(0,1)$ $s.t.$ $\left\| y-z \right\| > 1-\epsilon$ for any $y \in F$.
+
+:::
+
+
+:::: {.proof}
+
+Choose $x \in F^c$ and let $d=d(x,F)$, as $F$ is closed, $d>0$ and we can find some $m \in F$ $s.t.$ $d(x,m)<d(1+\epsilon)$. Take $z=-\frac{m-x}{d(x,m)} \in S(0,1)$, for any $y\in F$, we have
+$$
+\begin{aligned}
+    \left\| y-z \right\|&=\left\| y+\frac{m-x}{d(x,m)} \right\|= \frac{\left\| d(x,m)y+m-x \right\|}{d(x,m)}
+    \\
+    & \ge \frac{d}{d(x,m)} > \frac{d}{d(1+\epsilon)}=\frac{1}{1+\epsilon} > 1-\epsilon
+\end{aligned}
+$$
+::::
+
 ::: {.theorem #thm-riesz name="F.Riesz Theorem"}
 
-A normed vector space $(X,\|\|_{})$ is finite-dim iff the unit sphere of $X$ i.e. $K=\left\{x\in X:\|x\|_{}=1\right\}$ is compact.
+A normed vector space $(x,\left\| \cdot \right\|)$ is finite-dim iff the unit sphere of $X$, $S(0,1)$ is compact.
 
 :::
 
@@ -122,7 +114,25 @@ A normed vector space $(X,\|\|_{})$ is finite-dim iff the unit sphere of $X$ i.e
 
 :::
 
+## Schauder Bases
 
+
+::: {.definition  name=""}
+
+A sequence $(b_n)$ in a Banach space $(X, \left\| \cdot \right\|)$ is called a Schauder basis if for any $x \in X$, there exists unique sequence $(\alpha_n)$ $s.t.$
+$$
+\lim_{n \to \infty} \left\| x-\sum_{i=1}^{n} \alpha_i b_i \right\|=0
+$$
+and write $x=\sum_{i=1}^{\infty}\alpha_ib_i$.
+
+:::
+
+
+::: {.proposition  name=""}
+
+If a Banach space has a Schauder basis, it's separable.
+
+:::
 
 
 

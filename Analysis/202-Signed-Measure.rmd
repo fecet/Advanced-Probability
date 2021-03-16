@@ -1,6 +1,6 @@
-## Signed Measure
+# Signed Measure
 
-### Signed Measure
+## Signed Measure
 
 ::: {.definition  name="signed measure"}
 

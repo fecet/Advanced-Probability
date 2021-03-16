@@ -1,0 +1,89 @@
+## Independence
+
+::: {.definition  name=""}
+
+-   Two events $A$ and $B$ are independent if $\mathbb{P}(A\cap B)=\mathbb{P}(A)\mathbb{P}(B)$.
+-   Two random variables are independent if for all $C,D\in \mathscr{B}_R$, $\mathbb{P}(X\in C,Y\in D)=\mathbb{P}(X\in C)\mathbb{P}(Y\in D)$.
+-   Two $\sigma$-algebra $\mathcal{F},\mathcal{G}$ are independent if for all $A\in \mathcal{F}_{},B\in \mathcal{G}$, $A,B$ are independent.
+
+:::
+
+Note that for every independent $X,Y$, $\sigma(X),\sigma(Y)$ are independent.
+
+
+::: {.proposition  name=""}
+
+If $A,B$ are independent, then so as $A^{c}$ and $B$.
+
+:::
+
+::: {.proof}
+
+$$ 
+\mathbb{P}(B)-\mathbb{P}(A)\mathbb{P}(B)=\mathbb{P}(B)-\mathbb{P}(A\cap B)
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+Suppose $\mathcal{A_1,A_2,\ldots,A_n}$ are independent and each $\mathcal{A_{i}}$ is $\pi$-system. Then $\sigma(\mathcal{A_1}),\ldots,\sigma(\mathcal{A_n})$ are independent.
+
+:::
+
+::: {.proof}
+
+Let $A_{i}\in \mathcal{A_{i}}$ and $F=\bigcap_{i=2} ^{n}A_{i}$, 
+$$ 
+\mathcal{L}=\left\{A\in \mathcal{A_1}:\mathbb{P}(A\cap F)=\mathbb{P}(A)\mathbb{P}(F)\right\}
+$$
+Note that $\mathbb{P}(\Omega\cap F)=\mathbb{P}(\Omega)\mathbb{P}(F)$, so $\Omega\in \mathcal{L}$.  For $A,B\in \mathcal{L}$ with $B\subset A$, then $(A-B)\cap F=(A\cap F)-(B\cap F)$, just notice that $A\cap F\supset B\cap F$, we find $A-B\in \mathcal{L}$. For a sequence of sets $B_{i}\nearrow B$, we find that $B_{i}\cap F\nearrow B\cap F$, then
+$$ 
+\mathbb{P}(B\cap F)=\lim \mathbb{P}(B_{i}\cap F)=\lim \mathbb{P}(B_{i})\mathbb{P}(F)=\mathbb{P}(B)\mathbb{P}(F)
+$$
+Then we proved that $\mathcal{L}$ is a $\lambda$-system, so $\mathcal{L}\supset \sigma(\mathcal{A_1})$, so for any $A\in \sigma(\mathcal{A_1})$,
+$$ 
+\mathbb{P}\left(\bigcap_{i=2} ^{n}A_{i}\right)\mathbb{P}(A)=\mathbb{P}\left(A\cap \left(\bigcap_{i=2} ^{n}A_{i}\right)\right)
+$$
+which results in the independency.
+
+:::
+
+::: {.theorem  name=""}
+
+$X_1,\ldots,X_n$ are independent if
+$$ 
+\mathbb{P}(X_1\le x_1,\ldots,X_n\le x_n)=\prod_{i=1}^{n} \mathbb{P}(X_{i}\le x_{i})
+$$
+where $x_{i}\in (-\infty,\infty]$.
+
+:::
+
+::: {.proof}
+
+Note that $\mathcal{A_{i}}=$ the set of the form $\left\{X_{i}\le x_{i}\right\}$ is a $\pi$-system. The property of Borel algebra shows that $\sigma(X_{i})=\sigma(\mathcal{A_{i}})$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,6 @@
-# Topology
+# Topology{-}
+
+# General topology
 
 ## Topological spaces
 

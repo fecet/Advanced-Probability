@@ -1,0 +1,404 @@
+# Hilbert Spaces
+
+::: {.definition  name=""}
+
+Let $X$ be a vector space over $\mathbb{K}$, an **inner product** on $X$ is function $\left< \cdot,\cdot \right>:X \times X \to \mathbb{K}$ $s.t.$ for all $x,y,z \in X$ and for $\alpha,\beta \in \mathbb{K}$:
+
+1.  $\left< x,x \right>\ge 0$ and equality holds iff $x=0$.
+2.  $\left< x,y \right>=\overline{\left< y,x \right>}$
+3.  $\left< \alpha x,y \right>=\alpha \left< x,y\right>$
+4.  $\left< x+y,z \right>=\left< x,z \right>+\left< y,z \right>$
+
+An **inner product space** $(X, \left< \cdot,\cdot \right>)$ is a vector space $X$ equipped with an inner product $\left< \cdot,\cdot \right>$ and also called **pre-Hilbert space**.
+
+:::
+
+
+::: {.theorem #cauchy-schwarz-inequality name="Cauchy-Bunyakowsky-Schwarz Inequality"}
+
+Let $(X, \left< \cdot,\cdot \right>)$ be an inner product over $\mathbb{K}$, then for $x,y \in X$,
+$$
+\left| \left< x,y \right> \right|\le \sqrt{\left< x,x \right> \cdot \left< y,y \right>}
+$$
+and equality only holds when $x,y$ are linearly dependent.
+
+:::
+
+
+:::: {.proof}
+
+WLOG, assume $x,y \neq 0$, then
+$$
+\begin{aligned}
+    0\le \left< x-\alpha y,x-\alpha y \right> = \left< x,x \right>- \alpha \left< y,x \right>-\overline{\alpha} \left< x,y \right> + \alpha \overline{\alpha} \left< y,x \right>
+\end{aligned}
+$$
+let $\alpha = \frac{\left< x,y \right>}{\left< y,y \right>}$, we have,
+$$
+0 \le \left< x,x \right> - \frac{\left< y,x \right> \left< y,x \right>}{\left< y,y \right>}=\left< x,x \right>-\frac{\left| \left< x,y \right> \right|^2}{\left< y,y \right>}
+$$
+whence $\left| \left< x,y \right> \right|\le \sqrt{\left< x,y \right>}\sqrt{\left< y,y \right>}$. From where we also see that the equality implies linear dependent.
+
+::::
+
+Norm can generate metric, inner product generate norm.
+
+::: {.proposition  name=""}
+
+Let $(X,\left< \cdot,\cdot \right>)$ be an **inner product space** over $\mathbb{K}$, for each $x \in X$, define $\left\| x \right\|=\sqrt{\left< x,x \right>}$, then $\left\| \cdot \right\|$ define a norm on $X$.
+
+:::
+
+
+:::: {.proof}
+
+All properties can be checked easily expect the triangle inequality:
+$$
+\left\| x+y \right\|\le \left\| x \right\|+\left\| y \right\|
+$$
+to see that, note the Cauchy-Bunyakowsky-Schwarz inequality \@ref(thm:cauchy-schwarz-inequality) now become $\left\| \left< x,y \right> \right\|\le \left\| x \right\|\left\| y \right\|$:
+$$
+\begin{aligned}
+    \left\| x+y \right\|^2 &= \left< x,x \right>+\left< x,y \right>+\left< y,x \right>+\left< y,y \right>
+    \\ &\le 
+    \left\| x \right\|^2+2\left| \left< x,y \right> \right|+\left\| y \right\|^2
+    \\ &\le 
+    \left\| x \right\|^2+2\left\| x \right\|\left\| y \right\|+\left\| y \right\|^2
+    \\ & =
+    \left( \left\| x \right\|+\left\| y \right\| \right)^2
+\end{aligned}
+$$
+Taking the positive square root and claim follows.
+
+
+::::
+
+
+::: {.theorem #polarization name="Polarization identify"}
+
+Let $\left( X, \left< \cdot,\cdot \right> \right)$ be an inner product space over $\mathbb{K}$, then for all $x,y \in X$,
+$$
+\left< x,y \right> = \begin{cases}
+    \frac{\left\| x+y \right\|^2}{4}-\frac{\left\| x-y \right\|^2}{4} & \mathbb{K}=\mathbb{R} \\
+    \frac{\left\| x+y \right\|^2}{4}-\frac{\left\| x-y \right\|^2}{4}+i\left( \frac{\left\| x+y i \right\|^2}{4}-\frac{\left\| x-yi \right\|^2}{4} \right) & \mathbb{K}=\mathbb{C} \\
+\end{cases}
+$$
+
+:::
+
+
+::: {.theorem #parallelogram-identity name="Parallelogram Identity"}
+
+Let $X$ be an inner product space over $\mathbb{K}$, then for all $x,y \in X$,
+$$
+\left\| x-y \right\|^2+\left\| x+y \right\|^2=2\left\| x \right\|^2+2\left\| y \right\|^2
+$$
+
+:::
+
+The following theorem asserts that the Parallelogram Identity distinguishes inner product spaces among all normed linear spaces.
+
+::: {.theorem  name=""}
+
+A normed space is an inner product space iff the Parallelogram Identity holds for all $x,y \in X$.
+
+:::
+
+
+::: {.corollary  name=""}
+
+A normed space is an inner product space iff so is for any $2$D subspace of it.
+
+:::
+
+
+## Orthogonality
+
+$x,y \in X$ are said to be **orthogonal** and denoted as $x \perp y$ if $\left< x,y \right>=0$. The set $S \subset X$ is called **orthogonal** if it consist non-zero pairwise orthogonal elements and $x$ is called **orthogonal to** $S$ and write $x \perp S$ if $x \perp s, \forall s \in S$, we denoted $S^\perp$ the collection of all such $x$, which called **orthogonal complement**.
+
+
+
+::: {.proposition  name=""}
+
+Let $M$ and $N$ be subsets of $(X,\left< \cdot,\cdot \right>)$, then 
+
+1. $\{0\}^{\perp}=X,X^{\perp}=\{0\}$
+2. $M^{\perp}$ is closed.
+3. $M\subset M^{\perp\perp}$
+4. If $M$ is a subspace, then $M \cap M^{\perp}=0$
+5. If $M \subset N$, then $N^{\perp} \subset M^{\perp}$.
+6. $M^{\perp}=(\mathop{\text{span}} M)^{\perp}=\overline{\mathop{\text{span}}M}^{\perp}$
+
+:::
+
+
+::: {.theorem  name="Pythagoras"}
+
+Let $X$ be an inner product space over $\mathbb{K}$ and $x,y \in X$,
+$$
+x \perp y \iff \begin{cases}
+    \left\| x+y \right\|^2=\left\| x \right\|^2+\left\| y \right\|^2 & \mathbb{K}=\mathbb{R}\\
+    \left\| x+y \right\|^2=\left\| x \right\|^2+\left\| y \right\|^2=\left\| x+iy \right\|^2 & \mathbb{K}=\mathbb{C}\\
+\end{cases}
+$$
+:::
+
+::: {.remark}
+
+The difference of $\mathbb{C}$ and $\mathbb{R}$ comes from $\left\| x+y \right\|^2=\left| x \right|^2+\left\| y \right\|^2$ implies $\Re(\left< x,y \right>)=0$ and $\left\| x+iy \right\|^2=\left| x \right|^2+\left\| y \right\|^2$ implies $\Im(\left< x,y \right>)=0$.
+
+:::
+
+
+::: {.corollary  name=""}
+
+If $\{x_i\}_{i=1}^{n}$ is orthogonal, then
+$$
+\left\| \sum_{i=1}^{n} x_i \right\|^2=\sum_{i=1}^{n} \left\| x_i \right\|^2
+$$
+
+:::
+
+## Hilbert space
+
+
+::: {.definition  name=""}
+
+Let $(X,\left< \cdot,\cdot \right>)$ be an inner product space, if it is compete $w.r.t.$ the generated norm, then we say that $X$ is a **Hilbert space**
+
+:::
+
+
+
+### Best Approximation
+
+Let $F$ be closed in $\left( X,\left< \cdot,\cdot \right> \right)$. For given $x \in F^c$, a **best approximation** or **nearest point** to $x$ from $F$ is any $y_0 \in F$ $s.t.$
+$$
+\left\| x-y_0 \right\| = \inf_{y \in F} \left\| x-y \right\|=d(x,F)
+$$
+We collect all best approximation and denoted as $P_{F}(x)$, where $P_F$ is called **metric projection** or **nearest point map**, the set $F$ is called 
+
+- **proximal** if $P_F(x)$ is always not empty.
+- **Chebyshev** if $P_F(x)$ is always singleton.
+
+
+::: {.theorem  name=""}
+
+If $F$ is complete and convex, then it's Chebyshev.
+
+:::
+
+
+:::: {.proof}
+
+**Existence:** We only discuss $x \in F^{c}$ by obvious reason, let $\delta=d(x,F)$, then we find a sequence in $(y_n) \subset F$ $s.t.$ $d(x,y_n) \to \delta$. We claim that $(y_n)$ is Cauchy and so is in $F$. 
+
+By the Parallelogram Identity \@ref(thm:parallelogram-identity), we have
+$$
+\begin{aligned}
+    \left\| y_m-y_n \right\|^2  &= \left\| (x-y_n)-(x-y_m) \right\|^2
+    \\ &= 
+    2\left\| x-y_n \right\|^2+2 \left\| x-y_m \right\|^2-\left\| 2x-(y_n+y_m) \right\|^2
+    \\&\le 
+    2\left\| x-y_n \right\|^2+2 \left\| x-y_m \right\|^2-4\delta^2 \to 4\delta^2-4\delta^2=0
+\end{aligned}
+$$
+where the last inequality since $\frac{y_n+y_m}{2} \in F$ by convexity of $F$. Now we have $d(x,y)=d(x,\lim_{n \to \infty}y_n)=\lim_{n \to \infty}d(x,y_n)=\delta$ by the continuity of norm.
+
+**Uniqueness** Assume that $y,y' \in P_x(F)$, replace the $y_m$ and $y_n$ in Parallelogram Identity above with $y$ and $y'$, we have
+$$
+\left\| y-y' \right\|^2=2\left\| x-y \right\|^2+2\left\| x-y' \right\|^2-4\delta^2=0
+$$
+thus $y'=y$. 
+
+::::
+
+
+::: {.corollary  name=""}
+
+Every nonempty closed convex subset of a Hilbert space is Chebyshev.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Suppose $F$ is closed convex in a Hilbert space $\mathcal{H}$, $x \in F^c,y_0\in F$. Then $y_0=P_F(x)$ iff $\forall y \in F$
+$$
+\Re \left< x-y_0,y-y_0 \right>\le 0
+$$
+
+:::
+
+
+:::: {.proof}
+
+$\implies$: Suppose $\lambda \in (0,1)$, then $\lambda y+(1-\lambda)y_0 \in F$ by the convexity, thus
+$$
+\begin{aligned}
+    \left\| x-y_0 \right\|^2 &\le \left\| x-[\lambda y+(1-\lambda)y_0] \right\|^2
+    \\ &= 
+    \left< x-y_0, x-y_0 \right>-\lambda \left[ \left< x-y_0, y-y_0 \right> +\left< y-y_0,x-y_0 \right> \right]+\lambda^2 \left< y-y_0,y-y_0 \right>
+    \\ &= 
+    \left\| x-y_0 \right\|^2+\lambda^2 \left\| y-y_0 \right\|^2-2\lambda \Re \left< x-y_0,y-y_0 \right>
+\end{aligned}
+$$
+thus $\Re \left< x-y_0,y-y_0 \right> \le \frac{\lambda}{2} \left\| y-y_0 \right\|^2$. As $\lambda$ can be arbitrary small, that implies $\Re \left< x-y_0,y-y_0 \right>\le 0$.
+
+$\impliedby$. By the precisely convert procedure, we have
+$$
+\left\| x-y_0 \right\| \le \left\| x-[\lambda y+(1-\lambda)y_0] \right\|^2
+$$
+then take $\lambda=1$, we have $y_0$ is the best approximation.
+
+::::
+
+
+Moreover, if $F$ is a closed subspace, follow the proof above but note $\lambda$ can be arbitrary, then we have $\Re \left< x-y_0,y-y_0 \right>=0\implies \Re \left< x-y_0,y \right>=0$ since we can write $y=y'-y_0$. For the same reason, write $y=i y'$, then $\Re \left< x-y_0,iy' \right>=0\implies \Im(x-y_0,y')=0$. Thus we have
+
+
+::: {.theorem  name=""}
+
+Let $F$ be a closed subspace of Hilbert space $\mathcal{H}$, then for $x \in F^c$, $y_0 = P_F(x)$ iff $x-y_0 \perp F$.
+
+
+:::
+
+Where the projection $P_F$ is also called **orthogonal projection** of $\mathcal{H}$ onto $F$.
+
+
+::: {.theorem  name=""}
+
+Let $\mathcal{H}$ be a Hilbert space, $F$ a subspace of $\mathcal{H}$
+
+1.  If $F$ is closed, then $\mathcal{H}=F \oplus F^{\perp}$
+2.  $F^{\perp\perp}=\overline{F}$
+
+:::
+
+
+::: {.proposition  name=""}
+
+Let $\mathcal{H}$ be a Hilbert space, $S$ a subspace of $\mathcal{H}$, then
+
+1. $S^{\perp \perp}=\overline{\mathop{\text{span}}S}$
+2. $S^{\perp}=\{0\}$ iff $\overline{\mathop{\text{span}}S}=\mathcal{H}$.
+
+:::
+
+### Orthogonal Bases
+
+
+::: {.definition  name=""}
+
+Let $X$ be an inner product space over $\mathbb{K}$. A set $S=\{x_i\}_{i \in I}$ is called an **orthonormal** set if
+
+1. It's orthogonal.
+2. $\forall i \in I, \left\| x_i \right\|=1$
+
+If $S$ is an orthonormal set and $x \in X$, then $\sum_{i \in I}^{}\left< x,x_i \right> x_i$ are called **Fourier series** and $\left< x,x_i \right>$ are called **Fourier coefficient** of $x$ $w.r.t.$ $S$.
+
+:::
+
+
+::: {.proposition  name=""}
+
+An orthonormal set $S$ in a separable inner product space $(X,\left< \cdot,\cdot \right>)$ is at most countable.
+
+:::
+
+
+::: {.definition  name=""}
+
+An orthonormal set $S$ is **compete** if there is no proper supset is also orthonormal of it.
+
+:::
+
+Clearly, orthonormal $S$ is compete iff $S^{\perp}=\{0\}$.
+
+
+::: {.theorem  name=""}
+
+Let $X$ be a separable inner product space.
+
+- **Best fit**. If $\{x_i\}_{i=1}^{n}$ be a finite orthonormal set in $X$ and $F=\mathop{\text{span}}\{x_i\}_{i=1}^{n}$, then there exist $y_0 \in P_F(x)$ for each $x\in X$. In fact
+    $$
+    y_0=\sum_{i=1}^{n} \left< x,x_i \right>x_i
+    $$
+- **Bessel's Inequality**. If $\{x_i\}_{i=1}^{\infty}$ is orthonormal, then for each $x \in X$,
+    $$
+    \sum_{i=1}^{\infty} \left| \left< x,x_k \right> \right|^2 \le \left\| x \right\|^2
+    $$
+
+:::
+
+
+::: {.theorem  name="Riesz-Fischer Theorem"}
+
+Let $(x_i)_{i=1}^{\infty}$ be an orthonormal sequence in a separable Hilbert space $\mathcal{H}$ and let $(c_i)_{i=1}^{\infty}$ be a sequence of scalars. Then $\sum_{i=1}^{\infty} c_k x_k$ converges in $\mathcal{H}$ iff $(c_n)\subset \ell_2$. In this case
+$$
+\left\| \sum_{k=1}^{\infty} c_k x_k \right\|=\left( \sum_{i=1}^{\infty} \left| c_i \right|^2 \right)^{\frac{1}{2}}
+$$
+
+
+:::
+
+
+::: {.definition  name=""}
+
+Let $(X,\left< \cdot,\cdot \right>)$ be an inner product space, An orthonormal set $\{x_n\}$ is called an **orthonormal** basis if for each $x\in X$,
+$$
+x=\sum_{i=1}^{\infty} \left< x,x_i \right>x_i
+$$
+
+
+:::
+
+
+::: {.theorem name=""}
+
+Let $\mathcal{H}$ be a separable infinite-dimensional Hilbert space and $S=(x_{i})_{i \in \mathbb{N}^*}$ is an orthonormal set in $\mathcal{H}$, TFAE:
+
+1.  $S$ is compete in $\mathcal{H}$.
+2.  $\mathop{\text{span}}S$ is dense in $\mathcal{H}$.
+3.  $S$ is an orthonormal basis for $\mathcal{H}$.
+4.  For any $x,y \in \mathcal{H}$, $\left< x,y \right>=\sum_{i=1}^{\infty} \left< x,x_i \right>\overline{\left< y,x_i \right>}$
+5.  $\left\| x \right\|^2=\sum_{i=1}^{\infty} \left| \left< x,x_i \right> \right|^2$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+

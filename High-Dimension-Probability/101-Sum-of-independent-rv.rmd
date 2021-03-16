@@ -1,0 +1,93 @@
+
+::: {.proposition  name="tails of normal distribution"}
+
+Let $g\sim \mathcal{N}(0,1)$, then for $t\gt 0$, we have:
+$$ 
+\left(\frac{1}{t}-\frac{1}{t^{3}}\right)\cdot \frac{1}{\sqrt{2\pi}}e^{-t^{2} /2}\le \mathbb{P}(g\ge t)\le \frac{1}{t}\cdot \frac{1}{\sqrt{2\pi} }e^{-t^{2} / 2}
+$$
+
+:::
+
+::: {.proof}
+
+$$
+\begin{aligned}
+    \mathbb{P}\left\{g\ge t\right\}&=\frac{1}{\sqrt{2\pi} }\int_t^{\infty}e^{-x^{2} /2}dx \\
+    &= \frac{1}{\sqrt{2\pi} }\int_0^{\infty}e^{-t^{2} /2}e^{-ty}e^{-y^{2} /2}dy \mathop{\text{ with changing $x=t+y$}}\\
+    &\le \frac{1}{\sqrt{2\pi} }e^{-t^{2} /2}\int_0^{\infty}e^{-ty}dy \mathop{\text{ since }}e^{-y^{2} /2}\le 1   \\
+    &= \frac{1}{\sqrt{2\pi} }e^{-t^{2} /2}\left(\frac{1}{t}\right) \\
+\end{aligned}
+$$
+
+:::
+
+::: {.theorem  name="Hoeffding's inequality"}
+
+Let $X_1,\ldots,X_N$ be independent symmetric Bernoulli r.v. and $a=(a_1,\ldots,a_N)\in \mathbb{R}^{N}$ then for any $t\ge 0$ we have:
+$$ 
+\mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le \exp\left(-\frac{t^{2}}{2\|a\|_{2}^{2}}\right)
+$$
+
+:::
+
+::: {.proof}
+
+Suppose that $\|a\|_{2}=1$.  
+$$ 
+\begin{aligned}
+    \mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}&=\mathbb{P}\left\{\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)\ge \exp(\lambda t)\right\} \\
+    &\le e^{-\lambda t} \mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)
+\end{aligned}
+$$
+Now consider $\mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)$, from the independency, we find
+$$ 
+\mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)=\prod_{i=1}^{N} \mathbb{E}\exp(\lambda a_{i}X_{i})
+$$
+Since the property of symmetric Bernoulli distribution, notice that for some fixed $i$, 
+$$ 
+\mathbb{E}\exp(\lambda a_{i}X_{i})=\frac{\exp(\lambda a_{i})+\exp(-\lambda a_{i})}{2}=\cosh (\lambda a_{i})
+$$
+By the Taylor series, we believe that
+$$ 
+\cosh (x)\le \exp(\frac{x^{2}}{2})\mathop{\text{ for all }}x\in \mathbb{R}
+$$
+so
+$$ 
+\mathbb{E}\exp(\lambda a_{i}X_{i})\le \exp\left(\frac{\lambda^{2}a_{i}^{2}}{2}\right)
+$$
+$$ 
+\begin{aligned}
+    \mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le e^{-\lambda t}\prod_{i=1}^{N} \exp(\lambda^{2}a_{i}^{2})&= \exp\left(-\lambda t+\frac{\lambda^{2}}{2}\sum_{i=1}^{N} a_{i}^{2}\right) \\
+    &= \exp\left(-\lambda t+\frac{\lambda^{2}}{2}\right) \\
+\end{aligned}
+$$
+Now pick $\lambda=t$, $f(\lambda)=-\lambda t+\frac{\lambda^{2}}{2}$ get the minimum, then
+$$ 
+\mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le \exp\left(\frac{t^{2}}{2}\right)
+$$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

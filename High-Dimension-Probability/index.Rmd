@@ -1,8 +1,5 @@
 --- 
-title: "Notes of analysis"
-author: 
-  - "Xie Zejian"
-  - "Zhang Songxin"
+title: "High Dimension Probability"
 Institute: SUSTech
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site

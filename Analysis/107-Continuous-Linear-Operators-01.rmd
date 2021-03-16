@@ -1,4 +1,4 @@
-### Compact Continuous Linear Operator
+## Compact Continuous Linear Operator
 
 ::: {.definition  name="compact linear operator"}
 

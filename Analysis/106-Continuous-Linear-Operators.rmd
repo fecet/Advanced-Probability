@@ -1,6 +1,6 @@
-## Continuous Linear Operators
+# Continuous Linear Operators
 
-### General properties
+## General properties
 
 ::: {.definition  name="linear operator"}
 

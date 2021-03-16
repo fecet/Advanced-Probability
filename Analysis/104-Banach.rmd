@@ -1,0 +1,246 @@
+# Banach Space
+
+## Completeness of Normed Linear Spaces
+
+As we can generate metric from norm, we can define completeness and convergence in a norm space.
+
+
+::: {.definition name=""}
+
+A compete normed space is called a **Banach space**.
+
+:::
+
+
+::: {.lemma #closed-compete name=""}
+
+Let $X$ be a norm space and closed $S\subset X$, if $x_n\to x\in X$, we have $x\in S$.
+
+:::
+
+
+:::: {.proof}
+
+Note every open neighborhood of $x$ meet $S$ since we can find $x_{N(\epsilon)}$ in any ball $B(x,\epsilon)$ by definition of convergence.
+
+::::
+
+
+::: {.proposition  name=""}
+
+Suppose $X$ be a normed space and $A\subset X$:
+
+1.  $\left| d(x,A)-d(y,A) \right|\le \left\| x-y \right\|$ for all $x,y \in X$
+2.  $\left| \left\| x \right\|-\left\| y \right\| \right|\le \left\| x-y \right\|$
+2.  $x_n \to x \implies \left\| x_n \right\|\to \left\| x \right\|$
+3.  If $x_n \to x$ and $y_n \to y$, then $x_n+y_n \to x+y$.
+4.  If $x_n\to x$ and $\lambda_n \to \lambda \in \mathbb{K}$, then $\lambda_nx_n \to \lambda x$.
+5.  If $S$ is a subspace, so is $\overline{S}$.
+6.  Every cauchy sequence is bounded, $i.e.$, $\left\| x_n \right\|\le M$.
+7.  Every convergent sequence is a Cauchy sequence.
+
+:::
+
+
+:::: {.proof}
+
+**1** is direct from triangle inequality. And **2** and **3** are just consequence of it. **4,5,8** also follow from triangle inequality and **5** also use the absolute homogeneity.
+
+**6** follows from **4** and **5** since any $x\in \overline{S}$ can be written as $x_n \to x$.
+
+**7**. Let $(x_n)$ be Cauchy sequence, choose $N$ $s.t.$ $\left\| x_n-x_{N} \right\|\le 1$ for all $n \ge N$. By **2**, we have $\left\| x_n \right\|\le 1+ \left\| x_{N} \right\|$, clearly, we can choose $M-1$ greater than all $\left\| x_n \right\|$ for all $n\le N$, then we find the $M$.
+
+::::
+
+
+::: {.theorem  name=""}
+
+Let $(X,\left\| \cdot \right\|)$ be a Banach space and let $S$ be a linear subspace of $X$. Then $S$ is complete iff $S$ is closed in $X$.
+
+:::
+
+
+:::: {.proof}
+
+$\implies$. For any $x \in \overline{S}$, we can find $x_n\to x$, as $S$ is complete, we have $x \in S$ and thus $\overline{S}\subset S$ and must be the same.
+
+$\impliedby$. Immediately from lemma \@ref(lem:closed-compete).
+
+::::
+
+
+::: {.remark}
+
+In any normed space, completeness implies closed.
+
+:::
+
+::: {.example  name=""}
+
+Let $1\le p\le \infty$, $(\mathbb{K}^{n},\left\| \cdot \right\|_p)$ is a Banach space.
+
+:::
+
+
+::: {.example  name=""}
+
+Let $1\le p<\infty$, then $\ell_p$ is a Banach space.
+
+:::
+
+
+:::: {.proof}
+
+Suppose $(\bm{x}_{i})_{i \in \mathbb{N}^*}$ be a Cauchy sequence in $\ell_p$ and denote $\bm{x_n}=(x_{n,i})_{i \in \mathbb{N}^{*}}$.
+
+As $(\bm{x}_{i})_{i \in \mathbb{N}^*}$ is cauchy, we have when $n,m \ge N$:
+$$
+\left\| \bm{x_n-x_m} \right\|_p =\left( \sum_{i=1}^{\infty} \left| x_{n,i}-x_{m,i} \right|^p \right)^{\frac{1}{p}}<\epsilon
+$$
+that implies, fix $i$, sequence $(x_{j,i})_{j=1}^{\infty}$ is cauchy sequence in $\mathbb{K}$ and thus converges to some $x_i$, take every $i \in \mathbb{N}$, we construct a sequence $\bm{x}=(x_{i})_{i \in \mathbb{N}^*}$. We claim that $\bm{x}$ is the limit of $(\bm{x}_{i})_{i \in \mathbb{N}^*}$. To that end, for each $k \in \mathbb{N}$,
+$$
+\left( \sum_{i=1}^{k} \left| x_{n,i}-x_{m,i} \right|^{p} \right)^{\frac{1}{p}} \le \left\| x_n-x_m \right\|_p < \epsilon
+$$
+thus $\sum_{i=1}^{k} \left| x_{n,i}-x_{m,i} \right|^{p}<\epsilon^{p}$, let $m\to \infty$ and then $k\to \infty$, we have
+$$
+\sum_{i=1}^{\infty} \left| x_{n,i}-x_i \right|^{p} \le \epsilon^{p}
+$$
+thus $\bm{x_n-x}\in \ell_{p}\implies \bm{x}\in \ell_p$ and $\bm{x_n}\to \bm{x}$.
+
+::::
+
+::: {.example  name=""}
+
+However, $\ell_0$ is not Banach, as $\ell_0\subset \ell_2$, it suffices to show that $\ell_0$ is not closed in $\ell_2$. Consider sequence $(\bm{x}_{i})_{i \in \mathbb{N}^*}$ where
+$$
+\bm{x}_{i,n}=\begin{cases}
+    0 & n > i\\
+    \frac{1}{2^{n-1}} & n \le i
+\end{cases}
+$$
+clearly, it converges to $(\frac{1}{2^{n-1}})_{n \in \mathbb{N}^{*}}$, which not in $\ell_0$.
+
+:::
+
+## Series in Normed Space
+
+
+::: {.definition  name=""}
+
+Let $(x_n)$ be a sequence in a normed space $(X,\left\| \cdot \right\|)$, define $s_n=\sum_{i=1}^{n} x_i$. We say that series converges if so is $s_n$ and **absolutely converges** if $\sum_{i=1}^{\infty} \left\| x_k \right\|<\infty$.
+
+:::
+
+::: {.theorem #banach-series name=""}
+
+A normed space $(X,\left\| \cdot \right\|)$ is a Banach space iff every absolutely convergent series is convergent.
+
+:::
+
+
+:::: {.proof}
+
+$\implies$. Clearly, we can find $K$ $s.t.$ $\sum_{i=K+1}^{\infty}\left\| \bm{x}_j \right\| \le  \epsilon$, then for $m \ge n\ge K$,
+$$
+\left\| s_m-s_n \right\|=\left\| \sum_{i=n+1}^{m} x_i \right\|\le \sum_{i=n+1}^{m} \left\| x_i \right\| \le \epsilon
+$$
+thus $(s_n)$ is cauchy and thus converges.
+
+Conversely, we can write any sequence $(x_n)$ as a series of $(x_1,x_2-x_1,x_3-x_2)$ then claim follows from the observation above that Cauchy are equivalent with absolutely convergent of series.
+
+::::
+
+Now we apply theorem \@ref(thm:banach-series) to show
+
+
+::: {.theorem  name=""}
+
+Let $S$ be a closed subspace of Banach space $X$, then $X / S$ is a Banach space with quotient norm.
+
+:::
+
+
+:::: {.proof}
+
+Let $([x_n])$ be a sequence in $X / S$ $s.t.$ it's series is absolutely convergent. By the definition of the quotient norm, it's possible to find $y_i \in S$ $s.t.$
+$$
+\left\| x_i-y_i \right\| \le \left\| [x_i] \right\|+2^{-i}
+$$
+It follows that series of $(x_i-y_i)$ is absolutely convergent and thus converges to some $z \in X$ as $X$ is Banach. We claim that $([x_n])$ converges to $[z]$. Note
+$$
+\begin{aligned}
+    \left\| \sum_{i=1}^{n} [x_i]-[z] \right\|&= \left\| \left[ \sum_{i=1}^{n} x_i \right]-[z] \right\|=\left\| \left[ \sum_{i=1}^{n}x_i-z \right] \right\|
+    \\ &= 
+    \inf_{s \in S} \left\| \sum_{i=1}^{n} x_i-z-s \right\|
+    \le 
+    \left\| \sum_{i=1}^{n}x_i-z-\sum_{i=1}^{n}y_i \right\|
+    \\ &= 
+    \left\| \sum_{i=1}^{n} (x_i-y_i)-z \right\| \to 0
+\end{aligned}
+$$
+This completes the proof.
+
+::::
+
+## Bound and totally bound
+
+
+
+By the Borel theorem, we have subset $A$ is compact or sequentially compact iff it's totally bounded and complete, consequently,
+
+::: {.corollary  name=""}
+
+A subset of a Banach space is sequentially compact iff it's totally bounded and closed.
+
+:::
+
+::: {.corollary  name=""}
+
+A sequentially compact subset of a normed space is closed(as completeness) and bounded(as totally bounded). 
+
+:::
+
+
+::: {.corollary  name=""}
+
+A closed subset of a sequentially compact normed linear space is sequentially compact.
+
+:::
+
+
+:::: {.proof}
+
+A sequentially compact space is certainly a Banach space, and it's totally bounded since so is its supspace.
+
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

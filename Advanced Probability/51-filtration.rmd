@@ -1,0 +1,409 @@
+# Martingale and Stochastic
+
+::: {.example  name=""}
+
+There is a simple case for martingale:
+
+Recall example \@ref(exm:number-of-children) that
+$$
+Z_{n+1}=\sum_{i=1}^{Z_n} X_{n+1,i}
+$$
+and $X_{n+1,i}$ is independent to $(Z_i)_{1}^{n}$. Thus
+$$
+\mathop{{}\mathbb{E}}_{}(Z_{n+1}|Z_i:i\le n)=\mathop{{}\mathbb{E}}_{}(Z_{n+1}|Z_n)=\mu Z_n
+$$
+by intuition. To see this, recall $\mathop{{}\mathbb{E}}_{Z_n}\theta^{Z_{n+1}}=f(\theta)^{Z_n}$ and differentiate $w.r.t.$ $\theta$ and let $\theta=1$.
+
+Define $M_n:=\frac{Z_n}{\mu^{n}}$, we then have $\mathop{{}\mathbb{E}}_{}(M_{n+1}|Z_i:i\le n)=M_n$, thus we can say
+
+> $M$ is a martingale relative to process $Z$
+
+Given history of $Z$ up to $n$, the next value of $M_{n+1}$ of $M$ is on average what is now, that is, $M$ is "constant on average". In this case, $\mathop{{}\mathbb{E}}_{}M_n=1$ for any $n$. 
+
+As $M_n\ge 0$, the **Martingale convergence theorem** implies $M_{\infty}:=\lim_{n \to \infty}M_n$ exists $a.s.$
+
+By intuition, $M_{\infty}$ seem to be $1$ in the light of LNN and $\mathop{{}\mathbb{E}}_{}M_n=1$. However, in previous example we have seen, $a.s.$, $Z_n$ dies out and $M_n=0$ for $n$ large enough when $\mu\le 1$ and that counter our raw intuition.
+
+To find the distribution of $M_{\infty}$, consider the mgf, note $\exp -t M_n \to \exp -t M_{\infty}$ by continuity of $\exp$, DCT applies and we have
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\exp(-t M_{\infty})&=\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{}\exp (-t M_{n})
+    \\ &= 
+    \lim_{n \to \infty} f_n(\exp \frac{-t}{\mu^{n}})=: L(t)
+\end{aligned}
+$$
+recall $f_{n+1}=f \circ f_n$, we have $L(t \mu)=f \circ L(t)$.
+
+:::
+
+Throughout, $(\Omega, \mathcal{F},\mathop{{}\mathbb{P}})$ is a fixed probability space, and all stochastic process are indexed by some time set $T$, which is either $\mathbb{N}$ or $\mathbb{R}_+$ or even any subset of $\overline{\mathbb{R}}$.
+
+
+## Filtrations and stopping time
+
+::: {.definition  name=""}
+
+Suppose $\{X_t:t\in T\}$ is a collection of r.v. taking values in $(E, \mathcal{E})$. If $T$ can be seen as time, then $(X_{t})_{t\in T}$ is called a **stochastic process** with **state space** $(E,\mathcal{E})$ and **parameter set** $T$.
+
+:::
+
+Now we can treat $X(\omega)$ as function $T\to E:t \mapsto X_{t}(\omega)$, thus $X:\mathcal{F}\to E^{T}$ is measurable as proposition \@ref(prp:factor-measurable) and it's a r.v. live in the same spaces as $X_i$ and taking values in $(E^T,\mathcal{E}^T)$. It's distribution, $\mathop{{}\mathbb{P}} \circ X^{-1}$, is called **probability law** of stochastic process $\{X_t:t\in T\}$. For $\omega \in \Omega$, the map $t \mapsto X_t(\omega)$ is called **sample path** of $X$ corresponding to $\omega$.
+
+Recall the product $\sigma$ algebra construction, the probability law is determined by:
+$$
+\mathop{{}\mathbb{P}}\{\bigcap_{i \in I} X_i\in A_i\}
+$$
+where $I\subset T$ is finite and $A_i\subset E$.
+
+
+::: {.definition  name="filtration"}
+
+A **filtration** on $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ is a family of  $\sigma$-Algebra $\left\{\mathcal{F}_t:t\in \mathbb{R}_+\right\}$ satisfying:
+$$
+\mathcal{F_s\subset F_t\subset F}\mathop{\text{ for all }}0\le s\le t\lt \infty
+$$
+In particular,
+$$
+\mathcal{F}_\infty=\sigma\left(\bigcup_{0\le t\lt \infty} \mathcal{F_t}\right)
+$$
+
+:::
+
+Then we complete the filtration. Let 
+$$
+\overline{\mathcal{F}}_t=\left\{B\in \mathcal{F}:\mathop{\text{ there exists $A\in \mathcal{F}_t$ s.t. }}\mathop{{}\mathbb{P}}(A\triangle B)=0\right\}
+$$
+Notice that $\overline{\mathcal{F}}_t$ is also a $\sigma$-Algebra and it contains all the $\mathcal{F}$-measurable $\mathop{{}\mathbb{P}}$-null set.
+
+### Adaptedness
+
+::: {.definition  name="Adapted"}
+
+A process $X=\left\{X_t:t\in T\right\}$ is adapted to the filtration $\mathbb{F}=\left\{\mathcal{F}_t\right\}_{t \in T}$ if $X_t$ is $\mathcal{F_t}$-measurable for each $t\in T$. The smallest filtration to which $X$ is adapted is the filtration it generates, i.e. 
+$$ 
+\mathcal{F}_t^{X}=\sigma\left\{X_s:0\le s\le t\right\}
+$$
+
+:::
+
+
+### Stopping time
+
+
+::: {.definition  name=""}
+
+Let $\mathbb{F}$ be a filtration on $T$. A random time $\tau:\Omega \to \overline{T}$ is called a **stopping time** of $\mathbb{F}$ is $\{\tau \le t\} \in \mathcal{F}_{t}$ for each $t \in T$.
+
+:::
+
+
+::: {.remark}
+
+The condition in definition is equivalence to let $Z_{t}:=\bm{1}_{\tau \le t}$ and require process $\{Z_t\}_{t\in T}$ be adapted to $\mathbb{F}$. When $T$ is countable, this is equivalence to require $\{\tau=t\} \in \mathcal{F}_{t}$.
+
+:::
+
+
+### Past until $\tau$
+
+If $\tau$ is a stopping time, the $\sigma$-Algebra of events known at time $\tau$ is defined by:
+$$
+\mathcal{F}_\tau=\left\{A\in \mathcal{F}:A\cap \left\{\tau\le t\right\}\in \mathcal{F}_t\mathop{\text{ for all }}t\in \overline{T}\right\}
+$$
+A deterministic time is a special case which means $\tau(\omega)=t$ for every $\omega\in \Omega$, then $\mathcal{F}_\tau=\mathcal{F}_t$.
+
+If $\left\{X_t\right\}$ is a process, then $X_\tau$ denotes the value of the process at random time $\tau$, in other words, $X_\tau(\omega)=X_{\tau(\omega)}(\omega)$. The random variable $X_\tau$ is defined on $\left\{\tau\lt \infty\right\}$.
+
+Note $\{\tau \le r\}$ belongs to $\mathcal{F}_{\tau}$ for every $r$ since
+$$
+\{\tau \le r\}\cap \{\tau \le t\}=\{\tau \le r \land t\} \in \mathcal{F}_{t}
+$$
+for each $t$ and thus $\tau \in \mathcal{F}_{\tau}$. In fact, we have 
+
+
+::: {.theorem  name=""}
+
+A $r.v.$ $V$ belongs to $\mathcal{F}_{\tau}$ iff $V \bm{1}_{\tau \le t}\in \mathcal{F}_{t}$ for every $t \in T$. In particular, if $T$ is at most countable, the condition is reduce to $V \bm{1}_{\tau=t}\in \mathcal{F}_{t}$.
+
+:::
+
+
+:::: {.proof}
+
+Clear by noting $\{V > r\}\cap \{\tau \le t\}=\{V \bm{1}_{\tau \le t}>r\}$.
+
+::::
+
+### Representation of $\mathbb{F}$ and $\mathcal{F}_{\tau}$
+
+As we abuse $\mathcal{F}$ to denote all $\mathcal{F}$-measurable function, we abuse $\mathbb{F}$ to some collection of process, they are:
+
+1. $X=\{X_{t}\}_{t \in T}$ is adapted to $\mathbb{F}$.
+2. The path $t \mapsto X_{t}(\omega)$ is right continuous for every $\omega \in \Omega$.
+
+If $T$ is discrete, the second condition holds automatically, thus $X \in \mathbb{F} \iff X_t \in \mathcal{F}_{t}$.
+
+Following relate $\mathcal{F}_{\tau}$ and $X \in \mathbb{F}$:
+
+
+::: {.theorem #stopping-time-filtration name=""}
+
+Let $\tau$ be a stopping time of $\mathcal{F}$, then $\mathcal{F}_{\tau} = \{X_{\tau}:X \in \mathbb{F}\}$
+
+:::
+
+In fact, we can reduce the condition on $X$ from adapted right continuous to **progressive**.
+
+### Comparing different pasts
+
+If $\sigma$ and $\tau$ are stopping times of $\mathbb{F}$ and $\sigma$ is dominated by $\tau$, by intuition, we should think $\mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$ since we go further at $\tau$. The following shows this
+
+
+::: {.theorem #stopping-time-compare name=""}
+
+Let $\sigma$ and $\tau$ be stopping times of $\mathbb{F}$, then 
+
+1.	
+    $\sigma \land \tau$ and $\sigma \lor \tau$ are stopping time of $\mathbb{F}$.
+2.	
+    $\sigma \le \tau \implies \mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$
+3.  
+    In general, $\mathcal{F}_{\sigma \land \tau} = \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$
+4.  
+    If $V \in \mathcal{F}_{\sigma}$, then the following are in $\mathcal{F}_{\sigma \land \tau}$:
+    $$
+    V \bm{1}_{\sigma \le \tau}, V \bm{1}_{\sigma=\tau}, V \bm{1}_{\sigma < \tau}
+    $$
+
+
+:::
+
+
+:::: {.proof}
+
+**1** follows easily by noting
+$$
+\left\{\tau\land \sigma\le t\right\}=\left\{\sigma\le t\right\}\cup \left\{\tau\le t\right\}
+$$
+For **2**, suppose $V \in \mathcal{F}_{\sigma}$, then $X_{t}=V \bm{1}_{\sigma \le t}$ defines a process $X$ adapted to $\mathbb{F}$ and it's right continuous obviously, thus $X \in \mathbb{F}$. Then $X_{\tau}=V \in \mathcal{F}_{\tau}$ by theorem \@ref(thm:stopping-time-filtration) and claim follows.
+
+To see **3**, we show **4** first. As $\sigma \land \tau$ is stopping time, use $V \in \mathcal{F}_{\sigma}$ in **2**, we have
+$$
+X_{\sigma \land \tau}=V \bm{1}_{\sigma \le \sigma \land \tau}=V \bm{1}_{\sigma \le \tau} \in \mathcal{F}_{\sigma \land \tau}
+$$
+take $V=1$ we have $\{\sigma \le \tau\} \in \mathcal{F}_{\sigma \land \tau}$ and the others follows by symmetry and set operations.
+
+Now let $H \in \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$ and $V=\bm{1}_{H}$, then **4** implies $H \in \mathcal{F}_{\sigma \cap \tau}$ and that shows $F_{\sigma} \cap \mathbb{F}_{\tau} \subset \mathbb{F}_{\sigma \land \tau}$. The other direction follows easily by noting $\sigma \land \tau$ are dominated by both $\tau$ and $\sigma$.
+
+::::
+
+### Times foretold
+
+Suppose $\sigma$ is a stopping time of $\mathbb{F}$ and $\tau$ is a random time dominated $\sigma$ but can be determined by $\sigma$, $i.e.$, $\tau \in \mathcal{F}_{\sigma}$. Then $\tau$ is said to be **foretold** by $\sigma$ and still a stopping time of $\mathbb{F}$. For example, $\sigma+t$ is a stopping time foretold by $\sigma$.
+
+### Approximation by discrete stopping time
+
+We start by a approximation of $id(t)=t$, for each $n \in \mathbb{N}$, define
+$$
+d_{n}(t)=\begin{cases}
+    \frac{k+1}{2^{n}} & t \in [\frac{k}{2^{n}},\frac{k+1}{2^{n}})\\
+    \infty & t=\infty
+\end{cases}
+$$
+then $d_n:\overline{\mathbb{R}}_+ \to \overline{\mathbb{R}}_+$ is a step function, it's increasing and right-continuous and $d_n(t) \searrow t$.
+
+
+::: {.proposition  name=""}
+
+Let $\mathbb{F}$ be a filtration on $\overline{\mathbb{R}}_+$ and let $\tau$ be a stopping time of it. Define $\tau_n=d_n \circ \tau$. Then we have $(\tau_n)$ is a sequence of discrete stopping time decrease to $\tau$ in $\mathbb{F}$.
+
+:::
+
+
+:::: {.proof}
+
+By definition, $\tau_n$ is foretold by $\tau$ and thus stopping time. It's discrete and decreases to $\tau$ obviously.
+
+::::
+
+### Conditioning at stopping times
+
+For convenience, we use $\mathop{{}\mathbb{E}}_{\tau}$ for $\mathop{{}\mathbb{E}}_{\mathcal{F}_{\tau}}=\mathop{{}\mathbb{E}}_{}(.\mathcal{|F}_{\tau})$. In particular, every deterministic time $t$ is a stopping time and the notation keep the same.
+
+::: {.theorem  name=""}
+
+Suppose all the expectations involved are exist, $\sigma$ and $\tau$ are stopping time of $\mathcal{F}$.
+$$
+\mathop{{}\mathbb{E}}_{\sigma}\mathop{{}\mathbb{E}}_{\tau} X=\mathop{{}\mathbb{E}}_{\sigma \land \tau} X
+$$
+
+:::
+
+:::: {.proof}
+
+Note $\mathop{{}\mathbb{E}}_{\sigma \land \tau}\mathop{{}\mathbb{E}}_{\tau}=\mathop{{}\mathbb{E}}_{\sigma \land \tau}$, put $Y=\mathop{{}\mathbb{E}}_{\tau}X$, we should see $\mathop{{}\mathbb{E}}_{\sigma}Y=\mathop{{}\mathbb{E}}_{\sigma \land \tau}Y$. Note $\sigma \land \tau \le \sigma$, then it's remain to show the projection property.
+$$
+\mathop{{}\mathbb{E}}_{} Y \bm{1}_{H} =\mathop{{}\mathbb{E}}_{} \bm{1}_{H} \mathop{{}\mathbb{E}}_{\sigma \land \tau} Y
+$$
+for $H \in \mathcal{F}_{\sigma}$. By theorem \@ref(thm:stopping-time-compare), we have $\bm{1}_{H} \bm{1}_{\sigma\le \tau} \in \mathcal{F}_{\sigma \land \tau}$, thus
+$$
+\mathop{{}\mathbb{E}}_{}Y \bm{1}_{H \cap \{\sigma \le \tau\}}=\mathop{{}\mathbb{E}}_{}\bm{1}_{H \cap \{\sigma \le \tau\}}\mathop{{}\mathbb{E}}_{\sigma \land \tau} Y
+$$
+by the property of $\mathop{{}\mathbb{E}}_{\sigma \land \tau}$, then take $\bm{1}_{H \cap \{\sigma > \tau\}}$, which is $\mathcal{F}_{\sigma \land \tau}$-measurable by the same reason, adding them yields the desired equality.
+
+
+::::
+
+
+
+### Measurable Process
+
+::: {.definition  name="Measurability of a process"}
+
+A process $X$ is measurable if $X$ is $\mathcal{B}_{\mathbb{R}_+}\times \mathcal{F}$ measurable as a function from $\mathbb{R}_+\times \Omega\to \mathbb{R}^{d}$.
+
+Furthermore, $X$ is **progressively measurable** if the restriction of the function $X$ to $[0,T]\times \Omega$ is  $\mathcal{B}_{[0,T]}\times \mathcal{F}_T$ measurable for each $T$.
+
+:::
+
+::: {.remark  name=""}
+
+Every progressively measurable process is adapted since every subset $A\subset \mathcal{F}_X\times \mathcal{F}_Y$ has measurable sections.
+
+:::
+
+::: {.definition  name="equivalence of process"}
+
+Let $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ and $Y=\left\{Y_t:t\in \mathbb{R}_+\right\}$ be two processes defined on same $(\Omega,\mathcal{F},P)$. We say:
+
+-   $X$ and $Y$ are equal by noticing that both $X$ and $Y$ are functions defined on $\Omega\times \mathbb{R}_+$, which means $X_t(\omega)=Y_t(\omega)$ for each pair $(t,\omega)\in \Omega\times \mathbb{R}_+$.
+-   $X$ and $Y$ are indistinguishable if there exists $\Omega_0\subset \Omega$ s.t. $P(\Omega_0)=1$ and $X_t(\omega)=Y_t(\omega)$ for all $(t,\omega)\in \Omega_0\times \mathbb{R}_+$.
+-   $Y$ is a modification or version of $X$ if for each $t\in \mathbb{R}_+$, $P\left\{X_t=Y_t\right\}=1$.
+-   $X$ and $Y$ are equal in distribution, denoted as $X\xlongequal{d}Y$ which means $P\left\{X\in A\right\}=P\left\{Y\in A\right\}$ for all measurable $A\in \mathcal{F}$ and for each $t\in \mathbb{R}_+$.
+
+:::
+
+::: {.proposition  name=""}
+
+Assume that $(\Omega,\mathcal{F},P)$ and $\left\{\mathcal{F}_t:t\in \mathbb{R}_+\right\}$ are complete, then if $X$ is adapted and $P\left\{X_t=Y_t\right\}=1$ for each $t\in \mathbb{R}_+$, then $Y_t$ is adapted.
+
+:::
+
+::: {.proof}
+
+Let $A\in \mathcal{F}$, then
+$$ 
+\left\{Y_t\in A\right\}=\left\{X_t\in A\right\}\cup \left\{Y_t\in B,X_t\notin B\right\}-\left\{Y_t\notin B,X_t\in B\right\}
+$$
+Notice that $\mathop{{}\mathbb{P}}\left\{X_t\neq Y_t\right\}=0$ and every $P$-null set is contained in complete filtration  $\left\{\mathcal{F}_t\right\}$.
+
+:::
+
+::: {.proposition  name=""}
+
+Let $\sigma,\tau$ be stopping times, and $X$ a process.
+
+1.  For $A\in \mathcal{F}_\sigma$, the events $A\cap \left\{\sigma\le \tau\right\}$ and $A\cap \left\{\sigma\lt \tau\right\}$ lie in $\mathcal{F}_\tau$. In particular, $\sigma\le \tau\implies \mathcal{F}_\sigma\subset \mathcal{F}_\tau$.
+2.  
+    Both $\tau$ and $\sigma\land \tau$ are $\mathcal{F}_\tau$ measurable.  
+    $$ 
+    \left\{\sigma\le \tau\right\},\left\{\sigma\lt \tau\right\},\left\{\sigma=\tau\right\}
+    $$
+    lie in both $\mathcal{F}_\sigma$ and $\mathcal{F}_\tau$.
+
+3.  If $X$ is progressively measurable then $X(\tau)$ is $\mathcal{F}_\tau$-measurable on the event $\left\{\tau\lt \infty\right\}$.
+
+:::
+
+::: {.proof}
+
+1.
+    Let $A\in \mathcal{F}_\sigma$ which implies $A\cap \left\{\sigma\le t\right\}\in \mathcal{F}_t$ for every $t\in [0,\infty)$. Now we need to show $A\cap \left\{\sigma\le \tau\right\}\cap \left\{\tau\le t\right\}\in \mathcal{F}_{t}$.  
+    $$ 
+    \begin{aligned}
+        (A&\cap \left\{\sigma\le \tau\right\})\cap \left\{\tau\le t\right\} \\
+        &= (A\cap \left\{\sigma\le t\right\})\cap \left\{\sigma\land t\le \tau\land t\right\}\cap \left\{\tau\le t\right\} \\
+    \end{aligned}
+    $$
+    Note that $u\in \mathbb{R}_+$, $\left\{\sigma\land t\le u\right\}$ is equal to $\left\{\sigma\le u\right\}$ if $u\lt t$, and equal to $\Omega$ if $u\ge t$, both $\mathcal{F}_{t}$-measurable. So $A\cap \left\{\sigma\le \tau\right\}\in \mathcal{F}_{t}$. In particular, $\sigma\le \tau$ in whole $\Omega$, 
+    $$
+    A\in \mathcal{F}_{\sigma}\implies A\cap \left\{\sigma\le \tau\right\}=A\cap \Omega=A\in \mathcal{F}_{\tau}
+    $$
+    Note that
+    $$ 
+    A\cap \left\{\sigma\lt \tau\right\}=\bigcup_{n=1} ^{\infty}A\cap \left\{\sigma+\frac{1}{n}\le \tau\right\}
+    $$
+    and $A\in \mathcal{F}_{\sigma}$ implies:
+    $$ 
+    A\cap \left\{\sigma\le t\right\}\in \mathcal{F}_{t}\implies A\cap \left\{\sigma\le t\right\}\cap \left\{\sigma\le t-\frac{1}{n}\right\}\in \mathcal{F}_{t}
+    $$
+    so $A\in \mathcal{F}_{\sigma}\implies A\in \mathcal{F}_{\sigma+1 /n}$, so all the sequence of sets is contained in $\mathcal{F}_{\sigma+1}$, so all $A\cap \left\{\sigma+\frac{1}{n}\le \tau\right\}\in \mathcal{F}_{\tau}$ thus $A\cap \left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. In particular, we find that for any $n\in (0,\infty)$, $\mathcal{F}_{\sigma+n}\supset \mathcal{F}_{\sigma}$.
+
+2.  
+    For each  $s$, $\left\{\tau\le s\right\}\cap \left\{\tau\le t\right\}=\left\{\tau\le t\land s\right\}\in \mathcal{F}_{t}$, so $\left\{\tau\le s\right\}$ for every $s \in \mathbb{R}_+$ lies in $\mathcal{F}_{\tau}$, so by the definition of Borel algebra, $\tau$ is $\mathcal{F}_{\tau}$-measurable. Similarly, $\sigma\land \tau$ is $\mathcal{F}_{\sigma\land \tau}$-measurable. Note that  $\sigma\land \tau\le \tau$, and by the statement above  $\mathcal{F}_{\sigma\land \tau}\subset \mathcal{F}_{\sigma}$ and $\mathcal{F}_{\sigma\land \tau}\subset \mathcal{F}_{\tau}$ then $\sigma\land \tau$ is $\mathcal{F}_{\sigma},\mathcal{F}_{\tau}$-measurable.
+
+    Taking $A=\Omega\in \mathcal{F}_{\sigma}$, then $\left\{\sigma\le \tau\right\}\in \mathcal{F}_{\tau}$, $\left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. Take difference, $\left\{\sigma=\tau\right\}=\left\{\sigma\le \tau\right\}-\left\{\sigma\lt \tau\right\}\in \mathcal{F}_{\tau}$. Take complement, we find $\left\{\sigma\ge \tau\right\}\in \mathcal{F}_{\tau}$ and $\left\{\sigma\gt \tau\right\}\in \mathcal{F}_{\tau}$ and the same as $\mathcal{F}_{\sigma}$.
+
+3.  
+    We claim first that $\omega\mapsto X(\tau(\omega)\land t,\omega)$ is $\mathcal{F}_{t}$-measurable. Write it as the composition:
+    $$ 
+    \omega\mapsto (\tau(\omega)\land t,\omega)\mapsto X(\tau(\omega)\land t,\omega)
+    $$
+    The first step is a mapping from $(\Omega,\mathcal{F}_{t})$ to $([0,t]\times \Omega,\mathscr{B}_{[0,t]}\times \mathcal{F}_{t})$. Then as discussed above, $\omega\mapsto \tau(\omega)\land t$ is well defined from $\mathcal{F}_{t}$ to $\mathscr{B}_{[0,t]}$.
+
+    By the definition of progressively measurable, $X$ is $(\mathscr{B}_{[0,t]}\times \mathcal{F}_{t})$-measurable for each  $t$ to the $\mathscr{B}_{\mathbb{R}_+}$.
+
+    By the discussion above, we have shown that $\omega\mapsto X(\tau(\omega)\land t,\omega)$ is $\mathcal{F}_{t}\to \mathscr{B}_{\mathbb{R}_+}$-measurable, so for $B\in \mathscr{B}_{\mathbb{R}_+}$, $\left\{X_{\tau\land t}\in B\right\}\in \mathcal{F}_{t}$ then
+    $$ 
+    \begin{aligned}
+        &\left\{X_{\tau\land t}\in B\right\}\cap \left\{\tau\le t\right\} \\
+        =&\left\{X_\tau\in B,\tau\lt \infty\right\}\cap \left\{\tau\le t\right\}\in \mathcal{F}_{t}
+    \end{aligned}
+    $$
+    so $\left\{X_\tau\in B,\tau\lt \infty\right\}\in \mathcal{F}_{\tau}$.
+
+:::
+
+
+
+::: {.definition  name="continuity of process"}
+
+A process $X=\left\{X_t:t\in \mathbb{R}_+\right\}$ is called continuous if for each $\omega\in \Omega$, the path $t\mapsto X_t(\omega)$ is continuous as a function of $t$.
+
+An $\mathbb{R}^{d}$-valued process $X$ is right continuous with left limits if for all $\omega\in \Omega$ :
+$$ 
+X_t(\omega)=\lim _{s\searrow t}X_s(w)\mathop{\text{ for all }}t\in \mathbb{R}_+
+$$
+and
+$$ 
+X_{t^{-}}(\omega)=\lim _{s\nearrow t}X_s(\omega)\mathop{\text{ exists in $\mathbb{R}^{d}$ for all }}t\gt 0
+$$
+denoted as a RCLL process, similar as the LCRL process.
+
+:::
+
+::: {.definition  name="FV process"}
+
+$X$ is a finite variation process, denoted as FV-process if for each $\omega\in \Omega$ the path $t\mapsto X_t(\omega)$ has bounded variation on each compact interval $[0,T]$. In other words, the total variation function $V_{X(\omega)}(T)\lt \infty$ for each $(\omega,T)\in \Omega\times \mathbb{R}_+$.
+
+We called a process is bounded uniformly if there exists a $u\in \mathbb{R}_+$ s.t. $V_{X(\omega)}(T)\le u$ for every $(\omega,T)\in \Omega\times \mathbb{R}$.
+
+:::
+
+::: {.proposition  name=""}
+
+Let $X$ be adapted to the filtration $\left\{\mathcal{F}_{t}\right\}$ and suppose $X$ is left or right continuous, then $X$ is progressively measurable.
+
+:::
+
+::: {.proof}
+
+Fix $T\lt \infty$, define a function on $[0,T]\times \Omega$ :
+$$ 
+X_n(t,\omega)=X(0,\omega)\cdot \bm{\mathbf{1}}_{\left\{0\right\}}(t)+\sum_{k=0}^{2^{n}-1} X\left(\frac{(k+1)T}{2^{n}},\omega\right)\cdot \bm{\mathbf{1}}_{(kT 2^{-n},(k+1)T 2^{-n})}(t)
+$$
+
+
+:::
+
+

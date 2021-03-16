@@ -31,3 +31,6 @@ Infinite dimensional analysis/Infinite dimensional analysis.Rmd
 *.Rproj
 Advanced Probability/[Plugins]
 Advanced Probability/[Plugins]
+*.sty
+*.Rproj
+*.ipynb

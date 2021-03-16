@@ -1,6 +1,6 @@
-## Continuous Function and Continuous Function Space
+# Continuous Function and Continuous Function Space
 
-### Continuous Function
+## Continuous Function
 
 ::: {.definition  name="oscillation"}
 
@@ -127,7 +127,7 @@ So $f(B_{\delta}(x))\subset B_{\epsilon /2}(y)$ for some $y\in Y$ which means $\
 
 :::
 
-### Continuous Function Space
+## Continuous Function Space
 
 ::: {.theorem  name=""}
 
