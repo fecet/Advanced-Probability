@@ -14,14 +14,14 @@ A compete normed space is called a **Banach space**.
 
 ::: {.lemma #closed-compete name=""}
 
-Let $X$ be a norm space and closed $S\subset X$, if $x_n\to x\in X$, we have $x\in S$.
+Let $X$ be a norm space and closed $F\subset X$, if $(x_n)\subset F$ converges to $x$, we have $x\in F$.
 
 :::
 
 
 :::: {.proof}
 
-Note every open neighborhood of $x$ meet $S$ since we can find $x_{N(\epsilon)}$ in any ball $B(x,\epsilon)$ by definition of convergence.
+Note every open neighborhood of $x$ meet $F$ since we can find $x_{N(\epsilon)}$ in any ball $B_{\varepsilon}(x)$ by definition of convergence.
 
 ::::
 
@@ -184,9 +184,16 @@ This completes the proof.
 
 ## Bound and totally bound
 
+It can be shown that on a metric space, compactness and sequential compactness are equivalent.
 
+By the Borel theorem, we have subset $A$ is compact or sequentially compact iff it's totally bounded and complete, consequently:
 
-By the Borel theorem, we have subset $A$ is compact or sequentially compact iff it's totally bounded and complete, consequently,
+::: {.theorem  name=""}
+
+A subset of a normed linear space is compact iff it's totally bounded and complete.
+
+:::
+
 
 ::: {.corollary  name=""}
 
@@ -215,32 +222,3 @@ A sequentially compact space is certainly a Banach space, and it's totally bound
 ::::
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>

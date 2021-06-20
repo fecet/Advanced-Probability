@@ -1,0 +1,50 @@
+## Two-sided bounds on sub-gaussian matrices
+
+Return to theorem \@ref(thm:matrix-norm), it gives an upper bound for the largest singular value of $\bm{A}$:
+$$
+s_1(\bm{A})\le C(\sqrt{m}+\sqrt{n})
+$$
+with high probability. Now we give a sharper result:
+$$
+\sqrt{m}-C\sqrt{n}\le s_i(\bm{A})\le \sqrt{m}+C\sqrt{n}
+$$
+that implies $\bm{A} / \sqrt{m}$ is approximate isometry when $m\gg n$. 
+
+
+::: {.theorem #approximate-isometry-sub-gaussian name="Two-sided bound on sub-gaussian matrices"}
+
+Suppose $\bm{A}$ is $m\times n$ where each rows $\bm{A_i}$ is independent sub-gaussian isometry with zero mean, then for any $t\ge 0$, we have
+$$
+\left\| \frac{1}{m} \bm{A'A}-\bm{I} \right\|\le K^2 \left( \delta \lor \delta^2 \right)
+$$
+where $\delta=C\left( \sqrt{\frac{n}{m}}+\frac{t}{\sqrt{m}} \right)$ and $K=\max_{i} \left\| \bm{A_i} \right\|_{\psi_2}$ with probability at least $1-2\exp(-t^2)$.
+
+:::
+
+
+:::: {.proof}
+
+**Step 1**  Follow the same fashion in theorem \@ref(thm:matrix-norm), we find a $\frac{1}{4}$ net $N$ for $S^{n-1}$ with $\left| N \right|\le 9^{n}$ and by symmetry
+$$
+\left\| \frac{1}{m} \bm{A'A-I} \right\|\le 2\max_{\bm{x}\in N} \left| \frac{1}{m} \left\| \bm{Ax} \right\|_2^2-1 \right|
+$$
+
+**Step 2** Note $\left\| \bm{Ax} \right\|_2^2=\sum_{i=1}^{m} \bm{A_i'x}$
+
+
+::::
+
+
+That implies $\frac{\bm{A}}{\sqrt{m}}$ is approximate isometry in the sense of lemma \@ref(lem:approximate-isometry) as $K^2(\delta \lor \delta^2)\le (K^2\delta \lor K^{4}\delta^2)$ when $\delta<1$.
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

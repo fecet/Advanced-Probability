@@ -15,6 +15,21 @@ fontsize: 12pt
 toccolor: blue
 ---
 
+```{r, setup, include=FALSE}
+knitr::opts_chunk$set(warning=FALSE,
+					  message=FALSE,
+					  echo=FALSE,
+					 fig.width=8
+					  )
+# collapse = TRUE
+# library(ggplot2)
+# library(latex2exp)
+
+
+# options(tinytex.engine_args = '-shell-escape')
+
+```
+
 ```{=latex}
 \newcommand{\lt}{<}
 \newcommand{\gt}{>}
@@ -25,6 +40,8 @@ toccolor: blue
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Q}{\mathbb{Q}}
 \newcommand{\sub}{\subset}
-\newcommand{\subsets}{\subset}cvbn
+\newcommand{\subsets}{\subset}
 \newcommand{\exist}{\exists}
 ```
+
+

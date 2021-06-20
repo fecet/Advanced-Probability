@@ -1,0 +1,231 @@
+### sub-exponential distribution
+
+
+::: {.proposition  name=""}
+
+Let $X$ be a $r.v.$, TFAE
+
+1.
+    The tail of $X$ satisfy:
+    $$
+    \mathop{{}\mathbb{P}}\left\{\left|X\right|\ge t\right\}\le 2\exp(-\frac{t}{K_1})\text{ for all }t\ge 0
+    $$
+
+2.
+    The moment of $X$ satisfy:
+    $$
+    \left\|X\right\|_{L^{p}}\le K_2p \text{ for all }p\ge 1
+    $$
+
+3.
+    The MGF of $\left|X\right|$ satisfies:
+    $$
+    \mathop{{}\mathbb{E}}\exp(\lambda\left|X\right|)\le \exp(K_3\lambda)
+    $$
+    for all $\lambda$ $s.t.$ $0\le \lambda\le 1 /K_3$.
+
+4.
+    The MGF of $\left|X\right|$ is bounded at some point, namely
+    $$
+    \mathop{{}\mathbb{E}}\exp\left(\frac{\left|X\right|}{K_4}\right)\le 2
+    $$
+
+5.
+    Moreover, if $\mathop{{}\mathbb{E}}X=0$ then the MGF of $X$ satisfies:
+    $$
+    \mathop{{}\mathbb{E}}\exp(\lambda X)\le \exp(K_5^{2}\lambda^{2})
+    $$
+    for all $\lambda$ $s.t.$ $\left|\lambda\right|\le 1 /K_5$.
+
+:::
+
+::: {.proof}
+
+$1\implies 2$ : Suppose $K_1=1$, then
+$$
+\mathop{{}\mathbb{P}}\left\{\left|X\right|\ge t\right\}\le 2\exp(-t)
+$$
+and
+$$
+\begin{aligned}
+    \left\|X\right\|_{L^{p}}&= (\mathop{{}\mathbb{E}}\left|X\right|^{p})^{1 /p} \\
+    &= \left(\int_0^{\infty}\mathop{{}\mathbb{P}}\left\{\left|X\right|^{p}\ge t\right\}dt\right)^{1 /p} \\
+    &= \left(\int_0^{\infty}\mathop{{}\mathbb{P}}\left\{\left|X\right|\ge u\right\}pu^{p-1}du\right)^{1 /p} \\
+    &\le \left(\int_0^{\infty}2e^{-u}pu^{p-1}du\right)^{1 /p} \\
+    &= \left(2p\Gamma(p)\right)^{1 /p}\le (6p\cdot p^{p})^{1 /p}=(6p)^{1 /p}\cdot p \\
+    &\le cp \text{ since }p^{\frac{1}{p}}\le 2 \text{ for all }p\ge 1 \\
+\end{aligned}
+$$
+
+$2\implies 3$ : 
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\exp(\lambda\left|X\right|)&= \mathop{{}\mathbb{E}}\left[1+\sum_{i=1}^{\infty} \frac{(\lambda\left|X\right|)^{i}}{i!}\right] \\
+    &= 1+\sum_{i=1}^{\infty} \mathop{{}\mathbb{E}}\frac{(\lambda\left|X\right|)^{i}}{i!} \\
+    &= 1+\sum_{i=1}^{\infty} \frac{\lambda^{i}\mathop{{}\mathbb{E}}\left|X\right|^{i}}{i!} \\
+\end{aligned}
+$$
+Note that $\mathop{{}\mathbb{E}}\left|X\right|^{i}\le i^{i}$ and $p!\ge (p /e)^{p}$ then
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda\left|X\right|)\le 1+\sum_{i=1}^{\infty} \frac{\lambda^{i}i^{i}}{(i /e)^{i}}=\sum_{i=0}^{\infty} (\lambda e)^{i}
+$$
+We should notice that if we don't assume $K_2=1$, then the series has the form
+$$
+\sum_{i=0}^{\infty} \left(\frac{\lambda e}{K_2}\right)^{i}\lt \infty
+$$
+which implies that $\lambda\lt K_2 /e$ and 
+$$
+\sum_{i=0}^{\infty} \left(\frac{\lambda e}{K_2}\right)^{i}=\frac{1}{1-\alpha}\le \exp(2\alpha)\text{ where }\alpha=\frac{\lambda e}{K_2}\in [0,\frac{1}{2}]
+$$
+implies that
+$$
+\lambda\le \frac{K_2}{2e}\text{ and }\frac{1}{K_3}=\frac{2e}{K_2}
+$$
+
+$2\implies 5$ : 
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\exp(\lambda X)=\mathop{{}\mathbb{E}}\left[1+\lambda X+\sum_{i=2}^{\infty} \frac{(\lambda X)^{i}}{i!}\right]
+\end{aligned}
+$$
+then similar with above, we get
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le 1+\sum_{i=2}^{\infty} \frac{(\lambda i)^{i}}{(i /e)^{i}}=1+\frac{(e \lambda)^{2}}{1-e\lambda}
+$$
+if $\left|e\lambda\right|\le 1 /2$, then 
+$$
+1+\frac{(e\lambda)^{2}}{1-e\lambda}\le 1+2e^{2}\lambda^{2}\le \exp(2e^{2}\lambda^{2})
+$$
+which implies
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le \exp(2e^{2}\lambda^{2}) \text{ for }\left|\lambda\right|\le \frac{1}{2e}
+$$
+
+:::
+
+::: {.definition  name=""}
+
+A $r.v.$ satisfy above properties are called **sub-exponential**, and denoted
+$$
+\left\| X \right\|_{\psi_1}=\inf \left\{ t>0:\mathop{{}\mathbb{E}}_{}\exp \left( \frac{\left| X \right|}{t} \right)\le 2 \right\}
+$$
+that is a norm for sub-exponential space.
+
+:::
+
+
+
+::: {.proposition  name=""}
+
+A $r.v.$ $X$ is sub-gaussian iff $X^{2}$ is sub-exponential.
+Moreover,
+$$
+\left\|X^{2}\right\|_{\psi_1}=\left\|X\right\|_{\psi_2}^{2}
+$$
+
+:::
+
+
+:::: {.proof}
+
+Follows easily from the definition.
+
+::::
+
+::: {.proposition  name=""}
+
+Let $X$ and $Y$ be sub-gaussian $r.v.$ then $XY$ is sub-exponential. Moreover,
+$$
+\left\|XY\right\|_{\psi_1}\le \left\|X\right\|_{\psi_2}\left\|Y\right\|_{\psi_2}
+$$
+
+:::
+
+::: {.proof}
+
+Assume that $\left\|X\right\|_{\psi_2}=\left\|Y\right\|_{\psi_2}=1$. Then
+$$
+\mathop{{}\mathbb{E}}\exp(X^{2})\le 2 \text{ and }\mathop{{}\mathbb{E}}\exp(Y^{2})\le 2
+$$
+Note that
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\exp(\left|XY\right|)&\le \mathop{{}\mathbb{E}}\exp\left(\frac{X^{2}}{2}+\frac{Y^{2}}{2}\right) \\
+    &= \mathop{{}\mathbb{E}}\left[\exp\left(\frac{X^{2}}{2}\right)\exp\left(\frac{Y^{2}}{2}\right)\right] \\
+    &\le \frac{1}{2}\mathop{{}\mathbb{E}}\left[\exp(X^{2})+\exp(Y^{2})\right] \\
+    &\le \frac{1}{2}(2+2)=2 \\
+\end{aligned}
+$$
+So $\left\|\left|XY\right|\right\|_{\psi_1}\le 1$.
+
+:::
+
+Similar for $\psi_{2}$, we have
+$$
+\left\| X-\mathop{{}\mathbb{E}}_{}X \right\|_{\psi_1} \le C \left\| X \right\|_{\psi_1}
+$$
+
+### Orlicz space
+
+::: {.definition  name="Orlicz space"}
+
+A function $\psi:[0,\infty)\to [0,\infty)$ is called an Orlicz function if 
+
+-   $\psi$ is convex
+-   $\psi$ is increasing
+-   $\psi(0)=0$ 
+-   $\psi(x)\to \infty$ when $x\to \infty$.
+
+For a given Orlicz function $\psi$, the Orlicz norm of a $r.v.$ $X$ is defined as:
+$$
+\left\|X\right\|_{\psi}=\inf\left\{t\gt 0:\mathop{{}\mathbb{E}}\psi(\left|X\right| /t)\le 1\right\}
+$$
+
+The Orlicz space $L_\psi=L_\psi(\Omega,\mathcal{F}_{},\mathop{{}\mathbb{P}})$ consists of all $r.v.$ $X$ on $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}})$ with finite Orlicz norm, $i.e.$ 
+$$
+L_\psi=\left\{X:\left\|X\right\|_{\psi}\lt \infty\right\}
+$$
+
+:::
+
+::: {.exercise  name=""}
+
+Show that $\left\| \cdot \right\|_{\psi}$ is indeed a norm on $L_{\psi}$.
+
+:::
+
+::: {.solution}
+
+**Positive definite**. $\left\| X \right\|_{\psi}\ge 0$ clearly and if $\left\| X \right\|_{\psi}=0$ then we can pick $t_n \to 0$ $s.t.$
+$$
+1 \ge \lim_{n \to \infty}\mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| X \right|}{t_n} \right)=\mathop{{}\mathbb{E}}_{}\lim_{n \to \infty}\psi \left( \frac{\left| X \right|}{t_n} \right)=\infty \cdot \mathop{{}\mathbb{P}}\left\{ \left| X \right|>0 \right\}
+$$
+that force $X=0$ $a.s.$
+
+**Absolutely homogeneous**. Note
+$$
+\left\| cX \right\|_{\psi}=\inf_{t>0} \left\{ \mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| cX \right|}{t} \right)\le 1 \right\}=\inf_{t>0} \left\{ \mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| X \right|}{t / \left| c \right|} \right)\le 1 \right\}=c \left\| X \right\|_{\psi}
+$$
+
+**Subadditive** Since $\psi$ is increasing and convex,
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| X+Y \right|}{\left\| X \right\|_{\psi}+\left\| Y \right\|_{\psi}} \right)
+    & \le 
+    \mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| X \right|+\left| Y \right|}{\left\| X \right\|_{\psi}+\left\| Y \right\|_{\psi}} \right)
+    \\ &\le 
+    \mathop{{}\mathbb{E}}_{} \left[  \frac{\left| X \right|_{\psi}}{\left\| X \right\|_{\psi}+\left\| Y \right\|_{\psi}}\psi \left( \frac{\left| X \right|  }{\left\| X \right\|_{\psi}} \right)+  \frac{\left| Y \right|_{\psi}}{\left\| X \right\|_{\psi}+\left\| Y \right\|_{\psi}}\psi \left( \frac{\left| Y \right|  }{\left\| Y \right\|_{\psi}} \right) \right]
+    \\&\le 1 (\text{ as } \mathop{{}\mathbb{E}}_{}\psi \left( \frac{\left| X \right|}{\left\| X \right\|_{\psi}} \right)\le 1)
+\end{aligned}
+$$
+and that implies $\left\| X+Y \right\|_{\psi} \le \left\| X \right\|_{\psi}+\left\| Y \right\|_{\psi}$ by definition.
+
+:::
+
+And it can be shown $L_{\psi}$ is a Banach space. Also, $\left\| \cdot \right\|_{\psi_2}$ is just $\left\| \cdot \right\|_{\psi}$ when $\psi(x)=e^{x^2}-1$ and $L^{p}$ space is $L_{\psi}$ when $\psi(x)=x^{p}$. Moreover, we have
+$$
+L^{\infty}\subset L_{\psi_2} \subset L^{p}
+$$
+
+
+

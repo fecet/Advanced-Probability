@@ -1,6 +1,5 @@
-# Finite Dimension Normed space
 
-## Riesz Theorem
+### Riesz Theorem
 
 ::: {.lemma #finite-dimensional-norm-inequality name=""}
 
@@ -114,8 +113,22 @@ A normed vector space $(x,\left\| \cdot \right\|)$ is finite-dim iff the unit sp
 
 :::
 
-## Schauder Bases
+### Schauder Bases
 
+::: {.definition  name=""}
+
+Let $X$ be a TVS, a set $\{x_n\}$ is called as **compete** if
+$$
+X=\overline{\mathop{\text{span}}(\left\{ x_n \right\})}
+$$
+
+:::
+
+::: {.theorem  name=""}
+
+A normed linear space $(X,\left\| \cdot \right\|)$ is separable iff it contains a countable complete set.
+
+:::
 
 ::: {.definition  name=""}
 

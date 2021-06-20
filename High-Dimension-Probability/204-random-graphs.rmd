@@ -1,0 +1,47 @@
+## Application: degrees of random graphs
+
+
+::: {.definition  name=""}
+
+Erd¨os-R´enyi model $G(n,p)$ is a random graph with $n$ vertices which connecting each pair with probability $p$. Where $p$ can be constant or function depending $n$.
+
+:::
+
+Clearly, the expected degree of each vertices in $G(n,p)$ is clearly $(n-1)p=:d$. The relatively **dense graphs**, which is defined by $d \gg \log n$, are almost regular with high probability:
+
+
+::: {.proposition dense-regular name="Dense graphs are almost regular"}
+
+For a random graph $G\sim G(n,p)$ with expected degree $d\ge C \log n$. Then, it's regular with a high probability.
+
+:::
+
+
+
+:::: {.proof}
+
+For a fixed vertex $i$, its degree $d_i$ is a sum of $n-1$ independent Bernoulli variable, by Chernoff's inequality \@ref(prp:chernoff-inequality-small), we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| d_i-d \right|\ge \delta d \right\}\le 2e^{-c d }
+$$
+The probability that $G$ is not almost regular is
+$$
+\mathop{{}\mathbb{P}}\left\{ \exists i:\left| d_i-d \right|\ge \delta \right\}\le n 2e^{-cd}\le 2n^{1-cC}
+$$
+can be arbitrary small.
+
+
+::::
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

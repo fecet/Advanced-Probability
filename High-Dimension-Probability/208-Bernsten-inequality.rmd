@@ -1,0 +1,137 @@
+## Bernstein's inequality
+
+::: {.theorem #bernstein-inequality  name="Bernstein's inequality"}
+
+Let $X_1,\ldots,X_n$ be independent, mean-zero, sub-exponential $r.v.$. Then for each $t\ge 0$, we have:
+$$
+\mathop{{}\mathbb{P}}\left\{\left|\sum_{i=1}^{n} X_{i}\right|\ge t\right\}\le 2\exp\left[-c \min\left(\frac{t^{2}}{\sum_{i=1}^{n} \left\|X_{i}\right\|_{\psi_1}^{2}},\frac{t}{\max_{i}\left\|X_{i}\right\|_{\psi_1}}\right)\right]
+$$
+where $c\gt 0$ is an absolute constant.
+
+:::
+
+::: {.proof}
+
+As before, let $S=\sum_{i=1}^{n} X_{i}$ then by Chernoff bound:
+$$
+\mathop{{}\mathbb{P}}\left\{S\ge t\right\}\le e^{-\lambda t}\cdot \prod_{i=1}^{n} \mathop{{}\mathbb{E}}\exp(\lambda X_{i})
+$$
+Recall that for a sub-exponential distribution,
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le \exp(K_5^{2}\lambda^{2})
+$$
+when $\lambda$ is small enough so that $\left| \lambda \right|\le \frac{c}{\max_i \left\| X_i \right\|_{\psi_1}}$ and then
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le \exp\left(C\lambda^{2}\left\|X\right\|_{\psi_1}^{2}\right)
+$$
+Substitute that, we have
+$$
+\mathop{{}\mathbb{P}}\left\{S\ge t\right\}\le \exp\left(-\lambda t+C\lambda^{2}\sigma^{2}\right)\text{ where }\sigma^{2}=\sum_{i=1}^{n} \left\|X_{i}\right\|_{\psi_1}^{2}
+$$
+Now we minimize the expression in $\lambda$ subject to the constraint. Note the bound for $\lambda$ yield the optimal choice of $\lambda$ is:
+$$
+\lambda=\min_{}\left(\frac{t}{2C\sigma^{2}},\frac{c}{\max_{i}\left\|X_{i}\right\|_{\psi_1}}\right)
+$$
+Note $C\lambda^2\sigma^2\le \frac{\lambda t}{2}\iff \left| \lambda \right|\le \frac{t}{2C \sigma^2}$, we have $-\lambda t+C\lambda^2\sigma^2 \le - \frac{\lambda t}{2}$. And thus:
+$$
+\mathop{{}\mathbb{P}}\left\{S\ge t\right\}\le \exp\left[-\min_{}\left(\frac{t^{2}}{4C\sigma^{2}},\frac{ct}{2 \max_{i}\left\|X_{i}\right\|_{\psi_1}}\right)\right]
+$$
+For same argument of $-X$ instead of $X$, we got the same bound. So the Bernstein's inequality holds.
+
+:::
+
+The following put theorem \@ref(thm:bernstein-inequality) in a more convenient form:
+
+::: {.theorem #weight-bernstein-inequality name=""}
+
+Let $X_1,\ldots,X_n$ be independent, mean-zero and sub-exponential $r.v.$ and $a=(a_1,\ldots,a_n)\in \mathbb{R}^{n}$, then for every $t\ge 0$, we have:
+$$
+\mathop{{}\mathbb{P}}\left\{\left|\sum_{i=1}^{n} a_{i}X_{i}\right|\ge t\right\}\le 2\exp\left[-c \min_{}\left(\frac{t^{2}}{K^{2}\left\|a\right\|_{2}^{2}},\frac{t}{K\left\|a\right\|_{\infty}}\right)\right]
+$$
+where $K=\max_i \left\| X_i \right\|_{\psi_1}$.
+
+:::
+
+In the special case where $a_i=\frac{1}{N}$, we have 
+
+
+::: {.corollary #average-bernstein-inequality name=""}
+
+Let $X_1,\ldots,X_n$ be independent, mean-zero and sub-exponential $r.v.$, then for $t \ge 0$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| \frac{1}{n} \sum_{i=1}^{n}X_i \right|\ge t \right\}\le 2\exp \left[ -cn \min \left( \frac{t^2}{K^2},\frac{t}{K} \right) \right]
+$$
+where $K=\max_i \left\| X_i \right\|_{\psi_1}$.
+
+
+:::
+
+
+::: {.remark}
+
+We may note that theorem \@ref(thm:bernstein-inequality) has two tails, as if the sum were mixture of sub-gaussian and sub-exponential distributions.  
+The sub-gaussian tail is of course expected from the CLT. But the sub-exponential tails of the terms $X_i$ are too heavy to be able to produce a sub-gaussian tail everywhere, so the sub-exponential tail should be expected, too.  
+That is, sub-gaussian for small deviation while sub-exponential for the large:
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| \frac{1}{n} \sum_{i=1}^{n}X_i \right|\ge t \right\}\le \begin{cases}
+    2 \exp(-\frac{t^2}{K^2 / cn}) & t\le K \\
+    2 \exp(- \frac{t}{K / cn}) & t > K
+\end{cases}
+$$
+
+
+
+:::
+
+Let us mention the following strengthening of Bernstein’s inequality under the stronger assumption that the random variables Xi are bounded.
+
+::: {.theorem #bounded-bernstein-inequality name="Bernstein's inequality for bounded $r.v.$ "}
+
+Let $X_1,\ldots,X_n$ be independent, mean-zero and bounded $r.v.$ $s.t.$ $\left|X_{i}\right|\le K$ for some $K\in [0,\infty)$ holds for every $i$.  
+Then we have:
+$$
+\mathop{{}\mathbb{P}}\left\{\left|\sum_{i=1}^{n} X_{i}\right|\ge t\right\}\le 2\exp\left(-\frac{t^{2} /2}{\sigma^{2}Kt /3}\right)
+$$
+for every $t\ge 0$ and $\sigma^{2}=\sum_{i=1}^{n} \mathop{{}\mathbb{E}}X_{i}^{2}$.
+
+:::
+
+::: {.proof}
+
+Similar with the proof of Bernstein's inequality, we have:
+$$
+\mathop{{}\mathbb{P}}\left\{\sum_{i=1}^{n} X_{i}\ge t\right\}=\mathop{{}\mathbb{P}}\left\{\exp\left(\lambda \sum_{i=1}^{n} X_{i}\right)\ge \exp(\lambda t)\right\}\le \frac{\mathop{{}\mathbb{E}}\exp\left(\lambda \sum_{i=1}^{n} X_{i}\right)}{\exp(\lambda t)}
+$$
+Now consider $\mathop{{}\mathbb{E}}\exp\left(\lambda X_{i}\right)$.
+
+First consider the result if $X$ is a bounded $r.v.$ $s.t.$ $\left|X\right|\le K$ then 
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le \exp(g(\lambda)\mathop{{}\mathbb{E}}X^{2}) \text{ where }g(\lambda)=\frac{\lambda^{2} /2}{1-\left|\lambda\right|K/3}
+$$
+when $\left|\lambda\right|\lt K /3$.
+
+To prove the result, note that $e^{x}\le 1+x+\frac{x^{2} /2}{1-\left|x\right|/3}$, then replace $x$ with $\lambda X$, we have:
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X)\le 1+\lambda K+\mathop{{}\mathbb{E}}\frac{\lambda^{2}X^{2}/2}{1-\left|\lambda X\right|/3}\le 1+\lambda K+g(\lambda)\mathop{{}\mathbb{E}}X^{2}\le \exp(g(\lambda)\mathop{{}\mathbb{E}}X^{2})
+$$
+Then we continue to analysis $\mathop{{}\mathbb{E}}\exp(\lambda X_{i})$ 
+$$
+\mathop{{}\mathbb{E}}\exp(\lambda X_{i})\le \exp(g(\lambda)\mathop{{}\mathbb{E}}X^{2}_i)\text{ for } \left|\lambda\right|\le K/3
+$$
+So
+$$
+\mathop{{}\mathbb{E}}\exp\left(\lambda \sum_{i=1}^{n} X_{i}\right)\le \prod_{i=1}^{n} \exp(g(\lambda)\mathop{{}\mathbb{E}}X_{i}^{2})=\exp\left(g(\lambda)\sum_{i=1}^{n} \mathop{{}\mathbb{E}}X_{i}^{2}\right)=\exp(g(\lambda)\sigma^{2})
+$$
+Thus
+$$
+\mathop{{}\mathbb{P}}\left\{S\ge t\right\}\le e^{-\lambda t}\cdot \exp(g(\lambda)\sigma^{2})=\exp\left(-\lambda t+\frac{\lambda^{2}/2}{1-\left|\lambda\right|K/3}\sigma^{2}\right)
+$$
+Note that $\left|\lambda\right|\le K/3$, $\sigma^{2}\ge 0$ and $t\ge 0$, let
+$$
+\lambda=\frac{t}{\sigma^{2}+tK/3}
+$$
+we can get the inequality.
+
+:::
+
+

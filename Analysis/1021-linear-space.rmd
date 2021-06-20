@@ -1,0 +1,170 @@
+
+# Vector space
+
+## Basis of vector space
+
+::: {.definition  name=""}
+
+A **vector space** over $\mathbb{K}$ is a nonempty set $X$ with two operations: 
+$$
+\begin{aligned}
+    + &: X\times X \to X\\
+    \cdot &: \mathbb{K}\times X \to X
+\end{aligned}
+$$
+and they are closed under them. There exists an element of $X$ denoted as $0$ s.t. $x+0=x$ for all $x\in X$, define $(-x)$ is a vector s.t. $x+(-x)=0$.
+
+:::
+
+Suppose $X$ is a vector space over $\mathbb{K}$, $A,B \subset X$, $\lambda \in \mathbb{K}$, then we denote
+$$
+\begin{aligned}
+    \bm{x}+A&:=\{\bm{x+a}:\bm{a}\in A\}\\
+A+B&:=\{\bm{a+b}:\bm{a}\in A,\bm{b}\in B\}\\
+\lambda A &:= \{\lambda \bm{a}:\bm{a}\in A\}
+\end{aligned}
+$$
+
+::: {.definition  name=""}
+
+A **subspace** of a vector space $X$ over $\mathbb{K}$ is any subset of $X$ which is also a vector space over $\mathbb{K}$.
+
+:::
+
+Clearly, a subset $S \subset X$ is a subspace iff $S+S \subset S$ and $\lambda S \subset S$ for any $\lambda$.
+
+
+::: {.definition  name=""}
+
+A subspace $B$ is called **subspace spanned by a subset $A$** of $X$ consisting of all finite linear combinations of vectors of $A$, i.e., $x\in B$ of the form $x=\sum_{i\in I}^{} \alpha_{i}a_{i}$ where the set $I$ is finite and $\alpha_{i}\in \mathbb{K}$, $a_{i}\in A$, we said that $B=\text{span}A$. 
+
+:::
+
+Clearly, $\mathop{\text{span}}A$ is the intersection of all subspace contain $A$.
+
+
+::: {.definition  name=""}
+
+A subset $\{\bm{x_i}\}_{1}^{n}$ of a vector space $X$ is said **linearly independent** if the equation
+$$
+\sum_{i=1}^{n} \alpha_i \bm{x_i}=\bm{0}
+$$
+only has the trivial solution. Otherwise, the set is **linear dependent**. A subset $S \subset X$ is linearly independent if every finite subset is linearly independent.
+
+:::
+
+### Dimension
+
+::: {.definition  name=""}
+
+If $\{\bm{x_i}\}_{i=1}^{n}$ is linearly independent and $X=\mathop{\text{span}}\{\bm{x_i}\}_{i=1}^{n}$, then $X$ is said to have **dimension** $n$ and denote $\mathop{\text{dim}} X=n$ and $\{\bm{x_i}\}_{i=1}^{n}$ is a **basis** for the linear space. If $X$ does not have a finite basis, we say that it's infinite dimensional.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X\neq \{0\}$ be a vector space.  
+- There exists a Hamel base of $X$ 
+- Let $E,F$ be two Hamel bases of $X$. Then $\text{card}E=\text{card}F$.
+
+:::
+
+Clearly, $\mathop{\text{dim}} \mathbb{R}^{n}=n$ and $\mathop{\text{dim}} \ell_p=\infty$.
+
+### Convex sets and convex hull
+
+::: {.definition  name=""}
+
+Let $S$ be a subset of vector space $X$. We say that
+
+- $S$ is **convex** if $\lambda \bm{x}+(1-\lambda)\bm{y} \in S$ whenever $\bm{x,y}\in S$ and $\lambda \in [0,1]$.
+- $S$ is **balanced** if $\lambda \bm{x}\in S$ whenever $\bm{x}\in S$ and $\left| \lambda \right|\le 1$.
+- $S$ is **absolutely convex** if $S$ is convex and balanced.
+
+:::
+
+
+::: {.remark}
+
+$S$ is absolutely convex iff $\lambda \bm{x}+\mu \bm{y} \in S$ whenever $\bm{x,y} \in S$ and $\left| \lambda \right|+\left| \mu \right|\le 1$. Clearly, every subspace is absolutely convex.
+
+:::
+
+
+::: {.definition  name=""}
+
+Let $S$ be a subset of $X$, the **convex hull** of $S$, denoted as $\mathop{\text{conv}} S$, is the intersection of all convex sets in $X$ contains $S$.
+
+:::
+
+::: {.proposition  name=""}
+
+Let $S$ be a subset of $X$. Then
+$$
+\mathop{\text{conv}}S=\{ \text{convex combinations of } \bm{x_1},\dots,\bm{x_n}\in X \text{ for } n \in \mathbb{N}\}
+$$
+
+:::
+
+### Quotient space of vector space
+
+Let $S$ be a linear subspace of $X$ over $\mathbb{K}$. For all $\bm{x,y}\in X$, define
+$$
+\bm{x} \equiv \bm{y} \left( \mathop{\text{mod}} S \right) \iff \bm{x-y}\in S
+$$
+Clearly, $\equiv$ defines an equivalence relation on $X$.
+
+For $\bm{x}\in X$, the **coset** of $\bm{x}$ $w.r.t.$ $S$ is
+$$
+[x]:= \{y \in X:\bm{x \equiv y}\}\left( \mathop{\text{mod}} S \right)=\bm{x}+S
+$$
+The **quotient space** $X / S$ consists of all equivalence classes $[x]$.
+
+For $\bm{x,y}\in X$ and $\lambda \in \mathbb{K}$, define $+$ and $\cdot$ as:
+$$
+[\bm{x}]+[\bm{y}]=[\bm{x+y}] \text{ and } \lambda [\bm{x}]=[\lambda \bm{x}]
+$$
+then $X / S$ is a vector space. The dimension of such space is called **codimension** of $S$ and denote as $\mathop{\text{codim}} S$
+
+### Direct Sums and Projections
+
+::: {.definition  name=""}
+
+Let $Y$ and $Z$ be two subspace of $X$ then $X$ is said to be the **direct sum** of $Y,Z$ if any vector $x\in X$ can be written as 
+$$ 
+X=Y+Z \text{ and } Y\cap Z=\{\bm{0}\}
+$$
+If so, we write $X=Y \oplus Z$ and say $Y$ is an **complement** of $Z$ and vice versa.
+
+:::
+
+
+::: {.proposition  name=""}
+
+Suppose $X=M \oplus N$, then each $\bm{x}\in X$ has a unique representation of the form $\bm{x=m+n}$ for $\bm{m}\in M$ and $\bm{n}\in N$.
+
+:::
+
+Suppose $X=M \oplus N$, then $\mathop{\text{codim}} M=\mathop{\text{dim}} N$ by definition and $\mathop{\text{dim}} X=\mathop{\text{dim}} M+\mathop{\text{dim}} N$.
+
+
+::: {.definition  name=""}
+
+The operator $P:X\to X$ is called an **projection** if $P$ is linear($P(\alpha \bm{x}+\beta \bm{y})=\alpha P \bm{x}+\beta P \bm{y}$) and idempotent($P^2=P$).
+
+:::
+
+
+::: {.proposition  name=""}
+
+Suppose $X=M \oplus N$, since we can uniquely write $\bm{x=m+n}$ for each $\bm{x}$, we can well defined $P:\bm{x}\mapsto \bm{m}$, then $P$ is a projection of $X$ onto $M$ along $N$. Moreover $M=P(X)$ and $N=(I-P)X=\ker P$.
+
+:::
+
+
+:::: {.proof}
+
+Directly by using the unique decomposition $\bm{x=m+n}$.
+
+::::
+

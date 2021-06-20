@@ -1,0 +1,123 @@
+## Nets, covering numbers and packing numbers
+
+
+::: {.proposition  name=""}
+
+Let $N$ be a maximal $\varepsilon$ separated subset of $K$, then $N$ is an $\varepsilon$-net of $K$.
+
+:::
+
+The covering and packing numbers are essentially equivalent:
+
+
+::: {.proposition  name=""}
+
+For $K\subset \tau$ with metric $d$, we have
+$$
+P(K,2 \varepsilon)\le N(K,\varepsilon)\le P(K,\varepsilon)
+$$
+
+:::
+
+
+::: {.proposition  name=""}
+
+The exterior covering numbers of $K$ are equivalent to covering number:
+$$
+N^{\text{ext}}(K,\varepsilon)\le N(K,\varepsilon)\le N^{\text{ext}} \left( K, \frac{\varepsilon}{2} \right)
+$$
+
+:::
+
+
+::: {.proposition  name=""}
+
+If $A\subset B$, then
+$$
+N(A,\varepsilon)\le N\left( B,\frac{\varepsilon}{2} \right)
+$$
+
+:::
+
+
+### Volume
+
+
+::: {.theorem #covering-volume name="Covering numbers and volume"}
+
+Let $K\subset \mathbb{R}^{n}$ and $\varepsilon>0$, then
+$$
+\frac{\mu(K)}{\mu(\varepsilon B)}\le N(K,\varepsilon)\le P(K,\varepsilon)\le \frac{\mu(K+(\frac{\varepsilon}{2})B)}{\mu\left( \frac{\varepsilon}{2}B \right)}
+$$
+where $B$ is the unit ball in $(\mathbb{R}^{n},\left\| \cdot \right\|_2)$.
+
+:::
+
+Consequently, the covering numbers are exponential in $n$:
+
+
+::: {.corollary #covering-bound name=""}
+
+For any $\varepsilon>0$:
+$$
+\left( \frac{1}{\varepsilon} \right)^{n}\le N(B,\varepsilon)\le \left( \frac{2}{\varepsilon}+1 \right)^{n}
+$$
+
+:::
+
+
+:::: {.proof}
+
+Let $K=B$ in theorem \@ref(thm:covering-volume), the lower bound follows by noting $\mu(\varepsilon B)=\varepsilon^{n}\mu(B)$. The upper bound follows from
+$$
+\frac{\mu(B+ \left( \frac{\varepsilon}{2} B \right))}{\mu\left( \frac{\varepsilon}{2}B \right)}= \frac{\left( 1+\frac{\varepsilon}{2} \right)^{n}}{\left( \frac{\varepsilon}{2} \right)^{n}}=\left( \frac{2}{\varepsilon}+1 \right)^{n}
+$$
+
+::::
+
+
+:::: {.example  name=""}
+
+The Hamming cube $H=\left\{ 0,1 \right\}^{n}$ consists of all binary strings of length $n$ and we can identify each element $x$ of them as a function from $1,2,\dots,n$ to $\left\{ 0,1 \right\}$, then
+$$
+d(x,y):= \left| \left\{ i:x(i)\neq  y(i) \right\} \right|
+$$
+define a metric on $H$. On space $(\mathcal{H},d)$, we have 
+
+
+::: {.proposition  name="Covering and packing numbers of the Hamming cube"}
+
+For every integer $m\in [0,n]$, we have
+$$
+\frac{2^{n}}{\sum_{i=0}^{m}  \binom{n}{k}}\le N(H,m)\le P(H,m)\le \frac{2^{n}}{\sum_{i=0}^{\lfloor \frac{m}{2} \rfloor}\binom{n}{k}} 
+$$
+
+
+:::
+
+
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

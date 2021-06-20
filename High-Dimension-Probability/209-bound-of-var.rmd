@@ -1,0 +1,112 @@
+## Tensorization and bounded difference
+
+In this chapter $r.v.$ denotes random variable or random vectors.
+
+::: {.proposition  name=""}
+
+Let $X$ be any $r.v.$ or random vector. Then
+$$
+\mathop{\text{Var}}\left(f(X)\right)\le \frac{1}{4}(\sup f-\inf f)
+$$
+and
+$$
+\mathop{\text{Var}}\left(f(X)\right)\le \mathop{{}\mathbb{E}}\left[\left(f(X)-\inf f\right)^{2}\right]
+$$
+
+:::
+
+::: {.proof}
+
+Recall that
+$$
+\mathop{\text{Var}}\left[f(X)\right]=\mathop{{}\mathbb{E}}\left(f(X)-\mathop{{}\mathbb{E}}f(X)\right)^{2}
+$$
+so
+$$
+\mathop{\text{Var}}\left[f(X)\right]=\mathop{\text{Var}}\left[f(X)-a\right]\le \mathop{{}\mathbb{E}}\left(f(X)-a\right)^{2} \text{ for any }a\in \mathbb{R}
+$$
+Let $a=\left(\sup f+\inf f\right)/2$, then
+$$
+\left|f(X)-a\right|\le \frac{\sup f-\inf f}{2}
+$$
+which implies
+$$
+\mathop{\text{Var}}\left[f(X)\right]=\mathop{\text{Var}}\left[f(X)-\frac{\sup f+\inf f}{2}\right]\le \mathop{{}\mathbb{E}}\left[f(X)-\left(\frac{\sup f + \inf f}{2}\right)\right]^{2}\le \frac{1}{4}\left(\sup f -\inf f\right)^{2}
+$$
+and for the next one, let $a=\inf f$.
+
+:::
+
+::: {.theorem  name="tensorization of var"}
+
+Given independent $r.v.$ $X_1,X_2,\dots,X_n$, we have
+$$
+\mathop{\text{Var}}\left[f(X_1,\dots,X_n)\right]\le \mathop{{}\mathbb{E}}\left[\sum_{i=1}^{n} \mathop{\text{Var}}_i\left[f(X_1,\dots,X_n)\right]\right]
+$$
+
+:::
+
+::: {.proof}
+
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,4 +1,4 @@
-# Hilbert Spaces
+# Inner product space
 
 ::: {.definition  name=""}
 
@@ -344,15 +344,16 @@ $$
 :::
 
 
-::: {.definition  name=""}
 
-Let $(X,\left< \cdot,\cdot \right>)$ be an inner product space, An orthonormal set $\{x_n\}$ is called an **orthonormal** basis if for each $x\in X$,
-$$
-x=\sum_{i=1}^{\infty} \left< x,x_i \right>x_i
-$$
+### Orthogonal basis
 
+
+::: {.theorem  name=""}
+
+Hilbert space $\mathcal{H}$ is separable iff it has an orthogonal basis.
 
 :::
+
 
 
 ::: {.theorem name=""}
@@ -367,6 +368,15 @@ Let $\mathcal{H}$ be a separable infinite-dimensional Hilbert space and $S=(x_{i
 
 :::
 
+All separable Hilbert space of the same cardinality are isometric to each other:
+
+
+::: {.theorem name=""}
+
+
+All infinite-dimensional separable Hilbert space of the same cardinality are isometric to $\ell_2$.
+
+:::
 
 
 
@@ -375,28 +385,6 @@ Let $\mathcal{H}$ be a separable infinite-dimensional Hilbert space and $S=(x_{i
 
 
 
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
 
 
 

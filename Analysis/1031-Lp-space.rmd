@@ -1,0 +1,361 @@
+
+## $\ell^{p}$ space and $L^{p}$ space
+
+::: {.theorem #thm-lp-separable name=""}
+
+-   The normed vector space $\ell^{p}$ space is separable if $p \in [1,\infty)$ 
+-   The normed vector space $\ell^{p}$ space is not separable if $p=\infty$
+
+:::
+
+::: {.proof}
+
+Let $\mathbb{K}=\mathbb{R}$, and $p \in [1,\infty)$, let
+$$ 
+A=\bigcup_{n=1} ^{\infty}\{(y_{i})\in \ell^p ;y_{i}\in \mathbb{Q}\mathop{\text{ for }}i\le n,y_{i}=0\mathop{\text{ for }}i\ge n+1\}
+$$
+Then we show  $\overline{A}=\ell^p$, notice that $\ell^p$ is a metric space and we only need to show that for any $x\in \ell^p$ and any $\epsilon\gt 0$, there exists some $y\in A$ s.t. $\|x-y\|_{p}\le \epsilon$.
+
+Give any $x=(x_{i})\in \ell^p$, there exists a $k\in \mathbb{N}$ s.t. $\sum_{i=k}^{\infty} \lvert x_{i} \rvert^{p}\le \epsilon^{p} /2$, and there exists some $y\in A$ which means $y_{i}\in \mathbb{Q}$ for each $i$ s.t. $\sum_{i=1}^{k-1} \lvert x_{i}-y_{i} \rvert^{p}\le \epsilon^{p} /2$, then for these $x,y\in \ell^p$, we find that $\|x-y\|_{p}\le \epsilon$.
+
+Now give a proof of $\ell^\infty$ space is not separable.  
+Give a set 
+$$ 
+B=\{(x_{i})\in \ell^\infty;x_{i}=0\mathop{\text{ or }}x_{i}=1,i\ge 1\}
+$$
+is an **uncountable set** since there is a one-to-one and onto mapping:
+$$ 
+(x_{i})\in B\to \sum_{i=1}^{\infty} \frac{1}{2^{i}}x_{i}
+$$
+It is one-to-one obviously and onto $[0,1]$ by the binary representation of a real number.  
+Now suppose there is a $C \subset \ell^\infty$ s.t. $\overline{C}=\ell^\infty$. Then give any $x\in B$, there exists a $y(x)\in C$ s.t. $\|y(x)-x\|_{\infty}\lt 1 /2$ then the mapping $x\in B\to y(x)\in C$ is a injection  since if $x_1,x_2\in B$ with $x_1\neq x_2$, then $\|x_1-x_2\|_{\infty}=1$, now let $y(x_1)=y(x_2)=y$, we find that $\|x_1-x_2\|_{\infty}\le \|x_1-y\|_{\infty}+\|y-x_2\|_{\infty}$, then we get the contradiction. So if $x_1\neq x_2$, $y(x_1)\neq y(x_2)$, so this mapping must be one-to-one. It means  $\mathop{\text{card}} C \ge \mathop{\text{card}}B$ so $C$ is uncountable.
+
+:::
+
+
+::: {.definition  name="$L^{p}(\Omega)$"}
+
+Let $\Omega$ is a open subset in $\mathbb{R}^{n}$ thus measurable. Remember that the $L^{1}(A)$ consists of all equivalence classes of real Lebesgue-measurable functions, i.e. those measurable functions $f:\Omega\to [-\infty,\infty]$ that satisfy:
+$$ 
+\int_\Omega \lvert f(x) \rvert dx \lt \infty
+$$
+Notice that a function $f:\Omega\to \overline{\mathbb{R}}$ is integrable iff $\int_\Omega \lvert f(x) \rvert dx \lt \infty$.
+
+Now extend this definition. Let $p \in [1,\infty)$, we let $L^p(\Omega)$ denote the set formed by all equivalence classes of measurable functions $f:\Omega\to [-\infty,\infty]$ s.t. $f'=\lvert f \rvert^{p}\in L^1(\Omega)$ which means:
+$$ 
+\int_\Omega \lvert f(x) \rvert^{p}dx \lt  \infty \qquad \mathop{\text{for some }}p \in [1,\infty)
+$$
+
+:::
+
+::: {.theorem  name="Holder and Minkowski's inequality for functions"}
+
+-
+    Holder:
+    $$ 
+    \begin{aligned}
+        \frac{1}{p}+\frac{1}{q}&=1 \\
+        \int_\Omega \lvert f(x) \rvert^{p}dx \lt  \infty &\mathop{\text{ and }}\int_\Omega \lvert g(x) \rvert^{q}dx \lt \infty \\
+        \int_\Omega \lvert f(x)g(x) \rvert dx &\le \bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1 /p}\bigg(\int_\Omega\lvert g(x) \rvert^{p}dx\bigg)^{1 /q}
+    \end{aligned}
+    $$
+
+-
+    Minkowski:
+    $$ 
+    \begin{aligned}
+        \int_\Omega \lvert f(x) \rvert^{p}dx \lt \infty &\mathop{\text{ and }}\int_\Omega\lvert g(x) \rvert^{p}dx \lt \infty \\
+        \bigg(\int_\Omega \lvert f(x)+g(x) \rvert^{p}dx\bigg)^{1 /p}&\le \bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1/p}+\bigg(\int_\Omega\lvert g(x) \rvert^{p}dx\bigg)^{1 /p}
+    \end{aligned}
+    $$
+    
+:::
+
+::: {.proof}
+
+Replace the sum to integral from the sequence Holder and Minkowski's inequality.
+
+:::
+
+As we defined the space $L^p(\Omega)$ above, it is easy to verify that $L^p(\Omega)$ is a vector space and $\|\cdot \|_{p}:f\to \mathbb{R}$ defined by:
+$$ 
+\|f\|_{p}=\bigg(\int_\Omega \lvert f(x) \rvert^{p}dx\bigg)^{1 /p} \qquad p \in [1,\infty)
+$$
+Now we define the space $L^\infty(\Omega)$.
+
+::: {.definition  name="$L^\infty(\Omega)$ space"}
+
+-
+    $L^\infty(\Omega)$ space denote the set of all measurable functions $f:\Omega\to [\infty,\infty]$ that satisfy:
+    $$ 
+    \inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}\lt \infty
+    $$
+    
+-
+    The norm $\|\cdot \|_{\infty}$ on $L^\infty(\Omega)$ is defined:
+    $$ 
+    \|f\|_{\infty}=\inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}
+    $$
+
+:::
+
+
+::: {.definition  name="essential supremum"}
+
+Give a measurable function $f:\Omega\to [-\infty,\infty]$, the extended real number
+$$ 
+\inf\{C\ge 0;\lvert f \rvert\le C \mathop{\text{ a.e. in }}\Omega\}\in [0,\infty]
+$$
+is called the **essential supremum** of $f$.
+
+Notice that $L^\infty(\Omega)$ space consists of all equivalence class of measurable functions whose essential supremum is finite.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $\Omega$ is a open subset of $\mathbb{R}^{n}$, define the space
+$$ 
+\mathcal{C}_c(\Omega)=\{g\in \mathcal{C}(\Omega); \mathop{\text{ supp $g$ is compact in $\Omega$}}\}
+$$
+Then, for each $p \in [1,\infty)$, the subspace $\mathcal{C}_c(\Omega)$ is dense in $L^p(\Omega)$.
+
+:::
+
+::: {.proof}
+
+To prove that $\mathcal{C}_c(\Omega)$ is a dense set, we need to show that for every $f\in L^p(\Omega)$, give any $\epsilon\gt 0$, we have some $g\in \mathcal{C}_c(\Omega)$ s.t. $\|f-g\|_{p}\le \epsilon$.
+
+1.
+    There exists a measurable simple function $s=s(f,\epsilon)$ s.t. 
+    $$ 
+    \mu (\{x\in \Omega;s(x)\neq 0\})\lt \infty \mathop{\text{ and }}\|f-s\|_{p}\le \epsilon /2
+    $$
+    to achieve this, assume that $f\ge 0$ then there exists a sequence of simple function with:
+    $$ 
+    0\le s_k\le f \mathop{\text{ for all }}k\ge 1 \mathop{\text{ and }}(s_k)\nearrow f \mathop{\text{ pointwise}}
+    $$
+    Notice that $f\in L^p(\Omega)$, which means $\int_\Omega \lvert f(x) \rvert^{p}dx\lt \infty$. As $s_k\le f$ holds for every $k\in \mathbb{N}$, $s_k\in L^p(\Omega)$. So $\mu (\{x\in \Omega;s_k(x)\neq 0\})\lt \infty$ as the definition of the integral over a simple function.  
+    As $(s_k)\nearrow f$, notice that $\lvert (f-s_k) \rvert^{p}\le \lvert f \rvert^{p}$ and $\lvert f-s_k \rvert^{p}\to 0$ when $k\to \infty$, using Lebesgue's dominated convergence theorem:
+    $$ 
+    \int_\Omega \lim_{k\to \infty}\lvert f-s_k \rvert^{p}=\lim _{k\to \infty}\int_\Omega\lvert f-s_k \rvert^{p}=0
+    $$
+    so we can find some $k$ s.t. $\int_\Omega \lvert f-s_i \rvert^{p}\le (\epsilon /2)^{p}$ for all $i\ge k$, so there exists some $s=s(f,\epsilon)$ s.t. $\|f-s\|_{p}\le \epsilon /2$.
+
+2.
+    Let $s=s(f,\epsilon)$ be the measurable simple function constructed in step 1. Then there exists a function $g=g(s,\epsilon)=g(f,\epsilon)\in \mathcal{C}_c(\Omega)$ s.t. 
+    $$ 
+    \|s-g\|_{p}\le \epsilon /2
+    $$
+    Since $\mu (\{x\in \Omega;s(x)\neq 0\})\lt \infty$, Lusin's property implies that there exists a function $g\in \mathcal{C}_{c}(\Omega)$ that satisfies 
+    $$ 
+    \sup_{x\in \Omega}\lvert g(x) \rvert\le \|s\|_{\infty}
+    $$
+    $$ 
+    \mu (\{x\in \Omega;g(x)\neq s(x)\})\le \bigg(\frac{\epsilon}{4\|s\|_{\infty}}\bigg)^{p}
+    $$
+    Then 
+    $$ 
+    \|s-g\|_{p}=\bigg(\int_A \lvert s-g \rvert^{p}\bigg)^{1 /p}
+    $$
+    Notice that $\lvert s-g \rvert\le 2\|s\|_{\infty}$ as $\sup\lvert g(x) \rvert\le \|s\|_{\infty}$, and $A$ denotes the set $\{x\in \Omega;g(x)\neq s(x)\}$, so the integral above is less than $2\|s\|_{\infty}\cdot \mu A\le \epsilon /2$.
+
+As shown above, give $\epsilon\gt 0$ and $f\in L^p(\Omega)$ there is a $g(f,\epsilon)$ s.t. $\|f-g\|_{p}\le \|f-s_k\|_{p}+\|s_k-g\|_{p}\le \epsilon /2 +\epsilon/2=\epsilon$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+1.  $L^p(\Omega)$ is separable if $p \in [1,\infty)$ 
+2.  $L^\infty(\Omega)$ is not separable.
+
+:::
+
+::: {.proof}
+
+1.
+    Let a $f\in L^p(\Omega)$ where $p \in [1,\infty)$ then there exists a $g=g(f,\epsilon)\in \mathcal{C}_{c}(\Omega)$ s.t. 
+    $$ 
+    \|f-g\|_{p}\le \epsilon /2
+    $$
+    Since $K=\mathop{\text{supp}}g$ is compact, there exists a bounded open set $U$ s.t. $K\subset U\subset \Omega$.
+    As $U$ is bounded, $\overline{U}$ is bounded too, so $g$ is uniformly continuous on  $\overline{U}$, then there exists $\delta_0\gt 0$ s.t. 
+    $$ 
+    \lvert g(x)-g(y) \rvert\le \frac{\epsilon}{2(\mu (U))^{1 /p}} = \epsilon'
+    $$
+    for all $x,y\in \overline{U}$ s.t. $\|y-x\|_{\infty}\lt \delta_0$  
+    As the compactness of $K$ and the property of distance function, there exists $\delta_1\gt 0$ s.t. 
+    $$ 
+    \{y\in \mathbb{R}^{n};\|y-x\|_{\infty}\lt \delta_1\} \subset U \mathop{\text{ for all }}x\in K
+    $$
+    Let $\delta\in \mathbb{Q}$ s.t. $0\lt \delta \le \min_{}\{\delta_0,\delta_1\}$.  
+    Let $(B_{i})_{i\in I}$ denote the countable family formed by all open balls:
+    $$ 
+    \bigg\{y\in \mathbb{R}^{n};\|x-y\|_{\infty}\lt \frac{\delta}{2}\mathop{\text{ with }}x_{j}=p_{j}\delta\mathop{\text{ for some }}p_{j}\in \mathbb{Z},j\in [1,n]\bigg\}
+    $$
+    Now pick the subfamily $(B_{i})_{i\in I(K)}$ s.t. for any  $i\in I(K)$, $B_{i}\cap K\neq \varnothing$.
+    Then for each $i\in I(K)$, notice that $\delta /2$ makes sure that $\mathop{\text{diam}}(B_{i}\cap K)\le \delta\le \delta_0$, so if $x\in K$, then $B_{i}\subset U$ and $\lvert g(y_1)-g(y_2) \rvert \le \epsilon'$ for every $y_1,y_2\in B_{i}$ since the property of uniform continuous. If $x\notin K$, then  as its minimum is $0$, we can also pick some $\alpha_{i}$ as blow:  
+    we pick some $\alpha_{i}\in \mathbb{Q}$ s.t. 
+    $$ 
+    \lvert g(y)-\alpha_{i} \rvert\le \epsilon' \mathop{\text{ for all }}y\in B_{i}
+    $$
+    Now we can construct a simple function:
+    $$ 
+    h=\sum_{i\in I(K)}^{} \alpha_{i}\bm{\mathbf{1}}_{B_{i}}
+    $$
+    which satisfies that $\lvert h(x)-g(x) \rvert\le \epsilon'$ for almost all $x\in U$ s.t. 
+    $$ 
+    \|h-g\|_{p}=\bigg(\int_U \lvert h-g \rvert^{p}\bigg)^{1 /p}\le (\mu (U))^{1 /p}\cdot \frac{\epsilon}{2(\mu (U))^{1 /p}}=\frac{\epsilon}{2}
+    $$
+    Notice that $\|f-g\|_{p}+\|g-h\|_{p}\ge \|f-h\|_{p}$, so $\|f-h\|_{p}\le \epsilon$ and as $h$ is simple and $\alpha_{i}\in \mathbb{Q}$, so $h$ is countable as $I(K)$ is always a finite subset of a countable set and $\mathbb{Q}$ is a countable set. So $L^p(\Omega)$ is separable.
+
+
+:::
+
+
+## More about $L^p(\Omega)$ *
+
+::: {.definition  name="Locally integrable"}
+
+Let $\Omega$ be a open subset s.t. $\Omega\subset \mathbb{R}^{n}$.  
+A function $f:\Omega\to [-\infty,\infty]$ is said to be locally integrable if $f$ is measurable and the restriction $f\mid _K$ of $f$ on any compact subset $K\subset \Omega$ belongs to $\mathcal{L}^{1}(K)$.  
+
+As the usual method, we construct a quotient set 
+$$ 
+L^p_{loc}(\Omega)=\mathcal{L}^{p}_{loc}(\Omega)/\mathcal{R}
+$$
+where $\mathcal{R}$ is the a.e. equivalence.
+
+:::
+
+Note that in this chapter we change the notations of norm. For example, a $L^p(\Omega)$ norm of $f$ is noted as 
+$$ 
+\|f\|_{L^p(\Omega)}=\bigg(\int_\Omega \lvert f \rvert^{p}\bigg)^{1 /p}
+$$
+Usually we use the Lebesgue measure $\mu$ and if so we don't show it in the integral.
+
+Notice that every $f\in L^p(\Omega),p \in [1,\infty]$ is locally integrable in $\Omega$ since for any compact $K\subset \Omega$ :
+$$ 
+\int_K \lvert f(x) \rvert \le \|f\|_{L^1(\Omega)}\lt \infty
+$$
+and as Holder's inequality:
+$$ 
+\begin{aligned}
+    \int_K \lvert f \rvert &\le \bigg(\int_K\bigg)^{1 /q} \bigg(\int_K \lvert f \rvert^{p}\bigg)^{1 /p} \\
+    &\le \bigg(\int_K\bigg)^{1 /q} \|f\|_{L^p(\Omega)} \\
+    &\lt \infty
+\end{aligned}
+$$
+with $\frac{1}{p}+\frac{1}{q}=1$.
+
+::: {.definition  name="family of mollifiers"}
+
+A **family of mollifies** in $\mathbb{R}^{n}$ is a family $(\omega_\epsilon)_{\epsilon\gt 0}$ of functions $\omega_\epsilon:\mathbb{R}^{n}\to \mathbb{R}$ of the form
+$$ 
+\omega_\epsilon(x)=\frac{1}{\epsilon^{n}}\omega\bigg(\frac{x}{\epsilon}\bigg), \qquad x\in \mathbb{R}^{n}
+$$
+where $\omega:\mathbb{R}^{n}\to \mathbb{R}$ is any functions with following properties:
+$$ 
+\begin{aligned}
+    \omega\in \mathcal{C}^{\infty}(\mathbb{R}^{n}) ,\ \omega(x)\ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega\subset \overline{B_1(0)} & \mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega =1
+\end{aligned}
+$$
+Hence for each $\epsilon\gt 0$,
+$$ 
+\begin{aligned}
+    \omega_\epsilon\in \mathcal{C}^{\infty}(\mathbb{R}^{n}),\ \omega_\epsilon \ge 0 &\mathop{\text{ for all }}x\in \mathbb{R}^{n} \\
+    \mathop{\text{supp}}\omega_\epsilon\subset \overline{B_\epsilon(0)} &\mathop{\text{ and }}\int_{\mathbb{R}^{n}}\omega_\epsilon=1
+\end{aligned}
+$$
+:::
+
+::: {.definition  name="regularizing family of $f$"}
+
+Let $\Omega$ be a open subset of $\mathbb{R}^{n}$. Give a function $f\in L^1_{loc}(\Omega)$ and a family $\left( \omega_\epsilon \right)_{\epsilon\gt 0}$ of mollifiers, define the set $\Omega_\epsilon$ and $f_\epsilon:\Omega_\epsilon\to \mathbb{R}$ :
+
+$$ 
+\begin{aligned}
+    \Omega_\epsilon &= \left\{ x\in \Omega; \mathop{\text{dist}}\left( x,\mathbb{R}^{n}-\Omega \right)\gt \epsilon \right\} \\
+    f_\epsilon\left( x \right)&= \int_\Omega \omega_\epsilon\left( x-y \right)f\left( y \right)dy \qquad \mathop{\text{for all }}x\in \Omega_\epsilon
+\end{aligned}
+$$
+Then the family $\left( f_\epsilon \right)_{\epsilon\gt 0}$ is called a regularizing family of $f$.
+
+:::
+
+Notice that $\mathop{\text{dist}}(x,\mathbb{R}^{n}-\Omega)$ is a continuous function thus $\Omega_\epsilon$ is a open set and for every $x\in \Omega_\epsilon$, the ball $\overline{B_{\epsilon}(x)}\subset \Omega$ which means $f_\epsilon(x)$ is well-defined on $\Omega$. Then
+$$ 
+\begin{aligned}
+    f_\epsilon(x)&= \int_{B_{\epsilon}(x)}\omega_\epsilon(x-y)f(y)dy=\int_{B_{0}(\epsilon)}\omega(z)f(x-z)dz \\
+    &= \frac{1}{\epsilon^{n}}\int_{B_{1}(x)}\omega\left(\frac{x-y}{\epsilon}\right)f(y)dy \\
+\end{aligned}
+$$
+
+
+::: {.theorem  name=""}
+
+1.  
+    Let $\Omega$ be an open subset of $\mathbb{R}^{n}$, and let a function $f\in L^1_{loc}(\Omega)$ and a regularizing family $(f_\epsilon)_{\epsilon\gt 0}$ of $f$ is given. Then:
+    $$ 
+    f_\epsilon\in \mathcal{C}^{\infty}_{}(\Omega_\epsilon) \mathop{\text{ for all }}\epsilon \gt 0
+    $$
+    Moreover,
+    $$ 
+    \begin{aligned}
+        \partial ^{\alpha}f_\epsilon(x)&= \int_\Omega \partial ^{\alpha}\omega_\epsilon(x-y)f(y)dy \\
+        &= \int_{B_{\epsilon}(x)}\partial ^{\alpha}\omega_\epsilon(x-y)f(y)dy \\
+    \end{aligned}
+    $$
+    at each $x\in \Omega_\epsilon$. For any multi-index $\alpha=(\alpha_1,\alpha_2,\ldots,\alpha_n)$ with $\left|\alpha\right|=\sum_{i=1}^{n} \alpha_{i}\ge 1$.
+
+2.
+     Assume in addition that $f\in \mathcal{C}^{m}_{}(\Omega)$ for some integer $m \ge 1$. Then, given any compact subset $K\subset \Omega$ there exists $\epsilon_0=\epsilon_0(K)\gt 0$ s.t. $K\subset \Omega_\epsilon$ for all $0\lt \epsilon\le \epsilon_0$, $f_\epsilon(x)$ is well-defined for all $x\in K$ and 
+     $$ 
+     \sup_{x\in K}\left|\partial ^{\alpha}f_\epsilon(x)-\partial ^{\alpha}f(x)\right|\to 0 \mathop{\text{ for all }}\left|\alpha\right|\le m
+     $$
+     as $\epsilon\to 0$.
+
+:::
+
+::: {.theorem  name=""}
+
+Give an open subset $\Omega\subset \mathbb{R}^{n}$. For each $p \in [1,\infty)$, the space $\mathcal{C}^{\infty}_{c}(\Omega)=\mathcal{D}^{}_{}(\Omega)$ is dense in $L^p_{}(\Omega)$.
+
+:::
+
+::: {.theorem  name="regularization and approximation in $L^p_{}(\mathbb{R}^{n})$"}
+
+Let a function $f\in L^p_{}(\mathbb{R}^{n})$, $p \in [1,\infty)$ be given, and let $(f_\epsilon)_{\epsilon\gt 0}$ be a regularizing family of $f$, then
+$$ 
+f_\epsilon\in \mathcal{C}^{\infty}_{}(\mathbb{R}^{n}) \mathop{\text{ for all }}\epsilon\gt 0
+$$
+and 
+$$ 
+\|f_\epsilon-f\|_{L^p_{}(\mathbb{R}^{n})}\to 0 \mathop{\text{ as $\epsilon\to 0$}}
+$$
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

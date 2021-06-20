@@ -1,0 +1,36 @@
+# Option Pricing
+
+## BSM model
+
+The value of a delta hedge portfolio is $C-\Delta S_t$. The return is
+$$
+R =\frac{1}{2} \sigma^2 S^2\Gamma + \theta + r(\Delta S_t -C)
+$$
+If $\sigma=\sigma_{imp}$, $R=0$ with the absence of arbitrage. Thus if $\sigma$ is significantly differ with $\sigma_{imp}$, the return is
+$$
+R=\frac{1}{2} S^2 \Gamma(\sigma^2-\sigma^2_{imp})
+$$
+or we define $\nu=\frac{\partial C}{\partial  \sigma}=\sigma TS^2 \Gamma$, then
+$$
+R=\nu(\sigma-\sigma_{imp})
+$$
+thus
+$$
+R=\frac{\nu}{2\sigma T} (\sigma^2-\sigma^2_{imp})
+$$
+
+## Measure and predict volatility
+
+As Jensen's inequality, the unbiased estimator of $\sigma^2$ isnt unbiased on $\sigma$, and we should fix it by dividing a term 
+$$
+b(N)=\sqrt{\frac{2}{N}} \frac{\Gamma\left( \frac{N}{2} \right)}{\Gamma \left( \frac{N-1}{2} \right)}
+$$
+which converge to $1$ as $N \to \infty$.
+
+
+
+
+
+
+
+

@@ -1,0 +1,260 @@
+# Linear Mappings
+
+## Basic properties
+
+::: {.definition  name="kernel and image"}
+
+Suppose $X,Y$ are vector spaces and $\varphi:E\to F$ be a linear mapping. Then the **kernel of $\varphi$** denoted as $\mathop{\text{ker}}\varphi$ is the subset $K\subset X$ s.t. if $x\in K\implies \varphi(x)=0$.
+
+The  **image space of $\varphi$** denoted as $\mathop{\text{Im}}\varphi$ is the subset $I\subset Y$ s.t. $y\in I\implies$ there exists some $x\in X$ s.t. $\varphi(x)=y$.
+
+:::
+
+::: {.proposition #prp-prpt-of-ker name=""}
+
+1.  Let $\varphi:X\to Y$ be a linear mapping, then $\ker\varphi$ is a vector space.
+2.  The mapping $\varphi:X\to Y$ is injective iff $\ker\varphi=\left\{0\right\}$.
+
+:::
+
+::: {.proof}
+
+1.  
+    Let $\varphi:X\to Y$ be a linear mapping, let $x_1,x_2\in \ker\varphi$. Then
+ 
+    -   $\varphi(x_1+x_2)=\varphi(x_1)+\varphi(x_2)=0$, so $x_1+x_2\in \ker\varphi$.
+    -   $\varphi(\alpha x_1)=\alpha\varphi(x_1)=0$, so $\alpha x_1\in \ker\varphi$.
+
+2.
+    Let $\varphi$ be injective that means for each $y\in \mathop{\text{Im}}\varphi$, $\varphi^{-1}(y)=x$ for some unique $x\in X$. So $\varphi^{-1}(0)=0$ for only $0\in X$.  
+    For the converse, let $\ker\varphi=\left\{0\right\}$, give an arbitrary $y\in \mathop{\text{Im}}\varphi$, suppose there exists $x_1,x_2\in X$ s.t. $\varphi(x_1)=\varphi(x_2)=y$, then $\varphi(x_1-x_2)=\varphi(x_1)-\varphi(x_2)=0$, if $x_1\neq x_2$, there leads to a contradiction about $\ker\varphi=\left\{0\right\}$. So $\varphi$ is injective.
+
+:::
+
+
+
+### Induced Linear Mappings
+
+::: {.definition  name="restriction of linear mapping"}
+
+Suppose $\varphi:X\to Y$ is a linear mapping and $X_1\subset X$,  $Y_1\subset Y$ are subspace s.t. $\varphi(x)\in Y_1$ when $x\in X_1$.  
+Then the linear mapping $\varphi_1:X_1\to Y_1$ defined by $\varphi_1(x)=\varphi(x),x\in X_1$ is called **the restriction of $\varphi$** to $X_1$.
+
+Now we can find that $\varphi\circ i_{X_1}=i_{Y_1}\circ \varphi_1$ where $i_{X_1}:X_1\to X$ is canonical injections, same as $i_{Y_1}$.
+
+Equivalently, the diagram is commutative.
+```{=latex}
+\begin{center}
+    \begin{codi}[]
+        \obj {
+        X   & Y \\
+        X_1 & Y_1 \\
+        };
+        \mor X \varphi:-> Y;
+        \mor X_1 i_X:-> X;
+        \mor X_1 \varphi_1:-> Y_1;
+        \mor Y_1 i_Y:-> Y;
+    \end{codi}
+\end{center}
+```
+
+:::
+
+Let $\varphi:X\to Y$ be linear mapping and $\varphi_1:X_1\to Y_1$ be its restriction to subspace $X_1\subset X,Y_1\subset Y$. Then there exists precisely one linear mapping 
+$$ 
+\overline{\varphi}:X /X_1\to Y /Y_1
+$$
+s.t. 
+$$ 
+\overline{\varphi}\circ \pi_X=\pi_Y\circ \varphi
+$$
+where $\pi_X,\pi_Y$ are canonical projections on $X,Y$.
+
+Notice that $\pi_Y(\varphi(x_1))=\pi_Y(\varphi(x_2))$ whenever $\pi_X(x_1)=\pi_X(x_2)$. Because $\pi_X(x_1)=\pi_X(x_2)$ implies $\pi_X(x_1-x_2)=\overline{0}$ so $x_1-x_2\in \ker\pi_X=X_1$. Then 
+$$ 
+\begin{aligned}
+    \pi_Y\circ \varphi(x_2-x_1)&=\pi_Y\circ \varphi(x) &&\mathop{\text{ for }}x\in X_1 \\
+    &=\pi_Y(y) &&\mathop{\text{ for }}y\in Y_1 \\
+    &=\overline{0}
+\end{aligned}
+$$
+as the existence of the restriction $\varphi_1$.
+
+Then we can assert that there exists a mapping s.t. $\overline{\varphi}(x)$ has only one value in $Y /Y_1$, thus a function. Then we need to show its linearity. Now let $\overline{x_1},\overline{x_2}\in X /X_1$ and $x_1\in \pi_X^{-1}(\overline{x_1})$ same as $x_2$. 
+$$ 
+\begin{aligned}
+    \overline{\varphi}(\alpha \overline{x_1}+\beta \overline{x_2})&=\overline{\varphi}\circ \pi_X (\alpha x_1+\beta x_2) \\
+    &= \pi_Y\circ \varphi(\alpha x_1+\beta x_2)\\
+    &=\alpha \pi_Y\circ \varphi(x_1)+\beta\pi_Y\circ \varphi(x_2) \\
+    &=\alpha\overline{\varphi}(\overline{x_1})+\beta \overline{\varphi}(\overline{x_2})
+\end{aligned}
+$$
+which means the linearity.
+
+::: {.remark  name=""}
+
+The $\overline{\varphi}$ discussed above is called the **induced mapping in factor space** and the relation of $\overline{\varphi}$ is equivalent to the diagram:
+
+```{=latex}
+\begin{center}
+    \begin{codi}[]
+        \obj {
+        X & Y \\
+        X/X_1 & Y/Y_1 \\
+        };
+        \mor X \varphi:-> Y;
+        \mor Y \pi_Y:-> Y/Y_1;
+        \mor X/X_1 \overline{\varphi}:-> Y/Y_1;
+        \mor X \pi_X:-> X/X_1;
+    \end{codi}
+\end{center}
+```
+
+Notice that this diagram is commutative.
+
+And the relation can be overwritten by $\overline{\varphi}\overline{x}=\overline{\varphi x}$.
+
+:::
+
+Let $\varphi:X\to Y$ be a linear mapping and $X_1=\ker\varphi$,  $Y_1=\left\{0\right\}$. Since $\varphi(x)=0$ when $x\in X_1$, a linear mapping is **induced** by $\varphi$ :
+$$ 
+\overline{\varphi}:X /\ker\varphi\to Y /\left\{0\right\}=Y
+$$
+s.t. 
+$$ 
+\overline{\varphi}\circ \pi=\varphi
+$$
+where $\pi:X\to X /\ker\varphi$ is the canonical projection.
+
+1.  
+    This mapping $\overline{\varphi}$ is injective. In fact if $\overline{\varphi}\circ \pi(x)=0$, then $\varphi(x)=0$ which means $x\in \ker\varphi$. Then $\pi(x)=\overline{0}$, so $\ker \overline{\varphi}=\left\{\overline{0}\right\}$, according to \@ref(prp:prp-prpt-of-ker), $\overline{\varphi}$ is injective.
+
+2.
+    $\overline{\varphi}$ is a linear isomorphism between $X /\ker\varphi$ and $\mathop{\text{Im}}\varphi$, i.e. 
+    $$ 
+    \overline{\varphi}:X /\ker\varphi \xrightarrow{\simeq}\mathop{\text{Im}}\varphi
+    $$
+    Notice that $\overline{\varphi}$ is injective and since $\mathop{\text{Im}}\varphi$ it is surjective, thus one-to-one and onto.
+
+Then every linear mapping $\varphi:X\to Y$ can be written as a composition of a surjective and injective linear mapping:
+
+```{=latex}
+\begin{center}
+    \begin{codi}[]
+        \obj{
+        X & Y \\
+        |(pb)|X/\ker\varphi \\
+        };
+        \mor X \varphi:-> Y;
+        \mor X \pi:-> pb;
+        \mor pb \overline{\varphi}:-> Y;
+    \end{codi}
+\end{center}
+```
+
+Now consider the linear mapping:
+$$ 
+\varphi':X_1 /(X_1\cap X_2)\xrightarrow{\simeq}(X_1+X_2) /X_2
+$$
+We need to show it is a isomorphism.  
+First we observe the canonical projection:
+$$ 
+\pi:X_1+X_2\to (X_1+X_2) /X_2 
+$$
+and $\pi\mid _{X_1}$ be the restriction on $X_1$. Notice that for $x\in X_1+X_2$ :
+$$ 
+x=x_1+x_2\qquad x_1\in X_1,x_2\in X_2
+$$
+then
+$$ 
+\pi(x)=\pi(x_1+x_2)=\pi(x_1)=\pi\mid _{X_1}(x_1)
+$$
+So we find that $\pi\mid _{X_1}$ is surjective.  
+Define $\varphi=\pi\mid _{X_1}:X_1\to (X_1+X_2) /X_2$, then 
+$$ 
+\ker\varphi=\ker\pi\cap X_1=X_1\cap X_2
+$$
+With the above discussion, we notice that $\varphi:X_1\to (X_1+X_2) /X_2$ and so
+$$ 
+\begin{aligned}
+    X_1 /\ker\varphi &\xrightarrow{\simeq}(X_1+X_2) /X_2
+\end{aligned}
+$$
+
+::: {.proposition  name=""}
+
+Suppose that $\varphi:X\to Y$ and $\psi:X\to Z$ are linear mappings s.t. $\ker\varphi\subset \ker\psi$, then there exists a linear mapping $\omega:X\to Z$ s.t. $\omega\circ \varphi=\psi$.
+
+:::
+
+::: {.proof}
+
+Notice that $\psi(x)=0$ if $x\in \ker\varphi$, consider the induced linear mapping:
+$$ 
+\overline{\psi}:X /\ker\varphi\to Z
+$$
+s.t. $\overline{\psi}\circ \pi=\psi$ where $\pi:X\to X /\ker\varphi$ is the canonical projection. The existence of $\overline{\psi}$ is determined by the $\psi\mid _{\ker\varphi}:\ker\varphi\to \left\{0\right\}$.
+
+Now let 
+$$ 
+\overline{\varphi}:X /\ker\varphi\xrightarrow{\simeq}\mathop{\text{Im}}\varphi
+$$
+be the linear isomorphism determined by $\varphi$ and define  $\overline{\psi}_1:\mathop{\text{Im}}\varphi\to Z$ by
+$$ 
+\overline{\psi}_1=\overline{\psi}\circ \overline{\varphi}^{-1}
+$$
+Then let $\omega:X\to Z$ be a linear mapping which extends $\overline{\psi}_1$.  
+Notice that
+$$ 
+\overline{\varphi}^{-1}\circ \varphi=\overline{\varphi}^{-1}\circ \overline{\varphi}\circ \pi=\pi
+$$
+which means:
+$$ 
+\omega\circ \varphi=\overline{\psi}_1\circ \varphi=\overline{\psi}\circ \overline{\varphi}^{-1}\circ \varphi=\overline{\psi}\circ \pi=\psi
+$$
+ 
+:::
+
+::: {.remark  name=""}
+
+The result can be expressed in commutative diagram:
+
+```{=latex}
+\begin{center}
+    \begin{codi}[]
+        \obj{
+        X & Y \\
+        Z \\
+        };
+        \mor X \varphi:-> Y;
+        \mor X \psi:-> Z;
+        \mor Y \omega:-> Z;
+    \end{codi}
+\end{center}
+```
+
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

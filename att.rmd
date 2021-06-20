@@ -1,0 +1,163 @@
+## Self Attention and decomposition by paths
+$$
+\text{Attention}(Q,K,V)=\text{softmax}\left( \frac{QK'}{\sqrt{d}} \right)V
+$$
+
+
+$\bm{X}\in \mathbb{R}^{n\times d_{in}}$, $\bm{W_{K,h},W_{Q,h}}\in \mathbb{R}^{d_{in}\times d_{qk}},\bm{W}_{V,h}\in \mathbb{R}^{d_v\times d_{in}}$.
+
+The output of SAN is given by
+$$
+SA_{h}(\bm{X})=\bm{P_{h}(XW_{V,h}}+\bm{eb_{V,h}'})
+$$
+where $\bm{P_h}\in \mathbb{R}^{n\times n}$ is being softmax, thus $\bm{P_he=e}$ and hence
+$$
+SA_{h}(\bm{X})=\bm{P_{h}XW_{V,h}}+\bm{eb_{V,h}'}
+$$
+
+Concat the $H$ hands, we have
+
+$$
+\begin{aligned}
+    SA(\bm{X})&=
+\begin{bmatrix}
+    SA_1(\bm{X})	& \dots	& SA_H(\bm{X})	\\
+\end{bmatrix}\begin{bmatrix}
+                 W_{O,1}	\\
+                 \dots\\
+               W_{O,H}  	\\
+             \end{bmatrix}
+             \\ &= 
+             \sum_{h}^{}\left( \bm{P_hXW_{V,h}W_{O,h}}+\bm{e b_{V,h}'W_{O,h}}
+ \right)
+\end{aligned}
+$$
+Let $\bm{W_h:=W_{V,h}W_{O,h}}$ and $\bm{b_{O,h}:=b_{V,h}'W_{O,h}},\bm{b_O}=\sum_{h}^{}\bm{b_{O,h}}$, then
+$$
+SA(\bm{X})=\sum_{h}^{}\bm{P_h XW_h}+\bm{e b_{O}'}
+$$
+
+Stack SA layer, we have
+$$
+\begin{aligned}
+    SA \circ SA(\bm{X})&=\sum_{h}^{}\bm{P_h(\sum_{h}^{}P_hXW_h+\bm{eb'})W_h+eb'}
+    \\ &= 
+    \sum_{h_1,h_2}^{}\bm{P_{h_1}P_{h_2}XW_{h_1}W_{h_2}}+\bm{eb'}
+\end{aligned}
+$$
+where $\bm{b}$ isn't the same all the time, but we omitted the script by defining new $\bm{b}$ with summation. Hence 
+
+
+::: {.theorem  name="Path decomposition"}
+
+$$
+SAN(\bm{X})=\sum_{path\in [H]^{L}}^{} \bm{P_{path}XW_{path}}+\bm{eb'}
+$$
+where $SAN=SA_L \circ\dots\circ SA_1$($L$ layers with $H$ heads). Note if we include dummy heads, aka, skip layers, the cardinality should be $(H+1)^{L}$ instead of $H^{L}$.
+
+:::
+
+## Convergence of single head
+
+
+$$
+res(\bm{X})=\bm{X-ex'}
+$$
+
+
+Suppose each layers has only one head, and let
+$$
+\bm{X_1}:=SA(\bm{X})\cong\bm{PXW}
+$$
+note $res$ can't identify $\bm{X}$ and $\bm{X+eb'}$, $\text{softmax}$ can't identify $\bm{X}$ and $\bm{X+be'}$.
+
+
+::: {.lemma  name=""}
+
+$$
+\left\| res(X_1) \right\|_{1,\infty}\le \frac{4 \left\| W_{QK} \right\|_1 \left\| W_V \right\|_{1,\infty}}{\sqrt{d_{qk}}} \left\| res(\bm{X}) \right\|^3_{1,\infty}
+$$
+
+:::
+
+
+:::: {.proof}
+
+Note the unscaled attention matrix: $\bm{P}=\text{softmax}\left( \frac{\bm{A}}{\sqrt{d_{qk}}} \right)$, thus
+$$
+\bm{A}=\bm{XW_{QK}X'+eb_{QK}'X'}
+$$
+write $\bm{R}:=res(\bm{X}),\bm{R_0:=res(X_0)}$, we have $\bm{X}=\bm{R+ex'}$. Thus
+$$
+\bm{A} \cong \bm{RW_{QK}R'+1t'}
+$$
+where $\bm{t}:=\bm{RW_{QK}'x+Rb_{QK}}$. Then
+$$
+P = \text{softmax}(\bm{er'+E})
+$$
+where $\bm{E:=\frac{\bm{RW_{QK}R'}}{\sqrt{d_{qk}}}}$ and $\bm{r}=\frac{\bm{t}}{\sqrt{d_{qk}}}$. Thus
+$$
+\begin{aligned}
+    \bm{PX} &= \bm{P(1x'+R)}
+    \\ &= 
+    \bm{ex'+PR}
+    \\ &= 
+    \bm{ex'}+\text{softmax}(\bm{er'+E})\bm{R}
+\end{aligned}
+$$
+
+
+::: {.lemma  name=""}
+
+Suppose that $\bm{A=E+\widetilde{A}}$, $\bm{P}:=\text{softmax}(\bm{A}),\widetilde{P}=\text{softmax}(\widetilde{A})$, then there exist a diagonal $\bm{D}$ $s.t.$
+$$
+\bm{(I-D)\widetilde{P}\le P\le (I+2D)\widetilde{P}}
+$$
+holds entry-wise. Where
+$$
+D_{ii}=\max_{j} \left| \bm{e_i'E(e_j-e_{j'})} \right|
+$$
+
+
+
+:::
+
+
+By above lemma, we have
+$$
+\bm{PX}\le \bm{ex'}+\bm{(I+2D)e}\text{softmax}(\bm{r'})\bm{R}
+$$
+
+
+
+
+::::
+
+# Complexity of Self-Attention
+
+
+::: {.theorem #low name="self-attention is low rank"}
+
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\| \bm{\widetilde{P}\omega'-P\omega'} \right\|\le \varepsilon \left\| \bm{P\omega'} \right\| \right\}>1-o(1)
+$$
+where $\mathop{\text{rank}}\left( \bm{\widetilde{P}} \right)=\Theta(\log n)$.
+
+
+:::
+
+
+:::: {.proof}
+
+$$
+P=\text{softmax}\left\{ \frac{A}{\sqrt{d_{qk}}} \right\}=\exp \bm{\sqrt{d_{qk}}A}\cdot \bm{D_A}^{-1}
+$$
+
+By JL lemma, we claim the approximate matrix can be $\bm{\widetilde{P}}=\bm{PR'R}$ where $\bm{R}$ is random $k\times n$ matrix with $\mathcal{N}(0,\frac{1}{k})$ entries. Then we can SVD $\widetilde{P}$ to achieve linear complexity
+$$
+\widetilde{P}\simeq \sum_{i=1}^{k} \sigma_i \bm{u_i v_i'}
+$$
+
+
+::::
+
