@@ -1,6 +1,7 @@
-# Continuous Linear Operators
+# Linear Operators and Functionals
 
 ## General properties
+
 
 ::: {.definition  name="linear operator"}
 
@@ -16,6 +17,7 @@ Moreover, if $\mathbb{K}=\mathbb{C}$, then a mapping $A:X\to Y$ is semilinear if
 
 :::
 
+We shall denote by $\mathcal{L}(X,Y)$ the set of all linear operators from $X$ to $Y$. When $X=Y$, we use $\mathcal{L}(X)$ for short. Clearly, $\mathcal{L}$ is a vector space.
 
 ::: {.definition  name="kernel and image"}
 
@@ -25,18 +27,36 @@ $$
 $$
 The image of $A$ defined by:
 $$ 
-\mathop{\text{Im}}A=\left\{y\in Y:y=Ax \mathop{\text{ for some }}x\in X\right\}
+\mathop{\text{ran}}A=\left\{y\in Y:y=Ax \mathop{\text{ for some }}x\in X\right\}
 $$
-Notice that $\ker A$ is a subspace of $X$ and $\mathop{\text{Im}}A$ is a subspace of $Y$.
+Notice that $\ker A$ is a subspace of $X$ and $\mathop{\text{ran}}A$ is a subspace of $Y$.
 
 :::
+
+A linear operator $A:X\to Y$ is injective iff $\ker A=\left\{0\right\}$ and surjective if $\mathop{\text{ran}}A=Y$. If $A:X\to Y$ is injective, there exists a map $A^{-1}:\mathop{\text{ran}}A \to X$, called the **inverse** of $A$.
+
 
 ::: {.proposition  name=""}
 
-1.  A linear operator $A:X\to Y$ is injective iff $\ker A=\left\{0\right\}$.
-2.  If a linear operator $A:X\to Y$ is injective, the inverse mapping $A^{-1}:\mathop{\text{Im}}A\to X$ of $A\mid _{\mathop{\text{Im}}A}$ is a linear operator.
+Suppose $A \in \mathcal{L}(X,Y)$ is invertible, then
+
+1.  $A^{-1}$ is invertible and $(A^{-1})^{-1}=A$.
+2.  $AA^{-1}=I_Y$ and $A^{-1}A=I$.
+3.  $A^{-1}$ is a linear operator.
 
 :::
+
+
+::: {.proposition  name=""}
+
+Let $X$ be a linear space, then
+
+1.  For any $f\in \mathcal{F}(X,\mathbb{K})$, $\ker f$ is a hyperplane in $X$, $i.e., \mathop{\text{codim}} \ker f=1$.
+2.  If nonzero $f,g \in \mathcal{F}(X,\mathbb{K})$, then $f=a g$ for some $a\in \mathbb{K}$.
+3.  For any hyperplane $H\subset X$, there exists a $f\neq 0 \in \mathcal{F}(X,\mathbb{K})$ $s.t.$ $\ker f=H$.
+
+:::
+
 
 ::: {.definition  name="eigenvalue"}
 
@@ -46,29 +66,101 @@ Ap=\lambda p \mathop{\text{ and }}p\neq 0
 $$
 and such $p$ is called the eigenvector of $A$, corresponding to the eigenvalue $\lambda$.
 
-For a particular eigenvalue  $\lambda$, note that the subset $\left\{p \in X:Ap=\lambda p\right\}\subset X$ is a subspace, which is called eigenspace corresponding to $\lambda$.
 
 :::
+
+For a particular eigenvalue  $\lambda$, note that the subset $\left\{p \in X:Ap=\lambda p\right\}\subset X$ is a subspace, which is called eigenspace corresponding to $\lambda$.
+
+## Bound operators
+
+The most important class of linear operators is that of bounded linear operators.
+
+::: {.definition  name=""}
+
+Let $X$ and $Y$ be normed space, $A\in \mathcal{L}(X,Y)$ is called **bounded** if $\exists M>0\ s.t.\ \forall x \in X$,
+$$
+\left\| Ax \right\|\le M \left\| x \right\|
+$$
+
+:::
+
+
 
 ::: {.definition  name="continuity of operator"}
 
-When $X,Y$ are normed vector space which equipped their norm topology, then a mapping $A:X\to Y$ is called continuous linear operator if it is both continuous between their norm topology and keep linearity.
+When $X,Y$ are normed vector space which equipped their norm topology, then a mapping $A:X\to Y$ is called continuous linear operator if it is both continuous between their norm topology and keep linearity. Explicitly, $A$ is continuous at $x_0$ if we can let $\left\| Ax-Ax_0 \right\|$ arbitrary small by bounded $\left\| x-x_0 \right\|$.
 
 :::
 
-::: {.theorem  name=""}
+::: {.theorem  name="norm of $\mathcal{B}^{}_{}(X;Y)$"}
+
+1.
+    The mapping defined by:
+    $$ 
+    \|\cdot \|_{}:A\in \mathcal{B}(X;Y)\to \|A\|_{}=\sup_{x\neq 0}\frac{\|Ax\|_{}}{\|x\|_{}}
+    $$
+    is a norm of $\mathcal{B}^{}_{}(X;Y)$ which is called the sup-norm.
+
+2.
+    The norm of any $A\in \mathcal{B}^{}_{}(X;Y)$ may be equivalently defined as 
+    $$ 
+    \begin{aligned}
+        \|A\|_{}&= \sup_{\|x\|_{}\le 1}\|Ax\|_{}=\sup_{\|x\|_{}\lt 1}\|Ax\|_{}=\sup_{\|x\|_{}=1}\|Ax\|_{} \\
+        &= \inf\left\{C\gt 0:\|Ax\|_{}\le C\|x\|_{}\mathop{\text{ for all }}x\in X\right\} \\
+    \end{aligned}
+    $$
+    where the last norm is called the inf-norm.
+
+
+:::
+
+
+::: {.proposition  name=""}
+
+
+From $1$, we can get $\|Ax\|_{}\le \|A\|_{}\|x\|_{}$ for every $x\in X$, and if $X$ is finite-dim, there exists $0\neq x_0\in X$ s.t. 
+$$ 
+\|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}
+$$
+    
+
+:::
+
+
+::: {.proof}
+
+
+Note that if $X$ is finite-dim, then the unit sphere $\left\{x\in X:\|x\|_{}=1\right\}$ is compact. And the mapping $x\in X\mapsto y\in Y=Ax\mapsto \|Ax\|_{}$ is the composition of two continuous functions thus continuous. Then there exists some $x=x_0\in \left\{x\in X:\|x\|_{}=1\right\}$ s.t. this continuous function attains its supremum over $\mathbb{K}$ i.e. $\|Ax_0\|_{}=\sup\|Ax\|_{},\|x\|_{}=1$ then $\|A\|_{}=\|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}$.
+
+:::
+
+Let $Z$ be a normed vector space and let $A\in \mathcal{B}^{}_{}(X;Y)$ and $B\in \mathcal{B}^{}_{}(Y;Z)$, then $BA=B\circ A\in \mathcal{B}^{}_{}(X;Z)$ and 
+$$ 
+\|BA\|_{}\le \|A\|_{}\|B\|_{}
+$$
+holds by noting $\forall x\in X$:
+$$
+\left\| (BA)x \right\|=\left\| B(Ax) \right\|\le \left\| B \right\|\left\| Ax \right\|\le \left\| B \right\|\left\| A \right\|\left\| x \right\|
+$$
+
+Particularly, if $A\in \mathcal{B}(X)$, then
+$$ 
+\|A^{n}\|_{}\le \|A\|_{}^{n}\mathop{\text{ for any }}n\in \mathbb{N}_+
+$$
+
+If $A\in \mathcal{B}(X)$, then any eigenvalue $\lambda$ of $A$ satisfies $\left|\lambda\right|\le \|A\|_{}$.
+
+::: {.theorem #operator-bounded-continuous  name=""}
 
 Let $X,Y$ be normed vector spaces, and $A:X\to Y$ be linear operator, then the following properties are equivalent:
 
 1.  $A$ is continuous on $X$.
 2.  $A$ is continuous at $0\in X$.
-3.  
-    There exists a $C\gt 0$ s.t. 
+3.  There exists a $C\gt 0$ s.t. 
     $$ 
     \|Ax\|_{}\le C\|x\|_{} \mathop{\text{ for all }}x\in X
     $$
-    
-4.  The image under $A$ of any bounded subset $K\subset X$, $A(K)\subset Y$ is bounded.
+4.  $A$ carry bounded subset of $X$ to bounded subset of $Y$.
 
 :::
 
@@ -102,6 +194,27 @@ The above theorem shows that in normed vector spaces, continuous linear operator
 
 :::
 
+::: {.corollary  name=""}
+
+Let $X,Y$ be two normed vector spaces, and let $A:X\to Y$ be a linear operator, then the properties are equivalent:
+
+-   The linear operator $A$ is injective and inverse mapping $A^{-1}:\mathop{\text{ran}}A\to X$ is a continuous linear operator.
+-   
+    There exists a constant $C\gt 0$ s.t.
+    $$ 
+    \|x\|_{}\le C\|Ax\|_{} \mathop{\text{ for all }}x\in X
+    $$
+
+:::
+
+::: {.proof}
+
+Note that $\left\| x \right\|\le C \left\| Ax \right\|$ implies $\ker A=\left\{ 0 \right\}$ and thus it's equivalent to $\left| A^{-1}Ax \right|\le C \left\| Ax \right\|$, note $\mathop{\text{dom}}A^{-1}=\mathop{\text{ran}}A$, we have $A^{-1}$ is continuous by \@ref(thm:operator-bounded-continuous).
+
+:::
+
+
+
 Let $X\subset Y$ be a subspace of $Y$, then $X\hookrightarrow Y$ denotes the canonical injection from $X$ into $Y$. So according to  \@ref(lem:lem-norm-equal), we observe that:
 $$ 
 \|x\|_{Y}\le C\|x\|_{X}
@@ -109,10 +222,10 @@ $$
 
 ::: {.theorem  name=""}
 
-Let $X$ and $Y$ be two normed vector spaces.
+Suppose $A \in \mathcal{B}(X,Y)$, we have
 
--   Any continuous linear operator from $X$ into $Y$ is uniformly continuous.
--   If $X$ is finite-dim, any linear operator from $X$ into $Y$ is continuous.
+- $A$ is uniformly continuous.
+- If $\mathop{\text{dim}} X<\infty$, $\mathcal{L}(X,Y)=\mathcal{B}(X,Y)$.
 
 :::
 
@@ -124,93 +237,77 @@ $$
 $$
 so $A$ is Lipschitz continuous on $X$.
 
-If $X$ is finite-dim, then let $(e_{i})_{i=1}^{n}\subset X$ be a basis of $X$. Observe that for any $x=\sum_{i=1}^{n} x_{i}e_{i}\in X$ :
-$$ 
-\|Ax\|_{}=\left|\left|A\left(\sum_{i=1}^{n} x_{i}e_{i}\right)\right|\right|\le C_1\|x\|_{1}
+Define $\left\| x \right\|_0=\left\| x \right\|+\left\| Ax \right\|$, which is a norm equivalent to $\left\| \cdot \right\|$ as $X$ is finite-dim. Then we have
 $$
-where $C_1=\max_{1\le i\le n}\|A e_{i}\|_{}$ and $\|x\|_{1}=\sum_{i=1}^{n} \left|x_{i}\right|$ so we can induce that the image of every bounded set is bounded, thus continuous.
+\left\| Ax \right\|\le \left\| x \right\|_0\le \beta \left\| x \right\|
+$$
+for some $\beta$.
+
 
 :::
+
+Clearly, A sequence $(A_{i})_{i \in \mathbb{N}^*}\subset \mathcal{B}(X,Y)$ is uniformly convergent to $A$ if
+$$
+\lim_{n \to \infty}\left\| A_n-A \right\|=0
+$$
+Clearly, $A\in \mathcal{B}(X,Y)$. However, for a weaker case, that is, $(A_n)\to A$ pointwise:
+$$
+\lim_{n \to \infty}\left\| A_nx-Ax \right\|=0, \forall x\in X
+$$
+$A$ can be not in $\mathcal{B}(X,Y)$.
+
 
 ::: {.theorem  name=""}
 
-Let $X,Y$ be two normed vector spaces, and let $A:X\to Y$ be a linear operator, then the properties are equivalent:
-
--   The linear operator $A$ is injective and inverse mapping $A^{-1}:\mathop{\text{Im}}A\to X$ is a continuous linear operator.
--   
-    There exists a constant $C\gt 0$ s.t.
-    $$ 
-    \|x\|_{}\le C\|Ax\|_{} \mathop{\text{ for all }}x\in X
-    $$
+$\mathcal{B}(X,Y)$ is Banach if so is $Y$.
 
 :::
 
-::: {.proof}
 
-Suppose the first property holds, then $A':X\to \mathop{\text{Im}}A$ is a one-to-one and onto function, then there exits a unique $x\in X$ s.t. $A^{-1}(y)=x$ for unique $y\in Y$. Then the continuity of $A^{-1}$ implies that there exists a $C\gt 0$ s.t. 
-$$ 
-\|A^{-1}(y)\|_{}\le C\|y\|_{}\mathop{\text{ for all }}y\in \mathop{\text{Im}}A
+:::: {.proof}
+
+Note that $\left\| A_nx-A_{n+r}x \right\|\le \left\| A_n-A_{n+r} \right\|\left\| x \right\|<\epsilon \left\| x \right\|$ and $(A_nx)$ is convergent in $Y$, so we can find a limit $A$ by setting $Ax=\lim_{n \to \infty}A_nx$.
+
+::::
+
+
+## Functionals
+
+
+::: {.definition  name=""}
+
+Let $X$ be a linear space over $\mathbb{K}$, if $f \in \mathcal{F}(X,\mathbb{K})$, $f$ is called a **linear functional**. We shall denote $X^{*}=\mathcal{B}(X,\mathbb{K})$ and call $X^{*}$ the **dual** of $X$. 
+
+:::
+
+As $\mathbb{K}$ is Banach, $X^{*}$ is Banach.
+
+
+::: {.definition  name=""}
+
+If there is a bijective $A \in \mathcal{L}(X,Y)$, we say $X$ and $Y$ are **isomorphic** to each other and denoted by $X \simeq Y$. Furthermore, if $A$ is an **isometry**, $i.e.$, $\left\| Ax \right\|=\left\| x \right\|$ for all $x\in X$, then $A$ is an **isometric isomorphism** and $X$ and $Y$ are said to be **isometric isomorphic** and write $X \cong Y$.
+
+:::
+
+Two normed linear spaces which are isometrically isomorphic can be regarded as identical, the isometry
+merely amounting to a relabelling of the elements.
+
+
+::: {.proposition  name=""}
+
+
+
+:::
+
+
+
+
+
+
+
 $$
-which is equal to the second.
-
-If the second property holds, then $\ker A=\left\{0\right\}$ which means $A$ is injective and $\|x\|_{}\le C\|Ax\|_{}$ for every $x\in X$ implies that for every $y\in \mathop{\text{Im}}A$, $\|A^{-1}(y)\|_{}\le C\|y\|_{}$ implies the continuity of $A^{-1}$.
-
-:::
-
-
-::: {.definition  name="$\mathcal{L}^{}_{}(X;Y)$"}
-
-Let $X$ and $Y$ be two normed vector spaces over the same field $\mathbb{K}$, then the vector space formed by all continuous linear operator from $X$ into $Y$, denote by: $\mathcal{L}^{}_{}(X;Y)$ or $\mathcal{L}^{}_{}(X)$ if $X$ to $X$.
-
-:::
-
-::: {.theorem  name="norm of $\mathcal{L}^{}_{}(X;Y)$"}
-
-1.
-    The mapping defined by:
-    $$ 
-    \|\cdot \|_{}:A\in \mathcal{L}(X;Y)\to \|A\|_{}=\sup_{x\neq 0}\frac{\|Ax\|_{}}{\|x\|_{}}
-    $$
-    is a norm of $\mathcal{L}^{}_{}(X;Y)$ which is called the sup-norm.
-
-2.
-    The norm of any $A\in \mathcal{L}^{}_{}(X;Y)$ may be equivalently defined as 
-    $$ 
-    \begin{aligned}
-        \|A\|_{}&= \sup_{\|x\|_{}\le 1}\|Ax\|_{}=\sup_{\|x\|_{}\lt 1}\|Ax\|_{}=\sup_{\|x\|_{}=1}\|Ax\|_{} \\
-        &= \inf\left\{C\gt 0:\|Ax\|_{}\le C\|x\|_{}\mathop{\text{ for all }}x\in X\right\} \\
-    \end{aligned}
-    $$
-    where the last norm is called the inf-norm.
-
-3.
-    From $1$, we can get $\|Ax\|_{}\le \|A\|_{}\|x\|_{}$ for every $x\in X$, and if $X$ is finite-dim, there exists $0\neq x_0\in X$ s.t. 
-    $$ 
-    \|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}
-    $$
-    
-4.
-    Let $Z$ be a normed vector space and let $A\in \mathcal{L}^{}_{}(X;Y)$ and $B\in \mathcal{L}^{}_{}(Y;Z)$, then $BA=B\circ A\in \mathcal{L}^{}_{}(X;Z)$ and 
-    $$ 
-    \|BA\|_{}\le \|A\|_{}\|B\|_{}
-    $$
-    Particularly, if $A\in \mathcal{L}(X)$, then
-    $$ 
-    \|A^{n}\|_{}\le \|A\|_{}^{n}\mathop{\text{ for any }}n\in \mathbb{N}_+
-    $$
-    
-5.
-    If $A\in \mathcal{L}(X)$, then any eigenvalue $\lambda$ of $A$ satisfies $\left|\lambda\right|\le \|A\|_{}$.
-
-:::
-
-::: {.proof}
-
-Now give a proof of $3$.
-
-Note that if $X$ is finite-dim, then the unit sphere $\left\{x\in X:\|x\|_{}=1\right\}$ is compact. And the mapping $x\in X\mapsto y\in Y=Ax\mapsto \|Ax\|_{}$ is the composition of two continuous functions thus continuous. Then there exists some $x=x_0\in \left\{x\in X:\|x\|_{}=1\right\}$ s.t. this continuous function attains its supremum over $\mathbb{K}$ i.e. $\|Ax_0\|_{}=\sup\|Ax\|_{},\|x\|_{}=1$ then $\|A\|_{}=\|A\|_{}\|x_0\|_{}=\|Ax_0\|_{}$.
-
-:::
+\left\{ X>C \right\}=\emptyset
+$$
 
 
 
@@ -218,18 +315,25 @@ Note that if $X$ is finite-dim, then the unit sphere $\left\{x\in X:\|x\|_{}=1\r
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

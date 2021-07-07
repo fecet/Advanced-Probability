@@ -1,0 +1,342 @@
+## Sub-gaussian distributions
+
+Now suppose which kind of $r.v.$ have similar results with Hoeffding's inequality, suppose $n=1$, we expect
+
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| X_i \right|>t \right\}\le 2 e^{-c t^2}
+$$
+By intuition, we expect Gaussian distribution is sub-gaussian. In fact, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| \mathfrak{Z} \right|>t \right\}\le 2e^{-\frac{t^2}{2}}
+$$
+that is sub-gaussian tails.
+
+:::: {.proof}
+
+It's sufficient to show that $\mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}>t \right\}\le e^{-\frac{t^2}{2}}$. Note
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}>t \right\}=\int_{t}^{\infty}\frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi }}dx, \quad e^{-\frac{t^2}{2}}=\int_{t}^{\infty}xe^{-\frac{x^2}{2}} dx
+\end{aligned}
+$$
+
+```{r normal-tail, fig.align = "center", fig.cap="density of normal distribution", out.width = '70%'}
+
+knitr::include_graphics("figures/normal-tail.pdf")
+
+```
+
+Clearly, we have $\frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi }}\le x e^{-\frac{x^2}{2}}$ when $x \ge 1$. Then we claim that
+$$
+\int_{0}^{1}\frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi }}dx\le \int_{0}^{1}xe^{-\frac{x^2}{2}} dx
+$$
+This do hold and complete the proof.
+
+::::
+
+
+::: {.exercise  name="Moments of normal distribution"}
+
+Show that for $p \ge 1$:
+$$
+\left\| \mathfrak{Z} \right\|_{}=(\mathop{{}\mathbb{E}}_{} \left| \mathfrak{Z} \right|^{p})^{\frac{1}{p}}=\sqrt{2} \left[ \frac{\Gamma(\frac{1+p}{2})}{\Gamma(\frac{1}{2})} \right]^{\frac{1}{p}}=O(\sqrt{p})
+$$
+
+:::
+
+
+::: {.solution}
+
+Note
+$$
+\begin{aligned}
+    \left\| \mathfrak{Z} \right\|_p &= \left( \frac{1}{\sqrt{2\pi}} \int_{\mathbb{R}} \left| x \right|^{p} e^{-\frac{x^2}{2}}dx \right)^{\frac{1}{p}}=
+    \left( \frac{2}{\sqrt{2\pi}} \int_{\mathbb{R}} x^{p} e^{-\frac{x^2}{2}}dx \right)^{\frac{1}{p}}
+    \\ &=  
+    \left( \frac{2}{\sqrt{2\pi}} \int_{\mathbb{R}} \sqrt{2\omega}^{p} e^{-\omega} \frac{1}{\sqrt{2\omega}}d \omega\right)^{\frac{1}{p}} \text{change variable } \frac{x^2}{2}=\omega
+    \\ &= 
+    \left( \frac{2}{\sqrt{2\pi}} \sqrt{2}^{p-1} \Gamma(\frac{p+1}{2}) \right)^{\frac{1}{p}}=\sqrt{2} \left[ \frac{\Gamma(\frac{1+p}{2})}{\Gamma(\frac{1}{2})} \right]^{\frac{1}{p}}
+\end{aligned}
+$$
+Hence $\left\| \mathfrak{Z} \right\|^{p}=O[(\frac{p}{2}!)^{\frac{1}{p}}]=O(\frac{p}{2}^{\frac{p}{2}\cdot\frac{1}{p}})=O(\sqrt{p})$.
+
+:::
+
+Finally, we have $M_{\mathfrak{Z}}(\lambda)=e^{\frac{\lambda^2}{2}}$.
+
+### Sub-gaussian properties
+
+Now let X be a general random variable. The following proposition states that the properties we just considered are equivalent.
+
+::: {.proposition #sub-gaussian-prp name=""}
+
+Let $X$ be a $r.v.$, TFAE:
+
+1.  $X$ has the tail satisfy
+    $$
+    \mathbb{P}\left\{\left|X\right|\ge t\right\}\le 2\exp(-t^{2} /K_1^{2}) \mathop{\text{ for all }}t\gt 0
+    $$
+2.  The moment of $X$ satisfy
+    $$
+    \|X\|_{L^p_{}}=(\mathbb{E}\left|X\right|^{p})^{1 /p}\le K_2\sqrt{p} \mathop{\text{ for all }}p\ge 1
+    $$
+3.  The MGF of $X^{2}$ :
+    $$
+    \mathbb{E}\exp(\lambda^{2}X^{2})\le \exp(K_3^{2}\lambda^{2}) \mathop{\text{ for all }}\lambda \mathop{\text{ s.t. }} \left|\lambda\right|\le \frac{1}{K_3}
+    $$
+4.  The MGF of $X^{2}$ is bounded at some point:
+    $$
+    \mathbb{E}\exp(X^{2} /K_4^{2})\le 2
+    $$
+Moreover, if $\mathop{{}\mathbb{E}}_{}X=0$, then above properties equivalent to:
+
+5.  The MGF of $X$ satisfy
+    $$
+    \mathop{{}\mathbb{E}}_{}\exp(\lambda X) \le \exp(K_5^2\lambda^2)
+    $$
+
+Where each $K_i$ differ from each other by at most an absolute constant factor.
+
+:::
+
+::: {.proof}
+
+$1\implies 2$: WLOG, suppose $K_1=1$,
+$$
+\begin{aligned}
+    \mathbb{E}\left|X\right|^{p}&=\int_0^{\infty}\mathbb{P}\left\{\left|X\right|^{p}\gt t\right\}dt \\
+    &= \int_0^{\infty}\mathbb{P}\left\{\left|X\right|\gt u\right\}pu^{p-1}du \\
+    &\le \int_0^{\infty}2\exp(-u^2)pu^{p-1}du  \\
+    &= p\Gamma\left(\frac{p}{2}\right) \le 3p\left(\frac{p}{2}\right)^{p /2} \end{aligned}
+$$
+where the last inequality follows from $\Gamma(x)\le 3x^{x}$ for all $x\ge \frac{1}{2}$ and $p\ge 1$. Taking $p$th root, we have
+$$
+K_2=\sup_{p\ge 1}\left[ (3p)^{\frac{1}{p}} \left( \frac{1}{2} \right)^{\frac{1}{2}} \right]=\frac{e^{\frac{3}{e}}}{\sqrt{2}}\le 3
+$$
+
+$2\implies 3$ : Again, assume $K_2=1$. By Taylor expansion, we obtain
+
+$$
+\mathbb{E}\exp(\lambda^{2}X^{2})=\mathbb{E}\left[1+\sum_{p=1}^{\infty} \frac{(\lambda^{2}X^{2})^{p}}{p!}\right]=1+\sum_{p=1}^{\infty} \frac{\lambda^{2p}\mathbb{E}\left[X^{2p}\right]}{p!}
+$$
+Note that $2$ implies that $\mathbb{E}[X^{2p}]\le (2p)^{p}$. Then Stirling's approximation $p!\ge (p /e)^{p}$ yields:
+$$
+\mathbb{E}\exp(\lambda^{2}X^{2})\le 1+\sum_{p=1}^{\infty} \frac{(2\lambda^{2}p)^{p}}{(p /e)^{p}}=\sum_{p=0}^{\infty} (2e\lambda^{2})^{p}
+$$
+which converge to $\frac{1}{1-2e\lambda^2}$ provided $2e\lambda^2<1$, moreover, note $\frac{1}{1-x}\le e^{2x}$ provided $x \in [0,\frac{1}{2}]$. It follows that
+$$
+\mathop{{}\mathbb{E}}_{}\exp(\lambda^2X^2)\le \exp(4e \lambda^2)
+$$
+for all $\left| \lambda \right|\le \frac{1}{2\sqrt{e}}$, this complete the proof with $K_3=2\sqrt{e}$.
+
+$3\implies 4$ : Let $K_3=1$ and $\lambda=1 /2$, then $K_4=2$ and $3$ implies $4$.
+
+$4\implies 1$: Suppose $K_4=1$. Then
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \left| X \right|\ge t \right\}&=\mathop{{}\mathbb{P}}\left\{ e^{X^2} \ge  e^{t^2} \right\} 
+    \\ &\le e^{-t^2} \mathop{{}\mathbb{E}}_{}e^{X^2} \text{ by Markov's inequality}
+    \\ & \le 2e^{-t^2}
+\end{aligned}
+$$
+This prove $1$ with $K_1=1$.
+
+Now assume $\mathop{{}\mathbb{E}}_{}X=0$ and show that $3\implies 5$ and $5\implies 1$.
+
+$3\implies 5$: Note $e^{x} \le x+ e^{x^2}$ and assume $K_3=1$. Then $\forall \left| \lambda \right|\le 1$,
+$$
+\mathop{{}\mathbb{E}}_{}e^{\lambda X}\le \mathop{{}\mathbb{E}}_{} \left[ \lambda X+e^{\lambda^2X^2} \right]=\mathop{{}\mathbb{E}}_{}^{e^{\lambda^2X^2}}\le e^{\lambda^2}
+$$
+For $\lambda>1$, note $2\lambda x \le \lambda^2+x^2$:
+$$
+\mathop{{}\mathbb{E}}_{}e^{\lambda x}\le e^{\frac{\lambda^2}{2}}\mathop{{}\mathbb{E}}_{}e^{\frac{X^2}{2}} \le e^{\frac{\lambda^2}{2}+\frac{1}{2}} \le e^{\lambda^2}
+$$
+This prove $5$ with $K_5=1$.
+
+$5 \implies 1$. Assume property 5 holds and $K_5=1$. Then
+$$
+\mathop{{}\mathbb{P}}\left\{ X \ge t \right\}= \mathop{{}\mathbb{P}}\left\{ e^{\lambda X} \ge e^{\lambda t} \right\}\le e^{-\lambda t}\mathop{{}\mathbb{E}}_{}e^{\lambda X}\le e^{-\lambda t} e^{\lambda ^2}
+$$
+hold for any $\lambda>0$. Then we conclude that
+$$
+\mathop{{}\mathbb{P}}\left\{ X \ge t \right\} \le \inf_{\lambda} e^{\lambda^2-\lambda t} = e^{-\frac{t^2}{4}}
+$$
+which prove $1$ with $K_1=2$.
+
+:::
+
+
+::: {.exercise  name=""}
+
+Show that the property $5$ in proposition \@ref(prp:sub-gaussian-prp) implies $\mathop{{}\mathbb{E}}_{}X=0$.
+
+:::
+
+
+::: {.solution}
+
+By Jensen's inequality \@ref(thm:jensen-inequality), we have
+$$
+\exp(\lambda \mathop{{}\mathbb{E}}_{}X)\le \mathop{{}\mathbb{E}}_{}\exp(\lambda X) \le \exp(K^2\lambda^2)
+$$
+thus $\lambda \mathop{{}\mathbb{E}}_{}X \le K^2\lambda^2$ for any $\lambda$ and thus $\mathop{{}\mathbb{E}}_{}X=0$.
+
+:::
+
+::: {.exercise  name=""}
+
+1.  Function $\lambda \mapsto \mathop{{}\mathbb{E}}_{}\exp(\lambda^2 \mathfrak{Z}^2)$ is only finite in some interval $[-b,b]$.
+2.  Suppose $X$ satisfy $\mathop{{}\mathbb{E}}_{}\exp(\lambda^2X^2)\le \exp(K\lambda^2)$ for **all $\lambda \in \mathbb{R}$**, then $X$ is bounded $a.s.$, $i.e.$, $\left\| X \right\|_{\infty}<\infty$.
+
+:::
+
+
+::: {.solution}
+
+1.  Note that
+    $$
+    \mathop{{}\mathbb{E}}_{}\exp(\lambda^2 \mathfrak{Z}^2)=\left( \frac{1}{1-2\lambda^2} \right)^{\frac{1}{2}}
+    $$
+    which is finite only if $2\lambda^2<1$.
+
+2.  TODO
+
+
+:::
+
+
+
+
+### Definition and examples of sub-gaussian distributions 
+
+::: {.definition  name="sub-gaussian distribution"}
+
+A $r.v.$ $X$ that satisfies one of the properties in \@ref(prp:sub-gaussian-prp) is called a sub-gaussian $r.v.$
+
+:::
+
+Suppose that $X,Y$ are sub-gaussian r.v. then $\|X\|_{p}\le K_2\sqrt{p}$, $\|Y\|_{p}\le W_2\sqrt{p}$, then
+$$
+\|\alpha X+\beta Y\|_{p}\le \left|\alpha\right|\cdot \|X\|_{p}+\left|\beta\right|\cdot \|Y\|_{p}\le (\left| \alpha \right|K_2 + \left| \beta \right|W_2)\sqrt{p}
+$$
+So all of the sub-gaussian r.v. form a vector space.
+
+::: {.proposition  name="sub-gaussian space"}
+
+There exists a norm called sub-gaussian norm of sub-gaussian space, denoted $\|X\|_{\psi_2}$, is defined as:
+$$
+\|X\|_{\psi_2}=\inf\left\{t\gt 0:\mathbb{E}\exp(X^{2} / t^{2})\le 2\right\}
+$$
+
+:::
+
+::: {.proof}
+
+We show that
+$$
+\left\| X \right\|=\inf \left\{ t>0:\left\| X \right\|_p \le t\sqrt{p} \right\}
+$$
+define a norm on sub-gaussian space. We only show the triangle inequality:
+$$
+\left\| x+y \right\|_p \le \left\| x \right\|_p+\left\| y \right\|_p\le (\left\| x \right\|+ \left\| y \right\|)\sqrt{p}\implies \left\| x+y \right\| \le \left\| x \right\|+\left\| y \right\|
+$$
+That justify $\left\| \cdot \right\|_{\psi_2}$ as $K_2$ and $K_4$ differ each by some constant $c$.
+
+:::
+
+
+::: {.example #sub-gaussian name="Examples of sub-Gaussian $r.v.'s$"}
+
+-   (Gaussian): Note we have show that (by extend to $X=\sigma\mathfrak{Z}$):
+    $$
+    \mathop{{}\mathbb{P}}\left\{ \left| X \right|\ge t \right\}\le 2\exp(- \frac{t^2}{2\sigma^2})
+    $$
+    that is $K_2=\sqrt{2}\sigma$ and thus $\left\| X \right\|_{\psi_2}\le C\sigma$.
+
+-   (Bernoulli): Let $X$ is a symmetric Bernoulli distribution, then $X^2=1$ and consequently:
+    $$
+    \mathop{{}\mathbb{E}}_{} \exp \left( \frac{X^2}{t^2} \right)=e^{\frac{1}{t^2}}\le 2 \iff \frac{1}{\ln 2} \le t^2
+    $$
+    it follows that $\left\| X \right\|_{\psi_2}=\frac{1}{\ln 2}$.
+
+-   (Bounded): Any bounded $r.v.$ is sub-gaussian. Suppose $X$ is bounded by $b=\left\| X \right\|_{\infty}$
+    $$
+    \mathop{{}\mathbb{E}}_{}\exp \left( \frac{X^2}{t^2} \right) \le e^{\frac{b^2}{t^2}} \le 2 
+    $$
+    it follows that $\left\| X \right\|_{\psi 2}= \frac{1}{\ln 2} \left\| X \right\|_{\infty}$.
+
+:::
+
+
+::: {.exercise  name=""}
+
+Check that Poisson, exponential, Pareto and Cauchy distribution are not sub-Gaussian.
+
+:::
+
+
+::: {.solution}
+
+We show they are not by proving their tail $\mathop{{}\mathbb{P}}\left\{ X \ge t \right\}$ cannot be bounded by gaussian tail $\exp(-ct^2)$.
+
+:::
+
+
+
+::: {.exercise  name=""}
+
+Let $(X_{i})_{i \in \mathbb{N}^*}$ be sequence of sub-gaussian $r.v.'s$, then
+$$
+\mathop{{}\mathbb{E}}_{}\max_i \frac{\left| X_i \right|}{\sqrt{1+\ln i}} \le CK
+$$
+where $K= \max_i \left\| X_i \right\|_{\psi_2}$. For $n\ge 2$, we have
+$$
+\mathop{{}\mathbb{E}}_{}\max_{i \le n} \left| X_i \right|\le CK \sqrt{\ln n}
+$$
+
+:::
+
+
+::: {.solution}
+
+By proposition \@ref(prp:sub-gaussian-prp), we have $\forall t \ge 0$:
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| X_i \right|>t \right\} \le 2 \exp \left( -c \frac{t^2}{\left\| X_i \right\|_{\psi_2}^2} \right)\le 2 \exp \left( -\frac{ct^2}{K^2} \right)
+$$
+Note
+$$
+\begin{aligned}
+    \frac{1}{K} \mathop{{}\mathbb{E}}_{}\max_i \frac{\left| X_i \right|}{\sqrt{1+\ln i}}&=\frac{1}{K} \int _{0}^{\infty} \mathop{{}\mathbb{P}}\left\{ \max_i \frac{\left| X_i \right|}{\sqrt{1+\ln i}}>t \right\}dt
+    \\&\le 
+    \frac{1}{K} \int_{0}^{t_0} 1 dt+\frac{1}{K} \int _{t_0}^{\infty} \sum_{i}^{} \mathop{{}\mathbb{P}}\left\{ \left| X_i \right|>t\sqrt{1+\ln i} \right\} dt
+\end{aligned}
+$$
+Then we should find some $t_0$ $s.t.$ the second integral is finite, it follows that
+$$
+\begin{aligned}
+    \int_{t_0}^{\infty}\sum_{i}^{} \mathop{{}\mathbb{P}}\left\{ \left| X_i \right|>t\sqrt{1+\ln i} \right\} dt & \le 2 \int _{t_0}^{\infty} \sum_{i}^{} \exp \left[ -\frac{ct^2(1+\ln i)}{K^2} \right]dt
+    \\ &= 
+    2 \int _{t_0}^{\infty}  \exp \left[ -\frac{ct^2}{K^2} \right] \sum_{i}^{} \exp\left[ - \frac{ct^2\ln i}{K^2} \right]dt
+    \\ &\le 
+    2 \int _{t_0}^{\infty}  \exp \left[ -\frac{ct^2}{K^2} \right]  \sum_{i}^{} \exp\left[ - \frac{ct_0^2\ln i}{K^2} \right]dt
+    \\ &= 
+    2 \int _{t_0}^{\infty}  \exp \left[ -\frac{ct^2}{K^2} \right]dt \sum_{i}^{} i^{-\frac{ct_0^2}{K^2}}    
+\end{aligned}
+$$
+Change variable $s=\frac{t}{K}$, then we have
+$$
+\begin{aligned}
+    \int_{t_0}^{\infty}\sum_{i}^{} \mathop{{}\mathbb{P}}\left\{ \left| X_i \right|>t\sqrt{1+\ln i} \right\} dt &\le 2 \int _{0}^{\infty} \exp(-cs^2)ds+\sum_{i}^{} i^{- \frac{ct_0^2}{K^2}}
+    \\ &= 
+    \frac{\sqrt{\pi}}{\sqrt{c}}+N 
+\end{aligned}
+$$
+where we can let $t_0=\frac{nK}{\sqrt{c}}$ for some $n>1$ $s.t.$ the summation is finite.
+
+The second inequality follows from $\max_i \left\{ \sqrt{1+\log i} \right\}=O(\log n)$.
+
+:::
+
+
+
+

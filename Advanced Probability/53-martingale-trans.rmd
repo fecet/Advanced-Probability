@@ -1,0 +1,128 @@
+## Martingale Transformation
+
+### Doob's decomposition
+
+::: {.definition  name=""}
+
+A process $\left\{ X_{t} \right\}_{t \in \mathbb{N}}$ is said to be $\mathbb{F}$-predictable if $X_0 \in \mathcal{F}_0$ and $X_{n+1}\in \mathcal{F}_{n}$ for every $n \in \mathbb{N}$.
+
+:::
+
+### Previsible process
+
+A process $X=\left\{ X_t \right\}_{t\in \mathbb{N^+}}$ is previsible if $X_n$ is $\mathcal{F}_{n-1}$ measurable.
+
+Think of $C_n$ as your sake on game $n$, and you have some strategy based on history up to $n-1$ to determine value of it, that make $C_n$ previsible. Now the total winning at $n$ is
+
+$$
+Y_n=\sum_{1\le i\le n}^{}C_i(X_i-X_{i-1}) =: (C X)_{n}
+$$
+$CX$ is the martingale transform of $X$ by $C$, which is the discrete analogue of stochastic integral $\int C dX$.
+
+If $X$ isn't a fair game, you cannot beat it by some smart strategy:
+
+
+::: {.proposition  name="You can't beat the system"}
+
+Let $C$ be a bounded non-negative previsible process, $X$ be a supermartingale, $CX$ is a supermartingale null at $0$. 
+
+If $X$ is martingale, $CX$ is martingale if $C$ is bounded.
+
+:::
+
+### Stopped supermartingale
+
+Let $X$ be a supermartingale, with previous setting, we have process $C$ and $Y$, but we stop $C$ at time $\tau$ and stake $1$ each game. Now the winnings is:
+$$
+Y_n=X_{\tau \land n}-X_0
+$$
+Here we use $X^{T}$ to present process $\left\{ X^{T}_{n}=X_{\tau \land  n} \right\}$, then it's a supermartingale if so is $X$. Thus if $X$ is a martingale, we have $\mathop{{}\mathbb{E}}_{}X_{\tau \land n}=\mathop{{}\mathbb{E}}_{}X_0$.
+
+### Doob's Optional-Stopping Theorem
+
+
+::: {.theorem  name=""}
+
+Let $\tau$ be a stopping time, let $X$ be a supermartingale. Then $X_\tau$ is integral and $\mathop{{}\mathbb{E}}_{}X_{\tau}\le \mathop{{}\mathbb{E}}_{}X_0$ if one of flowing holds:
+
+1.  $\tau$ is bounded.
+2.  $X$ is bounded and $\tau$ is $a.s.$ bounded.
+3.  $\mathop{{}\mathbb{E}}_{}\tau<\infty$ and $\left| X_n-X_{n-1} \right|$ is bounded for any $n$.
+
+:::
+
+Apply this to both $X$ and $-X$, we have $\mathop{{}\mathbb{E}}_{}X_{\tau}=\mathop{{}\mathbb{E}}_{}X_0$ and $X$ is integral under the same situations.
+
+
+::: {.corollary  name=""}
+
+Suppose $X$ is a martingale with increments $X_{n}-X_{n-1}$ is bounded and $C$ is bounded previsible processes, $\mathop{{}\mathbb{E}}_{}\tau<\infty$, then
+$$
+\mathop{{}\mathbb{E}}_{}(CX)_{\tau}=0
+$$
+
+:::
+
+::: {.corollary  name=""}
+
+If $X\ge 0$ is supermartingale and $\tau$ is $a.s.$ finite, then $\mathop{{}\mathbb{E}}_{}X_{\tau}\le \mathop{{}\mathbb{E}}_{}X_0$.
+
+:::
+
+:::: {.proof}
+$$
+\mathop{{}\mathbb{E}}_{}X_{\tau}=\mathop{{}\mathbb{E}}_{}\liminf_n X_{\tau \land n}\le \liminf_n \mathop{{}\mathbb{E}}_{}X_{\tau \land n} \le \mathop{{}\mathbb{E}}_{}X_0
+$$
+
+::::
+
+### Awaiting the almost inevitable
+
+
+::: {.lemma  name=""}
+
+Suppose that $\tau$ is a stopping time $s.t.$ for some $N\in \mathbb{N}$ and $\varepsilon>0$, we have $\forall n \in \mathbb{N}$:
+$$
+\mathop{{}\mathbb{P}}_{\mathcal{F}_n}(\tau\le n+N)>\varepsilon
+$$
+$a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
+
+
+:::
+
+## Convergence Theorem
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+
+

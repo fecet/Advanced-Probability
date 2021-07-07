@@ -1,0 +1,378 @@
+## Examples of high-dimensional distributions
+
+### Spherical and Bernoulli distributions
+
+
+::: {.definition  name="uniformly distributed"}
+
+We say a $r.v.$ is uniformly distributed on some subsets $T\subset \mathbb{R}^{n}$, such as $\sqrt{n}S^{n-1}$ if for every Borel subsets $E\subset T$, the probability $\mathop{{}\mathbb{P}}\left\{\bm{X}\in E\right\}=\mu E/\mu S^{n-1}$ in Lebesgue meaning in $\mathbb{R}^{n-1}$.
+
+:::
+
+The coordinate of an isotropic random vector are always uncorrelated, but not necessarily independent, $e.g.$
+
+::: {.definition  name="Spherical Distribution"}
+
+We say a $r.v.$ $\bm{X}$ is the spherical distribution if $\bm{X}$ is uniformly distributed on the Euclidean sphere in $\mathbb{R}^{n}$ with center at the origin and radius $\sqrt{n}$:
+$$
+\bm{X}\sim \mathop{\text{Unif}}\left(\sqrt{n}S^{n-1}\right)
+$$
+
+:::
+
+
+::: {.exercise  name=""}
+
+If $\bm{X}\sim \mathop{\text{Unif}}\left(\sqrt{n}S^{n-1}\right)$, then $\bm{X}$ is isotropic with zero mean.
+
+:::
+
+::: {.solution}
+
+Note that the sphere symmetry implies $\mathop{{}\mathbb{E}}\bm{X}=\bm{0}$. And for the variance, $\mathop{{}\mathbb{E}}\bm{X}\bm{X'}$, for any $\bm{x}\in \mathbb{R}^{n}$, again by symmetry we have 
+$$
+\left<\bm{X},\bm{x}\right> \xlongequal{d} \left<\bm{X},\left\| \bm{x}\right\|_{2}\bm{e}\right>, \forall  \bm{e}\in S^{n-1}
+$$
+then let $\bm{e}_{i}$ denote the unit vector in the meaning of $\mathbb{R}^{n}$.
+$$
+\mathop{{}\mathbb{E}}\left<\bm{X},x\right>=\frac{1}{n}\sum_{i=1}^{n} \mathop{{}\mathbb{E}}\left<\bm{X},\left\|x\right\|_{2}\bm{e}_{i}\right>^{2}=\frac{1}{n}\mathop{{}\mathbb{E}}\sum_{i=1}^{n} \left(\left\|x\right\|_{2}X_{i}\right)^{2}=\left\|x\right\|_{2}^{2}\mathop{{}\mathbb{E}}\frac{1}{n}\sum_{i=1}^{n} X_{i}^{2}=\left\|x\right\|_{2}^{2}
+$$
+where $\sum_{i=1}^{n} X_{i}^{2}=\left\|\bm{X}\right\|_{2}^{2}=n$ which shows $\bm{X}$ is isotropic.
+
+:::
+
+**Symmetric Bernoulli** distribution is a good example of discrete isotropic vectors, formally, $\bm{X}$ is symmetric Bernoulli if
+$$
+X \sim \text{Unif}(\left\{ -1,1 \right\}^{n})
+$$
+Clearly, such $\bm{X}$ is isotropic.
+
+More generally, any random vector $\bm{X}$ whose coordinate $X_i$ are standard and independent is an isotropic vector.
+
+### Multivariate Normal
+
+One of the most important high-dimensional distributions is Gaussian, or multivariate normal. 
+
+::: {.definition  name="Gaussian"}
+
+We say a $r.v.$ $\bm{X}\sim \mathcal{N}\left(\bm{0},\bm{I}\right)$ if every coordinate of  $\bm{X}$ are independent unit normal distribution, $i.e.$ $X_i \sim \mathfrak{Z}$. 
+
+:::
+
+Multivariate normal distribution is isotropic by the previous discussion of general case. The density is 
+$$
+f _ { \mathfrak { Z } } ( \bm { x } ) = ( 2 \pi ) ^ { - n / 2 } \exp \left\{ - \sum _{ i = 1 } ^ { n } x_ { i } ^ { 2 } / 2 \right\} =( 2 \pi ) ^ { - n / 2 } \exp(-\bm{x'x}/2)
+$$
+
+The mgf is 
+
+$$ \begin{aligned} M _ { \mathfrak { z } } ( \bm { t } ) & = E \left\{ \exp \left( \bm { t } ^ { T } \bm { Z } \right) \right\} = E \left\{ \exp \left( \sum _ { i = 1 } ^ { p } t _{ i } Z_ { i } \right) \right\} = \prod _{ i = 1 } ^ { p } m_ { z _{ i } } \left( t_ { i } \right) \\ & = \exp \left\{ \sum _{ i = 1 } ^ { p } t_ { i } ^ { 2 } / 2 \right\} = \exp \left\{ \bm { t } ^ { T } \bm { t } / 2 \right\} \end{aligned} $$
+
+Thus the mgf for $\bm{X=\mu+AZ}$ can be constructed: 
+
+$$ m _{ \bm { X } } ( \bm { t } ) = E \left[ e ^ { \bm { t } ^ { T } \bm { X } } \right] = E \left[ e ^ { \bm { t } ^ { T } \mu + \bm { t } ^ { T } \bm { A } \bm { Z } } \right] = e ^ { \bm { t } ^ { T } \mu } \times m_ { z } \left( \bm { A } ^ { T } \bm { t } \right) = \exp \left\{ \bm { t } ^ { T } \mu + \bm { t } ^ { T } \bm { A } \bm { A } ^ { T } \bm { t } / 2 \right\} $$ 
+
+where we have $E[\bm{X}]=\mu$ and $\operatorname{Cov}(\bm{X})=\bm{AA}^T$, which lead to 
+
+
+::: {.definition  name=""}
+
+Random vector $\bm{X}\sim \mathcal{N}(\mu,\bm{V})$ iff the mgf satisfy
+$$ m _ { \bm { X } } ( \bm { t } ) = \exp \left\{ \bm { t } ^ { T } \mu + \bm { t } ^ { T } \bm { V } \bm { t } / 2 \right\} $$
+
+:::
+
+
+Note that the shape of $\bm{X}$ is the same as $\mu$, the we consider the transformation which turn $\bm{X}$ into different dimensions. Suppose $\bm{X}\sim N(\mu,\bm{V})$ where $X$ is $p\times 1$ and $\bm{Y=a+BX}$ where $\bm{a}$ is $q\times 1$ and thus $\bm{B}$ $q\times p$, then $\bm { Y } \sim N _ { q } \left( \bm { a } + \bm { B } \mu , \bm { B } \bm { V } \bm { B } ^ { T } \right)$ since 
+
+$$ \begin{aligned} m _ { \bm { Y } } ( \bm { t } ) & = E \left[ e ^ { \bm { t } ^ { T } \bm { Y } } \right] = E \left[ e ^ { \bm { t } ^ { T } ( \bm { a } + \bm { B } \bm { X } ) } \right] = e ^ { \bm { t } ^ { T } \bm { a } } \times m _ { \bm { X } } \left( \bm { B } ^ { T } \bm { t } \right) \\ & = e ^ { \bm { t } ^ { T } \bm { a } } \times \exp \left\{ \bm { t } ^ { T } \bm { B } \mu + \bm { t } ^ { T } \bm { B } \bm { V } \bm { B } ^ { T } \bm { t } / 2 \right\} \end{aligned} $$
+
+
+::: {.proposition  name=""}
+
+If $X$ is multivariate normal, then the joint distribution of any subset is multivariate normal.
+
+:::
+
+
+:::: {.proof}
+
+W.L.O.G, partition $\bm{X,\mu}$ and $\bm{V}$ as: 
+
+$$ \bm { X } = \left[ \begin{array} { l } \bm { X } _ { 1 } \\ \bm { X } _ { 2 } \end{array} \right] \begin{array} { l } p _ { 1 } \\ p _ { 2 } \end{array} , \quad \mu = \left[ \begin{array} { l } \mu _ { 1 } \\ \mu _ { 2 } \end{array} \right] \begin{array} { l } p _ { 1 } \\ p _ { 2 } \end{array} , \quad \bm { V } = \left[ \begin{array} { l l } \bm { V } _ { 11 } & \bm { V } _ { 12 } \\ \bm { V } _ { 21 } & \bm { V } _ { 22 } \end{array} \right] \begin{array} { l } p _ { 1 } \\ p _ { 2 } \end{array} $$
+
+Using $\bm{a=0}$ and $\bm{B}=\bm{[I\quad 0]}$, we have $\bm{X_1}\sim N(\mu_1,\bm{V}_{11})$
+
+::::
+
+
+
+::: {.proposition  name="Transformation of standard multivariate normal"}
+
+If $\bm{X}\sim \mathcal{N}_{p}(\bm{\mu},\bm{V})$ and $\bm{V}$ is nonsingular, then 
+
+1. A nonsingular matrix $\bm{A}$ exist $s.t.$ $\bm{V=AA'}$
+2. $\bm{A}^{-1}(\bm{X-\mu})\sim \mathcal{N}(0,\bm{I})$
+3. The pdf is $( 2 \pi ) ^ { - p / 2 } | \bm { V } | ^ { - \frac { 1 } { 2 } } \exp \left\{ - \frac { 1 } { 2 } ( \bm { x-\mu } )'  \bm { V } ^ { - 1 } ( \bm { x-\mu } ) \right\}$.
+
+:::
+
+
+
+:::: {.proof}
+
+Covariance matrix must be semi positive definite, since $\bm{V}$ is nonsingular in this case, it's posdef. Employed Cholesky decomposition, we have 1. 2 is derived from last result and 3 is given by replacing $\bm{Z=\bm{A}^{-1}(\bm{X-\mu})}$ in the pdf of standard case and note $|\det(\frac{\partial \bm{Z}}{\partial \bm{X}})|=|\det(\bm{A}^{-1})|=\det(V)^{-\frac{1}{2}}$.
+
+::::
+
+Figure \@ref(fig:normal-isotropic) shows examples of two densities of multivariate normal distributions.
+
+```{r normal-isotropic, fig.align = "center", fig.cap="The densities of the isotropic distribution and a non-isotropic distribution", out.width = '70%'}
+
+knitr::include_graphics("figures/isotropic.pdf")
+
+```
+
+
+::: {.exercise #characterization-normal name="Characterization of normal distribution"}
+
+Suppose $\bm{X}$ be random vector in $\mathbb{R}^{n}$. Show that $\bm{X}$ is multivariate normal iff every one-dimensional marginal $\left< \bm{X},\bm{\theta} \right>$ is normal.
+
+:::
+
+
+::: {.solution}
+
+Suppose $\bm{Z}\sim \mathcal{N}(\bm{0},\bm{I})$, then for any $\bm{\theta}\in \mathbb{R}^{n}$, we have
+$$
+\left< \bm{Z},\bm{\theta} \right>=\bm{\theta'Z}\sim \mathcal{N}(0,\bm{\theta'\theta})
+$$
+For the converse, suppose isotropic $\bm{Z_0}$ with zero mean, then
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\bm{\theta'Z_0}&=\bm{\theta'}\mathop{{}\mathbb{E}}_{}\bm{Z_0}=0
+    \\
+    \mathop{\text{Var}} \bm{\theta'Z_0}&=\mathop{{}\mathbb{E}}_{} \bm{\theta'Z_0Z_0'\theta}=\mathop{{}\mathbb{E}}_{}\bm{\theta'\theta}=\bm{\theta'\theta}
+\end{aligned}
+$$
+thus by Cram´er-Wold’s theorem, we have
+$$
+\bm{\theta'Z_0}\xlongequal{d}\bm{\theta'Z}\implies \bm{Z_0}\xlongequal{d} \bm{Z}
+$$
+For general case, we just write $\bm{X_{(0)}}=\sqrt{\bm{\Sigma}} \bm{Z_{(0)}}+\bm{\mu}$ and then claim follows by direct algebra.
+
+:::
+
+
+::: {.exercise  name=""}
+
+Suppose $\bm{X}\sim \mathcal{N}\left( \bm{0},\bm{I} \right)$, denote $\bm{X_u}:= \langle \bm{X},\bm{u} \rangle \sim \mathcal{N}(0,\left\| \bm{u} \right\|_2^2)$, show that
+
+1. $\mathop{{}\mathbb{E}}_{}\bm{X_uX_v}=\langle \bm{u},\bm{v} \rangle$.
+2.  $\left\| X_u-X_v \right\|_2=\left\| \bm{u}-\bm{v} \right\|_2$
+
+:::
+
+
+::: {.solution}
+
+For 1, note
+$$
+\mathop{{}\mathbb{E}}_{} \bm{u'X v'X}=\mathop{{}\mathbb{E}}_{}\bm{u'XX'v}=\bm{u'\mathop{{}\mathbb{E}}_{}XX'v}=\bm{u'v}
+$$
+
+For 2, note
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{} (\bm{u'X-v'X})^2&=
+    \mathop{{}\mathbb{E}}_{} \left[ \bm{(u-v)'X} \right]^2=\mathop{\text{Var}} \left[  \bm{(u-v)'X}  \right]=\left\| \bm{u-v} \right\|_2^2
+\end{aligned}
+$$
+:::
+
+
+
+::: {.exercise  name=""}
+
+Let $\bm{G}\in \mathbb{R}^{m\times n}$ be Gaussian random matrix where each entries are independent $\mathcal{N}(0,1)$ $r.v.'s$. Let $\bm{u}\in \mathbb{R}^{n}$ be unit vector, then $\bm{Gu}\sim \mathcal{N}(\bm{0},\bm{I})$. Moreover, $\bm{Gu}$ and $\bm{Gv}$ are independent if $\bm{u}$ and $\bm{v}$ are orthonormal.
+
+:::
+
+
+
+::: {.solution}
+
+Suppose $\bm{G}=(\bm{G_1,G_2,\dots,G_m})'$, where each $\bm{G_i}$ is isotropic with zero mean, then
+$$
+\bm{Gu}=(\bm{G_1'u,G_2'u,\dots,G_m'u})'
+$$
+where each coordinate is standard normal have been seen and thus distributed as $\mathcal{N}(\bm{0},\bm{I})$ by definition. Then
+$$
+\mathop{\text{Cov}}\left[\bm{Gu},\bm{Gv} \right]=\mathop{{}\mathbb{E}}_{}\bm{Guv'G}=\mathop{{}\mathbb{E}}_{}\bm{G}\bm{G}=\bm{0}
+$$
+:::
+
+### Similarity of normal and spherical distributions
+
+Recall the theorem \@ref(thm:norm-concentration), for $\bm{g}\sim \mathcal{N}(0,\bm{I})$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| \left\| \bm{g} \right\|_{2}-\sqrt{n} \right|\ge t \right\}\le 2\exp (-ct^2)
+$$
+for all $t \ge 0$. This observation suggests that the normal distribution should be quite similar to the uniform distribution on the sphere. Let us clarify the relation.
+
+::: {.proposition #normal-sphere  name="Normal and spherical distributions"}
+
+Note we can represent $\bm{g}\sim \mathcal{N}(\bm{0},\bm{I})$ in polar form as
+$$
+\bm{g}=r \bm{\theta}
+$$
+where $r=\left\| \bm{g} \right\|_{2}$ and $\theta=\frac{\bm{g}}{\left\| \bm{g} \right\|_2}$. Show that 
+
+1.  $r$ and $\bm{\theta}$ are independent.
+2.  $\bm{\theta}\sim \text{Unif} \left( S^{n-1} \right)$
+
+:::
+
+
+
+:::: {.proof}
+
+
+::::
+
+Thus the standard normal distribution in high dimensions is close to the uniform distribution on the sphere of radius $\sqrt{n}$:
+$$
+\mathcal{N}(\bm{0},\bm{I}) \approx \text{Unif}(\sqrt{n} S^{n-1})
+$$
+
+### Frames
+
+For an example of an extremely discrete distribution, consider a **coordinate random vector**:
+$$
+\bm{X}\sim \mathop{\text{Unif}}\left( \sqrt{n}\bm{e_i} \right)_{i=1}^{n}
+$$
+Which often known as "the worst" distribution while gaussian is "the best". 
+
+A general class of discrete, isotropic distributions arises in the area of signal processing under the name of **frames**.
+
+
+::: {.definition  name=""}
+
+A **frame** is a set of vectors $\left\{ \bm{u_i} \right\}_{i=1}^{N}\subset \mathbb{R}^{n}$ which obeys an approximate Parseval’s identity, $i.e.$, there exist $c,C>0$ called **frame bounds** $s.t. \forall \bm{x}\in \mathbb{R}^{n}$
+$$
+c \left\| \bm{x} \right\|_2^2\le \sum_{i=1}^{N} \langle \bm{u_i},\bm{x} \rangle ^2\le C \left\| x \right\|_2^2
+$$
+If $c=C$ the frame is **tight**.
+
+:::
+
+
+::: {.proposition  name=""}
+
+$\left\{ \bm{u_i} \right\}_{i=1}^{N}$ is tight with constant $c$ iff
+$$
+\sum_{i=1}^{N} \bm{u_iu_i'}=c\bm{I}
+$$
+
+
+:::
+
+
+:::: {.proof}
+
+Construct $\bm{U}\in \mathbb{R}^{N\times n}$ by $\bm{U}=(\bm{u_1},\bm{u_2},\bm{u_3},\dots,\bm{u_N})'$, then $\sum_{i=1}^{N} \bm{u_iu_i'}=\bm{U'U}$. Then claim follows by noting
+$$
+\begin{aligned}
+    \bm{U'U=}c \bm{I} &\iff \bm{x'U'Ux}=  c \bm{x'x} \quad \forall \bm{x}
+    \\ & \iff
+    \left\| \bm{Ux} \right\|^2=c \left\| \bm{x} \right\|^2 \quad \forall \bm{x}
+    \\ & \iff
+    \sum_{i=1}^{N} \langle \bm{u_i},\bm{x} \rangle ^2=c \left\| \bm{x} \right\|_2^2 \quad \forall \bm{x}
+\end{aligned}
+$$
+
+::::
+
+Clearly, any orthonormal basis in $\mathbb{R}^{n}$ is a tight frame. But the independence requirement is not necessary, the Mercedez-Benz frame is an example. $N\ge n$ is still essential.
+
+Now we are ready to connect the concept of frames to probability. 
+
+
+::: {.proposition  name="Tight frames and isotropic distributions"}
+
+Suppose a tight frame $\left\{ \bm{u_i} \right\}_{i=1}^{m}\subset \mathbb{R}^{n}$ with frame bounds $c$. Let $\bm{X}$ be a random vector that is uniformly distributed in which, $i.e.$
+$$
+\bm{X}\sim \mathop{\text{Unif}}\left( \bm{u_i}:i=1,\dots,m \right)
+$$
+then $\sqrt{\frac{m}{c}}\bm{X}$ is an isotropic random vector in $\mathbb{R}^{n}$.
+
+On the other hand, suppose $\bm{X}$ is isotropy with discrete distribution: $\mathop{{}\mathbb{P}}\left\{ \bm{X}=\bm{x_i} \right\}=p_i, \forall i=1,2,\dots,m$. Then $\bm{u_i}:=\sqrt{p_i}\bm{x_i}$ form a tight frame in $\mathbb{R}^{n}$ with bound $c$.
+
+
+:::
+
+
+:::: {.proof}
+
+Construct $\bm{U}$ follow the way above mentioned, WLOG, we can assume $m=c$ as $\sqrt{\frac{m}{c}}\bm{U}$ give a tight frame with constant $m$. Then claim follows by direct algebra:
+$$
+\mathop{{}\mathbb{E}}_{}\bm{XX'}=\frac{1}{m} \sum_{i=1}^{m} \bm{u_iu_i'}=\frac{1}{m} m \bm{I}=\bm{I}
+$$
+
+On the other hand, employ $\bm{X}$ is isotropy, we have
+$$
+\mathop{{}\mathbb{E}}_{}\bm{XX'}=\sum_{i=1}^{m} p_i \bm{x_ix_i'}=\bm{I}
+$$
+write $p_i\bm{x_ix_i'}=(\sqrt{p_i} \bm{x_i})(\sqrt{p_i} \bm{x_i})'$, then the claim follows.
+
+::::
+
+### Isotropic convex sets
+
+Now suppose $\bm{X}$ are uniformly distributed in a convex body $K$, which is compact and with $K^{\circ}\neq \emptyset$. WLOG, assume $\mathop{{}\mathbb{E}}_{}\bm{X}=0$(some translation on $K$ achieve this) and $\mathop{\text{Cov}}\bm{X}=:\bm{\Sigma}$. 
+
+Recall that $\bm{Z:= \Sigma^{-\frac{1}{2}}X}$ is isotropic, $\bm{Z}$ is uniformly distributed in $\bm{\Sigma^{-\frac{1}{2}}}K$. Thus we found a operator $T:=\bm{\Sigma^{-\frac{1}{2}}}$ which makes the uniform distribution on $TK$ isotropic. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,96 @@
+# Dual space
+
+Let $X$ be a normed vector field over $\mathbb{F}$ where $\mathbb{F}=\mathbb{R}$ or $\mathbb{F}=\mathbb{C}$. Then the space
+$$
+X'=\mathcal{L}(X;\mathbb{F})
+$$
+is called the dual space of the space $X$.
+
+Note that $\mathbb{F}$ is a Banach space and $X$ is a normed vector space then $X'$ is a Banach space too, and as a linear functional space, there exists a operator norm defined as:
+$$
+\left\|x'\right\|_{opt}=\left\|x'\right\|_{}=\sup_{x\neq 0}\frac{\left|x'(x)\right|}{\left\|x\right\|_{}}
+$$
+for all $x'\in X'$.
+
+::: {.definition  name="conjugate exponent"}
+
+Given any  $p \in [1,\infty]$, its conjugate exponent $q$ is defined as
+$$
+q=\infty \text{ if }p=1, \\
+\frac{1}{p}+\frac{1}{q}=1, \text{ if }p \in (1,\infty),\\
+q=1 \text{ if }p=\infty
+$$
+
+:::
+
+
+
+
+::: {.theorem  name="dual of $\ell^p$"}
+
+Given $p \in [1,\infty)$, let $q\in [1,\infty)$ be its conjugate exponent. Then, given any $a=(a_{i})_{i=1}^{\infty}\in \ell^q$, the relation
+$$
+x'(x)=\sum_{i=1}^{\infty} a_{i}x_{i} \text{ for all }x=(x_{i})_{i=1}^{\infty}\in \ell^p
+$$
+defines a continuous linear functional $x'$ on $\ell^p$. Besides,
+$$
+\left\|x'\right\|_{\left(\ell^p\right)'}=\left\|a\right\|_{q}
+$$
+
+:::
+
+::: {.proof}
+
+Note that by the Holder's inequality, 
+$$
+\left|\sum_{i=1}^{\infty} a_{i}x_{i}\right|\le \left\|x\right\|_{p}\left\|a\right\|_{q} \text{ for all }a\in \ell^q,x \in \ell^p
+$$
+then $\left\|x'\right\|_{}\le \left\|a\right\|_{q}$. For the other side, we define
+$$
+x^{n}=\left(x_{i}^{n}\right)_{i=1}^{\infty}, x_{i}^{n}=\left|a_{i}\right|^{q-1}\mathop{\text{sgn}}a_{i} \text{ if }i\in [1,n] \text{ and }x_{i}^{n}=0 \text{ if }n\lt i
+$$
+then
+$$
+x'\left(x^{n}\right)=\sum_{i=1}^{n} a_{i}x_{i}=\sum_{i=1}^{n} \left|a_{i}\right|^{q}
+$$
+so that
+$$
+\left\|a\right\|_{q}=\lim _{n\to \infty}\left(\sum_{i=1}^{n} \left|a_{i}\right|^{q}\right)^{1/p}\le \left\|x'\right\|_{}
+$$
+which implies that the equality holds.
+
+:::
+
+::: {.theorem  name="Riesz representation theorem, $L^{p}(\Omega)$"}
+
+Let $\Omega$ be an open subset in $\mathbb{R}^{n}$ and give $p \in [1,\infty)$, let $q$ be its conjugate exponent, then given any $g\in L^q_{}(\Omega)$
+$$
+\ell (f)=\int_\Omega f(x)g(x)dx \text{ for all }f\in L^p_{}(\Omega)
+$$
+defines a continuous linear functional on $L^p_{}(\Omega)$, Besides,
+$$
+\left\|\ell\right\|_{\left(L^p_{}(\Omega)\right)'}=\left\|g\right\|_{L^q_{}(\Omega)}
+$$
+The linear isometry $g\in L^q_{}(\Omega)\to \ell\in \left(L^p_{}(\Omega)\right)'$ defined in this fashion is bijective which implies that given any continuous linear functional $\ell$ on $L^p_{}(\Omega)$, there exists one and only one function $g\in L^p_{}(\Omega)$ $s.t.$
+$$
+\ell (f)=\int_\Omega f(x)g(x)dx
+$$
+for all $f\in L^p_{}(\Omega)$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

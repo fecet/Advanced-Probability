@@ -1,0 +1,110 @@
+# Concentration of sums of independent random variables
+
+## Why concentration inequalities?
+
+Concentration inequalities quantify how a random variable X deviates around its mean, the simplest is Chebyshev's inequality \@ref(exr:chebyshev-inequality). It can be applied to general $r.v.$ but often too weak.
+
+
+::: {.example #tails-number name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ is $i.i.d.$ and distributed as $\text{Ber}(\frac{1}{2})$, let $S_n=\sum_{i=1}^{n} X_i$, then $\mathop{{}\mathbb{E}}_{}S_n=\frac{n}{2}$ and $\mathop{\text{Var}} S_n=\frac{n}{4}$, consider $\mathop{{}\mathbb{P}} \{S_n>\frac{3}{4}n\}$.
+
+:::
+
+Let $S_n$ denote the number of heads, then Chebyshev's applies to
+$$
+\mathop{{}\mathbb{P}}\{S_n \ge \frac{3}{4}n\}\le \frac{4}{n}
+$$
+To see whether it's appropriate, by CLT, we have
+$$
+Z_n=\frac{S_n-\frac{n}{2}}{\sqrt{\frac{n}{4}}} \xrightarrow{d} \mathfrak{Z}
+$$
+so we have
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n \ge \frac{3}{4}n \right\} \approx \mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}\ge \sqrt{\frac{n}{4}} \right\}
+$$
+
+
+
+
+::: {.proposition #gaussian-tail  name="tails of normal distribution"}
+
+Let $g\sim \mathcal{N}(0,1)$, then for $t\gt 0$, we have:
+$$ 
+\left(\frac{1}{t}-\frac{1}{t^{3}}\right)\cdot \frac{1}{\sqrt{2\pi}}e^{-t^{2} /2}\le \mathbb{P}(g\ge t)\le \frac{1}{t}\cdot \frac{1}{\sqrt{2\pi} }e^{-t^{2} / 2}
+$$
+
+:::
+
+::: {.proof}
+
+For the upper bound:
+$$
+\begin{aligned}
+    \mathbb{P}\left\{g\ge t\right\}&=\frac{1}{\sqrt{2\pi} }\int_t^{\infty}e^{-x^{2} /2}dx \\
+    &= \frac{1}{\sqrt{2\pi} }\int_0^{\infty}e^{-t^{2} /2}e^{-ty}e^{-y^{2} /2}dy \mathop{\text{ with changing $x=t+y$}}\\
+    &\le \frac{1}{\sqrt{2\pi} }e^{-t^{2} /2}\int_0^{\infty}e^{-ty}dy \mathop{\text{ since }}e^{-y^{2} /2}\le 1   \\
+    &= \frac{1}{\sqrt{2\pi} }e^{-t^{2} /2}\left(\frac{1}{t}\right) \\
+\end{aligned}
+$$
+the lower bound follows from
+$$
+\int_{t}^{\infty} (1-3x^{-4}) e^{-\frac{x^2}{2}}dx = \left( \frac{1}{t}-\frac{1}{t^3} \right)e^{-\frac{t^2}{2}}
+$$
+This completes the proof.
+
+:::
+
+Thus $\mathop{{}\mathbb{P}}\left\{ S_n\ge \frac{3}{4}n \right\}\le \frac{1}{\sqrt{2\pi}}e^{-\frac{n}{8}}$, which is much better in view of figure \@ref(fig:decay-rate)
+
+```{r decay-rate, fig.align = "center", fig.cap="linerly and exponential decay rate", out.width = '70%'}
+
+knitr::include_graphics("figures/lin-exp-decay.pdf")
+
+```
+
+However, the way we give the exponential decay rate is not rigorous, in fact, we can't do so since the error term of approximation given by CLT decays too slow:
+
+
+::: {.theorem  name="Berry-Esseen CLT"}
+
+In the setting of theorem \@ref(thm:CLT), we have
+$$
+\left| \mathop{{}\mathbb{P}}\left\{ Z_n \ge t \right\}-\mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}\ge t \right\} \right|\le  \frac{\mathop{{}\mathbb{E}}_{}\left| X-\mu \right|^3}{\sigma^3}
+$$
+
+:::
+
+In order to resolve this issue, we develop alternative, direct approaches to concentration, which bypass the central limit theorem.
+
+
+::: {.proposition #truncated-gaussian  name="Truncated normal distribution"}
+
+Show that for all $t\ge 1$, we have
+$$
+\mathop{{}\mathbb{E}}_{} \mathfrak{Z}^2 \bm{1}_{\left\{ \mathfrak{Z}>t \right\}}=t \cdot \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}}+\mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}>t \right\}\le \left( t+\frac{1}{t} \right) \frac{1}{\sqrt{2\pi}} e^{-\frac{t^2}{2}}
+$$
+
+:::
+
+
+::: {.proof}
+
+The first inequality follows from directly integrity. The second follows from:
+
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \mathfrak{Z}>t \right\}&=\int_{t}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{-x^2}{2}}dx
+    \\ &= 
+    \int_{t}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{-x^2}{2}}dx
+    \\ &\le  
+    \int_{t}^{\infty} \frac{1}{\sqrt{2\pi}} e^{-\frac{-x^2}{2}}\frac{x}{t}dx
+    \\ &= 
+    \frac{1}{t} \frac{1}{\sqrt{2\pi}}e^{-\frac{t^2}{2}}
+\end{aligned}
+$$
+
+
+:::
+
+

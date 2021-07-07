@@ -1,0 +1,206 @@
+## Covariance matrices and PCA
+
+$$
+\mathop{\text{Cov}}\left[X\right]=\mathop{{}\mathbb{E}}(X-\mu)(X-\mu)^{t}=\mathop{{}\mathbb{E}}XX^{t}-\mu\mu^{t} \text{ where }\mu=\mathop{{}\mathbb{E}}X
+$$
+
+$$
+\Sigma[X]=\mathop{{}\mathbb{E}}XX^{t}
+$$
+where $\Sigma[X]$ is somewhere like a one-dim $r.v.$'s second moment.
+
+Note that $\Sigma[X]$ is symmetric and so its eigenvalues are all non-negative, then $\Sigma[X]$ can be decomposed as
+$$
+\Sigma=\sum_{i=1}^{n} s_{i}u_{i}u_{i}^{t}
+$$
+where $u_{i}$ are eigenvectors of $\Sigma$ and $s_{i}$ are eigenvalues of $\Sigma$ according to spectral theorem.
+
+### Isotropy
+
+::: {.definition  name="isotropy"}
+
+A random vector $\bm{X}\in \mathbb{R}^{n}$ is called isotropic if
+$$
+\mathop{{}\mathbb{E}}\bm{X}\bm{X'}=\bm{I}
+$$
+where $\bm{I}$ is the identity matrix of $\mathbb{R}^{n}$.
+
+:::
+
+Note that if $X$ has positive variance, then we can reduce it
+$$
+Z=\frac{X-\mu}{\sqrt{\mathop{\text{Var}}\left( X \right)}}
+$$
+Then $\mathop{{}\mathbb{E}}Z=0$, $\mathop{\text{Var}}\left(Z\right)=1$, which called the **standard score** of a $r.v.$ $X$.
+
+The following exercise gives a high-dimensional version of standard score.
+
+
+::: {.exercise  name=""}
+
+1.  Let $\bm{Z}$ be a mean-zero, isotropic vector in $\mathbb{R}^{n}$. Let $\bm{\mu}\in \mathbb{R}^{n}$ be a fixed vector and $\bm{\Sigma}$ be a fixed $n\times n$ positive-semidefinite matrix. Then the vector
+    $$
+    \bm{X}=\bm{\mu}+\bm{\Sigma}^{1/2}\bm{Z}
+    $$
+    has mean $\bm{\mu}$ and covariance $\mathop{\text{Cov}}\left(\bm{X}\right)=\bm{\Sigma}$.
+
+2.  Similarly, for a $r.v.$ $\bm{X}$ with mean  $\bm{\mu}$ and $\mathop{\text{Cov}}\left(\bm{X}\right)=\bm{\Sigma}$, let 
+    $$
+    \bm{Z}=\bm{\Sigma}^{-1/2}(\bm{X}-\bm{\mu})
+    $$
+    we have $\bm{Z}$ is isotropic with mean zero.
+
+:::
+
+
+
+::: {.proof}
+
+**1**
+$$
+\mathop{{}\mathbb{E}}\bm{X}=\mathop{{}\mathbb{E}}\bm{\mu}=\bm{\mu}
+$$
+and
+$$
+\mathop{{}\mathbb{E}}\left(\bm{X}-\bm{\mu}\right)^{2}=\mathop{{}\mathbb{E}}\bm{X}\bm{X'}-\bm{\mu}\bm{\mu'}=\mathop{{}\mathbb{E}}\bm{X}\bm{X'}=\bm{\Sigma}
+$$
+**2**
+$$
+\mathop{{}\mathbb{E}}\bm{Z}=\mathop{{}\mathbb{E}}\begin{pmatrix} \sum_{i=1}^{n} a_{1i}(x_1-\mu_1)\\ \vdots\\ \sum_{i=1}^{n} a_{ni}(x_n-\mu_n) \end{pmatrix}=\bm{0}
+$$
+where $a_{ij}=\mathop{\text{Cov}}\left(\bm{X}\right)_{ij}$.
+$$
+\mathop{\text{Cov}}\left(\bm{Z}\right)=\mathop{{}\mathbb{E}}\bm{Z}\bm{Z'}=\mathop{{}\mathbb{E}}\bm{\left(\Sigma^{-1/2}(X-\mu)\right)}\bm{\left(\Sigma^{-1/2}(X-\mu)\right)'}=\mathop{{}\mathbb{E}}\bm{I}=\bm{I}
+$$
+by decomposing $\mathop{\text{Cov}}\left(\bm{X}\right)=\bm{\Sigma}=\bm{\Sigma}^{1/2}(\bm{\Sigma}^{1/2})'$.
+
+:::
+
+
+### Isotropic Distribution
+
+::: {.proposition  name=""}
+
+A $r.v.$ $\bm{X}\in \mathbb{R}^{n}$ is isotropic iff
+$$
+\mathop{{}\mathbb{E}}\left<\bm{X},x\right>^2=\left\|x\right\|_{2}^{2} \text{ for all }x\in \mathbb{R}^{n}
+$$
+
+:::
+
+:::: {.proof}
+
+
+::: {.lemma  name=""}
+
+Suppose $\bm{A}$ and $\bm{B}$ are symmetric, then $\bm{A=B}$ iff for any $\bm{x}\in \mathbb{R}^{n}$,
+$$
+\bm{x'Ax=x'Bx}
+$$
+
+:::
+
+
+
+::: {.proof}
+
+Suppose $\bm{A}=\bm{B}$, then it's obvious. For the converse, find some $\bm{x}\in \mathbb{R}^{n}$ $s.t.$ $\bm{x x'}=\bm{I}$, then
+$$
+\bm{x x'Ax x'}=\bm{x x'Bx x'}\implies \bm{IAI}=\bm{IBI}\implies \bm{A}=\bm{B}
+$$
+
+:::
+
+
+Thus $\bm{X}$ is isotropic iff
+$$
+\bm{x'}\left(\mathop{{}\mathbb{E}}\bm{X}\bm{X'}\right)\bm{x}=\bm{x'Ix} \text{ for all }\bm{x}\in \mathbb{R}^{n}
+$$
+where the left side is precisely $\mathop{{}\mathbb{E}}_{}\left< \bm{X},\bm{x} \right>^2$ while the right is $\left\| x \right\|_2^2$.
+
+::::
+
+::: {.proposition  name=""}
+
+Let $\bm{X}$ be an isotropic $r.v.$ in $\mathbb{R}^{n}$. Then
+$$
+\mathop{{}\mathbb{E}}\left\|\bm{X}\right\|_{2}^{2}=n
+$$
+Moreover, if $\bm{X}$ and $\bm{Y}$ are two independent isotropic $r.v.$ in $\mathbb{R}^{n}$, then
+$$
+\mathop{{}\mathbb{E}}\left<\bm{X},\bm{Y}\right>^2=n
+$$
+
+:::
+
+::: {.proof}
+
+To show the first part, we have
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\left\|\bm{X}\right\|_{2}^{2}&= \mathop{{}\mathbb{E}}\bm{X'X}=\mathop{{}\mathbb{E}}\mathop{\text{tr}}(\bm{X'X}) \\
+    &= \mathop{{}\mathbb{E}}\mathop{\text{tr}}(\bm{XX'}) \\
+    &= \mathop{\text{tr}}\left(\mathop{{}\mathbb{E}}\bm{X}\bm{X'}\right) \\
+    &= \mathop{\text{tr}}\bm{I}=n \\
+\end{aligned}
+$$
+
+For the second part, fix a realization of $\bm{Y}$ and compute the condition expectation. Note that
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\left<\bm{X},\bm{Y}\right>^{2}&=\mathop{{}\mathbb{E}}_{\bm{Y}}\mathop{{}\mathbb{E}}_{\bm{X}}\left[\left<\bm{X},\bm{Y}\right>^{2}\mid \bm{Y}\right] \\
+    &= \mathop{{}\mathbb{E}}_{\bm{Y}}\left\| \bm{Y}\right\|_{2}^{2} (\text{use previous proposition by } \bm{x}=\bm{Y}) 
+    \\ &= 
+    n 
+\end{aligned}
+$$
+
+:::
+
+::: {.remark  name="Almost orthogonality of independent vectors"}
+
+Normalize $X$ and $Y$, we have
+$$
+\overline{\bm{X}}=\frac{\bm{X}}{\left\|\bm{X}\right\|_{2}}\text{ and }\overline{\bm{Y}}=\frac{\bm{Y}}{\left\|\bm{Y}\right\|_{2}}
+$$
+we have $\left\| \bm{X} \right\|_{2} \asymp \left\| \bm{Y} \right\|_{2} \asymp \left< \bm{X},\bm{Y} \right> \asymp \sqrt{n}$, thus
+$$
+\left<\overline{\bm{X}},\overline{\bm{Y}}\right>\asymp \frac{1}{\sqrt{n}}\to 0 \text{ as }n\to \infty
+$$
+That implies in high-dimensional spaces, independent isotropic random vectors tend to be almost orthogonal.
+
+:::
+
+::: {.exercise  name="Distance between independent isotropic vectors"}
+
+Let $\bm{X}$ and $\bm{Y}$ be independent, mean-zero, isotropic $r.v.$ in $\mathbb{R}^{n}$, then
+$$
+\mathop{{}\mathbb{E}}\left\|\bm{X}-\bm{Y}\right\|_{2}^{2}=2n
+$$
+
+:::
+
+::: {.solution}
+
+
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\left\|\bm{X}-\bm{Y}\right\|_{2}^{2}&=\mathop{{}\mathbb{E}}_{}\left< \bm{X-Y},\bm{X-Y} \right>
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\left\| \bm{X} \right\|_{2}^2+\mathop{{}\mathbb{E}}_{}\left\| \bm{Y} \right\|_{2}^2+2\mathop{{}\mathbb{E}}_{}\left< \bm{X},\bm{Y} \right>
+    \\ &= 
+    2n+2\mathop{{}\mathbb{E}}_{}\left< \bm{X},\bm{Y} \right>
+\end{aligned}
+$$
+where
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}\bm{X'Y}&= \mathop{{}\mathbb{E}}_{\bm{Y}}\mathop{{}\mathbb{E}}_{\bm{X}}\left(\bm{X}\bm{Y}\mid \bm{Y}\right) \\
+    &= \mathop{{}\mathbb{E}}_{\bm{Y}}\left(\bm{Y}\mathop{{}\mathbb{E}}_{\bm{X}}\bm{X}\right) \\
+    &= \mathop{{}\mathbb{E}}_{\bm{Y}}\bm{0}=0 \\
+\end{aligned}
+$$
+then claim follows.
+
+:::
+

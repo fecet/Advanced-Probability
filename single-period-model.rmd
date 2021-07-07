@@ -1,0 +1,143 @@
+Suppose $\bm{S_0}\in \mathbb{R}^{N}$ is price of $N$ stocks at time $t$, and $\bm{D}\in \mathbb{R}^{N\times n}$ is their price at time $t$ for $n$ states. For any portfolio $\theta\in \mathbb{R}^{N}$, it cost $\bm{S_0'\theta}$ and its value is $\bm{D'\theta}\in \mathbb{R}^{n}$ for all $n$ states. 
+
+An arbitrage is then defined as a portfolio $\theta, s.t.$ $\bm{S'\theta}$ have different sign with $\bm{D'\theta}$ entry-wise.
+
+A state price vector is $\psi \in \mathbb{R}_{++}^{n}$ $s.t.$ $\bm{S_0}=\bm{D\psi}$.
+
+
+::: {.theorem  name=""}
+
+There is no arbitrage iff there is a state price vector.
+
+:::
+
+Suppose $\bm{p}\in \mathbb{R}^{n}$ is a probability vector represent each state, as there is only $n$ states, we can use it to represent probability measure. Then
+$$
+\mathop{{}\mathbb{E}}_{}S_T=\bm{Dp}
+$$
+take $\bm{p=\frac{\psi}{e'\psi}}$. Then
+$$
+\mathop{{}\mathbb{E}}_{}S_T=\bm{\frac{D\psi}{e'\psi}}=\bm{\frac{S_0}{e'\psi}}
+$$
+thus $\bm{e'\psi}$ is the discount on riskless borrowing. If probability vector $\bm{p}$ also let $\mathop{{}\mathbb{E}}_{}S_{T}$ have the same value, we said it's a risk-neutral probability measure.
+
+
+A claim $C\in \mathbb{R}^{n}$ and it's said to be attainable or can be hedged if there is a portfolio $\theta$ that $\bm{D'\theta}=C$.
+
+
+::: {.theorem  name=""}
+
+With absence of arbitrage, the price of an attainable claim $C\in \mathbb{R}^{n}$ is $\bm{e'\psi}\mathop{{}\mathbb{E}}_{}C$ if $\bm{S_0}=\bm{e'\psi}\mathop{{}\mathbb{E}}_{}S_T$ for some probability measure $\bm{\psi}$.
+
+:::
+
+
+:::: {.proof}
+
+Suppose $\bm{D'\theta=C}$, then its price should be $\bm{\theta'S_0}$
+$$
+\mathop{{}\mathbb{E}}_{}C=\mathop{{}\mathbb{E}}_{}\bm{D'\theta}=\frac{\bm{\theta'D\psi}}{\bm{e'\psi}}=\bm{\theta' S_0}
+$$
+
+::::
+
+A market is said to be complete if every claim $C$ is attainable.
+
+::: {.theorem  name=""}
+
+The market in our setting is complete iff $N\ge n$ and $\bm{D}$ have full column rank.
+
+:::
+
+
+:::: {.proof}
+
+Completeness is precisely equivalent row space $\mathcal{C}(\bm{D'})=\mathbb{R}^{n}$ and then claim follows.
+
+::::
+
+In complete market, risk-neutral measure is unique.
+
+## Discrete Martingale
+
+Under risk-neutral measure, for each time $k$, we have
+$$
+\psi_{0}\mathop{{}\mathbb{E}}_{k}{S}_{k+1}=S_{k}
+$$
+thus if we define the discounted stock price as $\widetilde{S}_{k}=\psi_0^{k} S_{k}$(where each $\psi_0$ can be vary by time so it should be $\prod_{i=1} ^{k} \psi_{0,k}$ but we abuse notation here), then $\widetilde{S}$ became a martingale. That implies the discounted claim $\widetilde{V}$ is also a martingale.
+
+Now let $(\varphi_n,\psi_n)$ be the amount of stock and bound at time $n$, the portfolio we holding value:
+$$
+V_n=\varphi_{n}S_n+\psi_{n}B_n
+$$
+since the portfolio is self-financing, the should equal to the value at the start of $n+1$(when the price is remain the same):
+$$
+V_n=\varphi_{n+1}S_n+\psi_{n+1}B_n
+$$
+Put them together and take discount, we have
+$$
+\widetilde{V}_n=\varphi_{n+1}\widetilde{S}_{n}+\psi_{n+1}=\varphi_{n}\widetilde{S}_{n}+\psi_{n}
+$$
+we have
+$$
+\widetilde{V}_{n+1}-\widetilde{V}_n=\varphi_{n+1}(\widetilde{S}_{n+1}-\widetilde{S}_n)
+$$
+By induction we have
+$$
+\widetilde{V}_n=V_0+\sum_{i=0}^{n-1}\varphi_{i+1}(\widetilde{S}_{i+1}-\widetilde{S}_{i})
+$$
+that is a martingale by invoking following lemma:
+
+
+::: {.lemma  name=""}
+
+Suppose process $X=\left\{ X_{t} \right\}_{t\in \mathbb{N}}$ is adapted to $\mathbb{F}=\left\{ \mathcal{F}_t \right\}_{t \in \mathbb{N}}$ and $\left\{ \varphi_i \right\}_{i \in \mathbb{N^{+}}}$ is $\mathbb{F}$-predictable. Then
+$$
+\left\{ Z_n\triangleq Z_0+\sum_{i=0}^{n-1}\varphi_{i+1}(X_{i+1}-X_i) \right\}_{n \in \mathbb{N}}
+$$
+is a martingale if so is $X$.
+
+:::
+
+Now we turn to stocks market consist $N$ stocks, construct sample space as $\Omega$ be all possible path $(\mathbb{R}^{N})^{T}$. The absence of arbitrage give a risk-neutral measure for which
+$$
+S_{t-1}=\psi_{0}\mathop{{}\mathbb{E}}_{S_{t-1}}S_{t}
+$$
+and as before, take discount $\widetilde{S}_{t}=\psi_{0}^{t}S_{t}$ we have a martingale. And we claim that absence of martingale is equivalent to existence of risk-neutral measure.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+$$
+
+$$
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+

@@ -1,0 +1,253 @@
+## Upper bounds on random sub-gaussian matrices
+
+Recall the definition of $\bm{A}$, we fixed $\bm{x}$ on the unit sphere. In fact, it's enough for an $\varepsilon$ net of it.
+
+
+::: {.proposition  name="Computing the operator norm on a net"}
+
+Let $\bm{A}\in \mathbb{R}^{m\times n}$ and $\varepsilon \in [0,1)$, then for any $\varepsilon$ net $N$ of the sphere $S^{n-1}$, we have
+$$
+\sup_{x\in N} \left\| \bm{Ax} \right\|_2\le \left\| \bm{A} \right\|\le \frac{1}{1- \varepsilon} \sup_{x \in N} \left\| \bm{Ax} \right\|
+$$
+
+:::
+
+:::: {.proof}
+
+The lower bound is trivial and, to prove the upper bound, fix a vector $\bm{x}\in S^{n-1}$ for which
+$$
+\left\| \bm{A} \right\|=\left\| \bm{Ax} \right\|_2
+$$
+and $\bm{x_0}\in N$ near $\bm{x}$ at most $\varepsilon$, then we have
+$$
+\begin{aligned}
+    \left\| \bm{Ax_0} \right\| \ge \left\| \bm{Ax} \right\|-\left\| \bm{A(x-x_0)} \right\|\le \left\| \bm{A} \right\|(1-\varepsilon) 
+\end{aligned}
+$$
+
+
+
+::::
+
+
+::: {.proposition  name=""}
+
+For any $\bm{x}\in \mathbb{R}^{n}$, then
+$$
+\sup_{\bm{y}\in N} \left\langle \bm{x},\bm{y} \right\rangle\le \left\| x \right\|\le \frac{1}{1-\varepsilon} \sup_{\bm{y}\in N} \left\langle \bm{x},\bm{y} \right\rangle
+$$
+
+:::
+
+
+:::: {.proof}
+
+To achieve upper bound, let $\bm{x_0} \in N$ near $\frac{\bm{x}}{\left\| \bm{x} \right\|}$, then
+$$
+\varepsilon^2 \ge \left\langle \frac{\bm{x}}{\left\| \bm{x} \right\|}-x_0,\frac{x}{\left\| \bm{x} \right\|}-x_0 \right\rangle =2-2\left\langle \frac{\bm{x}}{\left\| \bm{x} \right\|},x_0 \right\rangle
+$$
+thus
+$$
+\left\| \bm{x} \right\|\le \frac{2}{2-\varepsilon^2} \left\langle \bm{x},\bm{x_0} \right\rangle \le \frac{1}{1-\varepsilon} \left\langle \bm{x},\bm{x_0} \right\rangle
+$$
+when $\varepsilon\le 1$. And the lower bound is simply follows from Cauchy-Schwarz inequality:
+$$
+\left\langle \bm{x},\bm{y} \right\rangle\le \sqrt{\left\| \bm{x} \right\|^2 \left\| \bm{y} \right\|^2}=\left\| \bm{x} \right\|
+$$
+
+
+::::
+
+
+::: {.proposition #net-norm name=""}
+
+Let $\bm{A}\in \mathbb{R}^{m\times n}$ and $\varepsilon \in [0,\frac{1}{2})$, $N$ a $\varepsilon$ net of $S^{n-1}$ and $M$ of $S^{m-1}$, then
+$$
+\sup_{x\in N,y\in M} \left\langle \bm{Ax},\bm{y} \right\rangle \le \left\| \bm{A} \right\|\le \frac{1}{1-2 \varepsilon} \sup_{x\in N,y\in M} \left\langle \bm{Ax},\bm{y} \right\rangle
+$$
+Moreover, if $\bm{A}$ is symmetric, then we can take $\bm{x=y}$ in above formula.
+
+:::
+
+
+:::: {.proof}
+
+Pick $\bm{x}$ and $\bm{y}$ $s.t.$ $\left\| \bm{A} \right\|=\left\langle \bm{Ax},\bm{y} \right\rangle$, then select $\bm{x_0}$ and $\bm{y_0}$ near them respectively in $N$ and $M$. Then
+$$
+\begin{aligned}
+    \left\langle \bm{Ax},\bm{y} \right\rangle-\left\langle \bm{Ax_0},\bm{y_0} \right\rangle&
+    =\left\langle \bm{A(x-x_0)},\bm{y} \right\rangle+\left\langle \bm{Ax_0},\bm{y-y_0} \right\rangle
+    \\&\le 
+    \left\| \bm{A} \right\|\left( \left\| \bm{x}-\bm{x_0} \right\| \left\| \bm{y} \right\|+\left\| \bm{x_0} \right\|\left\| \bm{y-y_0} \right\| \right)
+    \\&\le 2 \varepsilon \left\| \bm{A} \right\|
+\end{aligned}
+$$
+when $\bm{A}$ is symmetric, $x_0$ also approximate $\bm{y}$ and then claim follows.
+
+::::
+
+
+
+::: {.proposition  name=""}
+
+Let $\bm{A}\in \mathbb{R}^{m\times n}$ and $\varepsilon \in [0,\frac{1}{2})$, $N$ a $\varepsilon$ net of $S^{n-1}$, we have
+$$
+\sup_{\bm{x}\in S^{n-1}} \left| \left\| \bm{Ax} \right\|-\mu \right| \ll \frac{1}{1-2 \varepsilon} \sup_{\bm{x}\in N} \left| \left\| \bm{Ax} \right\|-\mu \right|
+$$
+
+
+:::
+
+
+### The norms of sub-gaussian random matrices
+
+The following states that $\bm{A}$ with independent sub-gaussian entries satisfies
+$$
+\left\| \bm{A} \right\|\ll \sqrt{m}+\sqrt{n}
+$$
+with high probability.
+
+::: {.theorem #matrix-norm name="Norm of matrices with sub-gaussian entries"}
+
+Let $\bm{A}\in \mathbb{R}^{m\times n}$ with independent, mean zero, sub-gaussian entries, then for any $t>0$ we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\| \bm{A} \right\|\le CK(\sqrt{m}+\sqrt{n}+t)
+ \right\} \ge 1-2 e^{-t^2}
+$$
+where $K=\max _{ij} \left\| A_{ij} \right\|_{\psi_2}$
+
+
+:::
+
+
+:::: {.proof}
+
+**Step 1**. Take $\varepsilon=\frac{1}{4}$, then corollary \@ref(cor:covering-bound) yields we can find $\varepsilon$ net $N$ for $S^{n-1}$ and $M$ for $S^{m-1}$ with cardinalities less than $9^{n}$ and $9^{m}$. By proposition \@ref(prp:net-norm), we have
+$$
+\left\| \bm{A} \right\|\le 2 \max_{\bm{x\in }N, \bm{y}\in M} \left\langle \bm{Ax},\bm{y} \right\rangle
+$$
+
+**Step 2**. By proposition \@ref(prp:sub-gaussian-sum), we have
+$$
+\begin{aligned}
+    \left\| \left\langle \bm{Ax},\bm{y} \right\rangle \right\|^2_{\psi_2}&\le C \sum_{i=1}^{n} \sum_{j=1}^{m} \left\| A_{ij}x_iy_j \right\|_{\psi_2}^2
+    \\&\le 
+    CK^2 \sum_{i=1}^{n}\sum_{j=1}^{m} x_i^2y_j^2
+    = CK^2 \left\| \bm{x} \right\|\left\| \bm{y} \right\|=CK^2
+\end{aligned}
+$$
+Recall the definition, that is
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\langle \bm{Ax},\bm{y} \right\rangle \ge u \right\}\le 2 \exp \left(  \frac{-cu^2}{K^2} \right)
+$$
+
+**Step 3**. Clearly, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \max_{\bm{x}\in N,\bm{y}\in M}\left\langle \bm{Ax},\bm{y} \right\rangle \ge u \right\} \le \sum_{\bm{x}\in N,\bm{y}\in M}^{} \mathop{{}\mathbb{P}}\left\{ \left\langle Ax,y \right\rangle\ge u \right\}\le 9^{n+m} 2\exp(\frac{-cu^2}{K^2})
+$$
+Choose $u=CK(\sqrt{n}+\sqrt{m}+t)$, and large enough $C$ let $\frac{cu^2}{K^2}\ge 3(n+m)+t^2$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \max_{\bm{x}\in N,\bm{y}\in M}\left\langle \bm{Ax},\bm{y} \right\rangle \ge u \right\} \le \left( \frac{9}{e^{3}} \right)^{n+m} 2\exp(-t^2)\le 2 \exp(-t^2)
+$$
+It follows that
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\| \bm{A} \right\|\ge 2u \right\}\le 2\exp(-t^2)
+$$
+and this completes the proof by recalling the choice of $u$.
+
+
+
+
+::::
+
+
+::: {.proposition  name="Expected norm"}
+
+In the setting of \@ref(thm:matrix-norm), we have
+$$
+\mathop{{}\mathbb{E}}_{}\left\| \bm{A} \right\| \ll K (\sqrt{m}+\sqrt{n})
+$$
+
+:::
+
+
+:::: {.proof}
+
+Let $\xi=\left\| \bm{A} \right\|-CK(\sqrt{m}+\sqrt{n})$, we have $\mathop{{}\mathbb{P}}\left\{ \xi>CKt \right\}\le 2\exp(-t^2)$ by theorem \@ref(thm:matrix-norm) and
+$$
+\mathop{{}\mathbb{E}}_{}\xi=\mathop{{}\mathbb{P}}\left\{ \xi>CKt \right\}dCKt\le 2CK \int_{0}^{\infty}\exp(-t^2)dt=CK\sqrt{\pi}
+$$
+thus $\mathop{{}\mathbb{E}}_{}\left\| \bm{A} \right\|\le CK(\sqrt{m}+\sqrt{n})+O(1)\ll K(\sqrt{m}+\sqrt{n})$
+
+
+
+
+::::
+
+
+::: {.proposition  name="Optimality"}
+
+Now suppose $\bm{A}_{ij}$ have unit variance, then for sufficiently large $m$ and $n$, we have
+$$
+\mathop{{}\mathbb{E}}_{}\left\| \bm{A} \right\|\ge \frac{1}{4}(\sqrt{m}+\sqrt{n})
+$$
+
+:::
+
+
+:::: {.proof}
+
+Note
+$$
+\left\| \bm{A} \right\|\ge \left\| (\bm{A}_{i_1})_{i=1}^{m} \right\| \lor \left\| (\bm{A}_{1j})_{j=1}^{n} \right\|
+$$
+It follows that
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{}\left\| \bm{A} \right\|
+    & \ge  \mathop{{}\mathbb{E}}_{} \left[ \left\| (\bm{A}_{i_1})_{i=1}^{m} \right\| \lor \left\| (\bm{A}_{1j})_{j=1}^{n} \right\|
+ \right]
+ \\& \ge 
+ \mathop{{}\mathbb{E}}_{}
+\left\| (\bm{A}_{i_1})_{i=1}^{m} \right\| \lor\mathop{{}\mathbb{E}}_{} \left\| (\bm{A}_{1j})_{j=1}^{n} \right\|
+\\ &= 
+\sqrt{m}-o(1) \lor \sqrt{n}-o(1)
+\\&\ge \frac{1}{2}\left( \sqrt{m}+\sqrt{n}+o(1) \right)
+\\& \ge \frac{1}{4}(\sqrt{m}+\sqrt{n})
+\end{aligned}
+$$
+where the second inequality follows by proposition \@ref(prp:vector-norm-expectation) since $m$ and $n$ are sufficiently large.
+
+
+::::
+
+Clearly, we have $\left\| \bm{A} \right\|\ll \sqrt{n}$ for $m=n$ and
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\| \bm{A} \right\|\ge CK(\sqrt{n}+t) \right\}\le 4 \exp(-t^2)
+$$
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

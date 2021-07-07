@@ -1,0 +1,263 @@
+
+## Hoeffding’s inequality
+
+
+::: {.definition  name=""}
+
+**Symmetric Bernoulli distribution** takes value $-1$ and $1$ with probability $\frac{1}{2}$ each.
+
+:::
+
+
+::: {.theorem  name="Hoeffding's inequality"}
+
+Let $X_1,\ldots,X_N$ be independent symmetric Bernoulli r.v. and $a=(a_1,\ldots,a_N)\in \mathbb{R}^{N}$ then for any $t\ge 0$ we have:
+$$
+\mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le \exp\left(-\frac{t^{2}}{2\|a\|_{2}^{2}}\right)
+$$
+
+:::
+
+:::: {.proof}
+
+WLOG, suppose that $\|a\|_{2}=1$.
+$$ 
+\begin{aligned}
+    \mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}&=\mathbb{P}\left\{\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)\ge \exp(\lambda t)\right\} \\
+    &\le e^{-\lambda t} \mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)
+\end{aligned}
+$$
+Now consider $\mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)$, from the independency, we find
+$$ 
+\mathbb{E}\exp\left(\lambda \sum_{i=1}^{N} a_{i}X_{i}\right)=\prod_{i=1}^{N} \mathbb{E}\exp(\lambda a_{i}X_{i})
+$$
+Since the property of symmetric Bernoulli distribution, notice that for some fixed $i$,
+$$
+\mathbb{E}\exp(\lambda a_{i}X_{i})=\frac{\exp(\lambda a_{i})+\exp(-\lambda a_{i})}{2}=\cosh (\lambda a_{i})
+$$
+
+
+::: {.exercise  name=""}
+
+Show that
+
+$$
+\cosh (x)\le \exp(\frac{x^{2}}{2})\mathop{\text{ for all }}x\in \mathbb{R}
+$$
+
+:::
+
+It follows that
+$$
+\mathbb{E}\exp(\lambda a_{i}X_{i})\le \exp\left(\frac{\lambda^{2}a_{i}^{2}}{2}\right)
+$$
+and hence
+$$
+\begin{aligned}
+    \mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le e^{-\lambda t}\prod_{i=1}^{N} \exp(\lambda^{2}a_{i}^{2})&= \exp\left(-\lambda t+\frac{\lambda^{2}}{2}\sum_{i=1}^{N} a_{i}^{2}\right) \\
+    &= \exp\left(-\lambda t+\frac{\lambda^{2}}{2}\right) \\
+\end{aligned}
+$$
+Now pick $\lambda=t$, $f(\lambda)=-\lambda t+\frac{\lambda^{2}}{2}$ get the minimum, then
+$$ 
+\mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le \exp\left(\frac{t^{2}}{2}\right)
+$$
+
+::::
+
+Now return to \@ref(exm:tails-number), take the tail $r.v.$ to $X_i'=2X_i-1$, then Hoeffding’s inequality applies:
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n > \frac{3}{4}n \right\}=\mathop{{}\mathbb{P}}\left\{ S_n'>\frac{1}{2}n \right\}\le \exp \left( \frac{-n}{8} \right)
+$$
+
+Note we can part $\mathop{{}\mathbb{P}}\left\{ \left| S \right|\ge t \right\}$ as $\mathop{{}\mathbb{P}}\left\{ S \ge t \right\}+\mathop{{}\mathbb{P}}\left\{ -S \ge t \right\}$ and thus
+
+::: {.theorem  name="Hoeffding's inequality, two sided"}
+
+Let $X_1,\dots,X_N$ be independent symmetric Bernoulli r.v. and $a=(a_1,\ldots,a_N)\in \mathbb{R}^{N}$ then for any $t\ge 0$ we have:
+$$
+\mathbb{P}\left\{\sum_{i=1}^{N} a_{i}X_{i}\ge t\right\}\le \exp\left(-\frac{t^{2}}{2\|a\|_{2}^{2}}\right)
+$$
+
+:::
+
+::: {.proposition #chernoff-bound name="Chernoff bounds"}
+
+Let $X_i$ by independent, then for any $\lambda > 0$,
+$$
+\mathop{{}\mathbb{P}}\left\{ X_i \ge t \right\}\le e^{-\lambda t} M_{X_i}(t)
+$$
+and if $S_n=\sum_{i=1}^{n}X_i$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n\ge t \right\}\le e^{-\lambda t} \prod_{i=1} ^{n}M_{X_i}(t)
+$$
+Similarly, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n\le t \right\}\le e^{\lambda t} M_{X_i}(-t)
+$$
+
+
+
+:::
+
+
+:::: {.proof}
+
+Note $X_i\ge t \iff e^{\lambda X_i}\ge e^{\lambda t}$, then claim follows by Markov's inequality.
+
+::::
+
+
+
+The following extension of Hoeffding’s inequality is valid for general bounded random variables:
+
+
+::: {.theorem #general-hoeffding name="Hoeffding’s inequality for general bounded random variables"}
+
+Let $X_1,\dots,X_N$ be independent with bounded $X_i \in [m_i,M_i]$, then for any $t > 0$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{N} (X_i-\mathop{{}\mathbb{E}}_{}X_i) \ge t \right\} \le \exp \left( - \frac{2t^2}{\sum_{i=1}^{N} (M_i-m_i)^2} \right)
+$$
+
+:::
+
+
+:::: {.proof}
+
+
+::: {.lemma  name="Hoeffding’s lemma"}
+
+Let $X$ be $r.v.$ bounded by $X\in [m,M]$ $a.s.$ with mean $\mu$, then
+$$
+M_{X-\mu}(\lambda) \le \exp \left( \frac{\lambda^2(M-m)^2}{8} \right)
+$$
+
+
+:::
+
+
+Now we apply Hoeffding’s lemma. The Chernoff bound tell us:
+
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{n}(X_i-\mu_i) \ge t \right\} & \le \mathop{{}\mathbb{E}}_{} \left[ \exp \left( \lambda \sum_{i=1}^{n}(X_i-\mu_i) \right) \right] \exp (-\lambda t)
+    \\ &= 
+    \exp(-\lambda t)\prod_{i=1} ^{n} \mathop{{}\mathbb{E}}_{}\exp \left[ \lambda (X_i-\mu_i) \right]\\
+    & \le 
+    \exp(-\lambda t) \prod_{i=1} ^{n} \exp \left( \frac{\lambda^2(M_i-m_i)^2}{8} \right)
+    \\ &= 
+    \exp\left[ \frac{\lambda^2}{8} \sum_{i=1}^{n}(M_i-m_i)^2-\lambda t \right]
+\end{aligned}
+$$
+To minimize over $\lambda \ge 0$, we have
+$$
+\begin{aligned}
+    \lambda &= \frac{4t}{\sum_{i=1}^{n} (M_i-m_i)^2}
+\end{aligned}
+$$
+then substituting it complete the proof.
+
+::::
+
+
+
+
+::: {.exercise  name="Boosting randomized algorithms"}
+
+Suppose $(X_{i})_{i \in \mathbb{N}^*}$ are $i.i.d.$ with $\text{Ber}(\frac{1}{2}-\delta)$, where $\delta > 0$. Show that
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n \ge \frac{1}{2}n \right\} \le \epsilon
+$$
+whenever $n \ge \frac{1}{2\delta^2} \ln\left( \frac{1}{\epsilon} \right)$.
+
+:::
+
+
+::: {.solution}
+
+By the Hoeffding’s inequality \@ref(thm:general-hoeffding):
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ S_n \ge \frac{1}{2}n \right\}&=\mathop{{}\mathbb{P}} \left\{ \sum_{i=1}^{n}(X_i-\frac{1}{2}+\delta) \ge  n \delta \right\} \le \exp(-\frac{2n^2\delta^2}{n})
+\end{aligned}
+$$
+to ensure $\exp \left( 2n\delta^2 \right) \le \epsilon$, we must have $n \ge \frac{1}{2\delta^2} \ln \left( \frac{1}{\epsilon} \right)$.
+
+:::
+
+
+::: {.exercise  name="Robust estimation of the mean"}
+
+Suppose we want to estimate $\mu$ from sample $X_1,\dots,X_n$ with $\epsilon$-accurate, $i.e.$, as small $\mathop{{}\mathbb{P}}\left\{ \left| \hat{\mu}-\mu \right|>\epsilon \right\}$ as possible. 
+
+1.  Show that a sample of size $n = O(\frac{\sigma^2}{\epsilon^2})$ is sufficient to compute an $\epsilon$-accurate estimate with probability at least $\frac{3}{4}$, where $\sigma^2=\mathop{\text{Var}}X$.
+2.  Show that a sample of size $n=O(\log(\delta^{-1})\frac{\sigma^2}{\epsilon^2})$ is sufficient to compute an $\epsilon$-accurate estimate with probability at least $1-\delta$.
+
+:::
+
+
+::: {.solution}
+
+1.  Let $\hat{\mu}=\frac{1}{n}\sum_{i=1}^{n} X_i$, then we see that
+    $$
+    \begin{aligned}
+        \mathop{{}\mathbb{P}}\left\{ \left| \hat{\mu}-\mu \right|>\epsilon \right\}\le \frac{\mathop{{}\mathbb{E}}_{}(\hat{\mu}-\mu)^2}{\epsilon^2}=\frac{\frac{1}{n^2}\mathop{{}\mathbb{E}}_{}\sum_{i=1}^{n}(X_i-\mu)^2}{\epsilon^2}=\frac{\sigma^2}{n \epsilon^2}
+    \end{aligned}
+    $$
+2.  Suppose $(\hat{\mu}_i)_{i=1}^{m}$ are drawn independent as in part **1**, let $Y_i=\bm{1}_{ \hat{\mu}_i-\mu>\epsilon}$, then $Y_i$ are Bernoulli with $p_i \le \frac{1}{4}$. Denote
+    $$
+    \hat{\mu}=\text{Median of } \left( \hat{\mu}_i \right)_{i=1}^{m}
+    $$
+    then by general Hoeffding’s inequality \@ref(thm:general-hoeffding):
+    $$
+    \begin{aligned}
+        \mathop{{}\mathbb{P}}\left\{  \hat{\mu}-\mu >\epsilon \right\}&=\mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{m} Y_i \ge \frac{m}{2} \right\}
+        \\&\le \mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{m} (Y_i-p_i) \ge \frac{m}{4} \right\}
+        \\& \le 
+        \exp\left( -\frac{m}{8} \right)
+    \end{aligned}
+    $$
+    Similarly, we have $\mathop{{}\mathbb{P}}\left\{ \hat{\mu}-\mu<-\epsilon \right\}\le \exp\left( - \frac{m}{8} \right)$ and hence
+    $$
+    \mathop{{}\mathbb{P}}\left\{ \left| \hat{\mu}-\mu \right| \ge \epsilon \right\} \le  2 \exp \left( - \frac{m}{8} \right)
+    $$
+    To ensure that smaller than $\delta$, we should have $m \ge 8 \ln (2 \delta ^{-1})$ and claim follows by observe that we use $m\times n$ samples.
+
+
+:::
+
+
+::: {.exercise #small-ball-1  name="Small ball probabilities"}
+
+Let $X_1,\dots,X_n$ be non-negative independent $r.v.'s$ with continuous distribution. Assume that the densities of $X_i$ are bounded by $1$.
+
+1.  Show that for all $t>0$, the MGF of $X_i$ satisfies
+$$
+\mathop{{}\mathbb{E}}_{}\exp(-t X_i) \le \frac{1}{t}
+$$
+2.  For any $\epsilon>0$, show that
+    $$
+    \mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{n} X_i \le \epsilon n \right\}\le (e \epsilon)^{n}
+    $$
+
+:::
+
+
+::: {.solution}
+
+1.  Note 
+    $$
+    \mathop{{}\mathbb{E}}_{}\left[ \exp(-t X_i) \right]=\int_{0}^{\infty} f_i(x) e^{-tx}dx \le \int_{0}^{\infty} e^{-tx}=\frac{1}{t}
+    $$
+2.  For any $\epsilon$, note
+    $$
+    \sum_{i=1}^{n}X_i \le \epsilon n \iff \exp \left[ -\lambda \sum_{i=1}^{n} \frac{X_i}{\epsilon} \right]\ge \exp(-\lambda  n)
+    $$
+    then by Markov's inequality:
+    $$
+    \mathop{{}\mathbb{P}}\left\{ \sum_{i=1}^{n} X_i \le \epsilon n  \right\} \le e^{\lambda n} \prod_{i=1} ^{n} \mathop{{}\mathbb{E}}_{} \left[ \exp \left( - \frac{\lambda}{\epsilon} X_i \right) \right] \le e^{\lambda n} \left( \frac{\epsilon}{\lambda} \right)^{n}
+    $$
+    minimize over $\lambda>0$ and we find $\lambda=1$ give the desired results.
+
+:::
+

@@ -1,0 +1,155 @@
+## Chernoff’s inequality
+
+The general Hoeffding's inequality are not so sharp in case $(X_{i})_{i \in \mathbb{N}^*}$ are Bernoulli with parameter $p_i$ small enough to apply Poisson Limit Theorem: suppose $\mathop{{}\mathbb{E}}_{}S_n=\sum_{}^{} p_i=\mu$, then by Hoeffding's inequality \@ref(thm:general-hoeffding):
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n-\mu \ge t \right\}\le \exp(- \frac{2t^2}{n})
+$$
+which is not so sharp as Chernoff’s inequality giving below, since it's insensitive to the magnitude of $p_i$ (and thus, $\mu$). Figure \@ref(fig:hoeffding-chernoff) shows their difference.
+
+```{r hoeffding-chernoff, fig.align = "center", fig.cap="behavior when $\\mu=1$", out.width = '70%'}
+
+knitr::include_graphics("figures/hoeffding-chernoff.pdf")
+
+```
+
+::: {.theorem #chernoff-inequality name="chernoff inequality"}
+
+Let $X_{i}$ be independent Bernoulli r.v. with parameter $p_{i}$. Consider their sum $S_n=\sum_{i=1}^{n} X_{i}$ and denote $\mu=\mathbb{E}S_n$ then for $t\gt \mu$ we have:
+$$ 
+\mathbb{P}\left\{S_n\ge t\right\}\le e^{t-\mu}\left(\frac{\mu}{t}\right)^{t}
+$$
+
+:::
+
+::: {.proof}
+
+By Chernoff bound and independency of $X_i$:
+$$
+\mathop{{}\mathbb{P}}\left\{ S_n \ge t \right\}\le e^{-\lambda t} M_{S_n}(t)=e^{-\lambda t} \prod_{i=1}^{n} M_{X_i}(\lambda)
+$$
+Note the numeric inequality $1+x \le e^{x}$:
+$$ 
+\mathbb{E}\exp(\lambda X_{i})=e^{\lambda}p_i+(1-p_i)=1+\left(e^{\lambda}-1\right)p_i\le \exp\left((e^{\lambda}-1)p_i\right) 
+$$
+Then
+$$
+\prod_{i=1}^{N} \mathbb{E} \exp(\lambda X_{i})\le \exp\left[(e^{\lambda}-1)\sum_{i=1}^{N} p_i\right]=\exp[(e^{\lambda}-1)\mu]
+$$
+Finally, pick $\lambda=\ln(t /\mu)$, we complete the proof.
+
+:::
+
+::: {.proposition  name="lower tail"}
+
+For any $t\lt \mu$ we have
+$$
+\mathbb{P}\left\{S_N\le t\right\}\le e^{t-\mu}\left(\frac{\mu}{t}\right)^{t}
+$$
+
+:::
+
+::: {.proof}
+
+Note:
+$$
+\begin{aligned}
+    \mathbb{P}\left\{S_N\le t\right\}&= \mathbb{P}\left\{-S_N\ge -t\right\} \le \frac{\mathbb{E}\exp(-\lambda S_N)}{\exp(-\lambda t)}  \\
+    &= e^{\lambda t}\cdot \prod_{i=1}^{N} \mathbb{E}e^{-\lambda X_{i}} \le e^{\lambda t} \exp \left[ (e^{-\lambda}-1)\mu \right]
+\end{aligned}
+$$
+Then replace $-\lambda=\ln(t /\mu)$.
+
+:::
+
+::: {.proposition  name="Poisson tail"}
+
+Let $X\sim \mathop{\text{Pois}}(\lambda)$, then for any $t\gt \mu$, we have
+$$
+\mathbb{P}\left\{X\ge t\right\}\le e^{-\lambda}\left(\frac{e \lambda}{t}\right)^{t}
+$$
+
+:::
+
+::: {.proof}
+
+According to the Poisson limit theorem, if $X\sim \mathop{\text{Pois}}(\lambda)$, we can construct a series of r.v. where $X_{i}\sim \mathop{\text{Ber}}(p_{i})$ s.t. $X=\sum_{i=1}^{\infty} X_{i}$ and note that $X_{i}\ge 0$ for every $i$ so we can use MCT.
+$$
+\begin{aligned}
+    \mathbb{P}\left\{X\ge t\right\}&\le 
+    \exp(-\lambda t)\cdot \prod_{i=1}^{\infty} \mathbb{E}\exp(\lambda X_{i})
+    \\ & \le 
+    \exp \left( \lambda(e^{t}-1) \right)
+\end{aligned}
+$$
+It follows some similar step and we done.
+
+:::
+
+
+::: {.proposition #chernoff-inequality-small name="Chernoff’s inequality: small deviations"}
+
+In the setting of theorem \@ref(thm:chernoff-inequality), for $\delta \in (0,1]$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| S_n-\mu \right|\ge \delta\mu \right\} \le 2 \exp \left( -c \mu \delta^2 \right)
+$$
+where $c$ is an absolute constant.
+
+:::
+
+
+::: {.proof}
+
+We only show the positive side, by chernoff inequality
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ S_n-\mu \ge \delta\mu \right\}&\le e^{-\lambda (\delta+1)\mu} \mathop{{}\mathbb{E}}_{}\exp \left( \lambda S_n \right)
+    \le e^{\delta \mu} \left( \frac{1}{\delta+1} \right)^{(\delta+1)\mu}
+\end{aligned}
+$$
+Taking log each side, then we show that
+$$
+-\delta+(\delta+1) \ln(\delta+1) \ge  c\delta^2
+$$
+holds for some $c$. It's possible by noting 
+
+```{r chernoff-small, fig.align = "center", fig.cap=" small deviations", out.width = '70%'}
+
+knitr::include_graphics("figures/chernoff-small.pdf")
+
+```
+
+:::
+
+As consequence, by Poisson Limit Theorem, we have when $t$ is small, Poisson is almost sub-gaussian(see later):
+
+::: {.corollary  name=""}
+
+Let $X\sim \text{Pois}(\lambda)$, for $t \in (0,\lambda]$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left| X-\mu \right|\ge t \right\}\le 2\exp \left( - \frac{ct^2}{\lambda} \right)
+$$
+
+:::
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

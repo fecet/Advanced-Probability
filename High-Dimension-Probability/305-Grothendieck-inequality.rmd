@@ -1,0 +1,241 @@
+## Application: Grothendieck’s inequality and semidefinite programming
+
+::: {.theorem #grothendieck-inequality name="Grothendieck’s inequality"}
+
+Suppose $\bm{A}\in \mathbb{R}^{m\times n}$, assume that, for any $x_i,y_i \in \{ -1,1 \}$, we have
+$$
+\left| \sum_{i,j}^{} a_{ij} x_i y_j \right|\le 1
+$$
+then, for any Hilbert space $\mathcal{H}$ and any normal vectors $u_i,v_j \in \mathcal{H}$, we have
+$$
+\left| \sum_{i,j}^{} a_{ij} \langle u_i,v_j \rangle  \right|\le K
+$$
+where $K$ is an absolute number.
+
+:::
+
+
+::: {.remark}
+
+The assumption can be equivalently stated as
+$$
+\left| \sum_{i,j}^{}a_{ij}x_{i}y_i \right|\le \max \left| x_i \right|\cdot \max_{} \left| y_j \right|
+$$
+and the conclusion can be equivalently stated as
+$$
+\left| \sum_{i,j}^{} a_{ij} \langle u_i,v_j \rangle  \right|\le K \max \left\| u_i \right\|\cdot \max \left\| v_j \right\|
+$$
+for any $u_i,v_j \in \mathcal{H}$.
+
+:::
+
+
+:::: {.proof}
+
+We show that $K \le 288$. 
+
+**Step 1**. Choose $K=K(\bm{A})$ be the smallest number that makes conclusion valid for given $\bm{A}$, we can always do that as $K=\sum_{ij}^{}\left| a_{ij} \right|$ is one of them. Our goal is to show that $K(\bm{A})$ does actually not depend on $\bm{A}$.
+
+Note the Hilbert space are indifferential with the space spanned by the $m+n$ vectors $\left\{ u_i,v_j \right\}$ and thus we can treated it as finite dimensional space and each norm are equivalent. It follows that we can specify $\mathcal{H}=\mathbb{R}^{m+n}$ equipped $\left\| \cdot \right\|_2$. Note the range of $\sum_{}^{} a_{ij} \bm{u_i'v_j}$ should be closed, we can fix $\bm{u_i},\bm{v_j} \in \mathbb{R}^{m+n:=N}$ which realize $K$:
+$$
+\sum_{i,j}^{} a_{ij} \langle \bm{u_i},\bm{v_j} \rangle =K
+$$
+
+**Step 2** Let $\bm{g}\sim \mathcal{N}(\bm{0,I})$, then let $U_i:=\langle g,u_i \rangle$ and $V_j:=\bm{\langle g,v_j \rangle }$, we have
+$$
+U_i \xlongequal{d} V_j \xlongequal{d} \mathfrak{Z} \text{ and } \mathop{{}\mathbb{E}}_{}U_i V_j=\langle \bm{u_i},\bm{v_j} \rangle 
+$$
+Thus $K=\mathop{{}\mathbb{E}}_{}\sum_{i,j}^{}a_{ij}U_iV_j$. Let $\bm{u}:=(U_1,U_2,\dots,U_m)'$ and $\bm{v}:=(V_1,V_2,\dots,V_n)'$ and similarly define $\bm{x}$ and $\bm{y}$, the assumption become $\bm{x'Ay}=1$ while conclusion become $\mathop{{}\mathbb{E}}_{}\bm{u'Av}\le K$. If we can bound $U_i$ by an constant $r$, then assumption yield $K^2\le r^2$.
+
+**Step 3** To this end, truncate $\mathfrak{Z}$ by an constant $r\ge 1$ to $\mathfrak{Z^{-}}=\mathfrak{Z}\bm{1}_{\left| \mathfrak{Z} \right|\le r}$ and $\mathfrak{Z}^{+}=\mathfrak{Z} \bm{1}_{\left| \mathfrak{Z} \right|>r}$, recall proposition \@ref(prp:truncated-gaussian). We have
+$$
+\left\| \mathfrak{Z}^{+} \right\|_2^2\le 2\left( r+\frac{1}{r} \right) \frac{1}{\sqrt{2\pi}} e^{-\frac{r^2}{2}}< \frac{4}{r^2}
+$$
+
+**Step 4**
+
+Truncate each $U_i$ and $V_j$ similar to $\mathfrak{Z}$, we have
+$$
+\begin{aligned}
+    K&=\mathop{{}\mathbb{E}}_{}\bm{u'^{-}A v^{-}}+2\mathop{{}\mathbb{E}}_{} \bm{u'^{+}A v^{-}}+\mathop{{}\mathbb{E}}_{} \bm{u'^{+}A v^{+}} 
+    \\& \le 
+    2r+ \frac{4K}{r}+\frac{4K}{r^2}
+\end{aligned}
+$$
+where the inequality follows by all Hilbert space share the same $K$ and Cauchy-Schwarz inequality. Choose $r$ to minimize $K$, we have
+$$
+K \le 63.2865
+$$
+
+
+::::
+
+When $\bm{A}$ is self-adjoint, we have
+
+::: {.proposition #symmetric-grothendieck name=""}
+
+Suppose $\bm{A}\in \mathbb{R}^{m\times n}$ is either positive-semidefinite or has zero diagonal, assume that, for any $x_i,y_i \in \{ -1,1 \}$, we have
+$$
+\left| \sum_{i,j}^{} a_{ij} x_i x_j \right|\le 1
+$$
+then, for any Hilbert space $\mathcal{H}$ and any normal vectors $u_i,v_j \in \mathcal{H}$, we have
+$$
+\left| \sum_{i,j}^{} a_{ij} \langle u_i,v_j \rangle  \right|\le 2K
+$$
+where $K$ is the Grothendieck constant.
+
+:::
+
+
+### Semidefinite programming
+
+::: {.definition  name=""}
+
+A semidefinite program(SDP) is an optimization problem that:
+$$
+\begin{aligned}
+    \max &\quad \langle \bm{A},\bm{X} \rangle 
+    \\s.t. &\quad \bm{X} \ge  0 \\
+    & \langle \bm{B_i},\bm{X} \rangle =b_i, \forall i
+\end{aligned}
+$$
+where $\bm{A,B_i}\in \mathbb{R}^{n\times n}$.
+
+:::
+
+Note that semidefinite matrices form a convex set and SDP is a convex program. It's a good news since there are variety of computationally efficient solvers available for convex programs. That motivate us to relax computationally hard problem to SDP. Such as:
+
+\begin{equation}
+    \begin{aligned}
+        \max \quad& \bm{x'Ax}
+        \\s.t. \quad & \bm{x}=(x_1,x_2,\dots,x_n)\\
+        & x_i= \pm 1, \forall i
+    \end{aligned}
+(\#eq:int)
+\end{equation}
+
+where $\bm{A}\in \mathbb{R}^{n\times n}$ is self-adjoint. This is an integer optimization problem and known as NP-hard.
+
+Nonetheless, we can relax this problem to a SDP by replacing $x_i=\pm 1$ by their higher-dimensional analogs-unit vectors $\bm{x_i}\in \mathbb{R}^{n}$. Now the problem is:
+$$
+\begin{aligned}
+    \max &\quad \sum_{i,j}^{n} A_{ij} \langle \bm{x_i},\bm{x_j} \rangle 
+    \\s.t. &\quad \left\| X_i \right\|_2=1, \forall i
+\end{aligned}
+$$
+That is equivalent to the following SDP:
+
+\begin{equation}
+    \begin{aligned}
+        \max \quad & \langle \bm{A},\bm{X} \rangle 
+        \\s.t. \quad & \bm{X} \ge 0\\
+        & X_{ii}=1, \forall i
+    \end{aligned}
+(\#eq:sdp)
+\end{equation}
+
+As we can let $\bm{X}$ be the Gram matrix for vectors $\left\{ \bm{x_i} \right\}_{i=1}^{n}$.
+
+Grothendieck’s inequality guarantees the accuracy of semidefinite relaxations:
+
+
+::: {.theorem  name=""}
+
+Suppose $\bm{A\ge 0} \in \mathbb{R}^{n\times n}$, let $\text{INT}(\bm{A})$ denote the maximum in the integer optimization problem \@ref(eq:int) and $\text{SDP}(\bm{A})$ denote the maximum in the SDP \@ref(eq:sdp), then
+$$
+\text{INT}(\bm{A})\le \text{SDP}(\bm{A})\le 2K \cdot \text{INT}(\bm{A})
+$$
+where $K$ is the Grothendieck constant.
+
+:::
+
+
+:::: {.proof}
+
+The first inequality follows with taking $\bm{x_i=e_i}$ and the second follows from proposition \@ref(prp:symmetric-grothendieck).
+
+::::
+
+
+::: {.exercise  name=""}
+
+Let $\bm{A}\in \mathbb{R}^{m\times n}$, consider following optimization problem:
+$$
+\begin{aligned}
+    \max \quad & \sum_{i,j}^{} A_{ij} \langle \bm{x_i},\bm{y_j} \rangle 
+    \\s.t. \quad & \left\| x_i \right\|_2=\left\| x_j \right\|_2,\forall i,j
+\end{aligned}
+$$
+over $\bm{x_i}\in \mathbb{R}^{k}$. Formulate this problem as a semidefinite program.
+
+:::
+
+
+:::: {.proof}
+
+Note the target function is $\langle \bm{\tilde{A}},\bm{ZZ'} \rangle$ where $\tilde{\bm{A}}=\begin{bmatrix}
+\bm{0}	& \bm{A}	\\
+\bm{A'}	& 	\bm{0}\\
+\end{bmatrix}$, $\bm{Z}=\begin{bmatrix}
+\bm{X}	\\
+\bm{Y}	\\
+\end{bmatrix}$ and $\bm{X}$ are constructed by $\bm{x_i}$. Then $\bm{Z Z'}$ is nothing more than a positive-semidefinite matrix whose diagonal entries equal $1$.
+
+::::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+

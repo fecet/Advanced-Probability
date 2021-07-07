@@ -29,6 +29,8 @@ fontsize: 12pt
 \newcommand{\sub}{\subset}
 \newcommand{\subsets}{\subset}
 \newcommand{\exist}{\exists}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
 ```
 
 ```{r, setup, include=FALSE}

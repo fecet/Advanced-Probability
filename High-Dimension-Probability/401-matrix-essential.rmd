@@ -1,0 +1,209 @@
+# Random matrices
+
+## Preliminaries on matrices
+
+### Singular value decomposition
+
+
+Note that $\bm{AA'}$ and $\bm{A'A}$ share the same nonzero eigenvalues, and thus the singular values defined as:
+$$
+    s_i(\bm{A})=\sqrt{\lambda_i(\bm{AA'})}=\sqrt{\lambda_i(\bm{A'A})}
+$$
+
+then we have singular value decomposition(SVD):
+
+\begin{equation}
+    \bm{A}=\sum_{i=1}^{n} s_i \bm{u_i v_i'}=\bm{U\Sigma V^*}
+(\#eq:svd)
+\end{equation}
+
+For self-adjoint $\bm{A}$, they have spectrum decomposition and $s_i(\bm{A})=\left| \lambda_i(\bm{A}) \right|$.
+
+The quadratic form is something of the form $\bm{x'Ax}$ as a function of $\bm{x\neq 0}$, where $\bm{A}\in \mathbb{R}^{m\times m}$ is symmetric. To avoid effect of scale, we often use **Rayleigh quotient**:
+$$
+R_{\bm{A}}(\bm{x})=\frac{\bm{\langle Ax,x \rangle}}{\bm{\langle x,x \rangle}}
+$$
+
+::: {.theorem #rayleigh-extreme name=""}
+
+For Hermitian $\bm{A}$, $R(\bm{x},\bm{A})$ take minimum  $\lambda_n$ in $S_{\bm{A}}(\lambda_n)$ while maximum $\lambda_1$ in $S_{\bm{A}}(\lambda_1)$. Where $\lambda_1 \ge \lambda_2 \ge \dots \ge \lambda_n$.
+
+:::
+
+Consequently, we have:
+
+::: {.theorem #courant-fischer name="Courant–Fischer min–max theorem"}
+
+Suppose $\bm{A}$ is Hermitian and $\lambda_i$ are decreasing, then
+$$
+\lambda_i(\bm{A})=\max_{\mathop{\text{dim}} \bm{U}=i} \min_{\bm{x}} R_{\bm{A}}(\bm{x})
+$$
+
+:::
+
+Immediately, we have
+$$
+s_i(\bm{A})=
+\max_{\mathop{\text{dim}} \bm{U}=i} \min_{\bm{x}} \left\| Ax \right\|_2
+$$
+
+::: {.proposition  name=""}
+
+For given SVD \@ref(eq:svd),if $\bm{A}$ is invert, we have
+$$
+\bm{A^{-1}}=\sum_{i=1}^{n} \frac{1}{s_i} \bm{v_iu_i'}
+$$
+In fact, for any $\bm{A}$, we have
+$$
+\bm{A^{+}}=\bm{V\Sigma^+ U^*}
+$$
+
+:::
+
+Recall that we can see $\bm{A}\in \mathbb{K}^{m \times n}$ as an operator
+$$
+\left\| \bm{A} \right\|=\max _{\bm{x}\in \mathbb{R}^{n}} \frac{\left\| \bm{Ax} \right\|_2}{\left\| \bm{x} \right\|_2}=\max _{S^{n-1}} \left\| \bm{Ax} \right\|_2=\max_{\bm{x}\in S^{n-1},\bm{y}\in S^{m-1}} \left\| \bm{A} \right\|
+$$
+Moreover, for symmetric matrices one can take $\bm{x=y}$ in this formula. So we have $s_1(\bm{A})=\left\| \bm{A} \right\|$, consequently,
+$$
+s_n(\bm{A})=\frac{1}{\left\| \bm{A^{+}} \right\|}
+$$
+
+If now we see $\bm{A}$ as element in matrices space, the inner product defined as $\langle \bm{A},\bm{B} \rangle=\mathop{\text{tr}}\left( \bm{A'B} \right)$.
+
+Thus we have the Frobenius norm:
+$$
+\left\| \bm{A} \right\|_F=\sqrt{\mathop{\text{tr}}\left( \bm{A^*A} \right)}
+$$
+In terms of singular values, we have
+$$
+\left\| \bm{A} \right\|_F=
+\sqrt{\sum_{i=1}^{r} s_i(\bm{A})^2}
+$$
+Let's now compare the two norms, let $s=(s_n)$, we have
+$$
+\left\| \bm{A} \right\|=\left\| s \right\|_{\infty}, \left\| \bm{A} \right\|_{F}=\left\| s \right\|_2
+$$
+thus we have
+$$
+\left\| \bm{A} \right\|\le \left\| \bm{A} \right\|_F \le \sqrt{r} \left\| \bm{A} \right\|
+$$
+
+::: {.proposition  name=""}
+
+For any matrix $\bm{A}$, we have
+$$
+s_i\le \frac{1}{\sqrt{i}} \left\| \bm{A} \right\|_F
+$$
+
+
+:::
+
+
+:::: {.proof}
+
+As $\left\| \bm{A} \right\|_F=\sqrt{\sum_{i=1}^{n} s_i^2}$, we have
+$$
+\begin{aligned}
+    s_i\le \sqrt{\sum_{j=1}^{i}\frac{s_j^2}{i}}\le \frac{1}{\sqrt{i}} \sqrt{\sum_{j=1}^{n}s_j^2}=\frac{1}{\sqrt{i}} \left\| \bm{A} \right\|_F
+\end{aligned}
+$$
+
+::::
+
+### Low-rank approximation
+
+Suppose we want to approximate a given matrix $\bm{A}$ by matrices with lower rank $\bm{A_k}$ where $k<r$. The **Eckart-Young-Mirsky’s theorem** say the $\bm{A_k}$ is obtained by truncating the singular value decomposition of $\bm{A}$ at the $k$th term:
+$$
+\bm{A}_k=\sum_{i=1}^{k} s_i\bm{u_iv_i^*}
+$$
+and $\bm{A_k}$ is called the best rank $k$ approximation of $\bm{A}$.
+
+
+::: {.proposition  name="Best rank $k$ approximation"}
+
+Let $\bm{A}_k$ be the best rank $k$ approximation of a matrix $\bm{A}$, then
+$$
+\left\| \bm{A-A_k} \right\|^2=s_{k+1}
+$$
+and
+$$
+\left\| \bm{A}-\bm{A_k} \right\|_F=\sqrt{\sum_{i=k+1}^{n}s_i \bm{u_iv_i^*}}
+$$
+
+:::
+
+
+### Approximate isometries
+
+By theorem \@ref(thm:rayleigh-extreme), for any matrix $\bm{A}$, we have
+$$
+s_{n} \left\| x-y \right\|\le \left\| Ax-Ay \right\|\le s_1 \left\| x-y \right\|
+$$
+thus operator $\bm{A}$ can only change distance by a factor that between $s_n$ and $s_1$. That implies isometry matrix can only have $1$ as singular value: 
+
+::: {.proposition #isometries name="Isometries"}
+
+Suppose $\bm{A}\in \mathbb{K}^{m\times n}$ and $m>n$, TFAE:
+
+1.  $\bm{A^*A=I}$
+2.  $\bm{AA^*}$ is an orthogonal projection.
+3.  $\bm{A}$ is isometry.
+4.  $s_n(\bm{A})=s_1(\bm{A})=1$.
+
+:::
+
+Quite often $\bm{A^*A}$ only approximate $\bm{I}$, then $\bm{A}$ is regard as an approximate isometry.
+
+
+::: {.lemma #approximate-isometry name="Approximate isometries"}
+
+Let $\bm{A}\in \mathbb{K}^{m\times n}$ with $\delta>0$, suppose
+$$
+\left\| \bm{A^*A-I} \right\|\le \max (\delta,\delta^2)
+$$
+then
+$$
+(1-\delta) \left\| \bm{x} \right\|\le \left\| \bm{Ax} \right\|\le (1+\delta) \left\| \bm{x} \right\|
+$$
+consequently, all the singular values are between $1\pm \delta$.
+
+:::
+
+
+:::: {.proof}
+
+WLOG, assume $\left\| \bm{x} \right\|=1$. Then
+$$
+\delta \lor \delta^2\ge \left| \langle \bm{(A^*A-I)x},\bm{x} \rangle \right|=\left| \left\| \bm{Ax} \right\|^2-1 \right|
+$$
+and note $\left| z-1 \right|\lor \left| z-1 \right|^2 \le \left| z^2-1 \right|$, it follows that
+$$
+\left| \left\| \bm{Ax} \right\|^2-1 \right|\le \delta
+$$
+
+::::
+
+The following partial converse holds:
+
+
+::: {.proposition  name=""}
+
+If $(1-\delta)\le s_i(\bm{A})\le 1+\delta$, then
+$$
+\left\| \bm{A^*A-I} \right\|\le 3 \left( \delta \lor \delta^2 \right)
+$$
+
+:::
+
+
+:::: {.proof}
+
+Let $\left\| \bm{x} \right\|=1$, we have $\left\| \bm{Ax} \right\|\in [1-\delta,1+\delta]$ and
+$$
+\left\| \bm{A^*A-I} \right\|\ge \left| \left\| Ax \right\|^2-1 \right|\ge \left| (1\pm \delta)^2-1 \right|=\left| \delta^2\pm 2\delta \right|\le 3 (\delta \lor \delta^2)
+$$
+
+::::
+
+

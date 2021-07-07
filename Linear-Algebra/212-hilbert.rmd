@@ -1,0 +1,43 @@
+# Hilbert spaces of Metrics
+
+The space $\mathbb{M}^{n\times n}$ becomes a Hilbert space with inner product
+$$
+\left< \bm{A},\bm{B} \right>=\mathop{\text{tr}}\left( \bm{A^{*}B} \right)
+$$
+which is called **Hilbert-Schmidt** inner product. The matrix units $\bm{E(ij)}$, where $\bm{E(ij)_{mn}}=1$ when $m=i,n=j$ and $0$ otherwise, form an orthogonal basis.
+
+
+::: {.theorem  name=""}
+
+Let $\phi:\mathcal{H}\to \mathbb{K}$ be a functional on finite dimension $\mathcal{H}$, then there is a unique vector $v \in \mathcal{H}$ $s.t.$
+$$
+\phi(x)=\left< v,x \right>
+$$
+
+:::
+
+
+:::: {.proof}
+
+Take orthonormal basis $\left\{ e_i \right\}_{i=1}^{n}$ in $\mathcal{H}$, then
+$$
+v=\sum_{i=1}^{n} \overline{\phi(e_i)}e_i
+$$
+satisfy the condition
+
+
+::::
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -1,0 +1,30 @@
+# Concentration without independence
+
+## Concentration of Lipschitz functions on the sphere
+
+### Lipschitz functions
+
+
+::: {.definition  name=""}
+
+Suppose function space between metric spaces $Y^{X}$, then $f$ is called **lipschitz** if there exist $L \in \mathbb{R}$ $s.t.$
+$$
+d_Y(f(u),f(v))\le L d_{X}(u,v)
+$$
+the infimum of all $L$ is defined as Lipschitz norm of $f$ and denoted as $\left\| \cdot \right\|_{Lip}$.
+
+
+:::
+
+Lipschitz functions form an intermediate class between uniformly continuous and differentiable functions:
+
+
+::: {.proposition  name=""}
+
+Lipschitz function is uniformly continuous and differentiable function must be Lipschitz:
+$$
+\left\| f \right\|_{Lip}\le \sup \left\| \nabla f(x) \right\|
+$$
+
+:::
+

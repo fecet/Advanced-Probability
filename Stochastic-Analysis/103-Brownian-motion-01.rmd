@@ -1,0 +1,42 @@
+# Brownian Motion
+
+## Scaled Symmetric Random Walk
+
+Note that we let $M_k=\sum_{i=1}^{k}X_i$, and then we defined the scaled symmetric random walk:
+
+$$
+W^{(n)}(t)=\frac{1}{n}M_{nt}
+$$
+
+where $nt\in \mathbb{N}$.
+
+For $0\le s\le t$, we have
+
+$$
+W^{(n)}(t)=\left( W^{n}(t)-W^{n}(s) \right) + W^{n}(s)
+$$
+
+from this equation, we find that the scaled symmetric random walk is a martingale.
+
+
+::: {.theorem  name="central limit"}
+
+Fix $t\ge 0$, as $n\to \infty$, the distribution of the scaled random walk $W^{n}(t)$ evaluated at time $t$ converges to the normal distribution with mean zero and variance $t$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+As $n\to \infty$, the distribution of $S_n(t)$ where
+
+$$
+S_n(t) = S(0)u_n^{H_{nt}}d_n^{T_{nt}}
+$$
+
+and $u_n=1+\frac{\sigma}{\sqrt{n}}$ with $d_n=\frac{\sigma}{\sqrt{n}}$
+
+:::
+
+
+

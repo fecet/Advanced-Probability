@@ -1,0 +1,89 @@
+## Spherical Distribution
+
+::: {.definition  name="spherical distribution"}
+
+A distribution is called a spherical distribution if a random vector $X$ is uniformly distributed on the Euclidean sphere in $\mathbb{R}^{n}$ with center at $0$ and radius $\sqrt{n}$.
+$$
+X\sim \mathop{\text{Unif}}\left(\sqrt{n}S^{n-1}\right)
+$$
+where $S^{n-1}$ is the sphere in $\mathbb{R}^{n}$.
+
+:::
+
+::: {.proposition  name=""}
+
+A spherical distributed random vector $X$ is isotropic.
+
+:::
+
+::: {.proof}
+
+$$
+\bm{X}=\begin{pmatrix} X_1\\X_2\\ \vdots \\X_n \end{pmatrix} \sim \mathop{\text{Unif}}\left(\sqrt{n}S^{n-1}\right)
+$$
+then for any $x\in \mathbb{R}^{n}$, we have:
+$$
+\left<\bm{X},x\right>= \left<\bm{X},\left\|x\right\|_{2}e\right>\text{ in distribution}
+$$
+this means that for every $x_1,x_2\in \mathbb{R}^{n}$, $\left<\bm{X},x_1\right>= \left<\bm{X},x_2\right>$ in distribution. So
+$$
+\mathop{{}\mathbb{E}}\left<\bm{X},x\right>^{2}=\frac{1}{n}\sum_{i=1}^{n} \mathop{{}\mathbb{E}}\left<\bm{X},\left\|x\right\|_{2}e_{i}\right>^{2}=\frac{1}{n}\mathop{{}\mathbb{E}}\sum_{i=1}^{n} \left(\left\|x\right\|_{2}X_{i}\right)^{2}=\left\|x\right\|_{2}^{2}\mathop{{}\mathbb{E}}\frac{1}{n}\sum_{i=1}^{n} X_{i}^{2}=\left\|x\right\|_{2}^{2}
+$$
+And in above proof, we used $\left\|X\right\|_{2}^{2}=n$ which means $X_{i}$ s are not independent.
+
+:::
+
+::: {.definition  name="multivariate normal"}
+
+We say a random vector $X=\begin{pmatrix} X_1\\ \vdots \\ X_n \end{pmatrix}$ is multivariate normal if $X_1,\dots,X_n$ are independent $r.v.$ of $\mathcal{N}(0,1)$, denoting as
+$$
+\bm{X}\sim \mathcal{\bm{N}}\left(\bm{0},\bm{I}_n\right)
+$$
+
+:::
+
+::: {.proposition  name=""}
+
+Consider a random vector  $X\sim \bm{N}(0,\bm{I}_n)$, then the density is 
+$$
+f(x)=\prod_{i=1}^{n} \frac{1}{\sqrt{2\pi}}e^{-x_{i}^{2}/2}=\frac{1}{2\pi}e^{-\left\|x\right\|_{2}^{2}/2}, x\in \mathbb{R}^{n}
+$$
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
