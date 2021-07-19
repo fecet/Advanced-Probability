@@ -83,7 +83,7 @@ $$
 
 Suppose that $\tau$ is a stopping time $s.t.$ for some $N\in \mathbb{N}$ and $\varepsilon>0$, we have $\forall n \in \mathbb{N}$:
 $$
-\mathop{{}\mathbb{P}}_{\mathcal{F}_n}(\tau\le n+N)>\varepsilon
+\mathop{{}\mathbb{P}}_{\mathcal{F}_n}\left\{ \tau\le n+N \right\}>\varepsilon
 $$
 $a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
 
@@ -91,6 +91,176 @@ $a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
 :::
 
 ## Convergence Theorem
+
+Under the general setting for $X,C,Y$ and numbers $a<b$, where we play stake $C=1$ when $X< a$ and stop if $X> b$, namely, for $n\ge 2$
+$$
+C_n:=\bm{1}_{C_{n-1}=1}\bm{1}_{X_{n-1}\le b}+\bm{1}_{C_{n-1}=0}\bm{1}_{X_{n-1}<a}
+$$
+Then we denoted $U_N[a,b]$ as times of upcrossings from $a$ to $b$ by time $N$. Clearly, we have
+$$
+Y_{N} \ge (b-1)U_{N}[a,b]-(X_N-a)^{-}
+$$
+
+::: {.lemma #doob-upcrossings name="Doob's Upcrossing Lemma"}
+
+Let $X$ be a supermartingale, then
+$$
+(b-a) \mathop{{}\mathbb{E}}_{}U_N[a,b]\le \mathop{{}\mathbb{E}}_{}(X_N-a)^{-}
+$$
+
+:::
+
+
+:::: {.proof}
+
+From $Y_N$ is a supermartingale.
+
+::::
+
+
+::: {.corollary  name=""}
+
+Let $X$ be a supermartingale bounded in $L^{1}$, $i.e.$, $\sup_n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty$, then with $U_{N}[a,b] \nearrow U_{\infty}[a,b]$,
+$$
+(b-a)\mathop{{}\mathbb{E}}_{}U_{\infty}[a,b]\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
+$$
+and thus $\mathop{{}\mathbb{P}}\left\{ U_{\infty}[a,b]=\infty \right\}=0$.
+
+:::
+
+
+:::: {.proof}
+
+By \@ref(lem:doob-upcrossings), we have
+$$
+(b-a)\mathop{{}\mathbb{E}}_{}U_{N}[a,b]\le \left| a \right|+\mathop{{}\mathbb{E}}_{}\left| X_n \right|\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|
+$$
+for arbitrary $N$, then claim follows by taking $N \nearrow \infty$.
+
+::::
+
+### Doob's Forward Convergence Theorem
+
+
+::: {.theorem #doob-convergence name=""}
+
+Let $X$ be supermartingale bounded in $L^{1}$ then it's converges to some finite $X_{\infty}$ $a.s.$. 
+
+:::
+
+:::: {.proof}
+
+For $\omega\in \Omega$, divergence of $X_n(\omega)$ is equivalent to $X$ upcross some $[a,b]$ infinite times, take $[a,b]$ from $\mathbb{Q}$, that should be countable, thus $X_{\infty}$ exists $a.s.$. And finiteness comes from
+$$
+\mathop{{}\mathbb{E}}_{}\left| X_{\infty} \right|=\mathop{{}\mathbb{E}}_{}\liminf \left| X_n \right|\le \liminf \mathop{{}\mathbb{E}}_{} \left| X_n \right|\le \sup \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
+$$
+
+::::
+
+::: {.corollary  name=""}
+
+If $X\ge 0$ is supermartingale, then $X_{\infty}$ exists $a.s.$.
+
+:::
+
+
+:::: {.proof}
+
+$X$ is bounded since it's supermartingale: $\mathop{{}\mathbb{E}}_{}\left| X_n \right|=\mathop{{}\mathbb{E}}_{}X_n\le \mathop{{}\mathbb{E}}_{}X_0$.
+
+::::
+
+## Martingale bounded in $L^2$
+
+### Martingale in $L^2$ 
+
+Suppose martingale $M\subset L^2$. Then for $s<t<u<v\in \mathbb{N}^{+}$, we have
+$$
+\mathop{{}\mathbb{E}}_{u}M_v=M_u
+$$
+that's, $M_u$ is projection of $M_v$ in $L^2(\mathcal{F}_u)$ and thus
+$$
+\left\langle M_t-M_s,M_v-M_u \right\rangle= 0
+$$
+hence
+$$
+\mathop{{}\mathbb{E}}_{}M_n^2=\mathop{{}\mathbb{E}}_{}M_0^2 + \sum_{k=1}^{n}\mathop{{}\mathbb{E}}_{} (M_k-M_{k-1})^2
+$$
+
+
+::: {.theorem  name=""}
+
+Let $M\subset L^2$ be a martingale, then it's bounded in $L^2$ iff
+$$
+\sum_{}^{}\mathop{{}\mathbb{E}}_{}(M_{k}-M_{k-1})^2<\infty
+$$
+and when this obtains, $M_n\xrightarrow{a.s.}M_{\infty}$ and $M_n \xrightarrow{L^2}M_{\infty}$.
+
+:::
+
+
+:::: {.proof}
+
+Equivalence of boundedness of $M$ and boundedness of this series is immediately. When this obtains, theorem \@ref(thm:doob-convergence) implies $M_n\xrightarrow{a.s.}M_{\infty}$ from boundedness and $M_n \xrightarrow{L^2}M_{\infty}$ since it's cauchy in $L^2$ from the conditions.
+
+::::
+
+### Sums of zero-mean independent variables in $L^2$    
+
+The following is just restatement of theorem \@ref(thm:variance-series-convergence) and its converse.
+
+::: {.theorem name=""}
+
+Suppose $(X_{i})_{i \in \mathbb{N}}$ is a sequence of independent $r.v.$ with zero mean and finite variance. Then
+
+1.  $\sum_{}^{}\sigma_i^2<\infty \implies \sum_{}^{}X_i$ converges $a.s.$.
+2.  If $(X_n)$ is bounded, then $\sum_{}^{}\sigma_i^2 \iff \sum_{}^{}X_i$ converges $a.s.$.
+
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
