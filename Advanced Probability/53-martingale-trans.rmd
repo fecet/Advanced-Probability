@@ -214,9 +214,12 @@ The following is just restatement of theorem \@ref(thm:variance-series-convergen
 Suppose $(X_{i})_{i \in \mathbb{N}}$ is a sequence of independent $r.v.$ with zero mean and finite variance. Then
 
 1.  $\sum_{}^{}\sigma_i^2<\infty \implies \sum_{}^{}X_i$ converges $a.s.$.
-2.  If $(X_n)$ is bounded, then $\sum_{}^{}\sigma_i^2 \iff \sum_{}^{}X_i$ converges $a.s.$.
+2.  If $(X_n)$ is uniformly bounded, then $\sum_{}^{}\sigma_i^2 \iff \sum_{}^{}X_i$ converges $a.s.$.
 
 :::
+
+
+
 
 
 

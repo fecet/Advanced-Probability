@@ -28,7 +28,7 @@ Nevertheless, it's often possible to pick versions of $Q(A)$ $s.t.$ $\bigcap_{a}
 
 ::: {.definition  name=""}
 
-$Q(\omega,A)$ is said to be a **regular version** of $\mathop{{}\mathbb{P}}_{\mathcal{F}}$ or a **regular conditional probability** provided that $Q$ is a transition probability kernel from $(\Omega,\mathcal{F})$ into $(\Omega,\mathcal{A})$.
+$Q(\omega,A)$ is said to be a **regular version** of $\mathop{{}\mathbb{P}}_{\mathcal{F}}$ or a **regular conditional probability** provided that $Q$ is a transition probability kernel from $(\Omega,\mathcal{F})$ into $(\Omega,\mathcal{A})$ and $Q(A)$ is a version of $\mathop{{}\mathbb{P}}_{\mathcal{F}}A$ for any $A\in \mathcal{A}$.
 
 :::
 
@@ -69,7 +69,53 @@ If $(\Omega,\mathcal{A})$ is a standard measurable space, then $\mathop{{}\mathb
 
 ### Conditional distribution
 
-Let $Y$ be a $r.v.$ taking values in $(E,\mathcal{E})$. Then the **conditional distribution** of $Y$ given $\mathcal{F}$ is any transition probability kernel $L(\omega,B)=$
+Let $X \in \mathcal{A}$ be a $r.v.$ taking values in $(E,\mathcal{E})$. Then the **conditional distribution** of $X$ given $\mathcal{F}\subset \mathcal{A}$ is any transition probability kernel $L(\omega,B):(\Omega,\mathcal{F})\to (E,\mathcal{E})$ such that $\forall B\in \mathcal{E}$.
+$$
+L(\omega,B)=\mathop{{}\mathbb{P}}_{\mathcal{F}}\left\{ X\in B \right\}(\omega)   
+$$
+If $\mathop{{}\mathbb{P}}_{\mathcal{F}}$ has regular version $Q$, then $Q_{\omega}\left\{ X\in B \right\}$ define a version of $L$. That happen if $(E,\mathcal{E})$ is standard.
+
+### Disintegrations
+
+Recall we can construct $\pi=\mu K$ from probability measure $\mu$ and probability kernel $K$ and then $d \pi= d\mu dK_{x}$, namely,
+$$
+\pi(dx,dy)=\mu(dx)K(x,dy)
+$$
+Whence we can regard $\pi$ as joint distribution of $X$ and $Y$, then $K(x,dy)$ is the conditional probability of $dy$ given $X=x$. 
+
+::: {.theorem  name=""}
+
+Let $\pi$ be probability measure on $(D\times E,\mathcal{D}\times \mathcal{E})$, $(E,\mathcal{E})$ is standard, then there exist a probability measure $\mu$ on $(D,\mathcal{D})$ and a probability kernel $K$ $s.t.$ $d\pi=d \mu dK_{x}$.
+
+:::
+
+### Conditional distribution of $Y$ given $X$   
+
+
+::: {.theorem  name=""}
+
+Suppose the joint distribution $\pi$ of $X,Y \in (\Omega,\mathcal{A})$, taking values in $(D,\mathcal{D})$ and $(E,\mathcal{E})$ respectively, has representation
+$$
+\pi(dx,dy)=\mu(dx)K(x,dy)
+$$
+then the kernel $L$ defined by:
+$$
+L_{\omega}(B)=L(\omega,B)=K(X(\omega),B)
+$$
+is a version of the conditional distribution of $Y$ given $\mathcal{F}=\sigma X$. And for any $f \in \mathcal{D} \times \mathcal{E}$,
+$$
+\mathop{{}\mathbb{E}}_{\mathcal{F}}f(X,Y)=\int _{E} K(X,dy)f(X,y)
+$$
+
+:::
+
+### Conditional densities
+
+
+
+
+
+
 
 
 

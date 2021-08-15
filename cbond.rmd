@@ -1,8 +1,0 @@
-$$
-\begin{aligned}
-    B \lor cr\times S &=B+0\lor (cr\times S-B)
-\\ &= B+cr(0 \lor S-\frac{B}{cr})
-
-\end{aligned}
-$$
-

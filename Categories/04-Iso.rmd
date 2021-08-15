@@ -1,0 +1,29 @@
+### Isomorphisms. T he problem of classification of objects and morphisms 
+
+
+::: {.exercise  name=""}
+
+Cause we can assign a basis to $\mathbb{C}^{\Lambda}$ as constant function that map $x$ to $1$ for each $x\in \mathbb{C}$, then it's clearly has cardinality $m$
+
+:::
+
+Similarity between endomorphisms in $\mathcal{K}$ is isomorphism in $\text{End}(\mathcal{K})$.
+
+
+::: {.exercise  name=""}
+
+All Jordan forms.
+
+:::
+
+Weakly similarity between morphisms is the same as isomorphism in 
+
+::: {.exercise  name=""}
+
+See [Matrix equivalence](https://en.wikipedia.org/wiki/Matrix_equivalence).
+
+:::
+
+### Other classes of morphisms 
+
+

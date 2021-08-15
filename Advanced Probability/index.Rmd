@@ -17,25 +17,6 @@ geometry: 'left=0.8in, right=0.4in, top=0.5in, bottom=1in'
 fontsize: 12pt
 ---
 
-
-```{=latex}
-<<<<<<< HEAD
-=======
-\newcommand{\lt}{<}
-\newcommand{\gt}{>}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Reals}{\mathbb{R}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\sub}{\subset}
-\newcommand{\subsets}{\subset}
-\newcommand{\exist}{\exists}
-\DeclareMathOperator*{\argmax}{arg\,max}
-\DeclareMathOperator*{\argmin}{arg\,min}
->>>>>>> 367af48177019dc5abf651d47ae9c64f8d1e0c73
-```
-
 ```{r, setup, include=FALSE}
 knitr::opts_chunk$set(warning=FALSE,
 					  message=FALSE,
