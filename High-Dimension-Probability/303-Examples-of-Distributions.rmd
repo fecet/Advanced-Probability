@@ -237,6 +237,7 @@ where $r=\left\| \bm{g} \right\|_{2}$ and $\theta=\frac{\bm{g}}{\left\| \bm{g} \
 
 :::: {.proof}
 
+TODO
 
 ::::
 
@@ -358,21 +359,3 @@ Recall that $\bm{Z:= \Sigma^{-\frac{1}{2}}X}$ is isotropic, $\bm{Z}$ is uniforml
 
 
 
-
-
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>

@@ -1,0 +1,22 @@
+--- 
+title: "Financial Stochastic Analysis"
+author: 
+    - Xie Zejian
+Institute: SUSTech
+date: "`r Sys.Date()`"
+site: bookdown::bookdown_site
+documentclass: book
+bibliography: [book.bib, packages.bib]
+biblio-style: apalike
+link-citations: yes
+description: "Notes"
+indent: false
+classoption: oneside
+geometry: 'left=0.8in, right=0.4in, top=0.5in, bottom=1in'
+fontsize: 12pt
+---
+
+
+
+
+

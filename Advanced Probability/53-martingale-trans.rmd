@@ -1,5 +1,7 @@
 ## Martingale Transformation
 
+This section contains results for discrete time.
+
 ### Doob's decomposition
 
 ::: {.definition  name=""}
@@ -8,37 +10,81 @@ A process $\left\{ X_{t} \right\}_{t \in \mathbb{N}}$ is said to be $\mathbb{F}$
 
 :::
 
-### Previsible process
 
-A process $X=\left\{ X_t \right\}_{t\in \mathbb{N^+}}$ is previsible if $X_n$ is $\mathcal{F}_{n-1}$ measurable.
+::: {.theorem #doob-decomposition name="Doob's decomposition theorem"}
 
-Think of $C_n$ as your sake on game $n$, and you have some strategy based on history up to $n-1$ to determine value of it, that make $C_n$ previsible. Now the total winning at $n$ is
-
+Let $X$ be integrable and adapted, then it can be decomposed as
 $$
-Y_n=\sum_{1\le i\le n}^{}C_i(X_i-X_{i-1}) =: (C X)_{n}
+X_n=X_0+M_n+A_n
 $$
-$CX$ is the martingale transform of $X$ by $C$, which is the discrete analogue of stochastic integral $\int C dX$.
-
-If $X$ isn't a fair game, you cannot beat it by some smart strategy:
-
-
-::: {.proposition  name="You can't beat the system"}
-
-Let $C$ be a bounded non-negative previsible process, $X$ be a supermartingale, $CX$ is a supermartingale null at $0$. 
-
-If $X$ is martingale, $CX$ is martingale if $C$ is bounded.
+where $M$ is a martingale while $A$ is a martingale, both starting at $0$.
 
 :::
 
-### Stopped supermartingale
+### Integration in discrete time
 
-Let $X$ be a supermartingale, with previous setting, we have process $C$ and $Y$, but we stop $C$ at time $\tau$ and stake $1$ each game. Now the winnings is:
+Suppose $M$ and $F$ are real-valued stochastic process and define:
 $$
-Y_n=X_{\tau \land n}-X_0
+X_n=M_0F_0+\sum_{n\ge 1}^{}(M_n-M_{n-1})F_n
 $$
-Here we use $X^{T}$ to present process $\left\{ X^{T}_{n}=X_{\tau \land  n} \right\}$, then it's a supermartingale if so is $X$. Thus if $X$ is a martingale, we have $\mathop{{}\mathbb{E}}_{}X_{\tau \land n}=\mathop{{}\mathbb{E}}_{}X_0$.
+that is the integral of $F \text{ w.r.t }$ to $M$ and write $X=\int FdM$
+
+
+::: {.theorem  name="You can't beat the system"}
+
+Let $F$ be a bounded predictable process, $X=\int FdM$ is a supermartingale if so is $M$ and $F\ge 0$, it's a martingale if so is $M$.
+
+
+:::
+
+
+::: {.proposition  name=""}
+
+Suppose $S$ and $T$ are stopping time of $\mathbb{F}$ with $S\le T$, for any $V \in \mathcal{F}_{S}$, then
+$$
+V \bm{1}_{(S,T]},V \bm{1}_{(s,\infty]},\bm{1}_{(S,T]},\bm{1}_{[0,S]}
+$$
+are all predictable. 
+
+:::
+
+:::: {.proof}
+
+Let $F=V \bm{1}_{(S,\infty]}$, note
+$$
+F_{n+1}=V \bm{1}_{(s,\infty]}(n+1)=V \bm{1}_{S\le n}\in \mathcal{F}_{n}
+$$
+thus $V \bm{1}_{(S,\infty]}$ is predictable and $V \bm{1}_{(S,T]}$ is predictable by noting it is difference between $V \bm{1}_{(T,\infty]}$ and $V \bm{1}_{(S,\infty]}$. Finally, let $V=1$ yields the other two.
+
+::::
+
+Let $F=\bm{1}_{[0,T]}$ in preceding theorem, we have the stopped supermartingale $\left\{ X^{T}_{n}=X_{\tau \land  n} \right\}$, is a supermartingale if so is $X$. 
 
 ### Doob's Optional-Stopping Theorem
+
+Here the time set is still $\mathbb{N}$.
+
+::: {.theorem  name=""}
+
+Let $M$ adapted to $\mathbb{F}$, TFAE:
+
+1. $M$ is a submartingale.
+2. 
+    For bounded stopping time $S\le T$,
+    $$
+    \mathop{{}\mathbb{E}}_{s}(M_{T}-M_{S})\ge 0   
+    $$
+    and both are integrable.
+3. 
+    For bounded stopping time $S\le T$,
+    $$
+    \mathop{{}\mathbb{E}}_{}(M_{T}-M_{S})\ge 0   
+    $$
+    and both are integrable.
+
+:::
+
+
 
 
 ::: {.theorem  name=""}
@@ -76,8 +122,50 @@ $$
 
 ::::
 
-### Awaiting the almost inevitable
+### Maxima and Minimum
 
+Suppose $X$ is a discrete marginal adapted to $\mathbb{F}$, for $n \in \mathbb{N}$, define
+$$
+M_n=\max _{k\le n}X_{k}, m_n=\min _{k\le n} X_{k}   
+$$
+
+
+::: {.theorem  name=""}
+
+Suppose $X$ is a submartingale, then for $b>0$,
+$$
+\begin{aligned}
+    b\mathop{{}\mathbb{P}}\left\{ M_n>b \right\}&\le \mathop{{}\mathbb{E}}_{}M_n^{+}\\
+    b \mathop{{}\mathbb{P}}\left\{ m_n\le -b \right\}&\le \mathop{{}\mathbb{E}}_{}M_n^{+}-\mathop{{}\mathbb{E}}_{}M_0
+\end{aligned}
+$$
+
+:::
+
+
+:::: {.proof}
+
+Let $\tau$ and $\sigma$ be the stopping time $\text{ s.t. }$
+$$
+\tau=\inf_{\mathbb{N}} \left\{ X_n\ge b \right\},\sigma=\inf _{\mathbb{N}}\left\{ X_n\le -b \right\}
+$$
+then $\left\{ M_n\ge b \right\}=\left\{ T\le n \right\}$, "untaking" expectation each side, we have
+$$
+b \bm{1}_{\tau\le n}\le X_{\tau \land n} \bm{1}_{\tau\le n} \le \mathop{{}\mathbb{E}}_{\tau \land n} X_n \bm{1}_{\tau \le  n} 
+$$
+for the minimum, note
+$$
+M_{\sigma \land n} = M_{\sigma}\bm{1}_{\sigma\le n}+M_{n}\bm{1}_{\sigma>n}\le -b \bm{1}_{\sigma\le n}+M_n \bm{1}_{\sigma >n}    
+$$
+
+::::
+
+When $M$ is a martingale, $\left| M \right|^{p}$ is a submartingale provided $M \subset L^p$.
+$$
+\mathop{{}\mathbb{E}}_{}\left( \left| M_{t} \right|^{p}-\left| M_{s} \right|^{p} \right)\ge \mathop{{}\mathbb{E}}_{} \left| M_{t}-M_{s} \right|^{p} \ge (\mathop{{}\mathbb{E}}_{}\left| M_{t}-M_{s} \right|)^{p}=0
+$$
+
+### Awaiting the almost inevitable
 
 ::: {.lemma  name=""}
 
@@ -90,7 +178,7 @@ $a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
 
 :::
 
-## Convergence Theorem
+### Upcrossings
 
 Under the general setting for $X,C,Y$ and numbers $a<b$, where we play stake $C=1$ when $X< a$ and stop if $X> b$, namely, for $n\ge 2$
 $$

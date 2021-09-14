@@ -1,0 +1,184 @@
+# Random Vector
+
+## Concentration of Norm
+
+Suppose $X=(X_1,X_2,\ldots,X_n)\in \mathbb{R}^{n}$ are independent with zero mean and unit variance, we have
+$$
+\mathop{{}\mathbb{E}}_{}\left\| X \right\|_{2}^2=\mathop{{}\mathbb{E}}_{}\sum_{i=1}^{n}X_i^2=\sum_{i=1}^{}\mathop{{}\mathbb{E}}_{}X_i^2=n
+$$
+so we expect $\left\| X \right\|_{2} \approx \sqrt{n}$. We will see $X$ is indeed $X$ is very close to $\sqrt{n}$ with high probability.
+
+::: {.theorem #norm-concentration name="concentration of norm"}
+
+Let $X=(X_1,X_2,\ldots,X_n)\in \mathbb{R}^{n}$ be a random vector with independent, sub-gaussian coordination $X_{i}$ that satisfy $\mathop{{}\mathbb{E}}X_{i}^{2}=1$. Then
+$$
+\left\|\left\|X\right\|_{2}-\sqrt{n}\right\|_{\psi_2}\le CK^{2}
+$$
+where $K=\max_{i}\left\|X_{i}\right\|_{\psi_2}$ and $C$ is absolute constant.
+
+:::
+
+::: {.proof}
+
+WLOG, assume that $K\ge 1$, note that
+$$
+\frac{1}{n}\left\|X\right\|_{2}^{2}-1=\frac{1}{n}\sum_{i=1}^{n} (X_{i}^{2}-1)
+$$
+Since $X_{i}$ is sub-gaussian then $X_{i}^{2}-1$ is sub-exponential, with
+$$
+\begin{aligned}
+    \left\|X_{i}^{2}-1\right\|_{\psi_1}&\le C\left\|X_{i}^{2}\right\|_{\psi_1} \\
+    &= C\left\|X_{i}\right\|_{\psi_2}^{2} \\
+    &\le CK^{2} \\
+\end{aligned}
+$$
+Applying Bernstein's inequality \@ref(cor:average-bernstein-inequality), we have
+$$
+\mathop{{}\mathbb{P}}\left\{\left|\frac{1}{n}\left\|x\right\|_{2}^{2}-1\right|\ge u\right\}\le 2\exp\left(\frac{-cn}{K^{4}}\min_{}(u^{2},u)\right)
+$$
+since we have assumed that $K\ge 1$ and thus $K^{4}\ge K^2$.
+
+Observe that for all $z\ge 0$ 
+$$
+\left|z-1\right|\ge \delta \implies \left|z^{2}-1\right|\ge \max_{}(\delta,\delta^{2})
+$$
+then
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{\left|\frac{1}{\sqrt{n}}\left\|X\right\|_{2}-1\right|\ge \delta\right\}&\le \left\{\mathop{{}\mathbb{P}}\left|\frac{1}{n}\left\|X\right\|_{2}-1\right|\ge \max_{}(\delta,\delta^{2})\right\} \\
+    &\le 2\exp\left(\frac{-cn}{K^{4}}\cdot \delta^{2}\right) \text{ with }u=\max_{}(\delta,\delta^{2})
+\end{aligned}
+$$
+changing $t=\delta\sqrt{n}$, we obtain
+$$
+\mathop{{}\mathbb{P}}\left\{\left|\left\|X\right\|_{2}-\sqrt{n}\right|\ge t\right\}\le 2\exp\left(-\frac{ct^{2}}{K^{4}}\right)\text{ for all }t\ge 0
+$$
+Then $\left\|X\right\|_{2}-\sqrt{n}$ is a sub-gaussian $r.v.$ and 
+$$
+\left\|\left\|X\right\|_{2}-\sqrt{n}\right\|_{\psi_2}\le CK^{2}
+$$
+:::
+
+
+::: {.remark}
+
+$X$ even even stays within constant distance from that sphere of radius $\sqrt{n}$ with high probability, say $0.99$. To see this, note $S_n=\left\| X \right\|_2^2$ has mean $n$ and standard deviation $O(\sqrt{n})$:
+$$
+\begin{aligned}
+    \mathop{\text{Var}} \left( \left\| X \right\|_2^2 \right)&=
+    \mathop{\text{Var}}\left( \sum_{i=1}^{n}X_i^2 \right)=\mathop{{}\mathbb{E}}_{}\left[ \left(  \sum_{i=1}^{n}X_i^2  \right)-n \right]^2
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{} \sum_{i}^{}\sum_{j}^{}(X_iX_j)^2 -n^2
+    \\ &= 
+    \sum_{i=1}^{n}\mathop{{}\mathbb{E}}_{}X_i^{4}+\sum_{i\neq j}^{}\mathop{{}\mathbb{E}}_{}X_i^2X_j^2-n^2
+\end{aligned}
+$$
+Note $\mathop{{}\mathbb{E}}_{}X_i^{4}=O(1)$ by definition of sub-gaussian \@ref(prp:sub-gaussian-prp) and $\mathop{{}\mathbb{E}}_{}X_i^2X_j^2=1$ when $i\neq j$. Thus
+$$
+\mathop{\text{Var}}\left( \left\| X \right\|_2^2 \right)=n O(1)-n=O(n)
+$$
+then the claim follows. That implies $\left\| X \right\|_{2}=\sqrt{S_n}$ ought to deviate by $O(1)$ around $\sqrt{n}$. This is because
+$$
+\sqrt{n \pm O(\sqrt{n})}=\sqrt{n} \pm O(1)
+$$
+
+
+:::
+
+
+::: {.proposition #vector-norm-expectation name="Expectation of the norm"}
+
+In the setting of theorem \@ref(thm:norm-concentration), show that
+
+1.  $\sqrt{n}-CK^2\le \mathop{{}\mathbb{E}}_{}\left\| X \right\|_2\le \sqrt{n}+CK^2$
+2.  $CK^2$ can be replaced by $o(1)\to 0$ as $n \to \infty$.
+3.  $\mathop{\text{Var}}\left\| X \right\|_{2}\le CK^{4}$
+
+:::
+
+
+::: {.solution}
+
+1.  Note that 
+    $$
+    \left|\mathop{{}\mathbb{E}}\left[\left\|X\right\|_{2}-\sqrt{n}\right]\right|\le \mathop{{}\mathbb{E}}\left|\left\|X\right\|_{2}-\sqrt{n}\right|=\left\|\left\|X\right\|_{2}-\sqrt{n}\right\|_{1}\le C\left\|\left\|X\right\|_{2}-\sqrt{n}\right\|_{\psi_2}
+    $$
+    thus
+    $$
+    \left|\mathop{{}\mathbb{E}}\left\|X\right\|_{2}-\sqrt{n}\right|\le CK^{2}\text{ where }K=\max_{i}\left\|X_{i}\right\|_{\psi_2}
+    $$
+    It follows that
+    $$
+    \sqrt{n}-CK^{2}\le \mathop{{}\mathbb{E}}\left\|X\right\|_{2}\le \sqrt{n}+CK^{2}
+    $$
+2.  For the $CK^2$ in the upper bound, we have
+    $$
+    \mathop{{}\mathbb{E}}\left\|X\right\|_{2}\le \sqrt{\mathop{{}\mathbb{E}}\left\|X\right\|_{2}^{2}}=\sqrt{n}
+    $$
+    by Jensen's inequality. For the lower bound, we have
+    $$
+    f(u)=\sqrt{u}-\frac{1}{2}(1+u-(u-1)^{2}),\ u\ge 0
+    $$
+    then changing $u$ with $\left\|X\right\|_{2}^{2}/n$ leads to
+    $$
+    \left\|X\right\|_{2}\ge \frac{\sqrt{n}}{2}\left(\frac{n+\left\|X\right\|_{2}^{2}}{n}-\left(\frac{\left\|X\right\|_{2}^{2}-\mathop{{}\mathbb{E}}\left\|X\right\|_{2}^{2}}{n}\right)^{2}\right)
+    $$
+    Take expectations, we find that
+    $$
+    \mathop{{}\mathbb{E}}\left\|X\right\|_{2}\ge \sqrt{n}-\frac{\mathop{\text{Var}}\left[ \left\|X\right\|_{2}^{2} \right]}{2n\sqrt{n}}
+    $$
+    and
+    $$
+    \frac{\mathop{\text{Var}}\left[ \left\|X\right\|_{2}^{2} \right]}{n}=\frac{1}{n}\sum_{i=1}^{n} \mathop{\text{Var}}\left[ X_{i}^{2} \right]\le \max_{i}\mathop{\text{Var}}\left[ X_{i}^{2} \right]\le \max_{i}\mathop{{}\mathbb{E}}X_{i}^{4}\le \max_{i}\left\|X_{i}\right\|_{\psi_2}^{4}=K^{4}
+    $$
+    thus
+    $$
+    \mathop{{}\mathbb{E}}\left\|X\right\|_{2}\ge \sqrt{n}-O(K^{4}/\sqrt{n})=\sqrt{n}-o(1)
+    $$
+3.  Note that
+    $$
+    \begin{aligned}
+        \mathop{\text{Var}}\left\| X \right\|_{2}&\le \mathop{{}\mathbb{E}}_{}\left( \left\| X \right\|-\sqrt{n} \right)^2
+        \\ &= 
+        \mathop{{}\mathbb{E}}_{}\left\| X \right\|_2^2-2\sqrt{n}\mathop{{}\mathbb{E}}_{}\left\| X \right\|_{2}+n
+        \\ &= 
+        2\sqrt{n}(\sqrt{n}-\mathop{{}\mathbb{E}}_{}\left\| X \right\|_{2})
+    \end{aligned}
+    $$
+    In the proof of statement 2, we have $\mathop{{}\mathbb{E}}_{}\left\| X \right\|_{2}\ge \sqrt{n}-O\left( \frac{K^{4}}{\sqrt{n}} \right)$ and thus $\mathop{\text{Var}}\left\| X \right\|_{2}\le O(K^{4})$.
+
+:::
+
+::: {.exercise  name="Small ball probabilities"}
+
+Let $X_1,\dots,X_n$ be non-negative independent $r.v.'s$ with continuous distribution. Assume that the densities of $X_i$ are bounded by $1$. Show that, for any $\epsilon>0$, we have
+$$
+\mathop{{}\mathbb{P}}\left\{ \left\| X \right\|_2\le \epsilon\sqrt{n} \right\}\le (C \epsilon)^{n}
+$$
+
+:::
+
+
+::: {.solution}
+
+Note $\forall t>0$,
+$$
+\mathop{{}\mathbb{E}}_{}\exp \left( -tX_i^2 \right)=\int _{0}^{\infty}e^{-tx^2}f_{X_i}(x)dx\le \int _{0}^{\infty}e^{-tx^2}dx=\frac{1}{2} \sqrt{\frac{\pi}{t}}
+$$
+By Chernoff bound, we have
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{P}}\left\{ \left\| X \right\|_{2}\le \epsilon\sqrt{n} \right\}&=\mathop{{}\mathbb{P}}\left\{ \left\| X \right\|_2^2\le \epsilon^2n \right\}
+    \\&\le e^{\epsilon^2n t}\prod_{i=1} ^{n}  M_{X_i^2}(-\epsilon^2n)
+    \\& \le 
+    e^{\epsilon^2nt}\left( \frac{1}{2}\sqrt{\frac{\pi}{t}} \right)^{n}
+\end{aligned}
+$$
+Then $t=\epsilon^{-2}$ yield the desired result.
+
+
+
+:::
+
+
+

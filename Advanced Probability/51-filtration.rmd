@@ -92,7 +92,7 @@ $$
 
 ::: {.definition  name=""}
 
-Let $\mathbb{F}$ be a filtration on $T$. A random time $\tau:\Omega \to \overline{T}$ is called a **stopping time** of $\mathbb{F}$ is $\{\tau \le t\} \in \mathcal{F}_{t}$ for each $t \in T$.
+Let $\mathbb{F}$ be a filtration on $T$. A random time $\tau:\Omega \to \overline{T}$ is called a **stopping time** of $\mathbb{F}$ if $\{\tau \le t\} \in \mathcal{F}_{t}$ for each $t \in T$.
 
 :::
 
@@ -110,7 +110,7 @@ If $\tau$ is a stopping time, the $\sigma$-Algebra of events known at time $\tau
 $$
 \mathcal{F}_\tau=\left\{A\in \mathcal{F}:A\cap \left\{\tau\le t\right\}\in \mathcal{F}_t\mathop{\text{ for all }}t\in \overline{T}\right\}
 $$
-A deterministic time is a special case which means $\tau(\omega)=t$ for every $\omega\in \Omega$, then $\mathcal{F}_\tau=\mathcal{F}_t$.
+A deterministic time is a special case, which means if $\tau(\omega)=t$ for every $\omega\in \Omega$, then $\mathcal{F}_\tau=\mathcal{F}_t$.
 
 If $\left\{X_t\right\}$ is a process, then $X_\tau$ denotes the value of the process at random time $\tau$, in other words, $X_\tau(\omega)=X_{\tau(\omega)}(\omega)$. The random variable $X_\tau$ is defined on $\left\{\tau\lt \infty\right\}$.
 
@@ -141,7 +141,7 @@ As we abuse $\mathcal{F}$ to denote all $\mathcal{F}$-measurable function, we ab
 1. $X=\{X_{t}\}_{t \in T}$ is adapted to $\mathbb{F}$.
 2. The path $t \mapsto X_{t}(\omega)$ is right continuous for every $\omega \in \Omega$.
 
-If $T$ is discrete, the second condition holds automatically, thus $X \in \mathbb{F} \iff X_t \in \mathcal{F}_{t}$.
+If $T$ is discrete, the second condition holds automatically, thus $X \in \mathbb{F} \iff X_t \in \mathcal{F}_{t}, \forall t$.
 
 Following relate $\mathcal{F}_{\tau}$ and $X \in \mathbb{F}$:
 

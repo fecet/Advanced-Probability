@@ -30,18 +30,3 @@ knitr::opts_chunk$set(warning=FALSE,
 
 ```
 
-```{=latex}
-\newcommand{\lt}{<}
-\newcommand{\gt}{>}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Reals}{\mathbb{R}}
-\newcommand{\Real}{\mathbb{R}}
-\newcommand{\reals}{\mathbb{R}}
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\Q}{\mathbb{Q}}
-\newcommand{\sub}{\subset}
-\newcommand{\subsets}{\subset}
-\newcommand{\exist}{\exists}
-```
-
-

@@ -25,7 +25,7 @@ whenever $s<t$. It's a supmartingale if $-X$ is submartingale and it's a marting
     that hold for all martingale $X$.
 3.  All the martingale is a vector space.
 4.  If $X$ and $Y$ are submartingale, then so is $X \lor Y$, if they are both supmartingale, so is $X \land Y$.
-5.  Let $f$ be a convex function and $X$ be martingale, if $f\circ X_t$ is integrable for all $t$, then $f \circ X$ is submartingale by Jensen's inequality \@ref(thm:jensen):
+5.  Let $f$ be a convex function and $X$ be martingale, if $f\circ X_t$ is integrable for all $t$, then $f \circ X$ is submartingale by Jensen's inequality:
     $$
     \mathop{{}\mathbb{E}}_{s} f \circ X_t \ge f\circ \mathop{{}\mathbb{E}}_{s}X_t = f\circ X_s
     $$
@@ -45,12 +45,7 @@ whenever $s<t$. It's a supmartingale if $-X$ is submartingale and it's a marting
 
 ### Uniformly integrable martingale
 
-
-::: {.proposition  name=""}
-
-Let $Z$ be integrable, define $X_t=\mathop{{}\mathbb{E}}_{t}Z,t\in T$, then $X=\left\{ X_t \right\}_{t\in T}$ is an $\mathbb{F}$ martingale and uniformly integrable.
-
-:::
+Suppose $Z$ is $r.v.$, then $\left\{ \mathop{{}\mathbb{E}}_{t}Z \right\}_{t\in T}$ generate a martingale, and it's uniformly integrable from the following:
 
 ::: {.lemma  name=""}
 
@@ -61,14 +56,88 @@ $$
 
 :::
 
-### Convergence Theorem
+
+:::: {.proof}
+
+Recall $\mathcal{K}$ is uniformly integrable if $f\circ\left| \mathcal{K} \right|$ is integrable for some convex and increasing $f\gg x$. To this end, take $f\ s.t.\ f\circ \left| Z \right|$ is integrable, then employ Jensen's inequality twice:
+$$
+f\circ \left| X \right| = f \circ \left| \mathop{{}\mathbb{E}}_{\mathcal{G}} Z \right|\le f \circ \mathop{{}\mathbb{E}}_{\mathcal{G}} \left| Z \right| \le \mathop{{}\mathbb{E}}_{\mathcal{G}} f\circ \left| Z \right|
+$$
+Now claim follows from taking expectations both sides.
+
+::::
+
+### Markov chains
 
 
-::: {.lemma  name=""}
+::: {.definition  name=""}
 
-Let $\left\{ X_{t} \right\}_{t\in T}$ be a supermartingale.
+The (discrete)process $X$ is called a Markov chain with transition kernel $P$ $\it{ w.r.t }$ $\mathbb{F}$ if $X$ is adapted to $\mathbb{F}$ and
+$$
+\mathop{{}\mathbb{E}}_{t} f\circ X_{t+1}=(Pf)\circ X_t
+$$
+for every $f \in \mathcal{E}_{+}$ and $t \in \mathbb{N}$.
 
 :::
+
+The following connect martingale and Markov chain:
+
+
+::: {.theorem  name=""}
+
+Suppose $X$ adapted to $\mathcal{F}$, then $X$ is a Markov chain with transition kernel $P \text{ w.r.t } \mathbb{F}$ iff
+$$
+M_n=f\circ X_n-\sum_{i=0}^{n-1}(Pf-f) \circ X_i
+$$
+is a martingale $\text{ w.r.t } \mathbb{F}$ for every $f \in \mathcal{E}_{+} \cap \mathcal{E}_{b}$. 
+
+:::
+
+:::: {.proof}
+
+Note that $M_{n+1}-M_n=f\circ X_{n+1}-(Pf)\circ X_n$.
+
+::::
+
+### Wiener Process
+
+
+::: {.definition  name=""}
+
+Process $W=(W_{i})_{i \in \mathbb{R}^+}$ adapted to $\mathbb{F}$ taking values in $\mathbb{R}$ with starting point $W_{0}=0$ is Winner process if
+$$
+\mathop{{}\mathbb{E}}_{s}f(W_{s+t}-W_{s})=\mathop{{}\mathbb{E}}_{}f\circ \mathcal{N}(0,t)   
+$$
+for all $s$ and $t$ in $\mathbb{R}_{+}$ and all $f \in \mathcal{B}_{+}$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+TFAE:
+
+1. The process $W$ is a winner process $\text{ w.r.t }\mathbb{F}$, 
+
+2. $\exp \left\{ rW_{t}-\frac{1}{2}r^2t \right\}$ is an $\mathbb{F}$ martingale.
+
+3. $W$ is an $\mathbb{F}$ martingale and $W_{t}^2-t$ is an $\mathbb{F}$ martingale.
+
+:::
+
+### Poisson martingale
+
+
+::: {.definition  name=""}
+
+The counting process $N$ adapted $\mathbb{F}$ is said to be a Poisson process with rate $c$ $\text{ w.r.t }\mathbb{F}$ if
+$$
+\mathop{{}\mathbb{E}}_{s}f(N_{s+t}-N_{s})=\mathop{{}\mathbb{E}}_{}f\circ \mathfrak{P}_{ct}
+$$
+
+:::
+
+The definition is equivalent to $N_{t}-ct$ is a martingale adapted to $\mathbb{F}$.
 
 
 
