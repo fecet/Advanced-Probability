@@ -3,7 +3,6 @@ $$
 \text{Attention}(Q,K,V)=\text{softmax}\left( \frac{QK'}{\sqrt{d}} \right)V
 $$
 
-
 $\bm{X}\in \mathbb{R}^{n\times d_{in}}$, $\bm{W_{K,h},W_{Q,h}}\in \mathbb{R}^{d_{in}\times d_{qk}},\bm{W}_{V,h}\in \mathbb{R}^{d_v\times d_{in}}$.
 
 The output of SAN is given by

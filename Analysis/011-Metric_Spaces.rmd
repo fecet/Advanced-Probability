@@ -229,18 +229,3 @@ Define $d_1(x,y)=d(x,y)+\rho(f(x),f(y))$. Give a $d$-open subset $U\subset X$, i
 :::
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
