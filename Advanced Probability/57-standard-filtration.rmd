@@ -1,0 +1,37 @@
+## Standard Filtrations and Modifications of Martingales
+
+Throughout, $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ is the probability space in the background, the time-set is $\mathbb{R}_{+}$ unless specified otherwise.
+
+### Augmentation
+
+::: {.definition  name=""}
+
+
+Filtration $\mathbb{F}$ is said to be augmented if $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ is complete and all negligible events in $\mathcal{F_0}$.
+
+:::
+
+Suppose that $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ is complete and $\mathbb{F}$ be arbitrary filtration. Let $\mathcal{N}$ be collection of all null sets and
+$$
+\bar{\mathcal{F}}_{t}=\sigma(\mathcal{F}_{t}\cup \mathcal{N})
+$$
+then $\bar{\mathbb{F}}$ is **augmentation** of $\mathbb{F}$, $\mathbb{F}$ is augmented iff $\mathbb{F}=\bar{\mathbb{F}}$.
+
+### Right-continuity
+
+Define
+$$
+\mathcal{F}_{t+}=\bigcap_{\varepsilon>0}\mathcal{F}_{t+\varepsilon}
+$$
+for filtration $\mathbb{F}$, then $\mathbb{F}_{+}$ is a filtration and finer than $\mathcal{F}_{t}$ and said to be
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

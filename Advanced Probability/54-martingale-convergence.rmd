@@ -1,0 +1,282 @@
+## Martingale convergence
+
+Again, $T=\mathbb{N}$ unless stated otherwise.
+
+
+### Upcrossings
+
+Under the general setting for $X,C,Y$ and numbers $a<b$, where we play stake $C=1$ when $X< a$ and stop if $X> b$, namely, for $n\ge 2$
+$$
+C_n:=\bm{1}_{C_{n-1}=1}\bm{1}_{X_{n-1}\le b}+\bm{1}_{C_{n-1}=0}\bm{1}_{X_{n-1}<a}
+$$
+Then we denoted $U_N[a,b]$ as times of upcrossings from $a$ to $b$ by time $N$. Clearly, we have
+$$
+Y_{N} \ge (b-1)U_{N}[a,b]-(X_N-a)^{-}
+$$
+
+::: {.lemma #doob-upcrossings name="Doob's Upcrossing Lemma"}
+
+Let $X$ be a supermartingale, then
+$$
+(b-a) \mathop{{}\mathbb{E}}_{}U_N[a,b]\le \mathop{{}\mathbb{E}}_{}(X_N-a)^{-}
+$$
+
+:::
+
+
+:::: {.proof}
+
+From $Y_N$ is a supermartingale.
+
+::::
+
+
+::: {.corollary  name=""}
+
+Let $X$ be a supermartingale bounded in $L^{1}$, $i.e.$, $\sup_n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty$, then with $U_{N}[a,b] \nearrow U_{\infty}[a,b]$,
+$$
+(b-a)\mathop{{}\mathbb{E}}_{}U_{\infty}[a,b]\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
+$$
+and thus $\mathop{{}\mathbb{P}}\left\{ U_{\infty}[a,b]=\infty \right\}=0$.
+
+:::
+
+
+:::: {.proof}
+
+By \@ref(lem:doob-upcrossings), we have
+$$
+(b-a)\mathop{{}\mathbb{E}}_{}U_{N}[a,b]\le \left| a \right|+\mathop{{}\mathbb{E}}_{}\left| X_n \right|\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|
+$$
+for arbitrary $N$, then claim follows by taking $N \nearrow \infty$.
+
+::::
+
+### Martingale convergence theorem
+
+
+::: {.theorem #doob-convergence name=""}
+
+Let $X$ be supermartingale bounded in $L^{1}$ then it's converges to some integrable $X_{\infty}$ $a.s.$. 
+
+:::
+
+:::: {.proof}
+
+For $\omega\in \Omega$, divergence of $X_n(\omega)$ is equivalent to $X$ upcross some $[a,b]$ infinite times, take $[a,b]$ from $\mathbb{Q}$, that should be countable, thus $X_{\infty}$ exists $a.s.$. And finiteness comes from
+$$
+\mathop{{}\mathbb{E}}_{}\left| X_{\infty} \right|=\mathop{{}\mathbb{E}}_{}\liminf \left| X_n \right|\le \liminf \mathop{{}\mathbb{E}}_{} \left| X_n \right|\le \sup \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
+$$
+
+::::
+
+
+### Convergence and uniform integrability
+
+::: {.theorem  name=""}
+
+Let $X$ be a submartingale, then $X$ converges $\text{ a.s. }$ and in $L^{1}$ iff it's uniformly integrable.
+
+:::
+
+
+:::: {.proof}
+
+$\implies$: $X$ converges in $L^{1}$ implies $X$ uniformly integrable since \@ref(thm:convergence-cauchy-uniform).
+
+$\impliedby$: Uniformly integrable implies $L^{1}$ boundedness, then \@ref(thm:doob-convergence) implies $X$ converges $\text{ a.s. }$, the claim follows by \@ref(thm:convergence-cauchy-uniform).
+
+::::
+
+Moreover, setting $X\infty=\lim_{n \to \infty}X_n$ extends $X$ to $\overline{X}$.
+
+### UI martingale
+
+
+::: {.theorem #martingale-uniformly-integrable name=""}
+
+A process $M$ is UI martingale iff $M_n=\mathop{{}\mathbb{E}}_{n}Z$ for some integrable $Z$, if so, it converges to $M_{\infty}=\mathop{{}\mathbb{E}}_{\infty}Z$.
+
+:::
+
+:::: {.proof}
+
+The $\impliedby$ part of the first statement is immediately from lemma \@ref(lem:expectation-uniform-integrable). For another, the preceding theorem shows it converges $\text{ a.s. }$ and in $L^{1}$ to some integrable $\text{ r.v.}$ $M_{\infty}$. Then take $Z=M_{\infty}$ complete the first statement.
+
+::::
+
+If so, it's converges $\text{ a.s. }$ and in $L^{1}$ to
+$$
+M_{\infty}:=\lim_{n \to \infty}M_n=\mathop{{}\mathbb{E}}_{\infty}Z
+$$
+and $\overline{M}$ extends $M$.
+
+
+::: {.corollary #expectation-limit name=""}
+
+For any integrable $Z$, $\mathop{{}\mathbb{E}}_{n}Z\to \mathop{{}\mathbb{E}}_{\infty}Z$ $\text{ a.s. }$ and in $L^{1}$.
+
+:::
+
+The following remove boundedness condition in theorem \@ref(thm:doob-stopping): 
+
+
+::: {.theorem  name=""}
+
+Suppose for some integrable $Z$, $M_n=\mathop{{}\mathbb{E}}_{n}Z$, then for stopping time $\tau$, $M_{\tau}=\mathop{{}\mathbb{E}}_{\tau}Z$, moreover, for stopping time $\sigma,\tau$:
+$$
+\mathop{{}\mathbb{E}}_{\sigma}M_{\tau}=M_{\sigma \land \tau}
+$$
+
+:::
+
+
+:::: {.proof}
+
+
+::: {.corollary  name=""}
+
+For integrable $Z$,
+$\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{\tau \land n}Z\to \mathop{{}\mathbb{E}}_{\tau}Z$ almost surely and in $L^{1}$
+
+:::
+
+
+:::: {.proof}
+
+
+$$
+\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{\tau \land n}Z=\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{n}\mathop{{}\mathbb{E}}_{\tau}Z=\mathop{{}\mathbb{E}}_{\infty}\mathop{{}\mathbb{E}}_{\tau}Z=\mathop{{}\mathbb{E}}_{\tau}Z
+$$
+by corollary \@ref(cor:expectation-limit).
+
+
+::::
+
+
+
+Apply theorem \@ref(thm:doob-stopping) to $\tau\land n$ and $n$ yields:
+$$
+M_{\tau \land n}=\mathop{{}\mathbb{E}}_{\tau \land n}M_n
+$$
+Take limit both side, we have $M_{\tau}=\mathop{{}\mathbb{E}}_{\tau}Z$ as required. The second is immediately by applying the first result.
+
+::::
+
+::: {.proposition  name=""}
+
+Suppose $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ is complete, and all negligible events belongs to $\mathcal{F_0}$, then for any stopping time $\tau\in \mathcal{F_n}$,
+$$
+\mathcal{F}_{\tau}=\lim_{n \to \infty}\mathcal{F}_{\tau \land n}=\sigma\left( \bigcup_{n} \mathcal{F}_{\tau \land n} \right)
+$$
+
+:::
+
+:::: {.proof}
+
+Note $\mathcal{F}_{\tau \land n}\subset \mathcal{F}_{\tau}$ for any $n$, we have $\lim_{n \to \infty}\mathcal{F}_{\tau \land n}\subset \mathcal{F}_{\tau}$. For the converse, for any $Z \in { \mathcal{F}_{\tau} }_{b}$:
+$$
+\mathop{{}\mathbb{E}}_{\tau \land n} Z\to \mathop{{}\mathbb{E}}_{\tau}Z=Z
+$$
+thus $Z \in \mathcal{F}_{\tau \land \infty}$ and hence $\mathcal{F}_{\tau}=\mathcal{F}_{\tau \land \infty}$.         
+
+
+
+::::
+
+### Convergence in reversed time
+
+Suppose now the index set is $T=\left\{ \dots,-2,-1,0 \right\}$.
+
+
+::: {.theorem  name=""}
+
+Let $X$ be a martingale $\text{ w.r.t }\mathbb{F}$, it's uniformly integrable and converge to $X_{-\infty}$ $\text{ a.s. }$ and in $L^{1}$.
+
+:::
+
+
+:::: {.proof}
+
+Martingale property implies $X_n=\mathop{{}\mathbb{E}}_{n}X_0$ and claim follows by \@ref(thm:martingale-uniformly-integrable).
+
+::::
+
+
+::: {.corollary  name=""}
+
+For $Z \in L^{1}$,
+$$
+\mathop{{}\mathbb{E}}_{n}Z \to \mathop{{}\mathbb{E}}_{-\infty}Z
+$$
+$\text{ a.s. }$ and in $L^{1}$.
+
+:::
+
+Extend to submartingale:
+
+::: {.theorem  name=""}
+
+Let $X$ be submartingale $\text{ w.r.t } \mathbb{F}$ and $\inf_{n}\mathop{{}\mathbb{E}}_{}X_n>-\infty$, then $X$ is uniformly integrable and converge to $X_{-\infty} \text{ a.s. }$ and in $L^{1}$.
+
+:::
+
+### Applications
+
+#### Hunt's DCT
+
+
+::: {.theorem #hunt-dct name="Hunt's dominated convergence theorem"}
+
+Let $(X_n)$ be dominated by $Z \in L^{1}$ and suppose $X_n\to X_{\infty} \text{ a.s. }$, then
+$$
+\mathop{{}\mathbb{E}}_{n}X_n\to \mathop{{}\mathbb{E}}_{\infty}X_{\infty}
+$$
+$\text{ a.s. }$ and in $L^{1}$.
+
+:::
+
+#### Extension of Borel-Cantelli lemma
+
+#### SLLN
+
+Let $(X_n)$ be $\text{ i.i.d }$ real-valued $\text{ r.v.}$ with mean $a<\infty$.
+
+Let $\mathcal{F}_{-n}=\sigma(\overline{X}_{n},\overline{X}_{n+1},\dots,)$, note
+$$
+\mathop{{}\mathbb{E}}_{-n}\overline{X}_{n}=n \overline{X}_{n}=n \mathop{{}\mathbb{E}}_{-n}X_1\implies \overline{X}_{n}=\mathop{{}\mathbb{E}}_{-n}X_1
+$$
+it's a reversed martingale and hence
+$$
+\overline{X}_{\infty}=\lim_{n \to \infty}\overline{X}_{n}
+$$
+exists $\text{ a.s. }$ and in $L^{1}$, convergence in $L^{1}$ implies
+$$
+\mathop{{}\mathbb{E}}_{}\overline{X}_{\infty}=\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{}\overline{X}_{n}=a
+$$
+and $\overline{X}_{\infty}$ belong to tail sigma-algebra implies it's constant $\text{ a.s. }$ and clear should be $a$.
+
+#### Radon-Nikodym theorem
+
+TODO
+
+#### Doob's theorem for families of measures
+
+TODO
+
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

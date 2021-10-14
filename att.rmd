@@ -21,7 +21,8 @@ $$
     SA(\bm{X})&=
 \begin{bmatrix}
     SA_1(\bm{X})	& \dots	& SA_H(\bm{X})	\\
-\end{bmatrix}\begin{bmatrix}
+\end{bmatrix}
+\begin{bmatrix}
                  W_{O,1}	\\
                  \dots\\
                W_{O,H}  	\\
@@ -159,5 +160,10 @@ $$
 
 
 ::::
+
+
+$$
+\left( sdw \right)
+$$
 
 

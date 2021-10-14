@@ -1,0 +1,138 @@
+---
+title: "Rmarkdown-cheatsheet"
+output: html_document
+---
+
+# RMarkdown
+
+## Header
+
+* [Syntex]
+
+# Unnumbered header {-}
+
+## Syntax
+
+### Quote
+
+> "I thoroughly disapprove of duels. If a man should challenge me,
+  I would take him kindly and forgivingly by the hand and lead him
+  to a quiet place and kill him."
+>
+> --- Mark Twain
+
+### Definition
+
+Term
+: Definition
+
+### Math
+
+Inline: $x^2$
+
+Display mode:
+$$
+X^2
+$$
+
+### Footnote
+
+Footnode [^lab]
+
+[^lab]: Explain
+
+### Items
+
+* fruits
+    + apples
+        - macintosh
+        - red delicious
+    + pears
+    + peaches
+* vegetables
+    + brocolli
+    + chard
+
+a. ss
+b. ss
+
+#. ss
+#. ss
+
+#.  one
+#.  two
+#.  three
+
+
+### Strik
+
+This ~~is deleted text.~~
+
+### SuperScript
+
+H~2~O is a liquid.  2^10^ is 1024.
+
+### Inline link
+
+This is an [inline link](/url), and here's [one with
+a title](http://fsf.org "click here for a good time!").
+
+### Cross Reference
+
+[Header]
+
+See the [Introduction](#Header).
+
+[hh][Header]
+
+### Checklist
+
+- [x] A
+- [ ] A
+
+
+### Tables
+
+  Right     Left     Center     Default
+-------     ------ ----------   -------
+     12     12        12            12
+    123     123       123          123
+      1     1          1             1
+
+Table:  Demonstration of simple table syntax.
+
+-------------------------------------------------------------
+ Centered   Default           Right Left
+  Header    Aligned         Aligned Aligned
+----------- ------- --------------- -------------------------
+   First    row                12.0 Example of a row that
+                                    spans multiple lines.
+
+  Second    row                 5.0 Here's another one. Note
+                                    the blank line between
+                                    rows.
+-------------------------------------------------------------
+
+Table: Here's the caption. It, too, may span
+multiple lines.
+
++---------------+---------------+--------------------+
+| Fruit         | Price         | Advantages         |
++===============+===============+====================+
+| Bananas       | $1.34         | - built-in wrapper |
+|               |               | - bright color     |
++---------------+---------------+--------------------+
+| Oranges       | $2.10         | - cures scurvy     |
+|               |               | - tasty            |
++---------------+---------------+--------------------+
+
+
+| Right | Left | Default | Center |
+|------:|:-----|---------|:------:|
+|   12  |  12  |    12   |    12  |
+|  123  |  123 |   123   |   123  |
+|    1  |    1 |     1   |     1  |
+  : Demonstration of simple table syntax.
+
+
+

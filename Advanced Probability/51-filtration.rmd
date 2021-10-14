@@ -86,9 +86,7 @@ $$
 
 :::
 
-
 ### Stopping time
-
 
 ::: {.definition  name=""}
 
@@ -120,17 +118,26 @@ $$
 $$
 for each $t$ and thus $\tau \in \mathcal{F}_{\tau}$. In fact, we have 
 
+::: {.theorem #stopping-time-representation name=""}
 
-::: {.theorem  name=""}
-
-A $r.v.$ $V$ belongs to $\mathcal{F}_{\tau}$ iff $V \bm{1}_{\tau \le t}\in \mathcal{F}_{t}$ for every $t \in T$. In particular, if $T$ is at most countable, the condition is reduce to $V \bm{1}_{\tau=t}\in \mathcal{F}_{t}$.
+$V \in \mathcal{F}_{\tau}$ iff $V \bm{1}_{\tau \le t}\in \mathcal{F}_{t}$ for any $t \in \overline{T}$.
 
 :::
 
 
 :::: {.proof}
 
-Clear by noting $\{V > r\}\cap \{\tau \le t\}=\{V \bm{1}_{\tau \le t}>r\}$.
+$$
+\begin{aligned}
+    V\in \mathcal{F}_{\tau}&\iff\left\{ V>r \right\}\in \mathcal{F}_{\tau}
+    \\ &\iff
+    \left\{ V>r \right\}\cap \left\{ \tau \le t \right\} \in \mathcal{F}_{t}, \forall t
+    \\ &\iff 
+    \left\{ V \bm{1}_{\tau\le t}>r \right\}\in \mathcal{F}_{t},\forall t
+    \\ &\iff 
+    V \bm{1}_{\tau \le t}\in \mathcal{F}_{t},\forall t
+\end{aligned}
+$$
 
 ::::
 
@@ -144,7 +151,6 @@ As we abuse $\mathcal{F}$ to denote all $\mathcal{F}$-measurable function, we ab
 If $T$ is discrete, the second condition holds automatically, thus $X \in \mathbb{F} \iff X_t \in \mathcal{F}_{t}, \forall t$.
 
 Following relate $\mathcal{F}_{\tau}$ and $X \in \mathbb{F}$:
-
 
 ::: {.theorem #stopping-time-filtration name=""}
 
@@ -163,14 +169,10 @@ If $\sigma$ and $\tau$ are stopping times of $\mathbb{F}$ and $\sigma$ is domina
 
 Let $\sigma$ and $\tau$ be stopping times of $\mathbb{F}$, then 
 
-1.	
-    $\sigma \land \tau$ and $\sigma \lor \tau$ are stopping time of $\mathbb{F}$.
-2.	
-    $\sigma \le \tau \implies \mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$
-3.  
-    In general, $\mathcal{F}_{\sigma \land \tau} = \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$
-4.  
-    If $V \in \mathcal{F}_{\sigma}$, then the following are in $\mathcal{F}_{\sigma \land \tau}$:
+1.	$\sigma \land \tau$ and $\sigma \lor \tau$ are stopping time of $\mathbb{F}$.
+2.	$\sigma \le \tau \implies \mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$
+3.  In general, $\mathcal{F}_{\sigma \land \tau} = \mathcal{F}_{\sigma} \cap \mathcal{F}_{\tau}$
+4.  If $V \in \mathcal{F}_{\sigma}$, then the following are in $\mathcal{F}_{\sigma \land \tau}$:
     $$
     V \bm{1}_{\sigma \le \tau}, V \bm{1}_{\sigma=\tau}, V \bm{1}_{\sigma < \tau}
     $$
@@ -203,6 +205,7 @@ Suppose $\sigma$ is a stopping time of $\mathbb{F}$ and $\tau$ is a random time 
 
 ### Approximation by discrete stopping time
 
+A given stopping time taking values in $\mathbb{\overline{R}}_{+}$ can be approximated by a sequence of discrete stopping time.
 We start by a approximation of $id(t)=t$, for each $n \in \mathbb{N}$, define
 $$
 d_{n}(t)=\begin{cases}
@@ -213,7 +216,7 @@ $$
 then $d_n:\overline{\mathbb{R}}_+ \to \overline{\mathbb{R}}_+$ is a step function, it's increasing and right-continuous and $d_n(t) \searrow t$.
 
 
-::: {.proposition  name=""}
+::: {.proposition #continuous-approximation name=""}
 
 Let $\mathbb{F}$ be a filtration on $\overline{\mathbb{R}}_+$ and let $\tau$ be a stopping time of it. Define $\tau_n=d_n \circ \tau$. Then we have $(\tau_n)$ is a sequence of discrete stopping time decrease to $\tau$ in $\mathbb{F}$.
 

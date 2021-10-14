@@ -1,0 +1,215 @@
+## Martingales in continuous time
+
+Throughout, $\mathbb{F}$ is filtration over $T=\mathbb{R}_{+}$ and satisfy the usual hypothesis:
+
+a. $\mathbb{F}$ is right-continuous, that is, for any $t\in T$:
+$$
+\mathcal{F}_{t}=\bigcap_{\varepsilon>0}\mathcal{F}_{t+\varepsilon}
+$$
+
+b. $\mathbb{F}$ is augmented, which means $(\Omega,\mathcal{A},\mathop{{}\mathbb{P}})$ is complete and $\mathcal{F}_{0}$ include all null set.
+
+$X$ is a real-valued process indexed by $T$ or $\overline{T}$, adapted to $\mathbb{F}$, and RCLL.
+
+## Doob martingales
+
+
+::: {.definition  name="Doob property"}
+
+$X$ is said to have Doob property for $(\sigma,\tau)$ if $\sigma \le \tau$ and both are well-defined and integrable and $X_{\sigma}=\mathop{{}\mathbb{E}}_{\sigma}X_{\tau}$. 
+
+:::
+
+
+::: {.definition #doob-martingale name="Doob martingale"}
+
+$X$ is said to be a Doob martingale on $[0,\zeta]$ if $\zeta$ is a stopping time and $X$ has the Doob property for $(\sigma,\tau)$  if $0\le \sigma\le \tau\le \zeta$.  
+
+:::
+
+::: {.hypothesis #doob-property name=""}
+
+a. For the Doob property, the condition that $X_{\sigma}$ and $X_{\tau}$ be well-defined is needed only when $\sigma$ or $\tau$ allowed to be $+\infty$.
+
+b. Apply Doob property on Doob martingale $X$ for $(t \land \zeta,\zeta)$ implies:
+$$
+\hat{X}_{t}=X_{\zeta \land t}=\mathop{{}\mathbb{E}}_{\zeta \land t}X_{\zeta}=\mathop{{}\mathbb{E}}_{t}\mathop{{}\mathbb{E}}_{\zeta}X_{\zeta}=\mathop{{}\mathbb{E}}_{t}X_{\zeta}
+$$
+that is, the stopped martingale is UI martingale.
+
+:::
+
+We start with the flowing characteristic theorem
+
+::: {.theorem #doob-martingale-characteristic name=""}
+
+Let $\zeta$ be a stopping time, TFAE:
+
+a. The process $X$ is Doob martingale on $[0,\zeta]$.
+
+b. For any $\tau \le \zeta$, $X_{\tau}=\mathop{{}\mathbb{E}}_{\tau}X_{\zeta}$.
+
+c. For any $\tau \le \zeta$, $\mathop{{}\mathbb{E}}_{}X_{\tau}=\mathop{{}\mathbb{E}}_{}X_0$.
+
+:::
+
+
+:::: {.proof}
+
+$a\implies b$ is immediate from Doob property. 
+
+$b\implies c$: apply Doob property on $(0,\tau)$, we have
+$$
+X_0=\mathop{{}\mathbb{E}}_{0}X_{\zeta}\implies \mathop{{}\mathbb{E}}_{}X_0=\mathop{{}\mathbb{E}}_{}X_{\zeta}
+$$
+$c\implies b$: For $\tau \le \zeta$, take $H \in \mathcal{F}_{\tau}$ and define
+$$
+\sigma=\tau \bm{1}_{H}+\zeta(1-\bm{1}_{H}) \le \zeta
+$$
+note that
+$$
+X_{\zeta}-X_{\sigma}=(X_{\zeta}-X_{\tau})\bm{1}_{H}
+$$
+$c$ implies the expectation of LHS is $0$ and that implies $X_{\tau}$ is a version of $\mathop{{}\mathbb{E}}_{\tau}X_{\zeta}$.
+
+$b\implies a$. If $\sigma\le \tau\le \zeta$, then
+$$
+\mathop{{}\mathbb{E}}_{\sigma}X_{\tau}=\mathop{{}\mathbb{E}}_{\sigma}\mathop{{}\mathbb{E}}_{\tau}X_{\zeta}=\mathop{{}\mathbb{E}}_{\sigma}X_{\zeta}=X_{\sigma}
+$$
+
+::::
+
+
+::: {.corollary  name=""}
+
+If $X$ is a Doob martingale on $[0,\zeta]$, then
+$$
+\left\{ X_{\tau}:\tau \le \zeta \right\}=\left\{ X_{\tau \land \zeta} \right\}
+$$
+is uniformly integrable, where $\tau$ is a stopping time.
+
+:::
+
+### Doob's stopping theorem
+
+
+::: {.theorem  name=""}
+
+For process $X$, TFAE:
+
+a. It's a martingale on $\mathbb{R}_{+}$.
+
+b. It's a Doob martingale on $[0,b]$ for any $b \in \mathbb{R}_{+}$.
+
+c. It has Doob property for $(\sigma,\tau)$ when $\sigma\le \tau$ and both are bounded.
+
+:::
+
+:::: {.proof}
+
+$a\implies b$. To see it, let $\tau\le b$, we are to show that $\mathop{{}\mathbb{E}}_{}X_{\tau}=X_0$ motivated by preceding theorem.
+
+Let $(\tau _n)$ be as in proposition \@ref(prp:continuous-approximation). For fixed $n$, the stopping time $\tau_{n}$ is bounded by $b+1$ and $T_n=\left\{ \frac{k}{2^{n}}:k \in \mathbb{N} \right\}\cup \left\{ b+1 \right\}$ is the index set it taking values in. Apply theorem \@ref(thm:doob-stopping-discrete) to $\tau_n$ and $b+1$:
+$$
+X_{\tau_n}=\mathop{{}\mathbb{E}}_{\tau_n}X_{b+1}
+$$
+thus $(X_{\tau_n})_{n \in \mathbb{N}}$ is a reversed-time martingale and thus converge to $X_{\tau}$ $\text{ a.s. }$ and in $L^{1}$:
+$$
+\mathop{{}\mathbb{E}}_{}X_{\tau}=\lim_{n \to \infty}\mathop{{}\mathbb{E}}_{}X_{\tau_n}=\mathop{{}\mathbb{E}}_{}X_{b+1}=\mathop{{}\mathbb{E}}_{}X_0
+$$
+All other implications are immediate.
+
+::::
+
+
+::: {.theorem name=""}
+
+The process $X$ is a Doob martingale on $\overline{\mathbb{R}}_{+}$ iff it's a martingale on $\overline{\mathbb{R}}_{+}$. If so, then
+$$
+\mathop{{}\mathbb{E}}_{\sigma}X_{\tau}=X_{\sigma \land \tau}
+$$
+for any $\sigma$ and $\tau$.
+
+:::
+
+### Uniform integrability
+
+
+::: {.theorem  name=""}
+
+If $X$ is a martingale on $\mathbb{R}_{+}$, then it can be extend to a Doob martingale on $\overline{\mathbb{R}}_{+}$ iff it's uniformly integrable.
+
+:::
+
+
+:::: {.proof}
+
+It's immediate from preceding theorem and theorem \@ref(thm:martingale-uniformly-integrable) by noting:
+$$
+X_{t}=\mathop{{}\mathbb{E}}_{t}X_n=\mathop{{}\mathbb{E}}_{t}\mathop{{}\mathbb{E}}_{n}X_{\infty}=\mathop{{}\mathbb{E}}_{t}X_{\infty}
+$$
+
+
+::::
+
+
+::: {.theorem  name=""}
+
+$X$ is UI martingale on $\mathbb{R}_{+}$ iff
+$$
+X_{t}=\mathop{{}\mathbb{E}}_{t}Z
+$$
+for some $Z \in L^{1}$, if so $X$ converges to $X_{\infty} \text{ a.s. }$ and in $L^{1}$. Then $\overline{X}$ is a Doob martingale on $\overline{\mathbb{R}}_{+}$.
+
+:::
+
+### Stopped martingales
+
+::: {.theorem #stopped-martingale-continuous name=""}
+
+Let $\zeta$ be a stopping time and $\hat{X}$ be the process $X$ stopped at $\zeta$: $\hat{X}_{t}=X_{t \land \zeta}$ define in $\mathbb{R}_{+}$.
+
+a. If $X$ is a martingale, $\hat{X}$ is a martingale.
+
+b. $X$ is a Doob martingale on $[0,\zeta]$ iff $\hat{X}$ is UI martingale.
+
+:::
+
+### Criteria for being Doob
+
+
+::: {.proposition  name=""}
+
+Suppose $X$ is a martingale on $\mathbb{R}_{+}$, $\zeta$ be a stopping time. Then if $X$ is dominated by some $Z \in L^{1}$ on $[0,\zeta] \cap \mathbb{R}_{+}$, $X$ is a Doob martingale on $[0,\zeta]$.
+
+:::
+
+
+:::: {.proof}
+
+Let $\hat{X}$ be as in preceding theorem \@ref(thm:stopped-martingale-continuous), then it's dominated by $Z$ and thus UI martingale then claim follows.
+
+::::
+
+### Local martingales and semimartingales
+
+
+::: {.definition  name=""}
+
+Let $\zeta$ be a stopping time. $X$ is called a local martingale on $[0,\zeta]$ if there exists $(\zeta_n) \text{ s.t. }\zeta _n \nearrow \zeta$and $(X_{t}-X_0)_{t\in \mathbb{R}_{+}}$ is a Doob martingale on $[0, \zeta_n]$ for any $n$. If it's on $\mathbb{R}_{+}$, then we just called it a local martingale.
+
+:::
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

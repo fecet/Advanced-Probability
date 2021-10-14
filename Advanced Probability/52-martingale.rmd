@@ -1,16 +1,19 @@
 ## Martingale
 
+
+::: {.definition #martingale name=""}
+
 A process $X=(X_{i})_{t \in T}$ is called a submartingale of $\mathbb{F}$ if it's adapted to $\mathbb{F}$ with integrable $X_t$ and
 $$
 \mathop{{}\mathbb{E}}_{s}(X_t-X_s)=\mathop{{}\mathbb{E}}_{s}X_t-X_s\ge 0
 $$
 whenever $s<t$. It's a supmartingale if $-X$ is submartingale and it's a martingale if it's both submartingale and supmartingale.
 
+:::
 
 ::: {.remark}
 
-1.	
-    Let $X$ be submartingale in $\mathbb{F}$, for $p<s<t \in T$,
+1.	Let $X$ be submartingale in $\mathbb{F}$, for $p<s<t \in T$,
     $$
     \mathop{{}\mathbb{E}}_{p} (X_t-X_s)=\mathop{{}\mathbb{E}}_{p}\mathop{{}\mathbb{E}}_{s}(X_t-X_s)\ge \mathop{{}\mathbb{E}}_{s}0=0
     $$
@@ -47,7 +50,7 @@ whenever $s<t$. It's a supmartingale if $-X$ is submartingale and it's a marting
 
 Suppose $Z$ is $r.v.$, then $\left\{ \mathop{{}\mathbb{E}}_{t}Z \right\}_{t\in T}$ generate a martingale, and it's uniformly integrable from the following:
 
-::: {.lemma  name=""}
+::: {.lemma #expectation-uniform-integrable name=""}
 
 Suppose $Z$ be integrable $r.v.$, then
 $$

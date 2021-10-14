@@ -61,7 +61,7 @@ $$
 <br>
 <br>
 <br>
-=======
+
 As Jensen's inequality, the unbiased estimator of $\sigma^2$ isnt unbiased on $\sigma$, and we should fix it by dividing a term 
 $$
 b(N)=\sqrt{\frac{2}{N}} \frac{\Gamma\left( \frac{N}{2} \right)}{\Gamma \left( \frac{N-1}{2} \right)}
@@ -70,7 +70,6 @@ which converge to $1$ as $N \to \infty$.
 
 
 
->>>>>>> 367af48177019dc5abf651d47ae9c64f8d1e0c73
 
 
 

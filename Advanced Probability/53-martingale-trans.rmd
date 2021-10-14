@@ -10,7 +10,6 @@ A process $\left\{ X_{t} \right\}_{t \in \mathbb{N}}$ is said to be $\mathbb{F}$
 
 :::
 
-
 ::: {.theorem #doob-decomposition name="Doob's decomposition theorem"}
 
 Let $X$ be integrable and adapted, then it can be decomposed as
@@ -64,23 +63,24 @@ Let $F=\bm{1}_{[0,T]}$ in preceding theorem, we have the stopped supermartingale
 
 Here the time set is still $\mathbb{N}$.
 
-::: {.theorem  name=""}
+::: {.theorem #doob-stopping name=""}
 
 Let $M$ adapted to $\mathbb{F}$, TFAE:
 
-1. $M$ is a submartingale.
-2. 
-    For bounded stopping time $S\le T$,
-    $$
-    \mathop{{}\mathbb{E}}_{s}(M_{T}-M_{S})\ge 0   
-    $$
-    and both are integrable.
-3. 
-    For bounded stopping time $S\le T$,
-    $$
-    \mathop{{}\mathbb{E}}_{}(M_{T}-M_{S})\ge 0   
-    $$
-    and both are integrable.
+a. $M$ is a submartingale.
+
+b. For bounded stopping time $\sigma\le \tau$,
+$$
+\mathop{{}\mathbb{E}}_{\sigma}(M_{\tau}-M_{\sigma})\ge 0   
+$$
+and both are integrable.
+
+c. 
+For bounded stopping time $\sigma\le \tau$,
+$$
+\mathop{{}\mathbb{E}}_{}(M_{\tau}-M_{\sigma})\ge 0   
+$$
+and both are integrable.
 
 :::
 
@@ -135,8 +135,8 @@ $$
 Suppose $X$ is a submartingale, then for $b>0$,
 $$
 \begin{aligned}
-    b\mathop{{}\mathbb{P}}\left\{ M_n>b \right\}&\le \mathop{{}\mathbb{E}}_{}M_n^{+}\\
-    b \mathop{{}\mathbb{P}}\left\{ m_n\le -b \right\}&\le \mathop{{}\mathbb{E}}_{}M_n^{+}-\mathop{{}\mathbb{E}}_{}M_0
+    b\mathop{{}\mathbb{P}}\left\{ M_n>b \right\}&\le \mathop{{}\mathbb{E}}_{}X_n^{+}\\
+    b \mathop{{}\mathbb{P}}\left\{ m_n\le -b \right\}&\le \mathop{{}\mathbb{E}}_{}X_n^{+}-\mathop{{}\mathbb{E}}_{}X_0
 \end{aligned}
 $$
 
@@ -160,10 +160,28 @@ $$
 
 ::::
 
-When $M$ is a martingale, $\left| M \right|^{p}$ is a submartingale provided $M \subset L^p$.
+Recall remarks \@ref(def:martingale), we know that $\left| M \right|^{p}$ is submartingale for $p\ge 1$ provided $M$ is martingale and in $L^p$. Then apply preceding theorem to $\left| M \right|^{p}$ yields the generalization of theorem \@ref(thm:kolmogorov-inequality):
+
+
+::: {.theorem #doob-kolmogorov-inequality name="Doob-Kolmogorov Inequality"}
+
+Let $M$ be a martingale in $L^p$ for $p\ge 1$, then for $b>0$,
 $$
-\mathop{{}\mathbb{E}}_{}\left( \left| M_{t} \right|^{p}-\left| M_{s} \right|^{p} \right)\ge \mathop{{}\mathbb{E}}_{} \left| M_{t}-M_{s} \right|^{p} \ge (\mathop{{}\mathbb{E}}_{}\left| M_{t}-M_{s} \right|)^{p}=0
+b^{p}\mathop{{}\mathbb{P}}\left\{ \max _{k\le n} \left| M_{k} \right|>b \right\}\le \mathop{{}\mathbb{E}}_{}\left| M_n \right|^{p}
 $$
+
+:::
+
+For submartingale $M$, combine these two statement yields:
+$$
+b\mathop{{}\mathbb{P}}\left\{ \max_{k\le n} \left| M_{k} \right| >b \right\}\le 2 \mathop{{}\mathbb{E}}_{} M_n^{+}-\mathop{{}\mathbb{E}}_{}M_0\le 3 \max_{k\le n} \left| M_{k} \right|
+$$
+
+
+
+
+
+
 
 ### Awaiting the almost inevitable
 
@@ -178,85 +196,6 @@ $a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
 
 :::
 
-### Upcrossings
-
-Under the general setting for $X,C,Y$ and numbers $a<b$, where we play stake $C=1$ when $X< a$ and stop if $X> b$, namely, for $n\ge 2$
-$$
-C_n:=\bm{1}_{C_{n-1}=1}\bm{1}_{X_{n-1}\le b}+\bm{1}_{C_{n-1}=0}\bm{1}_{X_{n-1}<a}
-$$
-Then we denoted $U_N[a,b]$ as times of upcrossings from $a$ to $b$ by time $N$. Clearly, we have
-$$
-Y_{N} \ge (b-1)U_{N}[a,b]-(X_N-a)^{-}
-$$
-
-::: {.lemma #doob-upcrossings name="Doob's Upcrossing Lemma"}
-
-Let $X$ be a supermartingale, then
-$$
-(b-a) \mathop{{}\mathbb{E}}_{}U_N[a,b]\le \mathop{{}\mathbb{E}}_{}(X_N-a)^{-}
-$$
-
-:::
-
-
-:::: {.proof}
-
-From $Y_N$ is a supermartingale.
-
-::::
-
-
-::: {.corollary  name=""}
-
-Let $X$ be a supermartingale bounded in $L^{1}$, $i.e.$, $\sup_n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty$, then with $U_{N}[a,b] \nearrow U_{\infty}[a,b]$,
-$$
-(b-a)\mathop{{}\mathbb{E}}_{}U_{\infty}[a,b]\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
-$$
-and thus $\mathop{{}\mathbb{P}}\left\{ U_{\infty}[a,b]=\infty \right\}=0$.
-
-:::
-
-
-:::: {.proof}
-
-By \@ref(lem:doob-upcrossings), we have
-$$
-(b-a)\mathop{{}\mathbb{E}}_{}U_{N}[a,b]\le \left| a \right|+\mathop{{}\mathbb{E}}_{}\left| X_n \right|\le \left| a \right|+\sup _n \mathop{{}\mathbb{E}}_{}\left| X_n \right|
-$$
-for arbitrary $N$, then claim follows by taking $N \nearrow \infty$.
-
-::::
-
-### Doob's Forward Convergence Theorem
-
-
-::: {.theorem #doob-convergence name=""}
-
-Let $X$ be supermartingale bounded in $L^{1}$ then it's converges to some finite $X_{\infty}$ $a.s.$. 
-
-:::
-
-:::: {.proof}
-
-For $\omega\in \Omega$, divergence of $X_n(\omega)$ is equivalent to $X$ upcross some $[a,b]$ infinite times, take $[a,b]$ from $\mathbb{Q}$, that should be countable, thus $X_{\infty}$ exists $a.s.$. And finiteness comes from
-$$
-\mathop{{}\mathbb{E}}_{}\left| X_{\infty} \right|=\mathop{{}\mathbb{E}}_{}\liminf \left| X_n \right|\le \liminf \mathop{{}\mathbb{E}}_{} \left| X_n \right|\le \sup \mathop{{}\mathbb{E}}_{}\left| X_n \right|<\infty
-$$
-
-::::
-
-::: {.corollary  name=""}
-
-If $X\ge 0$ is supermartingale, then $X_{\infty}$ exists $a.s.$.
-
-:::
-
-
-:::: {.proof}
-
-$X$ is bounded since it's supermartingale: $\mathop{{}\mathbb{E}}_{}\left| X_n \right|=\mathop{{}\mathbb{E}}_{}X_n\le \mathop{{}\mathbb{E}}_{}X_0$.
-
-::::
 
 ## Martingale bounded in $L^2$
 
@@ -305,82 +244,6 @@ Suppose $(X_{i})_{i \in \mathbb{N}}$ is a sequence of independent $r.v.$ with ze
 2.  If $(X_n)$ is uniformly bounded, then $\sum_{}^{}\sigma_i^2 \iff \sum_{}^{}X_i$ converges $a.s.$.
 
 :::
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-
-
 
 
 
