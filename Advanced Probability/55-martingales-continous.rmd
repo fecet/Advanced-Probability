@@ -11,7 +11,7 @@ b. $\mathbb{F}$ is augmented, which means $(\Omega,\mathcal{A},\mathop{{}\mathbb
 
 $X$ is a real-valued process indexed by $T$ or $\overline{T}$, adapted to $\mathbb{F}$, and RCLL.
 
-## Doob martingales
+### Doob martingales
 
 
 ::: {.definition  name="Doob property"}

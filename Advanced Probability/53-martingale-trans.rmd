@@ -129,13 +129,12 @@ $$
 M_n=\max _{k\le n}X_{k}, m_n=\min _{k\le n} X_{k}   
 $$
 
-
-::: {.theorem  name=""}
+::: {.theorem #maxima-minimum name=""}
 
 Suppose $X$ is a submartingale, then for $b>0$,
 $$
 \begin{aligned}
-    b\mathop{{}\mathbb{P}}\left\{ M_n>b \right\}&\le \mathop{{}\mathbb{E}}_{}X_n^{+}\\
+    b\mathop{{}\mathbb{P}}\left\{ M_n\ge b \right\}&\le \mathop{{}\mathbb{E}}_{}X_n^{+}\\
     b \mathop{{}\mathbb{P}}\left\{ m_n\le -b \right\}&\le \mathop{{}\mathbb{E}}_{}X_n^{+}-\mathop{{}\mathbb{E}}_{}X_0
 \end{aligned}
 $$
@@ -149,7 +148,7 @@ Let $\tau$ and $\sigma$ be the stopping time $\text{ s.t. }$
 $$
 \tau=\inf_{\mathbb{N}} \left\{ X_n\ge b \right\},\sigma=\inf _{\mathbb{N}}\left\{ X_n\le -b \right\}
 $$
-then $\left\{ M_n\ge b \right\}=\left\{ T\le n \right\}$, "untaking" expectation each side, we have
+then $\left\{ M_n\ge b \right\}=\left\{ T\le n \right\}$, "untake" expectation each side, we have
 $$
 b \bm{1}_{\tau\le n}\le X_{\tau \land n} \bm{1}_{\tau\le n} \le \mathop{{}\mathbb{E}}_{\tau \land n} X_n \bm{1}_{\tau \le  n} 
 $$
@@ -161,7 +160,6 @@ $$
 ::::
 
 Recall remarks \@ref(def:martingale), we know that $\left| M \right|^{p}$ is submartingale for $p\ge 1$ provided $M$ is martingale and in $L^p$. Then apply preceding theorem to $\left| M \right|^{p}$ yields the generalization of theorem \@ref(thm:kolmogorov-inequality):
-
 
 ::: {.theorem #doob-kolmogorov-inequality name="Doob-Kolmogorov Inequality"}
 
@@ -195,58 +193,5 @@ $a.s.$, then $\mathop{{}\mathbb{E}}_{}\tau<\infty$.
 
 
 :::
-
-
-## Martingale bounded in $L^2$
-
-### Martingale in $L^2$ 
-
-Suppose martingale $M\subset L^2$. Then for $s<t<u<v\in \mathbb{N}^{+}$, we have
-$$
-\mathop{{}\mathbb{E}}_{u}M_v=M_u
-$$
-that's, $M_u$ is projection of $M_v$ in $L^2(\mathcal{F}_u)$ and thus
-$$
-\left\langle M_t-M_s,M_v-M_u \right\rangle= 0
-$$
-hence
-$$
-\mathop{{}\mathbb{E}}_{}M_n^2=\mathop{{}\mathbb{E}}_{}M_0^2 + \sum_{k=1}^{n}\mathop{{}\mathbb{E}}_{} (M_k-M_{k-1})^2
-$$
-
-
-::: {.theorem  name=""}
-
-Let $M\subset L^2$ be a martingale, then it's bounded in $L^2$ iff
-$$
-\sum_{}^{}\mathop{{}\mathbb{E}}_{}(M_{k}-M_{k-1})^2<\infty
-$$
-and when this obtains, $M_n\xrightarrow{a.s.}M_{\infty}$ and $M_n \xrightarrow{L^2}M_{\infty}$.
-
-:::
-
-
-:::: {.proof}
-
-Equivalence of boundedness of $M$ and boundedness of this series is immediately. When this obtains, theorem \@ref(thm:doob-convergence) implies $M_n\xrightarrow{a.s.}M_{\infty}$ from boundedness and $M_n \xrightarrow{L^2}M_{\infty}$ since it's cauchy in $L^2$ from the conditions.
-
-::::
-
-### Sums of zero-mean independent variables in $L^2$    
-
-The following is just restatement of theorem \@ref(thm:variance-series-convergence) and its converse.
-
-::: {.theorem name=""}
-
-Suppose $(X_{i})_{i \in \mathbb{N}}$ is a sequence of independent $r.v.$ with zero mean and finite variance. Then
-
-1.  $\sum_{}^{}\sigma_i^2<\infty \implies \sum_{}^{}X_i$ converges $a.s.$.
-2.  If $(X_n)$ is uniformly bounded, then $\sum_{}^{}\sigma_i^2 \iff \sum_{}^{}X_i$ converges $a.s.$.
-
-:::
-
-
-
-
 
 

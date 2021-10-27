@@ -23,7 +23,190 @@ Define
 $$
 \mathcal{F}_{t+}=\bigcap_{\varepsilon>0}\mathcal{F}_{t+\varepsilon}
 $$
-for filtration $\mathbb{F}$, then $\mathbb{F}_{+}$ is a filtration and finer than $\mathcal{F}_{t}$ and said to be
+for filtration $\mathbb{F}$, then $\mathbb{F}_{+}$ is a finer filtration and $\mathbb{F}$ is right continuous if $\mathbb{F}=\mathbb{F}_{+}$.
+
+### Stopping times and augmentation
+
+If $\mathbb{F}$ is augmented and $\sigma$ is a stopping time of it, then $\tau$ is also if $\tau=\sigma \text{ a.s. }$. 
+
+### Stopping times and right-continuity
+
+::: {.theorem  name=""}
+
+Suppose $\tau$ is a random time in $\mathbb{F}$, then $\tau$ is a stopping time of $\mathbb{F}_{+}$ iff
+$$
+\left\{ \tau<t \right\}\in \mathcal{F}_{t}
+$$
+for any $t \in \mathbb{R}_{+}$.
+
+:::
+
+### Past until $\tau$   
+
+Let $\mathbb{F}$ be a filtration. Let $\tau$ be a stopping time of $\mathbb{F}_{+}$ and let $\mathcal{F}_{\tau+}$ denote the corresponding past until $\tau$:
+$$
+\mathcal{F}_{\tau+}=\left\{ A\in \mathcal{A}:A \cap \left\{ \tau \le t \right\}\in \mathcal{F}_{t+} \right\}
+$$
+one can replace $\tau\le t$ by $\tau<t$ and $\mathcal{F}_{\tau+}$ by $\mathcal{F}_{\tau}$ due to preceding theorem.
+
+### Sequence of stopping times
+
+Let $(\tau_n)$ be sequence of stopping time of $\mathbb{F}$, note $\left\{ \inf_{n}\tau_n< t \right\}=\bigcup_{n}\left\{ \tau_n<t \right\}$ and $\left\{ \sup_{n}\tau_n\le t \right\}=\bigcap_{n}\left\{ \tau_n\le t \right\}$, hence if $\tau_n \nearrow \tau$, $\tau$ is a stopping time. And
+
+
+::: {.proposition  name=""}
+
+$\tau=\inf \tau_n$ is a s stopping time of $\mathbb{F}_{+}$ and $\mathcal{F}_{\tau+}=\bigcap_{n} \mathcal{F}_{\tau_n+}$
+
+:::
+
+:::: {.proof}
+
+Note $\mathcal{F}_{\tau+}\subset \bigcap_{n}\mathcal{F}_{\tau_n+}$ as $\tau<\tau_n$ for any $n$. Let $A \in \bigcap_{n}\mathcal{F}_{\tau_n+}$, then
+$$
+A \cap \left\{ \tau<t \right\}=\bigcup_{n}H \cap \left\{ \tau_n<t \right\} \in \mathcal{F}_{t}
+$$
+thus $A \in \mathcal{F}_{\tau+}$ and this completes the proof.
+
+::::
+
+### Times foretold
+
+::: {.proposition  name=""}
+
+Let $\sigma$ be a stopping time of $\mathbb{F}_{+}$ and $\tau$ be a random time $\text{ s.t. } \tau \in \mathcal{F}_{\sigma +}$ and $\tau \ge \sigma$ where $\tau> \sigma$ on $\left\{ \sigma<\infty \right\}$. Then $\tau$ is a stopping time of $\mathbb{F}$ and $\mathcal{F}_{\sigma +}\subset \mathcal{F}_{\tau}$.
+
+:::
+
+:::: {.proof}
+
+For any $A \in \mathcal{A}$, we are to show that if $A \in \mathcal{F}_{\sigma +}$ then it's in $\mathcal{F}_{\tau}$, that is, 
+$$
+A \cap \left\{ \tau\le t \right\}=A \cap \left\{ \tau\le t \right\}\cap \left\{ \sigma<t \right\}
+$$
+in $\mathcal{F}_{t}$. Note $\tau \in \mathcal{F}_{\sigma +}$ thus so is $A\cap \left\{ \tau\le  t   \right\}$ and that implies the RHS in $\mathcal{F}_{\sigma +}$ and hence LHS in $\mathcal{F}_{t}$. Taking $A=\Omega$ shows that $\tau$ is a stopping time of $\mathbb{F}$.
+
+::::
+
+### Approximation of stopping times
+
+The following extend proposition \@ref(prp:continuous-approximation):
+
+::: {.proposition  name=""}
+
+Let $\tau$ be a stopping time of $\mathbb{F}_{+}$ and $\tau _n=d_n \circ \tau$ for each $n \in \mathbb{N}$. Then, $(\tau_n)$ become a discrete stopping time sequences and decreasing to $\tau$ strictly on $\left\{ \tau<\infty \right\}$ and $\mathcal{F}_{\tau+}=\bigcap_{n}\mathcal{F}_{\tau_n}$.
+
+:::
+
+
+:::: {.proof}
+
+Immediate once we note that each $\tau _n$ is foretold by $\tau$:
+
+::::
+
+### Hitting times
+
+::: {.theorem  name=""}
+
+Suppose that $\mathbb{F}$ is right-continuous and augmented and $X$ is progressive $\mathbb{F}$ process defined on metric space $(\Omega,\tau)$, then for any borel set $B$, the **hitting time**
+$$
+\tau_{B}=\inf \left\{ t\in \mathbb{R}_{+}:X_{t}\in B \right\}
+$$
+is a stopping time of $\mathbb{F}$.
+
+:::
+
+### Regularity of martingales
+
+
+::: {.proposition  name=""}
+
+Let $X$ be an submartingale adapted to $\mathbb{F}$ on $\mathbb{R}_{+}$. The following limits exists in $\mathbb{R}$ $\text{ a.s. }$:
+$$
+\begin{aligned}
+    X_{t+}&=\lim_{r\in D \searrow t}X_{r}
+    \\ 
+    X_{t-}&= \lim_{r\in D \nearrow t}X_{r},t>0
+\end{aligned}
+$$
+
+where $D$ is a countable dense subset of $\mathbb{R}_{+}$.
+
+:::
+
+:::: {.proof}
+
+For any $s\in D$, let $B$ be a finite subset of $D\cap [0,s]$ and $s\in B$, then $(X_{t})_{t\in B}$ is a submartingale.
+
+By theorem \@ref(thm:maxima-minimum),
+$$
+c \mathop{{}\mathbb{P}}\left\{ \max_{t \in B} X_{t}\ge c \right\}\le \mathop{{}\mathbb{E}}_{}\left| X_{s} \right|
+$$
+holds for any $B$ and thus $c\mathop{{}\mathbb{P}}\left\{ \sup _{D\cap [0,s]}X_{t}\ge c \right\}\le \mathop{{}\mathbb{E}}_{}\left| X_{s} \right|$, it follows that $M_{s}=\sup _{D\cap [0,s]}X_{t}<\infty \text{ a.s. }$.
+
+And lemma \@ref(lem:doob-upcrossings) yields:
+$$
+(b-a) \mathop{{}\mathbb{E}}_{}U_{B}(a,b)\le \mathop{{}\mathbb{E}}_{}(X_{s}-a)^{+}<\infty
+$$
+holds for any $B$ and hence $U_{s}(a,b)=\sup _{B}U_{B}(a,b)<\infty \text{ a.s. }$.
+
+Let $\Omega_{s}$ be the set satisfy the claim, note that
+$$
+\Omega_{s} \supset \bigcap_{a,b\in \mathbb{Q}}\left\{ M_{s}<\infty,U_{s}(a,b)<\infty \right\}
+$$
+is $\text{ a.s. }$ since it's countable union and the claim follows by $\bigcap_{s\in D}\Omega_{s}$ is $\text{ a.s. }$ again.  
+
+::::
+
+
+::: {.proposition #right-continuous-modification name=""}
+
+Suppose $\mathbb{F}$ is right-continuous and augmented and let $X$ be a submartingale, $\Omega_0$ is the $\text{ a.s. }$ set in last proposition and set $X_{t-}(\omega)=X_{t+}(\omega)=0$ for $\Omega-\Omega_0$. Then
+
+a. $X_{t+}\in L^{1}$ and $X_{t}\le X_{r+}\text{ a.s. }$ and the equalities holds $\text{ a.s. }$ iff $s\mapsto \mathop{{}\mathbb{E}}_{}X_{s}$ is right-continuous at $t$.
+
+b. The process $(X_{t+})$ is a submartingale if $X$ is. Moreover, the path $t \mapsto X_{t+}(\omega)$ is RCLL on $\Omega$.
+
+:::
+
+### Modifications and indistinguishability
+
+Let $T$ be some index set and $X,Y$ be two process on it, they are said to be a **modification** of the other if
+$$
+\mathop{{}\mathbb{P}}\left\{ X_{t}=Y_{t} \right\}=1
+$$
+for $t\in T$. They said to be **indistinguishable** if
+$$
+\mathop{{}\mathbb{P}}\left\{ X=Y \right\}=1 
+$$
+
+
+::: {.proposition  name=""}
+
+Suppose $T=\mathbb{R}_{+}$ and state space is $\mathbb{R}^{d}$, then $X$ and $Y$ are indistinguishable if they are modifications of each other and are both right-continuous.
+
+:::
+
+
+::: {.remark}
+
+That can be reduced to $\mathop{{}\mathbb{P}}\left\{ X_{t}=Y_{t} \right\}=1$ for any $t \in D$, where $D$ is dense in $\mathbb{R}_{+}$. And the same conclusion also holds for left-continuity if $0 \in D$.
+
+:::
+
+
+
+### Modifications of martingales
+
+::: {.theorem  name=""}
+
+Suppose $\mathbb{F}$ is right-continuous and augmented, $X$ is submartingale, then $t\mapsto \mathop{{}\mathbb{E}}_{}X_{t}$ is right-continuous iff there exists a unique modification $Y$ $\text{ s.t. }$ $Y$ is a RCLL submartingale.
+
+:::
+
+Hence we will always assume that we are taking the RCLL version of martingales.
+
 
 <br>
 <br>

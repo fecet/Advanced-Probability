@@ -5,20 +5,25 @@ Again, $T=\mathbb{N}$ unless stated otherwise.
 
 ### Upcrossings
 
-Under the general setting for $X,C,Y$ and numbers $a<b$, where we play stake $C=1$ when $X< a$ and stop if $X> b$, namely, for $n\ge 2$
+Suppose $M$ adapted to $\mathbb{F}$ and $a<b$, let
 $$
-C_n:=\bm{1}_{C_{n-1}=1}\bm{1}_{X_{n-1}\le b}+\bm{1}_{C_{n-1}=0}\bm{1}_{X_{n-1}<a}
+\sigma_{k}=\inf \left\{ n>\tau_{k-1}:M_n\le a \right\}, \tau_{k}=\inf \left\{ n>\sigma_{k}:M_n\ge b \right\}
 $$
-Then we denoted $U_N[a,b]$ as times of upcrossings from $a$ to $b$ by time $N$. Clearly, we have
+be the downcrossing and upcrossing times of $(a,b)$, and
 $$
-Y_{N} \ge (b-1)U_{N}[a,b]-(X_N-a)^{-}
+U_n(a,b)=\sum_{k}^{} \bm{1}_{(0,n]}\circ \tau_{k}
 $$
+is the number of upcrossing of $(a,b)$ during $[0,n]$. Suppose we invest $1$ when downcrossing $a$, then
+$$
+F_n=\sum_{k=1}^{\infty} \bm{1}_{(\sigma_{k},\tau_{k})}(n)
+$$
+and $X=\int FdM$ describes the evolution of his capital.
 
 ::: {.lemma #doob-upcrossings name="Doob's Upcrossing Lemma"}
 
-Let $X$ be a supermartingale, then
+Let $M$ be a submartingale. Then
 $$
-(b-a) \mathop{{}\mathbb{E}}_{}U_N[a,b]\le \mathop{{}\mathbb{E}}_{}(X_N-a)^{-}
+(b-a)\mathop{{}\mathbb{E}}_{}U_n(a,b) \le \mathop{{}\mathbb{E}}_{} \left[ (M_n-a)^{+}-(M_0-a)^{+} \right]
 $$
 
 :::
@@ -26,7 +31,23 @@ $$
 
 :::: {.proof}
 
-From $Y_N$ is a supermartingale.
+An upcrossing of $(a,b)$ by $M$ occurs iff one of $(0,b-a)$ by $(M-a)^{+}$ occurs. We are to show that if $M\ge 0$, then
+$$
+b \mathop{{}\mathbb{E}}_{}U_n(0,b)\le \mathop{{}\mathbb{E}}_{}(M_n-M_0)
+$$
+Let $X=\int FdM$, note $F$ is predictable and thus
+$$
+\mathop{{}\mathbb{E}}_{k}(X_{k+1}-X_{k})=\mathop{{}\mathbb{E}}_{k}(M_{k+1}-M_{k})F_{k}=F_{k}\mathop{{}\mathbb{E}}_{k}(M_{k+1}-M_{k})\le \mathop{{}\mathbb{E}}_{k}(M_{k+1}-M_{k})
+$$
+Taking expectations and summing over $k$ we get
+$$
+\mathop{{}\mathbb{E}}_{}(X_n-X_0)\le \mathop{{}\mathbb{E}}_{}(M_n-M_0)
+$$
+note that $X_n-X_0\ge bU_n(0,b)$ then the claim follows.
+
+
+
+
 
 ::::
 

@@ -159,18 +159,24 @@ Let $f : \Omega _{ 1 } \rightarrow \Omega_ { 2 }$ be a mapping, $\forall B\subse
 
 There is some properties:
 
-1. $f ^ { - 1 } \left( \Omega _ { 2 } \right) = \Omega _ { 1 } , f ^ { - 1 } ( \emptyset ) = \emptyset$
-2. $f ^ { - 1 } \left( B ^ { c } \right) = \left[ f ^ { - 1 } ( B ) \right] ^ { c }$
-3.
-     $$ \begin{array} { l } f ^ { - 1 } \left( \cup _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cup _ { \gamma \in \Gamma } f ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \\ f ^ { - 1 } \left( \cap _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cap _ { \gamma \in \Gamma } f ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \end{array} $$
-     
-     where $\Gamma$ may not countable.
-4. $f ^ { - 1 } \left( B _ { 1 } - B _ { 2 } \right) = f ^ { - 1 } \left( B _ { 1 } \right) - f ^ { - 1 } \left( B _ { 2 } \right) \forall B _ { 1 } , B _ { 2 } \subset \Omega _ { 2 }$
-5. $B_1\subset B_2 \subset \Omega_2 \implies f^{-1}(B_1) \subset f^{-1}(B_2)$
-6. If $\mathcal{B}$ is a $\sigma-$algebra, $f^{-1}(\mathcal{B})$ is also a $\sigma-$algebra.
+a. $f ^ { - 1 } \left( \Omega _ { 2 } \right) = \Omega _ { 1 } , f ^ { - 1 } ( \emptyset ) = \emptyset$
+
+b. $f ^ { - 1 } \left( B ^ { c } \right) = \left[ f ^ { - 1 } ( B ) \right] ^ { c }$
+
+c.
+$$ 
+\begin{array} { l } f ^ { - 1 } \left( \cup _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cup _ { \gamma \in \Gamma } f ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \\ f ^ { - 1 } \left( \cap _ { \gamma \in \Gamma } B _ { \gamma } \right) = \cap _ { \gamma \in \Gamma } f ^ { - 1 } \left( B _ { \gamma } \right) \text { for } B _ { \gamma } \subset \Omega _ { 2 } , \gamma \in \Gamma \end{array} 
+$$
+where $\Gamma$ may not countable.
+
+d. $f ^ { - 1 } \left( B _ { 1 } - B _ { 2 } \right) = f ^ { - 1 } \left( B _ { 1 } \right) - f ^ { - 1 } \left( B _ { 2 } \right) \forall B _ { 1 } , B _ { 2 } \subset \Omega _ { 2 }$
+
+e. $B_1\subset B_2 \subset \Omega_2 \implies f^{-1}(B_1) \subset f^{-1}(B_2)$
+
+f. If $\mathcal{B}$ is a $\sigma-$algebra, $f^{-1}(\mathcal{B})$ is also a $\sigma-$algebra.
 It's easy to check $f^{-1}(\mathcal{B})$ is closed under complement and countable union. (From properties 2 and 3)
 
-7. If $\mathcal{C}$ is nonempty, $f ^ { - 1 } ( \sigma ( \mathcal { C } ) ) = \sigma \left( f ^ { - 1 } ( \mathcal { C } ) \right)$
+h. If $\mathcal{C}$ is nonempty, $f ^ { - 1 } ( \sigma ( \mathcal { C } ) ) = \sigma \left( f ^ { - 1 } ( \mathcal { C } ) \right)$
 
 **Remarks** $f^{-1}$ preserves all the set operations on $\Omega$.
 
@@ -299,7 +305,7 @@ $$ \begin{aligned}
   \\ \{\inf_{n\to \infty} X_n \ge t \}&=\bigcap_{n=1}^\infty \{X_n \ge t\} \in \mathcal{A}
 \end{aligned}$$
 
-and the last two follows from $\limsup_{n\to \inf}=\inf_{k\to \infty} \sup_{m\ge k} X_m$ and $\liminf_{n\to \inf}=\sup_{k\to \infty} \inf_{m\ge k} X_m$. 
+And the last two follows from $\limsup_{n\to \inf}=\inf_{k\to \infty} \sup_{m\ge k} X_m$ and $\liminf_{n\to \inf}=\sup_{k\to \infty} \inf_{m\ge k} X_m$. 
 
 
 :::
@@ -439,12 +445,14 @@ Let $\Omega$ be a space and $\mathcal{A}$ a class, then function $\mu : \mathcal
 
 It's
 
-- 1.  **finite** if $\forall A\in \mathcal{A},\quad |\mu(A)|<\infty$
-  2. **$\sigma$-finite** if $\exists A_n \subset \mathcal{A},\quad s.t.\quad\cup_ { i = 1 } ^ { \infty } A _{ i } = \Omega\quad \forall n \quad |\mu(A_n)|<\infty$
-  3. **s finite** if there exist countable finite $(\mu_n)$ s.t. $\mu=\sum_{n} \mu_n$.
+a. 
+1.  **finite** if $\forall A\in \mathcal{A},\quad |\mu(A)|<\infty$
+2. **$\sigma$-finite** if $\exists A_n \subset \mathcal{A},\quad s.t.\quad\cup_ { i = 1 } ^ { \infty } A _{ i } = \Omega\quad \forall n \quad |\mu(A_n)|<\infty$
+3. **s finite** if there exist countable finite $(\mu_n)$ s.t. $\mu=\sum_{n} \mu_n$.
 
-- 1.  **additive** $\iff \mu \left( \sum _{ i = 1 } ^ { n } A_ { i } \right) = \sum _{ i = 1 } ^ { n } \mu \left( A_ { i } \right)$
-  2. **$\sigma-$additive**$\Longleftrightarrow \mu \left( \sum _{ i = 1 } ^ { \infty } A_ { i } \right) = \sum _{ i = 1 } ^ { \infty } \mu \left( A_ { i } \right)$
+b. 
+1.  **additive** $\iff \mu \left( \sum _{ i = 1 } ^ { n } A_ { i } \right) = \sum _{ i = 1 } ^ { n } \mu \left( A_ { i } \right)$
+2. **$\sigma-$additive**$\Longleftrightarrow \mu \left( \sum _{ i = 1 } ^ { \infty } A_ { i } \right) = \sum _{ i = 1 } ^ { \infty } \mu \left( A_ { i } \right)$
 
 ::: {.remark}
 

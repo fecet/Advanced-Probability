@@ -1,0 +1,53 @@
+## Martingale characterization for Wiener and Poisson
+
+### Counting Process
+
+Let $(\tau_n)>0$ be sequence of random times, define
+$$
+N_{t}=\sum_{n=1}^{\infty} \bm{1}_{[0,t]}\circ T_n
+$$
+be **counting process** associated to $(\tau_n)$. 
+
+Set $\tau=\sup_{n}\tau_n$,then we have
+$$
+[\tau_n,\infty)=\left\{ N\ge n \right\}, [\tau_n,\tau_{n+1})=\left\{ N=n \right\}, [\tau,\infty)=\left\{ N=\infty \right\} 
+$$
+
+$\tau$ is the **explosion time** of $N$. If $\tau=\infty \text{ a.s. }$, $N$ will not explode. If so, for $0\le s<t<\infty$,
+$$
+N_{t}-N_{s}=\sum_{n\ge 1}^{} \bm{1}_{(s,t]}\circ \tau_n
+$$
+
+$N$ is RCLL with jump size $1$ if without explosion.
+
+
+
+::: {.theorem  name=""}
+
+A counting process $N$ is adapted iff the associated $(\tau_n)$ are stopping times.
+
+:::
+
+
+:::: {.proof}
+
+$\impliedby$. Note $\left\{ N_{t}=n \right\}=\left\{ \tau_n\le t<\tau_{n+1} \right\}\in \mathcal{F}_{t}$. 
+
+$\implies$. Note $\left\{ \tau_n\le t \right\}=\left\{ N_{t}\ge n \right\}\in \mathcal{F}_{t}$.
+
+::::
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

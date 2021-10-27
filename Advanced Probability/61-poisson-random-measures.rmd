@@ -1,0 +1,32 @@
+# Poisson Random Measures
+
+## Random Measures
+
+Let $(E,\mathcal{E})$ be a measurable space. A **random measure** on $(E,\mathcal{E})$ is a transition kernel from $(\Omega,\mathcal{A})$ to $(E,\mathcal{E})$.
+
+The term such as finite, diffuse, etc. are used for a random measure $M$ if $M_{\omega}$ is so for $\text{ a.s. } \omega \in \Omega$. It's a **random counting measure** if, for $\text{ a.s. } \omega\in \Omega$, the measure $M_{\omega}$ is purely atomic and $M_{\omega}\left\{ x \right\}=1$ for each atom.
+
+## Mean measures and integrals
+
+Recall theorem \@ref(thm:kernel-op), $Mf$ define a positive $\text{ r.v.}$ for $f \in \mathcal{E}_{+}$ and $\mathop{{}\mathbb{P}}M$ define a measure on $(E,\mathcal{E})$:
+$$
+\mu(A)= \mathop{{}\mathbb{P}}M(A)=\int_{\Omega} M(A  )(\omega)d\mathop{{}\mathbb{P}}
+$$
+called the mean of $M$ and
+$$
+\mathop{{}\mathbb{E}}_{}Mf=\mathop{{}\mathbb{P}}Mf=\mu f
+$$
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+

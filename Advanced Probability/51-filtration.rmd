@@ -160,6 +160,14 @@ Let $\tau$ be a stopping time of $\mathcal{F}$, then $\mathcal{F}_{\tau} = \{X_{
 
 In fact, we can reduce the condition on $X$ from adapted right continuous to **progressive**.
 
+
+::: {.lemma  name=""}
+
+If $X$ is either left or right-continuous, then $X$ is adapted iff $X$ is progressive.
+
+:::
+
+
 ### Comparing different pasts
 
 If $\sigma$ and $\tau$ are stopping times of $\mathbb{F}$ and $\sigma$ is dominated by $\tau$, by intuition, we should think $\mathcal{F}_{\sigma} \subset \mathcal{F}_{\tau}$ since we go further at $\tau$. The following shows this

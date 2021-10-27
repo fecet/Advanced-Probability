@@ -29,9 +29,6 @@ library(latex2exp)
 ```
 
 
-# Prerequisites
-
-Omitted
 
 
 
