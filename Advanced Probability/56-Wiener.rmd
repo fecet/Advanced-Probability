@@ -38,8 +38,188 @@ $\implies$. Note $\left\{ \tau_n\le t \right\}=\left\{ N_{t}\ge n \right\}\in \m
 ::::
 
 
+### Poisson martingale
 
 
+::: {.definition  name=""}
+
+The counting process $N$ adapted $\mathbb{F}$ is said to be a Poisson process with **rate**, or **intensity**, $\lambda$ $\text{ w.r.t }\mathbb{F}$ if
+$$
+\mathop{{}\mathbb{E}}_{s}f(N_{s+t}-N_{s})=\mathop{{}\mathbb{E}}_{}f\circ \mathfrak{P}_{\lambda t}
+$$
+for any $s,t \in \mathbb{R}_{+}$ and $f:\mathbb{N}\to \mathbb{R}_{+}$. Where
+$$
+\mathop{{}\mathbb{P}}\left\{ \mathfrak{P}_{\lambda t} =n \right\}=\frac{\exp -\lambda t(\lambda t)^{n}}{n !}
+$$
+take $s=0$ and $f$ be identical map, we have
+$$
+N_{t}=\mathfrak{P}_{\lambda t}
+$$
+
+:::
+
+
+::: {.corollary  name=""}
+
+
+$$
+\mathop{{}\mathbb{E}}_{}N_{t}=\mathop{\text{Var}}N_{t}=\lambda t
+$$
+
+
+:::
+
+
+::: {.theorem  name=""}
+
+Counting process $N$ is Poisson iff
+$$
+N_{t}-\lambda t
+$$
+is martingales. If so, $(N_{t}-\lambda t)^2-\lambda t$ is martingales.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $N$ be a counting process,
+$$
+\mathbb{F}=\left\{ \sigma(N_{t}) \right\}
+$$
+is right-continues.
+
+:::
+
+### Brownian motion
+
+
+::: {.definition  name=""}
+
+An adapted process $B$ indexed by $\mathbb{R}_{+}$ is Brownian motion if the increment $B_{t}-B_{s}$: 
+
+a. $B_{t}-B_{s}$ is independent of $\mathcal{F}_{s}$.
+
+b. $B_{t}-B_{s} \sim \mathcal{N}(0, t-s)$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+If $B$ is Brownian motion, then there exist a modification with continues paths $\text{ a.s. }$.
+
+:::
+
+One can always normalise a Brownian motion with $B_0=0$, note it's a martingale.
+
+::: {.theorem  name=""}
+
+$B_{t}^2-t$ is a martingale.
+
+:::
+
+
+::: {.theorem  name=""}
+
+$$
+[B,B]_{t}=t \text{ a.s. }
+$$
+
+:::
+
+### Lévy Processes
+
+::: {.definition  name=""}
+
+$X$ starts with $X_0=0 \text{ a.s. }$ is a Lévy process if
+
+a. Increment $X_{t}-X_{s}$ is stationery and independent with $\mathcal{F}_{s}$.
+
+b. $X$ is continues in probability:
+$$
+\lim_{t \to s} \mathop{{}\mathbb{P}}\left\{ \left| X_{t}-X_{s}\right|>\varepsilon \right\}=0
+$$
+
+:::
+
+Where the independence can be modified to independent with $X_{u}-X_{v} \text{ s.t. } (u,v)\cap (s,t)=\emptyset$, such process is called **intrinsic Lévy process**.
+
+
+::: {.theorem  name=""}
+
+Lévy process $X$ has a unique RCLL modification that is also a Lévy process.
+
+:::
+
+::: {.theorem  name=""}
+
+Let $X$ be a Lévy process and $\mathbb{F}$ be the nature process. Then its augmentation $\bar{F}$ is also right-continuous.
+
+:::
+
+
+:::: {.proof}
+
+The idea is to show that
+$$
+\mathop{{}\mathbb{E}}_{t+}Z=\mathop{{}\mathbb{E}}_{t}Z
+$$
+for all $Z\in \bar{F}_{\infty}$, which can be written as finite sum:
+$$
+Z=\sum_{}^{} u_i X_{i}
+$$
+
+::::
+
+::: {.theorem  name=""}
+
+Let $X$ be a Lévy process and $\tau$ be a stopping time, on set $\Omega_0=\left\{ \tau<\infty \right\}$, the process
+$$
+Y=\left\{ Y_{t}=X_{\tau+t}-X_{\tau} \right\}
+$$
+then $Y$ is independent of $\mathcal{F}_{\tau}$ and has the same distribution as $X$.
+
+:::
+
+### Infinite divisibility, characteristic exponent
+
+Clearly $X_{t}$ is infinite divisible:
+$$
+X_{t}=\sum_{i=1}^{n} X_{i \delta}-X_{(i-1)\delta}
+$$
+It follows that the $\text{ ch.f.}$ of $X$ has the form:
+$$
+\mathop{{}\mathbb{E}}_{} \exp \left\{ irX_{t} \right\}= \exp \left\{ t \phi(r) \right\} 
+$$
+where $\phi$ is called the **characteristic exponent of $X$**.
+
+### Mean and Variance
+
+If the mean and variance of each components are well-defined, then they must be linear in $t$:
+$$
+\mathop{{}\mathbb{E}}_{}X_{t}=t \bm{a}, \mathop{\text{Var}} X_{t}= t\bm{V}
+$$
+for some $a\in \mathbb{R}^{d}, \bm{V}\in \mathbb{R}^{d\times d}>0$.
+
+### Convergence in distribution
+
+Recall that convergence in $\text{ ch.f.}$ is equivalent to convergence in distribution, thus $t \mapsto \mathop{{}\mathbb{E}}_{}f \circ X_{t}$ is continuous for all bounded continuous $f$.
+
+### Jumps
+
+
+::: {.theorem  name=""}
+
+Let $X$ be a Lévy process with bounded jumps, then
+$$
+\left\| X \right\|_{p}<\infty
+$$
+for all $p\ge 1$.
+
+:::
+
+Let $\Lambda$ be a borel 
 
 <br>
 <br>

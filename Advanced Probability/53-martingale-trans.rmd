@@ -175,6 +175,15 @@ $$
 b\mathop{{}\mathbb{P}}\left\{ \max_{k\le n} \left| M_{k} \right| >b \right\}\le 2 \mathop{{}\mathbb{E}}_{} M_n^{+}-\mathop{{}\mathbb{E}}_{}M_0\le 3 \max_{k\le n} \left| M_{k} \right|
 $$
 
+::: {.theorem #doob-inequality name="Doob's inequality"}
+
+Let $M$ be a martingale in $L^{p}$, $\frac{1}{p}+\frac{1}{q}=1$, then
+$$
+\mathop{{}\mathbb{E}}_{}\sup _{0\le k\le t} \left| M _{k}\right|^{p}\le q ^{p} \mathop{{}\mathbb{E}}_{} \left| M_{t} \right|^{p}
+$$
+
+:::
+
 
 
 

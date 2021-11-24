@@ -17,6 +17,147 @@ $$
 \mathop{{}\mathbb{E}}_{}Mf=\mathop{{}\mathbb{P}}Mf=\mu f
 $$
 
+### Laplace functionals
+
+Let $M$ be a random measure on $(E,\mathcal{E})$. It may be regarded as a collection $\left\{ Mf:f \in \mathcal{E}_{+} \right\}$.
+
+::: {.proposition  name=""}
+
+The probability law of random measure $M$ on $(E,\mathcal{E})$ is determined uniquely by
+$$
+\mathop{{}\mathbb{E}}_{}\exp -(Mf)
+$$
+
+:::
+
+
+:::: {.proof}
+
+Specify the joint distribution of $\left\{ Mf_{i} \right\}_{i\le n}$ via Laplace transformation is:
+$$
+\mathop{{}\mathbb{E}}_{} \exp -(\sum_{}^{}r_iMf_i), r_i\in \mathbb{R}_{+}
+$$
+Note $\sum_{}^{}r_if_i\in \mathcal{E}_{+}$ for any $r$, this completes the proof.
+
+::::
+
+
+::: {.proposition  name=""}
+
+If $(f_n)\subset \mathcal{E}_{+} \nearrow f$, then
+$$
+\lim_{n \to \infty} \mathop{{}\mathbb{E}}_{} \exp - \left\{ M f_n \right\} = \mathop{{}\mathbb{E}}_{} \exp - \left\{ Mf \right\}
+$$
+
+:::
+
+
+:::: {.proof}
+
+$Mf_n \nearrow Mf$ by applying MCT for every measure $M_{\omega}$, then DCT completes the proof.
+
+::::
+
+
+::: {.proposition  name=""}
+
+Let $M$ and $N$ be random measures on $(E,\mathcal{E})$. They are independent iff
+$$
+\mathop{{}\mathbb{E}}_{} \exp - \left\{ Mf+Ng \right\}=\mathop{{}\mathbb{E}}_{}\exp -\left\{ Mf \right\} \mathop{{}\mathbb{E}}_{}\exp - \left\{ Ng \right\}
+$$
+
+
+:::
+
+### Atoms, point processes
+
+Let $X=(x_i)$ be a countable collection of $\text{ r.v.}'s'$ in $(\bar{E},\bar{\mathcal{E}})$, define:
+$$
+Mf(\omega)=\sum_{i}^{}\bar{f} \circ X_{i}(\omega)
+$$ 
+for $f\in \mathcal{E}_{+}$, where we extend $f$ by putting $0$ for the others. 
+
+If every $\left\{ x  \right\}\in \mathcal{E}$, then $M_{\omega}$ is purely atomic and each $X_{i}(\omega)$ is an atom of $M_{\omega}$.
+
+
+
+::: {.proposition  name=""}
+
+Let $M$
+
+:::
+
+## Poisson Random Measures
+
+If $X \sim \mathfrak{P}_{c}$, then
+$$
+\mathop{{}\mathbb{P}}\left\{ X=k \right\}=\frac{e^{-c}c^{k}}{k!}
+$$
+for $k \in \mathbb{N}$, and hence $X<\infty \text{ a.s. }$ and
+$$
+\mathop{{}\mathbb{E}}_{}X=\mathop{\text{Var}}X=c
+$$
+for $c\in R_{++}$. We may extend it to $\bar{\mathbb{R}}_{+}$:
+
+
+$$
+\begin{cases}
+    X=0 \text{ a.s. } &c=0\\
+    X=\infty \text{ a.s. } &c=\infty
+\end{cases}
+$$
+
+
+::: {.definition  name=""}
+
+Suppose $(E,\mathcal{E},\nu)$ is a measure space, then a random measure $N$ on $(E,\mathcal{E})$ is a Poisson measure with mean $\nu$ if
+
+a. $N(A) \sim \mathfrak{P}_{\nu(A)}$ for any $A\in \mathcal{E}$.
+
+b. For disjoint $(A_n)\subset \mathcal{E}$, $(N(A_n))$ is an independency. 
+
+
+
+:::
+
+### Mean, variance, Laplace functional
+
+For $f\in \mathcal{E}_{+}$, we have
+$$
+\mathop{{}\mathbb{E}}_{}Nf=\nu f, \mathop{\text{Var}} Nf=\nu f^2
+$$
+
+::: {.theorem  name=""}
+
+Let $N$ be a random measure on $(E,\mathcal{E})$, it's Poisson with mean $\nu$ iff
+$$
+\mathop{{}\mathbb{E}}_{}e^{-Nf}=e^{-\nu(1-e^{-f})}
+$$
+for $f \in \mathcal{E}_{+}$.
+
+:::
+
+
+::: {.hypothesis  name=""}
+
+a. Since the Laplace function of $N$ determines its probability law, the theorem above concluded that Poisson random measure is determined by its mean $\nu$.
+
+b. In fact, we only need to check that for every simple $f$.
+
+::: 
+
+### Finiteness of $Nf$
+
+::: {.theorem  name=""}
+
+Let $N$ be a Poisson random measure on $(E,\mathcal{E})$ with mean $\nu$, let $f\in \mathcal{E}_{+}$ be real-valued.
+
+a. If $\nu(f \land 1)<\infty$, then $Nf<\infty \text{ a.s. }$.
+
+b. If $\nu(f \land 1)=\infty$, then $Nf=\infty \text{ a.s. }$.
+
+:::
+
 
 
 <br>

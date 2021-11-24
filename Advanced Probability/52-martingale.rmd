@@ -128,20 +128,6 @@ TFAE:
 
 :::
 
-### Poisson martingale
-
-
-::: {.definition  name=""}
-
-The counting process $N$ adapted $\mathbb{F}$ is said to be a Poisson process with rate $c$ $\text{ w.r.t }\mathbb{F}$ if
-$$
-\mathop{{}\mathbb{E}}_{s}f(N_{s+t}-N_{s})=\mathop{{}\mathbb{E}}_{}f\circ \mathfrak{P}_{ct}
-$$
-
-:::
-
-The definition is equivalent to $N_{t}-ct$ is a martingale adapted to $\mathbb{F}$.
-
 
 
 

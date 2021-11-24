@@ -191,25 +191,3 @@ Let $\hat{X}$ be as in preceding theorem \@ref(thm:stopped-martingale-continuous
 
 ::::
 
-### Local martingales and semimartingales
-
-
-::: {.definition  name=""}
-
-Let $\zeta$ be a stopping time. $X$ is called a local martingale on $[0,\zeta]$ if there exists $(\zeta_n) \text{ s.t. }\zeta _n \nearrow \zeta$and $(X_{t}-X_0)_{t\in \mathbb{R}_{+}}$ is a Doob martingale on $[0, \zeta_n]$ for any $n$. If it's on $\mathbb{R}_{+}$, then we just called it a local martingale.
-
-:::
-
-
-
-
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>

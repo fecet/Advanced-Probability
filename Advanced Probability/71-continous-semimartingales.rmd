@@ -1,0 +1,485 @@
+## Local martingales and semimartingales
+
+### FV function
+
+A FV function $a$ induce a signed measure $\mu=\mu^{+}-\mu^{-}$ and
+$$
+\mu(\mu,\nu]=a(\nu)-a(\mu)
+$$
+and $\left| \mu \right|=\mu^{+}+\mu^{-}$ is called the **total variation** of $a$. Thus we have
+$$
+fda=\mu f, f \left| da \right|=\left| \mu \right|f
+$$
+and $\left| \mu f \right|\le \left| \mu \right|\left| f \right|$.
+
+
+::: {.proposition  name=""}
+
+$$
+\int_{0}^{t} \left| da(x) \right|=\left| \mu \right|(0,t]=\sup_{\Pi} \sum_{i=1}^{p} \left| a(t_i)-a(t_{i-1}) \right|
+$$
+where $\Pi=\left\{ t_0:=0,t_1,\dots,t_{p}:=t \right\}$ is a partition of $[0,t]$. Or equivalently,
+$$
+\int_{0}^{t} \left| da(x) \right|=\left| \mu \right|(0,t]=\lim_{  \left\| \Pi \right\|\to 0} \sum_{i=1}^{p} \left| a(t_i)-a(t_{i-1}) \right|
+$$
+
+
+:::
+
+Thus we define approximate $\mu f=\lim_{n \to \infty}\mu f_n$ where $f_n=f(t^{n}_{i-1})$ and there is a sequence of subdivision of $\Pi^{n}$ whose mesh goes to $0$ if $f$ is continuous.
+
+### FV processes
+
+If $A$ is FV, take $a(s)=A_{s}(\omega)$ the process
+$$
+V_{t}(\omega)=\int _{0}^{t} \left| dA_{s}(\omega) \right|
+$$
+is increasing. Note $V_{t}-A_{t}$ is increasing we have a process is FV iff it's difference of two increasing processes.
+
+
+::: {.proposition  name=""}
+
+If $A$ is FV, $H$ is a progressive process $\text{ s.t. }$
+$$
+\int_{0}^{t} \left| H_{s}(\omega) \right|\left| dA_{s}(\omega) \right|<\infty
+$$
+then the process $H \cdot A$ defined by
+$$
+(H \cdot A)_{t}=\int_{0}^{t}H_{s}d A_{s}
+$$
+is also FV
+
+:::
+
+### Local martingale
+
+::: {.definition  name=""}
+
+Let $\zeta$ be a stopping time. $X$ is called a local martingale on $[0,\zeta]$ if there exists $(\zeta_n) \text{ s.t. }\zeta _n \nearrow \zeta$and $(X_{t}-X_0)_{t\in \mathbb{R}_{+}}$ is a Doob martingale on $[0, \zeta_n]$ for any $n$. If it's on $\mathbb{R}_{+}$, then we just called it a local martingale.
+
+:::
+
+The space of all local martingales is a vector space
+
+
+::: {.definition  name=""}
+
+Suppose $M$ is a continuous local martingale
+
+a. If $M\ge 0$ and $M_0\in L^{1}$, then it is a supermartingale.
+
+b. If $M$ is dominated by $Z \in L^{1}$, then $M$ is a UI martingale
+
+c. If $M_0\in L^{1}$, the sequence
+$$
+\left\{ \sigma_n=\inf \left\{ t\ge 0:\left| N_{t} \right|\ge n \right\} \right\}
+$$
+reduces $M$. 
+
+:::
+
+:::: {.proof}
+
+a. As $M_0\in L^{1}$ and $\mathcal{F}_{0}$ measurable, if $(\tau_n)$ reduce $M_{t}$, we have
+$$
+M_{s \land \tau_n}=\mathop{{}\mathbb{E}}_{s} M_{t \land \tau_n}
+$$
+Note $M_{t \land \tau_n}\to M_{t}$ pointwise, Fatou's lemma yields
+$$
+M_{s}\ge \mathop{{}\mathbb{E}}_{s}M_{t}
+$$
+as $M\ge 0$. Integrability follows from $M_0\in L^{1}$.
+
+
+b. Change Fatou's lemma into DCT in preceding arguments, we get
+$$
+M_{s}=\mathop{{}\mathbb{E}}_{s}M_{t}
+$$
+then claim follows.
+
+c. Immediate from b by noting $M_{\sigma_n \land t}$ bound by $n+\left| M_0 \right|$.
+
+
+::::
+
+
+
+::: {.theorem  name=""}
+
+Let $M$ be continuous local martingale. Assume that $M$ is also FV process, then $M_{t}=M_{0}$ $\text{ a.s. }$.
+
+:::
+
+
+### Quadratic variation of a continuous local martingale
+
+Let $M$ be continuous local martingale. There exists an unique up to indistinguishability increasing process $[M,M]_{t}$ $\text{ s.t. }$
+$$
+[M,M]_{t}=\lim_{\left\| \Pi \right\|\to 0} \sum_{i=1}^{}(M_{t_i}-M_{t_{i-1}})^2
+$$
+in probability, and $M^2-[M,M]$ is continuous local martingale.
+
+
+::: {.hypothesis  name=""}
+
+a. $[M,M]$ does not depend on $M_0$.
+
+b. The subdivision $\Pi$ need not be increasing.
+
+:::
+
+
+:::: {.proof}
+
+Uniqueness follows from if $Q$ and $Q'$ be two versions of $[M,M]$ then $Q-Q'=(M^2-Q')-(M^2-Q)$ is FV and continuous local martingale and hence should be zero $\text{ a.s. }$.
+
+
+::: {.lemma  name=""}
+
+If $M$ is a bounded martingale and $Z$ is bounded in $\mathcal{F}_{b}$, then
+$$
+N_{t}=Z(M_{a \land t}-M_{b \land t})
+$$
+is a martingale, where $0\le b<a$.
+
+:::
+
+
+:::: {.proof}
+
+[stackexhange](https://math.stackexchange.com/questions/2812092/proving-martingale-property-of-n-t-zm-t-wedge-s-m-t-wedge-r-for-mar?rq=1)
+
+Note that
+$$
+N_{t}=\begin{cases}
+    0 & t\le b \\
+    Z(M_{t}-M_{b}) &t \in (b,a] \\
+    Z(M_{a}-M_{b}) &t > a
+\end{cases}
+$$
+
+::::
+
+Suppose $M$ is bounded and thus be martingale, take $\Pi_{n}$ be subdivision of $[0,K]$ whose mesh tending to $0$, then
+$$
+X_{t}^{n}=\sum_{i=1}^{} M_{t_{i-1}^{n}}(M_{t_i^{n}\land t}-M_{t_{i-1}^{n}\land t})
+$$
+is a bounded martingale. 
+
+::: {.lemma  name=""}
+
+$$
+\lim_{n,m\to \infty} \mathop{{}\mathbb{E}}_{} \left[ X_{K}^{n}-X^{m}_{K} \right]^2=0
+$$
+
+:::
+
+Take $p=2$ in Doob's inequality \@ref(thm:doob-inequality), we have
+$$
+\lim_{n,m \to \infty} \mathop{{}\mathbb{E}}_{} \left[ \sup_{t\le K} (X_{t}^{n}-X^{m}_{t})^2 \right]=0
+$$
+Then we can find a sequence $(n_{k})\subset \mathbb{N} \text{ s.t. }, \forall k\ge 1$,
+$$
+ \mathop{{}\mathbb{E}}_{} \left[ \sup_{t\le K} (X_{t}^{n_{k+1}    }-X^{n_{k}}_{t})^2 \right]\le 2^{-k} 
+$$
+that implies, series $\sup_{t\le K} (X_{t}^{n_{k+1}}-X^{n_{k}}_{t})$ converge in $L^{2}$, and hence in $L^{1}$:
+$$
+\sum_{k=1}^{\infty}  \sup_{t\le K} \left| X_{t}^{n_{k+1}    }-X^{n_{k}}_{t} \right|<\infty, \text{ a.s. }
+$$
+thus in the $\text{ a.s. }$ set, sequence $(t \mapsto X_{t}^{n_{k}})$ converges uniformly as $k\to \infty$ and the limit is continuous again. 
+Set $Y_{t}=\lim_{k \to \infty}X^{n_{k}}_{t}$, note that $L^2$ limit coincide with the $\text{ a.s. }$ limit of any subsequence. 
+Then we can [exchange](https://math.stackexchange.com/questions/361027/exchanging-limit-and-expectation-for-l2-random-variables) limit in $L^2$ to obtain
+$$
+\mathop{{}\mathbb{E}}_{s}Y_{t}=Y_{s}
+$$
+thus $Y_{t \land K}$ is a continuous martingale.
+
+Note we have the following identity:
+$$
+M_{t_{j}^{n}}^2-2X^{n}_{t ^{n}_{j}}=\sum_{i=1}^{j} (M_{t_{i}^{n}}-M_{t_{i-1}^{n}})^2
+$$
+Then $M_{t}^2-2X_{t}^{n}$ are nondecreasing along $(t_{i}^{n})$, take $n\to \infty$ along $(n_{k})$, we have $M_{t}^2-2Y_{t}$ are nondecreasing on $[0,K]$, thus let
+$$
+[M,M]_{t}=M_{t}^2-2Y_{t_j}
+$$
+
+
+::::
+
+
+::: {.proposition  name=""}
+
+Let $M$ be a continuous local martingale and $\tau$ be a stopping time, then
+$$
+[M^{\tau},M^{\tau}]=[M,M]^{\tau}
+$$
+
+:::
+
+
+::: {.proposition  name=""}
+
+Let $M$ be a continuous local martingale with $M_0=0$, then $[M,M]=0$ iff $M=0$.
+
+:::
+
+
+::: {.proposition  name=""}
+
+$M^2\ge 0$ is a continuous local martingale and thus be supermartingale, hence $\mathop{{}\mathbb{E}}_{}M^2_{t}\le \mathop{{}\mathbb{E}}_{}M_0^2=0\implies M_{t}=0 \text{ a.s. }$.
+
+:::
+
+
+::: {.theorem  name=""}
+
+Let $M$ be a continuous local martingale with $M_0\in L^2$. $M$ is bounded in $L^2$ iff
+$$
+\mathop{{}\mathbb{E}}_{}[M,M]_{\infty}<\infty
+$$
+if so, $M^2-[M,M]$ is UI martingale and
+$$
+\mathop{{}\mathbb{E}}_{}M^2_{\infty}=\mathop{{}\mathbb{E}}_{}M^2_{0}+\mathop{{}\mathbb{E}}_{}[M,M]_{\infty}
+$$
+
+:::
+
+### Bracket
+
+
+::: {.definition  name=""}
+
+If $M,N$ are two continuous local martingale, the bracket $\left\langle M,N \right\rangle$ is the FV process defined by
+$$
+\left\langle M,N \right\rangle=\frac{1}{2} \left( \left\langle M+N \right\rangle-\left\langle M \right\rangle -\left\langle N \right\rangle \right)
+$$
+:::
+
+
+::: {.proposition  name=""}
+
+a. $\left\langle M,N \right\rangle$ is the unique FV process $\text{ s.t. }$ $MN-\left\langle M,N \right\rangle$ is continuous local martingale.
+
+b. $(M,N)\mapsto \left\langle M,N \right\rangle$ is bilinear and symmetric.
+
+c. $\Pi$ is subdivision of $[0,t]$, then
+$$
+\lim_{\left\| \Pi \right\| \to 0} \sum_{}^{} (M_{t_i^{n}}-M_{t_{i-1}^{n}})(N_{t_i^{n}}-N_{t_{i-1}^{n}})=\left\langle M,N \right\rangle_{t}
+$$
+
+d. For any stopping time $\tau$,
+$$
+\left\langle M^{\tau},N^{\tau} \right\rangle=\left\langle M^{\tau},N \right\rangle=\left\langle M,N \right\rangle^{\tau}
+$$
+
+e. If $M,N$ are martingales bounded in $L^2$, $MN-\left\langle M,N \right\rangle$ is UI martingale. Consequently,
+$$
+\mathop{{}\mathbb{E}}_{}M_{\infty}N_{\infty}=\mathop{{}\mathbb{E}}_{}M_0N_0+\mathop{{}\mathbb{E}}_{}\left\langle M,N \right\rangle_{\infty}
+$$
+
+:::
+
+
+::: {.definition  name=""}
+
+Two continuous local martingale $M$ and $N$ are said to be orthogonal if $\left\langle M,N \right\rangle=0\iff MN$ is continuous local martingale.
+
+:::
+
+
+::: {.theorem #kunita name="Kunita-Watanable"}
+
+Let $M,N$ be two continuous local martingale and $H,K$ be measurable process, then
+$$
+\int \left| H \right| \left| K \right|\left| d \left\langle M,N \right\rangle \right|\le \sqrt{\int H^2d\left\langle M,M \right\rangle} \sqrt{\int K^2d\left\langle N,N \right\rangle}
+$$
+holds $\text{ a.s. }$.
+
+:::
+
+
+## Continuous semimartingales
+
+
+::: {.definition  name=""}
+
+A process $X$ is a semimartingale if it can be written as
+$$
+X_{t}=M_{t}+A_{t}
+$$
+where $M$ is local martingale and $A$ is FV.
+
+:::
+
+
+::: {.definition  name=""}
+
+Let $X=M+A$ and $Y=M'+A'$, define
+$$
+\left\langle X,Y \right\rangle=\left\langle M,M' \right\rangle
+$$
+
+:::
+
+
+::: {.proposition  name=""}
+
+Let $\Pi$ be subdivision of $[0,t]$, then
+$$
+\lim_{\left\| \Pi \right\| \to 0} \sum_{}^{} (X_{t_i^{n}}-X_{t_{i-1}^{n}})(Y_{t_i^{n}}-Y_{t_{i-1}^{n}})=\left\langle X,Y \right\rangle_{t}
+$$
+in probability.
+
+:::
+
+## Stochastic integrals
+
+Write $\mathcal{H}^2$ for the space of all continuous $L^2$ bounded martingale $M$ with $M_0=0$. Equip inner product as
+$$
+\left\langle M,N \right\rangle_{\mathcal{H}^2}=\mathop{{}\mathbb{E}}_{}\left\langle M,N \right\rangle_{\infty}=\mathop{{}\mathbb{E}}_{}M_{\infty}N_{\infty}
+$$
+One can verify $\mathcal{H}^2$ is a Hilbert space.
+
+Recall that collection of $\mathcal{P}$ of all sets $A\in \mathcal{F}\times \mathcal{B}(\mathbb{R}_{+}) \text{ s.t. }$ process $X_{t}(\omega)=\bm{1}_{A}(\omega,t)$ is progressive is a $\sigma$ algebra on $\Omega \times \mathbb{R}_{+}$. And for any $A\subset \Omega\times \mathbb{R}_{+}$:
+$$
+A\in \mathcal{P} \iff \forall t, A \cap (\Omega \times [0,t]) \in \mathcal{P}\times \mathcal{B}[0,t]
+$$
+$X$ is progressive iff function $(\omega,t)\mapsto X_{t}(\omega)$ belong to $\mathcal{P}$.
+
+Now for $M\in \mathcal{H}^2$, let $L^2(M)$ be collection of progressive $H \text{ s.t. }$:
+$$
+\mathop{{}\mathbb{E}}_{}\int H^2d\left\langle M,M \right\rangle<\infty
+$$
+that is $L^2$ space $\text{ w.r.t }$ space $(\Omega\times \mathbb{R}_{+},\mathcal{P},\mathop{{}\mathbb{P}} d\left\langle M,M \right\rangle)$, where the measure is
+$$
+A\mapsto \mathop{{}\mathbb{E}}_{}\int \bm{1}_{A}(\omega,s) d\left\langle M,M \right\rangle_{s}
+$$
+and the inner product thus defined by
+$$
+\left\langle H,K \right\rangle_{L^2(M)}=\mathop{{}\mathbb{E}}_{}\int HKd\left\langle M,M \right\rangle
+$$
+It's also a Hilbert space.
+
+::: {.definition  name=""}
+
+An elementary process is of the form
+$$
+H_{t}(\omega)=\sum_{i=0}^{p-1}H_{i}(\omega)\bm{1}_{(t_i,t_{i+1}]}(t)
+$$
+where $\Pi=(t_i)$ is a subdivision of $\mathbb{R}_{+}$, $H_i$ is a bounded $\mathcal{F}_{t_i} \text{ r.v.}$.
+
+:::
+
+The set $\mathcal{E}$ of all elementary process forms a linear subspace of $L^2(M)$, moreover
+
+::: {.proposition  name=""}
+
+For every $M\in \mathcal{H}^2$,  $\mathcal{E}$ is dense in $L^2(M)$.
+
+:::
+
+Clearly, $M^{\tau}\in \mathcal{H}^2$ if $M\in \mathcal{H}^2$ and $\bm{1}_{[0,\tau]}H\in L^2(M)$ if $H \in L^2(M)$.
+
+
+::: {.theorem  name=""}
+
+Let $M\in \mathcal{H}^2$ and $H\in \mathcal{E}$ of the form
+$$
+H_{t}(\omega)=\sum_{i=0}^{p-1}H_{i}(\omega)\bm{1}_{(t_i,t_{i+1}]}(t)
+$$
+then
+$$
+(H \cdot M)_{t}=\sum_{i=0}^{p-1} H_{i}(M_{t_{i+1}\land \tau}-M_{t_{i}\land \tau})
+$$
+define a process on $\mathcal{H}^2$. $\mathcal{E}$ and $\mathcal{H}^2$ are isometric by isometry $H \mapsto H \cdot M$, and $H \cdot M$ is unique in $\mathcal{H}^2 \text{ s.t. }$
+$$
+\left\langle H\cdot M,N \right\rangle=H \cdot \left\langle M,N \right\rangle, \forall N\in \mathcal{H}^2
+$$
+let $\tau$ be a stopping time, then
+$$
+(\bm{1}_{[0,\tau]}H)\cdot M=(H \cdot M)^{\tau}=H\cdot M^{\tau}
+$$
+
+
+
+:::
+
+
+:::: {.proof}
+
+$H\mapsto H \cdot M$ is linear clearly. Fix $H \in \mathcal{H}$, note
+$$
+M_{t}^{i}:=H_{i}(M_{t_{i+1}\land t}-M_{t_i \land t})
+$$
+is a martingale and thus in $\mathcal{H}^2$. Then $H \cdot M=\sum_{}^{}M^{i}\in \mathcal{H}^2$, note we $M^{i}$ are pairwise orthogonal, and
+$$
+\left\langle M^{i},M^{i} \right\rangle=H^2_{i}(\left\langle M,M \right\rangle^{t_{i+1}}-\left\langle M,M \right\rangle^{t_{i}})
+$$
+consequently,
+$$
+\left\langle H\cdot M,H \cdot M\right\rangle=\sum_{}^{}H^2_{i}(\left\langle M,M \right\rangle^{t_{i+1}}-\left\langle M,M \right\rangle^{t_{i}})=\int_{0}^{\cdot} H^2d \left\langle M,M \right\rangle
+$$
+and hence
+$$
+\left\| H \cdot M \right\|^2_{\mathcal{H}^2}=\left\| H \right\|^2_{L^2(M)}
+$$
+That complete the proof about isometry.
+
+Fix $N \in \mathcal{H}^2$, we first note that, if $H \in L^2(M)$, then Kunita–Watanabe inequality theorem \@ref(thm:kunita) shows that
+$$
+\mathop{{}\mathbb{E}}_{}\int_{0}^{\infty} \left| H_{s} \right| \left| d \left\langle M,N \right\rangle_{s} \right|\le \left\| H \right\|_{L^2(M)}\left\| N \right\|_{\mathcal{H}^2}<\infty
+$$
+thus $(H \cdot \left\langle M,N \right\rangle)_{\infty}\in L^{1}$. For $H\in \mathcal{E}$,
+$$
+\begin{aligned}
+    \left\langle H \cdot M,N \right\rangle&=\sum_{}^{}\left\langle M^{i},N \right\rangle
+    \\ &= 
+    \sum_{}^{}H_{i}(\left\langle M,M \right\rangle^{t_{i+1}}-\left\langle M,M \right\rangle^{t_{i}})
+    \\ &= 
+    \int_{0}^{\cdot} H d\left\langle M,N \right\rangle=H \cdot \left\langle M,N \right\rangle
+\end{aligned}
+$$
+Also, linear mapping $X \mapsto \left\langle X,N \right\rangle_{\infty}$ is continuous from $\mathcal{H}^2$ to $L^{1}$ since
+$$
+\mathop{{}\mathbb{E}}_{}\left| \left\langle X,N \right\rangle_{\infty} \right|\le \sqrt{\mathop{{}\mathbb{E}}_{}\left\langle X,X \right\rangle_{\infty}\mathop{{}\mathbb{E}}_{}\left\langle N,N \right\rangle_{\infty}}=\left\| N \right\|_{\mathcal{H}^2}\left\| X \right\|_{\mathcal{H}^2}
+$$
+by Kunita–Watanabe inequality. Then we conclude that for any $H\in L^2(M)$, $(H^{n})\subset \mathcal{E} \text{ s.t. } H^{n}\mapsto H$, we have
+$$
+\begin{aligned}
+    \left\langle H\cdot M,N \right\rangle_{\infty}&=\lim_{n \to \infty}\left\langle H^{n}\cdot M,N \right\rangle_{\infty}
+    \\ &= 
+    \lim_{n \to \infty}(H^{n}\cdot \left\langle M,N \right\rangle)_{\infty}
+    \\ &= 
+    (H \cdot \left\langle M,N \right\rangle )_{\infty}
+\end{aligned}
+$$
+where the last equity again follows from Kunita–Watanabe inequality:
+$$
+\begin{aligned}
+    \left\| (H^{n}\cdot \left\langle M,N \right\rangle)_{\infty}  - (H \cdot \left\langle M,N \right\rangle)_{\infty}\right\|_{L^{1}}&=\mathop{{}\mathbb{E}}_{}\left| \int_{0}^{\infty}(H^{n}-H) d\left\langle M,N \right\rangle \right|
+    \\ & \le 
+    \sqrt{\mathop{{}\mathbb{E}}_{}\left\langle N,N \right\rangle_{\infty}} \left\| H^{n}-H \right\|_{L^2(M)}
+\end{aligned}
+$$
+replacing all process $X$ to $X^{t}$ completes the proof.
+
+
+
+
+::::
+
+
+
+
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
