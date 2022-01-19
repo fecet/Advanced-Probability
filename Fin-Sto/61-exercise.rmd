@@ -1,6 +1,5 @@
 ## Exercise
 
-
 ::: {.exercise  name=""}
 
 :::
@@ -126,28 +125,28 @@ $$
 
 ::: {.solution}
 
-1.  Apply independence lemma again.
-    $$
-    \begin{aligned}
-        \mathop{{}\mathbb{E}}_{s}f(X_{t})&=\mathop{{}\mathbb{E}}_{s}f(X_{t}-X_{s}+X_{s})
-        \\ &= 
-        \mathop{{}\mathbb{E}}_{s}f(W_{t}-W_{s}+\mu(t-s)+W_{s}+\mu s)
-        \\ &= 
-        \mathop{{}\mathbb{E}}_{}f(W_{t}-W_{s}+\mu(t-s)+x)|_{x=X_{s}}
-        \\ &= 
-        \int_{\mathbb{R}}f(y)p(\tau,X_{s},y)dy
-    \end{aligned}
-    $$
-    where $p$ is pdf of $\mathcal{N}(X_{s}+\mu(t-s),t-s)$.
+a.  Apply independence lemma again.
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{s}f(X_{t})&=\mathop{{}\mathbb{E}}_{s}f(X_{t}-X_{s}+X_{s})
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{s}f(W_{t}-W_{s}+\mu(t-s)+W_{s}+\mu s)
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}f(W_{t}-W_{s}+\mu(t-s)+x)|_{x=X_{s}}
+    \\ &= 
+    \int_{\mathbb{R}}f(y)p(\tau,X_{s},y)dy
+\end{aligned}
+$$
+where $p$ is pdf of $\mathcal{N}(X_{s}+\mu(t-s),t-s)$.
 
-2.  Note that $S_{t}=S_0\exp \sigma X_{t}$ where $X_{t}=W_{t}+\frac{\mu}{\sigma}$, then
-    $$
-    \begin{aligned}
-        \mathop{{}\mathbb{E}}_{s}f(S_{t}) &= \int_{\mathbb{R}} f(S_0 \exp \sigma y)p(\tau,X_{s},y)dy
-        \\ & \xlongequal{S_0 \exp \sigma y=z}
-        \int_{0}^{\infty} f(z)p(t-s,S_{s},z)dz
-    \end{aligned}
-    $$
+b.  Note that $S_{t}=S_0\exp \sigma X_{t}$ where $X_{t}=W_{t}+\frac{\mu}{\sigma}$, then
+$$
+\begin{aligned}
+    \mathop{{}\mathbb{E}}_{s}f(S_{t}) &= \int_{\mathbb{R}} f(S_0 \exp \sigma y)p(\tau,X_{s},y)dy
+    \\ & \xlongequal{S_0 \exp \sigma y=z}
+    \int_{0}^{\infty} f(z)p(t-s,S_{s},z)dz
+\end{aligned}
+$$
 
 :::
 

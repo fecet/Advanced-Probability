@@ -1,0 +1,77 @@
+## Doubly residual
+
+$$
+x_{i}:=x_{i-1}-\hat{x}_{i-1},\hat{y}=\sum_{}^{}\hat{y}_{i}
+$$
+
+## Basic idea
+
+Consider the $s$th Stock's $l$th block's theta, denote it as $\theta_{s,l}^{f}$ and $\theta_{s,l}^{b}$, where we omit batchsize dimension for simplicity, thus $\theta$ is a vector with length $\mathop{\text{dim}} \theta$. 
+
+The idea is we generate our output as linearly combination from coefficients $\bm{\theta}$ and basis $\left\{ \bm{v_i} \right\}_{i}^{\mathop{\text{dim}} \bm{\theta}}$:
+$$
+\widehat{y}_{s,l}=\sum_{i=0}^{\mathop{\text{dim}} \bm{\theta}  ^{f}}   {\bm{\theta}_{s,l,i}^f\times \bm{v}^i}=\bm{V \theta}
+$$
+Every basis is in $\mathbb{R}^{H}$ and $\bm{V}\in \mathbb{R}^{H\times \mathop{\text{dim}} \bm{\theta}}$.
+
+The interpretability comes from how we choose the basis vectors $\bm{V}$, if we simply choose them as random weight matrix:
+$$
+\hat{y}=\bm{W\theta}
+$$
+by a FC layer, $\hat{y}$ not being interpretable and thus known as generic model.
+
+
+### Trend Model
+
+To reflect trend, we select $\bm{v}_{i}$ as polynomial:
+$$
+\widehat{y}_{s,l}=\bm{T\theta_{s,l}^f}
+$$
+$$
+T = \begin{bmatrix}
+        f_0	&
+        f_1 &
+        \cdots &
+        f_{p}
+    \end{bmatrix}
+\circ  \begin{bmatrix}
+            0\\
+            \frac{1}{H}\\
+        \vdots \\
+            \frac{H-1}{H} 	
+       \end{bmatrix}  =
+\begin{pmatrix}
+\left( \frac{0}{H} \right)^{0}      &       \cdots     & \left( \frac{0}{H} \right)^{p}      \\
+\left( \frac{1}{H} \right)^{0}&  \cdots & \left( \frac{1}{H} \right)^{p}\\
+\vdots    & \ddots & \vdots  \\
+\left( \frac{H-1}{H} \right)^{0}&  \cdots & \left( \frac{H-1}{H} \right)^{p}\\
+\end{pmatrix}
+$$
+where $f_{i}=x \mapsto x^{i}$.
+
+### Seasonality model
+
+In the same way as the trend we constrain $g^f$ and $g^b$. A natural choice for the basis to model periodic function is the Fourier series:
+
+$\widehat{y}_{s,l}$
+$=\sum_{i=0}^{fourier\ order}{\theta_{s,l,i}^{f}\times \cos{2\pi i T}+\theta_{s,l,i+H/2}^{f}\times \sin{2\pi i T}}$</p>
+
+$$
+\bm{S}=\left( c,s
+\right)
+\circ \begin{bmatrix}
+     0\\
+     \frac{1}{H}\\
+ \vdots \\
+     \frac{H-1}{H} 	
+\end{bmatrix} \in \mathbb{R}^{H\times \left\lfloor \frac{H}{2} \right\rfloor}
+$$
+where
+$$
+\begin{aligned}
+    c&=\underbrace{\cos 2\pi \cdot 0 \cdot x, \cos 2\pi \cdot 1 \cdot x,\dots, \cos 2\pi \cdot \left\lfloor \frac{H}{2}-1 \right\rfloor \cdot x}_{\text{length } \left\lfloor \frac{H}{2} \right\rfloor}\\
+    s&=\underbrace{\sin 2\pi \cdot 0 \cdot x,\sin 2\pi \cdot 1 \cdot x,\dots, \sin 2\pi \cdot \left\lfloor \frac{H}{2}-1 \right\rfloor \cdot x}_{\text{length } \left\lfloor \frac{H}{2} \right\rfloor}
+\end{aligned}
+$$
+
+

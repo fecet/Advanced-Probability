@@ -1,0 +1,151 @@
+# Risk-Neutral Pricing
+
+## Risk-Neutral measure
+
+For any $Z>0 \text{ a.s. } \text{ s.t. } \mathop{{}\mathbb{E}}_{}Z=1$, define probability measure $\tilde{\mathop{{}\mathbb{P}}}$ as
+$$
+\tilde{\mathop{{}\mathbb{P}}}=Zd \mathop{{}\mathbb{P}}
+$$
+thus we have
+$$
+\tilde{\mathop{{}\mathbb{E}}_{}}X=\mathop{{}\mathbb{E}}_{}XZ
+$$
+And $\mathop{{}\mathbb{P}}$ and $\tilde{\mathop{{}\mathbb{P}}}$ share the same null set. 
+
+Define $Z_{t}=\mathop{{}\mathbb{E}}_{t}Z$, we have 
+
+
+::: {.proposition  name=""}
+
+For $Y\in \mathcal{F}_{\tau}$, we have
+$$
+\tilde{\mathop{{}\mathbb{E}}_{}}Y=\mathop{{}\mathbb{E}}_{}YZ_{\tau}
+$$
+
+
+:::
+
+Also 
+
+
+::: {.proposition  name=""}
+
+For $0\le \sigma\le \tau\le T$ and $Y\in \mathcal{F}_{\tau}$:
+$$
+\tilde{\mathop{{}\mathbb{E}}_{s}}YZ_{s}=\mathop{{}\mathbb{E}}_{s}YZ_{t}
+$$
+
+:::
+
+
+:::: {.proof}
+
+To see this, we check that for any $A\in \mathcal{F}_{s}$, we have
+$$
+\tilde{\mathop{{}\mathbb{E}}_{}} \left[ \bm{1}_{A}\frac{1}{Z_{s}}{\mathop{{}\mathbb{E}}_{s}}YZ_{t} \right]=\tilde{\mathop{{}\mathbb{E}}_{}}\bm{1}_{A}Y     
+$$
+The inner part of LHS is $\mathcal{F}_{s}$ measurable and thus
+$$
+\begin{aligned}
+    \tilde{\mathop{{}\mathbb{E}}_{}} \left[ \bm{1}_{A}\frac{1}{Z_{s}}{\mathop{{}\mathbb{E}}_{s}}YZ_{t} \right]&= 
+    \mathop{{}\mathbb{E}}_{} \left[  \bm{1}_{A}{\mathop{{}\mathbb{E}}_{s}}YZ_{t}  \right] 
+    \\ &= 
+    \mathop{{}\mathbb{E}}_{}\bm{1}_{A}Y Z_{t}
+    \\ &= 
+    \tilde{\mathop{{}\mathbb{E}}_{}} [\bm{1}_{A}Y]
+\end{aligned}
+$$
+
+::::
+
+
+::: {.theorem #girsanov name="Girsanov's theorem"}
+
+Let $W_{t}$ is is Brownian motion on $(\Omega,\mathcal{F},\mathop{{}\mathbb{P}},\mathbb{F})$ and $\Theta$ adapted to $\mathbb{F}$, define
+$$
+\begin{aligned}
+    Z_{t}&=\exp \left( - \int _{0}^{t}\Theta(u)dW(u)- \frac{1}{2} \int _{0}^{t}\Theta^2(u)du \right) \\
+    \tilde{W}_{t}&=W(t)+\int _{0}^{t}\Theta(u)du
+\end{aligned}
+$$
+then we have $\mathop{{}\mathbb{E}}_{}Z_{T}=1$ and we can define $\tilde{\mathop{{}\mathbb{P}}}=Z_{T}d\mathop{{}\mathbb{P}}$. Assume $\Theta \in L^2(\tilde{\mathop{{}\mathbb{P}}}),\text{ i.e. }$
+$$
+\mathop{{}\mathbb{E}}_{}\int _{0}^{T} \Theta^2(u)Z^2(u)du<\infty
+$$
+, $\tilde{W}$ is a Brownian motion in $\tilde{\mathop{{}\mathbb{P}}}$.
+
+:::
+
+
+:::: {.proof}
+
+To use Levy's theorem, we should verify $\tilde{W}$ is martingale with $t$ quadratic variation, note $\int \Theta_{t}dt$ has zero variation, thus $[\tilde{W},\tilde{W}]_{t}=t$.
+
+It remains to show $\tilde{W}$ is a martingale under $\tilde{\mathop{{}\mathbb{P}}}$, let
+$$
+X_{t}=\int _{0}^{t} \Theta_{u}dW_{u}-\frac{1}{2} \int _{0}^{t} \Theta^2_{u}du
+$$
+, the inner of exp in $Z$, by Ito's formula, we have
+$$
+\begin{aligned}
+    d Z_{t}&=f'(X_{t})dX_{t}+\frac{1}{2} f''(X_{t})dX_{t}dX_{t}
+    \\ &= e^{X_{t}} \left( -\Theta_{t}dW_{t}-\frac{1}{2}\Theta_{t}^2dt \right)+ \frac{1}{2} e^{X_{t}}\Theta^2_{t}dt
+    \\ &= 
+    -\Theta_{t}Z_{t}dW_{t}
+\end{aligned}
+$$
+Integrating both sides yields
+$$
+Z_{t}=Z_0-\int _{0}^{t} \Theta_{u}Z_{u}dW_{u}
+$$
+which is a martingale as it's Ito integral and thus $\mathop{{}\mathbb{E}}_{}Z_{T}=\mathop{{}\mathbb{E}}_{}Z_0=1$. For the same reason, as
+$$
+\begin{aligned}
+    d[\tilde{W}_{t}Z_{t}]&= \tilde{W}_{t}dZ_{t}+d\tilde{W}_{t}Z_{t}+d \tilde{W}_{t}dZ_{t}
+    \\ &= 
+    (1-\tilde{W}_{t}\Theta _{t})Z_{t}dW_{t}
+\end{aligned}
+$$
+$\tilde{W}_{t}Z_{t}$ is a martingale under $\mathop{{}\mathbb{P}}$. Now we have
+$$
+\tilde{\mathop{{}\mathbb{E}}_{s}} \tilde{W}_{t}=\frac{1}{Z_{s}} \mathop{{}\mathbb{E}}_{s}\tilde{W}_{t}Z_{t} = \frac{1}{Z_{s}} \tilde{W}_{s}Z_{s}=\tilde{W}_{s}
+$$
+this completes the proof.
+
+::::
+
+Assume the stock price follows a generalized GBM:
+$$
+dS_{t}=\alpha_{t}S_{t}dt+\sigma_{t}S_{t}d W_{t}
+$$
+where $\alpha$ and $\sigma$ are adapted to $\mathbb{F}$ and $\sigma>0 \text{ a.s. }$ for all $t$. In addition, suppose we have an adapted interest rate $R_{t}$, we can then define the discount process
+$$
+dD_{t}=-R_{t}D_{t}dt
+$$
+Thus the discounted stock price follows
+$$
+d \left( D_{t}S_{t} \right)=\sigma_{t}D_{t}S_{t} \left( \Theta_{t}dt+dW_{t} \right)  
+$$
+where
+$$
+\Theta_{t}= \frac{\alpha_{t}-R_{t}}{\sigma_{t}}
+$$
+is the sharper ratio at time $t$. Let $\tilde{\mathop{{}\mathbb{P}}}$ be the measure defined in theorem \@ref(thm:girsanov) given by $\Theta$, the discounted price become a martingale under it,
+$$
+d(D_{t}S_{t})=\sigma_{t}D_{t}S_{t}d\tilde{W}_{t}
+$$
+
+Suppose our portfolio $X_{t}$ only contains $\Delta _{t}$ stock $S_{t}$ and $X_{t}-\Delta_{t}S_{t}$ bonds $R_{t}$, it's discounted value still be a martingale under $\tilde{\mathop{{}\mathbb{P}}}$:
+$$
+d(D_{t}X_{t})=\Delta_{t}\sigma_{t}D_{t}S_{t}d\tilde{W}_{t}
+$$
+
+Suppose $V_{t}$ is the payoff of a derivate security, if we can replicate it by $X_{t}$:
+$$
+X(T)=V(T) \text{ a.s. }
+$$
+then
+$$
+    D_{t}V_{t}=\tilde{\mathop{{}\mathbb{E}}_{t}}  D_{T}V_{T} \implies V_{t}=\tilde{\mathop{{}\mathbb{E}}_{t}} \left( \frac{D_{T}}{D_{t}}V_{T}
+ \right)
+$$

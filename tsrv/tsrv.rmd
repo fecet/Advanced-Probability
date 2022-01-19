@@ -1,0 +1,211 @@
+---
+title: "A tale of two time scales"
+subtitle: "Estimator of integrated volatility with noise"
+author: 
+    - "Xie Zejian"
+institute: "SUSTech"
+date: "`r Sys.Date()`"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    css: xaringan-themer.css
+    chakra: libs/remark-latest.min.js
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      ratio: 3:2
+      countIncrementalSlides: true
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = TRUE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_duo_accent(
+  primary_color = "#1381B0",
+  secondary_color = "#FF961C",
+  inverse_header_color = "#FFFFFF"
+)
+```
+
+```{r xaringan-tile-view, echo=FALSE}
+xaringanExtra::use_tile_view()
+```
+
+```{r xaringan-scribble, echo=FALSE}
+xaringanExtra::use_scribble()
+```
+
+```{r xaringan-logo, echo=FALSE}
+xaringanExtra::use_logo(
+  image_url = "figures/LOGO.png",
+  width="180px"
+)
+```
+
+# Problem setup
+
+Our interest is about using high frequency intra-day data to estimate the integrated volatility over some time periods. 
+
+To fix the idea, let $S_{t}$ denote the security price process, and suppose the return process, $X_{t}=\log S_{t}$ follows an **Ito process**:
+
+$$X_{t}=\mu_{t}dt+\sigma_{t}dB_{t}$$
+
+where $B$ is Brownian motion and $\mu_{t}$ and $\sigma_{t}$ are adapted.
+
+---
+
+## Estimate volatility
+
+And our target is the cumulative volatility in a time interval $[0,T]$. Suppose $\mathcal{G}$ is a partition of $[0,T]$:
+
+$$\mathcal{G}=\left\{ 0,t_1,t_2,\dots,t_{n}:=T \right\}$$
+
+and let $\left\| \mathcal{G} \right\|=\sup_{\mathcal{G}} \left\{ \left| t_i-t_{i+1} \right| \right\}$, a SDE results about **integrated volatility** is:
+
+$$\left\langle X,X \right\rangle_{T}:=\lim_{\left\| \mathcal{G} \right\|\to 0} \sum_{t_i}^{}(X_{t_{i+1}-X_{t_i}})^2=\int_{0}^{T}\sigma_{t}^2dt$$
+
+
+Thus a nature way to estimate is use the following **realized volatility**:
+$$[X,X]_{T}:=\sum_{t_i}^{}(X_{t_{i+1}-X_{t_i}})^2 \approx  \int_{0}^{T}\sigma^2_{t}dt$$
+That suggests we use the **highest** frequency. 
+
+---
+
+class: inverse center middle
+
+# However, this is not true.
+
+---
+
+## Subsampling
+
+It is generally held that the returns process $X_{t}$ should not be sampled too often.
+
+When prices are sampled at finer intervals, microstructure issues become more pronounced. 
+
+--
+
+The sampling length of the typical choices usually ranges from 5 to 30 minutes for exchange rate data, for instance. 
+
+If the original data are sampled once every second, say, then retaining an observation every 5 minutes amounts to **discarding** 299 out of every 300 data points.
+
+--
+
+This approach poses a conflict to the statistical intuition, it is difficult to accept that throwing away data, especially in such quantities, can be an optimal solution. 
+
+
+---
+
+## Model the noise
+
+To estimate such conflict, the transaction will be seen as observations for the price process. 
+
+$$Y_{t_i} = X_{t_i} + \varepsilon_{t_i}$$
+
+Here $X_{t}$ is a latent “true return” process, and the $\varepsilon_{t_i}$ is independent noise around the true return:
+
+$$\varepsilon_i \text{ i.i.d with } \mathop{{}\mathbb{E}}_{}\varepsilon_{i}=0 \text{ and } \mathop{\text{Var}}\varepsilon=\nu , \varepsilon \perp X$$
+
+The number of observations $n$ goes to $\infty$.
+
+---
+
+### Realized Volatility: An Estimator of the Noise?
+
+From Polarization identity:
+
+$$[Y,Y]_{T}=[X,X]_{T}+2[X,\varepsilon ]_{T}+[\varepsilon,\varepsilon]_{T}$$
+
+The condition mean is: 
+
+$$\mathop{{}\mathbb{E}}_{X}[Y,Y]_{T}=[X,X ]_{T}+2n \nu$$
+
+That reveals $[Y,Y]_{T}$ is not a reliable estimator. For large $n$, realized volatility could have little to do with the true returns, while the positive bias increases linearly with the sample size $n$. 
+
+--
+
+Interestingly, the realized volatility $[Y,Y]_{T}$ yields a consistent and asymptotically normal estimator of noise $\nu$, namely
+$$\hat{\nu}:=\frac{[Y,Y]_{T}}{2n}$$
+We have, for a fixed true return process $X$,
+$$\sqrt{n}(\hat{\nu}-\nu)\to \mathcal{N}(0,\mathop{{}\mathbb{E}}_{}\varepsilon^{4})$$
+
+---
+
+## Multiple grid
+
+Now that subsampling is unavoidable, how about "pooling" our estimate from many subsampling?
+
+Suppose that the total grid $\mathcal{G}$ is partitioned into $K$ zero overlapping subgrids $\mathcal{G}_{i}$:
+$$\bigcup_{i}^{K}\mathcal{G}_{i}=\mathcal{G},\mathcal{G}_{j} \cap \mathcal{G}_{k}=\emptyset$$
+
+--
+
+Such partition is always feasible as we can simply take an equivalence class quotient by $K$, and we always refer to those $K$ subgrids unless stated otherwise.
+
+--
+
+For each subgrid $\mathcal{G}_{k}$, we denote it's realized volatility as $[Y,Y]^{k}_{T}$ and the $[Y,Y]_{T}$ denoted so far will be written as $[Y,Y]_{T}^{(all)}$.
+
+A nature competition to $[Y,Y]_{T}^{(all)}$ is given by
+$$[Y,Y]_{T}^{(.)}=\frac{\sum_{i=1}^{K}[Y,Y]^{k}_{T}}{K}$$
+
+---
+
+## Results summary
+
+Then we analysis the error comes from $[Y,Y]_{T}^{(.)}$ and $[X,X]_{T}^{(.)}$:
+$$\sqrt{\frac{K}{\bar{n}}}\left( [Y,Y]^{(.)}_{T}-[X,X]^{(.)}_{T}-2\nu \bar{n} \right) \xrightarrow{\mathcal{L}} \mathcal{N}(0,4\mathop{{}\mathbb{E}}_{}\varepsilon^{4})$$
+
+This can be compared with the earlier results:
+$$\left( [Y,Y]^{}_{T}-[X,X]^{}_{T}-2\nu n \right) \xrightarrow{\mathcal{L}} \mathcal{N}(0,4n\mathop{{}\mathbb{E}}_{}\varepsilon^{4})$$
+and provides an improvement in that both the asymptotic bias and variance are of smaller order of $n$.
+
+--
+
+The other part of error $[X,X]^{(.)}_{T}-<X,X>_{T}$ is controllable:
+
+$$[X,X]^{(.)}_{T}-<X,X>_{T} \xrightarrow{\mathcal{L}}\mathcal{N}(0,\frac{K}{n})$$
+
+---
+
+## Results summary
+
+$[Y,Y]_{T}^{(.)}$ is a better, yet biased estimator, to adjust it, we should add a term that estimate $\nu$. That is
+
+--
+
+$$\widehat{\left\langle X,X \right\rangle}_{T}=[Y,Y]_{T}^{(.)}- 2 \bar{n} \hat{\nu}$$
+Where $\hat{\nu}$ is the by-product we get from the very beginning. 
+
+## That's the tale of two time scales.
+
+
+
+
+
+
+
+---
+class: center, middle
+
+# Thanks!
+
+Slides created via the R packages:
+
+[**xaringan**](https://github.com/yihui/xaringan)<br>
+[gadenbuie/xaringanthemer](https://github.com/gadenbuie/xaringanthemer)
+
+The chakra comes from [remark.js](https://remarkjs.com), [**knitr**](http://yihui.name/knitr), and [R Markdown](https://rmarkdown.rstudio.com).

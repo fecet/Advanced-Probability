@@ -1,0 +1,39 @@
+Suppose
+$$
+X_{t}=\phi_1X_{t-1}+\phi_2X_{t-2}+\dots+\phi_{p}X_{t-p}+e_{t}
+$$
+Omit $e_{t}$, one can derivate
+$$
+X_{t}=
+\begin{bmatrix}
+\phi_1&\phi_2&\dots&\phi_p
+\end{bmatrix}.
+\begin{bmatrix}
+X_{t-1}	\\
+X_{t-2}	\\
+\vdots	\\
+X_{t-p}	\\
+\end{bmatrix}
+$$
+$$
+X_{t+1}=\phi_1\cdot
+\begin{bmatrix}
+\phi_1&\phi_2&\dots&\phi_p
+\end{bmatrix}.
+\begin{bmatrix}
+X_{t-1}	\\
+X_{t-2}	\\
+\vdots	\\
+X_{t-p}	\\
+\end{bmatrix}+
+\begin{bmatrix}
+\phi_2 &\dots&\phi_p&0
+\end{bmatrix}.
+\begin{bmatrix}
+X_{t-1}	\\
+X_{t-2}	\\
+\vdots	\\
+X_{t-p}	\\
+\end{bmatrix}+
+$$
+Finally, suppose

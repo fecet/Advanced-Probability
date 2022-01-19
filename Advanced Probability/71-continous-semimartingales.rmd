@@ -2,7 +2,7 @@
 
 ### FV function
 
-A FV function $a$ induce a signed measure $\mu=\mu^{+}-\mu^{-}$ and
+An FV function $a$ induce a signed measure $\mu=\mu^{+}-\mu^{-}$ and
 $$
 \mu(\mu,\nu]=a(\nu)-a(\mu)
 $$
@@ -30,7 +30,7 @@ Thus we define approximate $\mu f=\lim_{n \to \infty}\mu f_n$ where $f_n=f(t^{n}
 
 ### FV processes
 
-If $A$ is FV, take $a(s)=A_{s}(\omega)$ the process
+If $A$ is FV, take $a(s)=A_{s}(\omega)$, the process
 $$
 V_{t}(\omega)=\int _{0}^{t} \left| dA_{s}(\omega) \right|
 $$
@@ -256,7 +256,7 @@ $$
 :::
 
 
-::: {.proposition  name=""}
+::: {.proposition #bracket-property name=""}
 
 a. $\left\langle M,N \right\rangle$ is the unique FV process $\text{ s.t. }$ $MN-\left\langle M,N \right\rangle$ is continuous local martingale.
 
@@ -332,7 +332,7 @@ in probability.
 
 :::
 
-## Stochastic integrals
+## Stochastic integrals for martingales bounded in $L^2$
 
 Write $\mathcal{H}^2$ for the space of all continuous $L^2$ bounded martingale $M$ with $M_0=0$. Equip inner product as
 $$
@@ -399,9 +399,6 @@ let $\tau$ be a stopping time, then
 $$
 (\bm{1}_{[0,\tau]}H)\cdot M=(H \cdot M)^{\tau}=H\cdot M^{\tau}
 $$
-
-
-
 :::
 
 
@@ -461,25 +458,73 @@ $$
     \sqrt{\mathop{{}\mathbb{E}}_{}\left\langle N,N \right\rangle_{\infty}} \left\| H^{n}-H \right\|_{L^2(M)}
 \end{aligned}
 $$
-replacing all process $X$ to $X^{t}$ completes the proof.
-
-
-
+Replacing all process $X$ to $X^{t}$ completes the proof.
 
 ::::
 
+$$
+\left\langle H\cdot M,H\cdot M \right\rangle=H^2\cdot \left\langle M,M \right\rangle
+$$
+
+::: {.proposition  name=""}
+
+Let $H\in L^2(M)$, if $K$ is progressive, we have $KH \in L^2(M)$ iff $K\in L^2(H\cdot M)$, if so
+$$
+(KH) \cdot M=K\cdot(H\cdot M)
+$$
+
+:::
+
+####  Moments of stochastic integrals
+
+Let $M,N \in \mathcal{H}^2$, $H\in L^2(M)$ and $K\in L^2(N)$. Since $H\cdot M$ and $K \cdot N$ are martingales in $\mathcal{H}^2$, we have, for every $t\in [0,\infty]$, $\mathop{{}\mathbb{E}}_{}(H \cdot M)_{t}=0$,
+$$
+\left\langle H\cdot M,K\cdot N \right\rangle_{t}=(HK \cdot \left\langle M,N \right\rangle)_{t}
+$$
+that along with proposition \@ref(prp:bracket-property).e implies
+$$
+\mathop{{}\mathbb{E}}_{} \left[ (H \cdot M)_{t} (K \cdot N)_{t} \right]=\mathop{{}\mathbb{E}}_{} \left( HK \cdot \left\langle M,N \right\rangle \right)_{t}
+$$
+
+### Stochastic integrals for local martingales
 
 
+::: {.theorem  name=""}
+
+Let $M$ be a continuous local martingale, for every $H\in L^2_{loc}(M)$, there exists a unique continuous local martingale $H\cdot M$ with initial value $0 \text{ s.t. }$, for every continuous local martingale $N$,
+$$
+\left\langle H \cdot M,N \right\rangle=H \cdot \left\langle M,N \right\rangle
+$$
+
+:::
+
+### Stochastic integrals for semimartingales
+
+A progressive $H$ is **locally bounded** if
+$$
+\forall t\ge 0, \sup _{s \le t} \left| H_{s} \right|<\infty \text{ a.s. }
+$$
+For such $H$ and FV $V$, we have
+$$
+\forall t\ge 0, \int_{0}^{t} \left| H_{s} \right| \left| dV_{s} \right|<\infty, \text{ a.s. }
+$$
+For continuous local martingale $M$,
+$$
+\forall t\ge 0, \int_{0}^{t} H_{s}^2d \left\langle M,M \right\rangle_{s}<\infty, \text{ a.s. }
+$$
 
 
+::: {.definition  name=""}
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+Let $X=M+V$ be a semimartingale's canonical decomposition, if $H$ is a locally bounded progressive process.
+$$
+H \cdot X=H\cdot M+H \cdot V
+$$
+and we write
+$$
+(H \cdot X)_{t}=\int_{0}^{t} H_{s}dX_{s}
+$$
+
+:::
+
+

@@ -152,8 +152,7 @@ where $\mathop{\text{rank}}\left( \bm{\widetilde{P}} \right)=\Theta(\log n)$.
 $$
 P=\text{softmax}\left\{ \frac{A}{\sqrt{d_{qk}}} \right\}=\exp \bm{\sqrt{d_{qk}}A}\cdot \bm{D_A}^{-1}
 $$
-
-By JL lemma, we claim the approximate matrix can be $\bm{\widetilde{P}}=\bm{PR'R}$ where $\bm{R}$ is random $k\times n$ matrix with $\mathcal{N}(0,\frac{1}{k})$ entries. Then we can SVD $\widetilde{P}$ to achieve linear complexity
+By JL lemma, we claim the approximate matrix can be $\bm{\widetilde{P}}=\bm{PR'R}$ where $\bm{R}$ is random $k\times n$ matrix with $\mathcal{N}(0,\frac{1}{k})$ entries. Then we can SVD $\widetilde{P}$ to achieve linear complexity:
 $$
 \widetilde{P}\simeq \sum_{i=1}^{k} \sigma_i \bm{u_i v_i'}
 $$
@@ -162,8 +161,5 @@ $$
 ::::
 
 
-$$
-\left( sdw \right)
-$$
 
 
