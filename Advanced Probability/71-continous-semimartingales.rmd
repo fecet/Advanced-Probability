@@ -528,3 +528,50 @@ $$
 :::
 
 
+::: {.proposition #semimartingale-integral-property name=""}
+
+
+a. Mapping $(H,X) \mapsto H\cdot X$ is bilinear.
+
+b. $H \cdot (K\cdot X)=(HK)\cdot X$, if $H$ and $K$ are progressive and locally bounded.
+
+c. For any stopping time $\tau$,
+$$
+(H\cdot X)^{\tau}=\bm{1}_{[0,\tau]}H \cdot X=H\cdot X^{\tau}
+$$
+
+d. If $X$ is a continuous local martingale,(FV process, $\text{ resp. }$), so is $H\cdot X$.
+
+e. If $H$ of the form
+$$
+H_{t}(\omega)=\sum_{i=0}^{p-1}H_{i}(\omega)\bm{1}_{(t_i,t_{i+1}]}(t)
+$$
+where we do not assume $H_i$ is bounded, then
+$$
+(H \cdot X)_{t}=\sum_{i=0}^{p-1} H_{i}(X_{t_{i+1}\land \tau}-X_{t_{i}\land \tau})
+$$
+
+:::
+
+### Convergence of Stochastic integrals
+
+
+::: {.proposition  name=""}
+
+Let $X=M+V$ be a canonical decomposition of a continuous semimartingale $X$, and $t>0$. Let $(H^{n})$ and $H$ be locally bounded progressive process and let $K\ge 0$ be progressive. If the following hold $\text{ a.s. }$:
+
+a. $H^{n}_{s}\to H_{s}$ for every $s\in [0,t]$
+
+b. $\left| H^{n}_{s} \right|\le K_{s}, \forall n \ge 1$ and $s\in [0,t]$
+
+c. $\int_{0}^{t} K_{s}^2d \left\langle M,M \right\rangle_{s}<\infty$ and $\int_{0}^{t} K_{s}\left| dV_{s} \right|<\infty$.
+
+Then
+$$
+\int_{0}^{t} H_{s}^{n} dX_{s} \to \int_{0}^{t} H_{s}dX_{s}
+$$
+in probability.
+
+
+:::
+
